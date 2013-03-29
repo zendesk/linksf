@@ -1,9 +1,9 @@
 linksf
 ======
 
-a preliminary schema
+####a preliminary schema
 
-```json
+```
 name:        string
 addr:        string
 description: string
@@ -15,11 +15,11 @@ demos:       []
 services:    []
 ```
 
-with this, we can proceed on some action items:
+####with this, we can proceed on some action items:
 
 1. convert the existing data (google spreadsheet) into fixture json
 
-and then these distribute time to these parallelizable tasks:
+####and then these distribute time to these parallelizable tasks:
 
 1. implement the Parse query api
 1. implement the frontend
