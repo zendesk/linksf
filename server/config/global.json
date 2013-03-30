@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "Link SF": {
+            "applicationId": "Z2l0Zn6NGrHCDoBPKUeD7Tf1fAUDaazQihQFqnL8", 
+            "masterKey": "xPD0ZjsE3ppyPkgFX4BxrHEOxJF0XSJ2lQBvfeW3"
+        }, 
+        "_default": {
+            "link": "Link SF"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.2.2"
+    }
+}

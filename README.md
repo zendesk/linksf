@@ -24,3 +24,7 @@ services:    []
 1. implement the Parse query api
 1. implement the frontend
 1. implement the admin ui
+
+####a changelog of sorts
+
+* Added a scaffold [cloudcode](https://www.parse.com/docs/cloud_code_guide) app
