@@ -19,7 +19,7 @@ services:    []
 
 1. convert the existing data (google spreadsheet) into fixture json
 
-####and then these distribute time to these parallelizable tasks:
+####then these parallelizable tasks:
 
 1. implement the Parse query api
 1. implement the frontend
