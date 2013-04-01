@@ -46,3 +46,4 @@ demographics: array  # maybe?  unclear whether necessary
 ####a changelog of sorts
 
 * Added a scaffold [cloudcode](https://www.parse.com/docs/cloud_code_guide) app
+* Added `Facility` and `Service` Backbone models
