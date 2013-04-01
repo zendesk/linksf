@@ -1,9 +1,11 @@
 $(function() {
+  Parse.initialize("Z2l0Zn6NGrHCDoBPKUeD7Tf1fAUDaazQihQFqnL8", "kGPp7cydleuFbhKB4mrviTmbIjrbTjhxGP4dP7Ls");
+
   var AppView = Backbone.View.extend({
     el: $("#linksf")
   });
 
-  var Facility = Backbone.Model.extend({
+  Facility = Parse.Object.extend('Facility', {
     defaults: function() {
       return {
         name:         'glide sf',
@@ -18,7 +20,7 @@ $(function() {
     },
   });
 
-  var Service = Backbone.Model.extend({
+  Service = Parse.Object.extend('Service', {
     defaults: function() {
       return {
         facilityId:   'glide sf', // reference to Facility
