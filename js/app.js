@@ -16,7 +16,6 @@ $(function() {
         geopoint:     {}
       };
     },
-
   });
 
   var Service = Backbone.Model.extend({
@@ -32,5 +31,5 @@ $(function() {
     }
   });
 
-  var App = new Appview;
+  var App = new AppView;
 });
