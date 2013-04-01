@@ -1,7 +1,9 @@
 $(function() {
-  var Facility, Service;
+  var AppView = Backbone.View.extend({
+    el: $("#linksf")
+  });
 
-  Facility = Backbone.Model.extend({
+  var Facility = Backbone.Model.extend({
     defaults: function() {
       return {
         name:         'glide sf',
@@ -17,7 +19,7 @@ $(function() {
 
   });
 
-  Service = Backbone.Model.extend({
+  var Service = Backbone.Model.extend({
     defaults: function() {
       return {
         facilityId:   'glide sf', // reference to Facility
@@ -29,4 +31,6 @@ $(function() {
       };
     }
   });
+
+  var App = new Appview;
 });
