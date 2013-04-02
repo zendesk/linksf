@@ -18,12 +18,13 @@ From Steven:
 
 This will replace http://ttlsf.herokuapp.com/ which uses a [Google spreadsheet](https://docs.google.com/spreadsheet/ccc?key=0AkkJeKqc-HDpdE5INXRRYVdMVmd5ay15dm5LZEdPLWc#gid=0) for persistence. 
 
+
 ## Link SF
 
 We're going to have three main components: database/query api, frontend, and admin ui.
 
 * database/query api: [Parse](https://parse.com/)
-* frontend: Backbone.js with jQuery
+* frontend: Backbone.js with jQuery, [mockup](http://f.cl.ly/items/2q1D093m3R3W2C3s3M40/TTL%20Mobile%20Resource.pdf)
 * admin ui: ???
 
 ####a preliminary schema
