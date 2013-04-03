@@ -1,4 +1,4 @@
-[
+fixtureData = [
   {
     "name": "30TH STREET SENIOR CENTER",
     "phone": "(415) 550-2210",
@@ -14,6 +14,8 @@
         "notes": "http://www.onlok.org/30thStreetSeniorCenter.aspx"
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": [
       "S"
@@ -21,11 +23,18 @@
   },
   {
     "name": "A Woman's Place",
-    "phone": "(415) 487-2140",
-    "address": "1049 HOWARD ST (bet. 6th & 7th Sts)",
+    "phone": "(415) 487-2140 ",
+    "address": "1049 HOWARD (bet. 6th & 7th Sts; enter on Russ St.)",
     "description": "",
     "notes": "",
     "services": [
+      {
+        "category": "housing",
+        "name": "housing",
+        "hours": " Drop in 12pm-4pm for referrals & case management",
+        "description": "5 beds for women in crisis (rape or domestic violence); stay up to 7 days. 16 shelter beds; stay varies. 16 beds in supportive housing (5 for HIV+ women); stay up to 18 months. 8-bed substance abuse program for any woman 18+; stay 1-4 months.",
+        "notes": "Call for interview. Phone line open 24 hours a day."
+      },
       {
         "category": "medical",
         "name": "medical",
@@ -41,24 +50,8 @@
         "notes": "Towels are sometimes provided but you may need to bring your own. Soap and Shampoo are provided"
       }
     ],
-    "gender": "W",
-    "age": null
-  },
-  {
-    "name": "A Woman’s Place",
-    "phone": "(415) 487-2140 ",
-    "address": "1049 HOWARD (bet. 6th & 7th Sts; enter on Russ St.)",
-    "description": "",
-    "notes": "",
-    "services": [
-      {
-        "category": "housing",
-        "name": "housing",
-        "hours": " Drop in 12pm-4pm for referrals & case management",
-        "description": "5 beds for women in crisis (rape or domestic violence); stay up to 7 days. 16 shelter beds; stay varies. 16 beds in supportive housing (5 for HIV+ women); stay up to 18 months. 8-bed substance abuse program for any woman 18+; stay 1-4 months.",
-        "notes": "Call for interview. Phone line open 24 hours a day."
-      }
-    ],
+    "hours": {
+    },
     "gender": "W",
     "age": [
       "A",
@@ -80,6 +73,8 @@
         "notes": "Meat; potatoes or pasta or rice; vegetables, salad, pastry, coffee & bread"
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -98,6 +93,8 @@
         "notes": null
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -116,6 +113,8 @@
         "notes": "Sign up Thurs 8:30am to get groceries at 9am. Must live in 94110 or 94103 zipcode. ID required"
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -134,6 +133,8 @@
         "notes": "Kitchen & basic food provided for cooking; referrals, counseling & clothing available. Staff speaks Arabic, Cantonese, English, Hindi, Hmong, Indonesian, Japanese, Javanese, Laotian, Mandarin, Mien, Punjabi, Russian, Spanish, Taiwanese, Thai, Urdu, & Vietnamese; other languages by phone interpreter"
       }
     ],
+    "hours": {
+    },
     "gender": "W",
     "age": null
   },
@@ -159,6 +160,8 @@
         "notes": "English, Spanish, & Tagalog."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -177,6 +180,8 @@
         "notes": "Must live in 94124 zip code. ID required. Bring a bag. Call M-F for one-time-only emergency food box for any SF resident (no ID required)."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -195,6 +200,8 @@
         "notes": "Apply 8am-noon Fri, Oct 12 for a randomly-assigned appt (not first-come-firstserved) to get food weekly for six months. ID required. Bring a bag"
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -213,6 +220,8 @@
         "notes": "Call Wed 9am-noon for appt to get food Thur 11:30am-1pm. Produce, canned & dry goods. Photo ID required."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -231,6 +240,8 @@
         "notes": "You’ll be photographed & your finger image will be scanned into a computer for future use. It won’t be saved without your consent. They’ll ask for your Social Security number, but you don’t have to give it. You’ll get a reservation for a bed or mat if one is available. If no bed is available you can wait there during open hours until a bed opens up. You can request a ride to the shelter if elderly or disabled. At the shelter your finger image will be scanned again but not saved. English, Spanish."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": [
       "A",
@@ -252,6 +263,8 @@
         "notes": "You’ll be photographed & your finger image will be scanned into a computer for future use. It won’t be saved without your consent. They’ll ask for your Social Security number, but you don’t have to give it. You’ll get a reservation for a bed or mat if one is available. If no bed is available you can wait there during open hours until a bed opens up. You can request a ride to the shelter if elderly or disabled. At the shelter your finger image will be scanned again but not saved. English, Spanish."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": [
       "A",
@@ -273,6 +286,8 @@
         "notes": "You’ll be photographed & your finger image will be scanned into a computer for future use. It won’t be saved without your consent. They’ll ask for your Social Security number, but you don’t have to give it. You’ll get a reservation for a bed or mat if one is available. If no bed is available you can wait there during open hours until a bed opens up. You can request a ride to the shelter if elderly or disabled. At the shelter your finger image will be scanned again but not saved. English, Spanish."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": [
       "A",
@@ -294,6 +309,8 @@
         "notes": "You’ll be photographed & your finger image will be scanned into a computer for future use. It won’t be saved without your consent. They’ll ask for your Social Security number, but you don’t have to give it. You’ll get a reservation for a bed or mat if one is available. If no bed is available you can wait there during open hours until a bed opens up. You can request a ride to the shelter if elderly or disabled. At the shelter your finger image will be scanned again but not saved. English, Spanish."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": [
       "A",
@@ -322,6 +339,8 @@
         "notes": null
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -340,6 +359,8 @@
         "notes": null
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -358,6 +379,8 @@
         "notes": "Apply Wed 12:15pm to pick up food every Wed. Must live in 94124 zip code. ID required. Those not signed up may line up Wed 12:15pm to see if there's extra."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -376,6 +399,8 @@
         "notes": "HIV early care clinic by appt only. HIV Post Exposure Prophylaxis & emergency contraception available after clinician assessment. HIV testing only if clinician assesses high risk. Cantonese, English,Mandarin, Russian, Spanish, & Tagalog."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -394,6 +419,8 @@
         "notes": "Call ahead if you can; apply clean & sober M-F 9-10am. Stay up to 1 yr."
       }
     ],
+    "hours": {
+    },
     "gender": "M",
     "age": [
       "A",
@@ -415,6 +442,8 @@
         "notes": "Dinner: Tues-Fri arrive 5:45pm for 6pm church group (optional) & dinner. Those who come to church group are fed first. A hot meal. Clothes & foot care available at Sat lunch. Medical clinic 2nd & 4th Sat of each month."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -433,6 +462,8 @@
         "notes": "*Must have Right to Work Documents"
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -451,6 +482,8 @@
         "notes": "Call for intake interview. If you get an answering machine, leave your name & phone number. If you don’t have a return number, call until you get through. Ask about possible financial help for families facing eviction or move-in costs. Cantonese, English, French, Spanish."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -476,6 +509,8 @@
         "notes": "For those age 60 & over with ID. $2 suggested donation; no one turned away for lack of funds. Sign up 8am for lunch."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": [
       "S"
@@ -496,6 +531,8 @@
         "notes": "Vegan! Curried vegetables, 9-bean soup, puris, rice, & chutney. "
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -514,6 +551,8 @@
         "notes": "5 computers"
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": [
       "S"
@@ -534,6 +573,8 @@
         "notes": null
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": [
       "Y",
@@ -555,6 +596,8 @@
         "notes": null
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": [
       "Y",
@@ -576,6 +619,8 @@
         "notes": "Line up Fri 9:30am to get food 10:45-11:30am"
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -601,6 +646,8 @@
         "notes": null
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -619,6 +666,8 @@
         "notes": "Vegan! soup &/or entree;bread (may have animal products); often salad. Bring your own bowl. Meal times vary: often late or cancelled."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -637,6 +686,8 @@
         "notes": "Vegan! soup &/or entree;bread (may have animal products); often salad. Bring your own bowl. Meal times vary: often late or cancelled."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -655,6 +706,8 @@
         "notes": "Vegan! soup &/or entree;bread (may have animal products); often salad. Bring your own bowl. Meal times vary: often late or cancelled."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -673,6 +726,8 @@
         "notes": null
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -691,6 +746,8 @@
         "notes": null
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -709,6 +766,8 @@
         "notes": "Confidential HIV oral rapid tests, hepatitis &breast cancer screening, case management, diabetes, hypertension, smoking cessation, yoga & substance abuse services."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": [
       "A",
@@ -730,6 +789,8 @@
         "notes": "Breakfast: Every day from 8am until tickets run out; Seniors (over age 60) 7:30am. Lunch: Every day from noon until tickets run out; bag meal (2 sandwiches+) given out after lunch Sat & Sun. Dinner: Monday-Friday from 4pm until tickets run out."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -748,6 +809,8 @@
         "notes": "English & Spanish."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -766,6 +829,8 @@
         "notes": "Substance abuse treatment; acupuncture."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -784,6 +849,8 @@
         "notes": "For residents of Heritage Homes/Britton Court. Photo ID required"
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -802,6 +869,8 @@
         "notes": "Youths 11-17 who are not on probation, call if you can or show up to be assessed for short-term housing. If accepted, they’ll contact your guardians within 24 hrs."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": [
       "Y",
@@ -823,6 +892,8 @@
         "notes": "Ages 12-24; if 12-18 & not homeless, parental consent is required for all primary\ncare services. Call 386-9398 for case management, therapy, & peer health education. Cantonese, English, & Spanish."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": [
       "Y"
@@ -843,6 +914,8 @@
         "notes": null
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -861,6 +934,8 @@
         "notes": null
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -879,6 +954,8 @@
         "notes": "Use of lab and computers are specifically for job search. To use facilities, Guests must enroll in the program by attending one of our TAC Enrollment sessions held on Mondays from 2:00-3:00pm, Wednesdays from 2:30-3:30pm, and Fridays from 10:30-11:30am."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -904,6 +981,8 @@
         "notes": null
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -922,6 +1001,8 @@
         "notes": "ID required"
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -940,6 +1021,8 @@
         "notes": null
       }
     ],
+    "hours": {
+    },
     "gender": "W",
     "age": null
   },
@@ -958,6 +1041,8 @@
         "notes": "Come in or call any time (24 hrs) to get on waiting list for a bed (40 beds nightly).  Case management required. Curfew 9:45pm. Leave\nby 8:30am."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": [
       "Y"
@@ -978,6 +1063,8 @@
         "notes": "English & Spanish."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": [
       "Y"
@@ -998,6 +1085,8 @@
         "notes": "English & Spanish. Email: info@lyon-martin.org."
       }
     ],
+    "hours": {
+    },
     "gender": "W",
     "age": null
   },
@@ -1023,11 +1112,13 @@
         "notes": "There is a short blessing before the meal."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
   {
-    "name": "Martin De Porres (Martin's)",
+    "name": "Martin De Porres",
     "phone": "(415) 869-0240",
     "address": "225 Poterero (near 16th street)",
     "description": "",
@@ -1039,8 +1130,17 @@
         "hours": "center open daily, showers available Tuesday and Thursday. Sign up at 9am",
         "description": "A place to shower on Tuesday and Thursdays",
         "notes": "Hygiene products distriubuted Tuesday and Thursday from 6:30am-7:30am at breakfast. Towels for showers are provided."
+      },
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Sun Brunch 9-10:30am, Mon Breakfast 6:30am-7:30am, Tues Breakfast 6:30am-7:30am, Tues Lunch 12pm-2pm, Wed Lunch 12pm-2pm, Thurs Breakfast 6:30am-7:30am, Thurs Lunch12pm-2pm, Fri Breakfast 6:30am-7:30am, Fri Lunch 12pm-2pm, Sat Lunch 12pm-2pm",
+        "description": "Dinning room serving at least one meal a day.",
+        "notes": "Usually a vegetarian or vegan alternative. Breakfast: oatmeal & herb tea. Brunch: a hearty meal. Lunch: a hearty soup & salad."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1059,24 +1159,8 @@
         "notes": "Th 12-2pm nurse practitioner; 12:30-2pm, health education, referrals, over-the-counter medications. English &Spanish."
       }
     ],
-    "gender": null,
-    "age": null
-  },
-  {
-    "name": "Martin de Porres House of Hospitality",
-    "phone": "(415) 552-0240",
-    "address": "225 Poterero (near 16th street)",
-    "description": "",
-    "notes": "",
-    "services": [
-      {
-        "category": "food",
-        "name": "food",
-        "hours": "Sun Brunch 9-10:30am, Mon Breakfast 6:30am-7:30am, Tues Breakfast 6:30am-7:30am, Tues Lunch 12pm-2pm, Wed Lunch 12pm-2pm, Thurs Breakfast 6:30am-7:30am, Thurs Lunch12pm-2pm, Fri Breakfast 6:30am-7:30am, Fri Lunch 12pm-2pm, Sat Lunch 12pm-2pm",
-        "description": "Dinning room serving at least one meal a day.",
-        "notes": "Usually a vegetarian or vegan alternative. Breakfast: oatmeal & herb tea. Brunch: a hearty meal. Lunch: a hearty soup & salad."
-      }
-    ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1095,6 +1179,8 @@
         "notes": "line up 9am Wed; food given out 9-10am; bring a bag."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1113,6 +1199,8 @@
         "notes": "English, Spanish"
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1131,6 +1219,8 @@
         "notes": "Towels and liquid soaps provided. Hygiene items sometimes provided. Laundry costs are .25 per cycle."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1149,6 +1239,8 @@
         "notes": "Showers, lockers, laundry, case management & support groups available. English & Spanish."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1167,6 +1259,8 @@
         "notes": null
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1185,6 +1279,8 @@
         "notes": "Be clean & sober, with proof of negative TB & HIV status, & able to live a communal life. Call for appointment for personal interview. 2 meals daily. Leave the house by 9am. Curfew 5pm. No new shelter guests accepted Th."
       }
     ],
+    "hours": {
+    },
     "gender": "W",
     "age": null
   },
@@ -1203,6 +1299,8 @@
         "notes": "Towels, soap, and shampoo are provided. Towels distributed all day."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1221,6 +1319,8 @@
         "notes": "English & Spanish."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1239,6 +1339,8 @@
         "notes": "Cantonese, English, Korean, Mandarin, Spanish, and Vietnamese."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1257,6 +1359,8 @@
         "notes": "Cantonese, English, Korean, Mandarin, Spanish, and Vietnamese."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1275,6 +1379,8 @@
         "notes": "Cantonese, English, Korean, Mandarin, Spanish, and Vietnamese."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1293,6 +1399,8 @@
         "notes": "Cantonese, English, Korean, Mandarin, Spanish, and Vietnamese."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1311,6 +1419,8 @@
         "notes": "Cantonese, English, Korean, Mandarin, Spanish, and Vietnamese."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1329,6 +1439,8 @@
         "notes": null
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1347,6 +1459,8 @@
         "notes": "Apply Tues 9am-12pm for weekly appt to pick up food Tues 11am-noon. Must live in 94112, 94116, or 94132 zip code. Photo ID & proof of current address required."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1365,6 +1479,8 @@
         "notes": "For seniors (60+) & disabled adults. Sign up M-W 8:30am-2pm, Fri 8:30am-2pm for weekly appointment to pick up food Thurs 9am-noon; sign up for food boxes 9am-12pm 4th Mon of the month. Photo ID, proof of income, & proof of current address required for both services. English, Cantonese, Mandarin, Spanish, Tagalog, Vietnamese."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1383,6 +1499,8 @@
         "notes": "Line up Sat 8:30am (except 1st Sat of the month) for ticket for food given out 9:30-11:30am. ID and proof of address required. Bring a bag. English, Spanish"
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1401,6 +1519,8 @@
         "notes": "`"
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1419,6 +1539,8 @@
         "notes": "http://www.plazaadelante.org/main/"
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1437,6 +1559,8 @@
         "notes": "People with symptomatic HIV or AIDS or breast cancer: call M-Sa 9am-4pm for interview appt. If accepted, pick up food Tues 9am-4pm, Wed-Sat 11am-4pm. Proof of diagnosis & SF residency & photo ID required."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1455,6 +1579,8 @@
         "notes": "Optional Bible study before a hearty lunch."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1473,6 +1599,8 @@
         "notes": "For SF residents. Photo ID required."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1491,6 +1619,8 @@
         "notes": null
       }
     ],
+    "hours": {
+    },
     "gender": "W",
     "age": null
   },
@@ -1509,6 +1639,8 @@
         "notes": "Breakfast is coffee and pastry. Full course dinner is served at 3:45 pm. Blankets may be available. Mandatoory church service at 4pm. Doors close at 4:15pm."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1527,6 +1659,8 @@
         "notes": "Sign up Wed 12-12:30pm to get food one Thurs a month 12-12:30pm. Must live in 94102 zip code. Photo ID & proof of address required"
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1545,6 +1679,8 @@
         "notes": "Local branches have Internet access with varying policies. Computer use at branches is limited to 30 minutes per session."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1563,6 +1699,8 @@
         "notes": null
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1581,6 +1719,8 @@
         "notes": "Call MWF 9am-4pm for interview appt. If accepted, get food Fri 3pm. If not\nsigned up, come Fri 2:30pm to see if there’s extra food. Must live in 94108, 94109, 94111, 94123, 94129, 94130, 94133, or 94158 zip code. English, Cantonese, Mandarin."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1599,6 +1739,8 @@
         "notes": "Register Friday 7:30am to get food the following Friday. Must live in 94102, 94103, 94115, 94117, 94118, or 94121 zip code. ID required."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1617,6 +1759,8 @@
         "notes": "Food given out Fri 8:30am (line up early to get a number). You must live in 94104 or 94105 zip code. ID required. English, Cantonese, & Mandarin."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1635,6 +1779,8 @@
         "notes": " Must live in 94107, 94110, 94112, 94114, or 94131 zip code. English, Spanish."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1653,6 +1799,8 @@
         "notes": "First 20 people are seen. Preference given to day laborers. Job referrals M-F 7am-1pm, Sa 7am-noon. English classes available. English & Spanish."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1671,6 +1819,8 @@
         "notes": "Cantonese, English, Mandarin, & Spanish. Russian & Vietnamese translators available with a week’s notice"
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1689,6 +1839,8 @@
         "notes": "Patient Advocates call (415) 206-5176. Cantonese, English, Mandarin, Russian, Spanish, and Vietnamese. Other languages available."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1707,6 +1859,8 @@
         "notes": null
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1725,6 +1879,8 @@
         "notes": "Cardiology, rheumatology, orthopedics, surgery, advice nurse, social services, nutrition, diabetes education & pharmacy available. Cambodian, Cantonese, English, Mandarin, Spanish, & Vietnamese."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": [
       "A",
@@ -1746,6 +1902,8 @@
         "notes": "Cantonese, English, Mandarin, Spanish, and Tagalog."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1764,6 +1922,8 @@
         "notes": "Call about:optometry; smoking cessation; acupuncture; health education & counseling for grandparents who are primary caretakers of grandchildren; diabetics; those with family problems or those in need of geriatric or pediatric counseling; COPD better breather classes; yoga classes. English & Spanish.\nSome Cantonese & Mandarin. Other languages via telephone interpreter."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1782,6 +1942,8 @@
         "notes": "Produce, canned & dry goods. Must live in 94131 zip code. ID required"
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1800,6 +1962,8 @@
         "notes": "Don’t line up before 8am. Sign up Wed Jan 2, 8:15am for appt to get food Wed morning for next 90 days. Those not signed up can come Wed 10:15am to see if there’s extra food. No ID required, just a smile."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1818,6 +1982,8 @@
         "notes": "Full-course meal. Families & folks age 60+ or unable to carry a tray: 10-11:30am. All others: 11:30am-1:30pm. When you arrive you will be given a number for a meal. You may be asked to go wait at 240 Golden Gate until your number is called. "
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1836,6 +2002,8 @@
         "notes": "Call for allergy & asthma, & nutrition clinics. ASL, Cantonese, English, French, Hindi, Lao, Mandarin, Mongolian, Russian, Spanish, & Thai."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": [
       "C",
@@ -1858,6 +2026,8 @@
         "notes": "Hepatitis testing available; also food, clothing, condoms, lube, massage, acupuncture, counseling, harm reduction. English. Cantonese, Korean, Mandarin, Spanish, Thai, & Vietnamese by appointment"
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1876,6 +2046,8 @@
         "notes": "Must live in 94124 zip code. ID required."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1894,6 +2066,8 @@
         "notes": null
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1912,6 +2086,8 @@
         "notes": null
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1930,6 +2106,8 @@
         "notes": "English, Portuguese, & Spanish. Other language interpreters available."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1948,6 +2126,8 @@
         "notes": "English & Spanish"
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1966,6 +2146,8 @@
         "notes": "Call 211 to apply for a weekly appt to pick up food Wed 4-7pm. Must live in zip code 94112, 94116, 94127, or 94132. Approved clients must bring registration card & photo ID with current address to pick up food."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -1984,6 +2166,8 @@
         "notes": "In order to use the facilities and services, you must attend a thirty minute orientation offered every Wednesday and Friday at 9:00AM"
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -2002,6 +2186,8 @@
         "notes": "Meat, bread, vegetables, salad, punch, & dessert."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -2020,6 +2206,8 @@
         "notes": "Drop-in: [1] Urgent Care Clinic M-F 8am-6pm; Sat 8:30am-4:30pm. [2] HIV or Transgender intake Tu 2-4pm. [3] Dental Clinic (6 people seen; homeless only) M & Th 7am (doors open at 8am). [4] TB Tests M-F 9-11am, 1-3pm, Sa 9am-4pm. English, Spanish."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": [
       "A",
@@ -2041,6 +2229,8 @@
         "notes": "For Treasure Island residents only. ID & lease required."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -2059,6 +2249,8 @@
         "notes": "Towels, soap, and shampoo are provided. Laundry cycle costs are .25 per cycle."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -2077,6 +2269,8 @@
         "notes": "Confi dential. HIV & risk assessment counseling available. English & Spanish. Other languages by appt."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -2102,6 +2296,8 @@
         "notes": null
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -2120,6 +2316,8 @@
         "notes": null
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -2138,6 +2336,8 @@
         "notes": "Women who are pregnant of have children under 5 years, call for referral to sign up in one of 6 locations. Bring proof of income, address, & verification of pregnancy. "
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -2156,6 +2356,8 @@
         "notes": null
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -2174,6 +2376,8 @@
         "notes": null
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -2192,6 +2396,8 @@
         "notes": "For immigrant SF residents only. Sign up 9:30am Oct 1 to pick up weekly groceries for the next 6 months; if not signed up, come Mon 11am to see if there is extra. Bring a bag. English, Cantonese, Spanish."
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   },
@@ -2210,6 +2416,8 @@
         "notes": "English & Spanish."
       }
     ],
+    "hours": {
+    },
     "gender": "W",
     "age": null
   },
@@ -2228,6 +2436,8 @@
         "notes": "Line up Thur 11am; food given out. Must live in 94102 zip code. ID required"
       }
     ],
+    "hours": {
+    },
     "gender": null,
     "age": null
   }
