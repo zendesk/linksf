@@ -10,7 +10,8 @@ module.exports = function(grunt) {
           module: true,
           require: true
         },
-        undef: true
+        undef: true,
+        debug: true
       }
     },
     watch: {
