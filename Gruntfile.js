@@ -8,7 +8,8 @@ module.exports = function(grunt) {
         globals: {
           console: true,
           module: true,
-          require: true
+          require: true,
+          navigator: true,
         },
         undef: true,
         debug: true
