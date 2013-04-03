@@ -1,0 +1,2234 @@
+[
+  {
+    "name": "30TH STREET SENIOR CENTER",
+    "phone": "(415) 550-2210",
+    "address": "225 30th Street",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "technology",
+        "name": "technology",
+        "hours": "Call or check their website for hours and class schedule",
+        "description": "Free computer use, free computer classes. black and white printer. Seniors only",
+        "notes": "http://www.onlok.org/30thStreetSeniorCenter.aspx"
+      }
+    ],
+    "gender": null,
+    "age": [
+      "S"
+    ]
+  },
+  {
+    "name": "A Woman's Place",
+    "phone": "(415) 487-2140",
+    "address": "1049 HOWARD ST (bet. 6th & 7th Sts)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": "Drop In:Tu 10am-1pm & 3-6pm, Th 1:30-5pm. Appointment: M-F 8am-4pm.",
+        "description": "Free HIV Treatment, Transgender Svcs, and Primary Care for women (or MTF\ntransgender)",
+        "notes": "Entrance is around the corner on Russ St. Drop-in: Doctor on duty Tu 10am-1pm &\n3-6pm, Th 1:30-5pm. Substance abuse program, HIV program, support group & case management available M-F 8am-4pm."
+      },
+      {
+        "category": "hygiene",
+        "name": "hygiene",
+        "hours": "open daily for showers 8am-4:30pm",
+        "description": "A place to shower",
+        "notes": "Towels are sometimes provided but you may need to bring your own. Soap and Shampoo are provided"
+      }
+    ],
+    "gender": "W",
+    "age": null
+  },
+  {
+    "name": "A Woman’s Place",
+    "phone": "(415) 487-2140 ",
+    "address": "1049 HOWARD (bet. 6th & 7th Sts; enter on Russ St.)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "housing",
+        "name": "housing",
+        "hours": " Drop in 12pm-4pm for referrals & case management",
+        "description": "5 beds for women in crisis (rape or domestic violence); stay up to 7 days. 16 shelter beds; stay varies. 16 beds in supportive housing (5 for HIV+ women); stay up to 18 months. 8-bed substance abuse program for any woman 18+; stay 1-4 months.",
+        "notes": "Call for interview. Phone line open 24 hours a day."
+      }
+    ],
+    "gender": "W",
+    "age": [
+      "A",
+      "S"
+    ]
+  },
+  {
+    "name": "All Saints’ Episcopal Church",
+    "phone": "(415) 621-1862",
+    "address": "1350 WALLER",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Saturday 10:30-11:30am",
+        "description": "Dinning room serving Saturday Brunch",
+        "notes": "Meat; potatoes or pasta or rice; vegetables, salad, pastry, coffee & bread"
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "American College of Traditonal Medicine",
+    "phone": "(415) 282-9603",
+    "address": "555 DeHaro, Room G",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": "Mon and Tues 130pm-4:15pm. Wed and Thurs 9am-11:45am",
+        "description": "Acupuncture. Free drop-in ear clinic",
+        "notes": null
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Arriba Juntos",
+    "phone": "(415) 487-3240",
+    "address": "1850 Mission (between 14th & 15th St)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Thurs 9am",
+        "description": "weekly food pantry (Thursday)",
+        "notes": "Sign up Thurs 8:30am to get groceries at 9am. Must live in 94110 or 94103 zipcode. ID required"
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Asian Women’s Shelter",
+    "phone": "(415) 751-0880 (24 hrs) or 877-751-0880 (24 hrs & toll free) for intake interview. 5pm-9am, calls are answered by Woman, Inc. for crisis counseling. ",
+    "address": null,
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "housing",
+        "name": "housing",
+        "hours": "New guests M-F only, except in emergencies.",
+        "description": "For battered women (with or without children). Stay up to 12 wks. Priority to women or transgendered people &their children, with limited resources, who don’t speak English. ",
+        "notes": "Kitchen & basic food provided for cooking; referrals, counseling & clothing available. Staff speaks Arabic, Cantonese, English, Hindi, Hmong, Indonesian, Japanese, Javanese, Laotian, Mandarin, Mien, Punjabi, Russian, Spanish, Taiwanese, Thai, Urdu, & Vietnamese; other languages by phone interpreter"
+      }
+    ],
+    "gender": "W",
+    "age": null
+  },
+  {
+    "name": "BAART Community Health",
+    "phone": "(415) 928-7800",
+    "address": "433 Turk St (bet. Larkin and Hyde)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": "M-F 6am-2pm",
+        "description": "Urgent Care, TB Testing, STD Testing, STD Treatment, HIV Testing, Transgender Svcs, Immunizations, Women’s Health, Mental Health, and Primary\nCare. $0-full bill. Drop-in or call for appointment.",
+        "notes": "English, Spanish, & Tagalog."
+      },
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": "MTuThF 7am-10:45am, 12pm-3pm; W 7am-1pm",
+        "description": "Urgent Care, TB Testing, STD Testing, STD Treatment, HIV Testing, Transgender Svcs, Immunizations, Women’s Health, Mental Health, and Primary\nCare. $0-full bill. Drop-in or call for appointment.",
+        "notes": "English, Spanish, & Tagalog."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Bayview TLC Family Resource Center",
+    "phone": "(415) 822-9404",
+    "address": "1601 LANE ST (at Quesada, in Bayview YMCA)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Th 2-4pm",
+        "description": "weekly food pantry (Thursday) and emergency food box. ",
+        "notes": "Must live in 94124 zip code. ID required. Bring a bag. Call M-F for one-time-only emergency food box for any SF resident (no ID required)."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Bethel AME Church",
+    "phone": "(415) 921-4935",
+    "address": "916 LAGUNA (at Golden Gate).",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": null,
+        "description": "provides weekly boxes of food for six months. must sign up",
+        "notes": "Apply 8am-noon Fri, Oct 12 for a randomly-assigned appt (not first-come-firstserved) to get food weekly for six months. ID required. Bring a bag"
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Booker T. Washington Community Svce Ctr.",
+    "phone": "(415) 928-6596",
+    "address": "800 PRESIDIO (at Sutter).",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Thur 11:30am-1pm",
+        "description": "weekly food pantry (Thursday)",
+        "notes": "Call Wed 9am-noon for appt to get food Thur 11:30am-1pm. Produce, canned & dry goods. Photo ID required."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "CHANGES: Bayview Hunters Point R.C.",
+    "phone": "(415) 671-1100",
+    "address": "2111 JENNINGS (at Van Dyke)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "housing",
+        "name": "housing",
+        "hours": "Daily 7-9am, 7pm-10pm",
+        "description": "For a 90-day bed in 1 of 8 shelters, line up by 7am. For a 1-night bed, apply during the hours listed.",
+        "notes": "You’ll be photographed & your finger image will be scanned into a computer for future use. It won’t be saved without your consent. They’ll ask for your Social Security number, but you don’t have to give it. You’ll get a reservation for a bed or mat if one is available. If no bed is available you can wait there during open hours until a bed opens up. You can request a ride to the shelter if elderly or disabled. At the shelter your finger image will be scanned again but not saved. English, Spanish."
+      }
+    ],
+    "gender": null,
+    "age": [
+      "A",
+      "S"
+    ]
+  },
+  {
+    "name": "CHANGES: Glide Walk-In Center",
+    "phone": "(415) 674-6012",
+    "address": "330 ELLIS ST. (at Taylor)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "housing",
+        "name": "housing",
+        "hours": "Daily 7-11am, 4-9pm",
+        "description": "For a 90-day bed in 1 of 8 shelters, line up by 7am. For a 1-night bed, apply during the hours listed.",
+        "notes": "You’ll be photographed & your finger image will be scanned into a computer for future use. It won’t be saved without your consent. They’ll ask for your Social Security number, but you don’t have to give it. You’ll get a reservation for a bed or mat if one is available. If no bed is available you can wait there during open hours until a bed opens up. You can request a ride to the shelter if elderly or disabled. At the shelter your finger image will be scanned again but not saved. English, Spanish."
+      }
+    ],
+    "gender": null,
+    "age": [
+      "A",
+      "S"
+    ]
+  },
+  {
+    "name": "CHANGES: MSC South",
+    "phone": "(415) 597-7960",
+    "address": "525 5TH ST. (at Bryant)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "housing",
+        "name": "housing",
+        "hours": "Daily 10am (to reserve a place on the priority list for a 1-night bed, assignable at 6:30pm) or 5-9pm (to apply for a 1-night bed). The MSC is also a 24-hr drop-in center with showers & supportive services available, where you can wait for a bed if there is space. Doctors on site: M 1:30-4pm, 6-8pm (dental); Tu 2-4pm, 6-8pm; W 8am-noon, 7:30-9pm (foot clinic 1st & 3rd W); Th 2-5pm, 6-8pm; F 8am-noon.",
+        "description": "1-night bed and 24 hour drop-in showers and support services available. Doctors on site. ",
+        "notes": "You’ll be photographed & your finger image will be scanned into a computer for future use. It won’t be saved without your consent. They’ll ask for your Social Security number, but you don’t have to give it. You’ll get a reservation for a bed or mat if one is available. If no bed is available you can wait there during open hours until a bed opens up. You can request a ride to the shelter if elderly or disabled. At the shelter your finger image will be scanned again but not saved. English, Spanish."
+      }
+    ],
+    "gender": null,
+    "age": [
+      "A",
+      "S"
+    ]
+  },
+  {
+    "name": "CHANGES: Mission Neighborhood R.C.",
+    "phone": "(415) 869-7977",
+    "address": "165 CAPP (bet.16th & 17th Sts.)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "housing",
+        "name": "housing",
+        "hours": "M-W 7am-noon, 2-7pm; Th-F 7am-noon, 2-8pm; Sa 7am-noon.",
+        "description": "For a 90-day bed in 1 of 8 shelters, line up by 7am. For a 1-night bed, apply during the hours listed.",
+        "notes": "You’ll be photographed & your finger image will be scanned into a computer for future use. It won’t be saved without your consent. They’ll ask for your Social Security number, but you don’t have to give it. You’ll get a reservation for a bed or mat if one is available. If no bed is available you can wait there during open hours until a bed opens up. You can request a ride to the shelter if elderly or disabled. At the shelter your finger image will be scanned again but not saved. English, Spanish."
+      }
+    ],
+    "gender": null,
+    "age": [
+      "A",
+      "S"
+    ]
+  },
+  {
+    "name": "Calvary United Methodist Church",
+    "phone": "(415) 566-3704",
+    "address": "1400 Judah (nr. 19th Ave)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Fri 8-10am.",
+        "description": "weekly food pantry (Friday)",
+        "notes": "Must live in 94121 or 94122 zip code. ID required. English, Cantonese, Mandarin, Tagolog."
+      },
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Sun 10:30am-11am",
+        "description": "Hot breakfast on the first & third Sunday of the month. Pancakes, grits, eggs.",
+        "notes": null
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Chinatown One Stop Career Link Center",
+    "phone": "(415) 677-7500",
+    "address": "601 Jackson Street",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "technology",
+        "name": "technology",
+        "hours": "M-F 9am-5pm",
+        "description": "Job Search Assistance, Career Planning and Exploration, Job Preparation Workshops, Training Opportunities, Access to Resource Room with Computers, Fax and Copy machines, Unemployment Information (link to EDD), Availability of Supportive Services (including childcare and transportation). All services are free of charge.",
+        "notes": null
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Church of God of Prophecy",
+    "phone": null,
+    "address": "6212 Third Street (near Paul St.)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Wed 12:15pm",
+        "description": "weekly food pantry (Wednesday)",
+        "notes": "Apply Wed 12:15pm to pick up food every Wed. Must live in 94124 zip code. ID required. Those not signed up may line up Wed 12:15pm to see if there's extra."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "City Clinic",
+    "phone": "(415) 487-5500",
+    "address": "356 7TH ST (bet. Folsom & Harrison)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": "Drop-in (come early!): MWF 8am-4pm, Tu 3-6pm, Th 3-4pm; people with STD symptoms TuTh 1-3pm; Family Planning MWF 8am-3pm, Tu 3-6pm or call 487-5552 or email sfccwomensclinic@sfdph.org for Th morning family planning appt.",
+        "description": "Pregnancy Test, STD Testing, STD Treatment, HIV Testing, Family Planning. $10 fee, no one turned away for lack\nof funds.",
+        "notes": "HIV early care clinic by appt only. HIV Post Exposure Prophylaxis & emergency contraception available after clinician assessment. HIV testing only if clinician assesses high risk. Cantonese, English,Mandarin, Russian, Spanish, & Tagalog."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "City TEAM Recovery Program",
+    "phone": "(415) 861-8688",
+    "address": "164 6TH ST. (at Natoma)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "housing",
+        "name": "housing",
+        "hours": "Mon-Fri 9am-4pm",
+        "description": "One-year residential drug recovery program",
+        "notes": "Call ahead if you can; apply clean & sober M-F 9-10am. Stay up to 1 yr."
+      }
+    ],
+    "gender": "M",
+    "age": [
+      "A",
+      "S"
+    ]
+  },
+  {
+    "name": "City Team Ministries",
+    "phone": "(415) 861-8688",
+    "address": "164 - 6TH ST. (btw. Mission & Howard)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Tues-Fri 5:45pm (for church group)/ 6pm for meal, Sat 1pm-3pm",
+        "description": "A hot meal served 5 days a week",
+        "notes": "Dinner: Tues-Fri arrive 5:45pm for 6pm church group (optional) & dinner. Those who come to church group are fed first. A hot meal. Clothes & foot care available at Sat lunch. Medical clinic 2nd & 4th Sat of each month."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Civic Center One Stop Career Link Center",
+    "phone": "(415) 749-7503",
+    "address": "801 Turk Street",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "technology",
+        "name": "technology",
+        "hours": "M-F 9am-5pm",
+        "description": "Job Search Assistance, Career Planning and Exploration, Job Preparation Workshops, Training Opportunities, Access to Resource Room with Computers, Fax and Copy machines, Unemployment Information (link to EDD), Availability of Supportive Services (including childcare and transportation). All services are free of charge.",
+        "notes": "*Must have Right to Work Documents"
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Connecting Point",
+    "phone": "Call toll free 855-234-2667 (M-F 9am-noon; MWF 1-5pm, Tu 3-5pm, Th 2-5pm).",
+    "address": null,
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "housing",
+        "name": "housing",
+        "hours": null,
+        "description": "Not a shelter itself, but offers placement in shelters for 1- or 2-parent families, expectant couples & pregnant women (with proof) & sometimes household members. Samesex couples accepted. Wait 5-6 months for shelter placement, with case management while waiting.",
+        "notes": "Call for intake interview. If you get an answering machine, leave your name & phone number. If you don’t have a return number, call until you get through. Ask about possible financial help for families facing eviction or move-in costs. Cantonese, English, French, Spanish."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Curry Senior Center",
+    "phone": "(415) 885-2274",
+    "address": "333 TURK (btw. Hyde & Leavenworth)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": "M-F 8am-5pm",
+        "description": "Primary Care and TB testing. $0-full bill. For Tenderloin-SOMA residents 55+. Substance Abuse & Case Management. Call for appt. ",
+        "notes": "English & Spanish. For Cantonese, Laotian, Mandarin, Russian, Tagalog & Vietnamese, call for day and time."
+      },
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "8-9am, 11am-12pm",
+        "description": "Dining room serving seniors. Breakfast and lunch served everyday",
+        "notes": "For those age 60 & over with ID. $2 suggested donation; no one turned away for lack of funds. Sign up 8am for lunch."
+      }
+    ],
+    "gender": null,
+    "age": [
+      "S"
+    ]
+  },
+  {
+    "name": "Curry Without Worry",
+    "phone": "(415) 418-4361",
+    "address": "HYDE & FULTON (by the statue of Bolívar)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Tues 5:30pm until food runs out",
+        "description": "A hot meal served once a week (Tuesdays) for dinner.",
+        "notes": "Vegan! Curried vegetables, 9-bean soup, puris, rice, & chutney. "
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "DR. GEORGE W. DAVIS SENIOR CENTER",
+    "phone": "(415) 822-1444",
+    "address": "1706 Yosemite",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "technology",
+        "name": "technology",
+        "hours": "M-F 9-5",
+        "description": "Free computer use, black and white printer, scanner. Seniors only",
+        "notes": "5 computers"
+      }
+    ],
+    "gender": null,
+    "age": [
+      "S"
+    ]
+  },
+  {
+    "name": "Diamond Youth Shelter",
+    "phone": "800-669-6196 (toll-free, 24 hrs.) or 567-1020 (M–F 6pm-8am, Sa-Su 8pm-8am)",
+    "address": "536 CENTRAL (at Haight)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "housing",
+        "name": "housing",
+        "hours": "Youths 12-17 call; or show up M-F 6:30pm- 7:30am, Sa-Sun 4pm-7:30am.",
+        "description": "Shelter for Youths. Dinner, breakfast, showers, counseling & referrals. Length of stay varies. Guardians contacted within 72 hours.",
+        "notes": null
+      }
+    ],
+    "gender": null,
+    "age": [
+      "Y",
+      "C"
+    ]
+  },
+  {
+    "name": "Diamond Youth Shelter Drop-In Center",
+    "phone": "(415) 673-0911 ext 5 or 252, or 800-669-6196 (toll-free, 24 hrs).",
+    "address": "1142 Sutter (bet. Larkin & Polk)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "housing",
+        "name": "housing",
+        "hours": "Youths 12-21: M-F 8am-6pm, Sa-Sun 8am-4pm (youths 12-24, Th 2-6pm).",
+        "description": "Drop-In Clinic for youths. Showers, lockers, food, clothing, case management, education & counseling. English, Spanish.",
+        "notes": null
+      }
+    ],
+    "gender": null,
+    "age": [
+      "Y",
+      "C"
+    ]
+  },
+  {
+    "name": "Fill up America",
+    "phone": "(800) 994-0041",
+    "address": "1050 S. VAN NESS (bet. 21st & 22nd)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Fri 10:45-11:30am",
+        "description": "weekly food pantry (Friday)",
+        "notes": "Line up Fri 9:30am to get food 10:45-11:30am"
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "First Friendship Institutional Baptist Church",
+    "phone": "(415) 431-4775",
+    "address": "501 STEINER (at Oak).",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": null,
+        "description": "weekly food pantry (Friday)",
+        "notes": "Sign up 9am Friday for appt to pick up food Fri morning. You must live in 94115 or 94117 zip code. Bring a bag. Photo ID required."
+      },
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Sat 12pm-3pm",
+        "description": "Hot meal forth Saturday of the month.",
+        "notes": null
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Food Not Bombs (16TH & MISSION)",
+    "phone": null,
+    "address": "16TH & MISSION (BART Plaza)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Mon& Thur 7pm",
+        "description": "A hot meal served twice a week for dinner.",
+        "notes": "Vegan! soup &/or entree;bread (may have animal products); often salad. Bring your own bowl. Meal times vary: often late or cancelled."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Food Not Bombs (HAIGHT & STANYAN)",
+    "phone": null,
+    "address": "HAIGHT & STANYAN (Golden Gate Park)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Sat 5pm",
+        "description": "A hot meal served once a week for dinner.",
+        "notes": "Vegan! soup &/or entree;bread (may have animal products); often salad. Bring your own bowl. Meal times vary: often late or cancelled."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Food Not Bombs (UN PLAZA)",
+    "phone": null,
+    "address": "UN PLAZA (Market btw 7th & 8th Sts)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Mon 6:30pm, Wed 6pm",
+        "description": "A hot meal served twice a week for dinner.",
+        "notes": "Vegan! soup &/or entree;bread (may have animal products); often salad. Bring your own bowl. Meal times vary: often late or cancelled."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Fraternité Notre Dame (Turk)",
+    "phone": "(415) 793-5686",
+    "address": "54 TURK ST. (btw Market & Jones)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Tues-Thurs 11:30am-1:30pm",
+        "description": "A hot meal.",
+        "notes": null
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Fraternité Notre Dame (UN Plaza)",
+    "phone": "(415) 793-5686",
+    "address": "UN PLAZA (Market btw 7th & 8th Sts)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Tues 4pm-6pm",
+        "description": "A hot meal.",
+        "notes": null
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Glide Health Services",
+    "phone": "(415) 674-6140",
+    "address": "330 ELLIS ST, 6TH FLOOR (bet. Taylor & Jones)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": "M-F 8:30am-5pm, or drop-in M-W 8:30am & MWTh 12:30pm; acupuncture Drop-In Tu 1-4pm, Th 1-3pm; mental health MW 8:30am; TB testing TuW 9:30-11am & 1:30-3pm.",
+        "description": "Urgent and Primary Care, Mental Health, TB and HIV testing, Transgender Services and Immunizations. $0-full bill. For San Francisco residents 18 or over. Call for appt.",
+        "notes": "Confidential HIV oral rapid tests, hepatitis &breast cancer screening, case management, diabetes, hypertension, smoking cessation, yoga & substance abuse services."
+      }
+    ],
+    "gender": null,
+    "age": [
+      "A",
+      "S"
+    ]
+  },
+  {
+    "name": "Glide Memorial Church",
+    "phone": "(415) 674-6043",
+    "address": "330 Ellis Street",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "8am - 9am Everyday, Noon - 1:30pm Everyday, 4pm - 5:30pm (Monday - Friday)",
+        "description": "Dinning room that serves breakfast, lunch, and dinner Monday-Friday. Limited Food Service Saturday and Sunday.",
+        "notes": "Breakfast: Every day from 8am until tickets run out; Seniors (over age 60) 7:30am. Lunch: Every day from noon until tickets run out; bag meal (2 sandwiches+) given out after lunch Sat & Sun. Dinner: Monday-Friday from 4pm until tickets run out."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "HealthRIGHT 360 - Clayton Clinic",
+    "phone": "(415) 746-1950",
+    "address": "558 Clayton St (at Haight)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": "M-F 9am-5pm",
+        "description": "Primary Care. Substance abuse treatment; case management if homeless &/\nor HIV+. $0-full bill. Call for an appt.",
+        "notes": "English & Spanish."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "HealthRIGHT 360 - Mission Clinic",
+    "phone": "(415) 746-1940",
+    "address": "1735 Mission Street (at 13th St)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": "M-F 9am-5pm",
+        "description": "HIV Testing, Mental Health, Acupuncture, and Primary Care. $0-full\nbill. Call for an appt.",
+        "notes": "Substance abuse treatment; acupuncture."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Heritage Homes",
+    "phone": "(415) 333-9956",
+    "address": "243 Rey (at Sunnydale)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Mon 12-3pm",
+        "description": "weekly food pantry (Monday)",
+        "notes": "For residents of Heritage Homes/Britton Court. Photo ID required"
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Huckleberry House",
+    "phone": "(415) 621-2929 (24 hrs)",
+    "address": "1292 PAGE (at Lyon)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "housing",
+        "name": "housing",
+        "hours": "Open 24 hrs.",
+        "description": "Shelter for Youths. 3 meals daily for shelter guests; access to medical services, case management, and individual & family therapy. English, Spanish.",
+        "notes": "Youths 11-17 who are not on probation, call if you can or show up to be assessed for short-term housing. If accepted, they’ll contact your guardians within 24 hrs."
+      }
+    ],
+    "gender": null,
+    "age": [
+      "Y",
+      "C"
+    ]
+  },
+  {
+    "name": "Huckleberry's Cole Street Clinic",
+    "phone": "(415) 751-8181",
+    "address": "555 COLE ST (at Haight)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": "MTuWF 9am-5:30pm, Th 2-6pm. Drop-in: Th 2-6pm",
+        "description": "Urgent Care, TB Testing, Pregnancy Test, STD Testing, STD Treatment, HIV Testing, HIV\nTreatment, Immunizations, Women’s Health, Family Planning, Mental Health, Primary\nCare. Free for homeless youth,\nothers call for info. Call for appt.",
+        "notes": "Ages 12-24; if 12-18 & not homeless, parental consent is required for all primary\ncare services. Call 386-9398 for case management, therapy, & peer health education. Cantonese, English, & Spanish."
+      }
+    ],
+    "gender": null,
+    "age": [
+      "Y"
+    ]
+  },
+  {
+    "name": "Iglesia Latina Americana de las Adventistas 7 Dia",
+    "phone": null,
+    "address": "3024 24th St (near Harrison)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Sun 9:30am-11am",
+        "description": "Lacto-ovo-vegitarian! Eggs, rice, beans, & cocoa or punch served on the  third Sunday of each month.",
+        "notes": null
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Institute for Health & Healing",
+    "phone": "(415) 600-3681",
+    "address": "2040 WEBSTER ST (at Sacramento)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": "Call for an appointment TuTh 9:30am-5pm.",
+        "description": "A free self-help medical research reading room",
+        "notes": null
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "JVS",
+    "phone": "(415)782-6217",
+    "address": "225 Bush Street, Suite 400",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "technology",
+        "name": "technology",
+        "hours": "M-F 9:00am-4:45pm",
+        "description": "Computer lab and resources to help with job search. Free Job Search Assistance, Computer and Job Search Skills Workshops, Employer Spotlights, and Job Search Strategy Groups. Use of computer lab to improve your typing speed and computer skills with self-paced tutorials. Resume and cover letter assistance. Assistance studying for GED, NCLEX-PN, and NCLEX-RN.",
+        "notes": "Use of lab and computers are specifically for job search. To use facilities, Guests must enroll in the program by attending one of our TAC Enrollment sessions held on Mondays from 2:00-3:00pm, Wednesdays from 2:30-3:30pm, and Fridays from 10:30-11:30am."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Jones Memorial United Methodist Church",
+    "phone": "(415) 921-7653",
+    "address": "1975 POST (at Steiner).",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": null,
+        "description": "weekly food pantry",
+        "notes": "Sign up 10:30-11:30am Sat for weekly appt to pick up food. Must live in 94102, 94109 or 94115 zip code. ID & proof of current address required. Bring a bag."
+      },
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Wed 11:30am-1pm",
+        "description": "Full hot lunch the 2nd, 3rd &4th Wed of each month. Clothing &\ntoiletries available.",
+        "notes": null
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Korean American Senior Service",
+    "phone": "(415) 255-9371",
+    "address": "745 BUCHANAN (at Grove)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Fri 9-11am",
+        "description": "weekly food pantry (Friday)",
+        "notes": "ID required"
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "La Casa de las Madres",
+    "phone": "Crisis line: 877-503-1850. Teen crisis line: 877-923-0700 (counseling & referrals only). All numbers are 24 hrs & toll free. Call 877-503-1850 anytime for shelter",
+    "address": "OFFICE: 1663 MISSION, SUITE 225 (bet. So. Van Ness & 13 St)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "housing",
+        "name": "housing",
+        "hours": null,
+        "description": "For battered women (with or without children). Program includes counseling, house meetings, 3 meals daily, & chores. Stay up to 8\nweeks. For non-residents: support groups, individual counseling, legal aid with restraining orders.",
+        "notes": null
+      }
+    ],
+    "gender": "W",
+    "age": null
+  },
+  {
+    "name": "Lark Inn",
+    "phone": "(415) 749-2968 or 800-447-8223 (toll-free, 24 hrs)",
+    "address": "869 ELLIS (at Van Ness)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "housing",
+        "name": "housing",
+        "hours": " Curfew 9:45pm. Leave by 8:30am",
+        "description": "Shelter fo Youths 18-24.  Length of stay varies; maximum 4 months. 3 meals daily for long-term shelter guests. Job readiness training, remedial education, GED & college-entry prep available. Up to 21 nights per year of emergency shelter; show up at 9:45pm each night for lottery. English, Spanish.",
+        "notes": "Come in or call any time (24 hrs) to get on waiting list for a bed (40 beds nightly).  Case management required. Curfew 9:45pm. Leave\nby 8:30am."
+      }
+    ],
+    "gender": null,
+    "age": [
+      "Y"
+    ]
+  },
+  {
+    "name": "Larkin Street Youth Clinic",
+    "phone": "(415) 673-0911. Ext. 259",
+    "address": "1138 SUTTER (bet. Larkin & Polk).",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": "Call MWThF 9am-1pm & 2-5pm, Tu 11am-1pm & 2-5pm. Same-day appt. for some services. Drop-in: M-F 9:30am-1pm & 2-5pm.",
+        "description": "Urgent Care, TB Testing, Pregnancy Test, STD Testing, STD Treatment, HIV Testing, HIV\nTreatment, Transgender Svcs, Immunizations, Women’s Health, Family Planning, Mental\nHealth, Primary Care. Youths 12-24. Free for those on MediCal or HealthySF.",
+        "notes": "English & Spanish."
+      }
+    ],
+    "gender": null,
+    "age": [
+      "Y"
+    ]
+  },
+  {
+    "name": "Lyon-Martin Health Services",
+    "phone": "(415) 565-7667",
+    "address": "1748 MARKET ST, SUITE 201 (bet. Gough & Octavia)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": "Call for appt. MTu 11am-7pm, W 1-5pm, Th 9am-5pm.",
+        "description": "TB Testing, Pregnancy Test, STD Testing, STD Treatment, HIV Testing, HIV Treatment,\nTransgender Svcs, Immunizations, Women’s Health, Family Planning, Mental Health,\nPrimary Care. MediCal, MediCare, uninsured people $0-full bill. Women & all transgender welcome.",
+        "notes": "English & Spanish. Email: info@lyon-martin.org."
+      }
+    ],
+    "gender": "W",
+    "age": null
+  },
+  {
+    "name": "Macedonia Missionary Baptist Church",
+    "phone": null,
+    "address": "2135 SUTTER (near Pierce).",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Wed 10am-12pm",
+        "description": "weekly food pantry (Wednesday)",
+        "notes": "Must live in 94102, 94109, or 94115 zip code. ID required"
+      },
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Sat 11:30am-1pm",
+        "description": "A full course meal the Saturday before the forth Sunday of each month. ",
+        "notes": "There is a short blessing before the meal."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Martin De Porres (Martin's)",
+    "phone": "(415) 869-0240",
+    "address": "225 Poterero (near 16th street)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "hygiene",
+        "name": "hygiene",
+        "hours": "center open daily, showers available Tuesday and Thursday. Sign up at 9am",
+        "description": "A place to shower on Tuesday and Thursdays",
+        "notes": "Hygiene products distriubuted Tuesday and Thursday from 6:30am-7:30am at breakfast. Towels for showers are provided."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Martin de Porres",
+    "phone": "(415) 552-0240",
+    "address": "225 Poterero (near 16th street)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": "Thursday 12pm-2:30pm",
+        "description": "Free urgent care",
+        "notes": "Th 12-2pm nurse practitioner; 12:30-2pm, health education, referrals, over-the-counter medications. English &Spanish."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Martin de Porres House of Hospitality",
+    "phone": "(415) 552-0240",
+    "address": "225 Poterero (near 16th street)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Sun Brunch 9-10:30am, Mon Breakfast 6:30am-7:30am, Tues Breakfast 6:30am-7:30am, Tues Lunch 12pm-2pm, Wed Lunch 12pm-2pm, Thurs Breakfast 6:30am-7:30am, Thurs Lunch12pm-2pm, Fri Breakfast 6:30am-7:30am, Fri Lunch 12pm-2pm, Sat Lunch 12pm-2pm",
+        "description": "Dinning room serving at least one meal a day.",
+        "notes": "Usually a vegetarian or vegan alternative. Breakfast: oatmeal & herb tea. Brunch: a hearty meal. Lunch: a hearty soup & salad."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Mary Elizabeth Inn",
+    "phone": "(415) 673-6768",
+    "address": "1040 Bush St (near Jones)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Wed 9am-10am",
+        "description": "weekly food pantry (Wednesday). Women only.",
+        "notes": "line up 9am Wed; food given out 9-10am; bring a bag."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Mission Neighborhood Health Center",
+    "phone": "(415) 552-3870",
+    "address": "240 Shotwell",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": "Mon Tues Thurs Fri 8:30am-5pm, W 9:30am-8:30pm",
+        "description": "TB Testing, Pregnancy Test, STD Testing, STD Treatment, HIV Testing, HIV Treatment,\nPodiatry, Immunizations, Women’s Health, Family Planning, Mental Health, Prenatal\nCare, Primary Care. Sliding scale (free to homeless). Call for appointment.",
+        "notes": "English, Spanish"
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Mission Neighborhood Health Resource Center",
+    "phone": "(415) 869-7977",
+    "address": "165 CAPP (bet.16th & 17th Sts.)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "hygiene",
+        "name": "hygiene",
+        "hours": "Shower: M-F 7am-11:30am, Wed 2pm-5pm.  Laundry: Mon, Thurs, Fri 7am-11am. Tues & Wed 2pm-5pm",
+        "description": "A place to shower and do laundry",
+        "notes": "Towels and liquid soaps provided. Hygiene items sometimes provided. Laundry costs are .25 per cycle."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Mission Neighborhood Resource Ctr.",
+    "phone": "(415) 869-7977",
+    "address": "165 Capp St (bet. 16th and 17th)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": "Drop-in: Nurse Practitioner or doctor M-F 8:30am-12pm & M-Th 2-5pm; HIV rapid test Tu 2-4pm; Homeopathy Tu 9am-12pm. ",
+        "description": "Urgent and Primary Care, Mental Health, TB, HIV, and STD testing, Transgender Services and Immunizations. Free for homeless\nSan Franciscans.",
+        "notes": "Showers, lockers, laundry, case management & support groups available. English & Spanish."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Mission Street One Stop Career Link Center",
+    "phone": "(415) 401-4800 ",
+    "address": "3120 Mission Street  ",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "technology",
+        "name": "technology",
+        "hours": "M-F 9am-5pm",
+        "description": "Job Search Assistance, Career Planning and Exploration, Job Preparation Workshops, Training Opportunities, Access to Resource Room with Computers, Fax and Copy machines, Unemployment Information (link to EDD), Availability of Supportive Services (including childcare and transportation). All services are free of charge.",
+        "notes": null
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Missionaries of Charity",
+    "phone": "(415) 586-3449 (9-11:30am, 3:30-5:30pm)",
+    "address": "55 SADOWA (bet. San Jose & Plymouth)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "housing",
+        "name": "housing",
+        "hours": null,
+        "description": "Women with or without kids (one girl child; or one boy under 4 years); pregnant women (with proof) may stay up to one month after childbirth; others stay up to one month.",
+        "notes": "Be clean & sober, with proof of negative TB & HIV status, & able to live a communal life. Call for appointment for personal interview. 2 meals daily. Leave the house by 9am. Curfew 5pm. No new shelter guests accepted Th."
+      }
+    ],
+    "gender": "W",
+    "age": null
+  },
+  {
+    "name": "Mult- Service Center South",
+    "phone": "(415) 597-7960",
+    "address": "525 5TH ST. (at Bryant)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "hygiene",
+        "name": "hygiene",
+        "hours": "Showers are available 24 hrs. a day",
+        "description": "A place to shower. Open daily.",
+        "notes": "Towels, soap, and shampoo are provided. Towels distributed all day."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "New Generation Health Center",
+    "phone": "(415) 502-8336",
+    "address": "625 POTRERO AVE (bet. 18th & 19th Sts)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": "Call MWF 9am-5pm, TuTh 10am-6pm for an appt. Drop-in for emergency contraceptives: MWF 9am-5pm, TuTh 10am-6pm.",
+        "description": "Pregnancy Test, STD Testing, STD Treatment, Women’s Health, Family Planning. $0-full bill.",
+        "notes": "English & Spanish."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "North East Medical Services - Leland Branch",
+    "phone": "(415) 391-9686",
+    "address": "82 Leland (bet. Alpha & Desmond)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": "M-F 8:30am-5:30pm, Sa 8:30am-5pm",
+        "description": "Urgent and Primary Care, Dental, Podiatry, TB, STD, HIV, and Pregnancy testing, Women's Health, Family Planning, Prenatal Care, and Immunizations. Sliding scale (outpatient medical services free to homeless). Call for appt. Pediatrics & optometry available.",
+        "notes": "Cantonese, English, Korean, Mandarin, Spanish, and Vietnamese."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "North East Medical Services - Noiega Branch",
+    "phone": "(415) 391-9686",
+    "address": "1450 Noriega (at 22nd Ave.)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": "M-F 8:30am-5:30pm, Sa 8:30am-5pm",
+        "description": "Urgent and Primary Care, Dental, Podiatry, TB, STD, HIV, and Pregnancy testing, Women's Health, Family Planning, Prenatal Care, and Immunizations. Sliding scale (outpatient medical services free to homeless). Call for appt. Pediatrics & optometry available.",
+        "notes": "Cantonese, English, Korean, Mandarin, Spanish, and Vietnamese."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "North East Medical Services - San Bruno Branch",
+    "phone": "(415) 391-9686",
+    "address": "2574 San Bruno (bet. Burrows and Felton)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": "M-F 8:30am-5:30pm, Sa 8:30am-5pm",
+        "description": "Urgent and Primary Care, Dental, Podiatry, TB, STD, HIV, and Pregnancy testing, Women's Health, Family Planning, Prenatal Care, and Immunizations. Sliding scale (outpatient medical services free to homeless). Call for appt. Pediatrics & optometry available.",
+        "notes": "Cantonese, English, Korean, Mandarin, Spanish, and Vietnamese."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "North East Medical Services - Stockton Branch",
+    "phone": "(415) 391-9686",
+    "address": "1520 Stockton St (bet. Green & Union)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": "M-F 8:30am-5:30pm, Sa 8:30am-5pm",
+        "description": "Urgent and Primary Care, Dental, Podiatry, TB, STD, HIV, and Pregnancy testing, Women's Health, Family Planning, Prenatal Care, and Immunizations. Sliding scale (outpatient medical services free to homeless). Call for appt. Pediatrics & optometry available.",
+        "notes": "Cantonese, English, Korean, Mandarin, Spanish, and Vietnamese."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "North East Medical Services - Taraval Branch",
+    "phone": "(415) 391-9686",
+    "address": "2308 Taraval (near 33rd)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": "M-F 8:30am-5:30pm, Sa 8:30am-5pm",
+        "description": "Urgent and Primary Care, Dental, Podiatry, TB, STD, HIV, and Pregnancy testing, Women's Health, Family Planning, Prenatal Care, and Immunizations. Sliding scale (outpatient medical services free to homeless). Call for appt. Pediatrics & optometry available.",
+        "notes": "Cantonese, English, Korean, Mandarin, Spanish, and Vietnamese."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "North Peninsula Food Pantry & Dining Center of Daly City",
+    "phone": "(650) 994-5150",
+    "address": "31 Bepler (near Mission)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "M 5pm-5:30pm, Tues 5pm-5:30pm, Thurs 5pm-5:30pm",
+        "description": "Dinner served three times a year.",
+        "notes": null
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "OMI Family Resource Ctr",
+    "phone": "(415) 406-1370",
+    "address": "650 CAPITOL (near Montana)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Tues 11am-noon",
+        "description": "weekly food pantry (Tuesday)",
+        "notes": "Apply Tues 9am-12pm for weekly appt to pick up food Tues 11am-noon. Must live in 94112, 94116, or 94132 zip code. Photo ID & proof of current address required."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "OMI Senior Ctr",
+    "phone": "(415) 334-5550",
+    "address": "65 BEVERLY (at Holloway)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Thurs 9am-noon",
+        "description": "weekly food pantry (Thursday) and monthly food box for seniors (60+) & disabled adults.",
+        "notes": "For seniors (60+) & disabled adults. Sign up M-W 8:30am-2pm, Fri 8:30am-2pm for weekly appointment to pick up food Thurs 9am-noon; sign up for food boxes 9am-12pm 4th Mon of the month. Photo ID, proof of income, & proof of current address required for both services. English, Cantonese, Mandarin, Spanish, Tagalog, Vietnamese."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Our Lady of Lourdes",
+    "phone": "(415) 235-7634",
+    "address": "410 Hawes (at Innes)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Sat 9:30am-11:30am",
+        "description": "weekly food pantry (Saturday)",
+        "notes": "Line up Sat 8:30am (except 1st Sat of the month) for ticket for food given out 9:30-11:30am. ID and proof of address required. Bring a bag. English, Spanish"
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Philadelphian 7th-Day Adventist Church",
+    "phone": "(415) 567-0263",
+    "address": "2520 Bush (at Divisadero)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Sun 10am-noon",
+        "description": "Lacto-ovo-vegitarian! Fruit, cereal, juice, bread, milk, entree & hot beverage on the second & forth Sundays of the month.",
+        "notes": "`"
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Plaza Adelante Tech Center",
+    "phone": "(415) 550-8595 ext 115",
+    "address": "2301 Mission Street, Suite 203",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "technology",
+        "name": "technology",
+        "hours": "Call or check their website for hours and class schedule. Register on-line or over the phone ",
+        "description": "Free computer classes, workshops, and certification courses preparing students for industry recognized certification exams",
+        "notes": "http://www.plazaadelante.org/main/"
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Project Open Hand",
+    "phone": "(800) 551-6325",
+    "address": "730 POLK (near Ellis)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": null,
+        "description": "food pantry for people with HIV/AIDS or breast cancer",
+        "notes": "People with symptomatic HIV or AIDS or breast cancer: call M-Sa 9am-4pm for interview appt. If accepted, pick up food Tues 9am-4pm, Wed-Sat 11am-4pm. Proof of diagnosis & SF residency & photo ID required."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Providence Foundation of SF",
+    "phone": "(415) 206-0263",
+    "address": "1601 McKinnon (at Mendell)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "W 12:45pm-2pm",
+        "description": "Hearty Lunch every Wednsday.",
+        "notes": "Optional Bible study before a hearty lunch."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Rainbow 7th-day Adventist",
+    "phone": null,
+    "address": "1400 Palou (at Keith; entrance on Keith)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Mon 12pm",
+        "description": "weekly food pantry (Monday), Produce, canned & dried goods.",
+        "notes": "For SF residents. Photo ID required."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Rosalie House",
+    "phone": "(415) 255-0165. Call M–F 9am-5pm.",
+    "address": "OFFICE: 1175 HOWARD ST. (at 8th St.)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "housing",
+        "name": "housing",
+        "hours": null,
+        "description": "For battered women (with or without children). Adults $0-1 per week (kids free); stay up to 12 weeks. Guests can’t use drugs or alcohol. Program includes counseling, house meetings & chores. Kitchen & food available.",
+        "notes": null
+      }
+    ],
+    "gender": "W",
+    "age": null
+  },
+  {
+    "name": "S. F. Rescue Mission",
+    "phone": "(415) 441-1628",
+    "address": "140 Turk (btw. Taylor & Jones)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "M-F 10:30am-10:45am, M-F 3:45pm",
+        "description": "Breakfast and Dinner Monday through Friday.\n",
+        "notes": "Breakfast is coffee and pastry. Full course dinner is served at 3:45 pm. Blankets may be available. Mandatoory church service at 4pm. Doors close at 4:15pm."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "S.F. Rescue Mission",
+    "phone": "(415) 441-1628",
+    "address": "140 TURK (bet. Taylor & Jones)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": null,
+        "description": "sign up to get food one Thursday a month",
+        "notes": "Sign up Wed 12-12:30pm to get food one Thurs a month 12-12:30pm. Must live in 94102 zip code. Photo ID & proof of address required"
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "SF Public Library - Main Branch",
+    "phone": "(415) 557-4400",
+    "address": "100 Larkin Street (near 8th and Market)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "technology",
+        "name": "technology",
+        "hours": "Mon 10am-6pm, Tue 9am-8pm, Wed 9am-8pm, Thur 9am-8pm, Fri 12pm-6pm, Sat 10am-6pm, Sun 12pm-5pm",
+        "description": "free computer access. four floors with 18 One Hour Internet computers. 6 Express 15-minute Internet computers, and 4 Recessed/Privacy Computer (walk-up use/first come, first served, no pre-reservation offered) per floor. You must have a library card for computer use and must reserve computers in advance. Guests are limited to one hour of computer use per day. Black and White printing is 10 cents per page, Color printing is 40 cents per page. ",
+        "notes": "Local branches have Internet access with varying policies. Computer use at branches is limited to 30 minutes per session."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "SOMA One Stop Career Link Center",
+    "phone": "(415) 575-4570",
+    "address": "1500 Mission Street",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "technology",
+        "name": "technology",
+        "hours": "M-F 9am-5pm",
+        "description": "Job Search Assistance, Career Planning and Exploration, Job Preparation Workshops, Training Opportunities, Access to Resource Room with Computers, Fax and Copy machines, Unemployment Information (link to EDD), Availability of Supportive Services (including childcare and transportation). All services are free of charge.",
+        "notes": null
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Salvation Army Chinatown",
+    "phone": "(415) 781-7002",
+    "address": "1450 POWELL (nr Broadway)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": " Fri 3pm",
+        "description": "weekly food pantry (Friday)",
+        "notes": "Call MWF 9am-4pm for interview appt. If accepted, get food Fri 3pm. If not\nsigned up, come Fri 2:30pm to see if there’s extra food. Must live in 94108, 94109, 94111, 94123, 94129, 94130, 94133, or 94158 zip code. English, Cantonese, Mandarin."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Salvation Army Kroc Center",
+    "phone": "(415) 345-3414",
+    "address": "240 TURK (nr. Jones).",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": null,
+        "description": "weekly food pantry (Friday)",
+        "notes": "Register Friday 7:30am to get food the following Friday. Must live in 94102, 94103, 94115, 94117, 94118, or 94121 zip code. ID required."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Salvation Army South of Market",
+    "phone": "(415) 777-2677",
+    "address": "360 4TH ST. (nr. Folsom)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Fri 8:30am ",
+        "description": "weekly food pantry (Friday)",
+        "notes": "Food given out Fri 8:30am (line up early to get a number). You must live in 94104 or 94105 zip code. ID required. English, Cantonese, & Mandarin."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Salvation Army, Mission",
+    "phone": "(415) 648-0260",
+    "address": "156 VALENCIA (bet. 22nd & 23rd Sts)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": null,
+        "description": "Food pantry. Call for interview M–Th 9am-12pm.",
+        "notes": " Must live in 94107, 94110, 94112, 94114, or 94131 zip code. English, Spanish."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "San Francisco Day Labor Program",
+    "phone": "(415) 252-\n5375",
+    "address": "3358 CESAR CHAVEZ (bet. Mission & S. Van Ness)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": "Drop-in: M 10-11am HIV testing; Tu 9-11am, medical care",
+        "description": "Free Urgent Care and HIV testing",
+        "notes": "First 20 people are seen. Preference given to day laborers. Job referrals M-F 7am-1pm, Sa 7am-noon. English classes available. English & Spanish."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "San Francisco Free Clinic",
+    "phone": "(415) 750-9894",
+    "address": "4900 CALIFORNIA ST (at 11th Ave)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": "Call M-F 1-4:30pm for an appt. in a week.",
+        "description": "TB Testing, Pregnancy Test, Immunizations, Women’s Health, Family Planning, Primary\nCare. Free. Serves only the uninsured.",
+        "notes": "Cantonese, English, Mandarin, & Spanish. Russian & Vietnamese translators available with a week’s notice"
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "San Francisco General Hospital",
+    "phone": "(415) 206-8000",
+    "address": "1001 Potrero Ave (at 23rd St)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": "M-F 8:30-5pm. closed holidays.",
+        "description": "Urgent and Primary Care HIV, and Pregnancy testing, Family Planning, Women's Health, Mental Health, and Prenatal Care. For SF residents. $0-full bill. Call for appt.",
+        "notes": "Patient Advocates call (415) 206-5176. Cantonese, English, Mandarin, Russian, Spanish, and Vietnamese. Other languages available."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "San Francisco Rape Treatment Center",
+    "phone": "(415) 437-3000",
+    "address": "2727 MARIPOSA, STE 100 (bet. Florida & Bryant)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": "To see social worker, come M-F 8am-5pm ",
+        "description": "Rape Treatment and Crisis Center for all 18+ victims including LGBTQQ. Medical & psychological counseling. 24 hr. crisis intervention, evidence collection & medical care via SF General Hospital Emergency. All services free of charge.",
+        "notes": null
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Sister Mary Philippa Health Center",
+    "phone": "(415) 750-5500",
+    "address": "2235 Hayes St, 5th Floor (bet. Stanyan & Shrader)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": "M-F 8:30am-4:30pm",
+        "description": "Urgent Care, HIV Testing, HIV Treatment, Podiatry, Immunizations, Primary Care. $0-full bill. Call for appt.",
+        "notes": "Cardiology, rheumatology, orthopedics, surgery, advice nurse, social services, nutrition, diabetes education & pharmacy available. Cambodian, Cantonese, English, Mandarin, Spanish, & Vietnamese."
+      }
+    ],
+    "gender": null,
+    "age": [
+      "A",
+      "S"
+    ]
+  },
+  {
+    "name": "South of Market Health Center",
+    "phone": "(415) 503-6000",
+    "address": "229 7th St (bet. Howard & Folsom)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": "M-Th 8am-5pm, F-Sat 8am-3:30pm.",
+        "description": "Urgent and Primary Care, Dental, Podiatry, TB, STD, HIV, and Pregnancy testing, Transgender Services, Women's Health, Family Planning, Prenatal Care, and Immunizations. $0-full bill. Call or drop-in to make appt.",
+        "notes": "Cantonese, English, Mandarin, Spanish, and Tagalog."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Southeast Health Center",
+    "phone": "(415) 750-5500",
+    "address": "2410 Keith St (bet. Armstrong and Bancroft)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": "M-F 8am-5pm. Drop-in: M-Th 12:30pm.",
+        "description": "Urgent Care, TB Testing, Pregnancy Test, STD Testing, STD Treatment, HIV Testing, HIV\nTreatment, Dental, Podiatry, Immunizations, Women’s Health, Family Planning, Mental\nHealth, Prenatal Care, Primary Care. $0-full bill. Call for appt. MediCal applications by appt.",
+        "notes": "Call about:optometry; smoking cessation; acupuncture; health education & counseling for grandparents who are primary caretakers of grandchildren; diabetics; those with family problems or those in need of geriatric or pediatric counseling; COPD better breather classes; yoga classes. English & Spanish.\nSome Cantonese & Mandarin. Other languages via telephone interpreter."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "St. Aidan's",
+    "phone": null,
+    "address": "101 GOLDMINE DR (at Diamond Heights Blvd)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Fri 1-2pm",
+        "description": null,
+        "notes": "Produce, canned & dry goods. Must live in 94131 zip code. ID required"
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "St. Andrew Missionary Baptist Church",
+    "phone": null,
+    "address": "2565 POST (near Baker).",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Wed 10:15am",
+        "description": "weekly food pantry (wednesday). sign up to get food for the the next 90 days",
+        "notes": "Don’t line up before 8am. Sign up Wed Jan 2, 8:15am for appt to get food Wed morning for next 90 days. Those not signed up can come Wed 10:15am to see if there’s extra food. No ID required, just a smile."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "St. Anthony Foundation",
+    "phone": "(415) 241-2690",
+    "address": "150 Golden Gate",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "10:00am-11:30am (Seniors), 11:30am-1:30 pm",
+        "description": "Dinning room that serves lunch everyday. All entrees served with fruit, vegetables, bread, beverage, and dessert!",
+        "notes": "Full-course meal. Families & folks age 60+ or unable to carry a tray: 10-11:30am. All others: 11:30am-1:30pm. When you arrive you will be given a number for a meal. You may be asked to go wait at 240 Golden Gate until your number is called. "
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "St. Anthony Medical Clinic",
+    "phone": "(415) 241-8320",
+    "address": "150 GOLDEN GATE AVE (at Jones).",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": "To schedule appt, come in person: M-F 8-noon or MTuThF 1-4pm. Podiatry clinic Tu 1pm, WTh 8am. Pediatric clinic Tu-Th 8am-noon & 1-4:30pm.",
+        "description": "TB Testing, Pregnancy Test, HIV Testing, Podiatry, Immunizations, Women’s Health, Mental\nHealth, Primary Care. $0-full bill; SFHealth plans welcome. SF residents only.",
+        "notes": "Call for allergy & asthma, & nutrition clinics. ASL, Cantonese, English, French, Hindi, Lao, Mandarin, Mongolian, Russian, Spanish, & Thai."
+      }
+    ],
+    "gender": null,
+    "age": [
+      "C",
+      "Y",
+      "A"
+    ]
+  },
+  {
+    "name": "St. James Infirmary",
+    "phone": "(415) 554-8494.",
+    "address": "1372 MISSION (bet. 9th & 10th)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": "Call 554-9634 M-F 9am-5pm for WTh appointment. Drop-in: Tu 3-6pm, needle exchange; W 6-9pm, medical care.",
+        "description": "Pregnancy Test, STD Testing, STD Treatment, HIV Testing, Transgender Svcs, Immunizations,\nWomen’s Health, Family Planning, Primary Care. Free. For current, former & transitioning sex workers & current primary partners (must come\ntogether) and their children 12+.",
+        "notes": "Hepatitis testing available; also food, clothing, condoms, lube, massage, acupuncture, counseling, harm reduction. English. Cantonese, Korean, Mandarin, Spanish, Thai, & Vietnamese by appointment"
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "St. Paul Tabernacle Baptist",
+    "phone": "(415) 642-4965",
+    "address": "1789 Oakdale (at Phelps)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Fri 11:30am-1:30pm",
+        "description": "weekly food pantry (Friday)",
+        "notes": "Must live in 94124 zip code. ID required."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "St. Peter & Paul Catholic Church",
+    "phone": "(415) 421 0809",
+    "address": "666 Filbert (near Washington Sq.)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Sun 4pm, M-F 6pm-6:30pm, Sat 4pm",
+        "description": "A simple sandwhich offered everyday.",
+        "notes": null
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Supplemental Food Program",
+    "phone": "211",
+    "address": null,
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": null,
+        "description": "Citywide program. Call 211 for nearest location to get one 35lb box of dry & canned goods per month. For SF residents age 60+ & non-WIC families with children under 6. Must provide proof of age & income.",
+        "notes": null
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Surgery: Operation Access",
+    "phone": "(415) 733-0052",
+    "address": "115 SANSOME, SUITE 1205 (at Bush)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": null,
+        "description": "Free Surgery. Call M-F 9am-5pm for information on how to get a referral for free outpatient surgery.",
+        "notes": "English, Portuguese, & Spanish. Other language interpreters available."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Syringe Access Services",
+    "phone": "(415) 241-5100",
+    "address": null,
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": null,
+        "description": "Call Syringe Access Services, 241-5100, for times\n& places. Needle exchange, condoms, abscess care, HIV/Hep C\ntesting, Hep A & B vaccinations, & basic medical services.",
+        "notes": "English & Spanish"
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Temple United Methodist Church",
+    "phone": "211",
+    "address": "65 BEVERLY (at\n19th Ave).",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Wed 4-7pm",
+        "description": "weekly food pantry (Wednesday). Call for Appointment",
+        "notes": "Call 211 to apply for a weekly appt to pick up food Wed 4-7pm. Must live in zip code 94112, 94116, 94127, or 94132. Approved clients must bring registration card & photo ID with current address to pick up food."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Tenderloin Technology Lab",
+    "phone": "(415) 592-2766",
+    "address": "150 Golden Gate Ave",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "technology",
+        "name": "technology",
+        "hours": "M-F *8:30am-12pm, MTRF 1:30pm-4:30pm, Saturday 10:00AM-3:00PM ",
+        "description": "free computer use, free computer classes, resume and cover letter assistance",
+        "notes": "In order to use the facilities and services, you must attend a thirty minute orientation offered every Wednesday and Friday at 9:00AM"
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Third Baptist Church",
+    "phone": null,
+    "address": "1399 McAllister (near Pierce)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Thurs 12:30pm-1:30pm",
+        "description": "Hearty Lunch every Thursday",
+        "notes": "Meat, bread, vegetables, salad, punch, & dessert."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Tom Waddell Clinic",
+    "phone": "(415) 355-7400, call (415) 355-7500 for appt.",
+    "address": "50 Ivy St (bet. Van Ness & Polk)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": "M-F 8am-5pm",
+        "description": "Urgent Care, TB Testing, STD Testing, STD Treatment, HIV Testing, HIV Treatment, Dental,\nPodiatry, Transgender Svcs, Immunizations, Women’s Health, Mental Health, Primary\nCare. $0-full bill. Primary care is for homeless chronically ill people who live in the area. Come in or call for appt.",
+        "notes": "Drop-in: [1] Urgent Care Clinic M-F 8am-6pm; Sat 8:30am-4:30pm. [2] HIV or Transgender intake Tu 2-4pm. [3] Dental Clinic (6 people seen; homeless only) M & Th 7am (doors open at 8am). [4] TB Tests M-F 9-11am, 1-3pm, Sa 9am-4pm. English, Spanish."
+      }
+    ],
+    "gender": null,
+    "age": [
+      "A",
+      "S"
+    ]
+  },
+  {
+    "name": "Treasure Island Homeless Development Initiative",
+    "phone": "(415) 274-0311",
+    "address": "850 AVENUE I ON TREASURE ISLAND (at 9th St, in the Shipshape Building).",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Tues 3-4:30pm.",
+        "description": "weekly food pantry (Tuesday)",
+        "notes": "For Treasure Island residents only. ID & lease required."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "UCHS Bayview Hunters Point Drop In Center",
+    "phone": "(415) 671-1100",
+    "address": "2111 JENNINGS (at Van Dyke)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "hygiene",
+        "name": "hygiene",
+        "hours": "open daily. showers and laundry available from 7pm-11pm.",
+        "description": "A place to shower and do laundry. Open daily.",
+        "notes": "Towels, soap, and shampoo are provided. Laundry cycle costs are .25 per cycle."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "UCSF Alliance Health Project",
+    "phone": "(415) 502-8378",
+    "address": "1930 MARKET (bet Laguna & Buchanan)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": "For rapid HIV testing call Tu-F 11am-4:30pm for appt or drop-in Tu 5-7pm WTh 12-7pm, F 12-5pm, Sa 9am-12pm.",
+        "description": "HIV Testing. Donation requested, not required.",
+        "notes": "Confi dential. HIV & risk assessment counseling available. English & Spanish. Other languages by appt."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "United Council of Human Services",
+    "phone": "(415) 643-1700",
+    "address": "1065 Oakdale (nr. Ingalls).",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": null,
+        "description": "weekly food pantry (Wednesday)",
+        "notes": "Sign up Wed 8am (with ID); food given out Wed 9:30am. Those not signed up may line up Wed 8:30am to see if there is extra"
+      },
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "M-F 7-9am, 5-7pm",
+        "description": "Hot breakfast. Hot dinner.",
+        "notes": null
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Visitacion Valley One Stop Career Link Center",
+    "phone": "(415) 239-8705",
+    "address": "73 Leland Avenue",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "technology",
+        "name": "technology",
+        "hours": "M-F 9am-5pm",
+        "description": "Job Search Assistance, Career Planning and Exploration, Job Preparation Workshops, Training Opportunities, Access to Resource Room with Computers, Fax and Copy machines, Unemployment Information (link to EDD), Availability of Supportive Services (including childcare and transportation). All services are free of charge.",
+        "notes": null
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "WIC",
+    "phone": "(415) 575-5788",
+    "address": null,
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "M-F 8am-12pm, 1-5pm",
+        "description": "WIC provides food vouchers, info & support for breastfeeding, & nutritional counseling. You can take vouchers to some grocery stores for fruits & vegetables, whole grains, beans (or peanut butter), cereal, juice, eggs, milk, cheese, iron-fortified infant formula & baby food for infants.",
+        "notes": "Women who are pregnant of have children under 5 years, call for referral to sign up in one of 6 locations. Bring proof of income, address, & verification of pregnancy. "
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Western Addition One Stop Career Link Center",
+    "phone": "(415) 655-2620",
+    "address": "1449 Webster Street",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "technology",
+        "name": "technology",
+        "hours": "M-Thurs 9am-1pm",
+        "description": "Job Search Assistance, Career Planning and Exploration, Job Preparation Workshops, Training Opportunities, Access to Resource Room with Computers, Fax and Copy machines, Unemployment Information (link to EDD), Availability of Supportive Services (including childcare and transportation). All services are free of charge.",
+        "notes": null
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Womack Salon",
+    "phone": "(415) 334-7774",
+    "address": "598 Silver Avenue",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "hygiene",
+        "name": "hygiene",
+        "hours": "Tues 11:00am to 3:00pm",
+        "description": "Free haircuts on Tuesdays",
+        "notes": null
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Women's Building",
+    "phone": "(415) 431-1180 ext. 11",
+    "address": "18TH ST. (bet. Valencia & Guerrero)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": null,
+        "description": null,
+        "notes": "For immigrant SF residents only. Sign up 9:30am Oct 1 to pick up weekly groceries for the next 6 months; if not signed up, come Mon 11am to see if there is extra. Bring a bag. English, Cantonese, Spanish."
+      }
+    ],
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Women's Community Clinic",
+    "phone": "(415) 379-7800",
+    "address": "1833 FILLMORE ST, 3RD FLOOR (bet. Bush & Sutter)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "medical",
+        "name": "medical",
+        "hours": "MTh 1-9pm, Tu 9am-9pm, WF 9am-5pm, Sa 9am-1pm.",
+        "description": "Pregnancy Test, STD Testing, STD Treatment, HIV Testing, Women’s Health, Family Planning. $0-\nfull bill. Call for appt.Female-identifi ed or female-bodied welcome.\n\n",
+        "notes": "English & Spanish."
+      }
+    ],
+    "gender": "W",
+    "age": null
+  },
+  {
+    "name": "Youth With A Mission",
+    "phone": "(415) 885-6543",
+    "address": "357 ELLIS (near Jones).",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Thurs 1:30pm",
+        "description": "weekly food pantry (Thursday)",
+        "notes": "Line up Thur 11am; food given out. Must live in 94102 zip code. ID required"
+      }
+    ],
+    "gender": null,
+    "age": null
+  }
+]
