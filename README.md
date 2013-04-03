@@ -16,7 +16,7 @@ From Steven:
 >- Where they are searching from
 >- What they ended up choosing
 
-This will replace http://ttlsf.herokuapp.com/ which uses a [Google spreadsheet](https://docs.google.com/spreadsheet/ccc?key=0AkkJeKqc-HDpdE5INXRRYVdMVmd5ay15dm5LZEdPLWc#gid=0) for persistence. 
+This will replace http://ttlsf.herokuapp.com/ which uses a [Google spreadsheet](https://docs.google.com/spreadsheet/ccc?key=0AkkJeKqc-HDpdE5INXRRYVdMVmd5ay15dm5LZEdPLWc#gid=0) for persistence.
 
 ## Link SF
 
@@ -29,6 +29,29 @@ We're going to have three main components: database/query api, frontend, and adm
 ### fixture data
 
 [here is fixture data.  here.](https://docs.google.com/spreadsheet/ccc?key=0AoYMeoUU9D_sdGpZaklYd2VtdVNhWXRNLWhMV2Uwa2c#gid=0)
+
+####JS workflow
+
+We want to write JS like civilized folk.
+
+Setup:
+
+```
+npm install
+npm install -g grunt-cli
+```
+
+Development:
+
+There is a `Gruntfile` that describe the available tasks.
+
+```
+grunt watch
+```
+
+Watches `app/**/*.js` and runs `jshint` and a `browserify` task. The output is a `js/static/output.js` file which is included in index.html.
+
+You can also just run `grunt` to verify JS and generate the `static/output.js` file.
 
 ####a changelog of sorts
 
