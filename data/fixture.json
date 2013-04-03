@@ -59,7 +59,7 @@ fixtureData = [
     ]
   },
   {
-    "name": "All Saints’ Episcopal Church",
+    "name": "All Saints' Episcopal Church",
     "phone": "(415) 621-1862",
     "address": "1350 WALLER",
     "description": "",
@@ -712,16 +712,16 @@ fixtureData = [
     "age": null
   },
   {
-    "name": "Fraternité Notre Dame (Turk)",
+    "name": "Fraternitè Notre Dame (UN Plaza)",
     "phone": "(415) 793-5686",
-    "address": "54 TURK ST. (btw Market & Jones)",
+    "address": "UN PLAZA (Market btw 7th & 8th Sts)",
     "description": "",
     "notes": "",
     "services": [
       {
         "category": "food",
         "name": "food",
-        "hours": "Tues-Thurs 11:30am-1:30pm",
+        "hours": "Tues 4pm-6pm",
         "description": "A hot meal.",
         "notes": null
       }
@@ -732,16 +732,16 @@ fixtureData = [
     "age": null
   },
   {
-    "name": "Fraternité Notre Dame (UN Plaza)",
+    "name": "Fraternié Notre Dame (Turk)",
     "phone": "(415) 793-5686",
-    "address": "UN PLAZA (Market btw 7th & 8th Sts)",
+    "address": "54 TURK ST. (btw Market & Jones)",
     "description": "",
     "notes": "",
     "services": [
       {
         "category": "food",
         "name": "food",
-        "hours": "Tues 4pm-6pm",
+        "hours": "Tues-Thurs 11:30am-1:30pm",
         "description": "A hot meal.",
         "notes": null
       }
