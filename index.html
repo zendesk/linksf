@@ -13,19 +13,29 @@
   <!-- <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/normalize/2.1.0/normalize.min.css"> -->
   <link rel="stylesheet" href="css/vendor/normalize.min.css">
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/linksf.css">
 
   <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/2.6.2/modernizr.min.js"></script> -->
   <script src="js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body>
 
-  <div id="linksf"></div>
 
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDdHRnaDD-_z2aNUqyxxCoRBAf6PWZjS4&sensor=true"></script>
   <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
   <script src="js/vendor/parse-1.2.2.min.js"></script>
   <script src="js/static/output.js"></script>
   <script src="js/app/fixture.js"></script>
-
+  
+  <div id="linksf">
+  <form>
+    <p>
+    <input type="radio" name="near" id="near" value="near">near me<br/>
+    <input type="radio" name="near" id="near" value="alpha">alphabetical<br/>
+    <input type="submit" name="go" id='testSearch'>
+  </form>
+  </div>
+  <pre id="results"></pre>
 </body>
 </html>
+
