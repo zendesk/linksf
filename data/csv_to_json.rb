@@ -25,4 +25,4 @@ input.each do |i|
   }
 end
 
-puts JSON.pretty_generate(facilities.values.sort_by { |h| h[:name] })
+puts 'fixtureData = ' + JSON.pretty_generate(facilities.values.sort_by { |h| h[:name] })
