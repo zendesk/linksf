@@ -18,7 +18,6 @@ From Steven:
 
 This will replace http://ttlsf.herokuapp.com/ which uses a [Google spreadsheet](https://docs.google.com/spreadsheet/ccc?key=0AkkJeKqc-HDpdE5INXRRYVdMVmd5ay15dm5LZEdPLWc#gid=0) for persistence. 
 
-
 ## Link SF
 
 We're going to have three main components: database/query api, frontend, and admin ui.
@@ -30,36 +29,6 @@ We're going to have three main components: database/query api, frontend, and adm
 ### fixture data
 
 [here is fixture data.  here.](https://docs.google.com/spreadsheet/ccc?key=0AoYMeoUU9D_sdGpZaklYd2VtdVNhWXRNLWhMV2Uwa2c#gid=0)
-
-####a preliminary schema
-
-(now out of date)
-
-Two objects, Facility and Service.
-
-Facility:
-
-```
-name:         string
-addr:         string
-description:  string
-phone:        string
-hours:        object
-notes:        string
-demographics: array
-geopoint:     geo
-```
-
-Service:
-
-```
-facilityId:   string # linkage
-name:         string # like 'showers', 'hiv testing'
-category:     string # 'hygiene'|'food'|'medical'|'shelter'|'technology'
-hours:        object
-notes:        string
-demographics: array  # maybe?  unclear whether necessary      
-```
 
 ####a changelog of sorts
 
