@@ -27,7 +27,13 @@ We're going to have three main components: database/query api, frontend, and adm
 * frontend: Backbone.js with jQuery, [mockup](http://f.cl.ly/items/2q1D093m3R3W2C3s3M40/TTL%20Mobile%20Resource.pdf)
 * admin ui: ???
 
+### fixture data
+
+[here is fixture data.  here.](https://docs.google.com/spreadsheet/ccc?key=0AoYMeoUU9D_sdGpZaklYd2VtdVNhWXRNLWhMV2Uwa2c#gid=0)
+
 ####a preliminary schema
+
+(now out of date)
 
 Two objects, Facility and Service.
 
@@ -57,5 +63,6 @@ demographics: array  # maybe?  unclear whether necessary
 
 ####a changelog of sorts
 
+* Added load_fixtures.html and got some decently normalized data into parse.
 * Added a scaffold [cloudcode](https://www.parse.com/docs/cloud_code_guide) app
 * Added `Facility` and `Service` Backbone models
