@@ -1,35 +1,35 @@
-var $     = require('jquery');
+var $ = require('jquery');
 
 $(function() {
 
- var gmaps = require('google-maps'),
-     Parse = require('parse'),
-     Facility = require('models/facility'),
-     Service  = require('models/service');
+  var gmaps = require('google-maps'),
+      Parse = require('parse'),
+      Facility = require('models/facility'),
+      Service  = require('models/service');
 
   var geocodeAddress = function(address, callback) {
     var geocoder = new gmaps.Geocoder();
-    geocoder.geocode( { 'address': address}, function(results, status) {
-      callback(status, results ? results[0].geometry : null);
+    geocoder.geocode( { 'address': address }, function(results, status) {
+      var geometry = results ? results[0].geometry : null;
+      callback(status, geometry);
     });
   };
 
-  var buildServices = function(fac, services) {
+  var buildServices = function(facility, services) {
     var i;
     for (i=0; i < services.length; i++) {
       var service = new Service();
-      service.set("facility", fac);
+      service.set("facility", facility);
       service.set(services[i]);
       service.save();
     }
   };
 
   var buildFacility = function(json, callbacks) {
-    var fac = new Facility();
+    var facility = new Facility();
     var geo, services;
 
-    if ( !json.address )
-      return false;
+    if ( !json.address ) return false;
 
     geo = json.address.replace(/\(.*\)/, '');
     geo = geo + ', San Francisco, CA';
@@ -37,25 +37,24 @@ $(function() {
     services = json.services;
     delete json.services;
 
-    fac.set(json);
+    facility.set(json);
 
     geocodeAddress(geo, function(status, point) {
-      if (status == gmaps.GeocoderStatus.OK) {
-        fac.set('location', new Parse.GeoPoint(point.location.lat(), point.location.lng()));
+      if (status === gmaps.GeocoderStatus.OK) {
+        facility.set('location', new Parse.GeoPoint(point.location.lat(), point.location.lng()));
 
-        fac.save(null, {
-          success: function(fac) {
-            buildServices(fac, services);
-            callbacks.success(fac);
+        facility.save(null, {
+          success: function(facility) {
+            buildServices(facility, services);
+            callbacks.success(facility);
           },
           error: callbacks.error
         });
       } else {
-        callbacks.error("Error geocoding address: '" + geo + "'" + " " + status);
+        callbacks.error("Error geocoding address: '" + geo + "' " + status);
       }
     });
   };
-
 
 //  buildFacility({
 //    name:               "A Woman's Place",
