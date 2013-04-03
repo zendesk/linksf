@@ -8,14 +8,14 @@ $(function() {
   Facility = Parse.Object.extend('Facility', {
     defaults: function() {
       return {
-        name:         'glide sf',
-        address:      '123 street',
-        description:  'a place with services',
-        phone:        '(111)222-3333',
+        name:         '',
+        address:      '',
+        phone:        '',
+        description:  '',
+        notes:        '',
         hours:        {},
-        notes:        'line up early!',
         gender:       null,
-        age:         null,
+        age:          null,
         location:     null
       };
     },
@@ -24,11 +24,11 @@ $(function() {
   Service = Parse.Object.extend('Service', {
     defaults: function() {
       return {
-        name:         'showers',  // like 'showers', 'hiv testing'
-        category:     'hygiene',  // 'hygiene'|'food'|'medical'|'shelter'|'technology'
-        description:  null,
-        hours:        null,
-        notes:        null
+        name:         '',  // like 'showers', 'hiv testing'
+        category:     '',  // 'hygiene'|'food'|'medical'|'shelter'|'technology'
+        description:  '',
+        notes:        '',
+        hours:        {}
       };
     }
   });
