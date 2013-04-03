@@ -53,7 +53,6 @@ module.exports = function(grunt) {
           var name = file
             .replace("./js/app/","")
             .replace(/\.js$/,"");
-          console.log(name);
           output = output.require(require.resolve(file),
                                   {expose: name});
         });
