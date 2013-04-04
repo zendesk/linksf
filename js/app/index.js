@@ -1,5 +1,4 @@
 var $ = require('jquery');
-var _ = require('underscore');
 
 $(function() {
  var Parse    = require('parse'),
