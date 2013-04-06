@@ -21,55 +21,54 @@ module.exports = function(grunt) {
     }
   });
 
-
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('browserify', 'Browserify and concatenate app sources', function() {
 
-    var browserify  = require('browserify'),
-        shim        = require('browserify-shim'),
-        entryPoints = [ './js/app/index.js',
-                        './js/app/fixture.js' ],
-        moduleList  = [ './js/app/models/*.js' ];
+    // node-style requires in the browser
+    var browserify = require('browserify');
 
-    var addEntryPoint = function(r, entryPoint) {
-      return r.require(require.resolve(entryPoint), { entry: true })
-    };
+    // we have to shim non-exports compliant js libraries :(
+    var shim = require('browserify-shim');
 
-    var output = shim(browserify(), {
+    // this will be the js src'd in <script> tags
+    var output;
+
+    // require vendor js first
+    output = shim(browserify(), {
       jquery: { path: './js/vendor/jquery.min.js', exports: '$' }
     })
-      .require('underscore', {expose: "underscore"})
-      .require('backbone', {expose: "backbone"})
-      .require(require.resolve('./js/shims/parse.js'), {expose: "parse"})
-      .require(require.resolve('./js/shims/google-maps.js'), {expose: "google-maps"});
+      .require('./js/shims/parse.js', {expose: 'parse'})
+      .require('./js/shims/google-maps.js', {expose: 'google-maps'})
+      .require('underscore', {expose: 'underscore'})
+      .require('backbone', {expose: 'backbone'});
 
-    entryPoints.forEach(function(entryPoint) {
-      output = addEntryPoint(output, entryPoint);
-    });
+    // and our application entry point
+    output = output.require('./js/app/index.js', {entry: true});
 
-    moduleList.forEach(function(modules) {
+    // require application modules
+    [
+      './js/app/models/*.js'
+    ].forEach(function(modules) {
       require('glob')(modules, function(er, files) {
         files.forEach(function(file) {
           var name = file
             .replace("./js/app/","")
             .replace(/\.js$/,"");
-          output = output.require(require.resolve(file),
-                                  {expose: name});
+
+          output = output.require(file, {expose: name});
         });
       });
-
     });
 
+    // now bundle it all up!
     output.bundle(function (err, src) {
       if (err) return console.error(err);
 
       require('fs').writeFileSync("./js/static/output.js", src);
     });
-
   });
 
   grunt.registerTask('default', ['jshint', 'browserify']);
-
 };
