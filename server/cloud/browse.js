@@ -1,1 +1,1 @@
-../../js/app/browse.js
+../../js/app/lib/browse.js
