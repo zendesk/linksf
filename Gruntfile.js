@@ -26,18 +26,19 @@ module.exports = function(grunt) {
 
   grunt.registerTask('browserify', 'Browserify and concatenate app sources', function() {
 
-    // node-style requires in the browser
-    var browserify = require('browserify');
-
-    // we have to shim non-exports compliant js libraries :(
-    var shim = require('browserify-shim');
+    var browserify  = require('browserify'),
+        shim        = require('browserify-shim'),
+        entryPoints = [ './js/app/index.js',
+                        './js/app/fixture.js' ],
+        moduleList  = [ './js/app/models/*.js','./js/app/browse.js' ];
 
     // this will be the js src'd in <script> tags
     var output;
 
     // require vendor js first
-    output = shim(browserify(), {
-      jquery: { path: './js/vendor/jquery.min.js', exports: '$' }
+    var output = shim(browserify(), {
+      jquery: { path: './js/vendor/jquery.min.js', exports: '$' }, 
+      'jquery-serialize-object': { path: './js/vendor/jquery.serialize-object.js', exports: '' }
     })
       .require('./js/shims/parse.js', {expose: 'parse'})
       .require('./js/shims/google-maps.js', {expose: 'google-maps'})
