@@ -4,7 +4,10 @@ $(function() {
  var Parse    = require('parse'),
      Backbone = require('backbone'),
      _        = require('underscore'),
-     gmaps    = require('google-maps');
+     gmaps    = require('google-maps'), 
+     browse   = require('browse');
+  
+  require('jquery-serialize-object');
 
   Parse.initialize("Z2l0Zn6NGrHCDoBPKUeD7Tf1fAUDaazQihQFqnL8", "kGPp7cydleuFbhKB4mrviTmbIjrbTjhxGP4dP7Ls");
 
@@ -13,7 +16,9 @@ $(function() {
   });
 
   function submitToParse(params) { 
-    Parse.Cloud.run("browse", params, {
+    var browse = _.partial(Parse.Cloud.run, "browse");
+
+    browse(params, {
       success: function(result) { 
         $('#results').empty();
         _.each(result, function(fac) { 
@@ -26,9 +31,8 @@ $(function() {
     });
   }
 
-  $('#testSearch').click(function() {
-    var params = {};
-    params.sort = $('#near').val();
+  $('#query').submit(function() {
+    var params = $('#query').serializeObject();
     if ( params.sort == 'near' ) { 
       if ( false && navigator.geolocation ) {
           navigator.geolocation.getCurrentPosition(function(position) {
