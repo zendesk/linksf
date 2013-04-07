@@ -10,6 +10,7 @@ module.exports = function(grunt) {
           module: true,
           require: true,
           navigator: true,
+          Parse: true
         },
         undef: true,
         debug: true
@@ -27,10 +28,7 @@ module.exports = function(grunt) {
   grunt.registerTask('browserify', 'Browserify and concatenate app sources', function() {
 
     var browserify  = require('browserify'),
-        shim        = require('browserify-shim'),
-        entryPoints = [ './js/app/index.js',
-                        './js/app/fixture.js' ],
-        moduleList  = [ './js/app/models/*.js','./js/app/browse.js' ];
+        shim        = require('browserify-shim');
 
     // this will be the js src'd in <script> tags
     var output;
@@ -48,9 +46,12 @@ module.exports = function(grunt) {
     // and our application entry point
     output = output.require('./js/app/index.js', {entry: true});
 
+
     // require application modules
     [
-      './js/app/models/*.js'
+      './js/app/models/*.js', 
+      './js/app/lib/*.js'
+
     ].forEach(function(modules) {
       require('glob')(modules, function(er, files) {
         files.forEach(function(file) {

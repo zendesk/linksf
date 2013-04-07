@@ -5,7 +5,7 @@ $(function() {
      Backbone = require('backbone'),
      _        = require('underscore'),
      gmaps    = require('google-maps'), 
-     browse   = require('browse');
+     browse   = require('lib/browse');
   
   require('jquery-serialize-object');
 
@@ -16,7 +16,7 @@ $(function() {
   });
 
   function submitToParse(params) { 
-    var browse = _.partial(Parse.Cloud.run, "browse");
+    //var browse = _.partial(Parse.Cloud.run, "browse");
 
     browse(params, {
       success: function(result) { 
