@@ -28,7 +28,8 @@ module.exports = function(grunt) {
   grunt.registerTask('browserify', 'Browserify and concatenate app sources', function() {
 
     var browserify  = require('browserify'),
-        shim        = require('browserify-shim');
+        shim        = require('browserify-shim'),
+        done        = this.async();
 
     // this will be the js src'd in <script> tags
     var output;
@@ -67,8 +68,8 @@ module.exports = function(grunt) {
     // now bundle it all up!
     output.bundle(function (err, src) {
       if (err) return console.error(err);
-
       require('fs').writeFileSync("./js/static/output.js", src);
+      done();
     });
   });
 
