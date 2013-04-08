@@ -30,7 +30,8 @@ module.exports = function (params, callbacks) {
       return true;
     }
 
-    if ( filter.gender && filter.gender !== facility.get("gender") ) {
+    console.log(facility.get("name") + " " + facility.get("gender"));
+    if ( filter.gender && facility.get("gender") && filter.gender !== facility.get("gender") ) {
       return false;
     }
 
@@ -44,7 +45,6 @@ module.exports = function (params, callbacks) {
     }
     return true;
   };
- 
 
   var sort = params.sort || 'name';
   var limit = params.limit || 10;

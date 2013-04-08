@@ -52,7 +52,7 @@ fixtureData = [
     ],
     "hours": {
     },
-    "gender": "W",
+    "gender": "F",
     "age": [
       "A",
       "S"
@@ -135,7 +135,7 @@ fixtureData = [
     ],
     "hours": {
     },
-    "gender": "W",
+    "gender": "F",
     "age": null
   },
   {
@@ -405,12 +405,19 @@ fixtureData = [
     "age": null
   },
   {
-    "name": "City TEAM Recovery Program",
+    "name": "City Team Ministries",
     "phone": "(415) 861-8688",
-    "address": "164 6TH ST. (at Natoma)",
+    "address": "164 - 6TH ST. (btw. Mission & Howard)",
     "description": "",
     "notes": "",
     "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Tues-Fri 5:45pm (for church group)/ 6pm for meal, Sat 1pm-3pm",
+        "description": "A hot meal served 5 days a week",
+        "notes": "Dinner: Tues-Fri arrive 5:45pm for 6pm church group (optional) & dinner. Those who come to church group are fed first. A hot meal. Clothes & foot care available at Sat lunch. Medical clinic 2nd & 4th Sat of each month."
+      },
       {
         "category": "housing",
         "name": "housing",
@@ -426,26 +433,6 @@ fixtureData = [
       "A",
       "S"
     ]
-  },
-  {
-    "name": "City Team Ministries",
-    "phone": "(415) 861-8688",
-    "address": "164 - 6TH ST. (btw. Mission & Howard)",
-    "description": "",
-    "notes": "",
-    "services": [
-      {
-        "category": "food",
-        "name": "food",
-        "hours": "Tues-Fri 5:45pm (for church group)/ 6pm for meal, Sat 1pm-3pm",
-        "description": "A hot meal served 5 days a week",
-        "notes": "Dinner: Tues-Fri arrive 5:45pm for 6pm church group (optional) & dinner. Those who come to church group are fed first. A hot meal. Clothes & foot care available at Sat lunch. Medical clinic 2nd & 4th Sat of each month."
-      }
-    ],
-    "hours": {
-    },
-    "gender": null,
-    "age": null
   },
   {
     "name": "Civic Center One Stop Career Link Center",
@@ -712,26 +699,6 @@ fixtureData = [
     "age": null
   },
   {
-    "name": "Fraternitè Notre Dame (UN Plaza)",
-    "phone": "(415) 793-5686",
-    "address": "UN PLAZA (Market btw 7th & 8th Sts)",
-    "description": "",
-    "notes": "",
-    "services": [
-      {
-        "category": "food",
-        "name": "food",
-        "hours": "Tues 4pm-6pm",
-        "description": "A hot meal.",
-        "notes": null
-      }
-    ],
-    "hours": {
-    },
-    "gender": null,
-    "age": null
-  },
-  {
     "name": "Fraternié Notre Dame (Turk)",
     "phone": "(415) 793-5686",
     "address": "54 TURK ST. (btw Market & Jones)",
@@ -742,6 +709,26 @@ fixtureData = [
         "category": "food",
         "name": "food",
         "hours": "Tues-Thurs 11:30am-1:30pm",
+        "description": "A hot meal.",
+        "notes": null
+      }
+    ],
+    "hours": {
+    },
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "Fraternié Notre Dame (UN Plaza)",
+    "phone": "(415) 793-5686",
+    "address": "UN PLAZA (Market btw 7th & 8th Sts)",
+    "description": "",
+    "notes": "",
+    "services": [
+      {
+        "category": "food",
+        "name": "food",
+        "hours": "Tues 4pm-6pm",
         "description": "A hot meal.",
         "notes": null
       }
@@ -1023,7 +1010,7 @@ fixtureData = [
     ],
     "hours": {
     },
-    "gender": "W",
+    "gender": "F",
     "age": null
   },
   {
@@ -1087,7 +1074,7 @@ fixtureData = [
     ],
     "hours": {
     },
-    "gender": "W",
+    "gender": "F",
     "age": null
   },
   {
@@ -1207,7 +1194,7 @@ fixtureData = [
   {
     "name": "Mission Neighborhood Health Resource Center",
     "phone": "(415) 869-7977",
-    "address": "165 CAPP (bet.16th & 17th Sts.)",
+    "address": "165 Capp St (bet. 16th and 17th)",
     "description": "",
     "notes": "",
     "services": [
@@ -1281,7 +1268,7 @@ fixtureData = [
     ],
     "hours": {
     },
-    "gender": "W",
+    "gender": "F",
     "age": null
   },
   {
@@ -1621,7 +1608,7 @@ fixtureData = [
     ],
     "hours": {
     },
-    "gender": "W",
+    "gender": "F",
     "age": null
   },
   {
@@ -1990,7 +1977,7 @@ fixtureData = [
   {
     "name": "St. Anthony Medical Clinic",
     "phone": "(415) 241-8320",
-    "address": "150 GOLDEN GATE AVE (at Jones).",
+    "address": "150 Golden Gate",
     "description": "",
     "notes": "",
     "services": [
@@ -2287,7 +2274,20 @@ fixtureData = [
         "hours": null,
         "description": "weekly food pantry (Wednesday)",
         "notes": "Sign up Wed 8am (with ID); food given out Wed 9:30am. Those not signed up may line up Wed 8:30am to see if there is extra"
-      },
+      }
+    ],
+    "hours": {
+    },
+    "gender": null,
+    "age": null
+  },
+  {
+    "name": "United Council of Human Services - Jennings",
+    "phone": "(415) 671-1100",
+    "address": "2111 JENNINGS (at Van Dyke)",
+    "description": "",
+    "notes": "",
+    "services": [
       {
         "category": "food",
         "name": "food",
@@ -2418,7 +2418,7 @@ fixtureData = [
     ],
     "hours": {
     },
-    "gender": "W",
+    "gender": "F",
     "age": null
   },
   {
