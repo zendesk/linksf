@@ -36,7 +36,7 @@ module.exports = function(grunt) {
 
     // require vendor js first
     var output = shim(browserify(), {
-      jquery: { path: './js/vendor/jquery.min.js', exports: '$' }, 
+      jquery: { path: './js/vendor/jquery.min.js', exports: '$' },
       'jquery-serialize-object': { path: './js/vendor/jquery.serialize-object.js', exports: '' }
     })
       .require('./js/shims/parse.js', {expose: 'parse'})
@@ -50,7 +50,7 @@ module.exports = function(grunt) {
 
     // require application modules
     [
-      './js/app/models/*.js', 
+      './js/app/models/*.js',
       './js/app/lib/*.js'
 
     ].forEach(function(modules) {
