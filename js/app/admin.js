@@ -1,16 +1,8 @@
 var $ = require('jquery');
 
 $(function() {
-  var Backbone = require('backbone');
+  var AdminView = require('views/admin_view'),
+      adminView = new AdminView();
 
-  var AdminView = Backbone.View.extend({
-    el: $("#linksf-admin"),
-    render: function() {
-      $(this.el).html('hellooooo');
-      return this;
-    }
-  });
-
-  Admin = new AdminView();
-  Admin.render();
+  adminView.render();
 });
