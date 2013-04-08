@@ -1,17 +1,16 @@
 var browserify = require('browserify'),
     shim = require('browserify-shim');
 
+// load library code
 output = shim(browserify(), {
   jquery: { path: './js/vendor/jquery.min.js', exports: '$' },
   parse: { path: './js/vendor/parse-1.2.2.min.js', exports: 'Parse' },
   gmaps: { path: './js/vendor/googlemaps.js', exports: 'gmaps' }
-})
-.require(require.resolve('./js/app/admin.js'), { entry: true });
+});
 
-// load models and views
+// load application code
 [
-  './js/models/*.js',
-  './js/views/*.js'
+  './js/app/views/admin_view.js'
 ].forEach(function(modules) {
   require('glob')(modules, function(er, files) {
     files.forEach(function(file) {
@@ -22,7 +21,10 @@ output = shim(browserify(), {
       output = output.require(file, {expose: name});
     });
   });
-});
+})
+
+// and finally, load entry point
+output = output.require(require.resolve('./js/app/admin.js'), { entry: true });
 
 output.bundle(function (err, src) {
   if (err) return console.error(err);
