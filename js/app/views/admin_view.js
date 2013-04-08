@@ -1,8 +1,8 @@
-var Backbone = require('Backbone');
+var Backbone = require('backbone');
 
 var AdminView = Backbone.View.extend({
 	el: $("#linksf-admin"),
-	template: require('../templates/login.hbs'),
+	template: require('templates/login'),
 	render: function() {
 		$(this.el).html(this.template({ name: 'arf arf arf' }));
 		return this;
