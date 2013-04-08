@@ -1,34 +1,21 @@
-var browserify = require('browserify'),
-    shim = require('browserify-shim');
+var browserify = require('browserify');
 
-// load library code
-output = shim(browserify(), {
+// shim some non-CommonJS compatible libraries
+require('browserify-shim')(browserify(), {
   jquery: { path: './js/vendor/jquery.min.js', exports: '$' },
   parse: { path: './js/vendor/parse-1.2.2.min.js', exports: 'Parse' },
   gmaps: { path: './js/vendor/googlemaps.js', exports: 'gmaps' }
-});
-
-// load application code
-[
-  './js/app/views/admin_view.js'
-].forEach(function(modules) {
-  require('glob')(modules, function(er, files) {
-    files.forEach(function(file) {
-      var name = file
-        .replace("./js/app/","")
-        .replace(/\.js$/,"");
-
-      output = output.require(file, {expose: name});
-    });
-  });
 })
 
-// and finally, load entry point
-output = output.require(require.resolve('./js/app/admin.js'), { entry: true });
+// use hbsfy transform to support requiring .hbs files
+.transform('hbsfy')
 
-output.bundle(function (err, src) {
+// add entry point; browserify begins parsing the AST tree here for require calls
+.require('./js/app/admin.js', { entry: true })
+
+// and finally, bundle it all together
+.bundle(function (err, src) {
   if (err) return console.error(err);
 
   require('fs').writeFileSync('./js/static/admin.js', src);
-  console.log('Build succeeded');
 });
