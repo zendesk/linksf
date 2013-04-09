@@ -14,6 +14,7 @@
     "hbsfy": "~0.1.2",
     "grunt-contrib-jshint": "~0.3.0",
     "grunt-contrib-watch": "~0.3.1",
-    "glob": "3.1.21"
+    "glob": "3.1.21",
+    "handlebars-runtime": "~1.0.0"
   }
 }
