@@ -53,6 +53,28 @@ Watches `app/**/*.js` and runs `jshint` and a `browserify` task. The output is a
 
 You can also just run `grunt` to verify JS and generate the `static/output.js` file.
 
+####Query interface
+
+```
+var browseFunc = require('lib/browse');
+
+browseFunc(params);
+
+// all params are optional, NULL or missing means don't filter
+params = {
+ sort: 'near'|'name'
+ limit: int (default 10)
+ filter:
+ {
+   isOpen: true,
+   gender: 'M'|'F'
+   age: ['C', 'Y', 'A', 'S'] // children, youth, adult, senior
+   categories: ['medical', 'hygiene', 'food', 'shelter']
+ }
+}
+```
+
+
 ####a changelog of sorts
 
 * Added load_fixtures.html and got some decently normalized data into parse.
