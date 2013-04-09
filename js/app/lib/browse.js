@@ -9,8 +9,8 @@ module.exports = function (params, callbacks) {
 
   var _        = require('underscore');
 
-  var Facility = parse.Object.extend("Facility");
-  var Service  = parse.Object.extend("Service");
+  var Facility = require('models/facility');
+  var Service  = require('models/service');
 
   // all params are optional, NULL or missing means don't filter
   // {
@@ -26,24 +26,15 @@ module.exports = function (params, callbacks) {
   //
   //
   var facilityMatchesFilter = function(facility, filter) {
+    var match = true;
+
     if ( !filter ) {
       return true;
     }
 
-    console.log(facility.get("name") + " " + facility.get("gender"));
-    if ( filter.gender && facility.get("gender") && filter.gender !== facility.get("gender") ) {
-      return false;
-    }
-
-    if ( filter.age && facility.get("age") ) {
-      var matches = _.any(_.compact(filter.age), function(targetAge) {
-        return _.include(facility.get("age"), targetAge);
-      });
-      if ( !matches ) {
-        return false;
-      }
-    }
-    return true;
+    match &= facility.matchesGender(filter.gender);
+    match &= facility.matchesAges(filter.age);
+    return match;
   };
 
   var sort = params.sort || 'name';
