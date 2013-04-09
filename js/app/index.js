@@ -16,9 +16,15 @@ $(function() {
   });
 
   function submitToParse(params) { 
-    //var browse = _.partial(Parse.Cloud.run, "browse");
+    var browseFunction;
 
-    browse(params, {
+    if ( params.runwhere === 'cloud' ) {
+      browseFunction = _.partial(Parse.Cloud.run, "browse");
+    } else {
+      browseFunction = browse;
+    }
+
+    browseFunction(params, {
       success: function(result) { 
         $('#results').empty();
         _.each(result, function(fac) { 
