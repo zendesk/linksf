@@ -1,5 +1,5 @@
-var Backbone = require('backbone');
-var $ = require('jquery');
+var Backbone = require('backbone'),
+    $ = require('jquery');
 
 var AdminView = Backbone.View.extend({
 	el: $("#linksf-admin"),
