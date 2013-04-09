@@ -1,7 +1,6 @@
 var $ = require('jquery');
 
-$(function() {
-
+module.exports = (function() {
   var gmaps = require('google-maps'),
       Parse = require('parse'),
       Facility = require('models/facility'),
@@ -55,6 +54,5 @@ $(function() {
       }
     });
   };
-
-  module.exports = buildFacility;
-});
+  return buildFacility;
+})();

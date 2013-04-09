@@ -8,8 +8,8 @@
 <script src="../js/vendor/backbone-min.js"></script>
 <!-- <script src="//www.parsecdn.com/js/parse-1.2.2.min.js"></script> -->
 <script src="../js/vendor/parse-1.2.2.min.js"></script>
-<script src="../js/app.js"></script>
-<script src="../js/fixture.js"></script>
+<script src="../js/static/output.js"></script>
+<script src="../js/app/index.js"></script>
 <script src="fixture.json" charset='utf-8'></script>
 </head>
 
@@ -17,6 +17,8 @@
 <a href="GOGOGOGOGOGOG" id='load_fixtures'><h1>GOGOGOGOGOGOGOGGO</h1></a>
 <div id='results'></div>
 <script>
+  var buildFacility = require('lib/fixture');
+
   $('#load_fixtures').click(function() { 
     i = 0;
     _.each(fixtureData, function(facility) { 
