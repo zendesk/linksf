@@ -34,6 +34,7 @@ module.exports = function (params, callbacks) {
 
     match &= facility.matchesGender(filter.gender);
     match &= facility.matchesAges(filter.age);
+    match &= facility.hasServiceInCategories(filter.categories);
     return match;
   };
 
