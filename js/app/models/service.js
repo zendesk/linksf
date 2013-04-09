@@ -5,7 +5,7 @@ module.exports = require('parse').Object.extend('Service', {
       category:     '',  // 'hygiene'|'food'|'medical'|'shelter'|'technology'
       description:  '',
       notes:        '',
-      hours:        {}
+      hours:        ''
     };
   }
 });

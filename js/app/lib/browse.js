@@ -64,6 +64,7 @@ module.exports = function (params, callbacks) {
   }
 
   q.limit(limit);
+  q.include('services');
 
   var resp = [];
   q.find({

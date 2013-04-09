@@ -31,6 +31,7 @@ $(function() {
           $('#results').append(JSON.stringify(fac, null, '  '));
           $('#results').append("\n");
         });
+        $('#results').data('results', result);
       }, error: function(err) {
         $('#results').html(err);
       }
