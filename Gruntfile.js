@@ -66,7 +66,7 @@ module.exports = function(grunt) {
     });
 
     // add entry point; browserify will traverse the AST tree from here for require calls
-    output = output.require('./js/app/admin.js', { entry: true });
+    output = output.require('./js/app/index.js', { entry: true });
 
     // now bundle it all up!
     output.bundle(function (err, src) {
