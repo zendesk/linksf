@@ -3,8 +3,6 @@ var Backbone = require('backbone'),
     _        = require('underscore'),
     browse   = require('lib/browse');
 
-require('jquery-serialize-object');
-
 function submitToParse(params) {
   var browseFunction;
 
