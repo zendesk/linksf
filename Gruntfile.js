@@ -17,7 +17,7 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-      files: ['Gruntfile.js', '<%= jshint.files %>'],
+      files: ['Gruntfile.js', '<%= jshint.files %>', 'js/app/**/*.hbs'],
       tasks: ['jshint', 'browserify']
     }
   });
