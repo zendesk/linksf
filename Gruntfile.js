@@ -51,6 +51,7 @@ module.exports = function(grunt) {
     [
       './js/app/lib/*.js',
       './js/app/models/*.js',
+      './js/app/routers/*.js',
       './js/app/views/*.js',
       './js/app/templates/*.hbs'
     ].forEach(function(modules) {
@@ -65,7 +66,7 @@ module.exports = function(grunt) {
       });
     });
 
-    // add entry point; browserify will traverse the AST tree from here for require calls
+    // add our entry point
     output = output.require('./js/app/index.js', { entry: true });
 
     // now bundle it all up!
