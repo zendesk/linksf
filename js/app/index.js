@@ -4,18 +4,15 @@ $(function() {
  var Parse    = require('parse'),
      Backbone = require('backbone'),
      _        = require('underscore'),
-     gmaps    = require('google-maps'), 
-     browse   = require('lib/browse');
-  
+     gmaps    = require('google-maps'),
+     browse   = require('lib/browse'),
+     AppView  = require('views/app_view');
+
   require('jquery-serialize-object');
 
   Parse.initialize("Z2l0Zn6NGrHCDoBPKUeD7Tf1fAUDaazQihQFqnL8", "kGPp7cydleuFbhKB4mrviTmbIjrbTjhxGP4dP7Ls");
 
-  var AppView = Backbone.View.extend({
-    el: $("#linksf")
-  });
-
-  function submitToParse(params) { 
+  function submitToParse(params) {
     var browseFunction;
 
     if ( params.runwhere === 'cloud' ) {
@@ -25,12 +22,12 @@ $(function() {
     }
 
     browseFunction(params, {
-      success: function(result) { 
+      success: function(result) {
         $('#results').empty();
         $('#results').append("results available at $('#results').data('results')\n\n");
 
-        _.each(result, function(fac) { 
-          fac.set("services", 
+        _.each(result, function(fac) {
+          fac.set("services",
             _.map(fac.get('services'), function(s) { return s.attributes; } )
             );
           $('#results').append(JSON.stringify(fac, null, '  '));
@@ -43,15 +40,18 @@ $(function() {
     });
   }
 
+  var appView = new AppView();
+  appView.render();
+
   $('#query').submit(function() {
     var params = $('#query').serializeObject();
-    if ( params.sort == 'near' ) { 
+    if ( params.sort == 'near' ) {
       if ( false && navigator.geolocation ) {
           navigator.geolocation.getCurrentPosition(function(position) {
             params.lat = position.coords.latitude;
             params.lon = position.coords.longitude;
             submitToParse(params);
-          }, function(error) { 
+          }, function(error) {
             console.log(error);
           });
       } else {
@@ -66,6 +66,4 @@ $(function() {
 
     return false;
   });
-
-  var App = new AppView();
 });
