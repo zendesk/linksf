@@ -1,9 +1,8 @@
-var $ = require('jquery');
-var _ = require('underscore');
+var $ = require('jquery'),
+    _ = require('underscore');
 
 module.exports = (function() {
   var gmaps = require('google-maps'),
-      Parse = require('parse'),
       Facility = require('models/facility'),
       Service  = require('models/service');
 
