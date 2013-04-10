@@ -24,19 +24,18 @@ module.exports = (function() {
       return service;
     });
 
-
     Service.saveAll(serviceObjects, function(services, error) {
       if (services) {
-        _.each(services, function(s) { 
+        _.each(services, function(s) {
           var sObj = new Service();
           sObj.id = s.id;
           facility.add("services", sObj);
         });
 
         facility.save()
-          .then(function(fac) { 
+          .then(function(fac) {
 
-          }, function(error) { 
+          }, function(error) {
             console.log(error);
           });
 
