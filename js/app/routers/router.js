@@ -1,6 +1,7 @@
 var Backbone = require('backbone'),
     AppView = require('views/app_view'),
-    AdminView = require('views/admin_view');
+    AdminView = require('views/admin_view'),
+    ListView = require('views/list_view');
 
 var Router = Backbone.Router.extend({
   routes: {
@@ -17,7 +18,10 @@ var Router = Backbone.Router.extend({
   },
 
   list: function() {
-    // anything can happen!
+    console.log('entering list route');
+
+    var listView = new ListView();
+    listView.render();
   },
 
   admin: function() {

@@ -1,5 +1,11 @@
 <ul>
-  {{#each facility}}
-    <li>{{facility}}</li>
+  {{#each facilities}}
+    <li>
+      <div>
+        <h4>{{this.name}}</h4>
+        <p>{{this.address}}</p>
+        <p>{{this.notes}}</p>
+      </div>
+    </li>
   {{/each}}
 </ul>
