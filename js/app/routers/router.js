@@ -1,12 +1,14 @@
 var Backbone = require('backbone'),
     AppView = require('views/app_view'),
-    AdminView = require('views/admin_view');
+    AdminView = require('views/admin_view'),
+    DetailView = require('views/detail_view');
 
 var Router = Backbone.Router.extend({
   routes: {
     '': 'query',
     'list': 'list',
-    'admin': 'admin'
+    'admin': 'admin',
+    'detail': 'detail'
   },
 
   query: function() {
@@ -25,6 +27,10 @@ var Router = Backbone.Router.extend({
 
     var adminView = new AdminView();
     adminView.render();
+  },
+  detail: function() {
+    var detailView = new DetailView();
+    detailView.render();
   }
 });
 
