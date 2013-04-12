@@ -17,13 +17,31 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-      files: ['Gruntfile.js', '<%= jshint.files %>', 'js/app/**/*.hbs', 'index.html', 'routers/router.js'],
-      tasks: ['jshint', 'browserify']
+
+      files: ['Gruntfile.js',
+              '<%= jshint.files %>',
+              'js/app/**/*.hbs',
+              'test/**/*.js',
+              'index.html'],
+      tasks: ['jshint', 'simplemocha', 'browserify']
+    },
+    simplemocha: {
+      options: {
+        globals: ['should'],
+        timeout: 3000,
+        ignoreLeaks: false,
+        grep: '*-test',
+        ui: 'bdd',
+        reporter: 'tap'
+      },
+
+      all: { src: ['test/**/*.js'] }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-simple-mocha');
 
   grunt.registerTask('browserify', 'Browserify and concatenate app sources', function() {
 
@@ -80,5 +98,5 @@ module.exports = function(grunt) {
     });
   });
 
-  grunt.registerTask('default', ['jshint', 'browserify']);
+  grunt.registerTask('default', ['jshint', 'simplemocha', 'browserify']);
 };
