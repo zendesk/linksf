@@ -1,3 +1,5 @@
+/*globals describe, it*/
+
 var should = require("should");
 describe("Hours", function(){
   var Hours = require('../js/app/models/hours'),
@@ -31,5 +33,5 @@ describe("Hours", function(){
       hours.within("Mon,10:30AM").should.equal(true);
       hours.within("Mon,12:30PM").should.equal(false);
     });
-  })
+  });
 });
