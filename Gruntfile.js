@@ -21,22 +21,25 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-
-      files: ['Gruntfile.js',
-              '<%= jshint.files %>',
-              'js/app/**/*.hbs',
-              'test/**/*.js',
-              'index.html'],
-      tasks: ['jshint', 'simplemocha', 'browserify']
+      files: [
+        'Gruntfile.js',
+        '<%= jshint.files %>',
+        'js/app/**/*.hbs',
+        'test/**/*.js',
+        'index.html'
+      ],
+      tasks: [
+        'jshint',
+        'simplemocha',
+        'browserify'
+      ]
     },
     simplemocha: {
       options: {
-        globals: ['should'],
         timeout: 3000,
         ignoreLeaks: false,
-        grep: '*-test',
         ui: 'bdd',
-        reporter: 'tap'
+        reporter: 'list'
       },
 
       all: { src: ['test/**/*.js'] }
