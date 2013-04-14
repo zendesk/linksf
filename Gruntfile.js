@@ -25,12 +25,14 @@ module.exports = function(grunt) {
         'Gruntfile.js',
         '<%= jshint.files %>',
         'js/app/**/*.hbs',
+        'css/main.scss',
         'test/**/*.js',
         'index.html'
       ],
       tasks: [
         'jshint',
         'simplemocha',
+        'sass',
         'browserify'
       ]
     },
