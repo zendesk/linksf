@@ -20,15 +20,10 @@ This will replace http://ttlsf.herokuapp.com/ which uses a [Google spreadsheet](
 
 ## Link SF
 
-We're going to have three main components: database/query api, frontend, and admin ui.
+We're going to have three main components: database/query api, user interface, and admin interface.
 
 * database/query api: [Parse](https://parse.com/)
-* frontend: Backbone.js with jQuery, [mockup](http://f.cl.ly/items/2q1D093m3R3W2C3s3M40/TTL%20Mobile%20Resource.pdf)
-* admin ui: ???
-
-### fixture data
-
-[here is fixture data.  here.](https://docs.google.com/spreadsheet/ccc?key=0AoYMeoUU9D_sdGpZaklYd2VtdVNhWXRNLWhMV2Uwa2c#gid=0)
+* user/admin interface: Backbone.js with jQuery, [mockup](http://f.cl.ly/items/2q1D093m3R3W2C3s3M40/TTL%20Mobile%20Resource.pdf)
 
 ####JS workflow
 
@@ -80,3 +75,7 @@ params = {
 * Added load_fixtures.html and got some decently normalized data into parse.
 * Added a scaffold [cloudcode](https://www.parse.com/docs/cloud_code_guide) app
 * Added `Facility` and `Service` Backbone models
+
+####notes
+
+[here is fixture data.  here.](https://docs.google.com/spreadsheet/ccc?key=0AoYMeoUU9D_sdGpZaklYd2VtdVNhWXRNLWhMV2Uwa2c#gid=0)
