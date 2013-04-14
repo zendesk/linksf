@@ -1,20 +1,35 @@
-#linksf {
-  padding: 10px;
-  background-color: #AAAAAA;
-}
-
 #results {
   font-size: 12px;
   background-color: #EEEEEE;
 }
 
 nav {
-  background-color: #EEE;
+  width: 100%;
+  background-color: #E3E3E3;
+  height: 20px;
 
-  span {
-    color: #FFF;
-    .left { float: left; }
-    .right { float: right; }
+  a {
+    color: #8C8080;
+  }
+
+  li {
+    list-style-type: none;
+    float: left;
+    margin-right: 20px;
   }
 }
 
+
+.name {
+  font-weight: bold;
+}
+
+.services {
+  color: #185377;
+}
+
+form {
+  input {
+    margin-right: 10px;
+  }
+}
