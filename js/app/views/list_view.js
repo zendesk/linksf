@@ -5,6 +5,7 @@ var Backbone = require('backbone'),
 var ListView = Backbone.View.extend({
   el: $("#linksf"),
   template: require('templates/list'),
+
   facilities: function() {
     var models, jsonModels;
 
@@ -13,6 +14,7 @@ var ListView = Backbone.View.extend({
 
     return jsonModels;
   },
+
   render: function() {
     $(this.el).html(this.template({ facilities: this.facilities() }));
     return this;
