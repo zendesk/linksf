@@ -1,8 +1,14 @@
+li {
+  list-style-type: none;
+}
+
+// results
 #results {
   font-size: 12px;
   background-color: #EEEEEE;
 }
 
+// nav bar
 nav {
   width: 100%;
   background-color: #E3E3E3;
@@ -13,23 +19,31 @@ nav {
   }
 
   li {
-    list-style-type: none;
     float: left;
     margin-right: 20px;
   }
 }
 
-
-.name {
-  font-weight: bold;
-}
-
-.services {
-  color: #185377;
-}
-
+// query form
 form {
   input {
     margin-right: 10px;
+  }
+}
+
+// list view
+#facility-list {
+  padding-left: 0px;
+
+  .facility {
+    border-bottom: solid #9B9B9B 1px;
+  }
+
+  .name {
+    font-weight: bold;
+  }
+
+  .services {
+    color: #185377;
   }
 }
