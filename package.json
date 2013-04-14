@@ -18,6 +18,7 @@
     "handlebars-runtime": "~1.0.0",
     "mocha": "~1.9.0",
     "should": "~1.2.2",
-    "grunt-simple-mocha": "~0.4.0"
+    "grunt-simple-mocha": "~0.4.0",
+    "grunt-contrib-sass": "~0.3.0"
   }
 }

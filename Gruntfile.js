@@ -43,12 +43,20 @@ module.exports = function(grunt) {
       },
 
       all: { src: ['test/**/*.js'] }
+    },
+    sass: {
+      dist: {
+        files: {
+          'css/static/main.css': 'css/main.scss'
+        }
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-simple-mocha');
+  grunt.loadNpmTasks('grunt-contrib-sass');
 
   grunt.registerTask('browserify', 'Browserify and concatenate app sources', function() {
 
@@ -105,5 +113,5 @@ module.exports = function(grunt) {
     });
   });
 
-  grunt.registerTask('default', ['jshint', 'simplemocha', 'browserify']);
+  grunt.registerTask('default', ['jshint', 'simplemocha', 'sass', 'browserify']);
 };
