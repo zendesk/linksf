@@ -20,19 +20,19 @@ var location = function(hasGeolocation) {
   return {lat: lat, lon: lon};
 };
 
-var dumpToDOM = function(result) {
-  var results = $('#results');
-  results.empty();
-  results.append("results available at $('#results').data('results')\n\n");
+var dumpToDOM = function(results) {
+  var resDiv = $('#results');
+  resDiv.empty();
+  resDiv.append("results available at $('#results').data('results')\n\n");
 
   results.each(function(fac) {
     fac.set("services",
       _.map(fac.get('services'), function(s) { return s.attributes; } )
       );
-    results.append(JSON.stringify(fac, null, '  '));
-    results.append("\n");
+    resDiv.append(JSON.stringify(fac, null, '  '));
+    resDiv.append("\n");
   });
-  results.data('results', result);
+  resDiv.data('results', results);
 };
 
 var queryFunction = function(runInCloud) {
