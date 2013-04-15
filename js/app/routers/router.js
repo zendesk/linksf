@@ -1,6 +1,6 @@
 var $ = require('jquery'),
     Backbone = require('backbone'),
-    AppView = require('views/app_view'),
+    QueryView = require('views/query_view'),
     AdminView = require('views/admin_view'),
     DetailView = require('views/detail_view'),
     ListView = require('views/list_view'),
@@ -17,8 +17,8 @@ var Router = Backbone.Router.extend({
   query: function() {
     console.log('entering query route');
 
-    var appView = new AppView();
-    appView.render();
+    var queryView = new QueryView();
+    queryView.render();
   },
 
   list: function() {
