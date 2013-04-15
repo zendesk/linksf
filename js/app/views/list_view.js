@@ -10,9 +10,12 @@ var ListView = Backbone.View.extend({
     var models, jsonModels;
 
     models = $('#results').data('results');
+    var collection = new Backbone.Collection(models);
+    console.log(collection);
     jsonModels = _.map(models, function(model) { return model.toJSON(); });
+    console.log(collection.toJSON());
 
-    return jsonModels;
+    return collection.toJSON();
   },
 
   render: function() {
