@@ -25,7 +25,7 @@ var dumpToDOM = function(result) {
   results.empty();
   results.append("results available at $('#results').data('results')\n\n");
 
-  _.each(result, function(fac) {
+  results.each(function(fac) {
     fac.set("services",
       _.map(fac.get('services'), function(s) { return s.attributes; } )
       );
