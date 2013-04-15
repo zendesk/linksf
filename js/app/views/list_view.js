@@ -1,6 +1,5 @@
 var Backbone = require('backbone'),
-    $ = require('jquery'),
-    _ = require('underscore');
+    $ = require('jquery');
 
 var ListView = Backbone.View.extend({
   el: $("#linksf"),
