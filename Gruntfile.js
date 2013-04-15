@@ -86,6 +86,7 @@ module.exports = function(grunt) {
     [
       './js/app/lib/*.js',
       './js/app/models/*.js',
+      './js/app/collections/*.js',
       './js/app/routers/*.js',
       './js/app/views/*.js',
       './js/app/templates/*.hbs'
