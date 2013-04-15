@@ -1,7 +1,8 @@
 var Backbone = require('backbone'),
     $ = require('jquery'),
     _        = require('underscore'),
-    browse   = require('lib/browse');
+    browse   = require('lib/browse'),
+    Modernizr = require('modernizr');
 
 function submitToParse(params) {
   var browseFunction;
