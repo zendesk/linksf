@@ -21,6 +21,19 @@ module.exports = Parse.Object.extend('Facility', {
     return _.any(_.compact(ages), function(targetAge) {
       return _.include(a, targetAge);
     });
+  }, 
+
+  matchesFilter: function(filter) {
+    var match = true;
+
+    if ( !filter ) {
+      return true;
+    }
+
+    match &= this.matchesGender(filter.gender);
+    match &= this.matchesAges(filter.age);
+    match &= this.hasServiceInCategories(filter.categories);
+    return match;
   },
 
   hasServiceInCategories: function(categories) { 

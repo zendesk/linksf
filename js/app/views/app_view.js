@@ -17,10 +17,8 @@ function submitToParse(params) {
       $('#results').empty();
       $('#results').append("results available at $('#results').data('results')\n\n");
 
-      _.each(result, function(fac) {
-        fac.set("services",
-          _.map(fac.get('services'), function(s) { return s.attributes; } )
-          );
+      result.each(function(fac) {
+        fac.set("services", _.map(fac.get('services'), function(s) { return s.attributes; } ));
         $('#results').append(JSON.stringify(fac, null, '  '));
         $('#results').append("\n");
       });
