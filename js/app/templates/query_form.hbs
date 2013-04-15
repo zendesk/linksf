@@ -1,9 +1,9 @@
 <form id="query">
-  <div>
+  <div class="sorting">
     <input type="radio" name="sort" id="near" value="near">near me<br/>
     <input type="radio" name="sort" id="near" value="alpha">alphabetical<br/>
   </div>
-  <div>
+  <div class="demographics">
     <input type="checkbox" name="filter[gender]" value="M">Men
     <input type="checkbox" name="filter[gender]" value="F">Women
     <input type="checkbox" name="filter[age][0]" value="C">Children
@@ -11,15 +11,15 @@
     <input type="checkbox" name="filter[age][2]" value="A">Adults
     <input type="checkbox" name="filter[age][3]" value="S">Seniors
   </div>
-  <div>
-    <input type="checkbox" name="filter[categories][2]" value="housing">Housing
+  <div class="categories">
     <input type="checkbox" name="filter[categories][0]" value="food">Food
     <input type="checkbox" name="filter[categories][1]" value="medical">Medical
+    <input type="checkbox" name="filter[categories][2]" value="housing">Housing
     <input type="checkbox" name="filter[categories][3]" value="technology">Technology
   </div>
-  <div>
+  <div class="debug">
     <input type="radio" name="runwhere" id="runwhere" value="browser" selected>Run In Browser (nice for debugging!)<br/>
     <input type="radio" name="runwhere" id="runwhere" value="cloud">Run In the Cloudz<br/>
   </div>
-  <input type="submit" name="go" id='testSearch'>
+  <input type="submit" name="go" id="testSearch">
 </form>

@@ -1,20 +1,15 @@
+/*globals App*/
+
 var Backbone = require('backbone'),
-    $ = require('jquery'),
-    _ = require('underscore');
+    $ = require('jquery');
 
 var ListView = Backbone.View.extend({
   el: $("#linksf"),
   template: require('templates/list'),
-  facilities: function() {
-    var models, jsonModels;
 
-    models = $('#results').data('results');
-    jsonModels = _.map(models, function(model) { return model.toJSON(); });
-
-    return jsonModels;
-  },
   render: function() {
-    $(this.el).html(this.template({ facilities: this.facilities() }));
+    var facilities = this.collection.toJSON();
+    $(this.el).html(this.template({ facilities: facilities }));
     return this;
   }
 });

@@ -25,12 +25,14 @@ module.exports = function(grunt) {
         'Gruntfile.js',
         '<%= jshint.files %>',
         'js/app/**/*.hbs',
+        'css/main.scss',
         'test/**/*.js',
         'index.html'
       ],
       tasks: [
         'jshint',
         'simplemocha',
+        'sass',
         'browserify'
       ]
     },
@@ -43,12 +45,20 @@ module.exports = function(grunt) {
       },
 
       all: { src: ['test/**/*.js'] }
+    },
+    sass: {
+      dist: {
+        files: {
+          'css/static/output.css': 'css/main.scss'
+        }
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-simple-mocha');
+  grunt.loadNpmTasks('grunt-contrib-sass');
 
   grunt.registerTask('browserify', 'Browserify and concatenate app sources', function() {
 
@@ -65,6 +75,7 @@ module.exports = function(grunt) {
       'jquery-serialize-object': { path: './js/vendor/jquery.serialize-object.js', exports: '' }
     })
       .require('./js/shims/parse.js', {expose: 'parse'})
+      .require('./js/shims/modernizr.js', {expose: 'modernizr'})
       .require('./js/shims/google-maps.js', {expose: 'google-maps'});
 
     // use hbsfy transform to support requiring .hbs files
@@ -76,6 +87,7 @@ module.exports = function(grunt) {
     [
       './js/app/lib/*.js',
       './js/app/models/*.js',
+      './js/app/collections/*.js',
       './js/app/routers/*.js',
       './js/app/views/*.js',
       './js/app/templates/*.hbs'
@@ -105,5 +117,5 @@ module.exports = function(grunt) {
     });
   });
 
-  grunt.registerTask('default', ['jshint', 'simplemocha', 'browserify']);
+  grunt.registerTask('default', ['jshint', 'simplemocha', 'sass', 'browserify']);
 };

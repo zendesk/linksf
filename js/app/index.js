@@ -3,15 +3,17 @@ var $ = require('jquery');
 require('jquery-serialize-object');
 
 $(function() {
-  var Backbone = require('backbone'),
-      AppView  = require('views/app_view'),
-      appView  = new AppView(),
-      Router   = require('routers/router'),
-      router   = new Router();
+  var App = {},
+      Router = require('routers/router');
 
   Parse.initialize("Z2l0Zn6NGrHCDoBPKUeD7Tf1fAUDaazQihQFqnL8", "kGPp7cydleuFbhKB4mrviTmbIjrbTjhxGP4dP7Ls");
 
-  appView.render();
+  // add to global namespace since we need to access router
+  App.Router = new Router();
 
-  Backbone.history.start();
+  // begin tracking hashChange
+  require('backbone').history.start();
+
+  // navigate to root route
+  App.Router.navigate('');
 });
