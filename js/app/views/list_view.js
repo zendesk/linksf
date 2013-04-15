@@ -5,21 +5,9 @@ var Backbone = require('backbone'),
 var ListView = Backbone.View.extend({
   el: $("#linksf"),
   template: require('templates/list'),
-
-  facilities: function() {
-    var models, jsonModels;
-
-    models = $('#results').data('results');
-    var collection = new Backbone.Collection(models);
-    console.log(collection);
-    jsonModels = _.map(models, function(model) { return model.toJSON(); });
-    console.log(collection.toJSON());
-
-    return collection.toJSON();
-  },
-
   render: function() {
-    $(this.el).html(this.template({ facilities: this.facilities() }));
+    var facilities = this.collection.toJSON();
+    $(this.el).html(this.template({ facilities: facilities }));
     return this;
   }
 });
