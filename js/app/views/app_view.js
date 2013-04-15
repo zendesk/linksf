@@ -38,23 +38,11 @@ var AppView = Backbone.View.extend({
   onSubmit: function() {
     var params = $('#query').serializeObject();
     if ( params.sort == 'near' ) {
-      if ( false && navigator.geolocation ) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            params.lat = position.coords.latitude;
-            params.lon = position.coords.longitude;
-            submitToParse(params);
-          }, function(error) {
-            console.log(error);
-          });
-      } else {
-          // for local development
-          params.lat = 37.782355;
-          params.lon = -122.409825;
-          submitToParse(params);
-      }
-    } else {
-      submitToParse(params);
+      var location = require('lib/query').location(false);
+      $.extend(params, location);
     }
+
+    submitToParse(params);
     return false;
   },
   render: function() {

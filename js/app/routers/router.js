@@ -27,7 +27,6 @@ var Router = Backbone.Router.extend({
 
     console.log('entering list route');
 
-
     var listView = new ListView({ collection: facilities });
     listView.render();
   },
