@@ -37,7 +37,10 @@ var Router = Backbone.Router.extend({
     var adminView = new AdminView();
     adminView.render();
   },
+
   detail: function() {
+    console.log('entering detail route');
+
     var detailView = new DetailView();
     detailView.render();
   }
