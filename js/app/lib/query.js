@@ -62,9 +62,4 @@ var submit = function(params) {
   });
 };
 
-var Query = {
-  location: location,
-  submit: submit
-};
-
-module.exports = Query;
+module.exports = { submit: submit };
