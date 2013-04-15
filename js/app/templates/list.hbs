@@ -1,11 +1,9 @@
-<ul>
+<ul id="facility-list">
   {{#each facilities}}
-    <li>
-      <div>
-        <h4>{{this.name}}</h4>
-        <p>{{this.address}}</p>
-        <p>{{this.notes}}</p>
-      </div>
+    <li class="facility">
+      <p class="name">{{this.name}}</p>
+      <p class="services">{{this.address}}</p>
+      <p>{{this.notes}}</p>
     </li>
   {{/each}}
 </ul>
