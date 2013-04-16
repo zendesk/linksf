@@ -8,7 +8,7 @@ var AppView = Backbone.View.extend({
 
   onSubmit: function() {
     var params = $('#query').serializeObject();
-    require('lib/query').submit(params);
+    require('cloud/lib/query').submit(params);
     return false;
   },
 
