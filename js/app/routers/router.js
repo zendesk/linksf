@@ -31,7 +31,7 @@ var Router = Backbone.Router.extend({
     var json = $('#results').data('results');
     this.facilities.reset(json);
 
-    console.log('entering list route:', facilities);
+    console.log('entering list route:', this.facilities);
 
     var listView = new ListView({ collection: this.facilities });
     listView.render();
@@ -39,7 +39,9 @@ var Router = Backbone.Router.extend({
 
   detail: function(id) {
     //we need to write an event func in listview that passes the object on click. this var setting here is TEMPORARY:
-    var facility = this.facilities.get(id);
+    //var facility = this.facilities.get(id);
+    //var facility = this.facilities.models[0].toJSON();
+    var facility = $('#results').data('results').models[0].toJSON();
 
     //Fetch Facility from backend if not in collection
 
