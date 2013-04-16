@@ -1,4 +1,14 @@
-<h2>Detailcat</h2>
 {{#with facility}}
 	<h2>{{name}}</h2>
+	<p class="time">Hours: </span><span>
+	{{hours}}</span>
+	</p>
+	<p><span class="bold">Allowed: </span><span>{{gender}}</span></p>
+	<p><span class="bold">Services: </span>
+	{{#each services}}
+		<span>{{category}} </span>
+	{{/each}}
+	</p>
+	<br/>
+	<p>{{notes}}</p>
 {{/with}}
