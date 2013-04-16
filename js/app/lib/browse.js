@@ -10,7 +10,7 @@ module.exports = function (params, callbacks) {
   var _        = require('underscore');
 
   var Facility           = require('models/facility');
-  var FacilityCollection = require('models/facilityCollection');
+  var FacilityCollection = require('collections/facilities');
   var Service            = require('models/service');
 
   // all params are optional, NULL or missing means don't filter
