@@ -35,8 +35,8 @@ var dumpToDOM = function(results) {
   resDiv.data('results', results);
 };
 
-var queryFunction = function(runInCloud) {
-  if ( runInCloud ) {
+var queryFunction = function(runWhere) {
+  if ( runWhere === 'cloud' ) {
     return _.partial(Parse.Cloud.run, "browse");
   } else {
     return require('lib/browse');
