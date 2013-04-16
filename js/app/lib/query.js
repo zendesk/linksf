@@ -25,7 +25,7 @@ var dumpToDOM = function(results) {
   resDiv.empty();
   resDiv.append("results available at $('#results').data('results')\n\n");
 
-  results.each(function(fac) {
+  results.forEach(function(fac) {
     fac.set("services",
       _.map(fac.get('services'), function(s) { return s.attributes; } )
       );
