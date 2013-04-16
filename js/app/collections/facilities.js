@@ -1,8 +1,21 @@
-var Backbone = require('backbone'),
-    Facility = require('models/facility');
+var Parse       = require('parse');
+var _           = require('underscore');
+var Facility    = require('models/facility');
 
-var Facilities = Backbone.Collection.extend({
-  model: Facility
-});
+module.exports = Parse.Collection.extend({
+  initialize: function(filter) {
+    this.filter = filter;
+  },
 
-module.exports = Facilities;
+  add: function(models, options) {
+    models = _.isArray(models) ? models.slice() : [models];
+    _.each(models, function(m) { 
+      if ( !m.matchesFilter || m.matchesFilter(this.filter) ) { 
+        Parse.Collection.prototype.add.call(this, [m], options);
+      }
+    }.bind(this));
+  },
+
+  more: function() {
+  }
+}, {});
