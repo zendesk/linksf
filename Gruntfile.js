@@ -86,7 +86,9 @@ module.exports = function(grunt) {
     //   this gives us consistent require paths by exposing modules using a nicer name.
     [
       './js/app/lib/*.js',
+      './js/app/cloud/lib/*.js',
       './js/app/models/*.js',
+      './js/app/cloud/models/*.js',
       './js/app/collections/*.js',
       './js/app/routers/*.js',
       './js/app/views/*.js',

@@ -1,8 +1,5 @@
-var Facility = Parse.Object.extend("Facility");
-var Service  = Parse.Object.extend("Service");
-
 var _ = require('underscore');
-var facilityBrowse = require('cloud/browse');
+var facilityBrowse = require('cloud/lib/browse');
 
 // Use Parse.Cloud.define to define as many cloud functions as you want.
 // For example:

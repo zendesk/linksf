@@ -39,7 +39,7 @@ var queryFunction = function(runWhere) {
   if ( runWhere === 'cloud' ) {
     return _.partial(Parse.Cloud.run, "browse");
   } else {
-    return require('lib/browse');
+    return require('cloud/lib/browse');
   }
 };
 
