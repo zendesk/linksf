@@ -9,9 +9,7 @@ module.exports = function (params, callbacks) {
 
   var _        = require('underscore');
 
-  var Facility           = require('models/facility');
-  var FacilityCollection = require('collections/facilities');
-  var Service            = require('models/service');
+  var Facility           = require('cloud/models/facility');
 
   // all params are optional, NULL or missing means don't filter
   // {
@@ -30,7 +28,7 @@ module.exports = function (params, callbacks) {
   var sort = params.sort || 'name';
   var limit = params.limit || 10;
   var filter = params.filter || {};
-
+  var offset = params.offset || 0;
   var q = new parse.Query(Facility);
 
   if ( sort === 'near' ) {
@@ -46,14 +44,20 @@ module.exports = function (params, callbacks) {
 
   q.limit(limit);
   q.include('services');
+  q.skip(offset);
 
   var resp = [];
-  var QueryCollection = FacilityCollection.extend({
-    model: Facility, 
-    query: q
-  });
 
-  var collection = new QueryCollection(filter);
-  collection.fetch(callbacks);
+  q.find().then(function(results) {
+    _.each(results, function(f) { 
+      if ( f.matchesFilter(filter) ) { 
+        results.push(f);
+      }
+      offset++;
+    });
+    callbacks.success({offset: offset, data: results});
+  }, function(err) { 
+    callbacks.error(err);
+  });
 };
 

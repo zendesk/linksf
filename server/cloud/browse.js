@@ -1,1 +1,0 @@
-../../js/app/lib/browse.js

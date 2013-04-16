@@ -1,6 +1,6 @@
 var Parse       = require('parse');
 var _           = require('underscore');
-var Facility    = require('models/facility');
+var Facility    = require('cloud/models/facility');
 
 module.exports = Parse.Collection.extend({
   initialize: function(filter) {
