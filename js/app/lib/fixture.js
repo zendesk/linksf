@@ -3,8 +3,8 @@ var $ = require('jquery'),
 
 module.exports = (function() {
   var gmaps = require('google-maps'),
-      Facility = require('models/facility'),
-      Service  = require('models/service');
+      Facility = require('cloud/models/facility'),
+      Service  = require('cloud/models/service');
 
   var geocodeAddress = function(address, callback) {
     var geocoder = new gmaps.Geocoder();
