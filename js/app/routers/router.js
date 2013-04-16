@@ -4,9 +4,9 @@ var $ = require('jquery'),
     AdminView = require('views/admin_view'),
     DetailView = require('views/detail_view'),
     ListView = require('views/list_view'),
-    Facilities = require('collections/facilities');
+//    Facilities = require('collections/facilities');
 // Sort this out:
-//    Facilities = require('models/facilityCollection');
+    Facilities = require('collections/facilities');
 
 
 var Router = Backbone.Router.extend({
@@ -26,12 +26,23 @@ var Router = Backbone.Router.extend({
 
   list: function() {
     var json = $('#results').data('results'),
-        facilities = new Facilities(json);
+      facilities = new Facilities(json);
 
-    console.log('entering list route');
+    console.log('entering list route:', facilities);
 
     var listView = new ListView({ collection: facilities });
     listView.render();
+  },
+
+  detail: function(id) {
+    //we need to write an event func in listview that passes the object on click. this var setting here is TEMPORARY:  
+    var facility = $('#results').data('results').models[0].toJSON();
+
+
+    console.log('entering details route:', facility );
+
+    var detailView = new DetailView({ model: facility });
+    detailView.render();
   },
 
   admin: function() {
@@ -39,19 +50,6 @@ var Router = Backbone.Router.extend({
 
     var adminView = new AdminView();
     adminView.render();
-  },
-
-  detail: function(id) {
-    //we need to write an event func in listview that passes the object on click. this var setting here is TEMPORARY:
-    var json = $('#results').data('results'),
-        facilities = new Facilities(json),    
-        facility = facilities.get(id);
-
-
-    console.log('entering detail route');
-
-    var detailView = new DetailView({ model: facility });
-    detailView.render();
   }
 });
 
