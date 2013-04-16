@@ -6,11 +6,11 @@ var DetailView = Backbone.View.extend({
   template: require('templates/detail'),
 
   render: function() {
-	var facility = this.model.toJSON();
+	var facility = this.model;
 	// var json = $('#results').data('results');
 	// console.log("detail:", json);
 
-    $(this.el).html(this.template({ model: facility }));
+    $(this.el).html(this.template({facility: facility}));
     return this;
   }
 });
