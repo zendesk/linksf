@@ -49,21 +49,8 @@ var Router = Backbone.Router.extend({
 
     var detailView = new DetailView({ model: facility });
     detailView.render();
-  },
-
-  admin: function() {
-    console.log('entering admin route');
-
-    var adminView = new AdminView();
-    adminView.render();
   }
 });
 
-var instance;
-
-Router.getInstance = function() {
-  instance = instance || new Router();
-  return instance;
-};
-
-module.exports = Router;
+var instance = new Router();
+module.exports = { instance: instance };
