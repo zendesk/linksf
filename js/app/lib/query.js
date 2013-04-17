@@ -20,22 +20,6 @@ var location = function(hasGeolocation) {
   return {lat: lat, lon: lon};
 };
 
-var dumpToDOM = function(results) {
-  var resDiv = $('#results');
-  resDiv.empty();
-  resDiv.append("results available at $('#results').data('results')\n\n");
-
-  
-  results.data.forEach(function(fac) {
-    fac.set("services",
-      _.map(fac.get('services'), function(s) { return s.attributes; } )
-      );
-    resDiv.append(JSON.stringify(fac, null, '  '));
-    resDiv.append("\n");
-  });
-  resDiv.data('results', results);
-};
-
 var queryFunction = function(runWhere) {
   if ( runWhere === 'cloud' ) {
     return _.partial(Parse.Cloud.run, "browse");
