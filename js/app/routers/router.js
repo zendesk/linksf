@@ -12,14 +12,14 @@ var Router = Backbone.Router.extend({
   },
 
   list: function() {
+    var listView = new ListView({ collection: facilities });
 
-    var json = $('#results').data('results');
-    this.facilities.reset(json);
-
-    console.log('entering list route:', this.facilities);
-
-    var listView = new ListView({ collection: this.facilities });
     listView.render();
+
+    // render when facilities is reset
+    listView.listenTo(facilities, 'reset', function() {
+      listView.render();
+    });
   },
 
   detail: function(id) {
