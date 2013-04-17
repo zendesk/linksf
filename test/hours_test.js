@@ -28,10 +28,17 @@ describe("Hours", function(){
   });
 
   describe("#within", function(){
-    it("should work", function() {
+    it("should work with strings", function() {
       hours.within("Sun,10:30AM").should.equal(true);
       hours.within("Mon,10:30AM").should.equal(true);
       hours.within("Mon,12:30PM").should.equal(false);
     });
+
+    it("should work with dates", function() {
+      hours.within(new Date(2013, 3, 7, 10, 30)).should.equal(true);
+      hours.within(new Date(2013, 3, 1, 10, 30)).should.equal(true);
+      hours.within(new Date(2013, 3, 1, 12, 30)).should.equal(false);
+    });
+
   });
 });

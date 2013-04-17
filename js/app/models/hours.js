@@ -35,32 +35,46 @@ var parseTime = function parseTime(str) {
 };
 
 var timeToOffset = function(time) {
-  var parsed = parseTime(time);
+  return time.getHours()*100 + time.getMinutes();
+};
+
+var timeStringToOffset = function(timeString) {
+  var parsed = parseTime(timeString);
   return parsed[0]*100 + parsed[1];
 };
 
 var Hours = function Hours(hours){
   var processed = {}, intervals, interval, day;
+
   for(var k in hours) {
     if(!hours.hasOwnProperty(k)) { continue; }
+
     day = days[k.toUpperCase()];
     processed[day] = [];
     intervals = hours[k].split(",");
+
     for(var idx = 0; idx < intervals.length; idx++) {
       interval = intervals[idx].split("-");
-      processed[day].push([ timeToOffset(interval[0]),
-                            timeToOffset(interval[1]) ]);
+      processed[day].push([ timeStringToOffset(interval[0]),
+                            timeStringToOffset(interval[1]) ]);
     }
   }
 
   this.hours = processed;
 };
 
-Hours.prototype.within = function(dayAndTime) {
-  var parts      = dayAndTime.split(","),
-      day        = days[parts[0].toUpperCase()],
-      intervals  = this.hours[day],
-      instant    = timeToOffset(parts[1]);
+Hours.prototype.within = function(time) {
+  var intervals, instant, parts, day;
+
+  if(_.isDate(time)) {
+    intervals = this.hours[time.getDay()];
+    instant   = timeToOffset(time);
+  } else {
+    parts      = time.split(","),
+    day        = days[parts[0].toUpperCase()],
+    intervals  = this.hours[day],
+    instant    = timeStringToOffset(parts[1]);
+  }
 
   return !!_(intervals).find(function(interval) {
     return (interval[0] <= instant) &&
