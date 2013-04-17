@@ -5,8 +5,6 @@ var $ = require('jquery'),
     AdminView = require('views/admin_view'),
     DetailView = require('views/detail_view'),
     ListView = require('views/list_view'),
-//    Facilities = require('collections/facilities');
-// Sort this out:
     Facilities = require('collections/facilities');
 
 var Router = Backbone.Router.extend({
@@ -38,11 +36,13 @@ var Router = Backbone.Router.extend({
   },
 
   detail: function(id) {
-    //we need to write an event func in listview that passes the object on click. this var setting here is TEMPORARY:
+
     //var facility = this.facilities.get(id);
     //var facility = this.facilities.models[0].toJSON();
-    var facility = $('#results').data('results').models[0].toJSON();
+    //var facility = $('#results').data('results').models[0].toJSON()
 
+//we need to write an event func in listview that passes the object on click. this var setting here is TEMPORARY:
+    var facility = JSON.parse('{"address":"225 30th Street","description":"Women thing","gender":"F","name":"30TH STREET SENIOR CENTER","notes":"foobar","phone":"(415) 550-2210","age":["S"],"hours":{"Sun": "11-12"},"location":{"__type":"GeoPoint","latitude":37.7421083,"longitude":-122.4251428},"services":["technology"],"objectId":"20ivH0qnQE","createdAt":"2013-04-09T07:01:45.280Z","updatedAt":"2013-04-09T14:55:19.177Z"}');
     //Fetch Facility from backend if not in collection
 
     console.log('entering details route:', facility );

@@ -1,7 +1,7 @@
 {{#with facility}}
 	<h2>{{name}}</h2>
 	<p class="time">Hours: </span><span>
-	{{hours}}</span>
+	{{hours.Sun}}</span>
 	</p>
 	<p><span class="bold">Allowed: </span><span>{{gender}}</span></p>
 	<p><span class="bold">Services: </span>
@@ -11,4 +11,6 @@
 	</p>
 	<br/>
 	<p>{{notes}}</p>
+	<div id="location-map"></div>
+
 {{/with}}
