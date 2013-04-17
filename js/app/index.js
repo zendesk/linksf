@@ -11,6 +11,11 @@ $(function() {
   // begin tracking hashChange
   require('backbone').history.start();
 
+  // use filter button to toggle form
+  $('#filter').click(function() {
+    $('#query').toggle();
+  });
+
   // navigate to root route
   router.navigate('');
 });

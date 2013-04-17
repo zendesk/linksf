@@ -42,7 +42,7 @@ module.exports = function (params, callbacks) {
     q.ascending('name');
   }
 
-  q.limit(limit);
+  // q.limit(limit);
   q.include('services');
   q.skip(offset);
 
@@ -52,6 +52,9 @@ module.exports = function (params, callbacks) {
     var filteredResults = [];
 
     _.each(results, function(f) {
+      if ( filteredResults.length >= limit ) 
+        return;
+
       if ( f.matchesFilter(filter) ) {
         filteredResults.push(f);
       }

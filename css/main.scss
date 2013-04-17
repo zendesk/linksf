@@ -2,6 +2,10 @@ li {
   list-style-type: none;
 }
 
+#linksf {
+  margin-top: 60px;
+}
+
 // results
 #results {
   font-size: 12px;
@@ -10,9 +14,14 @@ li {
 
 // nav bar
 nav {
-  width: 100%;
+  // anchor to top
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
   background-color: #E3E3E3;
-  height: 20px;
+  height: 60px;
 
   a {
     color: #8C8080;
@@ -20,23 +29,49 @@ nav {
 
   li {
     float: left;
-    margin-right: 20px;
+    margin: 20px 0 20px 20px;
+  }
+
+  // 'Filter'
+  button {
+    float: right;
+    background-color: #BDBDBD;
+    color: white;
+    width: 160px;
+    height: 40px;
+    margin-top: 10px;
+    margin-right: 10px;
+    border: 0;
   }
 }
 
 // query form
 form {
+  // anchor to top, just below nav
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+
+  background-color: #F5F5F5;
+
   input {
-    margin-right: 10px;
+    margin: 5px 10px 0 10px;
+  }
+
+  h4 {
+    margin: 10px 0 5px 10px;
   }
 }
 
 // list view
 #facility-list {
+  // override default list padding
   padding-left: 0px;
 
   .facility {
     border-bottom: solid #9B9B9B 1px;
+    padding-left: 10px;
   }
 
   .name {
@@ -59,6 +94,7 @@ form {
   max-width: 500px;
   min-width: 290px;
   margin: 0 auto;
+  padding-top: 5px;
 }
 .round-shadow{
   border-radius: 15px;

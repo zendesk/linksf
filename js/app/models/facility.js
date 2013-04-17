@@ -1,4 +1,5 @@
-var _ = require('underscore');
+var _     = require('underscore'),
+    Hours = require('cloud/models/hours');
 
 module.exports = Parse.Object.extend('Facility', {
   // no gender restriction or gender == self.gender
@@ -21,7 +22,7 @@ module.exports = Parse.Object.extend('Facility', {
     return _.any(_.compact(ages), function(targetAge) {
       return _.include(a, targetAge);
     });
-  }, 
+  },
 
   matchesFilter: function(filter) {
     var match = true;
@@ -36,13 +37,23 @@ module.exports = Parse.Object.extend('Facility', {
     return match;
   },
 
-  hasServiceInCategories: function(categories) { 
+  isOpen: function(now) {
+    now = now || new Date();
+    return this.hours().within(now);
+  },
+
+  hours: function() {
+    if(this._hours) { return this._hours; }
+    this._hours = new Hours(this.get('hours'));
+  },
+
+  hasServiceInCategories: function(categories) {
     if ( !categories )  {
       return true;
     }
 
     var services = this.get('services');
-    return _.any(_.compact(categories), function(targetCategory) { 
+    return _.any(_.compact(categories), function(targetCategory) {
       return _.any(services, function(facService) {
         return facService.get("category") === targetCategory;
       });
