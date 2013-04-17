@@ -25,7 +25,6 @@ var Router = Backbone.Router.extend({
     if ( facilities.length === 0 ) {
       Query.submit({})
       .done(function(results) {
-        console.log(results);
         facilities.reset(results.data);
       })
       .fail(function(err) {
