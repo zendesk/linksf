@@ -24,11 +24,8 @@ var DetailView = Backbone.View.extend({
 	console.log(this.$('#location-map')[0]);
 	if(this.$('#location-map')) {
 		var location = new gmaps.LatLng(
-			37.7421083,
-			-122.4251428
-
-			// $map.data('latitude'),
-			// $map.data('longitude')
+			this.model.location.latitude,
+			this.model.location.longitude
 		),
 		mapOptions = {
 			center: location,
