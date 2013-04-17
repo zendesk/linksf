@@ -1,27 +1,14 @@
 var $ = require('jquery'),
-    _ = require('underscore'),
     Backbone = require('backbone'),
-    QueryView = require('views/query_view'),
-    AdminView = require('views/admin_view'),
     DetailView = require('views/detail_view'),
     ListView = require('views/list_view'),
-    Facilities = require('collections/facilities');
+    Query = require('lib/query'),
+    facilities = require('collections/facilities').instance;
 
 var Router = Backbone.Router.extend({
   routes: {
-    '': 'query',
-    'list': 'list',
-    'admin': 'admin',
+    '': 'list',
     'detail/:id': 'detail'
-  },
-
-  facilities: new Facilities(),
-
-  query: function() {
-    console.log('entering query route');
-
-    var queryView = new QueryView();
-    queryView.render();
   },
 
   list: function() {
