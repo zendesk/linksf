@@ -49,14 +49,16 @@ module.exports = function (params, callbacks) {
   var resp = [];
 
   q.find().then(function(results) {
-    _.each(results, function(f) { 
-      if ( f.matchesFilter(filter) ) { 
-        results.push(f);
+    var filteredResults = [];
+
+    _.each(results, function(f) {
+      if ( f.matchesFilter(filter) ) {
+        filteredResults.push(f);
       }
       offset++;
     });
-    callbacks.success({offset: offset, data: results});
-  }, function(err) { 
+    callbacks.success({offset: offset, data: filteredResults});
+  }, function(err) {
     callbacks.error(err);
   });
 };
