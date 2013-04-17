@@ -106,6 +106,8 @@ module.exports = function(grunt) {
     //   note: this is optional as browserify traverses the AST from the entry point for require calls.
     //   this gives us consistent require paths by exposing modules using a nicer name.
     [
+      './js/app/lib/*.js',
+      './js/app/models/*.js',
       './js/app/collections/*.js',
       './js/app/routers/*.js',
       './js/app/views/*.js',
