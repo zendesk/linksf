@@ -29,6 +29,9 @@ var queryFunction = function(runWhere) {
 };
 
 var submit = function(params) {
+  // to keep track of when it finishes
+  var deferred = $.Deferred();
+
   // choose where to run the query
   var query = queryFunction(params.runwhere);
 
@@ -40,11 +43,16 @@ var submit = function(params) {
 
   query(params, {
     success: function(result) {
-      dumpToDOM(result);
-    }, error: function(err) {
-      console.error(err);
+      deferred.resolve(result);
+      // dumpToDOM(result);
+    },
+
+    error: function(err) {
+      deferred.reject(err);
     }
   });
+
+  return deferred.promise();
 };
 
 module.exports = { submit: submit };
