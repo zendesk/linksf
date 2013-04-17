@@ -1,3 +1,4 @@
+<div id="container">
 {{#with facility}}
 	<h2>{{name}}</h2>
 	<p class="time">Hours: </span><span>
@@ -6,11 +7,25 @@
 	<p><span class="bold">Allowed: </span><span>{{gender}}</span></p>
 	<p><span class="bold">Services: </span>
 	{{#each services}}
-		<span>{{category}} </span>
+		<span>{{this}} </span>
 	{{/each}}
 	</p>
 	<br/>
 	<p>{{notes}}</p>
-	<div id="location-map"></div>
+	<div class="round-shadow">
+		<div id="location-map"></div>
+		<div class="address">{{address}}</div>
+	</div>
+	<div class="round-shadow">
+		<span class="info-row">Call:{{phone}}</span><span class="prevrow"></span>
+		<span class="info-row">Directions</span>
+	</div>
+	<p>Information</p>
+	<div class="round-shadow">
 
+		{{#each services}}
+			<span class="info-row">{{this}}</span>
+		{{/each}}
+	</div>
 {{/with}}
+</div>

@@ -12,7 +12,6 @@ var DetailView = Backbone.View.extend({
   render: function() {
 	var facility = this.model;
 	var $mapdiv =  this.$('#location-map');
-	console.log("he", $mapdiv);
 
 
     $(this.el).html(this.template({facility: facility}));
@@ -20,13 +19,11 @@ var DetailView = Backbone.View.extend({
     return this;
   },
   setMap: function(){
-	console.log("we are in setmap");
-	console.log(this.$('#location-map')[0]);
 	if(this.$('#location-map')) {
 		var location = new gmaps.LatLng(
 			37.7421083,
 			-122.4251428
-
+			// probably gonna use a data attr to pass this back here
 			// $map.data('latitude'),
 			// $map.data('longitude')
 		),
