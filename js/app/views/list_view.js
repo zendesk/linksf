@@ -1,6 +1,7 @@
 var Backbone = require('backbone'),
     $ = require('jquery'),
-    Query = require('lib/query');
+    Query = require('lib/query'),
+    facilities = require('collections/facilities').instance;
 
 var ListView = Backbone.View.extend({
   el: $("#linksf"),
@@ -15,7 +16,7 @@ var ListView = Backbone.View.extend({
 
     Query.submit(params).done(function(results) {
       // populate with results
-      self.collection.reset(results.data);
+      facilities.reset(results.data);
     });
 
     // prevent default form submission
@@ -23,10 +24,10 @@ var ListView = Backbone.View.extend({
   },
 
   render: function() {
-    var facilities = this.collection.toJSON();
+    var jsonFacilities = this.collection.toJSON();
 
     // replace with template
-    $(this.el).html(this.template({ facilities: facilities }));
+    $(this.el).html(this.template({ facilities: jsonFacilities }));
 
     // bind to form submission
     $('#query').submit($.proxy(this.submitQuery, this));
