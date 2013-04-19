@@ -3,6 +3,7 @@ var $ = require('jquery'),
     DetailView = require('views/detail_view'),
     ListView = require('views/list_view'),
     Query = require('lib/query'),
+    _ = require('underscore'),
     facilities = require('collections/facilities').instance;
 
 var Router = Backbone.Router.extend({
@@ -23,32 +24,33 @@ var Router = Backbone.Router.extend({
 
     // run a default query
     if ( facilities.length === 0 ) {
-      Query.submit({})
-      .done(function(results) {
-        facilities.reset(results.data);
-      })
-      .fail(function(err) {
-        console.error(err);
-      });
+      listView.submitQuery();
     }
   },
 
+  renderFacility: function(facility) {
+    var facilityAsJSON = facility.toJSON();
+    facilityAsJSON.services = _.map(facility.get("services"), function(service) {
+      return service.toJSON();
+    });
+    
+    console.log(facilityAsJSON);
+
+    var detailView = new DetailView({ model: facilityAsJSON });
+    return detailView.render();
+  },
+
   detail: function(id) {
+    var facility = facilities.get(id);
 
-    var facility = facilities.get(id).toJSON();
-    console.log(facility);
-    //var facility = this.facilities.models[0].toJSON();
-    //var facility = $('#results').data('results').models[0].toJSON()
-
-//we need to write an event func in listview that passes the object on click. this var setting here is TEMPORARY:
-    // var facility = JSON.parse('{"address":"225 30th Street","description":"Women thing","gender":"F","name":"30TH STREET SENIOR CENTER","notes":"This is a facility for seniors that provides access to technology","phone":"(415) 550-2210","age":["S"],"hours":{"Sun": "11-12"},"location":{"__type":"GeoPoint","latitude":37.7421083,"longitude":-122.4251428},"services":["technology"],"objectId":"20ivH0qnQE","createdAt":"2013-04-09T07:01:45.280Z","updatedAt":"2013-04-09T14:55:19.177Z"}');
-
-    //Fetch Facility from backend if not in collection
-
-    console.log('entering details route:', facility );
-
-    var detailView = new DetailView({ model: facility });
-    detailView.render();
+    if ( !facility ) {
+      //Fetch Facility from backend if not in collection
+      Query.getByID(id).then(function(facility) {
+        this.renderFacility(facility);
+      }.bind(this));
+    } else {
+      return this.renderFacility(facility);
+    }
   }
 });
 
