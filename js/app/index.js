@@ -17,5 +17,5 @@ $(function() {
   });
 
   // navigate to root route
-  router.navigate('');
+  // router.navigate('');
 });
