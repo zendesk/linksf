@@ -1,5 +1,6 @@
-var $ = require('jquery'),
-    _ = require('underscore');
+var $        = require('jquery'),
+    _        = require('underscore'), 
+    Facility = require('cloud/models/facility');
 
 var location = function(hasGeolocation) {
   var lat, lon;
@@ -55,4 +56,22 @@ var submit = function(params) {
   return deferred.promise();
 };
 
-module.exports = { submit: submit };
+// TODO -- hoist this up a layer into "browse" -- or wherever we keep the direct parse communication lib. 
+var getByID = function(id) { 
+  var deferred = $.Deferred();
+
+  var q = new Parse.Query(Facility);
+  q.include("services");
+  q.get(id, {
+    success: function(result) { 
+      deferred.resolve(result);
+    },
+    error: function(err) {
+      deferred.reject(err);
+    }
+  });
+
+  return deferred.promise();
+};
+
+module.exports = { submit: submit, getByID: getByID };
