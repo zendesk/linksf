@@ -1,15 +1,9 @@
-li {
-  list-style-type: none;
-}
+$navbar-height: 60px;
+
+li { list-style-type: none; }
+ul { padding-left: 0px; }
 
 #linksf {
-  margin-top: 60px;
-}
-
-// results
-#results {
-  font-size: 12px;
-  background-color: #EEEEEE;
 }
 
 // nav bar
@@ -20,8 +14,9 @@ nav {
   left: 0;
   right: 0;
 
+  height: $navbar-height - 2px; // border 1px
   background-color: #E3E3E3;
-  height: 60px;
+  border-bottom: solid #9B9B9B 1px;
 
   a {
     color: #8C8080;
@@ -49,7 +44,7 @@ nav {
 form {
   // anchor to top, just below nav
   position: fixed;
-  top: 60px;
+  top: $navbar-height;
   left: 0;
   right: 0;
 
@@ -66,8 +61,10 @@ form {
 
 // list view
 #facility-list {
-  // override default list padding
-  padding-left: 0px;
+  // default ul
+  margin-top: 0px;
+
+  padding-top: $navbar-height;
 
   .facility {
     border-bottom: solid #9B9B9B 1px;
