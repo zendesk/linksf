@@ -1,5 +1,5 @@
 var $        = require('jquery'),
-    _        = require('underscore'), 
+    _        = require('lodash'),
     Facility = require('cloud/models/facility');
 
 var location = function(hasGeolocation) {

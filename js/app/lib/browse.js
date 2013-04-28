@@ -7,7 +7,7 @@ module.exports = function (params, callbacks) {
     parse = Parse;
   }
 
-  var _        = require('underscore');
+  var _        = require('lodash');
 
   var Facility           = require('cloud/models/facility');
 

@@ -1,6 +1,6 @@
 var Backbone = require('backbone'),
     $ = require('jquery'),
-    _ = require('underscore'),
+    _ = require('lodash'),
 	gmaps = require('google-maps');
 
 var DetailView = Backbone.View.extend({
