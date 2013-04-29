@@ -75,7 +75,6 @@ module.exports = function(grunt) {
       'jquery-serialize-object': { path: './js/vendor/jquery.serialize-object.js', exports: '' }
     })
       .require('./js/shims/parse.js', {expose: 'parse'})
-      .require('./js/shims/modernizr.js', {expose: 'modernizr'})
       .require('./js/shims/google-maps.js', {expose: 'google-maps'})
       .require('lodash', {expose: 'lodash'})
       .require('backbone', {expose: 'backbone'});
