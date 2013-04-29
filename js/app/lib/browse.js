@@ -1,16 +1,23 @@
-module.exports = function (params, callbacks) {
-  var parse;
-  if ( typeof Parse == 'undefined' ) {
-    // can't require parse from within parse cloud.  seems silly.
-    parse = require('parse');
-  } else {
-    parse = Parse;
-  }
+var $ = require('jquery'),
+    _ = require('lodash'),
+    Facility = require('cloud/models/facility'),
+    parse;
 
-  var _        = require('lodash');
+if ( typeof Parse == 'undefined' ) {
+  // can't require parse from within parse cloud.  seems silly.
+  parse = require('parse');
+} else {
+  parse = Parse;
+}
 
-  var Facility           = require('cloud/models/facility');
+var DEFAULT_OPTIONS = {
+  sort: 'name',
+  limit: 10,
+  filter: {},
+  offset: 0
+};
 
+var Browse = function(params, callbacks) {
   // all params are optional, NULL or missing means don't filter
   // {
   //  sort: 'near'|'name'
@@ -25,44 +32,47 @@ module.exports = function (params, callbacks) {
   //
   //
 
-  var sort = params.sort || 'name';
-  var limit = params.limit || 10;
   var filter = params.filter || {};
-  var offset = params.offset || 0;
-  var q = new parse.Query(Facility);
+  var options = $.extend({}, params, DEFAULT_OPTIONS),
+      query = new parse.Query(Facility);
 
-  if ( sort === 'near' ) {
-    if ( !(params.lat && params.lon) ) {
+  console.log(options);
+  console.log(options.filter);
+  if ( options.sort === 'near' ) {
+    if ( !(options.lat && options.lon) ) {
       return callbacks.error("Please provide a lat and lon");
     }
 
     var geopoint = new parse.GeoPoint(params.lat, params.lon);
-    q.near('location', geopoint);
+    query.near('location', geopoint);
   } else {
-    q.ascending('name');
+    query.ascending('name');
   }
 
-  // q.limit(limit);
-  q.include('services');
-  q.skip(offset);
+  // query.limit(limit);
+  query.include('services');
+  query.skip(options.offset);
 
   var resp = [];
 
-  q.find().then(function(results) {
+  console.log(query.filter);
+  query.find().then(function(results) {
     var filteredResults = [];
 
-    _.each(results, function(f) {
-      if ( filteredResults.length >= limit ) 
+    _.each(results, function(result) {
+      if ( filteredResults.length >= options.limit )
         return;
 
-      if ( f.matchesFilter(filter) ) {
-        filteredResults.push(f);
+      if ( result.matchesFilter(filter) ) {
+        filteredResults.push(result);
       }
-      offset++;
+      options.offset++;
+      console.log(options.offset);
     });
-    callbacks.success({offset: offset, data: filteredResults});
+    callbacks.success({offset: options.offset, data: filteredResults});
   }, function(err) {
     callbacks.error(err);
   });
 };
 
+module.exports = Browse;
