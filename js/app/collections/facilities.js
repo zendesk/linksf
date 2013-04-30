@@ -1,5 +1,5 @@
 var Parse       = require('parse');
-var _           = require('lodash');
+var _           = require('underscore');
 var Facility    = require('cloud/models/facility');
 
 var Facilities = Parse.Collection.extend({

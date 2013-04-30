@@ -16,7 +16,7 @@
   webkit-border-radius: 15px;
   border: 1px solid #cdcdcd;
   margin-bottom: 15px;
-  box-shadow: 0 1px 10px #CCC; }
+  box-shadow: 0 1px 10px #cccccc; }
 
 .address {
   width: 80%;
@@ -48,7 +48,7 @@ nav {
   right: 0;
   height: 58px;
   background-color: #E3E3E3;
-  border-bottom: solid #9B9B9B 1px; }
+  border-bottom: solid #9b9b9b 1px; }
   nav a {
     color: #3081B7;
     text-decoration: none;
@@ -81,7 +81,7 @@ form {
   margin-top: 0px;
   padding-top: 60px; }
   #facility-list .facility {
-    border-bottom: solid #9B9B9B 1px;
+    border-bottom: solid #9b9b9b 1px;
     padding-left: 10px; }
   #facility-list .name {
     font-weight: bold; }

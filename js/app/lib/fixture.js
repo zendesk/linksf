@@ -1,5 +1,5 @@
 var $ = require('jquery'),
-    _ = require('lodash');
+    _ = require('underscore');
 
 module.exports = (function() {
   var gmaps = require('google-maps'),

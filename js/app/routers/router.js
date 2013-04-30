@@ -3,7 +3,7 @@ var $ = require('jquery'),
     DetailView = require('views/detail_view'),
     ListView = require('views/list_view'),
     Query = require('lib/query'),
-    _ = require('lodash'),
+    _ = require('underscore'),
     facilities = require('collections/facilities').instance;
 
 var Router = Backbone.Router.extend({
