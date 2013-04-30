@@ -10,7 +10,7 @@ namespace :deploy do
   end
 
   task :parse do
-    system("cd #{File.dirname(__FILE__) + 'server'} && parse deploy")
+    system("cd #{File.dirname(__FILE__) + '/server'} && parse deploy")
   end
 end
 
