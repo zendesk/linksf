@@ -21,7 +21,7 @@ module.exports = function (params, callbacks) {
   var limit = params.limit || 10;
   var filter = params.filter || {};
   var offset = params.offset || 0;
-  var q = new parse.Query(Facility);
+  var q = new Parse.Query(Facility);
 
   if ( sort === 'near' ) {
     if ( !(params.lat && params.lon) ) {
