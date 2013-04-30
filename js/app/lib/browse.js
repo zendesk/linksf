@@ -1,7 +1,6 @@
 module.exports = function (params, callbacks) {
   var _ = require('underscore'),
-      Facility = require('cloud/models/facility'),
-      parse;
+      Facility = require('cloud/models/facility');
 
   // all params are optional, NULL or missing means don't filter
   // {
@@ -28,7 +27,7 @@ module.exports = function (params, callbacks) {
       return callbacks.error("Please provide a lat and lon");
     }
 
-    var geopoint = new parse.GeoPoint(params.lat, params.lon);
+    var geopoint = new Parse.GeoPoint(params.lat, params.lon);
     q.near('location', geopoint);
   } else {
     q.ascending('name');

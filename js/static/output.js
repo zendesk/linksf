@@ -1,4 +1,39 @@
-require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof require=="function"&&require;if(!s&&o)return o(n,!0);if(r)return r(n,!0);throw new Error("Cannot find module '"+n+"'")}var u=t[n]={exports:{}};e[n][0](function(t){var r=e[n][1][t];return i(r?r:t)},u,u.exports)}return t[n].exports}var r=typeof require=="function"&&require;for(var s=0;s<n.length;s++)i(n[s]);return i})({"jquery":[function(require,module,exports){
+require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof require=="function"&&require;if(!s&&o)return o(n,!0);if(r)return r(n,!0);throw new Error("Cannot find module '"+n+"'")}var u=t[n]={exports:{}};e[n][0](function(t){var r=e[n][1][t];return i(r?r:t)},u,u.exports)}return t[n].exports}var r=typeof require=="function"&&require;for(var s=0;s<n.length;s++)i(n[s]);return i})({"parse":[function(require,module,exports){
+module.exports=require('bnkqnZ');
+},{}],"bnkqnZ":[function(require,module,exports){
+/* globals Parse */
+module.exports = Parse;
+
+},{}],"google-maps":[function(require,module,exports){
+module.exports=require('JwD3ao');
+},{}],"JwD3ao":[function(require,module,exports){
+/* globals google */
+module.exports = google.maps;
+
+},{}],1:[function(require,module,exports){
+var $ = require('jquery');
+
+require('jquery-serialize-object');
+
+$(function() {
+  Parse.initialize("Z2l0Zn6NGrHCDoBPKUeD7Tf1fAUDaazQihQFqnL8", "kGPp7cydleuFbhKB4mrviTmbIjrbTjhxGP4dP7Ls");
+
+  // provision the router instance
+  var router = require('routers/router').instance;
+
+  // begin tracking hashChange
+  require('backbone').history.start();
+
+  // use filter button to toggle form
+  $('#filter').click(function() {
+    $('#query').toggle();
+  });
+
+  // navigate to root route
+  // router.navigate('');
+});
+
+},{"jquery":"QoPUjZ","jquery-serialize-object":"R5rfFz","routers/router":"DFkZzb","backbone":"sX8G3i"}],"jquery":[function(require,module,exports){
 module.exports=require('QoPUjZ');
 },{}],"QoPUjZ":[function(require,module,exports){
 (function(global){(function browserifyShim(module, define, browserify_shim__define__module__export__) {
@@ -67,42 +102,7 @@ module.exports=require('R5rfFz');
 }).call(global, module, undefined);
 
 })(window)
-},{}],"parse":[function(require,module,exports){
-module.exports=require('bnkqnZ');
-},{}],"bnkqnZ":[function(require,module,exports){
-/* globals Parse */
-module.exports = Parse;
-
-},{}],"google-maps":[function(require,module,exports){
-module.exports=require('JwD3ao');
-},{}],"JwD3ao":[function(require,module,exports){
-/* globals google */
-module.exports = google.maps;
-
-},{}],1:[function(require,module,exports){
-var $ = require('jquery');
-
-require('jquery-serialize-object');
-
-$(function() {
-  Parse.initialize("Z2l0Zn6NGrHCDoBPKUeD7Tf1fAUDaazQihQFqnL8", "kGPp7cydleuFbhKB4mrviTmbIjrbTjhxGP4dP7Ls");
-
-  // provision the router instance
-  var router = require('routers/router').instance;
-
-  // begin tracking hashChange
-  require('backbone').history.start();
-
-  // use filter button to toggle form
-  $('#filter').click(function() {
-    $('#query').toggle();
-  });
-
-  // navigate to root route
-  // router.navigate('');
-});
-
-},{"jquery":"QoPUjZ","jquery-serialize-object":"R5rfFz","routers/router":"DFkZzb","backbone":"sX8G3i"}],"models/service":[function(require,module,exports){
+},{}],"models/service":[function(require,module,exports){
 module.exports=require('8ZDDoA');
 },{}],"8ZDDoA":[function(require,module,exports){
 module.exports = Parse.Object.extend('Service', { });
@@ -2959,8 +2959,7 @@ module.exports=require('MqHg7l');
 },{}],"MqHg7l":[function(require,module,exports){
 module.exports = function (params, callbacks) {
   var _ = require('underscore'),
-      Facility = require('cloud/models/facility'),
-      parse;
+      Facility = require('cloud/models/facility');
 
   // all params are optional, NULL or missing means don't filter
   // {
@@ -2980,14 +2979,14 @@ module.exports = function (params, callbacks) {
   var limit = params.limit || 10;
   var filter = params.filter || {};
   var offset = params.offset || 0;
-  var q = new parse.Query(Facility);
+  var q = new Parse.Query(Facility);
 
   if ( sort === 'near' ) {
     if ( !(params.lat && params.lon) ) {
       return callbacks.error("Please provide a lat and lon");
     }
 
-    var geopoint = new parse.GeoPoint(params.lat, params.lon);
+    var geopoint = new Parse.GeoPoint(params.lat, params.lon);
     q.near('location', geopoint);
   } else {
     q.ascending('name');
