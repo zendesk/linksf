@@ -1,5 +1,5 @@
 var $ = require('jquery'),
-    _ = require('lodash'),
+    _ = require('underscore'),
     Facility = require('cloud/models/facility'),
     parse;
 
