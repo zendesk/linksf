@@ -1,4 +1,4 @@
-var _     = require('lodash'),
+var _     = require('underscore'),
     Hours = require('cloud/models/hours');
 
 module.exports = Parse.Object.extend('Facility', {
