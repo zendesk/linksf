@@ -1,6 +1,5 @@
 module.exports = function (params, callbacks) {
-  var $ = require('jquery'),
-      _ = require('underscore'),
+  var _ = require('underscore'),
       Facility = require('cloud/models/facility'),
       parse;
 
