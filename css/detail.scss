@@ -5,6 +5,7 @@
 }
 
 #container{
+  // margin-top: $navbar-height
   width: 90%;
   max-width: 500px;
   min-width: 290px;
@@ -22,10 +23,10 @@
 }
 
 .address{
-width: 80%;
-margin: 0 auto;
-text-align: center;
-padding: 12px;
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 12px;
 }
 
 .info-row{
@@ -42,9 +43,9 @@ padding: 12px;
   display: block;
 }
 .seeMore{
-padding: 17px;
-background: #F6F6F6;
-display: none;
+  padding: 17px;
+  background: #F6F6F6;
+  display: none;
 }
 .more {
   height: 20px;
