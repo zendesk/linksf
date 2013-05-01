@@ -22,7 +22,7 @@ var location = function() {
 };
 
 var queryFunction = function(runWhere) {
-  if ( true || runWhere === 'cloud' ) {
+  if ( runWhere === 'cloud' ) {
     return _.partial(Parse.Cloud.run, "browse");
   } else {
     return require('cloud/lib/browse');
