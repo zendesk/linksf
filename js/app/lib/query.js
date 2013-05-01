@@ -1,3 +1,4 @@
+/*globals alert*/
 var $        = require('jquery'),
     _        = require('underscore'),
     Facility = require('cloud/models/facility');
@@ -14,11 +15,15 @@ var location = function() {
     });
   }
 
+  console.log(lat, lon);
+
   if (!(lat && lon)) {
+    alert("lat: " + lat + " lon: " + lon);
     lat = 37.782355;
     lon = -122.409825;
   }
 
+  console.log(lat, lon);
   return {lat: lat, lon: lon};
 };
 
