@@ -34,14 +34,34 @@ form {
 
   .facility {
     border-bottom: solid #9B9B9B 1px;
-    padding-left: 10px;
-  }
+    padding: 10px 0 10px 10px;
 
-  .name {
-    font-weight: bold;
+    p {
+      margin: 5px;
+    }
   }
 
   .services {
-    color: #185377;
   }
+
+  a {
+    font-size: larger;
+    text-decoration: none;
+    font-weight: bold;
+    color: #000;
+  }
+}
+
+.facility-services {
+  color: #185377;
+}
+
+.facility-address {
+}
+
+.facility-notes {
+  height: 36px;
+  color: #8F8F8F;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
