@@ -28,9 +28,10 @@
 <ul id="facility-list">
   {{#each facilities}}
     <li class="facility">
-      <p class="name"><a href="#/detail/{{this.objectId}}" class="facility-link">{{this.name}}</a></p>
-      <p class="services">{{this.address}}</p>
-      <p>{{this.notes}}</p>
+      <p class="facility-name"><a href="#/detail/{{this.objectId}}" class="facility-link">{{this.name}}</a></p>
+      <p class="facility-services">{{this.serviceCategories}}</p>
+      <p class="facility-address">{{this.address}}</p>
+      <p class="facility-notes">{{this.allNotes}}</p>
     </li>
   {{/each}}
 </ul>

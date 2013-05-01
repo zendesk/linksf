@@ -1,6 +1,7 @@
 var Backbone = require('backbone'),
     $ = require('jquery'),
     Query = require('lib/query'),
+    _ = require('underscore'),
     facilities = require('collections/facilities').instance;
 
 var ListView = Backbone.View.extend({
@@ -24,14 +25,52 @@ var ListView = Backbone.View.extend({
   },
 
   render: function() {
-    var jsonFacilities = this.collection.toJSON();
+    var deepJson = this.deepToJson(this.collection);
+    var templateJson = this.flattenServices(deepJson);
 
     // replace with template
-    $(this.el).html(this.template({ facilities: jsonFacilities }));
+    $(this.el).html(this.template({ facilities: templateJson }));
+    $('#query').hide();
 
     // bind to form submission
     $('#query').submit($.proxy(this.submitQuery, this));
     return this;
+  },
+
+  deepToJson: function(collection) {
+    var json = [],
+        modelJson;
+
+    json = _.map(collection.models, function(model) {
+      modelJson = model.toJSON();
+      modelJson.services = [];
+      _.each(model.attributes.services, function(service) {
+        modelJson.services.push(service.toJSON());
+      });
+      return modelJson;
+    });
+
+    return json;
+  },
+
+  flattenServices: function(jsonArray) {
+    var serviceCategories,
+        allNotes,
+        flattened = [];
+
+    _.each(jsonArray, function(jsonModel) {
+      serviceCategories = [];
+      allNotes = [];
+      _.each(jsonModel.services, function(jsonService) {
+        serviceCategories.push(jsonService.category);
+        allNotes.push(jsonService.notes);
+      });
+      jsonModel.serviceCategories = serviceCategories.join(', ');
+      jsonModel.allNotes = allNotes.join(' ');
+      flattened.push(jsonModel);
+    });
+
+    return flattened;
   }
 });
 

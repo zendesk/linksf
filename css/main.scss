@@ -7,43 +7,6 @@ ul { padding-left: 0px; }
   margin-top: $navbar-height;
 }
 
-// nav bar
-nav {
-  // anchor to top
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 3;
-
-  height: $navbar-height - 2px; // border 1px
-  background-color: #E3E3E3;
-  border-bottom: solid #9B9B9B 1px;
-
-  a {
-    color: #3081B7;
-    text-decoration: none;
-    font-weight: bold;
-  }
-
-  li {
-    float: left;
-    margin: 20px 0 20px 20px;
-  }
-
-  // 'Filter'
-  button {
-    float: right;
-    background-color: #BDBDBD;
-    color: white;
-    width: 160px;
-    height: 40px;
-    margin-top: 10px;
-    margin-right: 10px;
-    border: 0;
-  }
-}
-
 // query form
 form {
   // anchor to top, just below nav
@@ -72,14 +35,35 @@ form {
 
   .facility {
     border-bottom: solid #9B9B9B 1px;
-    padding-left: 10px;
-  }
+    padding: 10px 0 10px 10px;
 
-  .name {
-    font-weight: bold;
+    p {
+      margin: 5px;
+    }
   }
 
   .services {
-    color: #185377;
   }
+
+  a {
+    font-size: larger;
+    text-decoration: none;
+    font-weight: bold;
+    color: #000;
+  }
+}
+
+.facility-services {
+  color: #185377;
+  text-transform: capitalize;
+}
+
+.facility-address {
+}
+
+.facility-notes {
+  height: 36px;
+  color: #8F8F8F;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
