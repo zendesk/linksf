@@ -23,9 +23,20 @@
 		<span class="info-row">Directions</span>
 	</div>
 	<p>Information</p>
-	<div class="round-shadow">
+	<div class="round-shadow serviceDetail">
 		{{#each services}}
-			<span class="info-row">{{this.name}}</span>
+			<div class="info-row">
+				<div class="desco">{{this.description}}</div>
+				<div class="more"></div>
+			</div>
+			<div class="seeMore">
+				<h3>{{this.name}}</h3>
+				<h4>Description: </h4>
+				{{this.description}}
+				<h4>Notes</h4>
+				{{this.notes}}
+			</div>
+			<span class="prevrow"></span>
 		{{/each}}
 	</div>
 {{/with}}
