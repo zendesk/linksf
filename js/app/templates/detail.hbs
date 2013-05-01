@@ -1,8 +1,10 @@
 <div id="container">
 {{#with facility}}
 	<h2>{{name}}</h2>
-	<p class="time">Hours: </span><span>
-	{{hours.Sun}}</span>
+	<p class="time">Hours: <br/>
+  {{#each services}}
+    {{this.description}}: <strong>{{this.hours}}</strong>
+  {{/each}}
 	</p>
 	<p><span class="bold">Allowed: </span><span>{{gender}}</span></p>
 	<p><span class="bold">Services: </span>
