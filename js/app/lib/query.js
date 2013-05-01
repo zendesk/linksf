@@ -23,7 +23,7 @@ var location = function() {
 };
 
 var queryFunction = function(runWhere) {
-  if ( true || runWhere === 'cloud' ) {
+  if ( runWhere === 'cloud' ) {
     return _.partial(Parse.Cloud.run, "browse");
   } else {
     return require('cloud/lib/browse');
@@ -57,14 +57,14 @@ var submit = function(params) {
   return deferred.promise();
 };
 
-// TODO -- hoist this up a layer into "browse" -- or wherever we keep the direct parse communication lib. 
-var getByID = function(id) { 
+// TODO -- hoist this up a layer into "browse" -- or wherever we keep the direct parse communication lib.
+var getByID = function(id) {
   var deferred = $.Deferred();
 
   var q = new Parse.Query(Facility);
   q.include("services");
   q.get(id, {
-    success: function(result) { 
+    success: function(result) {
       deferred.resolve(result);
     },
     error: function(err) {
