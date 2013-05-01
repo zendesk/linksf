@@ -12,8 +12,9 @@ var location = function() {
     }, function(error) {
       console.log(error);
     });
-  } else {
-    // for local development
+  }
+
+  if (!(lat && lon)) {
     lat = 37.782355;
     lon = -122.409825;
   }
@@ -34,7 +35,8 @@ var submit = function(params) {
   var deferred = $.Deferred();
 
   // choose where to run the query
-  var query = queryFunction(params.runwhere);
+  // var query = queryFunction(params.runwhere);
+  var query = queryFunction('browser');
 
   // add location if proximity sorting
   if ( params.sort === 'near' ) {
