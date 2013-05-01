@@ -12,6 +12,11 @@ namespace :deploy do
   task :parse do
     system("cd #{File.dirname(__FILE__) + '/server'} && parse deploy")
   end
+
 end
 
-task :deploy => ['deploy:parse', 'deploy:s3']
+task :grunt do 
+  abort unless system("grunt")
+end
+
+task :deploy => ['grunt', 'deploy:parse', 'deploy:s3']
