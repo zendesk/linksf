@@ -48,9 +48,8 @@ var DetailView = Backbone.View.extend({
   layout: function(){
 	$.each($('.desco'), function(){
 		if($(this).text().length > 52){
-			console.log("wtf");
 			$(this).text($(this).text().substr(0,52)+"...");}
-		});	
+		});
 	$('.more').click(function(){$(this).parent().next($('.seeMore')).slideToggle();});
 	}
 
