@@ -13,6 +13,7 @@ nav {
   top: 0;
   left: 0;
   right: 0;
+  z-index: 3;
 
   height: $navbar-height - 2px; // border 1px
   background-color: #E3E3E3;
