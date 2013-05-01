@@ -2,10 +2,10 @@ var $        = require('jquery'),
     _        = require('underscore'),
     Facility = require('cloud/models/facility');
 
-var location = function(hasGeolocation) {
+var location = function() {
   var lat, lon;
 
-  if ( hasGeolocation ) {
+  if ( navigator.geolocation ) {
     navigator.geolocation.getCurrentPosition(function(position) {
       lat = position.coords.latitude;
       lon = position.coords.longitude;
@@ -38,8 +38,7 @@ var submit = function(params) {
 
   // add location if proximity sorting
   if ( params.sort === 'near' ) {
-    // false until we start testing geolocation
-    $.extend(params, location(false));
+    $.extend(params, location());
   }
 
   query(params, {
