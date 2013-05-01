@@ -25,12 +25,9 @@ var ListView = Backbone.View.extend({
   },
 
   render: function() {
-    // console.log(this.collection);
-    // var jsonFacilities = this.collection.toJSON();
     var deepJson = this.deepToJson(this.collection);
     var templateJson = this.flattenServices(deepJson);
 
-    console.log(templateJson);
     // replace with template
     $(this.el).html(this.template({ facilities: templateJson }));
     $('#query').hide();
