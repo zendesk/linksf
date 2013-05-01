@@ -1,0 +1,35 @@
+// nav bar
+nav {
+  // anchor to top
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: $navbar-height - 2px; // border 1px
+  background-color: #E3E3E3;
+  border-bottom: solid #9B9B9B 1px;
+
+  a {
+    color: #3081B7;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  li {
+    float: left;
+    margin: 20px 0 20px 20px;
+  }
+
+  // 'Filter'
+  button {
+    float: right;
+    background-color: #BDBDBD;
+    color: white;
+    width: 160px;
+    height: 40px;
+    margin-top: 10px;
+    margin-right: 10px;
+    border: 0;
+  }
+}
