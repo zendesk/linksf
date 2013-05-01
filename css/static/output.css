@@ -27,7 +27,8 @@
 .info-row {
   width: 100%;
   display: block;
-  padding: 17px; }
+  padding: 17px;
+  box-sizing: border-box; }
 
 .prevrow {
   background-color: #ccc;
@@ -35,11 +36,27 @@
   width: 100%;
   display: block; }
 
+.seeMore {
+  padding: 17px;
+  background: #F6F6F6;
+  display: none; }
+
+.more {
+  height: 20px;
+  width: 20px;
+  float: right;
+  background: #eee;
+  display: block;
+  margin-top: -15px; }
+
 li {
   list-style-type: none; }
 
 ul {
   padding-left: 0px; }
+
+#linksf {
+  margin-top: 60px; }
 
 nav {
   position: fixed;

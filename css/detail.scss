@@ -32,6 +32,7 @@ padding: 12px;
   width: 100%;
   display: block;
   padding: 17px;
+  box-sizing: border-box;
 }
 
 .prevrow {
@@ -39,4 +40,17 @@ padding: 12px;
   height: 1px;
   width: 100%;
   display: block;
+}
+.seeMore{
+padding: 17px;
+background: #F6F6F6;
+display: none;
+}
+.more {
+  height: 20px;
+  width: 20px;
+  float: right;
+  background: #eee;
+  display: block;
+  margin-top: -15px;
 }
