@@ -66,7 +66,7 @@ var ListView = Backbone.View.extend({
         allNotes.push(jsonService.notes);
       });
       jsonModel.serviceCategories = serviceCategories.join(', ');
-      jsonModel.allNotes = allNotes.join();
+      jsonModel.allNotes = allNotes.join(' ');
       flattened.push(jsonModel);
     });
 
