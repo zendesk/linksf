@@ -58,12 +58,46 @@ ul {
 #linksf {
   margin-top: 60px; }
 
+form {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  background-color: #F5F5F5; }
+  form input {
+    margin: 5px 10px 0 10px; }
+  form h4 {
+    margin: 10px 0 5px 10px; }
+
+#facility-list {
+  margin-top: 0px;
+  padding-top: 60px; }
+  #facility-list .facility {
+    border-bottom: solid #9B9B9B 1px;
+    padding: 10px 0 10px 10px; }
+    #facility-list .facility p {
+      margin: 5px; }
+  #facility-list a {
+    font-size: larger;
+    text-decoration: none;
+    font-weight: bold;
+    color: #000; }
+
+.facility-services {
+  color: #185377;
+  text-transform: capitalize; }
+
+.facility-notes {
+  height: 36px;
+  color: #8F8F8F;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
 nav {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 3;
   height: 58px;
   background-color: #E3E3E3;
   border-bottom: solid #9B9B9B 1px; }
@@ -83,25 +117,3 @@ nav {
     margin-top: 10px;
     margin-right: 10px;
     border: 0; }
-
-form {
-  position: fixed;
-  top: 60px;
-  left: 0;
-  right: 0;
-  background-color: #F5F5F5; }
-  form input {
-    margin: 5px 10px 0 10px; }
-  form h4 {
-    margin: 10px 0 5px 10px; }
-
-#facility-list {
-  margin-top: 0px;
-  padding-top: 60px; }
-  #facility-list .facility {
-    border-bottom: solid #9B9B9B 1px;
-    padding-left: 10px; }
-  #facility-list .name {
-    font-weight: bold; }
-  #facility-list .services {
-    color: #185377; }
