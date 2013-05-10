@@ -1,3 +1,4 @@
+
 #location-map{
   height: 200px;
   border: 5px solid white;
@@ -11,6 +12,16 @@
   min-width: 290px;
   margin: 0 auto;
   padding-top: 5px;
+}
+
+#facility-header { 
+  height: 30px;
+  font-size: 18px;
+  color: #999999;
+  background-color: #EEEEEE;
+  padding-top: 6px;
+  padding-left: 4px;
+
 }
 
 .round-shadow{
