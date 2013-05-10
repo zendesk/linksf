@@ -33,12 +33,7 @@ var Router = Backbone.Router.extend({
   },
 
   renderFacility: function(facility) {
-    var facilityAsJSON = facility.toJSON();
-    facilityAsJSON.services = _.map(facility.get("services"), function(service) {
-      return service.toJSON();
-    });
-
-    var detailView = new DetailView({ model: facilityAsJSON });
+    var detailView = new DetailView({ model: facility.presentJSON() });
     return detailView.render();
   },
 

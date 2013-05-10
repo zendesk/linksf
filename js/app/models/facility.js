@@ -13,6 +13,15 @@ module.exports = Parse.Object.extend('Facility', {
     }
   },
 
+  presentJSON: function() {
+    var asJSON = this.toJSON();
+    asJSON.services = _.map(this.get("services"), function(service) {
+      return service.toJSON();
+    });
+    asJSON.demographics = this.demographics();
+    return asJSON;
+  },
+
   matchesAges: function(ages) {
     var a = this.get('age');
     if ( !ages || !a ) {
@@ -58,5 +67,42 @@ module.exports = Parse.Object.extend('Facility', {
         return facService.get("category") === targetCategory;
       });
     });
+  },
+
+  age_as_string: function(input) {
+    switch ( input.toUpperCase() ) { 
+      case "C":
+        return "children";
+      case "Y":
+        return "teens";
+      case "A":
+        return "adults";
+      case "S":
+        return "seniors";
+    }
+  },
+
+  demographics: function() { 
+    var g, a, output = "";
+    if ( !this.get('age') && !this.get('gender') ) {
+      output = "Anyone";
+    } else {
+      if ( (g = this.get('gender') ) ) {
+        if ( this.get('age') ) {
+          output = g.toUpperCase() == "F" ? "Female " : "Male ";
+        } else {
+          output = "Only " + g.toUpperCase() == "F" ? "women" : "men";
+        }
+      } else {
+        output = "All ";
+      }
+
+      if ( (a = this.get('age') ) ) { 
+        // C-Y-A-S
+        var translated = _(a).map(this.age_as_string);
+        output += _(translated).join(", ");
+      }
+    }
+    return output;
   }
 });
