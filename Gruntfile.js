@@ -26,6 +26,7 @@ module.exports = function(grunt) {
         '<%= jshint.files %>',
         'js/app/**/*.hbs',
         'css/main.scss',
+        'css/**/*.scss',
         'test/**/*.js',
         'index.html'
       ],
@@ -49,7 +50,8 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         files: {
-          'css/static/output.css': ['css/**/*.scss']
+          'css/static/output.css': ['css/**/*.scss'], 
+          'css/static/admin.css':  ['css/admin/**/*.scss']
         }
       }
     }
@@ -60,11 +62,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-simple-mocha');
   grunt.loadNpmTasks('grunt-contrib-sass');
 
-  grunt.registerTask('browserify', 'Browserify and concatenate app sources', function() {
-
+  var browserifyThings = function(entryPoint, outputJS) { 
     var browserify  = require('browserify'),
         shim        = require('browserify-shim'),
         done        = this.async();
+
 
     // this will be the js src'd in <script> tags
     var output;
@@ -122,19 +124,20 @@ module.exports = function(grunt) {
       });
     });
 
-    // add our entry point
-    output = output.require('./js/app/index.js', { entry: true });
+    output.require(entryPoint, { entry: true });
 
     // now bundle it all up!
     output.bundle(function (err, src) {
       if (err) return console.error(err);
 
-      require('fs').writeFileSync("./js/static/output.js", src);
+      require('fs').writeFileSync(outputJS, src);
 
       // keep grunt alive until the write stream completes
       done();
     });
-  });
+  };
 
-  grunt.registerTask('default', ['jshint', 'simplemocha', 'sass', 'browserify']);
+  grunt.registerTask('browserify', 'Browserify and concatenate app sources', function() { browserifyThings.call(this, "./js/app/index.js", "./js/static/output.js") });
+  grunt.registerTask('browserify:admin', 'Browserify and concatenate admin sources', function() { browserifyThings.call(this, "./js/app/admin.js", "./js/static/admin.js") });
+  grunt.registerTask('default', ['jshint', 'simplemocha', 'sass', 'browserify', 'browserify:admin']);
 };
