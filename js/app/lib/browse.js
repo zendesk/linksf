@@ -20,6 +20,8 @@ module.exports = function (params, callbacks) {
   var limit = params.limit || 10;
   var filter = params.filter || {};
   var offset = params.offset || 0;
+  var search = params.search;
+
   var q = new Parse.Query(Facility);
 
   if ( sort === 'near' ) {
@@ -31,6 +33,10 @@ module.exports = function (params, callbacks) {
     q.near('location', geopoint);
   } else {
     q.ascending('name');
+  }
+
+  if ( search ) {
+    q.contains('name', search);
   }
 
   // q.limit(limit);

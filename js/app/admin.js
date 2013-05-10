@@ -8,6 +8,8 @@ $(function() {
   // provision the router instance
   var router = require('routers/router').instance;
 
+  router.listViewClass = require('views/admin_list_view');
+
   // begin tracking hashChange
   require('backbone').history.start();
 

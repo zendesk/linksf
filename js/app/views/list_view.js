@@ -8,12 +8,14 @@ var ListView = Backbone.View.extend({
   el: $("#linksf"),
   template: require('templates/list'),
 
-  submitQuery: function() {
+  submitQuery: function(extra_params) {
     // serialize the form
-    var params = $('#query').serializeObject(),
-        self = this;
+    var params = $('#query').serializeObject();
 
+    $.extend(params, extra_params);
+    console.log(extra_params);
     // submit query
+    params.limit = this.defaultLimit;
 
     Query.submit(params).done(function(results) {
       // populate with results

@@ -19,9 +19,6 @@
     <input type="checkbox" name="filter[categories][2]" value="housing">Housing
     <input type="checkbox" name="filter[categories][3]" value="technology">Technology
   </div>
-  <div class="debug" style="display: none;">
-    <input type="checkbox" name="runwhere" id="runwhere" value="cloud" selected>Run In Cloud (defaults to running in browser)<br/>
-  </div>
   <input type="hidden" name="limit" value="20">
   <input type="submit" value="Refresh">
 </form>
@@ -30,9 +27,7 @@
   {{#each facilities}}
     <li class="facility">
       <p class="facility-name"><a href="#/detail/{{this.objectId}}" class="facility-link">{{this.name}}</a></p>
-      <p class="facility-services">{{this.serviceCategories}}</p>
       <p class="facility-address">{{this.address}}</p>
-      <p class="facility-notes">{{this.allNotes}}</p>
     </li>
   {{/each}}
 </ul>
