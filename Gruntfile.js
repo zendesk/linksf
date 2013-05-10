@@ -34,7 +34,8 @@ module.exports = function(grunt) {
         'jshint',
         'simplemocha',
         'sass',
-        'browserify'
+        'browserify',
+        'browserify:admin'
       ]
     },
     simplemocha: {

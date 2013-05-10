@@ -2,6 +2,7 @@ var $ = require('jquery'),
     Backbone = require('backbone'),
     DetailView = require('views/detail_view'),
     ListView = require('views/list_view'),
+    AdminListView = require('views/admin_list_view'),
     Query = require('lib/query'),
     _ = require('underscore'),
     facilities = require('collections/facilities').instance;
@@ -12,8 +13,10 @@ var Router = Backbone.Router.extend({
     'detail/:id': 'detail'
   },
 
+  listViewClass: ListView,
+
   list: function() {
-    var listView = new ListView({ collection: facilities });
+    var listView = new this.listViewClass({ collection: facilities });
 
     listView.render();
     $('#query').hide();
