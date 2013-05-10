@@ -1,13 +1,12 @@
-<div id="container">
 {{#with facility}}
-	<h2>{{name}}</h2>
-	<p class="time">Hours: <br/>
-  {{#each services}}
-    {{this.description}}: <strong>{{this.hours}}</strong>
-  {{/each}}
+<div id="container">
+  <div id="facility-header">{{name}}</div>
+	<h3>{{name}}</h3>
+	<p class="time">
+    pretend these are hours for the moment.
 	</p>
-	<p><span class="bold">Allowed: </span><span>{{gender}}</span></p>
-	<p><span class="bold">Services: </span>
+	<p><span><b>Allowed</b>: </span><span>{{gender}}</span></p>
+	<p><span><b>Services</b>: </span>
 	{{#each services}}
 		<span>{{this.name}} </span>
 	{{/each}}
@@ -26,18 +25,10 @@
 	<div class="round-shadow serviceDetail">
 		{{#each services}}
 			<div class="info-row">
-				<div class="desco">{{this.description}}</div>
-				<div class="more"></div>
-			</div>
-			<div class="seeMore">
-				<h3>{{this.name}}</h3>
-				<h4>Description: </h4>
-				{{this.description}}
-				<h4>Notes</h4>
-				{{this.notes}}
+				<div class="desco"><b>{{this.name}}</b></div>
 			</div>
 			<span class="prevrow"></span>
 		{{/each}}
 	</div>
-{{/with}}
 </div>
+{{/with}}
