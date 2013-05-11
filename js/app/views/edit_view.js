@@ -1,6 +1,10 @@
 var Backbone = require('backbone'),
     $ = require('jquery'),
-	gmaps = require('google-maps');
+    _ = require('underscore'),
+    Handlebars = require('handlebars-runtime'),
+    gmaps = require('google-maps');
+
+Handlebars.registerPartial("editService", require('templates/edit_service'));
 
 var EditView = Backbone.View.extend({
   el: $("#linksf"),
@@ -20,8 +24,9 @@ var EditView = Backbone.View.extend({
     });
 
     if ( this.model.get("age") ) { 
-
-
+      _(this.model.get("age")).each(function(age) {
+        $("#age_" + age.toUpperCase()).prop('checked', true);
+      });
     } else { 
       $("#age_everyone").click();
     }

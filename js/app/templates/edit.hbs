@@ -8,12 +8,28 @@
         <input type="text" name="name" value="{{name}}">
       </div>
     </div>
+
+    <div class="control-group">
+      <label class="control-label" for="address">Address</label>
+      <div class="controls">
+        <input type="text" name="name" value="{{address}}">
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <label class="control-label" for="phone">Phone</label>
+      <div class="controls">
+        <input type="text" name="name" value="{{phone}}">
+      </div>
+    </div>
+
     <div class="control-group">
       <label class="control-label" for="notes">Notes</label>
       <div class="controls">
         <textarea name="notes">{{notes}}</textarea>
       </div>
     </div>
+
     <div class="control-group">
       <label class="control-label" for="gender">Gender</label>
       <div class="controls"> 
@@ -32,8 +48,9 @@
         <input type="checkbox" name="age" id="age_S" value=""> Seniors<br/>
       </div>
     </div>
-
-    </dl>
+    {{#each services}}
+      {{> editService}}
+    {{/each}}
   </form>
 </div>
 {{/with}}
