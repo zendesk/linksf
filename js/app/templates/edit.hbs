@@ -1,0 +1,39 @@
+{{#with facility}}
+<div>
+  <dl>
+  <form Id="facilityForm" class="form-horizontal">
+    <div class="control-group">
+      <label class="control-label" for="name">Facility Name</label>
+      <div class="controls">
+        <input type="text" name="name" value="{{name}}">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="notes">Notes</label>
+      <div class="controls">
+        <textarea name="notes">{{notes}}</textarea>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="gender">Gender</label>
+      <div class="controls"> 
+        <input type="radio" name="gender" id="gender_" value=""> Everyone<br/>
+        <input type="radio" name="gender" id="gender_M" value="M"> Male</br>
+        <input type="radio" name="gender" id="gender_F" value="F"> Female</br>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="age">Ages</label>
+      <div class="controls"> 
+        <input type="checkbox" name="age" id="age_everyone" value=""> Everyone<br/>
+        <input type="checkbox" name="age" id="age_C" value=""> Children<br/>
+        <input type="checkbox" name="age" id="age_Y" value=""> Youth<br/>
+        <input type="checkbox" name="age" id="age_A" value=""> Adults<br/>
+        <input type="checkbox" name="age" id="age_S" value=""> Seniors<br/>
+      </div>
+    </div>
+
+    </dl>
+  </form>
+</div>
+{{/with}}

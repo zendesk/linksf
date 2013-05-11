@@ -2,6 +2,7 @@ var $ = require('jquery'),
     Backbone = require('backbone'),
     DetailView = require('views/detail_view'),
     ListView = require('views/list_view'),
+    EditView = require('views/edit_view'),
     AdminListView = require('views/admin_list_view'),
     Query = require('lib/query'),
     _ = require('underscore'),
@@ -10,7 +11,8 @@ var $ = require('jquery'),
 var Router = Backbone.Router.extend({
   routes: {
     '': 'list',
-    'detail/:id': 'detail'
+    'detail/:id': 'detail',
+    'edit/:id': 'edit'
   },
 
   listViewClass: ListView,
@@ -37,16 +39,33 @@ var Router = Backbone.Router.extend({
     return detailView.render();
   },
 
+  renderEdit: function(facility) { 
+    var editView = new EditView({ model: facility });
+    return editView.render();
+  },
+
   detail: function(id) {
+    this._getFacility(id, function(facility) { 
+      this.renderFacility(facility);
+    }.bind(this));
+  },
+
+  edit: function(id) {
+    this._getFacility(id, function(fac) { 
+      this.renderEdit(fac);
+    }.bind(this));
+  },
+
+  _getFacility: function(id, done) {
     var facility = facilities.get(id);
 
     if ( !facility ) {
       //Fetch Facility from backend if not in collection
       Query.getByID(id).then(function(facility) {
-        this.renderFacility(facility);
-      }.bind(this));
+        done(facility);
+      });
     } else {
-      return this.renderFacility(facility);
+      done(facility);
     }
   }
 });
