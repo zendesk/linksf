@@ -9,15 +9,19 @@ Handlebars.registerPartial("editService", require('templates/edit_service'));
 var EditView = Backbone.View.extend({
   el: $("#linksf"),
   template: require('templates/edit'),
-  render: function() {
-    var g;
-    $(this.el).html(this.template({facility: this.model.presentJSON()}));
+  setupServices: function() {
+    _(this.model.get("services")).each(function(service, index) { 
+      var prefix = "#service\\[" + index + "\\]";
 
-    if ( (g = this.model.get('gender')) ) {
-      $('#gender_' + g).prop('checked', true);
-    } else {
-      $('#gender_').prop('checked', true);
-    }
+      $(prefix + "_category").children("[value='" + service.get('category') + "']").prop('selected', true);
+    });
+  },
+  setupForm: function() {
+    var g = this.model.get('gender');
+    var el;
+
+    el = $('#gender_' + (g ? g : ''));
+    el.prop('checked', true); 
 
     $("#age_everyone").click(function() {
       $('[name="age"]').prop('checked', $(this).prop('checked'));
@@ -31,6 +35,11 @@ var EditView = Backbone.View.extend({
       $("#age_everyone").click();
     }
 
+    this.setupServices();
+  },
+  render: function() {
+    $(this.el).html(this.template({facility: this.model.presentJSON()}));
+    this.setupForm();
     return this;
   }
 });
