@@ -48,12 +48,14 @@ module.exports = Parse.Object.extend('Facility', {
 
   isOpen: function(now) {
     now = now || new Date();
-    if (!this.hours()){
+    var hours = this.hours();
+    var open = hours.within(now);
+    if (!hours){
       return "Unknown";
     }
-    else if (this.hours().within(now)) {
+    else if (open) {
       return "Open";
-    } else if (!this.hours().within(now)) {
+    } else if (!open) {
       return "Closed";
     }else{
       return "Unknown";

@@ -32,10 +32,10 @@ module.exports = function(grunt) {
       ],
       tasks: [
         'jshint',
-        'simplemocha',
-        'sass',
-        'browserify',
-        'browserify:admin'
+        'simplemocha'
+        // 'sass',
+        // 'browserify',
+        // 'browserify:admin'
       ]
     },
     simplemocha: {
