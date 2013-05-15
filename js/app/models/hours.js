@@ -43,6 +43,21 @@ var timeStringToOffset = function(timeString) {
   return parsed[0]*100 + parsed[1];
 };
 
+
+/* Input format:
+
+ {
+   Mon: "9:00AM-5:00PM"
+   Tue: "9:00AM-11:00AM,1:00PM-5:00PM"
+   Wed: "9:00AM-5:00PM"
+   Thu: "9:00AM-5:00PM"
+   Fri: "9:00AM-5:00PM"
+   Sat: "9:00AM-11:00AM"
+   Sun: "9:00AM-11:00AM"
+ }
+
+*/
+
 var Hours = function Hours(hours){
   var processed = {}, intervals, interval, day;
 
