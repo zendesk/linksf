@@ -21,7 +21,6 @@ var Router = Backbone.Router.extend({
     var listView = new this.listViewClass({ collection: facilities });
 
     listView.render();
-    $('#query').hide();
 
     // render when facilities is reset
     listView.listenTo(facilities, 'reset', function() {
