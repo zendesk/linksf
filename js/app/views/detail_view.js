@@ -1,3 +1,5 @@
+/*globals window, document */
+
 var Backbone = require('backbone'),
     $ = require('jquery'),
     _ = require('underscore'),
@@ -7,7 +9,8 @@ var DetailView = Backbone.View.extend({
   el: $("#linksf"),
   template: require('templates/detail'),
   events: {
-    "render.done": 'setMap'
+    "render.done": 'setMap',
+    "click .directions": 'launchDirections'
   },
 
   render: function() {
@@ -18,6 +21,29 @@ var DetailView = Backbone.View.extend({
     _.defer( function( view ){ view.setMap();}, this );
 
     return this;
+  },
+
+  launchDirections: function() {
+    var url = "http://maps.google.com/maps?daddr=" +
+              this.model.address +
+              "@" +
+              this.model.location.latitude +
+              "," +
+              this.model.location.longitude;
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var lat = position.coords.latitude,
+            lon = position.coords.longitude;
+        url = url + "&saddr=" + lat + "," + lon;
+        document.location = url;
+      }, function() {
+        document.location = url;
+      });
+    } else {
+      document.location = url;
+    }
+    return false;
   },
 
   setMap: function(){
