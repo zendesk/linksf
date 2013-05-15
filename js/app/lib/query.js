@@ -3,24 +3,15 @@ var $        = require('jquery'),
     _        = require('underscore'),
     Facility = require('cloud/models/facility');
 
-var location = function() {
-  var lat, lon;
-
+var runWithLocation = function(callback) {
   if ( navigator.geolocation ) {
     navigator.geolocation.getCurrentPosition(function(position) {
-      lat = position.coords.latitude;
-      lon = position.coords.longitude;
+      callback(position.coords.latitude,
+               position.coords.longitude);
     }, function(error) {
-      console.log(error);
+      callback(37.782355, -122.409825);
     });
   }
-
-  if (!(lat && lon)) {
-    lat = 37.782355;
-    lon = -122.409825;
-  }
-
-  return {lat: lat, lon: lon};
 };
 
 var queryFunction = function(runWhere) {
@@ -37,12 +28,22 @@ var submit = function(params) {
 
   // choose where to run the query
   // var query = queryFunction(params.runwhere);
-  var query = queryFunction('browser');
 
   // add location if proximity sorting
   if ( params.sort === 'near' ) {
-    $.extend(params, location());
+    runWithLocation(function(lat, lon) {
+      $.extend(params, {lat: lat, lon: lon});
+      performQuery(params, deferred);
+    });
+  } else {
+    performQuery(params, deferred);
   }
+
+  return deferred.promise();
+};
+
+var performQuery = function(params, deferred) {
+  var query = queryFunction('browser');
 
   query(params, {
     success: function(result) {
@@ -54,8 +55,6 @@ var submit = function(params) {
       deferred.reject(err);
     }
   });
-
-  return deferred.promise();
 };
 
 // TODO -- hoist this up a layer into "browse" -- or wherever we keep the direct parse communication lib.
