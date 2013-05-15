@@ -47,13 +47,13 @@ var timeStringToOffset = function(timeString) {
 /* Input format:
 
  {
-   Mon: "9:00AM-5:00PM"
-   Tue: "9:00AM-11:00AM,1:00PM-5:00PM"
-   Wed: "9:00AM-5:00PM"
-   Thu: "9:00AM-5:00PM"
-   Fri: "9:00AM-5:00PM"
-   Sat: "9:00AM-11:00AM"
-   Sun: "9:00AM-11:00AM"
+   "Mon": "9:00AM-5:00PM",
+   "Tue": "9:00AM-11:00AM,1:00PM-5:00PM",
+   "Wed": "9:00AM-5:00PM",
+   "Thu": "9:00AM-5:00PM",
+   "Fri": "9:00AM-5:00PM",
+   "Sat": "9:00AM-11:00AM",
+   "Sun": "9:00AM-11:00AM"
  }
 
 */
