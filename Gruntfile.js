@@ -32,10 +32,10 @@ module.exports = function(grunt) {
       ],
       tasks: [
         'jshint',
-        'simplemocha'
-        // 'sass',
-        // 'browserify',
-        // 'browserify:admin'
+        'simplemocha',
+        'sass',
+        'browserify',
+        'browserify:admin'
       ]
     },
     simplemocha: {
@@ -51,7 +51,7 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         files: {
-          'css/static/output.css': ['css/**/*.scss'], 
+          'css/static/output.css': ['css/**/*.scss'],
           'css/static/admin.css':  ['css/admin/**/*.scss']
         }
       }
@@ -63,7 +63,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-simple-mocha');
   grunt.loadNpmTasks('grunt-contrib-sass');
 
-  var browserifyThings = function(entryPoint, outputJS) { 
+  var browserifyThings = function(entryPoint, outputJS) {
     var browserify  = require('browserify'),
         shim        = require('browserify-shim'),
         done        = this.async();
