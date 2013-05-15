@@ -8,6 +8,14 @@ var ListView = Backbone.View.extend({
   el: $("#linksf"),
   template: require('templates/list'),
 
+  events: {
+    "click #filter": 'toggleSearch'
+  },
+
+  toggleSearch: function() {
+    this.$("#query").toggle();
+  },
+
   submitQuery: function(extra_params) {
     // serialize the form
     var params = $('#query').serializeObject();
