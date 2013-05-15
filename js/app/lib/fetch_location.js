@@ -7,8 +7,8 @@ function fetchCurrentLocation(deferred) {
   if ( navigator.geolocation ) {
     navigator.geolocation.getCurrentPosition(function(position) {
       deferred.resolve({
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude
+        lat: position.coords.latitude,
+        lon: position.coords.longitude
       });
     }, function(error) {
       deferred.reject();
