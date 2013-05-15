@@ -24,7 +24,7 @@ var DetailView = Backbone.View.extend({
   },
 
   launchDirections: function() {
-    var url = "http://maps.google.com/maps?daddr=" +
+    var url = "comgooglemaps://?daddr=" +
               this.model.address +
               "@" +
               this.model.location.latitude +
