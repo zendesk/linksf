@@ -1,9 +1,10 @@
 /*globals window, document */
 
-var Backbone = require('backbone'),
-    $ = require('jquery'),
-    _ = require('underscore'),
-	gmaps = require('google-maps');
+var Backbone      = require('backbone'),
+    $             = require('jquery'),
+    _             = require('underscore'),
+    gmaps         = require('google-maps'),
+    fetchLocation = require('cloud/lib/fetch_location');
 
 var DetailView = Backbone.View.extend({
   el: $("#linksf"),
@@ -30,19 +31,15 @@ var DetailView = Backbone.View.extend({
               this.model.location.latitude +
               "," +
               this.model.location.longitude;
-
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        var lat = position.coords.latitude,
-            lon = position.coords.longitude;
-        url = url + "&saddr=" + lat + "," + lon;
+    
+    fetchLocation()
+      .done(function(loc) {
+        url = url + "&saddr=" + loc.lat + "," + loc.lon;
         document.location = url;
-      }, function() {
+      })
+      .fail(function() {
         document.location = url;
       });
-    } else {
-      document.location = url;
-    }
     return false;
   },
 
