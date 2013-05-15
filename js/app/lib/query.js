@@ -1,17 +1,17 @@
 /*globals alert*/
-var $        = require('jquery'),
-    _        = require('underscore'),
-    Facility = require('cloud/models/facility');
+var $             = require('jquery'),
+    _             = require('underscore'),
+    Facility      = require('cloud/models/facility'),
+    fetchLocation = require('cloud/lib/fetch_location');
 
 var runWithLocation = function(callback) {
-  if ( navigator.geolocation ) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      callback(position.coords.latitude,
-               position.coords.longitude);
-    }, function(error) {
-      callback(37.782355, -122.409825);
+  fetchLocation()
+    .done(function(loc) {
+      callback(loc);
+    })
+    .fail(function() {
+      callback({lat: 37.782355, lon:-122.409825});
     });
-  }
 };
 
 var queryFunction = function(runWhere) {
@@ -31,8 +31,8 @@ var submit = function(params) {
 
   // add location if proximity sorting
   if ( params.sort === 'near' ) {
-    runWithLocation(function(lat, lon) {
-      $.extend(params, {lat: lat, lon: lon});
+    runWithLocation(function(loc) {
+      $.extend(params, loc);
       performQuery(params, deferred);
     });
   } else {
