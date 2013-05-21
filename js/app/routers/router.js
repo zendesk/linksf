@@ -3,6 +3,7 @@ var $ = require('jquery'),
     DetailView = require('views/detail_view'),
     ListView = require('views/list_view'),
     EditView = require('views/edit_view'),
+    IndexView = require('views/index_view'),
     AdminListView = require('views/admin_list_view'),
     Query = require('lib/query'),
     _ = require('underscore'),
@@ -10,13 +11,18 @@ var $ = require('jquery'),
 
 var Router = Backbone.Router.extend({
   routes: {
-    '': 'list',
+    '': 'index',
     'query/:category': 'query',
     'detail/:id': 'detail',
     'edit/:id': 'edit'
   },
 
   listViewClass: ListView,
+
+  index: function() {
+    var indexView = new IndexView();
+    return indexView.render();
+  },
 
   query: function(category) {
     var listViewClass = this.listViewClass;
