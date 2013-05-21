@@ -13,5 +13,4 @@
 //       facility.isOpen().should.eql("Open");
 //     });    
 //   });
-
 // });
