@@ -71,6 +71,8 @@ var DetailView = Backbone.View.extend({
       $(this).text($(this).text().substr(0,52)+"...");}
     });
   $('.more').click(function(){$(this).parent().next($('.seeMore')).slideToggle();});
+  $('.prevrow').last().remove();
+
   }
 
 });
