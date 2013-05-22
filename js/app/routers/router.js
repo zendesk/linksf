@@ -37,6 +37,7 @@ var Router = Backbone.Router.extend({
         collection: facilities,
         category: category
       });
+
       listView.render();
     });
   },
@@ -45,11 +46,6 @@ var Router = Backbone.Router.extend({
     var listView = new this.listViewClass({ collection: facilities });
 
     listView.render();
-
-    // render when facilities is reset
-    listView.listenTo(facilities, 'reset', function() {
-      listView.render();
-    });
 
     // run a default query
     if ( facilities.length === 0 ) {
