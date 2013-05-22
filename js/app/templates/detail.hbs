@@ -2,25 +2,32 @@
 <div id="container">
   <div id="facility-header">{{name}}</div>
   <h3>{{name}}</h3>
-  <p>
-  <table class="time">
+
+  <table id="facility-main-info">
     <tr>
-      <td style="vertical-align: top;"><b>Hours:</b>&nbsp;</td>
+      <td class="title">Hours:</td>
       <td>
         {{#each services}}
           {{#if hours}}<p style="margin: 0;">{{hours}} ({{name}})</p>{{/if}}
         {{/each}}
       </td>
     </tr>
+    <tr>
+      <td class="title">Allowed:</td>
+      <td>{{demographics}}</td>
+    </tr>
+    <tr>
+      <td class="title">Services:</td>
+      <td>
+        {{#each services}}
+          <span>{{this.name}} </span>
+        {{/each}}
+      </td>
+    </tr>
   </table>
-  </p>
-  <p><span><b>Allowed</b>: </span><span>{{demographics}}</span></p>
-  <p><span><b>Services</b>: </span>
-  {{#each services}}
-    <span>{{this.name}} </span>
-  {{/each}}
-  </p>
+
   <br/>
+
   <p>{{notes}}</p>
   <div class="round-shadow">
     <div id="location-map"></div>
