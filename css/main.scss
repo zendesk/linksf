@@ -69,12 +69,12 @@ form {
 }
 
 .facility-status-open {
-  @include facility-status
+  @include facility-status;
   color: #25BD2B; // green
 }
 
 .facility-status-closed {
-  @include facility-status
+  @include facility-status;
   color: #C43D29; // red
 }
 
