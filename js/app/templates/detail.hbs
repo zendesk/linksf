@@ -1,34 +1,43 @@
 {{#with facility}}
 <div id="container">
   <div id="facility-header">{{name}}</div>
-	<h3>{{name}}</h3>
-	<p class="time">
-    pretend these are hours for the moment.
-	</p>
-	<p><span><b>Allowed</b>: </span><span>{{demographics}}</span></p>
-	<p><span><b>Services</b>: </span>
-	{{#each services}}
-		<span>{{this.name}} </span>
-	{{/each}}
-	</p>
-	<br/>
-	<p>{{notes}}</p>
-	<div class="round-shadow">
-		<div id="location-map"></div>
-		<div class="address">{{address}}</div>
-	</div>
-	<div class="round-shadow">
-		<span class="info-row">Call: <a href="tel:{{phone}}">{{phone}}</a></span><span class="prevrow"></span>
-		<span class="info-row directions"><a href="#">Directions</a></span>
-	</div>
-	<p>Information</p>
-	<div class="round-shadow serviceDetail">
-		{{#each services}}
-			<div class="info-row">
-				<div class="desco"><b>{{this.name}}</b></div>
-			</div>
-			<span class="prevrow"></span>
-		{{/each}}
-	</div>
+  <h3>{{name}}</h3>
+  <p>
+  <table class="time">
+    <tr>
+      <td style="vertical-align: top;"><b>Hours:</b>&nbsp;</td>
+      <td>
+        {{#each services}}
+          {{#if hours}}<p style="margin: 0;">{{hours}} ({{name}})</p>{{/if}}
+        {{/each}}
+      </td>
+    </tr>
+  </table>
+  </p>
+  <p><span><b>Allowed</b>: </span><span>{{demographics}}</span></p>
+  <p><span><b>Services</b>: </span>
+  {{#each services}}
+    <span>{{this.name}} </span>
+  {{/each}}
+  </p>
+  <br/>
+  <p>{{notes}}</p>
+  <div class="round-shadow">
+    <div id="location-map"></div>
+    <div class="address">{{address}}</div>
+  </div>
+  <div class="round-shadow">
+    <span class="info-row">Call: <a href="tel:{{phone}}">{{phone}}</a></span><span class="prevrow"></span>
+    <span class="info-row directions"><a href="#">Directions</a></span>
+  </div>
+  <p>Information</p>
+  <div class="round-shadow serviceDetail">
+    {{#each services}}
+      <div class="info-row">
+        <div class="desco"><b>{{this.name}}</b></div>
+      </div>
+      <span class="prevrow"></span>
+    {{/each}}
+  </div>
 </div>
 {{/with}}
