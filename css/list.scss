@@ -1,0 +1,28 @@
+.query {
+  padding: 10px;
+  background-color: #eee;
+  border-bottom: 1px solid #bbb;
+
+  .actions {
+    text-align: right;
+    .dismiss {
+      margin-right: 25px;
+      color: red;
+    }
+  }
+  .query-option {
+    display: inline-block;
+    padding: 4px 12px;
+    margin-bottom: 5px;
+    text-align: center;
+    cursor: pointer;
+    vertical-align: middle;
+    color: #49afcd;
+
+    &.selected {
+      background-color: #49afcd;
+      border-radius: 4px;
+      color: white;
+    }
+  }
+}
