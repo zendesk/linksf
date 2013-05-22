@@ -37,9 +37,13 @@ var ListView = Backbone.View.extend({
       sort: sort
     };
 
+    this.options.categories = categories;
+
     Query.submit(params).done(function(results) {
       // populate with results
       facilities.reset(results.data);
+      var router = require('routers/router').instance;
+      router.navigate("list");
     });
 
   },
@@ -52,7 +56,11 @@ var ListView = Backbone.View.extend({
 
   resetFilters: function() {
     this.$(".query .selected").removeClass("selected");
-    this.$categoryOption(this.options.category).addClass("selected");
+    var self = this;
+    _.each(this.options.categories, function(category) {
+      self.$categoryOption(category).addClass("selected");
+    });
+
   },
 
   $categoryOption: function(category) {

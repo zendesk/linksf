@@ -12,6 +12,7 @@ var $ = require('jquery'),
 var Router = Backbone.Router.extend({
   routes: {
     '': 'index',
+    'list': 'index',
     'query/:category': 'query',
     'detail/:id': 'detail',
     'edit/:id': 'edit'
@@ -35,7 +36,7 @@ var Router = Backbone.Router.extend({
       facilities.reset(results.data);
       var listView = new listViewClass({
         collection: facilities,
-        category: category
+        categories: [category]
       });
 
       listView.render();
