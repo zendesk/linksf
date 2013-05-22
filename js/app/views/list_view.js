@@ -18,6 +18,10 @@ var ListView = Backbone.View.extend({
     "click .query .dismiss": 'dismissFilters'
   },
 
+  initialize: function() {
+    this.listenTo(this.collection, 'reset', this.render);
+  },
+
   toggleSearch: function() {
     this.$(".query").toggle();
   },
