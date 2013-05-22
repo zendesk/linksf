@@ -4,6 +4,10 @@ var Backbone = require('backbone'),
     _ = require('underscore'),
     facilities = require('collections/facilities').instance;
 
+function validCategory(category) {
+  return category && (/[a-z]+/).test(category.toString());
+}
+
 var ListView = Backbone.View.extend({
   el: $("#linksf"),
   template: require('templates/list'),
@@ -44,6 +48,16 @@ var ListView = Backbone.View.extend({
 
   resetFilters: function() {
     this.$(".query .selected").removeClass("selected");
+    this.$categoryOption(this.options.category).addClass("selected");
+  },
+
+  $categoryOption: function(category) {
+    if(validCategory(category)) {
+      return this.$(".query-option-category [data-value=" + category + "]").addClass("selected");
+    } else {
+      return $();
+    }
+
   },
 
   submitQuery: function(extra_params) {
@@ -78,6 +92,7 @@ var ListView = Backbone.View.extend({
       $(this).toggleClass("selected");
     });
 
+    this.resetFilters();
     return this;
   },
 

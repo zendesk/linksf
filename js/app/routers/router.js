@@ -33,7 +33,10 @@ var Router = Backbone.Router.extend({
       limit: 20
     }).done(function(results) {
       facilities.reset(results.data);
-      var listView = new listViewClass({ collection: facilities });
+      var listView = new listViewClass({
+        collection: facilities,
+        category: category
+      });
       listView.render();
     });
   },
