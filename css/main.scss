@@ -63,6 +63,21 @@ form {
 .facility-address {
 }
 
+@mixin facility-status {
+  float: right;
+  padding-right: 10px;
+}
+
+.facility-status-open {
+  @include facility-status
+  color: #25BD2B; // green
+}
+
+.facility-status-closed {
+  @include facility-status
+  color: #C43D29; // red
+}
+
 .facility-notes {
   height: 36px;
   color: #8F8F8F;
