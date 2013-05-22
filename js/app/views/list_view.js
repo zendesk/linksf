@@ -9,16 +9,46 @@ var ListView = Backbone.View.extend({
   template: require('templates/list'),
 
   events: {
-    "click #filter": 'toggleSearch'
+    "click #filter": 'toggleSearch',
+    "click .query .submit-query": 'doFilterQuery',
+    "click .query .dismiss": 'dismissFilters'
   },
 
   toggleSearch: function() {
-    this.$("#query").toggle();
+    this.$(".query").toggle();
+  },
+
+  doFilterQuery: function() {
+    var sort = this.$(".query-option-sort .query-option.selected").data("value"),
+        categories = this.$(".query-option-category .query-option.selected").map(function(n, el) { return $(el).data('value'); });
+
+    var params = {
+      filter: {
+        categories: categories
+      },
+      sort: sort
+    };
+
+    Query.submit(params).done(function(results) {
+      // populate with results
+      facilities.reset(results.data);
+    });
+
+  },
+
+  dismissFilters: function() {
+    this.resetFilters();
+    this.$(".query").hide();
+    return false;
+  },
+
+  resetFilters: function() {
+    this.$(".query .selected").removeClass("selected");
   },
 
   submitQuery: function(extra_params) {
     // serialize the form
-    var params = $('#query').serializeObject();
+    var params = $('.query form').serializeObject();
 
     $.extend(params, extra_params);
     console.log(extra_params);
@@ -26,11 +56,9 @@ var ListView = Backbone.View.extend({
     params.limit = this.defaultLimit;
 
     Query.submit(params).done(function(results) {
-      // populate with results
       facilities.reset(results.data);
     });
 
-    // prevent default form submission
     return false;
   },
 
@@ -39,11 +67,17 @@ var ListView = Backbone.View.extend({
     var templateJson = this.flattenServices(deepJson);
 
     // replace with template
-    $(this.el).html(this.template({ facilities: templateJson }));
-    $('#query').hide();
+    this.$el.html(this.template({ facilities: templateJson }));
+    this.$('.query').hide();
+    this.$('.option-group-exclusive .query-option').click(function() {
+      $(this).closest(".option-group-exclusive").find(".query-option").removeClass("selected");
+      $(this).toggleClass("selected");
+    });
 
-    // bind to form submission
-    $('#query').submit($.proxy(this.submitQuery, this));
+    this.$('.option-group .query-option').click(function() {
+      $(this).toggleClass("selected");
+    });
+
     return this;
   },
 
