@@ -33,14 +33,7 @@ var DetailView = Backbone.View.extend({
                                    this.model.location.longitude),
         url = urlBase + dAddr;
 
-    fetchLocation()
-      .done(function(loc) {
-        url = url + "&saddr=" + loc.lat + "," + loc.lon;
-        document.location = url;
-      })
-      .fail(function() {
-        document.location = url;
-      });
+    document.location = url;
     return false;
   },
 
