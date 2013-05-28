@@ -14,7 +14,7 @@
   padding-top: 5px;
 }
 
-#facility-header { 
+#facility-header {
   height: 30px;
   font-size: 18px;
   color: #999999;
@@ -22,6 +22,17 @@
   padding-top: 6px;
   padding-left: 4px;
 
+}
+
+#facility-main-info {
+  td {
+    padding: 5px;
+  }
+
+  td.title {
+    font-weight: bold;
+    vertical-align: top;
+  }
 }
 
 .round-shadow{

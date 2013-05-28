@@ -7,21 +7,77 @@ var Backbone = require('backbone'),
 
 Handlebars.registerPartial("facilityStatus", require('templates/facility_status'));
 
+function validCategory(category) {
+  return category && (/[a-z]+/).test(category.toString());
+}
+
 var ListView = Backbone.View.extend({
   el: $("#linksf"),
   template: require('templates/list'),
 
   events: {
-    "click #filter": 'toggleSearch'
+    "click #filter": 'toggleSearch',
+    "click .query .submit-query": 'doFilterQuery',
+    "click .query .dismiss": 'dismissFilters'
+  },
+
+  initialize: function() {
+    this.listenTo(this.collection, 'reset', this.render);
   },
 
   toggleSearch: function() {
-    this.$("#query").toggle();
+    this.$(".query").toggle();
+  },
+
+  doFilterQuery: function() {
+    var sort = this.$(".query-option-sort .query-option.selected").data("value"),
+        categories = this.$(".query-option-category .query-option.selected").map(function(n, el) { return $(el).data('value'); });
+
+    var params = {
+      filter: {
+        categories: categories
+      },
+      sort: sort
+    };
+
+    this.options.categories = categories;
+
+    Query.submit(params).done(function(results) {
+      // populate with results
+      facilities.reset(results.data);
+      var router = require('routers/router').instance;
+      router.navigate("list");
+    });
+
+  },
+
+  dismissFilters: function() {
+    this.resetFilters();
+    this.$(".query").hide();
+    return false;
+  },
+
+  resetFilters: function() {
+    this.$(".query .selected").removeClass("selected");
+    var self = this;
+    _.each(this.options.categories, function(category) {
+      self.$categoryOption(category).addClass("selected");
+    });
+
+  },
+
+  $categoryOption: function(category) {
+    if(validCategory(category)) {
+      return this.$(".query-option-category [data-value=" + category + "]").addClass("selected");
+    } else {
+      return $();
+    }
+
   },
 
   submitQuery: function(extra_params) {
     // serialize the form
-    var params = $('#query').serializeObject();
+    var params = $('.query form').serializeObject();
 
     $.extend(params, extra_params);
     console.log(extra_params);
@@ -29,11 +85,9 @@ var ListView = Backbone.View.extend({
     params.limit = this.defaultLimit;
 
     Query.submit(params).done(function(results) {
-      // populate with results
       facilities.reset(results.data);
     });
 
-    // prevent default form submission
     return false;
   },
 
@@ -42,11 +96,18 @@ var ListView = Backbone.View.extend({
     var templateJson = this.flattenServices(deepJson);
 
     // replace with template
-    $(this.el).html(this.template({ facilities: templateJson }));
-    $('#query').hide();
+    this.$el.html(this.template({ facilities: templateJson }));
+    this.$('.query').hide();
+    this.$('.option-group-exclusive .query-option').click(function() {
+      $(this).closest(".option-group-exclusive").find(".query-option").removeClass("selected");
+      $(this).toggleClass("selected");
+    });
 
-    // bind to form submission
-    $('#query').submit($.proxy(this.submitQuery, this));
+    this.$('.option-group .query-option').click(function() {
+      $(this).toggleClass("selected");
+    });
+
+    this.resetFilters();
     return this;
   },
 
