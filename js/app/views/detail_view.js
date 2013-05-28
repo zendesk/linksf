@@ -25,13 +25,14 @@ var DetailView = Backbone.View.extend({
   },
 
   launchDirections: function() {
-    var url = "comgooglemaps://?daddr=" +
-              this.model.address +
-              "@" +
-              this.model.location.latitude +
-              "," +
-              this.model.location.longitude;
-    
+    var urlBase = "comgooglemaps://?daddr=",
+        dAddr = encodeURIComponent(this.model.address +
+                                   "@" +
+                                   this.model.location.latitude +
+                                   "," +
+                                   this.model.location.longitude),
+        url = urlBase + dAddr;
+
     fetchLocation()
       .done(function(loc) {
         url = url + "&saddr=" + loc.lat + "," + loc.lon;
