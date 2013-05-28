@@ -15,7 +15,7 @@ $(function() {
 
   // use filter button to toggle form
   $('#filter').click(function() {
-    $('#query').toggle();
+    $('.query').toggle();
   });
 
   // navigate to root route

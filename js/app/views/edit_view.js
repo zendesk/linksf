@@ -16,6 +16,7 @@ var EditView = Backbone.View.extend({
       $(prefix + "_category").children("[value='" + service.get('category') + "']").prop('selected', true);
     });
   },
+
   setupForm: function() {
     var g = this.model.get('gender');
     var el;
@@ -36,7 +37,30 @@ var EditView = Backbone.View.extend({
     }
 
     this.setupServices();
+    $('#submit').click(function() { 
+      this.saveForm();
+    }.bind(this));
   },
+
+  saveForm: function() {
+    var formValues = $('#facilityForm').serializeObject();
+    if ( formValues.gender === "" ) {
+      formValues.gender = null;
+    }
+
+    if ( $("#age_everyone").prop('checked') ) {
+      formValues.age = null;
+    } else {
+      var ages = _.map($("[name='age']"), function(cb) {
+        return $(cb).attr('value');
+      });
+
+      ages = _(ages).compact().join(',');
+      formValues.age = ages;
+    }
+    console.log(formValues);
+  },
+
   render: function() {
     $(this.el).html(this.template({facility: this.model.presentJSON()}));
     this.setupForm();

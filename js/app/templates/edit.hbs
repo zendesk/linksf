@@ -12,14 +12,14 @@
     <div class="control-group">
       <label class="control-label" for="address">Address</label>
       <div class="controls">
-        <input type="text" name="name" value="{{address}}">
+        <input type="text" name="address" value="{{address}}">
       </div>
     </div>
     
     <div class="control-group">
       <label class="control-label" for="phone">Phone</label>
       <div class="controls">
-        <input type="text" name="name" value="{{phone}}">
+        <input type="text" name="phone" value="{{phone}}">
       </div>
     </div>
 
@@ -42,15 +42,20 @@
       <label class="control-label" for="age">Ages</label>
       <div class="controls"> 
         <input type="checkbox" name="age" id="age_everyone" value=""> Everyone<br/>
-        <input type="checkbox" name="age" id="age_C" value=""> Children<br/>
-        <input type="checkbox" name="age" id="age_Y" value=""> Youth<br/>
-        <input type="checkbox" name="age" id="age_A" value=""> Adults<br/>
-        <input type="checkbox" name="age" id="age_S" value=""> Seniors<br/>
+        <input type="checkbox" name="age" id="age_C" value="C"> Children<br/>
+        <input type="checkbox" name="age" id="age_Y" value="Y"> Youth<br/>
+        <input type="checkbox" name="age" id="age_A" value="A"> Adults<br/>
+        <input type="checkbox" name="age" id="age_S" value="S"> Seniors<br/>
       </div>
     </div>
     {{#each services}}
       {{> editService}}
     {{/each}}
+    <div class="control-group" style="padding-top:20px;">
+      <div class="controls">
+        <input type="button" id="submit" value='save changes' class="btn-large">
+      </div>
+    </div>
   </form>
 </div>
 {{/with}}

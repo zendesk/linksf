@@ -3,6 +3,7 @@ var $ = require('jquery'),
     DetailView = require('views/detail_view'),
     ListView = require('views/list_view'),
     EditView = require('views/edit_view'),
+    IndexView = require('views/index_view'),
     AdminListView = require('views/admin_list_view'),
     Query = require('lib/query'),
     _ = require('underscore'),
@@ -10,22 +11,42 @@ var $ = require('jquery'),
 
 var Router = Backbone.Router.extend({
   routes: {
-    '': 'list',
+    '': 'index',
+    'list': 'index',
+    'query/:category': 'query',
     'detail/:id': 'detail',
     'edit/:id': 'edit'
   },
 
   listViewClass: ListView,
 
+  index: function() {
+    var indexView = new IndexView();
+    return indexView.render();
+  },
+
+  query: function(category) {
+    var listViewClass = this.listViewClass;
+    Query.submit({
+      filter: {
+        categories: [category]
+      },
+      limit: 20
+    }).done(function(results) {
+      facilities.reset(results.data);
+      var listView = new listViewClass({
+        collection: facilities,
+        categories: [category]
+      });
+
+      listView.render();
+    });
+  },
+
   list: function() {
     var listView = new this.listViewClass({ collection: facilities });
 
     listView.render();
-
-    // render when facilities is reset
-    listView.listenTo(facilities, 'reset', function() {
-      listView.render();
-    });
 
     // run a default query
     if ( facilities.length === 0 ) {
@@ -38,19 +59,19 @@ var Router = Backbone.Router.extend({
     return detailView.render();
   },
 
-  renderEdit: function(facility) { 
+  renderEdit: function(facility) {
     var editView = new EditView({ model: facility });
     return editView.render();
   },
 
   detail: function(id) {
-    this._getFacility(id, function(facility) { 
+    this._getFacility(id, function(facility) {
       this.renderFacility(facility);
     }.bind(this));
   },
 
   edit: function(id) {
-    this._getFacility(id, function(fac) { 
+    this._getFacility(id, function(fac) {
       this.renderEdit(fac);
     }.bind(this));
   },

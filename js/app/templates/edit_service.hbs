@@ -1,1 +1,29 @@
-some edit service template stuff here
+  <div class="row service-edit-row">
+  <div class="span2">
+    <label for="service[{{@index}}_name">Service name</label>
+    <input type="text" name="service[{{@index}}]_name" value="{{name}}" class="span2">
+  </div>
+  <div class="span2">
+    <label for="service[{{@index}}]_category">Category</label>
+    <select name="service[{{@index}}]_category" id="service[{{@index}}]_category" class="span2">
+      <option value="food">Food</option>
+      <option value="shelter">Shelter</option>
+      <option value="hygiene">Hygiene</option>
+      <option value="medical">Medical</option>
+      <option value="technology">Technology</option>
+    </select>
+  </div>
+  <div class="span3">
+    <label for="service[{{@index}}]_description">Description</label>
+    <input type="text" class="span3" name="service[{{@index}}]_description" value="{{description}}">
+  </div>
+  <div class="span5">
+    <label for="service[{{@index}}]_notes">Notes</label>
+    <textarea class="span5" rows=4 name="service[{{@index}}]_notes">{{notes}}</textarea>
+  </div>
+  <div class="span5">
+    <label>Open Hours</label>
+    <input type="text" class="span3 hours_description" name="service[{{@index}}]_hours" value="{{hours}}">
+    <span></span>
+  </div>
+</div>
