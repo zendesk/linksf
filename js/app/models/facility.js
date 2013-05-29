@@ -46,20 +46,31 @@ module.exports = Parse.Object.extend('Facility', {
     return match;
   },
 
-  isOpen: function(now) {
-    now = now || new Date();
-    var hours = this.hours();
-    var open = hours.within(now);
-    if (!hours){
-      return "Unknown";
+  hasStatus: function() {
+    return (this.status() !== 'UNKNOWN');
+  },
+
+  status: function() {
+    var hours, open;
+
+    if ( this._status ) return this._status;
+
+    // wrap in try because we may not have data or the data may not parse
+    try {
+      hours = this.hours();
+      open = hours.within(new Date());
+    } catch (e) {
+      console.log(e);
+      this._status = 'UNKNOWN';
     }
-    else if (open) {
-      return "Open";
-    } else if (!open) {
-      return "Closed";
-    }else{
-      return "Unknown";
+
+    if ( open ) {
+      this._status = 'OPEN';
+    } else {
+      this._status = 'CLOSED';
     }
+
+    return this._status;
   },
 
   hours: function() {
