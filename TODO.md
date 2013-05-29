@@ -9,6 +9,7 @@
 
 1. Icons for options
 1. Link to 'About Us' and/or 'Contact'
+2. All buttons should be visible on the screen at once
 
 ### Regressions
 
