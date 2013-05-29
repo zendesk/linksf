@@ -1,5 +1,5 @@
-namespace :deploy do 
-  task :s3 do 
+namespace :deploy do
+  task :s3 do
     if `which s3cmd`.chomp.empty?
       puts 'please install and configure s3cmd'
     end
@@ -15,7 +15,7 @@ namespace :deploy do
 
 end
 
-task :grunt do 
+task :grunt do
   abort unless system("grunt")
 end
 

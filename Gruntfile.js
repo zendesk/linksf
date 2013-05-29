@@ -137,7 +137,19 @@ module.exports = function(grunt) {
     });
   };
 
-  grunt.registerTask('browserify', 'Browserify and concatenate app sources', function() { browserifyThings.call(this, "./js/app/index.js", "./js/static/output.js") });
-  grunt.registerTask('browserify:admin', 'Browserify and concatenate admin sources', function() { browserifyThings.call(this, "./js/app/admin.js", "./js/static/admin.js") });
-  grunt.registerTask('default', ['jshint', 'simplemocha', 'sass', 'browserify', 'browserify:admin']);
+  grunt.registerTask('browserify', 'Browserify and concatenate app sources', function() {
+    browserifyThings.call(this, "./js/app/index.js", "./js/static/output.js")
+  });
+
+  grunt.registerTask('browserify:admin', 'Browserify and concatenate admin sources', function() {
+    browserifyThings.call(this, "./js/app/admin.js", "./js/static/admin.js")
+  });
+
+  grunt.registerTask('default', [
+    'jshint',
+    'simplemocha',
+    'sass',
+    'browserify',
+    'browserify:admin'
+  ]);
 };
