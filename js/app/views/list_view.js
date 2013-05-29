@@ -2,7 +2,10 @@ var Backbone = require('backbone'),
     $ = require('jquery'),
     Query = require('lib/query'),
     _ = require('underscore'),
+    Handlebars = require('handlebars-runtime'),
     facilities = require('collections/facilities').instance;
+
+Handlebars.registerPartial("facilityStatus", require('templates/facility_status'));
 
 function validCategory(category) {
   return category && (/[a-z]+/).test(category.toString());
