@@ -4,6 +4,7 @@
 1. hours pt 1: instructions for hours format next to text input field
 1. hours pt 2: live preview of hours format
 1. hours pt 3: usable hours editing widget
+2. Ability to send email to a facility so they can verify their information.
 
 ### Home
 
