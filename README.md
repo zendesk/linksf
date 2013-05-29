@@ -7,7 +7,7 @@ The platform has two goals:
 
 For example, if I'm a woman with two children and need temporary housing, I would want to be able to find the nearest women/children-only shelter that's open right now.
 
-This is part of our Community Benefit Agreement with the city. Steven told Tiffany we would shoot to get a first version done by end of April.
+This is part of our Community Benefit Agreement with the city.
 
 From Steven:
 > On the surface, this seems like a straightforward database design exercise with a query interface, right? In the back of my mind, I think there's larger benefits here in understanding interest patterns in the demographic of the Mid-Market. What could you do as a city leader if you knew in real-time:
@@ -26,24 +26,20 @@ The current release is deployed to http://link-sf.com.
 
 The original mockup is at http://f.cl.ly/items/2q1D093m3R3W2C3s3M40/TTL%20Mobile%20Resource.pdf.
 
-### Workflow
-
-We want to write JS like civilized folk.
-
-#### Setup
+### Setup
 
 ```
 npm install
 npm install -g grunt-cli
 ```
 
-#### Development
+### Development
 
 There is a `Gruntfile` that describes the available tasks.
 
 `grunt watch` invokes verification and compilation when JavaScript, HTML, SCSS, and Handlebars file changes are detected. Output goes to static files that are included in index.html and admin.html.
 
-#### Deploy
+### Deploy
 
 `rake deploy` will generate static assets then use the `s3cmd` CLI tool to upload them to AWS.
 
