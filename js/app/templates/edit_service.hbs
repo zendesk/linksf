@@ -1,11 +1,12 @@
-  <div class="row service-edit-row">
+<div class="row service-edit-row">
+  <input type="hidden" name="services[{{@index}}][id]" value="{{objectId}}"> 
   <div class="span2">
-    <label for="service[{{@index}}_name">Service name</label>
-    <input type="text" name="service[{{@index}}]_name" value="{{name}}" class="span2">
+    <label for="services[{{@index}}][name]">Service name</label>
+    <input type="text" name="services[{{@index}}][name]" value="{{name}}" class="span2">
   </div>
   <div class="span2">
-    <label for="service[{{@index}}]_category">Category</label>
-    <select name="service[{{@index}}]_category" id="service[{{@index}}]_category" class="span2">
+    <label for="services[{{@index}}][category]">Category</label>
+    <select name="services[{{@index}}][category]" id="service[{{@index}}]_category" class="span2">
       <option value="food">Food</option>
       <option value="shelter">Shelter</option>
       <option value="hygiene">Hygiene</option>
@@ -14,16 +15,16 @@
     </select>
   </div>
   <div class="span3">
-    <label for="service[{{@index}}]_description">Description</label>
-    <input type="text" class="span3" name="service[{{@index}}]_description" value="{{description}}">
+    <label for="services[{{@index}}][description]">Description</label>
+    <input type="text" class="span3" name="services[{{@index}}][description]" value="{{description}}">
   </div>
   <div class="span5">
-    <label for="service[{{@index}}]_notes">Notes</label>
-    <textarea class="span5" rows=4 name="service[{{@index}}]_notes">{{notes}}</textarea>
+    <label for="services[{{@index}}][notes]">Notes</label>
+    <textarea class="span5" rows=4 name="services[{{@index}}][notes]">{{notes}}</textarea>
   </div>
   <div class="span5">
     <label>Open Hours</label>
-    <input type="text" class="span3 hours_description" name="service[{{@index}}]_hours" value="{{hours}}">
+    <input type="text" class="span3 hours_description" name="services[{{@index}}][hours]" value="{{hours}}">
     <span></span>
   </div>
 </div>
