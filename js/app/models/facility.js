@@ -46,8 +46,8 @@ module.exports = Parse.Object.extend('Facility', {
     return match;
   },
 
-  hasStatus: function() {
-    return (this.status() !== 'UNKNOWN');
+  hasKnownStatus: function() {
+    return (this.status() !== 'unknown');
   },
 
   status: function() {
@@ -63,11 +63,11 @@ module.exports = Parse.Object.extend('Facility', {
     }
 
     if ( open === true ) {
-      this._status = 'OPEN';
+      this._status = 'open';
     } else if ( open === false ) {
-      this._status = 'CLOSED';
+      this._status = 'closed';
     } else {
-      this._status = 'UNKNOWN';
+      this._status = 'unknown';
     }
 
     return this._status;
