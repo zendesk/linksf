@@ -51,6 +51,13 @@
     {{#each services}}
       {{> editService}}
     {{/each}}
+    <div class="alert" id="facilitySaved" style="display:none;">
+      {{name}} saved.
+    </div>
+    <div class="alert" id="facilitySaveError" style="display:none;">
+      Error saving {{name}}
+    </div>
+
     <div class="control-group" style="padding-top:20px;">
       <div class="controls">
         <input type="button" id="submit" value='save changes' class="btn-large">

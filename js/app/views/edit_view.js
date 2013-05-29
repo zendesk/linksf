@@ -43,6 +43,8 @@ var EditView = Backbone.View.extend({
   },
 
   saveForm: function() {
+    var self = this;
+    var servicePromises = [];
     var formValues = $('#facilityForm').serializeObject();
     if ( formValues.gender === "" ) {
       formValues.gender = null;
@@ -51,14 +53,53 @@ var EditView = Backbone.View.extend({
     if ( $("#age_everyone").prop('checked') ) {
       formValues.age = null;
     } else {
-      var ages = _.map($("[name='age']"), function(cb) {
+      var ages = _.map($("[name=age]input:checked"), function(cb) {
         return $(cb).attr('value');
       });
 
-      ages = _(ages).compact().join(',');
+      ages = _(ages).compact();
       formValues.age = ages;
     }
-    console.log(formValues);
+
+    var services = formValues.services;
+
+    _.each(formValues.services, function(service, i) { 
+      self.model.get("services")[i].set(service);
+    });
+   
+    delete formValues.services;
+    self.model.set(formValues);
+
+    self.model.save().then(function(foo) {
+      _.each(self.model.get("services"), function(service) {
+        servicePromises.push(service.save());
+      });
+
+      Parse.Promise.when(servicePromises).then(
+        function(args) {
+          $("#facilitySaved").show().focus();
+          $("#facilitySaved").delay(5000).fadeOut();
+
+          console.log("saved.");
+          console.log(args);
+        },
+        function(args) { 
+          $("#facilitySaveError").show().focus();
+          console.log("failed.");
+          console.log(args);
+        }
+      );
+    }, 
+    function(args) { 
+      $("#facilitySaveError").show().focus();
+      console.log("failed.");
+      console.log(args);
+    }
+  );
+
+
+
+
   },
 
   render: function() {
