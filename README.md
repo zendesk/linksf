@@ -18,7 +18,7 @@ From Steven:
 
 This will replace http://ttlsf.herokuapp.com/ which uses a [Google spreadsheet](https://docs.google.com/spreadsheet/ccc?key=0AkkJeKqc-HDpdE5INXRRYVdMVmd5ay15dm5LZEdPLWc#gid=0) for persistence.
 
-## Link SF
+## LinkSF
 
 We're going to have three main components: database/query api, user interface, and admin interface.
 
@@ -38,7 +38,7 @@ npm install -g grunt-cli
 
 Development:
 
-There is a `Gruntfile` that describe the available tasks.
+There is a `Gruntfile` that describes the available tasks.
 
 ```
 grunt watch
@@ -68,13 +68,6 @@ params = {
  }
 }
 ```
-
-
-####a changelog of sorts
-
-* Added load_fixtures.html and got some decently normalized data into parse.
-* Added a scaffold [cloudcode](https://www.parse.com/docs/cloud_code_guide) app
-* Added `Facility` and `Service` Backbone models
 
 ####notes
 
