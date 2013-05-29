@@ -28,6 +28,9 @@
   {{#each facilities}}
     <li class="facility">
       <a href="#/detail/{{this.objectId}}" class="facilityItemLink">
+        {{#if this.hasStatus}}
+          <p class="facility-status-{{this.status}}">{{this.status}}</p>
+        {{/if}}
         <p class="facility-name"><h3 class="facility-link">{{this.name}}</h3></p>
         <p class="facility-services">{{this.serviceCategories}}</p>
         <p class="facility-address">{{this.address}}</p>

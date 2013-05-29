@@ -46,25 +46,37 @@ module.exports = Parse.Object.extend('Facility', {
     return match;
   },
 
-  isOpen: function(now) {
-    now = now || new Date();
-    var hours = this.hours();
-    var open = hours.within(now);
-    if (!hours){
-      return "Unknown";
+  hasStatus: function() {
+    return (this.status() !== 'UNKNOWN');
+  },
+
+  status: function() {
+    var hours, open;
+
+    if ( this._status ) return this._status;
+
+    // wrap in try because we may not have data or the data may not parse
+    try {
+      hours = this.hours();
+      open = hours.within(new Date());
+    } catch (e) {
+      console.log(e);
+      this._status = 'UNKNOWN';
     }
-    else if (open) {
-      return "Open";
-    } else if (!open) {
-      return "Closed";
-    }else{
-      return "Unknown";
+
+    if ( open ) {
+      this._status = 'OPEN';
+    } else {
+      this._status = 'CLOSED';
     }
+
+    return this._status;
   },
 
   hours: function() {
     if(this._hours) { return this._hours; }
     this._hours = new Hours(this.get('hours'));
+    return this._hours;
   },
 
   hasServiceInCategories: function(categories) {
@@ -81,7 +93,7 @@ module.exports = Parse.Object.extend('Facility', {
   },
 
   age_as_string: function(input) {
-    switch ( input.toUpperCase() ) { 
+    switch ( input.toUpperCase() ) {
       case "C":
         return "children";
       case "Y":
@@ -93,7 +105,7 @@ module.exports = Parse.Object.extend('Facility', {
     }
   },
 
-  demographics: function() { 
+  demographics: function() {
     var g, a, output = "";
     if ( !this.get('age') && !this.get('gender') ) {
       output = "Anyone";
@@ -108,7 +120,7 @@ module.exports = Parse.Object.extend('Facility', {
         output = "All ";
       }
 
-      if ( (a = this.get('age') ) ) { 
+      if ( (a = this.get('age') ) ) {
         // C-Y-A-S
         var translated = _(a).map(this.age_as_string);
         output += _(translated).join(", ");
