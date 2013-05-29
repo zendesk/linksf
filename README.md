@@ -20,23 +20,20 @@ This will replace http://ttlsf.herokuapp.com/ which uses a [Google spreadsheet](
 
 ## LinkSF
 
-We're going to have three main components: database/query api, user interface, and admin interface.
+LinkSF is a Backbone.js application using Parse for our persistence and querying backend.
 
-* database/query api: [Parse](https://parse.com/)
-* user/admin interface: Backbone.js with jQuery, [mockup](http://f.cl.ly/items/2q1D093m3R3W2C3s3M40/TTL%20Mobile%20Resource.pdf)
-
-####JS workflow
+### Workflow
 
 We want to write JS like civilized folk.
 
-Setup:
+#### Setup
 
 ```
 npm install
 npm install -g grunt-cli
 ```
 
-Development:
+#### Development
 
 There is a `Gruntfile` that describes the available tasks.
 
@@ -44,31 +41,12 @@ There is a `Gruntfile` that describes the available tasks.
 grunt watch
 ```
 
-Watches `app/**/*.js` and runs `jshint` and a `browserify` task. The output is a `js/static/output.js` file which is included in index.html.
+Invokes verification and compilation when JavaScript, HTML, SCSS, and Handlebars file changes are detected. Output goes to static files that are included in index.html and admin.html.
 
-You can also just run `grunt` to verify JS and generate the `static/output.js` file.
+You can also just run `grunt` to verify JS and generate the static output files.
 
-####Query interface
+#### Deploy
 
-```
-var browseFunc = require('lib/browse');
+`rake deploy` will generate static assets then use the `s3cmd` CLI tool to upload them to AWS.
 
-browseFunc(params);
-
-// all params are optional, NULL or missing means don't filter
-params = {
- sort: 'near'|'name'
- limit: int (default 10)
- filter:
- {
-   isOpen: true,
-   gender: 'M'|'F'
-   age: ['C', 'Y', 'A', 'S'] // children, youth, adult, senior
-   categories: ['medical', 'hygiene', 'food', 'shelter']
- }
-}
-```
-
-####notes
-
-[here is fixture data.  here.](https://docs.google.com/spreadsheet/ccc?key=0AoYMeoUU9D_sdGpZaklYd2VtdVNhWXRNLWhMV2Uwa2c#gid=0)
+The latest deploy should be available at http://link-sf.com.
