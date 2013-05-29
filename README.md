@@ -22,6 +22,10 @@ This will replace http://ttlsf.herokuapp.com/ which uses a [Google spreadsheet](
 
 LinkSF is a Backbone.js application using Parse for our persistence and querying backend.
 
+The current release is deployed to http://link-sf.com.
+
+The original mockup is at http://f.cl.ly/items/2q1D093m3R3W2C3s3M40/TTL%20Mobile%20Resource.pdf.
+
 ### Workflow
 
 We want to write JS like civilized folk.
