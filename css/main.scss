@@ -40,7 +40,7 @@ form {
     padding: 10px 0 10px 10px;
 
     p {
-      margin: 5px;
+      margin: 4px;
     }
   }
 
@@ -52,9 +52,11 @@ form {
     color: #000;
   }
 }
-.facility-link{
-  margin: 0 0 0 6px;
+
+.facility-name {
+  margin: 5px 0 3px 4px;
 }
+
 .facility-services {
   color: #185377;
   text-transform: capitalize;
@@ -80,12 +82,13 @@ form {
 }
 
 .facility-notes {
-  height: 36px;
+  height: 38px;
   color: #8F8F8F;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.facilityItemLink{
+
+.facility-item-link {
   height: 100%;
   width: 100%;
   display: block;
