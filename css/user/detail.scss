@@ -1,3 +1,11 @@
+.facility-header {
+  height: 30px;
+  font-size: 18px;
+  color: #848080;
+  background-color: #E3E3E3;
+  // padding-top: 6px;
+  // padding-left: 4px;
+}
 
 #location-map{
   height: 200px;
@@ -14,15 +22,6 @@
   padding-top: 5px;
 }
 
-#facility-header {
-  height: 30px;
-  font-size: 18px;
-  color: #999999;
-  background-color: #EEEEEE;
-  padding-top: 6px;
-  padding-left: 4px;
-
-}
 
 #facility-main-info {
   td {

@@ -1,0 +1,23 @@
+#index {
+  padding-bottom: 60px;
+  text-align: center;
+
+  ul.categories {
+    margin: 0;
+
+    li {
+      padding-top: 10px;
+
+      button {
+        background-color: #1DBFCE;
+        border: 0;
+        border-radius: 4px;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        padding: 40px 0;
+        width: 90%;
+      }
+    }
+  }
+}

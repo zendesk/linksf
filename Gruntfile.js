@@ -25,7 +25,6 @@ module.exports = function(grunt) {
         'Gruntfile.js',
         '<%= jshint.files %>',
         'js/app/**/*.hbs',
-        'css/main.scss',
         'css/**/*.scss',
         'test/**/*.js',
         'index.html'
@@ -51,8 +50,8 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         files: {
-          'css/static/output.css': ['css/**/*.scss'],
-          'css/static/admin.css':  ['css/admin/**/*.scss']
+          'css/static/user.css': ['css/index.scss', 'css/user/**/*.scss'],
+          'css/static/admin.css':  ['css/index.scss', 'css/admin/**/*.scss']
         }
       }
     }
