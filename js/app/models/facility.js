@@ -76,6 +76,7 @@ module.exports = Parse.Object.extend('Facility', {
   hours: function() {
     if(this._hours) { return this._hours; }
     this._hours = new Hours(this.get('hours'));
+    return this._hours;
   },
 
   hasServiceInCategories: function(categories) {
@@ -92,7 +93,7 @@ module.exports = Parse.Object.extend('Facility', {
   },
 
   age_as_string: function(input) {
-    switch ( input.toUpperCase() ) { 
+    switch ( input.toUpperCase() ) {
       case "C":
         return "children";
       case "Y":
@@ -104,7 +105,7 @@ module.exports = Parse.Object.extend('Facility', {
     }
   },
 
-  demographics: function() { 
+  demographics: function() {
     var g, a, output = "";
     if ( !this.get('age') && !this.get('gender') ) {
       output = "Anyone";
@@ -119,7 +120,7 @@ module.exports = Parse.Object.extend('Facility', {
         output = "All ";
       }
 
-      if ( (a = this.get('age') ) ) { 
+      if ( (a = this.get('age') ) ) {
         // C-Y-A-S
         var translated = _(a).map(this.age_as_string);
         output += _(translated).join(", ");
