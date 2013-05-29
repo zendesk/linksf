@@ -1,3 +1,5 @@
+## Raison d'être
+
 The Tenderloin tech lab has seen that while a lot of people in the Mid-Market area do not have access to computers, they do have relatively affordable access to mobile phones.
 
 The platform has two goals:
