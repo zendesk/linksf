@@ -51,23 +51,23 @@ module.exports = Parse.Object.extend('Facility', {
   },
 
   status: function() {
-    var hours, open;
+    var open;
 
     if ( this._status ) return this._status;
 
     // wrap in try because we may not have data or the data may not parse
     try {
-      hours = this.hours();
-      open = hours.within(new Date());
+      open = this.hours().within(new Date());
     } catch (e) {
       console.log(e);
-      this._status = 'UNKNOWN';
     }
 
-    if ( open ) {
+    if ( open === true ) {
       this._status = 'OPEN';
-    } else {
+    } else if ( open === false ) {
       this._status = 'CLOSED';
+    } else {
+      this._status = 'UNKNOWN';
     }
 
     return this._status;
