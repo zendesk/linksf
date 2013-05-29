@@ -18,6 +18,8 @@ var Router = Backbone.Router.extend({
     'edit/:id': 'edit'
   },
 
+  listView: null,
+
   listViewClass: ListView,
 
   index: function() {
@@ -26,7 +28,8 @@ var Router = Backbone.Router.extend({
   },
 
   query: function(category) {
-    var listViewClass = this.listViewClass;
+    var listViewClass = this.listViewClass, 
+        self = this;
     Query.submit({
       filter: {
         categories: [category]
@@ -34,17 +37,16 @@ var Router = Backbone.Router.extend({
       limit: 20
     }).done(function(results) {
       facilities.reset(results.data);
-      var listView = new listViewClass({
-        collection: facilities,
-        categories: [category]
-      });
 
-      listView.render();
+      self.listView = self.listView || new listViewClass({collection: facilities});
+      self.listView.options.categories = [category];
+      self.listView.render();
     });
   },
 
   list: function() {
-    var listView = new this.listViewClass({ collection: facilities });
+    var listView = this.listView || new this.listViewClass({collection: facilities});
+    listView.collection = facilities;
 
     listView.render();
 
