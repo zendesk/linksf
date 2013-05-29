@@ -27,7 +27,7 @@
 <ul id="facility-list">
   {{#each facilities}}
     <li class="facility">
-      <a href="#/detail/{{this.objectId}}" class="facilityItemLink">
+      <a href="#/detail/{{this.objectId}}" class="facility-item-link">
         {{#if this.hasKnownStatus}}
           <p class="facility-status-{{this.status}}">{{this.status}}</p>
         {{/if}}
