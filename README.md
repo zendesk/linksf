@@ -39,7 +39,15 @@ npm install -g grunt-cli
 
 There is a `Gruntfile` that describes the available tasks.
 
-`grunt watch` invokes verification and compilation when JavaScript, HTML, SCSS, and Handlebars file changes are detected. Output goes to static files that are included in index.html and admin.html.
+`grunt` invokes verification and compilation. Output goes to static files that are included in index.html and admin.html.
+
+`grunt watch` invokes verification and compilation when JavaScript, HTML, SCSS, and Handlebars file changes are detected.
+
+```
+grunt # Needed after cloning the repo or if `grunt watch` wasn't running, to pick lastest code changes.
+open index.html
+grunt watch
+```
 
 ### Deploy
 
