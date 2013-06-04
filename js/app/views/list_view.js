@@ -9,7 +9,6 @@ function validCategory(category) {
 }
 
 var ListView = Backbone.View.extend({
-  el: $("#linksf"),
   template: require('templates/list'),
 
   events: {
