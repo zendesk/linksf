@@ -1,6 +1,7 @@
 /*globals window, document */
 
 var Backbone      = require('backbone'),
+    Features      = require('lib/features'),
     $             = require('jquery'),
     _             = require('underscore'),
     gmaps         = require('google-maps'),
@@ -25,7 +26,7 @@ var DetailView = Backbone.View.extend({
   },
 
   launchDirections: function() {
-    var urlBase = "comgooglemaps://?daddr=",
+    var urlBase = Features.isMobile() ? "comgooglemaps://?daddr=" : 'https://maps.google.com?daddr=',
         dAddr = encodeURIComponent(this.model.address +
                                    "@" +
                                    this.model.location.latitude +
