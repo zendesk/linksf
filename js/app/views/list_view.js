@@ -8,6 +8,10 @@ function validCategory(category) {
   return category && (/[a-z]+/).test(category.toString());
 }
 
+function getData($elements, dataAttrName) {
+  return $elements.map(function(n, el) { return $(el).data(dataAttrName); });
+}
+
 var ListView = Backbone.View.extend({
   el: $("#linksf"),
   template: require('templates/list'),
@@ -28,11 +32,15 @@ var ListView = Backbone.View.extend({
 
   doFilterQuery: function() {
     var sort = this.$(".query-option-sort .query-option.selected").data("value"),
-        categories = this.$(".query-option-category .query-option.selected").map(function(n, el) { return $(el).data('value'); });
+        categories = getData(this.$(".query-option-category .query-option.selected"), 'value'),
+        gender = this.$(".query-option-gender .query-option.selected").data('value'),
+        age = getData(this.$(".query-option-demographics .query-option.selected"), 'value');
 
     var params = {
       filter: {
-        categories: categories
+        categories: categories,
+        age: age,
+        gender: gender
       },
       sort: sort
     };
