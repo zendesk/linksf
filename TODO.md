@@ -36,7 +36,7 @@
 ### For next time (week of 6/12 meeting)
 
 1. make sure link-sf.com is usable on Android devices (survey results inc from TTL)
-1. make sure link-sf.com is usable on desktop
-1. admin behind authentication
+1. make sure link-sf.com is usable on desktop [#34](https://github.com/zendesk/linksf/issues/34)
+1. admin behind authentication [#35](https://github.com/zendesk/linksf/issues/35)
 1. sanity check addresses
-1. filtering by demographics
+1. filtering by demographics [#33](https://github.com/zendesk/linksf/issues/33)
