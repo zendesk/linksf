@@ -2,7 +2,6 @@ var Backbone = require('backbone'),
     $        = require('jquery');
 
 var IndexView = Backbone.View.extend({
-  el: $("#linksf"),
   template: require('templates/index'),
 
   events: {

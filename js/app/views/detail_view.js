@@ -7,7 +7,6 @@ var Backbone      = require('backbone'),
     fetchLocation = require('cloud/lib/fetch_location');
 
 var DetailView = Backbone.View.extend({
-  el: $("#linksf"),
   template: require('templates/detail'),
   events: {
     "render.done": 'setMap',
