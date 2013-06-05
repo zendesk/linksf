@@ -66,6 +66,7 @@ var DetailView = Backbone.View.extend({
     });
   $('.more').click(function(){$(this).parent().next($('.seeMore')).slideToggle();});
   $('.prevrow').last().remove();
+  $('#backNav').click(function(){window.history.back();});
 
   }
 
