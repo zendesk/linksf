@@ -10,7 +10,7 @@ var EditView = Backbone.View.extend({
   el: $("#linksf"),
   template: require('templates/edit'),
   setupServices: function() {
-    _(this.model.get("services")).each(function(service, index) { 
+    _(this.model.get("services")).each(function(service, index) {
       var prefix = "#service\\[" + index + "\\]";
 
       $(prefix + "_category").children("[value='" + service.get('category') + "']").prop('selected', true);
@@ -22,22 +22,22 @@ var EditView = Backbone.View.extend({
     var el;
 
     el = $('#gender_' + (g ? g : ''));
-    el.prop('checked', true); 
+    el.prop('checked', true);
 
     $("#age_everyone").click(function() {
       $('[name="age"]').prop('checked', $(this).prop('checked'));
     });
 
-    if ( this.model.get("age") ) { 
+    if ( this.model.get("age") ) {
       _(this.model.get("age")).each(function(age) {
         $("#age_" + age.toUpperCase()).prop('checked', true);
       });
-    } else { 
+    } else {
       $("#age_everyone").click();
     }
 
     this.setupServices();
-    $('#submit').click(function() { 
+    $('#submit').click(function() {
       this.saveForm();
     }.bind(this));
   },
@@ -63,10 +63,10 @@ var EditView = Backbone.View.extend({
 
     var services = formValues.services;
 
-    _.each(formValues.services, function(service, i) { 
+    _.each(formValues.services, function(service, i) {
       self.model.get("services")[i].set(service);
     });
-   
+
     delete formValues.services;
     self.model.set(formValues);
 
@@ -83,27 +83,37 @@ var EditView = Backbone.View.extend({
           console.log("saved.");
           console.log(args);
         },
-        function(args) { 
+        function(args) {
           $("#facilitySaveError").show().focus();
           console.log("failed.");
           console.log(args);
         }
       );
-    }, 
-    function(args) { 
-      $("#facilitySaveError").show().focus();
-      console.log("failed.");
-      console.log(args);
-    }
-  );
-
-
-
-
+    },
+      function(args) {
+        $("#facilitySaveError").show().focus();
+        console.log("failed.");
+        console.log(args);
+      }
+    );
   },
 
+
+
   render: function() {
-    $(this.el).html(this.template({facility: this.model.presentJSON()}));
+    var hours = [];
+
+    for(var idx = 0; idx <= 23; idx++) {
+      if (idx < 10) { idx = '0' + idx; }
+      hours.push(idx + ':00');
+      hours.push(idx + ':30');
+    }
+
+    var templateData = this.model.presentJSON();
+    templateData.services.forEach(function(service) {
+      service.allHours = hours;
+    });
+    $(this.el).html(this.template({facility: templateData}));
     this.setupForm();
     return this;
   }
