@@ -1,10 +1,23 @@
 .facility-header {
-  height: 30px;
+  height: 72px;
   font-size: 18px;
   color: #848080;
   background-color: #E3E3E3;
   padding-top: 9px;
   padding-left: 10px;
+  border-bottom: solid #9B9B9B 1px;
+  span{
+    float: left;
+  }
+}
+#backNav{
+  float: right;
+  margin: 5px 20px 2px;
+  border-radius: 4px;
+  background: #ccc;
+  width: 160px;
+  height: 40px;  
+  hover{background: #bbb;}
 }
 
 #location-map{
