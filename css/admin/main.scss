@@ -16,3 +16,19 @@ $navbar-height: 60px;
 .service-edit-row div {
   padding: 5px;
 }
+
+#loginError {
+  display: none;
+}
+
+.hours {
+  .hour_option {
+    float: left;
+
+    select {
+      width: 100px;
+    }
+  }
+}
+
+.clear { clear: both; }

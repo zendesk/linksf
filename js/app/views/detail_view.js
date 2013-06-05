@@ -1,6 +1,7 @@
 /*globals window, document */
 
 var Backbone      = require('backbone'),
+    Features      = require('lib/features'),
     $             = require('jquery'),
     _             = require('underscore'),
     gmaps         = require('google-maps'),
@@ -18,14 +19,14 @@ var DetailView = Backbone.View.extend({
     var facility = this.model;
     var $mapdiv =  this.$('#location-map');
 
-    $(this.el).html(this.template({facility: facility}));
+    $(this.el).html(this.template({facility: facility, isMobile: Features.isMobile() }));
     _.defer( function( view ){ view.setMap();}, this );
 
     return this;
   },
 
   launchDirections: function() {
-    var urlBase = "comgooglemaps://?daddr=",
+    var urlBase = Features.isMobile() ? "comgooglemaps://?daddr=" : 'https://maps.google.com?daddr=',
         dAddr = encodeURIComponent(this.model.address +
                                    "@" +
                                    this.model.location.latitude +
