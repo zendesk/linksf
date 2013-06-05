@@ -23,8 +23,12 @@ var Router = Backbone.Router.extend({
 
     var currentUser = Parse.User.current();
     if (currentUser) {
+      $('#navUserLogout').show();
+      $('#navUserInfo').html("logged in as " + currentUser.get('username'));
       return true;
     } else {
+      $('#navUserLogout').hide();
+      $('#navUserInfo').html("");
       this.navigate('login', {replace: true, trigger: false});
       this.login(route);
       return false;
@@ -34,6 +38,8 @@ var Router = Backbone.Router.extend({
   routes: {
     '': 'list',
     'list': 'list',
+    'login': 'login',
+    'logout': 'logout',
     'query/:category': 'query',
     'detail/:id': 'detail',
     'edit/:id': 'edit'
@@ -58,7 +64,6 @@ var Router = Backbone.Router.extend({
   },
 
   list: function() {
-    debugger;
     var listView = this.listView || new AdminListView({collection: facilities});
     listView.collection = facilities;
 
@@ -94,6 +99,11 @@ var Router = Backbone.Router.extend({
 
   login: function(return_to) {
     return new LoginView(this, return_to).render();
+  },
+
+  logout: function() {
+    Parse.User.logOut();
+    this.navigate('login', {replace: true, trigger: true});
   },
 
   // todo -- move this into facility collection 
