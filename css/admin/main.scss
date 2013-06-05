@@ -20,3 +20,15 @@ $navbar-height: 60px;
 #loginError {
   display: none;
 }
+
+.hours {
+  .hour_option {
+    float: left;
+
+    select {
+      width: 100px;
+    }
+  }
+}
+
+.clear { clear: both; }

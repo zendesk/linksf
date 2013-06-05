@@ -99,11 +99,20 @@ var EditView = Backbone.View.extend({
 
 
 
-
-  },
-
   render: function() {
-    $(this.el).html(this.template({facility: this.model.presentJSON()}));
+    var hours = [];
+
+    for(var idx = 0; idx <= 23; idx++) {
+      if (idx < 10) { idx = '0' + idx; }
+      hours.push(idx + ':00');
+      hours.push(idx + ':30');
+    }
+
+    var templateData = this.model.presentJSON();
+    templateData.services.forEach(function(service) {
+      service.allHours = hours;
+    });
+    $(this.el).html(this.template({facility: templateData}));
     this.setupForm();
     return this;
   }
