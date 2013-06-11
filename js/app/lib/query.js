@@ -43,8 +43,7 @@ var performQuery = function(params, deferred) {
 
   query(params, {
     success: function(result) {
-      deferred.resolve(result);
-      // dumpToDOM(result);
+      deferred.resolve({data: result.slice(1), offset: result[0]});
     },
 
     error: function(err) {
