@@ -1,3 +1,4 @@
+/*globals window*/
 var $ = require('jquery'),
     Backbone = require('backbone'),
     DetailView = require('views/detail_view'),
@@ -28,7 +29,7 @@ var Router = Backbone.Router.extend({
   },
 
   query: function(category) {
-    var listViewClass = this.listViewClass, 
+    var listViewClass = this.listViewClass,
         self = this;
     Query.submit({
       filter: {
@@ -41,6 +42,8 @@ var Router = Backbone.Router.extend({
       self.listView = self.listView || new listViewClass({collection: facilities});
       self.listView.options.categories = [category];
       self.listView.render();
+      window.scrollTo(0, 0); // Scroll to top
+
     });
   },
 
@@ -58,7 +61,9 @@ var Router = Backbone.Router.extend({
 
   renderFacility: function(facility) {
     var detailView = new DetailView({ model: facility.presentJSON() });
-    return detailView.render();
+    detailView.render();
+    window.scrollTo(0, 0); // Scroll to top
+    return detailView;
   },
 
   renderEdit: function(facility) {
