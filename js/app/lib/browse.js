@@ -49,15 +49,16 @@ module.exports = function (params, callbacks) {
     var filteredResults = [];
 
     _.each(results, function(f) {
-      if ( filteredResults.length >= limit ) 
+      if ( filteredResults.length >= limit ) {
         return;
+      }
 
       if ( f.matchesFilter(filter) ) {
         filteredResults.push(f);
       }
       offset++;
     });
-    callbacks.success({offset: offset, data: filteredResults});
+    callbacks.success([offset].concat(filteredResults));
   }, function(err) {
     callbacks.error(err);
   });
