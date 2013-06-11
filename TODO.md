@@ -40,3 +40,7 @@
 1. admin behind authentication [#35](https://github.com/zendesk/linksf/issues/35)
 1. sanity check addresses
 1. filtering by demographics [#33](https://github.com/zendesk/linksf/issues/33)
+
+### Other enhancements
+
+1. Validation email for when a new resource is entered.
