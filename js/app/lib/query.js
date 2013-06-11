@@ -15,11 +15,7 @@ var runWithLocation = function(callback) {
 };
 
 var queryFunction = function(runWhere) {
-  if ( runWhere === 'cloud' ) {
-    return _.partial(Parse.Cloud.run, "browse");
-  } else {
-    return require('cloud/lib/browse');
-  }
+  return _.partial(Parse.Cloud.run, "browse");
 };
 
 var submit = function(params) {
