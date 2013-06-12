@@ -40,6 +40,10 @@ var ListView = Backbone.View.extend({
         gender = this.$(".query-option-gender .query-option.selected").data('value'),
         age = getData(this.$(".query-option-demographics .query-option.selected"), 'value');
 
+    if(gender === "A") {
+      gender = null;
+    }
+
     var params = {
       filter: {
         categories: categories,
