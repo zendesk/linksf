@@ -11,11 +11,9 @@
     </ul>
     <h4>with the following services</h4>
     <ul class="query-option-category  option-group">
-      <li data-value="food" class="query-option">Food</li>
-      <li data-value="medical" class="query-option">Medical</li>
-      <li data-value="housing" class="query-option">Housing</li>
-      <li data-value="technology" class="query-option">Technology</li>
-      <li data-value="hygiene" class="query-option">Hygiene</li>
+    {{#each categories}}
+      <li data-value="{{key}}" class="query-option">{{title}}</li>
+    {{/each}}
     </ul>
 
     <h4>suitable for</h4>
