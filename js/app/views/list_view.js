@@ -9,7 +9,11 @@ function validCategory(category) {
 }
 
 function getData($elements, dataAttrName) {
-  return $elements.map(function(n, el) { return $(el).data(dataAttrName); });
+  var result = [];
+  $elements.each(function(n, el) { 
+    result.push($(el).data(dataAttrName));
+  });
+  return result;
 }
 
 var ListView = Backbone.View.extend({
