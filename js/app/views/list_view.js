@@ -10,11 +10,34 @@ function validCategory(category) {
 
 function getData($elements, dataAttrName) {
   var result = [];
-  $elements.each(function(n, el) { 
+  $elements.each(function(n, el) {
     result.push($(el).data(dataAttrName));
   });
   return result;
 }
+
+var CATEGORIES = [
+  {
+    key: "food",
+    title: "Food"
+  },
+  {
+    key: "medical",
+    title: "Medical"
+  },
+  {
+    key: "housing",
+    title: "Housing"
+  },
+  {
+    key: "technology",
+    title: "Technology"
+  },
+  {
+    key: "hygiene",
+    title: "Hygiene"
+  }
+];
 
 var ListView = Backbone.View.extend({
   el: $("#linksf"),
@@ -44,6 +67,12 @@ var ListView = Backbone.View.extend({
       gender = null;
     }
 
+    this.options.categories = categories;
+
+    if(categories.length === 0) {
+      categories = _.map(CATEGORIES, function(c) { return c.key; });
+    }
+
     var params = {
       filter: {
         categories: categories,
@@ -52,8 +81,6 @@ var ListView = Backbone.View.extend({
       },
       sort: sort
     };
-
-    this.options.categories = categories;
 
     Query.submit(params).done(function(results) {
       // populate with results
@@ -77,6 +104,7 @@ var ListView = Backbone.View.extend({
       self.$categoryOption(category).addClass("selected");
     });
 
+    this.$(".query-option-gender [data-value='A']").addClass('selected');
   },
 
   $categoryOption: function(category) {
@@ -109,7 +137,10 @@ var ListView = Backbone.View.extend({
     var templateJson = this.flattenServices(deepJson);
 
     // replace with template
-    this.$el.html(this.template({ facilities: templateJson }));
+    this.$el.html(this.template({
+      facilities: templateJson,
+      categories: CATEGORIES
+    }));
     this.$('.query').hide();
     this.$('.option-group-exclusive .query-option').click(function() {
       $(this).closest(".option-group-exclusive").find(".query-option").removeClass("selected");
