@@ -47,6 +47,8 @@ var DetailView = Backbone.View.extend({
             zoom: 15,
             mapTypeId: gmaps.MapTypeId.ROADMAP,
             scrollwheel: false,
+            navigationControl: false,
+            draggable: false,
             streetViewControl: false,
             zoomControlOptions: {
               style: gmaps.ZoomControlStyle.SMALL
