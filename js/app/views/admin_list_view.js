@@ -11,7 +11,21 @@ var AdminListView = ListView.extend({
       self.submitQuery({search: $('#search').val()});
       return false;
     });
+  },
+
+  submitQuery: function(extra_params) {
+    // serialize the form
+    var params = $('.query form').serializeObject();
+
+    $.extend(params, extra_params);
+    console.log(extra_params);
+    // submit query
+    params.limit = this.defaultLimit;
+    this.performQuery(params);
+
+    return false;
   }
+
 });
 
 module.exports = AdminListView;
