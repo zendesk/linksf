@@ -85,15 +85,19 @@ var ListView = Backbone.View.extend({
   },
 
   doFilterQuery: function() {
-    var params = this.getFilterParams();
-    Query.submit(params).done(function(results) {
-      // populate with results
-      facilities.reset(results.data);
-      this.offset = results.offset;
+    this.performQuery(this.getFilterParams()).done(function(results) {
       var router = require('routers/router').instance;
       router.navigate("list");
     }).bind(this);
 
+  },
+
+  performQuery: function(params) {
+    return Query.submit(params).done(function(results) {
+      // populate with results
+      facilities.reset(results.data);
+      this.offset = results.offset;
+    }.bind(this));
   },
 
   dismissFilters: function() {
@@ -119,23 +123,6 @@ var ListView = Backbone.View.extend({
       return $();
     }
 
-  },
-
-  submitQuery: function(extra_params) {
-    // serialize the form
-    var params = $('.query form').serializeObject();
-
-    $.extend(params, extra_params);
-    console.log(extra_params);
-    // submit query
-    params.limit = this.defaultLimit;
-
-    Query.submit(params).done(function(results) {
-      this.offset = results.offset;
-      facilities.reset(results.data);
-    }.bind(this));
-
-    return false;
   },
 
   render: function() {

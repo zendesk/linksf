@@ -31,20 +31,19 @@ var Router = Backbone.Router.extend({
   query: function(category) {
     var listViewClass = this.listViewClass,
         self = this;
-    Query.submit({
+    
+    this.listView = self.listView || new listViewClass({collection: facilities});
+
+    this.listView.performQuery({
       filter: {
         categories: [category]
       },
       limit: 20
     }).done(function(results) {
-      facilities.reset(results.data);
-
-      self.listView = self.listView || new listViewClass({collection: facilities});
       self.listView.options.categories = [category];
       self.listView.offset = results.offset;
       self.listView.render();
       window.scrollTo(0, 0); // Scroll to top
-
     });
   },
 
