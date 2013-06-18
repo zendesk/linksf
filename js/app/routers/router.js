@@ -41,6 +41,7 @@ var Router = Backbone.Router.extend({
 
       self.listView = self.listView || new listViewClass({collection: facilities});
       self.listView.options.categories = [category];
+      self.listView.offset = results.offset;
       self.listView.render();
       window.scrollTo(0, 0); // Scroll to top
 
