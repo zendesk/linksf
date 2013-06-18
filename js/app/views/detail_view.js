@@ -19,7 +19,7 @@ var DetailView = Backbone.View.extend({
     var facility = this.model;
     var $mapdiv =  this.$('#location-map');
 
-    $(this.el).html(this.template({facility: facility, isMobile: Features.isMobile() }));
+    this.$el.html(this.template({facility: facility, isMobile: Features.isMobile() }));
     _.defer( function( view ){ view.setMap();}, this );
 
     return this;
@@ -62,13 +62,16 @@ var DetailView = Backbone.View.extend({
       }
       this.layout();
   },
+
   layout: function(){
-  $.each($('.desco'), function(){
-    if($(this).text().length > 52){
-      $(this).text($(this).text().substr(0,52)+"...");}
+    $.each(this.$('.desco'), function() {
+      if ($(this).text().length > 52) {
+        $(this).text($(this).text().substr(0,52)+"...");
+      }
     });
-  $('.prevrow').last().remove();
-  $('#backNav').click(function(){window.history.back();});
+
+    this.$('.prevrow').last().remove();
+    this.$('#backNav').click(function(){window.history.back();});
 
   }
 
