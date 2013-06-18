@@ -67,7 +67,6 @@ var DetailView = Backbone.View.extend({
     if($(this).text().length > 52){
       $(this).text($(this).text().substr(0,52)+"...");}
     });
-  $('.more').click(function(){$(this).parent().next($('.seeMore')).slideToggle();});
   $('.prevrow').last().remove();
   $('#backNav').click(function(){window.history.back();});
 
