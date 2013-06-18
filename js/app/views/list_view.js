@@ -1,12 +1,8 @@
-/*global window: false */
-
 var Backbone = require('backbone'),
     $ = require('jquery'),
     Query = require('lib/query'),
     _ = require('underscore'),
     facilities = require('collections/facilities').instance;
-
-require('jquery-endless-scroll');
 
 function validCategory(category) {
   return category && (/[a-z]+/).test(category.toString());
@@ -125,7 +121,6 @@ var ListView = Backbone.View.extend({
 
   },
 
-
   submitQuery: function(extra_params) {
     // serialize the form
     var params = $('.query form').serializeObject();
@@ -141,23 +136,6 @@ var ListView = Backbone.View.extend({
     }.bind(this));
 
     return false;
-  },
-
-  setupScrolling: function() {
-    var self = this;
-    $(window).endlessScroll({
-      fireOnce: false, 
-      callback: function() { 
-        $('#loading-spinner').show();
-        Query.submit(self.getFilterParams()).done(function(results) {
-          // populate with results
-          facilities.add(results.data);
-          self.offset = results.offset;
-          $('#loading-spinner').hide();
-          self.render();
-        });
-      }
-    });
   },
 
   render: function() {
@@ -179,7 +157,6 @@ var ListView = Backbone.View.extend({
       $(this).toggleClass("selected");
     });
 
-    this.setupScrolling();
     this.resetFilters();
     return this;
   },

@@ -74,8 +74,7 @@ module.exports = function(grunt) {
     // vendor js
     output = shim(browserify(), {
       jquery: { path: './js/vendor/jquery.min.js', exports: '$' },
-      'jquery-serialize-object': { path: './js/vendor/jquery.serialize-object.js', exports: '' },
-      'jquery-endless-scroll': { path: './js/vendor/jquery.endless-scroll.js', exports: '' }
+      'jquery-serialize-object': { path: './js/vendor/jquery.serialize-object.js', exports: '' }
     })
       .require('./js/shims/parse.js', {expose: 'parse'})
       .require('./js/shims/google-maps.js', {expose: 'google-maps'})
