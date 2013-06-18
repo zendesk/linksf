@@ -6,6 +6,7 @@ namespace :deploy do
     deploy_files = %w(
       index.html
       admin.html
+      images/spinner.gif
       js/vendor/parse-1.2.2.min.js
       js/static/output.js
       js/static/admin.js
