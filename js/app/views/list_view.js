@@ -88,8 +88,7 @@ var ListView = Backbone.View.extend({
     this.performQuery(this.getFilterParams()).done(function(results) {
       var router = require('routers/router').instance;
       router.navigate("list");
-    }).bind(this);
-
+    });
   },
 
   performQuery: function(params) {
