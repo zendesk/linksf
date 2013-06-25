@@ -1,6 +1,7 @@
 var $ = require('jquery');
 
 require('jquery-serialize-object');
+require('bootstrap');
 
 $(function() {
   Parse.initialize("Z2l0Zn6NGrHCDoBPKUeD7Tf1fAUDaazQihQFqnL8", "kGPp7cydleuFbhKB4mrviTmbIjrbTjhxGP4dP7Ls");
