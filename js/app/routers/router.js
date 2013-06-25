@@ -50,6 +50,7 @@ var Router = Backbone.Router.extend({
   list: function() {
     var listView = this.listView || new this.listViewClass({collection: facilities});
     listView.collection = facilities;
+    listView.searchParams = $('.query form').serializeObject();
 
     listView.render();
 

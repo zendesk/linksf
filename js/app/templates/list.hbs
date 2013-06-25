@@ -1,6 +1,9 @@
 <nav>
-  <button class="btn" id="filter">Filter</button>
+  <button class="btn btn-info" id="filter">Filter</button>
 </nav>
+<div id="queryRepresentation">
+{{#each searchParams}}<span>{{this}} </span>{{/each}}
+</div>
 
 <div class="query">
   <div class="query-options">
@@ -46,9 +49,9 @@
           <p class="facility-status-{{this.status}}">{{this.status}}</p>
         {{/if}}
         <h4 class="facility-name">{{this.name}}</h4>
-        <p class="facility-services">{{this.serviceCategories}}</p>
         <p class="facility-address">{{this.address}}</p>
-        <p class="facility-notes">{{this.allNotes}}</p>
+        <p class="facility-services">{{this.serviceCategories}}</p>
+
       </a>
     </li>
   {{/each}}

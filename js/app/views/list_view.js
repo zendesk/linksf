@@ -2,7 +2,8 @@ var Backbone = require('backbone'),
     $ = require('jquery'),
     Query = require('lib/query'),
     _ = require('underscore'),
-    facilities = require('collections/facilities').instance;
+    facilities = require('collections/facilities').instance,
+    searchParams = ["fr"];
 
 function validCategory(category) {
   return category && (/[a-z]+/).test(category.toString());
@@ -93,6 +94,7 @@ var ListView = Backbone.View.extend({
 
   performQuery: function(params) {
     return Query.submit(params).done(function(results) {
+      searchParams = params;
       // populate with results
       facilities.reset(results.data);
       this.offset = results.offset;
@@ -131,7 +133,8 @@ var ListView = Backbone.View.extend({
     // replace with template
     this.$el.html(this.template({
       facilities: templateJson,
-      categories: CATEGORIES
+      categories: CATEGORIES,
+      searchParams: this.options.categories
     }));
     this.$('.query').hide();
     this.$('.option-group-exclusive .query-option').click(function() {
