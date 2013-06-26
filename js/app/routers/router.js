@@ -6,6 +6,7 @@ var $ = require('jquery'),
     EditView = require('views/edit_view'),
     IndexView = require('views/index_view'),
     AdminListView = require('views/admin_list_view'),
+    FilterView = require('views/filter_view'),
     Query = require('lib/query'),
     _ = require('underscore'),
     facilities = require('collections/facilities').instance;
@@ -16,7 +17,8 @@ var Router = Backbone.Router.extend({
     'list': 'index',
     'query/:category': 'query',
     'detail/:id': 'detail',
-    'edit/:id': 'edit'
+    'edit/:id': 'edit',
+    'filter': 'filter'
   },
 
   listView: null,
@@ -58,6 +60,11 @@ var Router = Backbone.Router.extend({
     if ( facilities.length === 0 ) {
       listView.submitQuery();
     }
+  },
+
+  filter: function() {
+    this.filterView = this.filterView || new FilterView();
+    this.filterView.render();
   },
 
   renderFacility: function(facility) {
