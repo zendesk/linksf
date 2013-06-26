@@ -30,19 +30,20 @@ var Router = Backbone.Router.extend({
     return indexView.render();
   },
 
-  query: function(category) {
-    var listViewClass = this.listViewClass,
+  query: function(param) {
+    var categories = param.split(','),
+        listViewClass = this.listViewClass,
         self = this;
-    
+
     this.listView = self.listView || new listViewClass({collection: facilities});
 
     this.listView.performQuery({
       filter: {
-        categories: [category]
+        categories: categories
       },
       limit: 20
     }).done(function(results) {
-      self.listView.options.categories = [category];
+      self.listView.options.categories = categories;
       self.listView.offset = results.offset;
       self.listView.render();
       window.scrollTo(0, 0); // Scroll to top
