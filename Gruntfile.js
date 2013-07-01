@@ -76,7 +76,7 @@ module.exports = function(grunt) {
       jquery: { path: './vendor/js/jquery.min.js', exports: '$' },
       'jquery-serialize-object': { path: './vendor/js/jquery.serialize-object.js', exports: '' },
       bootstrap: {
-        path: './vendor/bootstrap/js/bootstrap.js',
+        path: './vendor/bootstrap/js/bootstrap.min.js',
         exports: null,
         depends: { jquery: '$' }
       }
