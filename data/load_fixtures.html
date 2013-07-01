@@ -1,13 +1,9 @@
 <head>
 <script src="../js/vendor/jquery.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDdHRnaDD-_z2aNUqyxxCoRBAf6PWZjS4&sensor=true"></script>
-<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
-<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script> -->
-<script src="../js/vendor/underscore-min.js"></script>
-<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script> -->
-<script src="../js/vendor/backbone-min.js"></script>
-<!-- <script src="//www.parsecdn.com/js/parse-1.2.2.min.js"></script> -->
-<script src="../js/vendor/parse-1.2.2.min.js"></script>
+<script src="../vendor/js/underscore-min.js"></script>
+<script src="../vendor/js/backbone-min.js"></script>
+<script src="../vendor/js/parse-1.2.2.min.js"></script>
 <script src="../js/static/output.js"></script>
 <script src="../js/app/index.js"></script>
 <script src="fixture.json" charset='utf-8'></script>
@@ -19,16 +15,16 @@
 <script>
   var buildFacility = require('lib/fixture');
 
-  $('#load_fixtures').click(function() { 
+  $('#load_fixtures').click(function() {
     i = 0;
-    _.each(fixtureData, function(facility) { 
-      setTimeout(function() { 
+    _.each(fixtureData, function(facility) {
+      setTimeout(function() {
         buildFacility(facility, {
-          success: function(facility) { 
-            $('#results').append("Created " + facility.get('name') + "<br/>"); 
-          }, 
-          error: function(error) { 
-            $('#results').append("Error creating facility: " + error + "<br/>"); 
+          success: function(facility) {
+            $('#results').append("Created " + facility.get('name') + "<br/>");
+          },
+          error: function(error) {
+            $('#results').append("Error creating facility: " + error + "<br/>");
           }
         });
       }, 1000 * i);
