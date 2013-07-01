@@ -11,7 +11,4 @@ $(function() {
 
   // begin tracking hashChange
   require('backbone').history.start();
-
-  // navigate to root route
-  // router.navigate('');
 });
