@@ -27,7 +27,8 @@ module.exports = function(grunt) {
         'js/app/**/*.hbs',
         'css/**/*.scss',
         'test/**/*.js',
-        'index.html'
+        'index.html',
+        'vendor/**/*'
       ],
       tasks: [
         'jshint',
