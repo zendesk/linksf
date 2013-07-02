@@ -10,13 +10,13 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width">
 
-  <link rel="stylesheet" href="css/vendor/bootstrap.min.css">
+  <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/static/admin.css">
 </head>
 
 <body>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDdHRnaDD-_z2aNUqyxxCoRBAf6PWZjS4&sensor=true"></script>
-  <script src="js/vendor/parse-1.2.2.min.js"></script>
+  <script src="vendor/js/parse-1.2.2.min.js"></script>
   <script src="js/static/admin.js"></script>
 
   <div class="navbar navbar-inverse navbar-fixed-top">
@@ -25,8 +25,10 @@
         <a class="brand" href="#">Link SF Admin</a>
         <form id="search_form">
           <ul class="nav">
-          <li><input type="text" id="search"> Search</li>
+          <li><input type="text" id="search" placeholder="Search for a facility..."></li>
           <li><a href="#/new">New Facility</a></li>
+          <li class='navbar-text' id='navUserInfo'></span>
+          <li id="navUserLogout"><a href="#/logout">Logout</a></li>
         </form>
       </div>
     </div>

@@ -73,12 +73,18 @@ module.exports = function(grunt) {
 
     // vendor js
     output = shim(browserify(), {
-      jquery: { path: './js/vendor/jquery.min.js', exports: '$' },
-      'jquery-serialize-object': { path: './js/vendor/jquery.serialize-object.js', exports: '' }
+      jquery: { path: './vendor/js/jquery.min.js', exports: '$' },
+      'jquery-serialize-object': { path: './vendor/js/jquery.serialize-object.js', exports: '' },
+      bootstrap: {
+        path: './vendor/bootstrap/js/bootstrap.min.js',
+        exports: null,
+        depends: { jquery: '$' }
+      }
     })
       .require('./js/shims/parse.js', {expose: 'parse'})
       .require('./js/shims/google-maps.js', {expose: 'google-maps'})
-      .require('backbone', {expose: 'backbone'});
+      .require('backbone', {expose: 'backbone'})
+      .require('./vendor/js/backbone_filters.js', {expose: 'backbone-filters'});
 
     // use hbsfy transform to support requiring .hbs files
     output = output.transform('hbsfy');

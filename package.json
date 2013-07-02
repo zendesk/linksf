@@ -14,12 +14,11 @@
     "grunt-contrib-jshint": "~0.3.0",
     "grunt-contrib-watch": "~0.3.1",
     "glob": "3.1.21",
-    "handlebars": ">=1.0.12",
-    "handlebars-runtime": "git://github.com/dadah89/node-handlebars-runtime.git#master",
-    "hbsfy": "~0.1.2",
+    "hbsfy": "0.1.4",
     "mocha": "~1.9.0",
     "should": "~1.2.2",
     "grunt-simple-mocha": "~0.4.0",
     "grunt-contrib-sass": "~0.3.0"
-  }
+  },
+  "engines": { "npm": ">=1.2.10", "node": ">=0.8.19" }
 }

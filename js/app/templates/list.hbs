@@ -1,6 +1,9 @@
 <nav>
-  <button id="filter">Filter</button>
+  <button class="btn btn-info" id="filter">Filter</button>
 </nav>
+<div id="queryRepresentation">
+{{#each searchParams}}<span>{{this}} </span>{{/each}}
+</div>
 
 <div class="query">
   <div class="query-options">
@@ -11,12 +14,26 @@
     </ul>
     <h4>with the following services</h4>
     <ul class="query-option-category  option-group">
-      <li data-value="food" class="query-option">Food</li>
-      <li data-value="medical" class="query-option">Medical</li>
-      <li data-value="housing" class="query-option">Housing</li>
-      <li data-value="technology" class="query-option">Technology</li>
-      <li data-value="hygiene" class="query-option">Hygiene</li>
+    {{#each categories}}
+      <li data-value="{{key}}" class="query-option">{{title}}</li>
+    {{/each}}
     </ul>
+
+    <h4>suitable for</h4>
+    <ul class="query-option-demographics option-group">
+      <li data-value="C" class="query-option">Children</li>
+      <li data-value="Y" class="query-option">Teens/Youth</li>
+      <li data-value="A" class="query-option">Adults</li>
+      <li data-value="S" class="query-option">Seniors</li>
+    </ul>
+
+    <h4>restricted to</h4>
+    <ul class="query-option-gender option-group-exclusive">
+      <li data-value="A" class="query-option">All</li>
+      <li data-value="M" class="query-option">Men</li>
+      <li data-value="F" class="query-option">Women</li>
+    </ul>
+
 
     <div class="actions">
       <a href="#" class="dismiss">Close</a>  <button class="btn submit-query">Find</button>
@@ -32,10 +49,14 @@
           <p class="facility-status-{{this.status}}">{{this.status}}</p>
         {{/if}}
         <h4 class="facility-name">{{this.name}}</h4>
-        <p class="facility-services">{{this.serviceCategories}}</p>
         <p class="facility-address">{{this.address}}</p>
-        <p class="facility-notes">{{this.allNotes}}</p>
+        <p class="facility-services">{{this.serviceCategories}}</p>
+
       </a>
     </li>
   {{/each}}
 </ul>
+<div style='display: none' id='loading-spinner'>
+  <img src="images/spinner.gif"> Loading more results... 
+</div>
+
