@@ -33,8 +33,9 @@
 
 .facility-list {
   // default ul
-  padding-top: 60px;
+  padding-top: 95px;
   margin: 0;
+  background-color: #F3F3F3;
 
   .facility {
     border-bottom: solid #9B9B9B 1px;
@@ -93,4 +94,16 @@
 .facility-status-closed {
   @include facility-status;
   color: #C43D29; // red
+}
+
+#queryRepresentation{
+    margin-top: 59px;
+    background-color: #E0E0E0;
+    padding: 10px;
+    border-bottom: 1px solid #999999;
+    color: #7B7B7B;
+    font-weight: bold;
+    font-size: 20px;
+    position: fixed;
+    width: 100%;
 }

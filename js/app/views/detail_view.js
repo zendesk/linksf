@@ -1,6 +1,7 @@
 /*globals window, document */
 
 var Backbone      = require('backbone'),
+    Features      = require('lib/features'),
     $             = require('jquery'),
     _             = require('underscore'),
     gmaps         = require('google-maps'),
@@ -17,14 +18,14 @@ var DetailView = Backbone.View.extend({
     var facility = this.model;
     var $mapdiv =  this.$('#location-map');
 
-    $(this.el).html(this.template({facility: facility}));
+    this.$el.html(this.template({facility: facility, isMobile: Features.isMobile() }));
     _.defer( function( view ){ view.setMap();}, this );
 
     return this;
   },
 
   launchDirections: function() {
-    var urlBase = "comgooglemaps://?daddr=",
+    var urlBase = Features.isMobile() ? "comgooglemaps://?daddr=" : 'https://maps.google.com?daddr=',
         dAddr = encodeURIComponent(this.model.address +
                                    "@" +
                                    this.model.location.latitude +
@@ -45,6 +46,8 @@ var DetailView = Backbone.View.extend({
             zoom: 15,
             mapTypeId: gmaps.MapTypeId.ROADMAP,
             scrollwheel: false,
+            navigationControl: false,
+            draggable: false,
             streetViewControl: false,
             zoomControlOptions: {
               style: gmaps.ZoomControlStyle.SMALL
@@ -58,13 +61,16 @@ var DetailView = Backbone.View.extend({
       }
       this.layout();
   },
+
   layout: function(){
-  $.each($('.desco'), function(){
-    if($(this).text().length > 52){
-      $(this).text($(this).text().substr(0,52)+"...");}
+    $.each(this.$('.desco'), function() {
+      if ($(this).text().length > 52) {
+        $(this).text($(this).text().substr(0,52)+"...");
+      }
     });
-  $('.more').click(function(){$(this).parent().next($('.seeMore')).slideToggle();});
-  $('.prevrow').last().remove();
+
+    this.$('.prevrow').last().remove();
+    this.$('#backNav').click(function(){window.history.back();});
 
   }
 

@@ -1,21 +1,6 @@
 ### Admin
 
-1. authentication
-1. hours pt 1: instructions for hours format next to text input field
-1. hours pt 2: live preview of hours format
-1. hours pt 3: usable hours editing widget
-2. Ability to send email to a facility so they can verify their information.
-
-### Home
-
-1. Icons for options
-1. Link to 'About Us' and/or 'Contact'
-2. All buttons should be visible on the screen at once
-
-### Regressions
-
-1. filtering by demographics
-1. expanding service notes
+1. Ability to send email to a facility so they can verify their information.
 
 ### Detail
 
@@ -29,14 +14,12 @@
 
 1. add email property to facility
 
-### Scheduling
+### Other enhancements
 
-1. User testing tentatively scheduled for second week of June
+1. 'About Us' page with TTL and Zendesk information
+1. Validation email for when a new resource is entered.
 
-### For next time (week of 6/12 meeting)
+### Before GA
 
-1. make sure link-sf.com is usable on Android devices (survey results inc from TTL)
-1. make sure link-sf.com is usable on desktop
-1. admin behind authentication
-1. sanity check addresses
-1. filtering by demographics
+1. LinkSF will have resources to manually update and verify all of the facility/service information. This means we'll have to switch away from our publicly accessible Parse account to a productionized account.
+1. LinkSF has a logo that isn't finalized yet, but we'll need to get a favicon and an icon for the web app.

@@ -2,11 +2,43 @@ var Backbone = require('backbone'),
     $ = require('jquery'),
     Query = require('lib/query'),
     _ = require('underscore'),
-    facilities = require('collections/facilities').instance;
+    facilities = require('collections/facilities').instance,
+    searchParams = ["fr"];
 
 function validCategory(category) {
   return category && (/[a-z]+/).test(category.toString());
 }
+
+function getData($elements, dataAttrName) {
+  var result = [];
+  $elements.each(function(n, el) {
+    result.push($(el).data(dataAttrName));
+  });
+  return result;
+}
+
+var CATEGORIES = [
+  {
+    key: "food",
+    title: "Food"
+  },
+  {
+    key: "medical",
+    title: "Medical"
+  },
+  {
+    key: "housing",
+    title: "Housing"
+  },
+  {
+    key: "technology",
+    title: "Technology"
+  },
+  {
+    key: "hygiene",
+    title: "Hygiene"
+  }
+];
 
 var ListView = Backbone.View.extend({
   template: require('templates/list'),
@@ -25,26 +57,47 @@ var ListView = Backbone.View.extend({
     this.$(".query").toggle();
   },
 
-  doFilterQuery: function() {
+  getFilterParams: function () {
     var sort = this.$(".query-option-sort .query-option.selected").data("value"),
-        categories = this.$(".query-option-category .query-option.selected").map(function(n, el) { return $(el).data('value'); });
+        categories = getData(this.$(".query-option-category .query-option.selected"), 'value'),
+        gender = this.$(".query-option-gender .query-option.selected").data('value'),
+        age = getData(this.$(".query-option-demographics .query-option.selected"), 'value');
 
-    var params = {
-      filter: {
-        categories: categories
-      },
-      sort: sort
-    };
+    if(gender === "A") {
+      gender = null;
+    }
 
     this.options.categories = categories;
 
-    Query.submit(params).done(function(results) {
-      // populate with results
-      facilities.reset(results.data);
+    if(categories.length === 0) {
+      categories = _.map(CATEGORIES, function(c) { return c.key; });
+    }
+
+    return {
+      filter: {
+        categories: categories,
+        age: age,
+        gender: gender
+      },
+      sort: sort,
+      offset: this.offset
+    };
+  },
+
+  doFilterQuery: function() {
+    this.performQuery(this.getFilterParams()).done(function(results) {
       var router = require('routers/router').instance;
       router.navigate("list");
     });
+  },
 
+  performQuery: function(params) {
+    return Query.submit(params).done(function(results) {
+      searchParams = params;
+      // populate with results
+      facilities.reset(results.data);
+      this.offset = results.offset;
+    }.bind(this));
   },
 
   dismissFilters: function() {
@@ -60,6 +113,7 @@ var ListView = Backbone.View.extend({
       self.$categoryOption(category).addClass("selected");
     });
 
+    this.$(".query-option-gender [data-value='A']").addClass('selected');
   },
 
   $categoryOption: function(category) {
@@ -71,28 +125,16 @@ var ListView = Backbone.View.extend({
 
   },
 
-  submitQuery: function(extra_params) {
-    // serialize the form
-    var params = $('.query form').serializeObject();
-
-    $.extend(params, extra_params);
-    console.log(extra_params);
-    // submit query
-    params.limit = this.defaultLimit;
-
-    Query.submit(params).done(function(results) {
-      facilities.reset(results.data);
-    });
-
-    return false;
-  },
-
   render: function() {
     var deepJson = this.deepToJson(this.collection);
     var templateJson = this.flattenServices(deepJson);
 
     // replace with template
-    this.$el.html(this.template({ facilities: templateJson }));
+    this.$el.html(this.template({
+      facilities: templateJson,
+      categories: CATEGORIES,
+      searchParams: this.options.categories
+    }));
     this.$('.query').hide();
     this.$('.option-group-exclusive .query-option').click(function() {
       $(this).closest(".option-group-exclusive").find(".query-option").removeClass("selected");

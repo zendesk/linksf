@@ -6,11 +6,26 @@ var AdminListView = ListView.extend({
   defaultLimit: 4000,
   initialize: function() { 
     var self = this;
+    this.listenTo(this.collection, 'reset', this.render);
     $('#search_form').submit(function(el) { 
       self.submitQuery({search: $('#search').val()});
       return false;
     });
+  },
+
+  submitQuery: function(extra_params) {
+    // serialize the form
+    var params = $('.query form').serializeObject();
+
+    $.extend(params, extra_params);
+    console.log(extra_params);
+    // submit query
+    params.limit = this.defaultLimit;
+    this.performQuery(params);
+
+    return false;
   }
+
 });
 
 module.exports = AdminListView;

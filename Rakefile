@@ -6,17 +6,18 @@ namespace :deploy do
     deploy_files = %w(
       index.html
       admin.html
-      js/vendor/parse-1.2.2.min.js
+      images/spinner.gif
       js/static/output.js
       js/static/admin.js
-      css/vendor/bootstrap.min.css
-      css/vendor/normalize.min.css
       css/static/user.css
       css/static/admin.css
     )
     deploy_files.each do |d|
       system("s3cmd put --acl-public #{d} s3://link-sf.com/#{d}")
     end
+
+    # deploy everything in vendor
+    system("s3cmd sync --acl-public vendor/ s3://link-sf.com/vendor/")
   end
 
   task :parse do
