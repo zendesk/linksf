@@ -10,7 +10,6 @@ function navigate(categories) {
 }
 
 var IndexView = Backbone.View.extend({
-  el: $("#linksf"),
   template: require('templates/index'),
 
   events: {
