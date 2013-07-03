@@ -1,4 +1,5 @@
-var $ = require('jquery');
+var $     = require('jquery'),
+    Parse = require('parse');
 
 require('jquery-serialize-object');
 require('bootstrap');
