@@ -1,15 +1,17 @@
 /*globals window*/
-var $ = require('jquery'),
-    Backbone = require('backbone'),
-    DetailView = require('views/detail_view'),
-    ListView = require('views/list_view'),
-    EditView = require('views/edit_view'),
-    IndexView = require('views/index_view'),
-    AdminListView = require('views/admin_list_view'),
+var $                     = require('jquery'),
+    _                     = require('underscore'),
+    Backbone              = require('backbone'),
+    BaseController        = require('lib/base_controller'),
+    AdminListView         = require('views/admin_list_view'),
+    DetailView            = require('views/detail_view'),
+    EditView              = require('views/edit_view'),
     FilterView = require('views/filter_view'),
-    Query = require('lib/query'),
-    _ = require('underscore'),
-    facilities = require('collections/facilities').instance;
+    IndexView             = require('views/index_view'),
+    ListView              = require('views/list_view'),
+    Query                 = require('lib/query'),
+    applicationController = new BaseController({ el: '#linksf' }),
+    facilities            = require('collections/facilities').instance;
 
 var Router = Backbone.Router.extend({
   routes: {
@@ -27,15 +29,16 @@ var Router = Backbone.Router.extend({
 
   index: function() {
     var indexView = new IndexView();
-    return indexView.render();
+    return applicationController.render(indexView);
   },
 
   query: function(param) {
     var categories = param.split(','),
         listViewClass = this.listViewClass,
+
         self = this;
 
-    this.listView = self.listView || new listViewClass({collection: facilities});
+    this.listView = self.listView || new listViewClass({ collection: facilities, isSingleton: true });
 
     this.listView.performQuery({
       filter: {
@@ -45,7 +48,7 @@ var Router = Backbone.Router.extend({
     }).done(function(results) {
       self.listView.options.categories = categories;
       self.listView.offset = results.offset;
-      self.listView.render();
+      applicationController.render(self.listView);
       window.scrollTo(0, 0); // Scroll to top
     });
   },
@@ -55,7 +58,7 @@ var Router = Backbone.Router.extend({
     listView.collection = facilities;
     listView.searchParams = $('.query form').serializeObject();
 
-    listView.render();
+    applicationController.render(listView);
 
     // run a default query
     if ( facilities.length === 0 ) {
@@ -70,14 +73,13 @@ var Router = Backbone.Router.extend({
 
   renderFacility: function(facility) {
     var detailView = new DetailView({ model: facility.presentJSON() });
-    detailView.render();
     window.scrollTo(0, 0); // Scroll to top
-    return detailView;
+    return applicationController.render(detailView);
   },
 
   renderEdit: function(facility) {
     var editView = new EditView({ model: facility });
-    return editView.render();
+    return applicationController.render(editView);
   },
 
   detail: function(id) {
