@@ -1,4 +1,5 @@
-var $ = require('jquery');
+var $     = require('jquery'),
+    Parse = require('parse');
 
 require('jquery-serialize-object');
 
@@ -10,7 +11,4 @@ $(function() {
 
   // begin tracking hashChange
   require('backbone').history.start();
-
-  // navigate to root route
-  // router.navigate('');
 });
