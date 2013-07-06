@@ -3,7 +3,7 @@
   padding: 58px 20px 60px 20px; // 58px is navbar height
 
   nav {
-    background-color: #5bc0de;
+    background-color: #358FB2;
     color: white;
     text-align: center;
   }
@@ -21,8 +21,14 @@
     }
   }
 
+  .categories-header {
+    color: #666666;
+    font-weight: 20px;
+  }
+
   ul.categories {
-    margin: 0;
+    display: block;
+    margin: 2px 0 0 0;
 
     li {
       padding-bottom: 10px;
@@ -36,8 +42,19 @@
         text-align: left;
         width: 100%;
       }
-      i {
+
+      i.category-icon {
         margin: 5px 10px;
+      }
+
+      .category-checkbox {
+        background-color: white;
+        border: 1px solid;
+        float: right;
+        height: 18px;
+        margin: 2px 15px 0 0;
+        padding: 1px 3px;
+        width: 14px;
       }
     }
   }

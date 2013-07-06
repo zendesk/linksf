@@ -27,7 +27,8 @@ module.exports = function(grunt) {
         'js/app/**/*.hbs',
         'css/**/*.scss',
         'test/**/*.js',
-        'index.html'
+        'index.html',
+        'vendor/**/*'
       ],
       tasks: [
         'jshint',
@@ -73,10 +74,10 @@ module.exports = function(grunt) {
 
     // vendor js
     output = shim(browserify(), {
-      jquery: { path: './js/vendor/jquery.min.js', exports: '$' },
-      'jquery-serialize-object': { path: './js/vendor/jquery.serialize-object.js', exports: '' },
-      bootstrap: { 
-        path: './vendor/bootstrap/js/bootstrap.js',
+      jquery: { path: './vendor/js/jquery.min.js', exports: '$' },
+      'jquery-serialize-object': { path: './vendor/js/jquery.serialize-object.js', exports: '' },
+      bootstrap: {
+        path: './vendor/bootstrap/js/bootstrap.min.js',
         exports: null,
         depends: { jquery: '$' }
       }
@@ -84,7 +85,7 @@ module.exports = function(grunt) {
       .require('./js/shims/parse.js', {expose: 'parse'})
       .require('./js/shims/google-maps.js', {expose: 'google-maps'})
       .require('backbone', {expose: 'backbone'})
-      .require('./js/vendor/backbone_filters.js', {expose: 'backbone-filters'});
+      .require('./vendor/js/backbone_filters.js', {expose: 'backbone-filters'});
 
     // use hbsfy transform to support requiring .hbs files
     output = output.transform('hbsfy');

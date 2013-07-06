@@ -7,7 +7,6 @@ var Backbone = require('backbone'),
 Handlebars.registerPartial("editService", require('templates/edit_service'));
 
 var EditView = Backbone.View.extend({
-  el: $("#linksf"),
   template: require('templates/edit'),
   setupServices: function() {
     _(this.model.get("services")).each(function(service, index) {
