@@ -1,10 +1,7 @@
 var Backbone = require('backbone'),
     $ = require('jquery'),
     _ = require('underscore'),
-    Handlebars = require('handlebars-runtime'),
     gmaps = require('google-maps');
-
-Handlebars.registerPartial("editService", require('templates/edit_service'));
 
 var EditView = Backbone.View.extend({
   template: require('templates/edit'),
