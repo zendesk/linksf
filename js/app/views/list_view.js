@@ -1,6 +1,8 @@
+/* globals window */
 var Backbone = require('backbone'),
     $ = require('jquery'),
     Query = require('lib/query'),
+    InfiniteScrollControl = require('lib/scroll'),
     _ = require('underscore'),
     facilities = require('collections/facilities').instance,
     searchParams = ["fr"];
@@ -57,6 +59,27 @@ var ListView = Backbone.View.extend({
 
   initialize: function() {
     this.listenTo(this.collection, 'reset', this.render);
+
+    var self = this;
+    this.scrollControl = new InfiniteScrollControl(function loadData(loadCompleteCallback) {
+      $('#loading-spinner').show();
+
+      Query.submit(self.getFilterParams()).done(function(results) {
+        if ( results.data.length === 0 ) {
+          loadCompleteCallback(false);
+        }
+
+        facilities.add(results.data);
+        facilities.trigger("reset");
+        self.offset = results.offset;
+        $('#loading-spinner').hide();
+        loadCompleteCallback(true);
+      });
+    });
+
+    $(window).scroll(function () {
+      self.scrollControl.triggerScroll();
+    });
   },
 
   toggleSearch: function() {
@@ -91,6 +114,8 @@ var ListView = Backbone.View.extend({
   },
 
   doFilterQuery: function() {
+    this.offset = 0;
+    this.scrollControl.isDisabled = false;
     this.performQuery(this.getFilterParams()).done(function(results) {
       var router = require('routers/router').instance;
       router.navigate("list");

@@ -17,10 +17,12 @@
 
 <body>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDdHRnaDD-_z2aNUqyxxCoRBAf6PWZjS4&sensor=true"></script>
-  <script src="node_modules/underscore/underscore-min.js"></script>
 
-  <script src="vendor/js/parse-1.2.2.min.js"></script>
   <script src="js/static/output.js"></script>
+  <script>
+    window._ = require('underscore');
+  </script>
+  <script src="vendor/js/parse-1.2.2.min.js"></script>
 
   <div id="linksf"></div>
 </body>
