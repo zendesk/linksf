@@ -1,6 +1,6 @@
-var Backbone = require('backbone'),
-    $        = require('jquery'),
-    _        = require('underscore');
+var Backbone   = require('backbone'),
+    $          = require('jquery'),
+    _          = require('underscore');
 
 function navigate(categories) {
   var route  = 'query/' + categories.join(','),
