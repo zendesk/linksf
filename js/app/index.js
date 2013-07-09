@@ -18,6 +18,4 @@ $(function() {
 
   // begin tracking hashChange
   require('backbone').history.start();
-
-  
 });

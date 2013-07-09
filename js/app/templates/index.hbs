@@ -5,7 +5,15 @@
 
   <h3 class="title">What are you looking for?</h3>
 
+  <fieldset class="search">
+    <label class="search-header">Search</label>
+    <div class="input-prepend">
+      <span class="add-on"><i class="icon-search"></i></span>
+      <input id="search_name" type="text" placeholder="Key words">
+    </div>
+  </fieldset>
+
   <span class="categories-header">Service</span>
   {{> filterCategories}}
-  <p class="search"><button class="btn btn-info">Search</button></p>
+  <p class="search-button"><button class="btn btn-info">Search</button></p>
 </div>
