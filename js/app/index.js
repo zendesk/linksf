@@ -1,5 +1,4 @@
 var $          = require('jquery'),
-    Parse      = require('parse'),
     Handlebars = require('handlebars-runtime');
 
 require('jquery-serialize-object');
@@ -10,6 +9,8 @@ Handlebars.registerPartial("filterCategories", require('templates/filter_categor
 Handlebars.registerPartial("editService", require('templates/edit_service'));
 
 $(function() {
+  var Parse = require('parse');
+
   Parse.initialize("Z2l0Zn6NGrHCDoBPKUeD7Tf1fAUDaazQihQFqnL8", "kGPp7cydleuFbhKB4mrviTmbIjrbTjhxGP4dP7Ls");
 
   // provision the router instance
