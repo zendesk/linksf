@@ -20,23 +20,29 @@ function getData($elements, dataAttrName) {
 var CATEGORIES = [
   {
     key: "food",
-    title: "Food"
+    title: "Food",
+    icon: "shopping-cart"
+
   },
   {
     key: "medical",
-    title: "Medical"
+    title: "Medical",
+    icon: "heart"
   },
   {
     key: "housing",
-    title: "Housing"
+    title: "Housing",
+    icon: "briefcase"
   },
   {
     key: "technology",
-    title: "Technology"
+    title: "Technology",
+    icon: "hdd"
   },
   {
     key: "hygiene",
-    title: "Hygiene"
+    title: "Hygiene",
+    icon: "tint"
   }
 ];
 
@@ -133,7 +139,7 @@ var ListView = Backbone.View.extend({
     this.$el.html(this.template({
       facilities: templateJson,
       categories: CATEGORIES,
-      searchParams: this.options.categories
+      searchParams: this.filterSelectCategories(this.options.categories)
     }));
     this.$('.query').hide();
     this.$('.option-group-exclusive .query-option').click(function() {
@@ -183,6 +189,14 @@ var ListView = Backbone.View.extend({
     });
 
     return flattened;
+  },
+  filterSelectCategories: function(queryParams) {
+    var selectedCategories = [];
+    _.each(queryParams, function(queryName){
+      var match = _.find(CATEGORIES, function(e){ return e.key == queryName; });
+      selectedCategories.push(match);
+    });
+    return selectedCategories;
   }
 });
 
