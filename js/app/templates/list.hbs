@@ -4,7 +4,7 @@
   <button class="btn btn-info" id="filter">Filter</button>
 </nav>
 <div id="queryRepresentation">
-{{#each searchParams}}<span>{{this}} </span>{{/each}}
+{{#each this.searchParams}}<i class="list-header-item category-icon icon-{{this.icon}}"></i><span>{{this.title}} </span>{{/each}}
 </div>
 
 <div class="query">
