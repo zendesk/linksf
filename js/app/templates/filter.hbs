@@ -1,24 +1,35 @@
-<h3>Sort by</h3>
-<div class="btn-group" data-toggle="buttons-radio">
-  <button class="btn">Name</button>
-  <button class="btn">Distance</button>
-</div>
+<div id="filter">
+  <nav>
+    <button class="btn btn-info back">Back</button>
+    <button class="btn btn-info search">Search</button>
+    <h3>Link-sf</h3>
+  </nav>
 
-<h3>Suitable for</h3>
-<div class="btn-group" data-toggle="buttons-checkbox">
-  <button class="btn">Children</button>
-  <button class="btn">Teens/Youth</button>
-  <button class="btn">Adults</button>
-  <button class="btn">Seniors</button>
-</div>
-
-<h3>Restricted to</h3>
-<div class="btn-group" data-toggle="buttons-radio">
-  <button class="btn">All</button>
-  <button class="btn">Men</button>
-  <button class="btn">Women</button>
-</div>
-
-<div class="search">
-  <button class="btn">Search</button>
+  <h3>Sort by</h3>
+  <div class="btn-group" data-toggle="buttons-radio">
+    <button class="btn">Name</button>
+    <button class="btn">Distance</button>
+  </div>
+  
+  <h3>Service</h3>
+  {{> filterCategories}}
+  
+  <h3>Suitable for</h3>
+  <div class="btn-group" data-toggle="buttons-checkbox">
+    <button class="btn">Children</button>
+    <button class="btn">Teens/Youth</button>
+    <button class="btn">Adults</button>
+    <button class="btn">Seniors</button>
+  </div>
+  
+  <h3>Restricted to</h3>
+  <div class="btn-group" data-toggle="buttons-radio">
+    <button class="btn">All</button>
+    <button class="btn">Men</button>
+    <button class="btn">Women</button>
+  </div>
+  
+  <div class="search">
+    <button class="btn btn-info">Search</button>
+  </div>
 </div>

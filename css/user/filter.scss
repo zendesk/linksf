@@ -1,0 +1,31 @@
+#filter {
+  background-color: #F3F3F3;
+  padding: 58px 20px 60px 20px; // 58px is navbar height
+
+  nav {
+    background-color: #358FB2;
+    color: white;
+    text-align: center;
+    padding: 5px;
+
+    button {
+      margin-top: 15px;
+    }
+
+    .back {
+      float: left;
+    }
+
+    .search {
+      float: right;
+    }
+  }
+
+  .search {
+    button {
+      margin-top: 20px;
+      padding: 10px 0;
+      width: 100%;
+    }
+  }
+}
