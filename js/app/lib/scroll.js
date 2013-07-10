@@ -23,8 +23,8 @@ $.extend(InfiniteScrollControl.prototype, {
     }
 
     this.isLoading = true;
-    
-    if ( $(window).scrollTop() + $(window).height() >= this._getDocumentHeight() ) {
+   
+    if ( $(window).scrollTop() + $(window).height() >= this._getDocumentHeight() - 200 ) {
       this.onLoadMoreFunc(this.onLoadMoreComplete.bind(this));
     } else {
       this.isLoading = false;
