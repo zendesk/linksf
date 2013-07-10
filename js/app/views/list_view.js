@@ -59,21 +59,22 @@ var ListView = Backbone.View.extend({
 
   initialize: function() {
     this.listenTo(this.collection, 'reset', this.render);
+    this.listenTo(this.collection, 'add', this.render);
 
     var self = this;
     this.scrollControl = new InfiniteScrollControl(function loadData(loadCompleteCallback) {
       $('#loading-spinner').show();
 
       Query.submit(self.getFilterParams()).done(function(results) {
+        $('#loading-spinner').hide();
+
         if ( results.data.length === 0 ) {
           loadCompleteCallback(false);
+        } else { 
+          facilities.add(results.data);
+          self.offset = results.offset;
+          loadCompleteCallback(true);
         }
-
-        facilities.add(results.data);
-        facilities.trigger("reset");
-        self.offset = results.offset;
-        $('#loading-spinner').hide();
-        loadCompleteCallback(true);
       });
     });
 
