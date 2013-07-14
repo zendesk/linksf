@@ -1,23 +1,39 @@
+$header-color: #358FB2;
+$nav-button-width: 80px;
+
+@mixin gradient($from, $to) {
+  background-color: $from;
+  background-image: linear-gradient($from, $to);
+  background-image: -webkit-linear-gradient($from, $to);
+}
+
 .facility-header {
-  height: 72px;
-  font-size: 18px;
-  color: #848080;
-  background-color: #E3E3E3;
-  padding-top: 9px;
-  padding-left: 10px;
-  border-bottom: solid #9B9B9B 1px;
-  span{
+  height: 52px;
+  background-color: $header-color;
+  border-bottom: solid #2B7490 1px;
+  text-align: center;
+  padding: 12px ($nav-button-width + 10px) 0 10px;
+  font-weight: bold;
+  color: white;
+
+  .title {
+    line-height: 40px;
+    font-size: 30px;
+  }
+
+  .results-button {
+    @include gradient($header-color, #19658C);
+    height: 40px;
+    color: white;
+    font-size: 14px;
+    text-shadow: black 1px 1px;
+    width: $nav-button-width;
+    border: 1px solid black;
+    border-radius: 6px;
     float: left;
   }
 }
-#backNav{
-  float: right;
-  margin: 5px 20px 2px;
 
-  width: 160px;
-  height: 40px;  
-  hover{background: #bbb;}
-}
 
 #location-map{
   height: 200px;
