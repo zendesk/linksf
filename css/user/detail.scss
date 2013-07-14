@@ -1,7 +1,7 @@
 $header-color: #358FB2;
 $nav-button-width: 80px;
 
-@mixin gradient($from, $to) {
+@mixin vertical-gradient($from, $to) {
   background-color: $from;
   background-image: linear-gradient($from, $to);
   background-image: -webkit-linear-gradient($from, $to);
@@ -22,7 +22,7 @@ $nav-button-width: 80px;
   }
 
   .results-button {
-    @include gradient($header-color, #19658C);
+    @include vertical-gradient($header-color, #19658C);
     height: 40px;
     color: white;
     font-size: 14px;
