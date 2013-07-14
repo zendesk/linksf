@@ -1,5 +1,5 @@
 $header-color: #358FB2;
-$nav-button-width: 80px;
+$nav-button-width: 75px;
 
 @mixin vertical-gradient($from, $to) {
   background-color: $from;
@@ -50,7 +50,6 @@ $nav-button-width: 80px;
   margin: 0 auto;
   padding-top: 5px;
 }
-
 
 #facility-main-info {
   td {
