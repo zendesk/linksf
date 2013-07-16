@@ -2,7 +2,6 @@
 var Backbone = require('backbone'),
     $ = require('jquery'),
     Query = require('lib/query'),
-    InfiniteScrollControl = require('lib/scroll'),
     _ = require('underscore'),
     facilities = require('collections/facilities').instance,
     searchParams = ["fr"];
@@ -54,33 +53,31 @@ var ListView = Backbone.View.extend({
   events: {
     "click #filter": 'toggleSearch',
     "click .query .submit-query": 'doFilterQuery',
-    "click .query .dismiss": 'dismissFilters'
+    "click .query .dismiss": 'dismissFilters',
+    "click #load-more": 'loadMore'
   },
 
   initialize: function() {
     this.listenTo(this.collection, 'reset', this.render);
     this.listenTo(this.collection, 'add', this.render);
+  },
 
-    var self = this;
-    this.scrollControl = new InfiniteScrollControl(function loadData(loadCompleteCallback) {
-      $('#loading-spinner').show();
+  reset: function() {
+    this.offset = this.hideMore = null;
+  },
 
-      Query.submit(self.getFilterParams()).done(function(results) {
-        $('#loading-spinner').hide();
+  loadMore: function() {
+    $('#loading-spinner').show();
+    $('#load-more-container').hide();
 
-        if ( results.data.length === 0 ) {
-          loadCompleteCallback(false);
-        } else { 
-          facilities.add(results.data);
-          self.offset = results.offset;
-          loadCompleteCallback(true);
-        }
-      });
-    });
+    Query.submit(this.getFilterParams()).done(function(results) {
+      $('#loading-spinner').hide();
 
-    $(window).scroll(function () {
-      self.scrollControl.triggerScroll();
-    });
+      this.offset = results.offset;
+      this.hideMore = (results.data.length < 10);
+
+      facilities.add(results.data);
+    }.bind(this));
   },
 
   toggleSearch: function() {
@@ -176,6 +173,10 @@ var ListView = Backbone.View.extend({
     this.$('.option-group .query-option').click(function() {
       $(this).toggleClass("selected");
     });
+
+    if ( !this.hideMore ) {
+      this.$('#load-more-container').show();
+    }
 
     this.resetFilters();
     return this;
