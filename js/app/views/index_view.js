@@ -13,7 +13,7 @@ var IndexView = Backbone.View.extend({
   template: require('templates/index'),
 
   events: {
-    'click .search button': 'submit',
+    'click .search-button': 'submit',
     'click ul.categories button': 'toggleCheckbox'
   },
 
