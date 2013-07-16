@@ -51,8 +51,8 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         files: {
-          'css/static/user.css': ['css/index.scss', 'css/user/**/*.scss'],
-          'css/static/admin.css':  ['css/index.scss', 'css/admin/**/*.scss']
+          'css/static/user.css': ['css/common.scss', 'css/user/**/*.scss'],
+          'css/static/admin.css':  ['css/common.scss', 'css/admin/**/*.scss']
         }
       }
     }

@@ -7,6 +7,7 @@ require('bootstrap');
 //Register partials
 Handlebars.registerPartial("filterCategories", require('templates/filter_categories'));
 Handlebars.registerPartial("editService", require('templates/edit_service'));
+Handlebars.registerPartial("nav", require('templates/_nav'));
 
 $(function() {
   var Parse = require('parse');
