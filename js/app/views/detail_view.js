@@ -21,7 +21,7 @@ var DetailView = Backbone.View.extend({
     this.$el.html(this.template({
       facility: facility,
       isMobile: Features.isMobile(),
-      navButtons: [{class: 'results', text: 'Results'}]
+      navButtons: [{class: 'left', text: 'Results'}]
     }));
     _.defer( function( view ){ view.setMap();}, this );
 

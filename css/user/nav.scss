@@ -26,24 +26,7 @@ nav {
     margin: 20px 0 20px 20px;
   }
 
-  button.filter {
-    float: right;
-    background-color: #BDBDBD;
-    color: white;
-    width: 160px;
-    height: 40px;
-    margin-top: 10px;
-    margin-right: 10px;
-    border: 0;
-  }
-
-  .title {
-    line-height: 40px;
-    font-size: 30px;
-    color: white;
-  }
-
-  button.results {
+  button {
     @include vertical-gradient($nav-background-color, #19658C);
     height: 40px;
     color: white;
@@ -53,8 +36,33 @@ nav {
     width: $nav-button-width;
     border: 1px solid #0D2D39;
     border-radius: 6px;
+  }
+
+  button.left {
     float: left;
   }
+
+  button.right {
+    float: right;
+  }
+
+  button.filter {
+    float: right;
+    // background-color: #BDBDBD;
+    // color: white;
+    // width: 160px;
+    // height: 40px;
+    // margin-top: 10px;
+    // margin-right: 10px;
+    // border: 0;
+  }
+
+  .title {
+    line-height: 40px;
+    font-size: 30px;
+    color: white;
+  }
+
 }
 
 
