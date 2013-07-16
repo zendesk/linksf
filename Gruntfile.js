@@ -52,7 +52,7 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'css/static/user.css': ['css/common.scss', 'css/user/**/*.scss'],
-          'css/static/admin.css':  ['css/index.scss', 'css/admin/**/*.scss']
+          'css/static/admin.css':  ['css/common.scss', 'css/admin/**/*.scss']
         }
       }
     }
