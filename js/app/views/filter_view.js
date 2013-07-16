@@ -22,7 +22,12 @@ var FilterView = Backbone.View.extend({
   },
 
   render: function() {
-    this.$el.html(this.template());
+    this.$el.html(this.template({
+      navButtons: [
+        {class: 'left', text: 'Back'},
+        {class: 'right', text: 'Search'}
+      ]
+    }));
     return this;
   },
 
