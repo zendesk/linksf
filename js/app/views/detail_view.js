@@ -18,7 +18,11 @@ var DetailView = Backbone.View.extend({
     var facility = this.model;
     var $mapdiv =  this.$('#location-map');
 
-    this.$el.html(this.template({facility: facility, isMobile: Features.isMobile() }));
+    this.$el.html(this.template({
+      facility: facility,
+      isMobile: Features.isMobile(),
+      navButtons: [{class: 'results', text: 'Results'}]
+    }));
     _.defer( function( view ){ view.setMap();}, this );
 
     return this;
