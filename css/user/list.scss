@@ -64,7 +64,8 @@
   text-transform: capitalize;
 }
 
-.facility-address {
+.facility-services i{
+  margin-right: 3px;
 }
 
 .facility-notes {
@@ -106,6 +107,7 @@
     font-size: 20px;
     position: fixed;
     width: 100%;
+    z-index: 1000;
 }
 .list-header-item{ opacity: 0.5; margin: 4px 4px; }
 

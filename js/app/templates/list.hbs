@@ -52,7 +52,10 @@
         {{/if}}
         <h4 class="facility-name">{{this.name}}</h4>
         <p class="facility-address">{{this.address}}</p>
-        <p class="facility-services">{{this.serviceCategories}}</p>
+        {{#each this.serviceCategories}}
+          <span class="facility-services"><i class="category-icon icon-{{icon}}"></i>{{title}}</span>
+        {{/each}}
+        
 
       </a>
     </li>

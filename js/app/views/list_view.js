@@ -197,10 +197,20 @@ var ListView = Backbone.View.extend({
     return json;
   },
 
+  filterSelectCategories: function(queryParams) {
+    var selectedCategories = [];
+    _.each(queryParams, function(queryName){
+      var match = _.find(CATEGORIES, function(e){ return e.key == queryName; });
+      selectedCategories.push(match);
+    });
+    return selectedCategories;
+  },
+
   flattenServices: function(jsonArray) {
     var serviceCategories,
         allNotes,
-        flattened = [];
+        flattened = [],
+        self = this;
 
     _.each(jsonArray, function(jsonModel) {
       serviceCategories = [];
@@ -209,20 +219,13 @@ var ListView = Backbone.View.extend({
         serviceCategories.push(jsonService.category);
         allNotes.push(jsonService.notes);
       });
-      jsonModel.serviceCategories = serviceCategories.join(', ');
+      jsonModel.serviceCategories = self.filterSelectCategories(serviceCategories);
+      // jsonModel.serviceCategories = serviceCategories.join(', ');
       jsonModel.allNotes = allNotes.join(' ');
       flattened.push(jsonModel);
     });
 
     return flattened;
-  },
-  filterSelectCategories: function(queryParams) {
-    var selectedCategories = [];
-    _.each(queryParams, function(queryName){
-      var match = _.find(CATEGORIES, function(e){ return e.key == queryName; });
-      selectedCategories.push(match);
-    });
-    return selectedCategories;
   }
 });
 
