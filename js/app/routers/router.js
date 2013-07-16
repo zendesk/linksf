@@ -46,6 +46,7 @@ var Router = Backbone.Router.extend({
       },
       limit: 20
     }).done(function(results) {
+      self.listView.reset();
       self.listView.options.categories = categories;
       self.listView.offset = results.offset;
       applicationController.render(self.listView);
