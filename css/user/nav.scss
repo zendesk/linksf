@@ -8,8 +8,12 @@ nav {
   z-index: 100;
 
   height: $navbar-height - 2px; // border 1px
-  background-color: #358FB2;
-  border-bottom: solid #9B9B9B 1px;
+  background-color: $nav-background-color;
+
+  border-bottom: solid #2B7490 1px;
+  padding: 12px ($nav-button-width + 10px) 0 10px;
+  text-align: center;
+  font-weight: bold;
 
   a {
     color: #3081B7;
@@ -22,7 +26,6 @@ nav {
     margin: 20px 0 20px 20px;
   }
 
-  // 'Filter'
   button.filter {
     float: right;
     background-color: #BDBDBD;
@@ -33,4 +36,25 @@ nav {
     margin-right: 10px;
     border: 0;
   }
+
+  .title {
+    line-height: 40px;
+    font-size: 30px;
+    color: white;
+  }
+
+  button.results {
+    @include vertical-gradient($nav-background-color, #19658C);
+    height: 40px;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    text-shadow: black 1px 1px;
+    width: $nav-button-width;
+    border: 1px solid #0D2D39;
+    border-radius: 6px;
+    float: left;
+  }
 }
+
+
