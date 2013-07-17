@@ -2,8 +2,8 @@ var Backbone   = require('backbone'),
     $          = require('jquery'),
     _          = require('underscore');
 
-function navigate(categories) {
-  var route  = 'query/' + categories.join(','),
+function navigate(categories, keyWords) {
+  var route  = 'query/categories=' + categories.join(',') + '&search=' + encodeURIComponent(keyWords),
       router = require('routers/router').instance;
 
   router.navigate(route, { trigger: true });
@@ -29,6 +29,7 @@ var IndexView = Backbone.View.extend({
   submit: function(event) {
     var category,
         categories   = [],
+        keyWords     = this.$('#search_name').val(),
         visibleIcons = this.$('.category .icon-ok:visible');
 
     _.each(visibleIcons, function(icon) {
@@ -36,8 +37,7 @@ var IndexView = Backbone.View.extend({
       categories.push(category);
     });
 
-    if (categories.length === 0) { return; }
-    navigate(categories);
+    navigate(categories, keyWords);
   }
 });
 
