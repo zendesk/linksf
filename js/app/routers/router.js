@@ -40,11 +40,27 @@ var Router = Backbone.Router.extend({
         search        = decodeURIComponent(params.search || ''),
         listViewClass = this.listViewClass,
         queryParams   = { search: search, limit: 20 },
+	filterParams  = {},
         self          = this;
 
+
     if (categories.length > 0) {
-      queryParams.filter = { categories: categories };
+      filterParams.categories = categories;
     }
+
+    if (params.demographics.length > 0) {
+      filterParams.age = params.demographics;
+    }
+
+    if(params.gender) {
+      filterParams.gender = params.gender;
+    }
+
+    if(params.sort) {
+      queryParams.sort = params.sort;
+    }
+
+    queryParams.filter = filterParams;
 
     this.listView = self.listView || new listViewClass({ collection: facilities, isSingleton: true });
 
