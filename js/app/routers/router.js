@@ -37,19 +37,19 @@ var Router = Backbone.Router.extend({
   query: function(queryString) {
     var params        = parseParams(queryString),
         categories    = _.compact((params.categories || '').split(',')),
+        demographics  = params.demographics || [],
         search        = decodeURIComponent(params.search || ''),
         listViewClass = this.listViewClass,
         queryParams   = { search: search, limit: 20 },
-	filterParams  = {},
+        filterParams  = {},
         self          = this;
-
 
     if (categories.length > 0) {
       filterParams.categories = categories;
     }
 
-    if (params.demographics.length > 0) {
-      filterParams.age = params.demographics;
+    if (demographics.length > 0) {
+      filterParams.age = demographics;
     }
 
     if(params.gender) {
