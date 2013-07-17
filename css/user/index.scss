@@ -1,6 +1,6 @@
 #index {
   background-color: #F3F3F3;
-  padding: 58px 20px 60px 20px; // 58px is navbar height
+  padding: 71px 20px 60px 20px; // 58px is navbar height, 12px padding-top navbar
 
   nav {
     background-color: #358FB2;
@@ -21,9 +21,13 @@
     }
   }
 
+  .categories button.category {
+    border: 1px solid #cbcbcb;
+  }
+
   .categories-header, .search-header {
     color: #666666;
-    font-weight: 20px;
+    font-size: 20px;
   }
 
   .search {
@@ -31,6 +35,11 @@
 
     input {
       font-size: 20px;
+      padding-left: 10px;
+    }
+
+    .add-on {
+      padding: 4px 10px;
     }
 
     .add-on, input {
