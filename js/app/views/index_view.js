@@ -37,6 +37,7 @@ var IndexView = Backbone.View.extend({
       categories.push(category);
     });
 
+    if (categories.length === 0 && keyWords === '') { return; }
     navigate(categories, keyWords);
   }
 });
