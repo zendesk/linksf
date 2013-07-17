@@ -3,7 +3,7 @@ var Backbone   = require('backbone'),
     _          = require('underscore');
 
 function navigate(categories, keyWords) {
-  var route  = 'query/categories=' + categories.join(',') + '&search=' + encodeURIComponent(keyWords),
+  var route  = 'query?categories=' + categories.join(',') + '&search=' + encodeURIComponent(keyWords,
       router = require('routers/router').instance;
 
   router.navigate(route, { trigger: true });
