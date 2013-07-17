@@ -14,14 +14,6 @@ var $                     = require('jquery'),
     facilities            = require('collections/facilities').instance,
     parseParams           = require('lib/query_param_parser');
 
-function extractQueryParameters(string) {
-  var match, params = {};
-  _.each(string.split('&'), function(param) {
-    match = param.match(/(\w*)=([^&]*)/);
-    params[match[1]] = match[2];
-  });
-  return params;
-}
 
 var Router = Backbone.Router.extend({
   routes: {
