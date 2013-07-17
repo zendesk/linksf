@@ -68,14 +68,19 @@ module.exports = function(grunt) {
         shim        = require('browserify-shim'),
         done        = this.async();
 
-
     // this will be the js src'd in <script> tags
     var output;
 
     // vendor js
     output = shim(browserify(), {
-      jquery: { path: './vendor/js/jquery.min.js', exports: '$' },
-      'jquery-serialize-object': { path: './vendor/js/jquery.serialize-object.js', exports: '' },
+      jquery: {
+        path: './vendor/js/jquery.min.js',
+        exports: '$'
+      },
+      'jquery-serialize-object': {
+        path: './vendor/js/jquery.serialize-object.js',
+        exports: null
+      },
       bootstrap: {
         path: './vendor/bootstrap/js/bootstrap.min.js',
         exports: null,
@@ -91,10 +96,8 @@ module.exports = function(grunt) {
     // use hbsfy transform to support requiring .hbs files
     output = output.transform('hbsfy');
 
-
     // shared modules.
     // note: these are modules shared between the client and the server
-
     [
       './js/app/lib/*.js',
       './js/app/models/*.js'
@@ -111,8 +114,6 @@ module.exports = function(grunt) {
     });
 
     // application modules
-    //   note: this is optional as browserify traverses the AST from the entry point for require calls.
-    //   this gives us consistent require paths by exposing modules using a nicer name.
     [
       './js/app/lib/*.js',
       './js/app/models/*.js',
