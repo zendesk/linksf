@@ -98,7 +98,7 @@
 }
 
 #queryRepresentation{
-    margin-top: 59px;
+    margin-top: $navbar-height + 11px;
     background-color: #E0E0E0;
     padding: 10px;
     border-bottom: 1px solid #999999;
@@ -117,10 +117,10 @@
   margin: 25px;
 }
 
-#load-more-container { 
+#load-more-container {
   display: none;
 }
 
-#load-more { 
+#load-more {
   margin: 10px;
 }

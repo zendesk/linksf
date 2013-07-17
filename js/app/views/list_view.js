@@ -162,7 +162,11 @@ var ListView = Backbone.View.extend({
     this.$el.html(this.template({
       facilities: templateJson,
       categories: CATEGORIES,
-      searchParams: this.filterSelectCategories(this.options.categories)
+      searchParams: this.filterSelectCategories(this.options.categories),
+      navButtons: [
+        {class: 'left', id: 'backNav', text: 'Go Back'},
+        {class: 'right', id: 'filter', text: 'Filter'}
+      ]
     }));
     this.$('.query').hide();
     this.$('.option-group-exclusive .query-option').click(function() {

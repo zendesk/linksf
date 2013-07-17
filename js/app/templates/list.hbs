@@ -1,8 +1,4 @@
-<nav>
-  <button type="button" class="btn btn-info go-back" id="backNav">Go Back</button>
-
-  <button class="btn btn-info filter" id="filter">Filter</button>
-</nav>
+{{> nav}}
 
 <div id="queryRepresentation">
   {{#each this.searchParams}}<i class="list-header-item category-icon icon-{{this.icon}}"></i><span>{{this.title}} </span>{{/each}}
@@ -57,7 +53,7 @@
         {{#each this.serviceCategories}}
           <span class="facility-services"><i class="category-icon icon-{{icon}}"></i>{{title}}</span>
         {{/each}}
-        
+
 
       </a>
     </li>

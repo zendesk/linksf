@@ -7,11 +7,11 @@ nav {
   right: 0;
   z-index: 100;
 
-  height: $navbar-height - 2px; // border 1px
+  height: $navbar-height;
   background-color: $nav-background-color;
 
   border-bottom: solid #2B7490 1px;
-  padding: 12px ($nav-button-width + 10px) 0 10px;
+  padding: 10px 10px 0 10px;
   text-align: center;
   font-weight: bold;
 
@@ -38,13 +38,8 @@ nav {
     border-radius: 6px;
   }
 
-  button.left {
-    float: left;
-  }
-
-  button.right {
-    float: right;
-  }
+  button.left { float: left; }
+  button.right { float: right; }
 
   button.filter {
     float: right;
