@@ -13,14 +13,23 @@ var $                     = require('jquery'),
     applicationController = new BaseController({ el: '#linksf' }),
     facilities            = require('collections/facilities').instance;
 
+function extractQueryParameters(string) {
+  var match, params = {};
+  _.each(string.split('&'), function(param) {
+    match = param.match(/(\w*)=([^&]*)/);
+    params[match[1]] = match[2];
+  });
+  return params;
+}
+
 var Router = Backbone.Router.extend({
   routes: {
-    '': 'index',
-    'list': 'index',
-    'query/:category': 'query',
-    'detail/:id': 'detail',
-    'edit/:id': 'edit',
-    'filter': 'filter'
+    '':              'index',
+    'list':          'index',
+    'query/*params': 'query',
+    'detail/:id':    'detail',
+    'edit/:id':      'edit',
+    'filter':        'filter'
   },
 
   listView: null,
@@ -32,10 +41,11 @@ var Router = Backbone.Router.extend({
     return applicationController.render(indexView);
   },
 
-  query: function(param) {
-    var categories = param.split(','),
+  query: function(unparsedParams) {
+    var params        = extractQueryParameters(unparsedParams),
+        categories    = (params.categories || '').split(','),
+        search        = decodeURIComponent(params.search || ''),
         listViewClass = this.listViewClass,
-
         self = this;
 
     this.listView = self.listView || new listViewClass({ collection: facilities, isSingleton: true });
@@ -44,6 +54,7 @@ var Router = Backbone.Router.extend({
       filter: {
         categories: categories
       },
+      search: search,
       limit: 20
     }).done(function(results) {
       self.listView.reset();
