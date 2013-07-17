@@ -43,21 +43,20 @@ var Router = Backbone.Router.extend({
   },
 
   query: function(queryString) {
-    var params = parseParams(queryString),
-	categories    = (params.categories || '').split(','),
+    var params        = parseParams(queryString),
+        categories    = _.compact((params.categories || '').split(',')),
         search        = decodeURIComponent(params.search || ''),
         listViewClass = this.listViewClass,
-        self = this;
+        queryParams   = { search: search, limit: 20 },
+        self          = this;
+
+    if (categories.length > 0) {
+      queryParams.filter = { categories: categories };
+    }
 
     this.listView = self.listView || new listViewClass({ collection: facilities, isSingleton: true });
 
-    this.listView.performQuery({
-      filter: {
-        categories: categories
-      },
-      search: search,
-      limit: 20
-    }).done(function(results) {
+    this.listView.performQuery(queryParams).done(function(results) {
       self.listView.reset();
       self.listView.options.categories = categories;
       self.listView.offset = results.offset;
