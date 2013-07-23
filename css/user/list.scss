@@ -1,6 +1,6 @@
 .query {
   position: fixed;
-  top: 59px;
+  top: $navbar-height + 1px;
   left: 0;
   right: 0;
   padding: 10px;
