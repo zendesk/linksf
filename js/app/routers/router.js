@@ -6,9 +6,10 @@ var $                     = require('jquery'),
     AdminListView         = require('views/admin_list_view'),
     DetailView            = require('views/detail_view'),
     EditView              = require('views/edit_view'),
-    FilterView = require('views/filter_view'),
+    FilterView            = require('views/filter_view'),
     IndexView             = require('views/index_view'),
     ListView              = require('views/list_view'),
+    AboutView             = require('views/about_view'),
     Query                 = require('lib/query'),
     applicationController = new BaseController({ el: '#linksf' }),
     facilities            = require('collections/facilities').instance,
@@ -22,6 +23,7 @@ var Router = Backbone.Router.extend({
     'query?:queryString': 'query',
     'detail/:id': 'detail',
     'edit/:id': 'edit',
+    'about' : 'about',
     'filter': 'filter'
   },
 
@@ -128,6 +130,10 @@ var Router = Backbone.Router.extend({
       this.renderEdit(fac);
     }.bind(this));
   },
+  about: function() {
+    this.aboutView = this.aboutView || new AboutView();
+    this.aboutView.render();
+  }, 
 
   _getFacility: function(id, done) {
     var facility = facilities.get(id);

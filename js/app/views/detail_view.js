@@ -79,7 +79,6 @@ var DetailView = Backbone.View.extend({
     });
 
     this.$('.prevrow').last().remove();
-    this.$('#backNav').click(function(){window.history.back();});
 
   }
 
