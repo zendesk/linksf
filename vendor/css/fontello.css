@@ -33,8 +33,8 @@
    font-size: 80%;
 }
 
-.icon-home:before { content: '\e800'; } /* '' */
-.icon-heart:before { content: '\e802'; } /* '' */
+.icon-house:before { content: '\e800'; } /* '' */
+.icon-medical:before { content: '\e802'; } /* '' */
 .icon-location:before { content: '\e806'; } /* '' */
 .icon-compass:before { content: '\e808'; } /* '' */
 .icon-coffee:before { content: '\e803'; } /* '' */
