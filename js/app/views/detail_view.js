@@ -21,9 +21,14 @@ var DetailView = Backbone.View.extend({
     this.$el.html(this.template({
       facility: facility,
       isMobile: Features.isMobile(),
-      navButtons: [{class: 'left', text: 'Results'}]
+      navButtons: [
+      {class: 'left', id: 'backNav-button', text: 'Back'}
+      ]
     }));
     _.defer( function( view ){ view.setMap();}, this );
+    this.$('#backNav-button').click(function(){
+      require('routers/router').instance.back();
+    });
 
     return this;
   },
