@@ -11,7 +11,7 @@ nav {
   background-color: $nav-background-color;
 
   border-bottom: solid #2B7490 1px;
-  padding: 10px 10px 0 10px;
+  padding: 4px 4px 0 4px;
   text-align: center;
   font-weight: bold;
 
@@ -28,9 +28,9 @@ nav {
 
   button {
     @include vertical-gradient($nav-background-color, #19658C);
-    height: 40px;
+    height: 36px;
     color: white;
-    font-size: 14px;
+    font-size: 10px;
     font-weight: bold;
     text-shadow: black 1px 1px;
     width: $nav-button-width;
@@ -43,22 +43,15 @@ nav {
 
   button.filter {
     float: right;
-    // background-color: #BDBDBD;
-    // color: white;
-    // width: 160px;
-    // height: 40px;
-    // margin-top: 10px;
-    // margin-right: 10px;
-    // border: 0;
   }
 
   button.go-back {
-    width: 100px;
+    // width: 100px;
   }
 
   .title {
-    line-height: 40px;
-    font-size: 30px;
+    line-height: 36px;
+    font-size: 24px;
     color: white;
   }
 
