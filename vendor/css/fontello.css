@@ -1,0 +1,44 @@
+@font-face {
+  font-family: 'fontello';
+  src: url('../font/fontello.eot?72500799');
+  src: url('../font/fontello.eot?72500799#iefix') format('embedded-opentype'),
+       url('../font/fontello.woff?72500799') format('woff'),
+       url('../font/fontello.ttf?72500799') format('truetype'),
+       url('../font/fontello.svg?72500799#fontello') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+ [class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+}
+
+.icon-home:before { content: '\e800'; } /* '' */
+.icon-heart:before { content: '\e802'; } /* '' */
+.icon-location:before { content: '\e806'; } /* '' */
+.icon-compass:before { content: '\e808'; } /* '' */
+.icon-coffee:before { content: '\e803'; } /* '' */
+.icon-desktop:before { content: '\e804'; } /* '' */
+.icon-droplet:before { content: '\e801'; } /* '' */
+.icon-phone:before { content: '\e807'; } /* '' */
+.icon-search:before { content: '\e805'; } /* '' */
