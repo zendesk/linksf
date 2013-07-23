@@ -1,4 +1,4 @@
-var $     = require('jquery'),
+var $          = require('jquery'),
     Handlebars = require('handlebars-runtime');
 
 require('jquery-serialize-object');

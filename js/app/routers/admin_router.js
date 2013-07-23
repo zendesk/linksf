@@ -1,14 +1,14 @@
-var $ = require('jquery'),
-    Backbone = require('backbone'),
-    AdminListView = require('views/admin_list_view'),
-    EditView = require('views/edit_view'),
-    LoginView = require('views/login_view'),
-    DetailView = require('views/detail_view'),
-    Query = require('lib/query'),
-    _ = require('underscore'),
+var $                     = require('jquery'),
+    Backbone              = require('backbone'),
+    AdminListView         = require('views/admin_list_view'),
+    EditView              = require('views/edit_view'),
+    LoginView             = require('views/login_view'),
+    DetailView            = require('views/detail_view'),
+    Query                 = require('lib/query'),
+    _                     = require('underscore'),
     BaseController        = require('lib/base_controller'),
     applicationController = new BaseController({ el: '#linksf' }),
-    facilities = require('collections/facilities').instance;
+    facilities            = require('collections/facilities').instance;
 
 require('backbone-filters')();
 
@@ -38,13 +38,13 @@ var Router = Backbone.Router.extend({
   },
 
   routes: {
-    '': 'list',
-    'list': 'list',
-    'login': 'login',
-    'logout': 'logout',
+    '':                'list',
+    'list':            'list',
+    'login':           'login',
+    'logout':          'logout',
     'query/:category': 'query',
-    'detail/:id': 'detail',
-    'edit/:id': 'edit'
+    'detail/:id':      'detail',
+    'edit/:id':        'edit'
   },
 
   listView: null,
