@@ -1,12 +1,14 @@
-var $ = require('jquery'),
-    Backbone = require('backbone'),
-    AdminListView = require('views/admin_list_view'),
-    EditView = require('views/edit_view'),
-    LoginView = require('views/login_view'),
-    DetailView = require('views/detail_view'),
-    Query = require('lib/query'),
-    _ = require('underscore'),
-    facilities = require('collections/facilities').instance;
+var $                     = require('jquery'),
+    Backbone              = require('backbone'),
+    AdminListView         = require('views/admin_list_view'),
+    EditView              = require('views/edit_view'),
+    LoginView             = require('views/login_view'),
+    DetailView            = require('views/detail_view'),
+    Query                 = require('lib/query'),
+    _                     = require('underscore'),
+    BaseController        = require('lib/base_controller'),
+    applicationController = new BaseController({ el: '#linksf' }),
+    facilities            = require('collections/facilities').instance;
 
 require('backbone-filters')();
 
@@ -36,13 +38,13 @@ var Router = Backbone.Router.extend({
   },
 
   routes: {
-    '': 'list',
-    'list': 'list',
-    'login': 'login',
-    'logout': 'logout',
+    '':                'list',
+    'list':            'list',
+    'login':           'login',
+    'logout':          'logout',
     'query/:category': 'query',
-    'detail/:id': 'detail',
-    'edit/:id': 'edit'
+    'detail/:id':      'detail',
+    'edit/:id':        'edit'
   },
 
   listView: null,
@@ -59,7 +61,7 @@ var Router = Backbone.Router.extend({
 
       self.listView = new AdminListView({collection: facilities});
       self.listView.options.categories = [category];
-      self.listView.render();
+      applicationController.render(self.listView);
     });
   },
 
@@ -67,22 +69,22 @@ var Router = Backbone.Router.extend({
     var listView = this.listView || new AdminListView({collection: facilities});
     listView.collection = facilities;
 
-    listView.render();
-    
     // run a default query
     if ( facilities.length === 0 ) {
       listView.submitQuery();
     }
+
+    applicationController.render(listView);
   },
 
   renderFacility: function(facility) {
     var detailView = new DetailView({ model: facility.presentJSON() });
-    return detailView.render();
+    return applicationController.render(detailView);
   },
 
   renderEdit: function(facility) {
     var editView = new EditView({ model: facility });
-    return editView.render();
+    return applicationController.render(editView);
   },
 
   detail: function(id) {
