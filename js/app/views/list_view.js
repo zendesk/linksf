@@ -22,28 +22,27 @@ var CATEGORIES = [
   {
     key: "food",
     title: "Food",
-    icon: "shopping-cart"
-
+    icon: "coffee"
   },
   {
     key: "medical",
     title: "Medical",
-    icon: "heart"
+    icon: "medical"
   },
   {
     key: "housing",
     title: "Housing",
-    icon: "briefcase"
+    icon: "house"
   },
   {
     key: "technology",
     title: "Technology",
-    icon: "hdd"
+    icon: "desktop"
   },
   {
     key: "hygiene",
     title: "Hygiene",
-    icon: "tint"
+    icon: "droplet"
   }
 ];
 
