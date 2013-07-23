@@ -164,8 +164,8 @@ var ListView = Backbone.View.extend({
       categories: CATEGORIES,
       searchParams: this.filterSelectCategories(this.options.categories),
       navButtons: [
-        {class: 'left', id: 'backNav', text: 'Back'},
-        {class: 'right', id: 'filter', text: 'Filter'}
+        {class: 'left', id: 'backNav-button', text: 'Back'},
+        {class: 'right', id: 'filter-button', text: 'Filter'}
       ]
     }));
     this.$('.query').hide();
@@ -176,6 +176,9 @@ var ListView = Backbone.View.extend({
 
     this.$('.option-group .query-option').click(function() {
       $(this).toggleClass("selected");
+    });
+    this.$('#backNav-button').click(function(){
+      require('routers/router').instance.back();
     });
 
     if ( !this.hideMore ) {
