@@ -1,6 +1,8 @@
-var $     = require('jquery');
+var $     = require('jquery'),
+    Handlebars = require('handlebars-runtime');
 
 require('jquery-serialize-object');
+Handlebars.registerPartial("editService", require('templates/edit_service'));
 
 $(function() {
   var Parse = require('parse');
