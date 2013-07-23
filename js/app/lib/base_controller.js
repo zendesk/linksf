@@ -10,7 +10,10 @@ var BaseController = function (options) {
   }
 
   function render (view) {
-    if (currentView && !currentView.options.isSingleton) { view.remove(); }
+    if (currentView && !currentView.options.isSingleton) { 
+      currentView.remove(); 
+    }
+
     currentView = view;
     view.delegateEvents(view.events);
     return $(el).html(view.render().el);

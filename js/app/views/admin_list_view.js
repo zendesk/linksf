@@ -4,6 +4,7 @@ var ListView = require('views/list_view'),
 var AdminListView = ListView.extend({
   template: require('templates/admin_list'), 
   defaultLimit: 4000,
+  events: { },
   initialize: function() { 
     var self = this;
     this.listenTo(this.collection, 'reset', this.render);
