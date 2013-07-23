@@ -69,12 +69,12 @@ var Router = Backbone.Router.extend({
     var listView = this.listView || new AdminListView({collection: facilities});
     listView.collection = facilities;
 
-    applicationController.render(listView);
-    
     // run a default query
     if ( facilities.length === 0 ) {
       listView.submitQuery();
     }
+
+    applicationController.render(listView);
   },
 
   renderFacility: function(facility) {
