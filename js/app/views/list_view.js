@@ -59,7 +59,6 @@ var ListView = Backbone.View.extend({
 
   initialize: function() {
     this.listenTo(this.collection, 'reset', this.render);
-    this.listenTo(this.collection, 'add', this.render);
   },
 
   reset: function() {
@@ -76,7 +75,8 @@ var ListView = Backbone.View.extend({
       this.offset = results.offset;
       this.hideMore = (results.data.length < 10);
 
-      facilities.add(results.data);
+      this.collection.add(results.data);
+      this.render();
     }.bind(this));
   },
 
