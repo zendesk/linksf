@@ -17,23 +17,23 @@ var EditView = Backbone.View.extend({
     var g = this.model.get('gender');
     var el;
 
-    el = $('#gender_' + (g ? g : ''));
+    el = this.$('#gender_' + (g ? g : ''));
     el.prop('checked', true);
 
-    $("#age_everyone").click(function() {
-      $('[name="age"]').prop('checked', $(this).prop('checked'));
-    });
+    this.$("#age_everyone").click(function() {
+      this.$('[name="age"]').prop('checked', $(this).prop('checked'));
+    }.bind(this));
 
     if ( this.model.get("age") ) {
       _(this.model.get("age")).each(function(age) {
-        $("#age_" + age.toUpperCase()).prop('checked', true);
-      });
+        this.$("#age_" + age.toUpperCase()).prop('checked', true);
+      }.bind(this));
     } else {
-      $("#age_everyone").click();
+      this.$("#age_everyone").click();
     }
 
     this.setupServices();
-    $('#submit').click(function() {
+    this.$('#submit').click(function() {
       this.saveForm();
     }.bind(this));
   },
@@ -41,15 +41,15 @@ var EditView = Backbone.View.extend({
   saveForm: function() {
     var self = this;
     var servicePromises = [];
-    var formValues = $('#facilityForm').serializeObject();
+    var formValues = this.$('#facilityForm').serializeObject();
     if ( formValues.gender === "" ) {
       formValues.gender = null;
     }
 
-    if ( $("#age_everyone").prop('checked') ) {
+    if ( this.$("#age_everyone").prop('checked') ) {
       formValues.age = null;
     } else {
-      var ages = _.map($("[name=age]input:checked"), function(cb) {
+      var ages = _.map(this.$("[name=age]input:checked"), function(cb) {
         return $(cb).attr('value');
       });
 
@@ -73,21 +73,21 @@ var EditView = Backbone.View.extend({
 
       Parse.Promise.when(servicePromises).then(
         function(args) {
-          $("#facilitySaved").show().focus();
-          $("#facilitySaved").delay(5000).fadeOut();
+          self.$("#facilitySaved").show().focus();
+          self.$("#facilitySaved").delay(5000).fadeOut();
 
           console.log("saved.");
           console.log(args);
         },
         function(args) {
-          $("#facilitySaveError").show().focus();
+          self.$("#facilitySaveError").show().focus();
           console.log("failed.");
           console.log(args);
         }
       );
     },
       function(args) {
-        $("#facilitySaveError").show().focus();
+        self.$("#facilitySaveError").show().focus();
         console.log("failed.");
         console.log(args);
       }

@@ -1,12 +1,6 @@
 #index {
   background-color: #F3F3F3;
-  padding: 71px 20px 60px 20px; // 58px is navbar height, 12px padding-top navbar
-
-  nav {
-    background-color: #358FB2;
-    color: white;
-    text-align: center;
-  }
+  padding: $navbar-height 20px 60px 20px; // 58px is navbar height, 12px padding-top navbar
 
   .title {
     margin: 20px 0;

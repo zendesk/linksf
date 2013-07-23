@@ -1,6 +1,6 @@
 .query {
   position: fixed;
-  top: 59px;
+  top: $navbar-height + 1px;
   left: 0;
   right: 0;
   padding: 10px;
@@ -98,9 +98,9 @@
 }
 
 #queryRepresentation{
-    margin-top: $navbar-height + 11px;
+    margin-top: $navbar-height + 5px;
     background-color: #E0E0E0;
-    padding: 10px;
+    padding: 4px;
     border-bottom: 1px solid #999999;
     color: #7B7B7B;
     font-weight: bold;
@@ -109,7 +109,12 @@
     width: 100%;
     z-index: 1000;
 }
-.list-header-item{ opacity: 0.5; margin: 4px 4px; }
+
+.list-header-item {
+  opacity: 0.5;
+  margin-top: 2px;
+  margin-right: 4px;
+}
 
 #loading-spinner {
   display: none;
