@@ -30,7 +30,7 @@ nav {
     @include vertical-gradient($nav-background-color, #19658C);
     height: 36px;
     color: white;
-    font-size: 10px;
+    font-size: 14px;
     font-weight: bold;
     text-shadow: black 1px 1px;
     width: $nav-button-width;
@@ -40,14 +40,6 @@ nav {
 
   button.left { float: left; }
   button.right { float: right; }
-
-  button.filter {
-    float: right;
-  }
-
-  button.go-back {
-    // width: 100px;
-  }
 
   .title {
     line-height: 36px;
