@@ -164,7 +164,7 @@ var ListView = Backbone.View.extend({
       categories: CATEGORIES,
       searchParams: this.filterSelectCategories(this.options.categories),
       navButtons: [
-        {class: 'left', id: 'backNav', text: 'Go Back'},
+        {class: 'left', id: 'backNav', text: 'Back'},
         {class: 'right', id: 'filter', text: 'Filter'}
       ]
     }));
