@@ -36,7 +36,6 @@ var Router = Backbone.Router.extend({
     Backbone.history.on('route', function() { this.routesHit++; }, this);
   },
   back: function() {
-    console.log('dolphin');
     if(this.routesHit > 1) {
       //more than one route hit -> user did not land to current page directly
       window.history.back();
@@ -45,7 +44,7 @@ var Router = Backbone.Router.extend({
       //the navigation doesn't create an extra history entry
       this.navigate('', {trigger:true, replace:true});
     }
-  },  
+  },
   index: function() {
     var indexView = new IndexView();
     return applicationController.render(indexView);
@@ -133,7 +132,7 @@ var Router = Backbone.Router.extend({
   about: function() {
     this.aboutView = this.aboutView || new AboutView();
     this.aboutView.render();
-  }, 
+  },
 
   _getFacility: function(id, done) {
     var facility = facilities.get(id);
