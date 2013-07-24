@@ -1,16 +1,80 @@
-var Backbone = require('backbone'),
-    $ = require('jquery'),
-    _ = require('underscore'),
-    gmaps = require('google-maps');
+var Backbone            = require('backbone'),
+    $                   = require('jquery'),
+    _                   = require('underscore'),
+    Service             = require('cloud/models/service'),
+    gmaps               = require('google-maps'),
+    editServiceTemplate = require('templates/edit_service');
+
+function modelSaveFailCallback(args) {
+  this.$("#facilitySaveError").show().focus();
+  console.log("failed.");
+  console.log(args);
+}
+
+function modelSaveSuccessCallback(args) {
+  this.$("#facilitySaved").show().focus();
+  this.$("#facilitySaved").delay(5000).fadeOut();
+
+  console.log("saved.");
+  console.log(args);
+}
+
+function saveFacility(model, services, successCallback, failCallback) {
+  // var self = this;
+  model.save().then(function(foo) {
+    // var services = self.$('#facilityForm').serializeObject().services || [];
+    _.each(model.get("services"), function(service) {
+      service.destroy();
+    });
+
+    var serviceObjects = _.map(services, function(serviceData) {
+      var service = new Service();
+      service.set("facility", model);
+      service.set(serviceData);
+      return service;
+    });
+
+    Service.saveAll(serviceObjects, function(services, error) {
+      if (services) {
+        _.each(services, function(s) {
+          var sObj = new Service();
+          sObj.id = s.id;
+          model.add("services", sObj);
+        });
+
+        model.save()
+          .then(function(fac) {
+            successCallback(fac);
+          }, function(error) {
+            failCallback(error);
+          });
+
+      } else {
+        failCallback(error);
+      }
+    });
+  },
+  failCallback());
+}
 
 var EditView = Backbone.View.extend({
   template: require('templates/edit'),
-  setupServices: function() {
-    _(this.model.get("services")).each(function(service, index) {
-      var prefix = "#service\\[" + index + "\\]";
 
-      $(prefix + "_category").children("[value='" + service.get('category') + "']").prop('selected', true);
-    });
+  events: {
+    'click #add_category':    'addCategory',
+    'click #remove_category': 'removeCategory'
+  },
+
+  addCategory: function(argument) {
+    var context = { category: this.$('#categories').val() };
+    this.$('#services').prepend(editServiceTemplate(context));
+    return false;
+  },
+
+  removeCategory: function(event) {
+    var parent = this.$(event.target).closest('.service-edit-row');
+    parent.remove();
+    return false;
   },
 
   setupForm: function() {
@@ -32,14 +96,13 @@ var EditView = Backbone.View.extend({
       this.$("#age_everyone").click();
     }
 
-    this.setupServices();
     this.$('#submit').click(function() {
       this.saveForm();
     }.bind(this));
   },
 
   saveForm: function() {
-    var self = this;
+    // var self = this;
     var servicePromises = [];
     var formValues = this.$('#facilityForm').serializeObject();
     if ( formValues.gender === "" ) {
@@ -57,41 +120,44 @@ var EditView = Backbone.View.extend({
       formValues.age = ages;
     }
 
-    var services = formValues.services;
+    var oldServices = _.clone(formValues.services);
 
-    _.each(formValues.services, function(service, i) {
-      self.model.get("services")[i].set(service);
-    });
+    // _.each(formValues.services, function(service, i) {
+    //   self.model.get("services")[i].set(service);
+    // });
 
     delete formValues.services;
-    self.model.set(formValues);
+    this.model.set(formValues);
 
-    self.model.save().then(function(foo) {
-      _.each(self.model.get("services"), function(service) {
-        servicePromises.push(service.save());
-      });
+    var save = _.bind(saveFacility, this);
+    // save(this.model, oldServices, _.bind(modelSaveSuccessCallback, this), _.bind(modelSaveFailCallback, this));
 
-      Parse.Promise.when(servicePromises).then(
-        function(args) {
-          self.$("#facilitySaved").show().focus();
-          self.$("#facilitySaved").delay(5000).fadeOut();
+    // self.model.save().then(function(foo) {
+    //   var services = self.$('#facilityForm').serializeObject().services || [];
+    //   console.log(Service);
+    //   debugger;
 
-          console.log("saved.");
-          console.log(args);
-        },
-        function(args) {
-          self.$("#facilitySaveError").show().focus();
-          console.log("failed.");
-          console.log(args);
-        }
-      );
-    },
-      function(args) {
-        self.$("#facilitySaveError").show().focus();
-        console.log("failed.");
-        console.log(args);
-      }
-    );
+    //   _.each(services, function(service) {
+    //     servicePromises.push(service.save());
+    //   });
+
+    //   Parse.Promise.when(servicePromises).then(
+    //     function(args) {
+    //       self.$("#facilitySaved").show().focus();
+    //       self.$("#facilitySaved").delay(5000).fadeOut();
+
+    //       console.log("saved.");
+    //       console.log(args);
+    //     },
+    //     function(args) {
+    //       self.$("#facilitySaveError").show().focus();
+    //       console.log("failed.");
+    //       console.log(args);
+    //     }
+    //   );
+    // },
+    // _.bind(modelSaveFailCallback, self)
+    // );
   },
 
 

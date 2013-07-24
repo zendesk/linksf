@@ -1,26 +1,23 @@
 <div class="row service-edit-row">
-  <input type="hidden" name="services[{{@index}}][id]" value="{{objectId}}">
+  <input type="hidden" name="services[][id]" value="{{objectId}}">
   <div class="span2">
-    <label for="services[{{@index}}][name]">Service name</label>
-    <input type="text" name="services[{{@index}}][name]" value="{{name}}" class="span2">
+    <label for="services[][name]">Service name</label>
+    <input type="text" name="services[][name]" value="{{name}}" class="span2">
   </div>
   <div class="span2">
-    <label for="services[{{@index}}][category]">Category</label>
-    <select name="services[{{@index}}][category]" id="service[{{@index}}]_category" class="span2">
-      <option value="food">Food</option>
-      <option value="shelter">Shelter</option>
-      <option value="hygiene">Hygiene</option>
-      <option value="medical">Medical</option>
-      <option value="technology">Technology</option>
-    </select>
+    <label for="services[][category]">Category</label>
+    <p>
+      {{category}}
+      <input type="hidden" name="services[][category]" value="{{category}}">
+    </p>
   </div>
   <div class="span3">
-    <label for="services[{{@index}}][description]">Description</label>
-    <input type="text" class="span3" name="services[{{@index}}][description]" value="{{description}}">
+    <label for="services[][description]">Description</label>
+    <input type="text" class="span3" name="services[][description]" value="{{description}}">
   </div>
   <div class="span5">
-    <label for="services[{{@index}}][notes]">Notes</label>
-    <textarea class="span5" rows=4 name="services[{{@index}}][notes]">{{notes}}</textarea>
+    <label for="services[][notes]">Notes</label>
+    <textarea class="span5" rows=4 name="services[][notes]">{{notes}}</textarea>
   </div>
 
   <div class="clear"></div>
@@ -60,7 +57,11 @@
 
     <div class="clear"></div>
 
-    <input type="text" class="span3 hours_description" name="services[{{@index}}][hours]" value="{{hours}}">
+    <input type="text" class="span3 hours_description" name="services[][hours]" value="{{hours}}">
     <span></span>
   </div>
+  <br/>
+  <p>
+    <a id="remove_category" href="#">Remove category</a>
+  </p>
 </div>
