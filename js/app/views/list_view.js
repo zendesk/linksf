@@ -50,7 +50,7 @@ var ListView = Backbone.View.extend({
   template: require('templates/list'),
 
   events: {
-    "click #filter": 'toggleSearch',
+    "click #filter-button": 'toggleSearch',
     "click .query .submit-query": 'doFilterQuery',
     "click .query .dismiss": 'dismissFilters',
     "click #load-more": 'loadMore'
