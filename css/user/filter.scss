@@ -1,4 +1,10 @@
 #filter {
+  .filter .btn {
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px 0px;
+  }
+
   background-color: #F3F3F3;
   padding: $navbar-height 20px 60px 20px;
 
