@@ -14,7 +14,8 @@ var IndexView = Backbone.View.extend({
 
   events: {
     'click .search-button': 'submit',
-    'click ul.categories button': 'toggleCheckbox'
+    'submit #searchForm': 'submit',
+    'click ul.categories .btn': 'toggleCheckbox'
   },
 
   render: function() {
@@ -24,6 +25,7 @@ var IndexView = Backbone.View.extend({
 
   toggleCheckbox: function(event) {
     $(event.target).find('.icon-ok').toggle();
+    return false;
   },
 
   submit: function(event) {
@@ -39,6 +41,7 @@ var IndexView = Backbone.View.extend({
 
     if (categories.length === 0 && keyWords === '') { return; }
     navigate(categories, keyWords);
+    return false;
   }
 });
 
