@@ -31,6 +31,7 @@ var FilterView = Backbone.View.extend({
   template: require('templates/filter'),
   events: {
     "click .search .search-button": "submitSearch",
+    "click #backNav-button": "goBack",
     'click ul.categories button': 'toggleCheckbox'
   },
 
@@ -41,11 +42,16 @@ var FilterView = Backbone.View.extend({
   render: function() {
     this.$el.html(this.template({
       navButtons: [
-        {class: 'left', text: 'Back'},
+        {class: 'left', id: 'backNav-button', text: 'Back'},
         {class: 'right', text: 'Search'}
       ]
     }));
     return this;
+  },
+
+  goBack: function() {
+    var router = require('routers/router').instance;
+    router.back();
   },
 
   submitSearch: function() {
