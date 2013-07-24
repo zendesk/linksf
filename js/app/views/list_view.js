@@ -50,7 +50,7 @@ var ListView = Backbone.View.extend({
   template: require('templates/list'),
 
   events: {
-    "click #filter-button": 'toggleSearch',
+    "click #filter-button": 'goToFilter',
     "click .query .submit-query": 'doFilterQuery',
     "click .query .dismiss": 'dismissFilters',
     "click #load-more": 'loadMore'
@@ -79,8 +79,9 @@ var ListView = Backbone.View.extend({
     }.bind(this));
   },
 
-  toggleSearch: function() {
-    this.$(".query").toggle();
+  goToFilter: function() {
+    var router = require('routers/router').instance;
+    router.navigate("filter", {trigger: true});
   },
 
   getFilterParams: function () {
