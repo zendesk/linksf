@@ -1,12 +1,24 @@
 #filter {
-  .filter .btn {
-    font-size: 15px;
-    font-weight: bold;
-    padding: 10px 0px;
+  ul.categories {
+      padding-bottom: 15px;
+      padding-top: 5px;
+  }
+
+  .filter {
+     .btn {
+      font-size: 15px;
+      font-weight: bold;
+      padding: 10px 0px;
+    }
+
+    &.btn-group {
+      padding-bottom: 15px;
+      padding-top: 5px;
+    }
   }
 
   background-color: #F3F3F3;
-  padding: $navbar-height 20px 60px 20px;
+  padding: $navbar-height+15px 20px 60px 20px;
 
   nav {
     background-color: #358FB2;
