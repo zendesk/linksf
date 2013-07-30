@@ -2,6 +2,7 @@ var Backbone   = require('backbone'),
     $          = require('jquery'),
     _          = require('underscore');
 
+
 function navigate(categories, keyWords) {
   var route  = 'query?categories=' + categories.join(',') + '&search=' + encodeURIComponent(keyWords),
       router = require('routers/router').instance;
@@ -20,6 +21,7 @@ var IndexView = Backbone.View.extend({
 
   render: function() {
     this.$el.html(this.template({}));
+
     return this;
   },
 

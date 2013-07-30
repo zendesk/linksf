@@ -131,7 +131,7 @@ var Router = Backbone.Router.extend({
   },
   about: function() {
     this.aboutView = this.aboutView || new AboutView();
-    this.aboutView.render();
+    applicationController.render(this.aboutView);
   },
 
   _getFacility: function(id, done) {
