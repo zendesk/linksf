@@ -8,6 +8,7 @@ require('bootstrap');
 Handlebars.registerPartial("filterCategories", require('templates/filter_categories'));
 Handlebars.registerPartial("editService", require('templates/edit_service'));
 Handlebars.registerPartial("nav", require('templates/_nav'));
+Handlebars.registerPartial("queryRepresentation", require('templates/_query_representation'));
 
 $(function() {
   var Parse = require('parse');
