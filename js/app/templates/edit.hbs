@@ -48,9 +48,24 @@
         <input type="checkbox" name="age" id="age_S" value="S"> Seniors<br/>
       </div>
     </div>
-    {{#each services}}
-      {{> editService}}
-    {{/each}}
+    <div class="control-group">
+      <label class="control-label" for="age">Categories</label>
+      <div class="controls">
+        <select name="categories" id="categories" class="span2">
+          <option value="food">Food</option>
+          <option value="shelter">Shelter</option>
+          <option value="hygiene">Hygiene</option>
+          <option value="medical">Medical</option>
+          <option value="technology">Technology</option>
+        </select>
+        <span><a id="add_category" href="#">Add</a></span>
+      </div>
+      <div class="controls" id="services">
+        {{#each services}}
+          {{> editService}}
+        {{/each}}
+      </div>
+    </div>
     <div class="alert" id="facilitySaved" style="display:none;">
       {{name}} saved.
     </div>
