@@ -1,31 +1,33 @@
 {{> nav}}
 
 {{#with facility}}
-<div id="container">
+<div class="container">
   <h3>{{name}}</h3>
 
-  <table id="facility-main-info">
-    <tr>
-      <td class="title">Hours:</td>
-      <td>
-        {{#each services}}
-          {{#if hours}}<p style="margin: 0;">{{hours}} ({{name}})</p>{{/if}}
-        {{/each}}
-      </td>
-    </tr>
-    <tr>
-      <td class="title">Allowed:</td>
-      <td>{{demographics}}</td>
-    </tr>
-    <tr>
-      <td class="title">Services:</td>
-      <td>
-        {{#each services}}
-          <span>{{this.name}} </span>
-        {{/each}}
-      </td>
-    </tr>
-  </table>
+  <div class="facility-info">
+    <p class="title">Hours</p>
+    <div class="inset">
+      {{#if services}}
+          {{#each services}}
+            {{#if hours}}
+              <p>{{hours}} ({{name}})</p>
+            {{/if}}
+          {{/each}}
+      {{/if}}
+    </div>
+
+    <p class="title">Allowed</p>
+    <div class="inset">
+      <p>{{demographics}}</p>
+    </div>
+
+    <p class="title">Services</p>
+    <div class="inset">
+      {{#each services}}
+        <p>{{this.name}} </p>
+      {{/each}}
+    </div>
+  </div>
 
   <br/>
 
