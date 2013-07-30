@@ -9,24 +9,10 @@ var AdminListView = ListView.extend({
     var self = this;
     this.listenTo(this.collection, 'reset', this.render);
     $('#search_form').submit(function(el) {
-      self.submitQuery({search: $('#search').val()});
+      self.performQuery({search: $('#search').val(), limit: 4000, sort: 'name'});
       return false;
     });
-  },
-
-  submitQuery: function(extra_params) {
-    // serialize the form
-    var params = $('.query form').serializeObject();
-
-    $.extend(params, extra_params);
-    console.log(extra_params);
-    // submit query
-    params.limit = this.defaultLimit;
-    this.performQuery(params);
-
-    return false;
   }
-
 });
 
 module.exports = AdminListView;

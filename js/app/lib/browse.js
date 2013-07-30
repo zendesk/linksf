@@ -39,7 +39,7 @@ module.exports = function (params, callbacks) {
     q.matches('name', search, "i");
   }
 
-  // q.limit(limit);
+  q.limit(5000);
   q.include('services');
   q.skip(offset);
 

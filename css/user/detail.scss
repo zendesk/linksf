@@ -1,28 +1,39 @@
-#location-map{
+#location-map {
   height: 200px;
   border: 5px solid white;
   margin: 4px;
 }
 
-#container{
-  // margin-top: $navbar-height
+.container {
   width: 90%;
-  max-width: 500px;
+  max-width: 700px;
   min-width: 290px;
-  margin: 65px auto;
+  margin: ($navbar-height + 10px) auto;
   padding-top: 5px;
-}
 
-#facility-main-info {
-  td {
-    padding: 5px;
-  }
-
-  td.title {
-    font-weight: bold;
-    vertical-align: top;
+  h3 {
+    font-size: 24px;
+    padding: 2px 0 2px 0;
   }
 }
+
+.facility-info {
+  .title {
+    margin: 12px 0 0 0;
+    color: #666;
+    font-size: 16px;
+  }
+
+  .inset {
+    background-color: white;
+    border-radius: 6px;
+    border: 1px solid #DDD;
+    padding: 10px;
+
+    p { margin: 0px; }
+  }
+}
+
 
 .round-shadow{
   border-radius: 15px;

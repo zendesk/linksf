@@ -1,16 +1,16 @@
 {{> nav}}
 
 <div id="filter">
-  <h3>Sort by</h3>
+  <span class="categories-header">Sort by</span>
   <div class="filter filter-sort btn-group row-fluid" data-toggle="buttons-radio">
     <button data-value="name" class="btn span6 active">Name</button>
     <button data-value="near" class="btn span6">Distance</button>
   </div>
 
-  <h3>Service</h3>
+  <span class="categories-header">Service</span>
   {{> filterCategories}}
 
-  <h3>Suitable for</h3>
+  <span class="categories-header">Suitable for</span>
   <div class="filter filter-demographics btn-group row-fluid" data-toggle="buttons-checkbox">
     <button data-value="C" class="btn span3">Children</button>
     <button data-value="Y" class="btn span3">Teens/Youth</button>
@@ -18,7 +18,7 @@
     <button data-value="S" class="btn span3">Seniors</button>
   </div>
 
-  <h3>Restricted to</h3>
+  <span class="categories-header">Restricted to</span>
   <div class="filter filter-gender btn-group row-fluid" data-toggle="buttons-radio">
     <button data-value="A" class="btn span4 active">All</button>
     <button data-value="M"  class="btn span4">Men</button>
