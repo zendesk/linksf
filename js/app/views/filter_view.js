@@ -25,9 +25,7 @@ function navigate(options) {
 
   router.navigate(route, { trigger: true });
 }
-
 var FilterView = Backbone.View.extend({
-  el: $("#linksf"),
   template: require('templates/filter'),
   events: {
     "click .search .search-button": "submitSearch",
