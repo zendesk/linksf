@@ -32,7 +32,7 @@ var FilterView = Backbone.View.extend({
   events: {
     "click .search .search-button": "submitSearch",
     "click #backNav-button": "goBack",
-    'click ul.categories button': 'toggleCheckbox'
+    'click ul.categories .category': 'toggleCheckbox'
   },
 
   toggleCheckbox: function(event) {
@@ -63,7 +63,7 @@ var FilterView = Backbone.View.extend({
         visibleIcons = this.$('.category .icon-ok:visible');
 
     _.each(visibleIcons, function(icon) {
-      category = $(icon).closest('button').data('category');
+      category = $(icon).closest('.category').data('category');
       categories.push(category);
     });
 
