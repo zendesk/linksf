@@ -42,28 +42,11 @@ var Router = Backbone.Router.extend({
     'list':            'list',
     'login':           'login',
     'logout':          'logout',
-    'query/:category': 'query',
     'detail/:id':      'detail',
     'edit/:id':        'edit'
   },
 
   listView: null,
-
-  query: function(category) {
-    var self = this;
-    Query.submit({
-      filter: {
-        categories: [category]
-      },
-      limit: 20
-    }).done(function(results) {
-      facilities.reset(results.data);
-
-      self.listView = new AdminListView({collection: facilities});
-      self.listView.options.categories = [category];
-      applicationController.render(self.listView);
-    });
-  },
 
   list: function() {
     var listView = this.listView || new AdminListView({collection: facilities});
@@ -71,7 +54,7 @@ var Router = Backbone.Router.extend({
 
     // run a default query
     if ( facilities.length === 0 ) {
-      listView.submitQuery();
+      listView.performQuery({limit: 4000});
     }
 
     applicationController.render(listView);
