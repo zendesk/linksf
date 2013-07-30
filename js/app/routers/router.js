@@ -103,8 +103,8 @@ var Router = Backbone.Router.extend({
   },
 
   filter: function() {
-    this.filterView = this.filterView || new FilterView();
-    this.filterView.render();
+    this.filterView = this.filterView || new FilterView({isSingleton: true });
+    applicationController.render(this.filterView);
   },
 
   renderFacility: function(facility) {
