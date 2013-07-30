@@ -4,6 +4,7 @@ var $                     = require('jquery'),
     EditView              = require('views/edit_view'),
     LoginView             = require('views/login_view'),
     DetailView            = require('views/detail_view'),
+    Facility              = require('cloud/models/facility'),
     Query                 = require('lib/query'),
     _                     = require('underscore'),
     BaseController        = require('lib/base_controller'),
@@ -43,7 +44,8 @@ var Router = Backbone.Router.extend({
     'login':           'login',
     'logout':          'logout',
     'detail/:id':      'detail',
-    'edit/:id':        'edit'
+    'edit/:id':        'edit',
+    'new':             'newFacility'
   },
 
   listView: null,
@@ -80,6 +82,10 @@ var Router = Backbone.Router.extend({
     this._getFacility(id, function(fac) {
       this.renderEdit(fac);
     }.bind(this));
+  },
+
+  newFacility: function() {
+    this.renderEdit(new Facility());
   },
 
   login: function(return_to) {
