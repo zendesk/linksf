@@ -1,8 +1,7 @@
 {{> nav}}
 
 <div id="queryRepresentation">
-  {{#each this.searchParams}}<i class="list-header-item category-icon icon-{{this.icon}}"></i><span>{{this.title}} </span>{{/each}}
-  {{^this.searchParams}}<i class="list-header-item category-icon icon-th"></i><span>All </span>{{/this.searchParams}}
+  {{> queryRepresentation}}
 </div>
 
 <div class="query">
