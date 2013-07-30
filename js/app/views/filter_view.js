@@ -78,7 +78,6 @@ var FilterView = Backbone.View.extend({
 
     sort = this.$(".filter-sort .btn.active").data("value");
 
-    if (categories.length === 0) { return; }
     navigate({
       categories: categories,
       demographics: demographics,
