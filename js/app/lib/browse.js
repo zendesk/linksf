@@ -36,7 +36,7 @@ module.exports = function (params, callbacks) {
   }
 
   if ( search ) {
-    q.contains('name', search);
+    q.matches('name', search, "i");
   }
 
   // q.limit(limit);
