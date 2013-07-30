@@ -20,9 +20,7 @@ function modelSaveSuccessCallback(args) {
 }
 
 function saveFacility(model, services, successCallback, failCallback) {
-  // var self = this;
   model.save().then(function(foo) {
-    // var services = self.$('#facilityForm').serializeObject().services || [];
     _.each(model.get("services"), function(service) {
       service.destroy();
     });
@@ -30,17 +28,20 @@ function saveFacility(model, services, successCallback, failCallback) {
     var serviceObjects = _.map(services, function(serviceData) {
       var service = new Service();
       service.set("facility", model);
+
+      delete serviceData.id;
       service.set(serviceData);
+
       return service;
     });
 
     Service.saveAll(serviceObjects, function(services, error) {
       if (services) {
-        _.each(services, function(s) {
+        model.set("services", _.map(services, function(s) {
           var sObj = new Service();
           sObj.id = s.id;
-          model.add("services", sObj);
-        });
+          return sObj;
+        }));
 
         model.save()
           .then(function(fac) {
@@ -54,7 +55,7 @@ function saveFacility(model, services, successCallback, failCallback) {
       }
     });
   },
-  failCallback());
+  failCallback);
 }
 
 var EditView = Backbone.View.extend({
@@ -130,34 +131,8 @@ var EditView = Backbone.View.extend({
     this.model.set(formValues);
 
     var save = _.bind(saveFacility, this);
-    // save(this.model, oldServices, _.bind(modelSaveSuccessCallback, this), _.bind(modelSaveFailCallback, this));
+    save(this.model, oldServices, _.bind(modelSaveSuccessCallback, this), _.bind(modelSaveFailCallback, this));
 
-    // self.model.save().then(function(foo) {
-    //   var services = self.$('#facilityForm').serializeObject().services || [];
-    //   console.log(Service);
-    //   debugger;
-
-    //   _.each(services, function(service) {
-    //     servicePromises.push(service.save());
-    //   });
-
-    //   Parse.Promise.when(servicePromises).then(
-    //     function(args) {
-    //       self.$("#facilitySaved").show().focus();
-    //       self.$("#facilitySaved").delay(5000).fadeOut();
-
-    //       console.log("saved.");
-    //       console.log(args);
-    //     },
-    //     function(args) {
-    //       self.$("#facilitySaveError").show().focus();
-    //       console.log("failed.");
-    //       console.log(args);
-    //     }
-    //   );
-    // },
-    // _.bind(modelSaveFailCallback, self)
-    // );
   },
 
 
