@@ -35,7 +35,7 @@ var IndexView = Backbone.View.extend({
         visibleIcons = this.$('.category .icon-ok:visible');
 
     _.each(visibleIcons, function(icon) {
-      category = $(icon).closest('button').data('category');
+      category = $(icon).closest('.category').data('category');
       categories.push(category);
     });
 
