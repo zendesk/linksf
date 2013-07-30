@@ -32,6 +32,7 @@ var FilterView = Backbone.View.extend({
   events: {
     "click .search .search-button": "submitSearch",
     "click #backNav-button": "goBack",
+    "click #searchNav-button": "submitSearch",
     'click ul.categories .category': 'toggleCheckbox'
   },
 
@@ -43,7 +44,7 @@ var FilterView = Backbone.View.extend({
     this.$el.html(this.template({
       navButtons: [
         {class: 'left', id: 'backNav-button', text: 'Back'},
-        {class: 'right', text: 'Search'}
+        {class: 'right', id: 'searchNav-button', text: 'Search'}
       ]
     }));
     return this;
