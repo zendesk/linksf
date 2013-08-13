@@ -43,7 +43,8 @@ var FilterView = Backbone.View.extend({
       navButtons: [
         {class: 'left', id: 'backNav-button', text: 'Back'},
         {class: 'right', id: 'searchNav-button', text: 'Search'}
-      ]
+      ],
+      filter: true
     }));
     return this;
   },
