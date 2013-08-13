@@ -13,33 +13,23 @@ var IndexView = Backbone.View.extend({
   template: require('templates/index'),
 
   events: {
-    'click .search-button': 'submit',
     'submit #searchForm': 'submit',
-    'click ul.categories .btn': 'toggleCheckbox'
+    'click ul.categories .btn': 'submit'
   },
 
   render: function() {
-    this.$el.html(this.template({}));
+    this.$el.html(this.template({
+      filter: false
+    }));
     return this;
   },
 
-  toggleCheckbox: function(event) {
-    $(event.target).find('.icon-ok').toggle();
-    return false;
-  },
-
   submit: function(event) {
-    var category,
-        categories   = [],
+    var categories   = [],
         keyWords     = this.$('#search_name').val(),
-        visibleIcons = this.$('.category .icon-ok:visible');
+        category     = $(event.target).data('category');
 
-    _.each(visibleIcons, function(icon) {
-      category = $(icon).closest('.category').data('category');
-      categories.push(category);
-    });
-
-    navigate(categories, keyWords);
+    navigate([category], keyWords);
     return false;
   }
 });
