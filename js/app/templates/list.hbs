@@ -43,13 +43,13 @@
 <ul class="facility-list">
   {{#each facilities}}
     <li class="facility">
-      <a href="#/detail/{{this.objectId}}" class="facility-item-link">
-        {{#if this.hasKnownStatus}}
-          <p class="facility-status-{{this.status}}">{{this.status}}</p>
+      <a href="#/detail/{{objectId}}" class="facility-item-link">
+        {{#if hasKnownStatus}}
+          <p class="facility-status-{{status}}">{{status}}</p>
         {{/if}}
-        <h4 class="facility-name">{{this.name}}</h4>
-        <p class="facility-address">{{this.address}}</p>
-        {{#each this.serviceCategories}}
+        <h4 class="facility-name">{{name}}</h4>
+        <p class="facility-address">{{address}}</p>
+        {{#each serviceCategories}}
           <span class="facility-services"><i class="category-icon icon-{{icon}}"></i>{{title}}</span>
         {{/each}}
 
