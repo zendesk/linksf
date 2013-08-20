@@ -16,7 +16,7 @@ var DetailView = Backbone.View.extend({
 
   render: function() {
     var facility = this.model;
-    var $mapdiv =  this.$('#location-map');
+    var $mapdiv =  this.$('#detail-gmap');
 
     this.$el.html(this.template({
       facility: facility,
@@ -47,7 +47,7 @@ var DetailView = Backbone.View.extend({
   },
 
   setMap: function(){
-    if(this.$('#location-map')) {
+    if(this.$('#detail-gmap')) {
       var location = new gmaps.LatLng(this.model.location.latitude,
                                       this.model.location.longitude);
       var mapOptions = {
@@ -62,7 +62,7 @@ var DetailView = Backbone.View.extend({
               style: gmaps.ZoomControlStyle.SMALL
             }
           };
-      var map = new gmaps.Map(this.$('#location-map')[0], mapOptions);
+      var map = new gmaps.Map(this.$('#detail-gmap')[0], mapOptions);
 
       new gmaps.Marker({map: map,
                         position: location,
