@@ -19,7 +19,8 @@ var IndexView = Backbone.View.extend({
 
   render: function() {
     this.$el.html(this.template({
-      filter: false
+      filter: false,
+      categories: require('lib/categories')
     }));
     return this;
   },
