@@ -3,7 +3,7 @@ var Backbone            = require('backbone'),
     _                   = require('underscore'),
     Service             = require('cloud/models/service'),
     gmaps               = require('google-maps'),
-    editServiceTemplate = require('templates/edit_service');
+    editServiceTemplate = require('templates/_edit_service');
 
 function modelSaveFailCallback(args) {
   this.$("#facilitySaveError").show().focus();
