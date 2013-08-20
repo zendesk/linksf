@@ -19,10 +19,10 @@
 }
 
 .facility-info {
-  p {
-    margin: 0;
-    font-size: 14px;
-  }
+  font-size: 14px;
+
+  p { margin: 0; }
+  label { font-weight: bold; }
 
   .title {
     margin: 12px 0 0 1px;
@@ -31,22 +31,32 @@
   }
 
   .inset {
-    background-color: white;
-    border-radius: 6px;
-    border: 1px solid #DDD;
-    padding: 8px;
+    @include inset;
   }
 
   .inset-gmap {
-    background-color: white;
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
-    border: 1px solid #DDD;
+    @include inset;
+    border-radius: 0 0 6px 6px;
     margin: 20px 0px 1px 0px;
 
     p {
       padding: 8px 8px 8px 12px;
     }
+  }
+
+  .inset-call {
+    @include inset;
+    border-radius: 6px 6px 0 0;
+    border-bottom: 1px solid #DDD;
+    margin-top: 20px;
+    a { font-weight: bold; }
+  }
+
+  .inset-directions {
+    @include inset;
+    border-radius: 0 0 6px 6px;
+    margin-top: -1px;
+    a { font-weight: bold; }
   }
 }
 
