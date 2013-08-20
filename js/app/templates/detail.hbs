@@ -8,15 +8,15 @@
     <p class="title">Hours</p>
     <div class="inset">
       {{#if services}}
-          {{#each services}}
-            {{#if hours}}
-              <p>{{hours}} ({{name}})</p>
-            {{/if}}
-          {{/each}}
+        {{#each services}}
+          {{#if hours}}
+            <p>{{hours}} ({{name}})</p>
+          {{/if}}
+        {{/each}}
       {{/if}}
     </div>
 
-    <p class="title">Allowed</p>
+    <p class="title">Welcome</p>
     <div class="inset">
       <p>{{demographics}}</p>
     </div>
@@ -24,39 +24,36 @@
     <p class="title">Services</p>
     <div class="inset">
       {{#each services}}
-        <p>{{this.name}} </p>
+        <p>{{name}} </p>
       {{/each}}
     </div>
-  </div>
 
-  <br/>
+    <div class="inset-gmap">
+      <div id="detail-gmap"></div>
+      <p>{{address}}</p>
+    </div>
 
-  <div class="round-shadow">
-    <div id="location-map"></div>
-    <div class="address">{{address}}</div>
+    <div class="inset-call">
+      <label>Call</label>
+      {{#if ../isMobile}}
+        <a href="tel:{{phone}}">{{phone}}</a>
+      {{else}}
+        <span>{{phone}}</span>
+      {{/if}}
+    </div>
+
+    <div class="inset-directions">
+      <label>Directions</label>
+    </div>
+
+    {{#each services}}
+      <p class="title">{{name}}</p>
+      <div class="inset-services">
+        <label>Description:</label>
+        <p>{{description}}</p>
+        <label>Notes:</label>
+        <p>{{notes}}</p>
+      </div>
+    {{/each}}
   </div>
-  <div class="round-shadow">
-    {{#if ../isMobile}}
-      <span class="info-row">Call: <a href="tel:{{phone}}">{{phone}}</a></span><span class="prevrow"></span>
-    {{else}}
-      <span class="info-row">Tell: {{phone}}</span><span class="prevrow"></span>
-    {{/if}}
-    <span class="info-row directions"><a href="#">Directions</a></span>
-  </div>
-  <p>Information</p>
-  <div class="round-shadow serviceDetail">
-	  {{#each services}}
-	    <div class="info-row">
-	      <div class="desco">{{this.description}}</div>
-	    </div>
-	    <div class="seeMore">
-	      <h3>{{this.name}}</h3>
-	      <h4>Description: </h4>
-	      {{this.description}}
-	      <h4>Notes</h4>
-	      {{this.notes}}
-	    </div>
-	    <span class="prevrow"></span>
-      {{/each}}
-	</div>
 {{/with}}

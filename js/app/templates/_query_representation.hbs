@@ -1,0 +1,8 @@
+{{#each searchParams}}
+  <i class="list-header-item category-icon icon-{{icon}}"></i>
+  <span>{{title}} </span>
+{{/each}}
+{{^searchParams}}
+  <i class="list-header-item category-icon icon-th"></i>
+  <span>All </span>
+{{/searchParams}}

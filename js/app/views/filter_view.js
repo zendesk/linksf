@@ -43,7 +43,9 @@ var FilterView = Backbone.View.extend({
       navButtons: [
         {class: 'left', id: 'backNav-button', text: 'Back'},
         {class: 'right', id: 'searchNav-button', text: 'Search'}
-      ]
+      ],
+      categories: require('lib/categories'),
+      filter: true
     }));
     return this;
   },
@@ -78,7 +80,6 @@ var FilterView = Backbone.View.extend({
 
     sort = this.$(".filter-sort .btn.active").data("value");
 
-    if (categories.length === 0) { return; }
     navigate({
       categories: categories,
       demographics: demographics,
