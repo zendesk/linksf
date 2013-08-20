@@ -24,7 +24,7 @@
     <p class="title">Services</p>
     <div class="inset">
       {{#each services}}
-        <p>{{this.name}} </p>
+        <p>{{name}} </p>
       {{/each}}
     </div>
   </div>
@@ -47,14 +47,14 @@
   <div class="round-shadow serviceDetail">
 	  {{#each services}}
 	    <div class="info-row">
-	      <div class="desco">{{this.description}}</div>
+	      <div class="desco">{{description}}</div>
 	    </div>
 	    <div class="seeMore">
-	      <h3>{{this.name}}</h3>
+	      <h3>{{name}}</h3>
 	      <h4>Description: </h4>
-	      {{this.description}}
+	      {{description}}
 	      <h4>Notes</h4>
-	      {{this.notes}}
+	      {{notes}}
 	    </div>
 	    <span class="prevrow"></span>
       {{/each}}
