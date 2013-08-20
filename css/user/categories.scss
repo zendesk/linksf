@@ -11,7 +11,8 @@ ul.categories {
     padding-bottom: 10px;
 
     .btn {
-      border: 0;
+      border: 1px solid #B8B8B8;
+      @include vertical-gradient(white, #EBEBEB);
       border-radius: 4px;
       font-size: 20px;
       font-weight: bold;

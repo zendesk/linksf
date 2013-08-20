@@ -1,11 +1,5 @@
-#location-map {
-  height: 200px;
-  border: 5px solid white;
-  margin: 4px;
-}
-
 .container {
-  width: 90%;
+  width: 95%;
   max-width: 700px;
   min-width: 290px;
   margin: ($navbar-height + 10px) auto;
@@ -18,54 +12,62 @@
 }
 
 .facility-info {
+  font-size: 14px;
+
+  p { margin: 0; }
+  label { font-weight: bold; }
+
   .title {
-    margin: 12px 0 0 0;
+    margin: 12px 0 0 1px;
     color: #666;
-    font-size: 16px;
+    font-size: 18px;
   }
 
-  .inset {
+  @mixin inset {
     background-color: white;
     border-radius: 6px;
     border: 1px solid #DDD;
     padding: 10px;
+  }
 
-    p { margin: 0px; }
+  .inset { @include inset; }
+
+  .inset-gmap {
+    @include inset;
+    border-radius: 0 0 6px 6px;
+    margin: 20px 0px 1px 0px;
+    padding: 0;
+
+    p {
+      padding: 8px 8px 8px 12px;
+    }
+  }
+
+  .inset-call {
+    @include inset;
+    border-radius: 6px 6px 0 0;
+    border-bottom: 1px solid #DDD;
+    margin-top: 20px;
+    a { font-weight: bold; }
+  }
+
+  .inset-directions {
+    @include inset;
+    border-radius: 0 0 6px 6px;
+    margin-top: -1px;
+    a { font-weight: bold; }
+  }
+
+  .inset-services {
+    @include inset;
+    label { line-height: 2; }
+    p { line-height: 1.5; }
   }
 }
 
 
-.round-shadow{
-  border-radius: 15px;
-  moz-border-radius: 15px;
-  webkit-border-radius: 15px;
-  border: 1px solid #cdcdcd;
-  margin-bottom: 15px;
-  box-shadow: 0 1px 10px #CCC;
-}
-
-.address{
-  width: 80%;
-  margin: 0 auto;
-  text-align: center;
-  padding: 12px;
-}
-
-.info-row{
-  width: 100%;
-  display: block;
-  padding: 17px;
-  box-sizing: border-box;
-}
-
-.prevrow {
-  background-color: #ccc;
-  height: 1px;
-  width: 100%;
-  display: block;
-}
-
-.seeMore{
-  padding: 7px 17px 17px 17px;
-  background: #F6F6F6;
+#detail-gmap {
+  height: 180px;
+  padding: 1px;
+  border-bottom: 1px solid #DDD;
 }
