@@ -8,11 +8,11 @@
     <p class="title">Hours</p>
     <div class="inset">
       {{#if services}}
-          {{#each services}}
-            {{#if hours}}
-              <p>{{hours}} ({{name}})</p>
-            {{/if}}
-          {{/each}}
+        {{#each services}}
+          {{#if hours}}
+            <p>{{hours}} ({{name}})</p>
+          {{/if}}
+        {{/each}}
       {{/if}}
     </div>
 
@@ -45,22 +45,15 @@
     <div class="inset-directions">
       <label>Directions</label>
     </div>
-  </div>
 
-  <p>Information</p>
-  <div class="round-shadow serviceDetail">
-	  {{#each services}}
-	    <div class="info-row">
-	      <div class="desco">{{description}}</div>
-	    </div>
-	    <div class="seeMore">
-	      <h3>{{name}}</h3>
-	      <h4>Description: </h4>
-	      {{description}}
-	      <h4>Notes</h4>
-	      {{notes}}
-	    </div>
-	    <span class="prevrow"></span>
-      {{/each}}
-	</div>
+    {{#each services}}
+      <p class="title">{{name}}</p>
+      <div class="inset-services">
+        <label>Description:</label>
+        <p>{{description}}</p>
+        <label>Notes:</label>
+        <p>{{notes}}</p>
+      </div>
+    {{/each}}
+  </div>
 {{/with}}
