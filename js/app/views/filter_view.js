@@ -44,6 +44,7 @@ var FilterView = Backbone.View.extend({
         {class: 'left', id: 'backNav-button', text: 'Back'},
         {class: 'right', id: 'searchNav-button', text: 'Search'}
       ],
+      categories: require('lib/categories'),
       filter: true
     }));
     return this;
