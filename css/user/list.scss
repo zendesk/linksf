@@ -32,7 +32,6 @@
 }
 
 .facility-list {
-  // default ul
   margin: 0;
   padding-top: $navbar-height + 45px;
   background-color: #F3F3F3;
@@ -41,44 +40,34 @@
     border-bottom: solid #9B9B9B 1px;
     padding: 10px 0 10px 10px;
 
+    a {
+      text-decoration: none;
+      color: #000;
+    }
+
     p {
       margin: 4px 4px 4px 0;
     }
+
+    .facility-name {
+      margin: 5px 0 3px 0;
+      text-decoration: underline;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .facility-address {
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+
+    .facility-services {
+      font-size: 14px;
+      font-weight: bold;
+      text-transform: capitalize;
+      i { margin-top: 0; }
+    }
   }
-
-  .services {
-  }
-
-  a {
-    text-decoration: none;
-    color: #000;
-  }
-}
-
-.facility-name {
-  margin: 5px 0 3px 0;
-}
-
-.facility-services {
-  color: #185377;
-  text-transform: capitalize;
-}
-
-.facility-services i{
-  margin-top: 0;
-}
-
-.facility-notes {
-  height: 38px;
-  color: #8F8F8F;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.facility-item-link {
-  height: 100%;
-  width: 100%;
-  display: block;
 }
 
 @mixin facility-status {
