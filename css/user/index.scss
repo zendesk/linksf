@@ -14,13 +14,16 @@
       width: 100%;
     }
   }
-
+  .search-header{
+    margin-bottom: 10px;
+    display: block;
+  }
   .categories button.category {
     border: 1px solid #cbcbcb;
   }
 
   .search {
-    margin-bottom: 10px;
+    margin-top: 25px;
 
     input {
       font-size: 20px;
