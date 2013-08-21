@@ -1,42 +1,6 @@
 {{> nav}}
 {{> queryRepresentation}}
 
-<div class="query">
-  <div class="query-options">
-    <h4>Sort by</h4>
-    <ul class="query-option-sort option-group-exclusive">
-      <li data-value="name" class="query-option">Name</li>
-      <li data-value="near" class="query-option">Distance</li>
-    </ul>
-    <h4>with the following services</h4>
-    <ul class="query-option-category  option-group">
-    {{#each categories}}
-      <li data-value="{{key}}" class="query-option">{{title}}</li>
-    {{/each}}
-    </ul>
-
-    <h4>suitable for</h4>
-    <ul class="query-option-demographics option-group">
-      <li data-value="C" class="query-option">Children</li>
-      <li data-value="Y" class="query-option">Teens/Youth</li>
-      <li data-value="A" class="query-option">Adults</li>
-      <li data-value="S" class="query-option">Seniors</li>
-    </ul>
-
-    <h4>restricted to</h4>
-    <ul class="query-option-gender option-group-exclusive">
-      <li data-value="A" class="query-option">All</li>
-      <li data-value="M" class="query-option">Men</li>
-      <li data-value="F" class="query-option">Women</li>
-    </ul>
-
-
-    <div class="actions">
-      <a href="#" class="dismiss">Close</a>  <button class="btn submit-query">Find</button>
-    </div>
-  </div>
-</div>
-
 <ul class="facility-list">
   {{#each facilities}}
     <li class="facility">
@@ -49,8 +13,6 @@
         {{#each serviceCategories}}
           <span class="facility-services"><i class="category-icon icon-{{icon}}"></i>{{title}}</span>
         {{/each}}
-
-
       </a>
     </li>
   {{/each}}
