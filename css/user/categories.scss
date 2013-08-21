@@ -21,6 +21,10 @@ ul.categories {
       width: 100%;
     }
 
+    .btn:active {
+      @include vertical-gradient(#EEE, #D9D9D9);
+    }
+
     i.category-icon {
       margin: 5px 10px;
     }
