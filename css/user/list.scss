@@ -97,18 +97,18 @@
   color: #C43D29; // red
 }
 
-#queryRepresentation{
-    margin-top: $navbar-height + 5px;
-    background-color: #E0E0E0;
-    padding: 4px;
-    border-bottom: 1px solid #999999;
-    color: #7B7B7B;
-    font-weight: bold;
-    font-size: 20px;
-    position: fixed;
-    width: 100%;
-    max-width: 650px;
-    z-index: 1000;
+#query-representation {
+  margin-top: $navbar-height + 12px;
+  background-color: #E0E0E0;
+  padding: 4px;
+  border-bottom: 1px solid #999999;
+  color: #7B7B7B;
+  font-weight: bold;
+  font-size: 14px;
+  position: fixed;
+  width: 100%;
+  max-width: 650px;
+  z-index: 1000;
 }
 
 .list-header-item {
