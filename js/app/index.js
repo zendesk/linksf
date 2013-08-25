@@ -9,7 +9,6 @@ Handlebars.registerPartial("filterCategories", require('templates/_filter_catego
 Handlebars.registerPartial("editService", require('templates/_edit_service'));
 Handlebars.registerPartial("nav", require('templates/_nav'));
 Handlebars.registerPartial("queryRepresentation", require('templates/_query_representation'));
-Handlebars.registerPartial("category", require('templates/_category'));
 
 $(function() {
   var Parse = require('parse');
