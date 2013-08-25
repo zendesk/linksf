@@ -1,6 +1,9 @@
-<input type="submit" style="display:none;">
-<ul class="categories btn-group" data-toggle="buttons-checkbox">
+<ul class="filter-categories btn-group">
   {{#each categories}}
-    {{> category}}
+    <li>
+      <div class="category btn" data-value="{{key}}">
+        <i class="category-icon icon-{{icon}}"></i>{{name}}
+      </div>
+    </li>
   {{/each}}
 </ul>

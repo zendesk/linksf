@@ -35,7 +35,9 @@ var FilterView = Backbone.View.extend({
   },
 
   toggleCheckbox: function(event) {
-    $(event.target).find('.icon-ok').toggle();
+    console.log('clicked on ', event.target);
+    // $(event.target).find('.icon-ok').toggle();
+    $(event.target).toggleClass('active');
   },
 
   render: function() {
@@ -56,21 +58,20 @@ var FilterView = Backbone.View.extend({
   },
 
   submitSearch: function() {
-    var category,
-        categories   = [],
-	demographics = [],
-	gender = null,
-	sort = null,
-        visibleIcons = this.$('.category .icon-ok:visible');
+    var categories   = [],
+        demographics = [],
+        gender = null,
+        sort = null;
 
-    _.each(visibleIcons, function(icon) {
-      category = $(icon).closest('.category').data('category');
-      categories.push(category);
+    categories = this.$('.filter-categories .btn.active').toArray().map(function(el) {
+      return $(el).data('value');
     });
+    console.log('categories: ', categories);
 
     demographics = this.$(".filter-demographics .btn.active").toArray().map(function(el) {
       return $(el).data("value");
     });
+    console.log('demographics: ', demographics);
 
     gender = this.$(".filter-gender .btn.active").data("value");
 

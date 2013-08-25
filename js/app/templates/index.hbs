@@ -4,8 +4,9 @@
   <h3 class="title">What are you looking for?</h3>
 
   <form id="searchForm">
-  <span class="categories-header">Type of Service</span>
-  {{> filterCategories}}
+    <input type="submit" style="display:none;">
+    <span class="categories-header">Type of Service</span>
+    {{> filterCategories}}
   </form>
 
   <fieldset class="search">
@@ -14,7 +15,7 @@
       <span class="add-on"><i class="icon-search"></i></span>
       <input id="search_name" type="text" placeholder="Key words">
     </div>
-  </fieldset>  
+  </fieldset>
 </div>
 <footer>
   <a href="#/about">About</a>
