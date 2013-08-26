@@ -2,30 +2,30 @@
 
 <div id="filter">
   <span class="categories-header">Sort by</span>
-  <div class="filter filter-sort btn-group row-fluid" data-toggle="buttons-radio">
-    <button data-value="name" class="btn span6 active">Name</button>
-    <button data-value="near" class="btn span6">Distance</button>
+  <div class="filter filter-sort btn-group" data-toggle="buttons-radio">
+    <button data-value="name" class="btn first active">Name</button>
+    <button data-value="near" class="btn last">Distance</button>
   </div>
 
   <span class="categories-header">Service</span>
   {{> filterCategories}}
 
   <span class="categories-header">Suitable for</span>
-  <div class="filter filter-demographics btn-group row-fluid" data-toggle="buttons-checkbox">
-    <button data-value="C" class="btn span3">Children</button>
-    <button data-value="Y" class="btn span3">Teens/Youth</button>
-    <button data-value="A" class="btn span3">Adults</button>
-    <button data-value="S" class="btn span3">Seniors</button>
+  <div class="filter filter-demographics btn-group" data-toggle="buttons-checkbox">
+    <button data-value="C" class="btn first">Children</button>
+    <button data-value="Y" class="btn">Teens/Youth</button>
+    <button data-value="A" class="btn">Adults</button>
+    <button data-value="S" class="btn last">Seniors</button>
   </div>
 
   <span class="categories-header">Restricted to</span>
-  <div class="filter filter-gender btn-group row-fluid" data-toggle="buttons-radio">
-    <button data-value="A" class="btn span4 active">All</button>
-    <button data-value="M"  class="btn span4">Men</button>
-    <button data-value="F"  class="btn span4">Women</button>
+  <div class="filter filter-gender btn-group" data-toggle="buttons-radio">
+    <button data-value="A" class="btn first active">All</button>
+    <button data-value="M"  class="btn">Men</button>
+    <button data-value="F"  class="btn last">Women</button>
   </div>
 
-  <div class="search row-fluid">
-    <button class="btn btn-info search-button span12">Search</button>
+  <div class="search">
+    <button class="btn btn-info search-button">Search</button>
   </div>
 </div>
