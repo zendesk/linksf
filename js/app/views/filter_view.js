@@ -31,12 +31,10 @@ var FilterView = Backbone.View.extend({
     "click .search .search-button": "submitSearch",
     "click #backNav-button": "goBack",
     "click #searchNav-button": "submitSearch",
-    'click ul.filter-categories .category': 'toggleCheckbox'
+    'click ul.filter-categories .category': 'toggleCategory'
   },
 
-  toggleCheckbox: function(event) {
-    console.log('clicked on ', event.target);
-    // $(event.target).find('.icon-ok').toggle();
+  toggleCategory: function(event) {
     $(event.target).toggleClass('active');
   },
 
@@ -66,12 +64,10 @@ var FilterView = Backbone.View.extend({
     categories = this.$('.filter-categories .btn.active').toArray().map(function(el) {
       return $(el).data('value');
     });
-    console.log('categories: ', categories);
 
     demographics = this.$(".filter-demographics .btn.active").toArray().map(function(el) {
       return $(el).data("value");
     });
-    console.log('demographics: ', demographics);
 
     gender = this.$(".filter-gender .btn.active").data("value");
 
