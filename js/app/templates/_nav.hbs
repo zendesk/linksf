@@ -1,10 +1,12 @@
 <nav>
   {{#if navButtons}}
     {{#each navButtons}}
-      <button type="button"
+      <button
+        type="button"
         {{#if id}}id="{{id}}"{{/if}}
-        {{#if class}}class="{{class}}"{{/if}}
-        >{{text}}</button>
+        {{#if class}}class="{{class}}"{{/if}}>
+        {{text}}
+      </button>
     {{/each}}
   {{/if}}
   <span class="title">Link-SF</span>
