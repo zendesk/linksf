@@ -1,12 +1,6 @@
 #filter {
   button {
-    border: 1px solid #B8B8B8;
-    @include vertical-gradient(white, #EBEBEB);
-    border-radius: 4px;
-    font-size: 20px;
-    font-weight: bold;
-    padding: 10px 0;
-    text-align: left;
+    @include gray-button;
   }
 
   button.active {
@@ -19,15 +13,16 @@
   }
 
   .filter {
-     .btn {
+    .btn {
       font-size: 15px;
       font-weight: bold;
-      padding: 10px 0px;
+      padding: 10px;
     }
 
     &.btn-group {
       padding-bottom: 15px;
       padding-top: 5px;
+      height: 40px;
     }
   }
 

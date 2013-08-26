@@ -7,6 +7,28 @@ $nav-button-width: 75px;
   background-image: linear-gradient($from, $to);
   background-image: -webkit-linear-gradient($from, $to);
 }
+
+@mixin gray-button {
+  border: 1px solid #B8B8B8;
+  @include vertical-gradient(white, #EBEBEB);
+  border-radius: 4px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: left;
+}
+
+@mixin blue-button {
+  @include vertical-gradient($nav-background-color, #19658C);
+  height: 36px;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  text-shadow: black 1px 1px;
+  width: $nav-button-width;
+  border: 1px solid #0D2D39;
+  border-radius: 6px;
+}
+
 #linksf{
 	max-width: 650px;
 	margin: 0 auto;

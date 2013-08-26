@@ -1,6 +1,4 @@
-// nav bar
 nav {
-  // anchor to top
   position: fixed;
   top: 0;
   left: 0;
@@ -27,15 +25,7 @@ nav {
   }
 
   button {
-    @include vertical-gradient($nav-background-color, #19658C);
-    height: 36px;
-    color: white;
-    font-size: 14px;
-    font-weight: bold;
-    text-shadow: black 1px 1px;
-    width: $nav-button-width;
-    border: 1px solid #0D2D39;
-    border-radius: 6px;
+    @include blue-button;
   }
 
   button.left { float: left; }
@@ -46,7 +36,4 @@ nav {
     font-size: 24px;
     color: white;
   }
-
 }
-
-
