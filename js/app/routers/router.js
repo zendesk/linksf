@@ -21,6 +21,7 @@ var Router = Backbone.Router.extend({
     '': 'index',
     'list': 'index',
     'query?:queryString': 'query',
+    'query': 'query',
     'detail/:id': 'detail',
     'edit/:id': 'edit',
     'about' : 'about',

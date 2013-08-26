@@ -25,6 +25,7 @@ function navigate(options) {
 
   router.navigate(route, { trigger: true });
 }
+
 var FilterView = Backbone.View.extend({
   template: require('templates/filter'),
   events: {
