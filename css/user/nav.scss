@@ -28,6 +28,10 @@ nav {
     @include blue-button;
   }
 
+  button:active {
+    @include vertical-gradient(darken($nav-background-color, 6%), darken(#19658C, 6%));
+  }
+
   button.left { float: left; }
   button.right { float: right; }
 
