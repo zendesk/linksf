@@ -5,17 +5,13 @@
 
   <form id="searchForm">
     <input type="submit" style="display:none;">
-    <span class="categories-header">Type of Service</span>
+    <span class="filter-categories">Service</span>
     {{> filterCategories}}
-  </form>
 
-  <fieldset class="search">
-    <label class="search-header">Search by Name</label>
-    <div class="input-prepend">
-      <span class="add-on"><i class="icon-search"></i></span>
-      <input id="search_name" type="text" placeholder="Key words">
-    </div>
-  </fieldset>
+    <div class="filter-name">Search by name</div>
+    <i class="icon-search"></i>
+    <input id="search_name" type="text" placeholder="Enter facility name">
+  </form>
 </div>
 <footer>
   <a href="#/about">About</a>
