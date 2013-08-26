@@ -1,48 +1,28 @@
 #index {
   background-color: #F3F3F3;
-  padding: $navbar-height 20px 60px 20px; // 58px is navbar height, 12px padding-top navbar
+  padding: ($navbar-height + 13px) 20px 20px 20px;
 
   .title {
-    margin: 20px 0;
+    text-align: center;
   }
 
-  .search-button {
-    margin-top: 20px;
 
-    button {
-      padding: 10px 0;
-      width: 100%;
-    }
-  }
-  .search-header{
-    margin-bottom: 10px;
-    display: block;
-  }
-  .categories button.category {
-    border: 1px solid #cbcbcb;
+  .filter-name {
+    margin-bottom: 5px;
   }
 
-  .search {
-    margin-top: 25px;
-
-    input {
-      font-size: 20px;
-      padding-left: 10px;
-    }
-
-    .add-on {
-      padding: 4px 10px;
-    }
-
-    .add-on, input {
-      height: 34px;
-      line-height: 34px;
-      vertical-align: middle;
-    }
+  input {
+    padding-left: 10px;
+    border-radius: 15px;
+    border: 1px solid #E3E3E3;
+    height: 30px;
   }
 }
 
 footer {
-  color: black;
   text-align: center;
+
+  a {
+    color: #ACACAC;
+  }
 }
