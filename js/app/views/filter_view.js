@@ -31,7 +31,7 @@ var FilterView = Backbone.View.extend({
     "click .search .search-button": "submitSearch",
     "click #backNav-button": "goBack",
     "click #searchNav-button": "submitSearch",
-    'click ul.categories .category': 'toggleCheckbox'
+    'click ul.filter-categories .category': 'toggleCheckbox'
   },
 
   toggleCheckbox: function(event) {
