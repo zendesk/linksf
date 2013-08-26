@@ -46,9 +46,16 @@
 
   .search {
     button {
-      margin-top: 20px;
-      padding: 10px 0;
+      @include blue-button;
       width: 100%;
+      text-align: center;
+      text-shadow: none;
+      height: 50px;
+      font-size: 20px;
+    }
+
+    button:active {
+      @include vertical-gradient(darken($nav-background-color, 6%), darken(#19658C, 6%));
     }
   }
 }
