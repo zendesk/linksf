@@ -33,6 +33,7 @@
   .inset { @include inset; }
 
   .inset-gmap {
+    cursor: pointer;
     @include inset;
     border-radius: 0 0 6px 6px;
     margin: 20px 0px 1px 0px;
@@ -52,10 +53,12 @@
   }
 
   .inset-directions {
+    cursor: pointer;
     @include inset;
     border-radius: 0 0 6px 6px;
     margin-top: -1px;
     a { font-weight: bold; }
+    label { cursor: pointer; }
   }
 
   .inset-services {
