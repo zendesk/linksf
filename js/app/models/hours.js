@@ -59,7 +59,7 @@ var timeStringToOffset = function(timeString) {
 */
 
 var Hours = function Hours(hours){
-  var processed = {}, day;
+  var processed = {}, day, hours = hours || {};
 
   for(var k in hours) {
     if(!hours.hasOwnProperty(k)) { continue; }
