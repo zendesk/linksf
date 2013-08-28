@@ -10,12 +10,16 @@ var days = {
   SAT: 6
 };
 
+function fail(str) {
+  throw new Error("Invalid time string: " + str);
+}
+
 var parseTime = function parseTime(str) {
-  var match = str.match(/(\d\d?)(:\d\d)?((?:A|P)M)/i),
+  var match = str.match(/^(\d\d?)(:\d\d)?((?:A|P)M)$/i),
       hour, min, pm;
 
   if(!match || !match[1] || !match[3]) {
-    throw new Error("Invalid time string: " + str);
+    fail(str);
   }
 
   hour = parseInt(match, 10);
@@ -26,6 +30,7 @@ var parseTime = function parseTime(str) {
   }
 
   pm = !!match[3].match(/PM/i);
+
 
   if(pm && hour !== 12) {
     return [(hour + 12), min];
@@ -73,14 +78,20 @@ var Hours = function Hours(hours){
 };
 
 Hours.prototype.addDay = function(day, str) {
-  var intervals, interval, result = [];
+  var intervals, interval, result = [], times = [];
 
   intervals = str.split(",");
 
   for(var idx = 0; idx < intervals.length; idx++) {
     interval = intervals[idx].split("-");
-    result.push([ timeStringToOffset(interval[0]),
-                  timeStringToOffset(interval[1]) ]);
+    if(!interval[1]) { fail(str); }
+
+    times = [ timeStringToOffset(interval[0]),
+              timeStringToOffset(interval[1]) ];
+
+    if(times[0] >= times[1]) { fail(str); }
+
+    result.push(times);
   }
 
   return result;
