@@ -25,6 +25,18 @@ describe("Hours", function(){
         6: [[900,1800]]
       });
     });
+
+    it("should catch bad input", function() {
+      (function() { hours.addDay("Mon", ""); }).should.throwError(/Invalid time/);
+      (function() { hours.addDay("Mon", "4pm"); }).should.throwError(/Invalid time/);
+      (function() { hours.addDay("Mon", "abcd"); }).should.throwError(/Invalid time/);
+      (function() { hours.addDay("Mon", "9PM-10PMgarbage"); }).should.throwError(/Invalid time/);
+
+      (function() { hours.addDay("Mon", "9PM-9PM"); }).should.throwError(/Invalid time/);
+
+      (function() { hours.addDay("Mon", "9PM-9AM"); }).should.throwError(/Invalid time/);
+
+    });
   });
 
   describe("#within", function(){
