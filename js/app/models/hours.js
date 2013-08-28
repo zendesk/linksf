@@ -59,8 +59,9 @@ var timeStringToOffset = function(timeString) {
 */
 
 var Hours = function Hours(hours){
-  var processed = {}, day, hours = hours || {};
+  var processed = {}, day;
 
+  hours = hours || {};
   for(var k in hours) {
     if(!hours.hasOwnProperty(k)) { continue; }
     day = days[k.toUpperCase()];
@@ -75,13 +76,13 @@ Hours.prototype.addDay = function(day, str) {
   var intervals, interval, result = [];
 
   intervals = str.split(",");
-  
+
   for(var idx = 0; idx < intervals.length; idx++) {
     interval = intervals[idx].split("-");
     result.push([ timeStringToOffset(interval[0]),
                   timeStringToOffset(interval[1]) ]);
   }
-  
+
   return result;
 };
 
