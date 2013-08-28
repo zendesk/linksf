@@ -204,6 +204,10 @@ var EditView = Backbone.View.extend({
     }
 
     var templateData = this.model.presentJSON();
+    templateData.services.forEach(function(service) {
+      service.allHours = hours;
+      service.days = days;
+    });
 
     $(this.el).html(this.template({facility: templateData}));
     this.setupForm();
