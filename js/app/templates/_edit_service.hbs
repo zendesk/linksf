@@ -24,36 +24,11 @@
 
   Open Hours
   <div class="hours">
-    <div class="hour_option">
-      <label>Day of week</label>
-      <select>
-        <option value="Mon">Mon</option>
-        <option value="Tue">Tue</option>
-        <option value="Wed">Wed</option>
-        <option value="Thu">Thu</option>
-        <option value="Fri">Fri</option>
-        <option value="Sat">Sat</option>
-        <option value="Sun">Sun</option>
-      </select>
-    </div>
-
-    <div class="hour_option">
-      <label>Start</label>
-      <select>
-        {{#each allHours}}
-        <option value="{{this}}">{{this}}</option>
-        {{/each}}
-      </select>
-    </div>
-
-    <div class="hour_option">
-      <label>End</label>
-      <select>
-        {{#each allHours}}
-        <option value="{{this}}">{{this}}</option>
-        {{/each}}
-      </select>
-    </div>
+    <input type="text" class="day" name="services[][hours][mon]" placeholder="Monday hours">
+    <label>
+      <input type="checkbox" class="closed" name="mon">
+      Closed
+    </label>
 
     <div class="clear"></div>
 
