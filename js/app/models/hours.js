@@ -128,4 +128,18 @@ Hours.prototype.within = function(time) {
   });
 };
 
+Hours.prototype.serialize = function () {
+  return this.hours;
+};
+
+Hours.prototype.isEmpty = function () {
+  var count = 0;
+  for(var k in this.hours) {
+    if(!this.hours.hasOwnProperty(k)) { continue; }
+    count++;
+  }
+
+  return (count === 0);
+};
+
 module.exports = Hours;

@@ -103,10 +103,10 @@ var EditView = Backbone.View.extend({
     }
   },
 
-  parseHours: function() {
+  parseHours: function(container) {
     var serviceHours = new Hours();
 
-    _(this.$('input.day')).each(function(el) { 
+    _($(container).find('input.day')).each(function(el) { 
       this.parseHourElement(serviceHours, el);
     }.bind(this));
 
@@ -137,7 +137,6 @@ var EditView = Backbone.View.extend({
     }.bind(this));
 
     this.$("input.day").first().attr("placeholder", "example: 9am-3pm, 6pm-8pm");
-
     this.$("input.day").blur(function(ev) { 
       this.parseHourElement(new Hours(), ev.target);
       return true;
@@ -178,17 +177,20 @@ var EditView = Backbone.View.extend({
       formValues.age = ages;
     }
 
-    var oldServices = _.clone(formValues.services);
+    var services = _.clone(formValues.services);
 
-    // _.each(formValues.services, function(service, i) {
-    //   self.model.get("services")[i].set(service);
-    // });
+    _.each(services, function(service, i) {
+      var hours = this.parseHours($('.hours')[i]);
+      if ( !hours.isEmpty() )  {
+        service.hours = hours.serialize();
+      }
+    }.bind(this));
 
     delete formValues.services;
     this.model.set(formValues);
 
     var save = _.bind(saveFacility, this);
-    save(this.model, oldServices, _.bind(modelSaveSuccessCallback, this), _.bind(modelSaveFailCallback, this));
+    save(this.model, services, _.bind(modelSaveSuccessCallback, this), _.bind(modelSaveFailCallback, this));
 
   },
 
@@ -202,10 +204,6 @@ var EditView = Backbone.View.extend({
     }
 
     var templateData = this.model.presentJSON();
-    templateData.services.forEach(function(service) {
-      service.allHours = hours;
-      service.days = days;
-    });
 
     $(this.el).html(this.template({facility: templateData}));
     this.setupForm();
