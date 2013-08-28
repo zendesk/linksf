@@ -14,6 +14,7 @@ ul.filter-categories {
       border: 1px solid #B8B8B8;
       @include vertical-gradient(white, #EBEBEB);
       border-radius: 4px;
+      cursor: pointer;
       font-size: 20px;
       font-weight: bold;
       padding: 10px 0;
