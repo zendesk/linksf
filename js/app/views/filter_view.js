@@ -7,19 +7,23 @@ function navigate(options) {
       params = [],
       router = require('routers/router').instance;
 
-  if(options.categories.length > 0) {
+  if (options.categories.length > 0) {
      params.push("categories=" + options.categories.join(","));
   }
 
-  if(options.demographics.length > 0) {
+  if (options.demographics.length > 0) {
     params.push("demographics=" + options.demographics.join(","));
   }
 
-  if(options.gender) {
+  if (options.gender) {
     params.push("gender=" + options.gender);
   }
 
-  if(params.length > 0) {
+  if (params.sort) {
+    params.push("sort=" + options.sort);
+  }
+
+  if (params.length > 0) {
     route = route + "?" + params.join("&");
   }
 
