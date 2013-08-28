@@ -12,20 +12,18 @@ var $                     = require('jquery'),
     AboutView             = require('views/about_view'),
     Query                 = require('lib/query'),
     applicationController = new BaseController({ el: '#linksf' }),
-    facilities            = require('collections/facilities').instance,
-    parseParams           = require('lib/query_param_parser');
-
+    facilities            = require('collections/facilities').instance;
 
 var Router = Backbone.Router.extend({
   routes: {
-    '': 'index',
-    'list': 'index',
+    '':                   'index',
+    'list':               'index',
     'query?:queryString': 'query',
-    'query': 'query',
-    'detail/:id': 'detail',
-    'edit/:id': 'edit',
-    'about' : 'about',
-    'filter': 'filter'
+    'query':              'query',
+    'detail/:id':         'detail',
+    'edit/:id':           'edit',
+    'about' :             'about',
+    'filter':             'filter'
   },
 
   listView: null,
@@ -52,38 +50,18 @@ var Router = Backbone.Router.extend({
   },
 
   query: function(queryString) {
-    var params        = parseParams(queryString),
-        categories    = _.compact((params.categories || '').split(',')),
-        demographics  = params.demographics || [],
-        search        = decodeURIComponent(params.search || ''),
-        listViewClass = this.listViewClass,
-        queryParams   = { search: search, limit: 20 },
-        filterParams  = {},
-        self          = this;
-
-    if (categories.length > 0) {
-      filterParams.categories = categories;
-    }
-
-    if (demographics.length > 0) {
-      filterParams.age = demographics;
-    }
-
-    if(params.gender) {
-      filterParams.gender = params.gender;
-    }
-
-    if(params.sort) {
-      queryParams.sort = params.sort;
-    }
-
-    queryParams.filter = filterParams;
+    var listViewClass = this.listViewClass,
+        self          = this,
+        queryParams;
 
     this.listView = self.listView || new listViewClass({ collection: facilities, isSingleton: true });
 
+    queryParams = this.listView.generateQueryParams(queryString);
+    queryParams.limit = 20;
+
     this.listView.performQuery(queryParams).done(function(results) {
       self.listView.reset();
-      self.listView.options.categories = categories;
+      self.listView.options.categories = queryParams.filter.categories || [];
       self.listView.offset = results.offset;
       applicationController.render(self.listView);
       window.scrollTo(0, 0); // Scroll to top
