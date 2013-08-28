@@ -136,6 +136,8 @@ var EditView = Backbone.View.extend({
       this.saveForm();
     }.bind(this));
 
+    this.$("input.day").first().attr("placeholder", "example: 9am-3pm, 6pm-8pm");
+
     this.$("input.day").blur(function(ev) { 
       this.parseHourElement(new Hours(), ev.target);
       return true;
