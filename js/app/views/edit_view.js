@@ -99,12 +99,13 @@ var EditView = Backbone.View.extend({
       }
 
       try { 
-        console.log([el.name, e.value]);
+        console.log([el.name, el.value]);
         serviceHours.addDay(el.name, el.value);
       } catch(err) { 
         $(el).after($("<div class='dayError'></span>").html(err.message));
       }
     });
+    console.log(serviceHours);
     return serviceHours;
   },
 
@@ -134,6 +135,10 @@ var EditView = Backbone.View.extend({
     this.$("input.day").blur(function() { 
       this.parseHours();
     }.bind(this));
+
+    this.$("input.day").keyup(function() { 
+      $(".dayError").remove(); 
+    });
   },
 
   saveForm: function() {
