@@ -34,7 +34,9 @@
       font-size: 14px;
       font-weight: bold;
       text-transform: capitalize;
-      i { margin-top: 0; }
+      i {
+        margin: 0 2px 0;
+      }
     }
   }
 }
