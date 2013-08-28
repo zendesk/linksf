@@ -17,7 +17,6 @@ var $                     = require('jquery'),
 var Router = Backbone.Router.extend({
   routes: {
     '':                   'index',
-    'list':               'index',
     'query?:queryString': 'query',
     'query':              'query',
     'detail/:id':         'detail',
@@ -66,19 +65,6 @@ var Router = Backbone.Router.extend({
       applicationController.render(self.listView);
       window.scrollTo(0, 0); // Scroll to top
     });
-  },
-
-  list: function() {
-    var listView = this.listView || new this.listViewClass({collection: facilities});
-    listView.collection = facilities;
-    listView.searchParams = $('.query form').serializeObject();
-
-    applicationController.render(listView);
-
-    // run a default query
-    if ( facilities.length === 0 ) {
-      listView.submitQuery();
-    }
   },
 
   filter: function() {
