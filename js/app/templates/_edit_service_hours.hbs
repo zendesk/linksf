@@ -1,0 +1,10 @@
+<div class="hours">
+  {{#each days}}
+  {{name}}: <input type="text" class="day" name="{{key}}">
+  <label>
+    <input type="checkbox" class="closed" name="{{key}}">
+    Closed
+  </label>
+  <div class="clear"></div>
+  {{/each}}
+</div>
