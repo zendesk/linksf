@@ -1,10 +1,11 @@
 <div class="hours">
+  <table>
   {{#each days}}
-  {{name}}: <input type="text" class="day" name="{{key}}">
-  <label>
-    <input type="checkbox" class="closed" name="{{key}}">
-    Closed
-  </label>
-  <div class="clear"></div>
+  <tr>
+    <td> {{name}}: </td>
+    <td> <input type="text" class="day" name="{{key}}"> </td>
+    <td> <label> <input type="checkbox" class="closed" name="{{key}}"> Closed </label> </td>
+  </tr>
   {{/each}}
+  </table>
 </div>
