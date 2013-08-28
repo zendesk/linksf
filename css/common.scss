@@ -9,6 +9,7 @@ $nav-button-width: 75px;
 }
 
 @mixin gray-button {
+  @include unselectable;
   border: 1px solid #B8B8B8;
   @include vertical-gradient(white, #EBEBEB);
   border-radius: 4px;
@@ -18,6 +19,7 @@ $nav-button-width: 75px;
 }
 
 @mixin blue-button {
+  @include unselectable;
   @include vertical-gradient($nav-background-color, #19658C);
   height: 36px;
   color: white;
@@ -32,4 +34,14 @@ $nav-button-width: 75px;
 #linksf{
 	max-width: 650px;
 	margin: 0 auto;
+}
+
+@mixin unselectable {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.unselectable {
+  @include unselectable;
 }
