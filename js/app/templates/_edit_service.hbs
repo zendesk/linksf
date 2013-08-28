@@ -23,18 +23,7 @@
   <div class="clear"></div>
 
   Open Hours
-  <div class="hours">
-    <input type="text" class="day" name="services[][hours][mon]" placeholder="Monday hours">
-    <label>
-      <input type="checkbox" class="closed" name="mon">
-      Closed
-    </label>
-
-    <div class="clear"></div>
-
-    <input type="text" class="span3 hours_description" name="services[][hours]" value="{{hours}}">
-    <span></span>
-  </div>
+  {{> editServiceHours}}
   <br/>
   <p>
     <a id="remove_category" href="#">Remove category</a>

@@ -19,6 +19,16 @@ function modelSaveSuccessCallback(args) {
   console.log(args);
 }
 
+var days = [
+  {key: "MON", name: "Monday"},
+  {key: "TUE", name: "Tuesday"},
+  {key: "WED", name: "Wednesday"},
+  {key: "THU", name: "Thursday"},
+  {key: "FRI", name: "Friday"},
+  {key: "SAT", name: "Saturday"},
+  {key: "SUN", name: "Sunday"}
+];
+
 function saveFacility(model, services, successCallback, failCallback) {
   model.save().then(function(foo) {
     _.each(model.get("services"), function(service) {
@@ -135,8 +145,6 @@ var EditView = Backbone.View.extend({
 
   },
 
-
-
   render: function() {
     var hours = [];
 
@@ -149,7 +157,9 @@ var EditView = Backbone.View.extend({
     var templateData = this.model.presentJSON();
     templateData.services.forEach(function(service) {
       service.allHours = hours;
+      service.days = days;
     });
+
     $(this.el).html(this.template({facility: templateData}));
     this.setupForm();
     return this;
