@@ -89,23 +89,28 @@ var EditView = Backbone.View.extend({
     return false;
   },
 
+  parseHourElement: function(hours, el) {
+    var closedCheckbox = $(el).next("input.closed");
+
+    if ( closedCheckbox.prop("checked") ) {
+      return;
+    }
+
+    try { 
+      console.log([el.name, el.value]);
+      hours.addDay(el.name, el.value);
+    } catch(err) { 
+      $(el).after($("<div class='dayError'></span>").html(err.message));
+    }
+  },
+
   parseHours: function() {
     var serviceHours = new Hours();
+
     _(this.$('input.day')).each(function(el) { 
-      var closedCheckbox = $(el).next("input.closed");
+      this.parseHourElement(serviceHours, el);
+    }.bind(this));
 
-      if ( closedCheckbox.prop("checked") ) {
-        return;
-      }
-
-      try { 
-        console.log([el.name, el.value]);
-        serviceHours.addDay(el.name, el.value);
-      } catch(err) { 
-        $(el).after($("<div class='dayError'></span>").html(err.message));
-      }
-    });
-    console.log(serviceHours);
     return serviceHours;
   },
 
@@ -132,12 +137,13 @@ var EditView = Backbone.View.extend({
       this.saveForm();
     }.bind(this));
 
-    this.$("input.day").blur(function() { 
-      this.parseHours();
+    this.$("input.day").blur(function(ev) { 
+      this.parseHourElement(new Hours(), ev.target);
+      return true;
     }.bind(this));
 
-    this.$("input.day").keyup(function() { 
-      $(".dayError").remove(); 
+    this.$("input.day").keyup(function(ev) { 
+      $(ev.target).next(".dayError").remove(); 
     });
   },
 
