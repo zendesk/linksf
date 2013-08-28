@@ -92,12 +92,11 @@ var EditView = Backbone.View.extend({
   parseHourElement: function(hours, el) {
     var closedCheckbox = $(el).next("input.closed");
 
-    if ( closedCheckbox.prop("checked") ) {
+    if ( closedCheckbox.prop("checked") || el.value === "" || el.value === "CLOSED" ) {
       return;
     }
 
     try { 
-      console.log([el.name, el.value]);
       hours.addDay(el.name, el.value);
     } catch(err) { 
       $(el).after($("<div class='dayError'></span>").html(err.message));
@@ -141,6 +140,17 @@ var EditView = Backbone.View.extend({
       this.parseHourElement(new Hours(), ev.target);
       return true;
     }.bind(this));
+
+    this.$("input.closed").change(function(ev) {
+      var el = ev.target;
+      var textBox = $(el).closest("tr").find("input.day[name='" + el.name + "']");
+      $(textBox).prop("disabled", $(el).prop("checked"));
+      if ( $(el).prop("checked") ) { 
+        textBox.val("CLOSED");
+      } else { 
+        textBox.val("");
+      }
+    });
 
     this.$("input.day").keyup(function(ev) { 
       $(ev.target).next(".dayError").remove(); 
