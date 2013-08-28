@@ -2,6 +2,7 @@ var Backbone            = require('backbone'),
     $                   = require('jquery'),
     _                   = require('underscore'),
     Service             = require('cloud/models/service'),
+    Hours               = require('cloud/models/hours'),
     gmaps               = require('google-maps'),
     editServiceTemplate = require('templates/_edit_service');
 
@@ -88,6 +89,23 @@ var EditView = Backbone.View.extend({
     return false;
   },
 
+  parseHours: function() {
+    var serviceHours = new Hours();
+    _(this.$('input.day')).each(function(el) { 
+      var closedCheckbox = $(el).next("input.closed");
+
+      if ( closedCheckbox.prop("checked") ) 
+        continue;
+
+      try { 
+        serviceHours.addDay(el.name, el.value);
+      } catch(err) { 
+        el.after($("<span class='dayError'></span>").html(err.getMessage()));
+      }
+    });
+    return serviceHours;
+  },
+
   setupForm: function() {
     var g = this.model.get('gender');
     var el;
@@ -109,6 +127,10 @@ var EditView = Backbone.View.extend({
 
     this.$('#submit').click(function() {
       this.saveForm();
+    }.bind(this));
+
+    this.$("input.day").blur(function() { 
+      this.parseHours();
     }.bind(this));
   },
 
