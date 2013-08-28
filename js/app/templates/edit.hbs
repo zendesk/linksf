@@ -49,7 +49,14 @@
       </div>
     </div>
     <div class="control-group">
-      <label class="control-label" for="age">Categories</label>
+      <label class="control-label">Services</label>
+      <div class="controls" id="services">
+        {{#each services}}
+          {{> editService}}
+        {{/each}}
+      </div>
+    </div>
+    <div class="control-group">
       <div class="controls">
         <select name="categories" id="categories" class="span2">
           <option value="food">Food</option>
@@ -58,12 +65,7 @@
           <option value="medical">Medical</option>
           <option value="technology">Technology</option>
         </select>
-        <span><a id="add_category" href="#">Add</a></span>
-      </div>
-      <div class="controls" id="services">
-        {{#each services}}
-          {{> editService}}
-        {{/each}}
+        <span><a id="add_category" href="#">Add new service in this category</a></span>
       </div>
     </div>
     <div class="alert" id="facilitySaved" style="display:none;">
