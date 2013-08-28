@@ -99,7 +99,7 @@ var EditView = Backbone.View.extend({
     try { 
       hours.addDay(el.name, el.value);
     } catch(err) { 
-      $(el).after($("<div class='dayError'></span>").html(err.message));
+      $(el).closest("tr").after($("<tr class='dayError'></tr>").html('<td colspan="3">' + err.message + '</td>'));
     }
   },
 
@@ -155,7 +155,7 @@ var EditView = Backbone.View.extend({
     });
 
     this.$("input.day").keyup(function(ev) { 
-      $(ev.target).next(".dayError").remove(); 
+      $(ev.target).closest("tr").next("tr.dayError").remove(); 
     });
   },
 
