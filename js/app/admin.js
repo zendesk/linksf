@@ -3,6 +3,7 @@ var $          = require('jquery'),
 
 require('jquery-serialize-object');
 Handlebars.registerPartial("editService", require('templates/_edit_service'));
+Handlebars.registerPartial("editServiceHours", require('templates/_edit_service_hours'));
 
 $(function() {
   var Parse = require('parse');
