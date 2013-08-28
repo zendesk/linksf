@@ -66,18 +66,29 @@ var timeStringToOffset = function(timeString) {
 var Hours = function Hours(hours){
   var processed = {}, day;
 
-  hours = hours || {};
+  this.hours = hours || {};
   for(var k in hours) {
     if(!hours.hasOwnProperty(k)) { continue; }
     day = days[k.toUpperCase()];
 
-    processed[day] = this.addDay(day, hours[k]);
+    processed[day] = this.parseDay(hours[k]);
   }
 
   this.hours = processed;
 };
 
+Hours.fromData = function(data) {
+  var hours = new Hours();
+  hours.hours = data;
+  return hours;
+};
+
 Hours.prototype.addDay = function(day, str) {
+  var dayNum = days[day.toUpperCase()];
+  this.hours[dayNum] = this.parseDay(str);
+};
+
+Hours.prototype.parseDay = function(str) {
   var intervals, interval, result = [], times = [];
 
   intervals = str.split(",");
@@ -96,6 +107,7 @@ Hours.prototype.addDay = function(day, str) {
 
   return result;
 };
+
 
 Hours.prototype.within = function(time) {
   var intervals, instant, parts, day;
