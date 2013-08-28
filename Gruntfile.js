@@ -14,7 +14,8 @@ module.exports = function(grunt) {
           module: true,
           require: true,
           navigator: true,
-          Parse: true
+          Parse: true,
+          document: true
         },
         undef: true,
         debug: true
@@ -91,7 +92,8 @@ module.exports = function(grunt) {
       .require('./js/shims/google-maps.js', {expose: 'google-maps'})
       .require('backbone')
       .require('underscore')
-      .require('./vendor/js/backbone_filters.js', {expose: 'backbone-filters'});
+      .require('./vendor/js/backbone_filters.js', {expose: 'backbone-filters'})
+      .require('./vendor/js/fastclick.min.js', {expose: 'fastclick'});
 
     // use hbsfy transform to support requiring .hbs files
     output = output.transform('hbsfy');

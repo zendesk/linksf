@@ -11,6 +11,8 @@ Handlebars.registerPartial("nav", require('templates/_nav'));
 Handlebars.registerPartial("queryRepresentation", require('templates/_query_representation'));
 
 $(function() {
+  require('fastclick')(document.body);
+
   var Parse = require('parse');
 
   Parse.initialize("Z2l0Zn6NGrHCDoBPKUeD7Tf1fAUDaazQihQFqnL8", "kGPp7cydleuFbhKB4mrviTmbIjrbTjhxGP4dP7Ls");
