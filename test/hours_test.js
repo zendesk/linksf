@@ -53,4 +53,14 @@ describe("Hours", function(){
     });
 
   });
+
+  describe("#isEmpty", function() {
+    it("should usually say no", function() { 
+      hours.isEmpty().should.equal(false);
+    });
+
+    it("should say yes if hours has no keys", function() { 
+      new Hours().isEmpty().should.equal(true);
+    });
+  });
 });
