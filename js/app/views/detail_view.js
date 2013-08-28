@@ -10,8 +10,9 @@ var Backbone      = require('backbone'),
 var DetailView = Backbone.View.extend({
   template: require('templates/detail'),
   events: {
-    "render.done": 'setMap',
-    "click .directions": 'launchDirections'
+    "render.done":             'setMap',
+    "click .inset-directions": 'launchDirections',
+    "click .inset-gmap":       'launchDirections'
   },
 
   render: function() {
@@ -42,7 +43,11 @@ var DetailView = Backbone.View.extend({
                                    this.model.location.longitude),
         url = urlBase + dAddr;
 
-    document.location = url;
+    if (Features.isMobile()) {
+      document.location = url;
+    } else {
+      window.open(url, '_blank');
+    }
     return false;
   },
 
@@ -54,13 +59,12 @@ var DetailView = Backbone.View.extend({
             center: location,
             zoom: 15,
             mapTypeId: gmaps.MapTypeId.ROADMAP,
+            mapTypeControl: false,
             scrollwheel: false,
             navigationControl: false,
             draggable: false,
             streetViewControl: false,
-            zoomControlOptions: {
-              style: gmaps.ZoomControlStyle.SMALL
-            }
+            zoomControl: false
           };
       var map = new gmaps.Map(this.$('#detail-gmap')[0], mapOptions);
 
