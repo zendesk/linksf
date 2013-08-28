@@ -94,13 +94,15 @@ var EditView = Backbone.View.extend({
     _(this.$('input.day')).each(function(el) { 
       var closedCheckbox = $(el).next("input.closed");
 
-      if ( closedCheckbox.prop("checked") ) 
-        continue;
+      if ( closedCheckbox.prop("checked") ) {
+        return;
+      }
 
       try { 
+        console.log([el.name, e.value]);
         serviceHours.addDay(el.name, el.value);
       } catch(err) { 
-        el.after($("<span class='dayError'></span>").html(err.getMessage()));
+        $(el).after($("<div class='dayError'></span>").html(err.message));
       }
     });
     return serviceHours;
