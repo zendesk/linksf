@@ -16,7 +16,7 @@ module.exports = (function() {
 
   var buildServices = function(facility, servicesData) {
     var i;
-    var serviceObjects = _.map(servicesData, function(serviceData) {
+    var serviceObjects = servicesData.map(function(serviceData) {
       var service = new Service();
       service.set("facility", facility);
       service.set(serviceData);

@@ -15,7 +15,7 @@ module.exports = Parse.Object.extend('Facility', {
 
   presentJSON: function() {
     var asJSON = this.toJSON();
-    asJSON.services = _.map(this.get("services"), function(service) {
+    asJSON.services = this.get('services').map(function(service) {
       return service.toJSON();
     });
     asJSON.demographics = this.demographics();
