@@ -51,7 +51,6 @@ function getData($elements, dataAttrName) {
 }
 
 var ListView = Backbone.View.extend({
-  categories: require('lib/categories'),
   template: require('templates/list'),
 
   events: {
@@ -147,7 +146,7 @@ var ListView = Backbone.View.extend({
     // replace with template
     this.$el.html(this.template({
       facilities: templateJson,
-      categories: this.categories,
+      categories: ListView.CATEGORIES,
       searchParams: this.filterSelectCategories(this.options.categories),
       navButtons: [
         {class: 'left', id: 'backNav-button', text: 'Back'},
@@ -193,12 +192,13 @@ var ListView = Backbone.View.extend({
     return json;
   },
 
+  // transforms category names to a unique array of category objects
   filterSelectCategories: function(queryParams) {
     var match, selectedCategories = [];
 
     if ( queryParams ) { 
       queryParams.forEach(function(queryName) {
-        var match = _.find(this.categories, function(e){ return e.key == queryName; });
+        var match = _.find(ListView.CATEGORIES, function(e){ return e.key == queryName; });
         if (!_.contains(selectedCategories, match)) {
           selectedCategories.push(match);
         }
@@ -232,5 +232,8 @@ var ListView = Backbone.View.extend({
     return flattened;
   }
 });
+
+
+ListView.CATEGORIES = require('lib/categories');
 
 module.exports = ListView;
