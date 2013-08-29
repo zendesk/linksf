@@ -168,7 +168,7 @@ var ListView = Backbone.View.extend({
     var json = [],
         modelJson;
 
-    json = _.map(collection.models, function(model) {
+    json = collection.models.map(function(model) {
       modelJson = model.toJSON();
       modelJson.services = [];
 

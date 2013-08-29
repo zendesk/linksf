@@ -25,7 +25,7 @@ function saveFacility(model, services, successCallback, failCallback) {
       service.destroy();
     });
 
-    var serviceObjects = _.map(services, function(serviceData) {
+    var serviceObjects = services.map(function(serviceData) {
       var service = new Service();
       service.set("facility", model);
 
@@ -37,7 +37,7 @@ function saveFacility(model, services, successCallback, failCallback) {
 
     Service.saveAll(serviceObjects, function(services, error) {
       if (services) {
-        model.set("services", _.map(services, function(s) {
+        model.set("services", services.map(function(s) {
           var sObj = new Service();
           sObj.id = s.id;
           return sObj;
@@ -113,7 +113,7 @@ var EditView = Backbone.View.extend({
     if ( this.$("#age_everyone").prop('checked') ) {
       formValues.age = null;
     } else {
-      var ages = _.map(this.$("[name=age]input:checked"), function(cb) {
+      var ages = this.$("[name=age]input:checked").map(function(cb) {
         return $(cb).attr('value');
       });
 
