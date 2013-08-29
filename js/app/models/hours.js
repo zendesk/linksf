@@ -109,6 +109,8 @@ Hours.prototype.parseDay = function(str) {
     times = [ timeStringToOffset(interval[0]),
               timeStringToOffset(interval[1]) ];
 
+    if(times[0] > 2400 || times[1] > 2400) { fail(str); }
+
     if(times[0] == times[1] && times[0] !== 0) { fail(str); }
 
     if(times[0] >= times[1] && times[1] !== 0) { fail(str); }
