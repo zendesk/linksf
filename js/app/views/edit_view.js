@@ -162,6 +162,9 @@ var EditView = Backbone.View.extend({
     // var self = this;
     var servicePromises = [];
     var formValues = this.$('#facilityForm').serializeObject();
+
+    days.forEach(function(d) { delete formValues[d.key]; });
+
     if ( formValues.gender === "" ) {
       formValues.gender = null;
     }
@@ -182,7 +185,7 @@ var EditView = Backbone.View.extend({
     _.each(services, function(service, i) {
       var hours = this.parseHours($('.hours')[i]);
       if ( !hours.isEmpty() )  {
-        service.hours = hours.serialize();
+        service.openHours = hours.serialize();
       }
     }.bind(this));
 
@@ -195,17 +198,8 @@ var EditView = Backbone.View.extend({
   },
 
   render: function() {
-    var hours = [];
-
-    for(var idx = 0; idx <= 23; idx++) {
-      if (idx < 10) { idx = '0' + idx; }
-      hours.push(idx + ':00');
-      hours.push(idx + ':30');
-    }
-
     var templateData = this.model.presentJSON();
     templateData.services.forEach(function(service) {
-      service.allHours = hours;
       service.days = days;
     });
 
