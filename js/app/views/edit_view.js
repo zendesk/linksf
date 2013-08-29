@@ -78,8 +78,11 @@ var EditView = Backbone.View.extend({
   },
 
   addCategory: function(argument) {
-    var context = { category: this.$('#categories').val() };
-    this.$('#services').prepend(editServiceTemplate(context));
+    var context = { category: this.$('#categories').val(), days: days };
+    var service = $(editServiceTemplate(context));
+
+    this.setupServiceElements(service);
+    $('#services').append(service);
     return false;
   },
 
@@ -113,6 +116,30 @@ var EditView = Backbone.View.extend({
     return serviceHours;
   },
 
+  setupServiceElements: function(container) { 
+    $(container).find("input.day").first().attr("placeholder", "example: 9am-3pm, 6pm-8pm");
+    $(container).find("input.day").blur(function(ev) { 
+      $(container).parseHourElement(new Hours(), ev.target);
+      return true;
+    });
+
+    $(container).find("input.closed").change(function(ev) {
+      var el = ev.target;
+      var textBox = $(el).closest("tr").find("input.day[name='" + el.name + "']");
+
+      $(textBox).prop("disabled", $(el).prop("checked"));
+      if ( $(el).prop("checked") ) { 
+        textBox.val("CLOSED");
+      } else { 
+        textBox.val("");
+      }
+    });
+
+    $(container).find("input.day").keyup(function(ev) { 
+      $(ev.target).closest("tr").next("tr.dayError").remove(); 
+    });
+  },
+
   setupForm: function() {
     var g = this.model.get('gender');
     var el;
@@ -135,27 +162,10 @@ var EditView = Backbone.View.extend({
     this.$('#submit').click(function() {
       this.saveForm();
     }.bind(this));
+  
 
-    this.$("input.day").first().attr("placeholder", "example: 9am-3pm, 6pm-8pm");
-    this.$("input.day").blur(function(ev) { 
-      this.parseHourElement(new Hours(), ev.target);
-      return true;
-    }.bind(this));
-
-    this.$("input.closed").change(function(ev) {
-      var el = ev.target;
-      var textBox = $(el).closest("tr").find("input.day[name='" + el.name + "']");
-      $(textBox).prop("disabled", $(el).prop("checked"));
-      if ( $(el).prop("checked") ) { 
-        textBox.val("CLOSED");
-      } else { 
-        textBox.val("");
-      }
-    });
-
-    this.$("input.day").keyup(function(ev) { 
-      $(ev.target).closest("tr").next("tr.dayError").remove(); 
-    });
+    // setup all the service elements
+    this.setupServiceElements(this.el);
   },
 
   saveForm: function() {
