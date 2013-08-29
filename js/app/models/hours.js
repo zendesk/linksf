@@ -10,15 +10,22 @@ var days = {
   SAT: 6
 };
 
+var daysInverse = _.invert(days);
+
+function fail(str) {
+  throw new Error("Invalid time string: " + str);
+}
+
 var parseTime = function parseTime(str) {
-  var match = str.match(/(\d\d?)(:\d\d)?((?:A|P)M)/i),
+  var match = str.match(/^(\d\d?)(:\d\d)?((?:A|P)M)$/i),
       hour, min, pm;
 
   if(!match || !match[1] || !match[3]) {
-    throw new Error("Invalid time string: " + str);
+    fail(str);
   }
 
-  hour = parseInt(match, 10);
+  hour = parseInt(match[1], 10);
+
   if(match[2]) {
     min = parseInt(match[2].replace(":",""), 10);
   } else {
@@ -29,9 +36,14 @@ var parseTime = function parseTime(str) {
 
   if(pm && hour !== 12) {
     return [(hour + 12), min];
-  } else {
-    return [hour, min];
   }
+
+  if(!pm && hour == 12) {
+    return [0, min];
+  }
+
+  return [hour, min];
+
 };
 
 var timeToOffset = function(time) {
@@ -39,8 +51,10 @@ var timeToOffset = function(time) {
 };
 
 var timeStringToOffset = function(timeString) {
-  var parsed = parseTime(timeString);
-  return parsed[0]*100 + parsed[1];
+  var parsed = parseTime(timeString),
+      val = parsed[0]*100 + parsed[1];
+
+  return val;
 };
 
 
@@ -59,23 +73,89 @@ var timeStringToOffset = function(timeString) {
 */
 
 var Hours = function Hours(hours){
-  var processed = {}, intervals, interval, day;
+  var processed = {}, day;
 
+  this.hours = hours || {};
   for(var k in hours) {
     if(!hours.hasOwnProperty(k)) { continue; }
-
     day = days[k.toUpperCase()];
-    processed[day] = [];
-    intervals = hours[k].split(",");
 
-    for(var idx = 0; idx < intervals.length; idx++) {
-      interval = intervals[idx].split("-");
-      processed[day].push([ timeStringToOffset(interval[0]),
-                            timeStringToOffset(interval[1]) ]);
-    }
+    processed[day] = this.parseDay(hours[k]);
   }
 
   this.hours = processed;
+};
+
+Hours.fromData = function(data) {
+  var hours = new Hours();
+  hours.hours = data;
+  return hours;
+};
+
+Hours.prototype.addDay = function(day, str) {
+  var dayNum = days[day.toUpperCase()];
+  this.hours[dayNum] = this.parseDay(str);
+};
+
+Hours.prototype.parseDay = function(str) {
+  var intervals, interval, result = [], times = [];
+
+  intervals = str.split(",");
+
+  for(var idx = 0; idx < intervals.length; idx++) {
+    interval = intervals[idx].split("-");
+    if(!interval[1]) { fail(str); }
+
+    times = [ timeStringToOffset(interval[0]),
+              timeStringToOffset(interval[1]) ];
+
+    if(times[0] == times[1] && times[0] !== 0) { fail(str); }
+
+    if(times[0] >= times[1] && times[1] !== 0) { fail(str); }
+
+    result.push(times);
+  }
+
+  return result;
+};
+
+
+function humanizeInterval(intervals) {
+  return intervals.map(function(time) {
+    //1200 -> 12:00PM
+    //1230 -> 12:30PM
+    //0 -> 12:00AM
+    //1400 -> 2:00PM
+
+    var pm, hour, min;
+
+    pm = time >= 1200;
+    hour = time / 100;
+    min = time % 100;
+
+    if(hour > 12) {
+      hour = hour - 12;
+    }
+
+    if(hour === 0) {
+      hour = 12;
+    }
+
+    if(min < 10) {
+      min = "0" + min;
+    }
+
+    return [hour, ":", min, pm ? "PM" : "AM"].join("");
+  }).join("-");
+}
+
+Hours.prototype.humanize = function() {
+  var result = {}, dayNum;
+  for(var idx = 0; idx < 7; idx++) {
+    result[daysInverse[idx]] = this.hours[idx].map(humanizeInterval).join(",");
+  }
+
+  return result;
 };
 
 Hours.prototype.within = function(time) {
@@ -95,6 +175,20 @@ Hours.prototype.within = function(time) {
     return (interval[0] <= instant) &&
            (interval[1] >= instant);
   });
+};
+
+Hours.prototype.serialize = function () {
+  return this.hours;
+};
+
+Hours.prototype.isEmpty = function () {
+  var count = 0;
+  for(var k in this.hours) {
+    if(!this.hours.hasOwnProperty(k)) { continue; }
+    count++;
+  }
+
+  return (count === 0);
 };
 
 module.exports = Hours;
