@@ -1,67 +1,30 @@
-<div class="row service-edit-row">
+<div class="service-edit-row container">
   <input type="hidden" name="services[][id]" value="{{objectId}}">
-  <div class="span2">
+  <div>
     <label for="services[][name]">Service name</label>
     <input type="text" name="services[][name]" value="{{name}}" class="span2">
   </div>
-  <div class="span2">
+  <div>
     <label for="services[][category]">Category</label>
     <p>
       {{category}}
       <input type="hidden" name="services[][category]" value="{{category}}">
     </p>
   </div>
-  <div class="span3">
+  <div>
     <label for="services[][description]">Description</label>
     <input type="text" class="span3" name="services[][description]" value="{{description}}">
   </div>
-  <div class="span5">
+  <div>
     <label for="services[][notes]">Notes</label>
     <textarea class="span5" rows=4 name="services[][notes]">{{notes}}</textarea>
   </div>
-
-  <div class="clear"></div>
-
-  Open Hours
-  <div class="hours">
-    <div class="hour_option">
-      <label>Day of week</label>
-      <select>
-        <option value="Mon">Mon</option>
-        <option value="Tue">Tue</option>
-        <option value="Wed">Wed</option>
-        <option value="Thu">Thu</option>
-        <option value="Fri">Fri</option>
-        <option value="Sat">Sat</option>
-        <option value="Sun">Sun</option>
-      </select>
-    </div>
-
-    <div class="hour_option">
-      <label>Start</label>
-      <select>
-        {{#each allHours}}
-        <option value="{{this}}">{{this}}</option>
-        {{/each}}
-      </select>
-    </div>
-
-    <div class="hour_option">
-      <label>End</label>
-      <select>
-        {{#each allHours}}
-        <option value="{{this}}">{{this}}</option>
-        {{/each}}
-      </select>
-    </div>
-
-    <div class="clear"></div>
-
-    <input type="text" class="span3 hours_description" name="services[][hours]" value="{{hours}}">
-    <span></span>
+  <div>
+    Open Hours
+    {{> editServiceHours}}
+    <br/>
+    <p>
+      <a id="remove_category" href="#">Remove service</a>
+    </p>
   </div>
-  <br/>
-  <p>
-    <a id="remove_category" href="#">Remove category</a>
-  </p>
 </div>
