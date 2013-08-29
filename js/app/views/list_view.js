@@ -112,7 +112,8 @@ var ListView = Backbone.View.extend({
   resetFilters: function() {
     this.$(".query .selected").removeClass("selected");
     var self = this;
-    _.each(this.options.categories, function(category) {
+
+    this.options.categories.forEach(function(category) {
       self.$categoryOption(category).addClass("selected");
     });
 
@@ -170,9 +171,11 @@ var ListView = Backbone.View.extend({
     json = _.map(collection.models, function(model) {
       modelJson = model.toJSON();
       modelJson.services = [];
-      _.each(model.attributes.services, function(service) {
+
+      model.attributes.services.forEach(function(service) {
         modelJson.services.push(service.toJSON());
       });
+
       return modelJson;
     });
 
@@ -182,7 +185,7 @@ var ListView = Backbone.View.extend({
   filterSelectCategories: function(queryParams) {
     var match, selectedCategories = [];
 
-    _.each(queryParams, function(queryName){
+    queryParams.forEach(function(queryName) {
       var match = _.find(this.categories, function(e){ return e.key == queryName; });
       if (!_.contains(selectedCategories, match)) {
         selectedCategories.push(match);
@@ -198,13 +201,15 @@ var ListView = Backbone.View.extend({
         flattened = [],
         self = this;
 
-    _.each(jsonArray, function(jsonModel) {
+    jsonArray.forEach(function(jsonModel) {
       serviceCategories = [];
       allNotes = [];
-      _.each(jsonModel.services, function(jsonService) {
+
+      jsonModel.services.forEach(function(jsonService) {
         serviceCategories.push(jsonService.category);
         allNotes.push(jsonService.notes);
       });
+
       jsonModel.serviceCategories = self.filterSelectCategories(serviceCategories);
       // jsonModel.serviceCategories = serviceCategories.join(', ');
       jsonModel.allNotes = allNotes.join(' ');

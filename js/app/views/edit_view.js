@@ -21,7 +21,7 @@ function modelSaveSuccessCallback(args) {
 
 function saveFacility(model, services, successCallback, failCallback) {
   model.save().then(function(foo) {
-    _.each(model.get("services"), function(service) {
+    model.get("services").forEach(function(service) {
       service.destroy();
     });
 
@@ -122,10 +122,6 @@ var EditView = Backbone.View.extend({
     }
 
     var oldServices = _.clone(formValues.services);
-
-    // _.each(formValues.services, function(service, i) {
-    //   self.model.get("services")[i].set(service);
-    // });
 
     delete formValues.services;
     this.model.set(formValues);

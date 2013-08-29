@@ -25,7 +25,7 @@ module.exports = (function() {
 
     Service.saveAll(serviceObjects, function(services, error) {
       if (services) {
-        _.each(services, function(s) {
+        services.forEach(function(s) {
           var sObj = new Service();
           sObj.id = s.id;
           facility.add("services", sObj);
