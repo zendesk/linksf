@@ -113,9 +113,11 @@ var ListView = Backbone.View.extend({
     this.$(".query .selected").removeClass("selected");
     var self = this;
 
-    this.options.categories.forEach(function(category) {
-      self.$categoryOption(category).addClass("selected");
-    });
+    if ( this.options.categories ) { 
+      this.options.categories.forEach(function(category) {
+        self.$categoryOption(category).addClass("selected");
+      });
+    }
 
     this.$(".query-option-gender [data-value='A']").addClass('selected');
   },
@@ -185,12 +187,14 @@ var ListView = Backbone.View.extend({
   filterSelectCategories: function(queryParams) {
     var match, selectedCategories = [];
 
-    queryParams.forEach(function(queryName) {
-      var match = _.find(this.categories, function(e){ return e.key == queryName; });
-      if (!_.contains(selectedCategories, match)) {
-        selectedCategories.push(match);
-      }
-    });
+    if ( queryParams ) { 
+      queryParams.forEach(function(queryName) {
+        var match = _.find(this.categories, function(e){ return e.key == queryName; });
+        if (!_.contains(selectedCategories, match)) {
+          selectedCategories.push(match);
+        }
+      });
+    }
 
     return selectedCategories;
   },
