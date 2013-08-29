@@ -48,7 +48,7 @@ module.exports = function (params, callbacks) {
   q.find().then(function(results) {
     var filteredResults = [];
 
-    _.each(results, function(f) {
+    results.forEach(function(f) {
       if ( filteredResults.length >= limit ) {
         return;
       }
