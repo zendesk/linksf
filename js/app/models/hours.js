@@ -10,6 +10,8 @@ var days = {
   SAT: 6
 };
 
+var daysInverse = _.invert(days);
+
 function fail(str) {
   throw new Error("Invalid time string: " + str);
 }
@@ -117,6 +119,44 @@ Hours.prototype.parseDay = function(str) {
   return result;
 };
 
+
+function humanizeInterval(intervals) {
+  return intervals.map(function(time) {
+    //1200 -> 12:00PM
+    //1230 -> 12:30PM
+    //0 -> 12:00AM
+    //1400 -> 2:00PM
+
+    var pm, hour, min;
+
+    pm = time >= 1200;
+    hour = time / 100;
+    min = time % 100;
+
+    if(hour > 12) {
+      hour = hour - 12;
+    }
+
+    if(hour === 0) {
+      hour = 12;
+    }
+
+    if(min < 10) {
+      min = "0" + min;
+    }
+
+    return [hour, ":", min, pm ? "PM" : "AM"].join("");
+  }).join("-");
+}
+
+Hours.prototype.humanize = function() {
+  var result = {}, dayNum;
+  for(var idx = 0; idx < 7; idx++) {
+    result[daysInverse[idx]] = this.hours[idx].map(humanizeInterval).join(",");
+  }
+
+  return result;
+};
 
 Hours.prototype.within = function(time) {
   var intervals, instant, parts, day;
