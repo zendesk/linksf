@@ -22,7 +22,8 @@ var parseTime = function parseTime(str) {
     fail(str);
   }
 
-  hour = parseInt(match, 10);
+  hour = parseInt(match[1], 10);
+
   if(match[2]) {
     min = parseInt(match[2].replace(":",""), 10);
   } else {
@@ -31,12 +32,16 @@ var parseTime = function parseTime(str) {
 
   pm = !!match[3].match(/PM/i);
 
-
   if(pm && hour !== 12) {
     return [(hour + 12), min];
-  } else {
-    return [hour, min];
   }
+
+  if(!pm && hour == 12) {
+    return [0, min];
+  }
+
+  return [hour, min];
+
 };
 
 var timeToOffset = function(time) {
@@ -44,8 +49,10 @@ var timeToOffset = function(time) {
 };
 
 var timeStringToOffset = function(timeString) {
-  var parsed = parseTime(timeString);
-  return parsed[0]*100 + parsed[1];
+  var parsed = parseTime(timeString),
+      val = parsed[0]*100 + parsed[1];
+
+  return val;
 };
 
 
@@ -100,7 +107,9 @@ Hours.prototype.parseDay = function(str) {
     times = [ timeStringToOffset(interval[0]),
               timeStringToOffset(interval[1]) ];
 
-    if(times[0] >= times[1]) { fail(str); }
+    if(times[0] == times[1] && times[0] !== 0) { fail(str); }
+
+    if(times[0] >= times[1] && times[1] !== 0) { fail(str); }
 
     result.push(times);
   }
