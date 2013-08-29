@@ -207,10 +207,12 @@ var ListView = Backbone.View.extend({
   },
 
   filterSelectCategories: function(queryParams) {
-    var selectedCategories = [];
+    var match, selectedCategories = [];
     _.each(queryParams, function(queryName){
-      var match = _.find(CATEGORIES, function(e){ return e.key == queryName; });
-      selectedCategories.push(match);
+      match = _.find(CATEGORIES, function(e){ return e.key == queryName; });
+      if (!_.contains(selectedCategories, match)) {
+        selectedCategories.push(match);
+      }
     });
     return selectedCategories;
   },
