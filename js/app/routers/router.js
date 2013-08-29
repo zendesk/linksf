@@ -58,10 +58,8 @@ var Router = Backbone.Router.extend({
     queryParams = this.listView.generateQueryParams(queryString);
     queryParams.limit = 20;
 
-    this.listView.performQuery(queryParams).done(function(results) {
-      self.listView.reset();
+    this.listView.submitQuery(queryParams).done(function(results) {
       self.listView.options.categories = queryParams.filter.categories || [];
-      self.listView.offset = results.offset;
       applicationController.render(self.listView);
       window.scrollTo(0, 0); // Scroll to top
     });
