@@ -14,7 +14,7 @@ function generateQueryParams(queryString) {
       gender       = params.gender || null,
       search       = decodeURIComponent(params.search || ''),
       sort         = params.sort,
-      queryParams  = { search: search },
+      queryParams  = { search: search, limit: 10 },
       filterParams = {};
 
   if (categories.length > 0) {
@@ -64,20 +64,32 @@ var ListView = Backbone.View.extend({
   },
 
   reset: function() {
-    this.offset = this.hideMore = null;
+    this.offset = this.hasMoreResults = null;
+  },
+
+  submitQuery: function(params, options) {
+    options = options || {};
+    return Query.submit(params).done(function(results) {
+      this.offset = results.offset;
+      this.hasMoreResults = (results.data.length == params.limit);
+
+      if (options.appendData) {
+        this.collection.add(results.data);
+      } else {
+        facilities.reset(results.data);
+      }
+
+    }.bind(this));
   },
 
   loadMore: function() {
     $('#loading-spinner').show();
     $('#load-more-container').hide();
 
-    Query.submit(this.getFilterParams()).done(function(results) {
+    var params = this.getFilterParams();
+
+    this.submitQuery(params, { appendData: true }).done(function(results) {
       $('#loading-spinner').hide();
-
-      this.offset = results.offset;
-      this.hideMore = (results.data.length < 10);
-
-      this.collection.add(results.data);
       this.render();
     }.bind(this));
   },
@@ -94,19 +106,11 @@ var ListView = Backbone.View.extend({
         queryParams  = generateQueryParams(queryString);
 
     queryParams.offset = this.offset;
+    queryParams.limit  = 10;
 
     this.options.categories = queryParams.filter.categories || [];
 
     return queryParams;
-  },
-
-  performQuery: function(params) {
-    return Query.submit(params).done(function(results) {
-      searchParams = params;
-      // populate with results
-      facilities.reset(results.data);
-      this.offset = results.offset;
-    }.bind(this));
   },
 
   resetFilters: function() {
@@ -129,6 +133,11 @@ var ListView = Backbone.View.extend({
       return $();
     }
 
+  },
+
+  showMore: function(collection, searchLimit) {
+    console.log('showMore', collection.length, searchLimit);
+    return collection.length >= searchLimit;
   },
 
   render: function() {
@@ -158,7 +167,7 @@ var ListView = Backbone.View.extend({
       require('routers/router').instance.back();
     });
 
-    if ( !this.hideMore ) {
+    if ( this.hasMoreResults ) {
       this.$('#load-more-container').show();
     }
 
