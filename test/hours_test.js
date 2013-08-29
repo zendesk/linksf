@@ -49,6 +49,15 @@ describe("Hours", function(){
 
       (function() { hours.addDay("Mon", "12:00AM-12:00AM"); }).should.not.throwError(/Invalid time/);
 
+      (function() { hours.addDay("Mon", "12:00AM-50PM"); }).should.throwError(/Invalid time/);
+
+      (function() { hours.addDay("Mon", "12:00AM-50:00PM"); }).should.throwError(/Invalid time/);
+
+      (function() { hours.addDay("Mon", "12:00AM-50AM"); }).should.throwError(/Invalid time/);
+
+      (function() { hours.addDay("Mon", "12:00AM-50:00AM"); }).should.throwError(/Invalid time/);
+
+
     });
   });
 
