@@ -16,32 +16,12 @@ module.exports = Parse.Object.extend('Facility', {
     }
   },
 
-  presentJSON: function(context) {
-    if(context === "admin") {
-      return this._presentJSONForAdmin();
-    } else {
-      return this._presentJSONForUser();
-    }
-  },
-
-  _presentJSONForAdmin: function() {
+  presentJSON: function() {
     var asJSON = this.toJSON();
     asJSON.services = this.get('services').map(function(service) {
       return service.toJSON();
     });
     asJSON.demographics = this.demographics();
-    return asJSON;
-  },
-
-  _presentJSONForUser: function() {
-    var asJSON = this.toJSON();
-    asJSON.status = this.status();
-    asJSON.services = [];
-
-    this.attributes.services.forEach(function(service) {
-      asJSON.services.push(service.toJSON());
-    });
-
     return asJSON;
   },
 
