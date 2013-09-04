@@ -116,17 +116,6 @@ var EditView = Backbone.View.extend({
     return serviceHours;
   },
 
-  geocodeAddress: function() {
-    // Thinking of calling this on submit, and if there are mulitple possible addresses from google, maybe present them as options to the user to choose, then save.
-    // Not sure where they save to on the model, I guess create a Parse.geopoint?
-    var address = $("input[name='address']").val().replace(/ /g, "+");
-    $.ajax("http://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&sensor=false").done( function(data) {
-      var topResult = data.results[0].geometry.location;
-      console.log("geocode response: ", topResult );
-    });
-
-  },
-
   setupServiceElements: function(container) {
     $(container).find("input.day").first().attr("placeholder", "example: 9am-3pm, 6pm-8pm");
     $(container).find("input.day").blur(function(ev) {
@@ -253,7 +242,6 @@ var EditView = Backbone.View.extend({
     formValues.age = this.serializeAges();
 
     var services = _.clone(formValues.services);
-    this.geocodeAddress();
 
     _.each(services, function(service, i) {
       var hours = this.parseHours($('.hours')[i]);
