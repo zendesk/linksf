@@ -208,7 +208,7 @@ var EditView = Backbone.View.extend({
   },
 
   render: function() {
-    var templateData = this.model.presentJSON();
+    var templateData = this.model.presentJSON("admin");
     templateData.services.forEach(function(service) {
       service.days = days;
     });
