@@ -31,6 +31,10 @@ $nav-button-width: 75px;
   border-radius: 6px;
 }
 
+li {
+  list-style-type: none;
+}
+
 #linksf{
 	max-width: 650px;
 	margin: 0 auto;
@@ -45,10 +49,9 @@ $nav-button-width: 75px;
 .unselectable {
   @include unselectable;
 }
+
 .facility-list {
   margin: 0;
-  padding-top: $navbar-height + 45px;
-  background-color: #F3F3F3;
 
   .facility {
     border-bottom: solid #9B9B9B 1px;
