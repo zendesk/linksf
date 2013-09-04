@@ -13,7 +13,7 @@ describe("Hours", function(){
         Wed: "9AM-6PM",
         Thu: "9AM-6PM",
         Fri: "9AM-6PM",
-        Sat: "9AM-6PM"
+        Sat: "9:00AM-11:00AM,2pm-5:30pm"
       });
     });
 
@@ -25,7 +25,7 @@ describe("Hours", function(){
         3: [[900,1800]],
         4: [[900,1800]],
         5: [[900,1800]],
-        6: [[900,1800]]
+        6: [[900,1100], [1400, 1730]]
       });
     });
 
@@ -78,7 +78,7 @@ describe("Hours", function(){
         Wed: "9AM-6PM",
         Thu: "9AM-6PM",
         Fri: "9AM-6PM",
-        Sat: "9AM-6PM"
+        Sat: "9:00AM-11:00AM,2pm-5:30pm"
       });
     });
 
@@ -90,7 +90,7 @@ describe("Hours", function(){
         "WED": "9:00AM-6:00PM",
         "THU": "9:00AM-6:00PM",
         "FRI": "9:00AM-6:00PM",
-        "SAT": "9:00AM-6:00PM"
+        "SAT": "9:00AM-11:00AM,2:00PM-5:30PM"
       });
     });
 

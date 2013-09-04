@@ -99,9 +99,9 @@ var EditView = Backbone.View.extend({
       return;
     }
 
-    try { 
+    try {
       hours.addDay(el.name, el.value);
-    } catch(err) { 
+    } catch(err) {
       $(el).closest("tr").after($("<tr class='dayError'></tr>").html('<td colspan="3">' + err.message + '</td>'));
     }
   },
@@ -109,7 +109,7 @@ var EditView = Backbone.View.extend({
   parseHours: function(container) {
     var serviceHours = new Hours();
 
-    _($(container).find('input.day')).each(function(el) { 
+    _($(container).find('input.day')).each(function(el) {
       this.parseHourElement(serviceHours, el);
     }.bind(this));
 
@@ -127,9 +127,9 @@ var EditView = Backbone.View.extend({
 
   },
 
-  setupServiceElements: function(container) { 
+  setupServiceElements: function(container) {
     $(container).find("input.day").first().attr("placeholder", "example: 9am-3pm, 6pm-8pm");
-    $(container).find("input.day").blur(function(ev) { 
+    $(container).find("input.day").blur(function(ev) {
       this.parseHourElement(new Hours(), ev.target);
       return true;
     }.bind(this));
@@ -139,15 +139,15 @@ var EditView = Backbone.View.extend({
       var textBox = $(el).closest("tr").find("input.day[name='" + el.name + "']");
 
       $(textBox).prop("disabled", $(el).prop("checked"));
-      if ( $(el).prop("checked") ) { 
+      if ( $(el).prop("checked") ) {
         textBox.val("CLOSED");
-      } else { 
+      } else {
         textBox.val("");
       }
     });
 
-    $(container).find("input.day").keyup(function(ev) { 
-      $(ev.target).closest("tr").next("tr.dayError").remove(); 
+    $(container).find("input.day").keyup(function(ev) {
+      $(ev.target).closest("tr").next("tr.dayError").remove();
     });
   },
 
@@ -173,7 +173,7 @@ var EditView = Backbone.View.extend({
     this.$('#submit').click(function() {
       this.saveForm();
     }.bind(this));
-  
+
 
     // setup all the service elements
     this.setupServiceElements(this.el);
@@ -220,9 +220,15 @@ var EditView = Backbone.View.extend({
   },
 
   render: function() {
-    var templateData = this.model.presentJSON();
+
+    var templateData = this.model.presentJSON(),
+        Hours = require('models/hours');
     templateData.services.forEach(function(service) {
-      service.days = days;
+      var openHours = Hours.fromData(service.openHours).humanize();
+
+      service.days = days.map(function(day) {
+        return {key: day.key, name: day.name, hours: openHours[day.key]};
+      });
     });
 
     $(this.el).html(this.template({facility: templateData}));
