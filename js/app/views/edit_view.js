@@ -116,6 +116,17 @@ var EditView = Backbone.View.extend({
     return serviceHours;
   },
 
+  geocodeAddress: function() {
+    // Thinking of calling this on submit, and if there are mulitple possible addresses from google, maybe present them as options to the user to choose, then save.
+    // Not sure where they save to on the model, I guess create a Parse.geopoint?
+    var address = $("input[name='address']").val().replace(/ /g, "+");
+    $.ajax("http://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&sensor=false").done( function(data) {
+      var topResult = data.results[0].geometry.location;
+      console.log("geocode response: ", topResult );
+    });
+
+  },
+
   setupServiceElements: function(container) { 
     $(container).find("input.day").first().attr("placeholder", "example: 9am-3pm, 6pm-8pm");
     $(container).find("input.day").blur(function(ev) { 
@@ -168,37 +179,10 @@ var EditView = Backbone.View.extend({
     this.setupServiceElements(this.el);
   },
 
-  validateForm: function(formValues) {
-    var errors = [];
-    _($("input.required")).each(function(input) { 
-      if ( $(input).val() === "" ) {
-        var controlGroup = $(input).parents(".control-group");
-        controlGroup.addClass("error");
-        $(input).focus(function() { controlGroup.removeClass("error"); });
-        errors.push("Field missing: " + $(input).parents(".control-group").find("label").html());
-      }
-    });
-
-    if ( !formValues.services ) {
-      errors.push("Please add at least one service"); 
-    }
-
-    var ul = $("<ul>");
-
-    errors.forEach(function(msg) {
-      ul.append($("<li>" + msg + "</li>"));
-    });
-
-    $("#errorMessages").html(ul);
-    return errors.length === 0;
-  },
-
   saveForm: function() {
+    // var self = this;
     var servicePromises = [];
     var formValues = this.$('#facilityForm').serializeObject();
-
-    if ( !this.validateForm(formValues) ) 
-      return false;
 
     days.forEach(function(d) { delete formValues[d.key]; });
 
@@ -218,6 +202,7 @@ var EditView = Backbone.View.extend({
     }
 
     var services = _.clone(formValues.services);
+    this.geocodeAddress();
 
     _.each(services, function(service, i) {
       var hours = this.parseHours($('.hours')[i]);
