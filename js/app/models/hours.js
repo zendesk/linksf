@@ -88,7 +88,7 @@ var Hours = function Hours(hours){
 
 Hours.fromData = function(data) {
   var hours = new Hours();
-  hours.hours = data;
+  hours.hours = data || {};
   return hours;
 };
 
@@ -132,7 +132,7 @@ function humanizeInterval(intervals) {
     var pm, hour, min;
 
     pm = time >= 1200;
-    hour = time / 100;
+    hour = Math.floor(time / 100);
     min = time % 100;
 
     if(hour > 12) {
@@ -154,7 +154,11 @@ function humanizeInterval(intervals) {
 Hours.prototype.humanize = function() {
   var result = {}, dayNum;
   for(var idx = 0; idx < 7; idx++) {
-    result[daysInverse[idx]] = this.hours[idx].map(humanizeInterval).join(",");
+    if(this.hours[idx]) {
+      result[daysInverse[idx]] = this.hours[idx].map(humanizeInterval).join(",");
+    } else {
+      result[daysInverse[idx]] = "";
+    }
   }
 
   return result;

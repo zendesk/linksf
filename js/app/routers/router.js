@@ -53,15 +53,21 @@ var Router = Backbone.Router.extend({
         self          = this,
         queryParams;
 
-    this.listView = self.listView || new listViewClass({ collection: facilities, isSingleton: true });
+    var emptyView = new listViewClass({ collection: facilities.reset() });
+    applicationController.render(emptyView);
+    emptyView.showSpinner();
 
-    queryParams = this.listView.generateQueryParams(queryString);
+    this.listView     = this.listView || new listViewClass({ collection: facilities, isSingleton: true });
+    queryParams       = this.listView.generateQueryParams(queryString);
     queryParams.limit = 20;
 
     this.listView.submitQuery(queryParams).done(function(results) {
       self.listView.options.categories = queryParams.filter.categories || [];
       applicationController.render(self.listView);
       window.scrollTo(0, 0); // Scroll to top
+    }).fail(function() {
+      console.log('submitQuery error', arguments);
+      emptyView.hideSpinner();
     });
   },
 
