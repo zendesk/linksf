@@ -11,7 +11,7 @@ function fetchCurrentLocation(deferred) {
         lon: position.coords.longitude
       });
     }, function(error) {
-      deferred.reject();
+      deferred.reject(error);
     });
   } else {
     deferred.reject();
