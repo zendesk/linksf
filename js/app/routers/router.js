@@ -53,7 +53,7 @@ var Router = Backbone.Router.extend({
         self          = this,
         queryParams;
 
-    var emptyView = new listViewClass({ collection: facilities.reset() });
+    var emptyView = new listViewClass({ collection: facilities.reset(), loadingResults: true });
     applicationController.render(emptyView);
     emptyView.showSpinner();
 

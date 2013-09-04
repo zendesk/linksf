@@ -1,30 +1,3 @@
-<form id="query">
-  <!-- 
-  <div class="sorting">
-    <h4>Sort by</h4>
-    <input type="radio" name="sort" id="near" value="alpha">Name
-    <input type="radio" name="sort" id="near" value="near">Distance
-  </div>
-  <div class="demographics">
-    <input type="checkbox" name="filter[gender]" value="M">Men
-    <input type="checkbox" name="filter[gender]" value="F">Women
-    <input type="checkbox" name="filter[age][0]" value="C">Children
-    <input type="checkbox" name="filter[age][1]" value="Y">Teens/Youth
-    <input type="checkbox" name="filter[age][2]" value="A">Adults
-    <input type="checkbox" name="filter[age][3]" value="S">Seniors
-  </div>
-  <div class="categories">
-    <h4>Services</h4>
-    <input type="checkbox" name="filter[categories][0]" value="food">Food
-    <input type="checkbox" name="filter[categories][1]" value="medical">Medical
-    <input type="checkbox" name="filter[categories][2]" value="housing">Housing
-    <input type="checkbox" name="filter[categories][3]" value="technology">Technology
-  </div>
-  <input type="hidden" name="limit" value="20">
-  <input type="submit" value="Refresh">
-  !-->
-</form>
-
 <ul class="facility-list">
   {{#each facilities}}
     <li class="facility">
@@ -32,4 +5,5 @@
       <p class="facility-address">{{this.address}}</p>
     </li>
   {{/each}}
+  {{^facilities}}<p class="not-found">Sorry, no results found.</p>{{/facilities}}
 </ul>

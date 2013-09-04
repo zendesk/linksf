@@ -148,15 +148,17 @@ var ListView = Backbone.View.extend({
   },
 
   render: function() {
-    var deepJson     = this.collection ? this.deepToJson(this.collection) : [],
-        categories   = this.options.categories || [],
-        templateJson = this.flattenServices(deepJson);
+    var deepJson       = this.collection ? this.deepToJson(this.collection) : [],
+        categories     = this.options.categories || [],
+        loadingResults = this.options.loadingResults || [],
+        templateJson   = this.flattenServices(deepJson);
 
     // replace with template
     this.$el.html(this.template({
-      facilities:   templateJson,
-      categories:   ListView.CATEGORIES,
-      searchParams: this.filterSelectCategories(categories),
+      facilities:     templateJson,
+      categories:     ListView.CATEGORIES,
+      loadingResults: loadingResults,
+      searchParams:   this.filterSelectCategories(categories),
       navButtons: [
         {class: 'left', id: 'backNav-button', text: 'Back'},
         {class: 'right', id: 'filter-button', text: 'Filter'}
