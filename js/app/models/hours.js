@@ -88,7 +88,7 @@ var Hours = function Hours(hours){
 
 Hours.fromData = function(data) {
   var hours = new Hours();
-  hours.hours = data;
+  hours.hours = data || {};
   return hours;
 };
 
