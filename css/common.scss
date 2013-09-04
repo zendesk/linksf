@@ -35,11 +35,6 @@ li {
   list-style-type: none;
 }
 
-#linksf{
-	max-width: 650px;
-	margin: 0 auto;
-}
-
 @mixin unselectable {
   -moz-user-select: none;
   -webkit-user-select: none;
