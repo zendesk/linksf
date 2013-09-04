@@ -40,7 +40,12 @@ nav {
     font-size: 24px;
     color: white;
   }
-  .logo img {
+  .logo {
+    display: block;
+    margin: 0 auto;
     width: 100px;
+    img {
+      width: 100%;
+    }
   }
 }
