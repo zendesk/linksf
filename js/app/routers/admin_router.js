@@ -56,7 +56,7 @@ var Router = Backbone.Router.extend({
 
     // run a default query
     if ( facilities.length === 0 ) {
-      listView.performQuery({limit: 4000});
+      listView.submitQuery({limit: 4000});
     }
 
     applicationController.render(listView);

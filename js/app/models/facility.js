@@ -2,6 +2,9 @@ var _     = require('underscore'),
     Hours = require('cloud/models/hours');
 
 module.exports = Parse.Object.extend('Facility', {
+  initialize: function() { 
+    this.set("services", []);
+  },
   // no gender restriction or gender == self.gender
   matchesGender: function(targetGender) {
     var g = this.get('gender');
