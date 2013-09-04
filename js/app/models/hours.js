@@ -132,7 +132,7 @@ function humanizeInterval(intervals) {
     var pm, hour, min;
 
     pm = time >= 1200;
-    hour = time / 100;
+    hour = Math.floor(time / 100);
     min = time % 100;
 
     if(hour > 12) {
