@@ -29,34 +29,42 @@ describe("Hours", function(){
       });
     });
 
-    it("input validation", function() {
-      (function() { hours.addDay("Mon", ""); }).should.throwError(/Invalid time/);
-      (function() { hours.addDay("Mon", "4pm"); }).should.throwError(/Invalid time/);
-      (function() { hours.addDay("Mon", "abcd"); }).should.throwError(/Invalid time/);
-      (function() { hours.addDay("Mon", "9PM-10PMgarbage"); }).should.throwError(/Invalid time/);
+    describe("input validation", function() {
+      it("should deal with garbage", function() {
+        (function() { hours.addDay("Mon", ""); }).should.throwError(/Invalid time/);
+        (function() { hours.addDay("Mon", "4pm"); }).should.throwError(/Invalid time/);
+        (function() { hours.addDay("Mon", "abcd"); }).should.throwError(/Invalid time/);
+        (function() { hours.addDay("Mon", "9PM-10PMgarbage"); }).should.throwError(/Invalid time/);
 
-      (function() { hours.addDay("Mon", "9PM-9PM"); }).should.throwError(/Invalid time/);
+      });
 
-      (function() { hours.addDay("Mon", "9PM-9AM"); }).should.throwError(/Invalid time/);
+      it("should deal with bad intervals", function() {
+        (function() { hours.addDay("Mon", "9PM-9PM"); }).should.throwError(/Invalid time/);
 
-      (function() { hours.addDay("Mon", "4:30PM-12:00AM"); }).should.not.throwError(/Invalid time/);
+        (function() { hours.addDay("Mon", "9PM-9AM"); }).should.throwError(/Invalid time/);
 
-      (function() { hours.addDay("Mon", "9:30AM-12:00AM"); }).should.not.throwError(/Invalid time/);
+        (function() { hours.addDay("Mon", "4:30PM-12:00AM"); }).should.not.throwError(/Invalid time/);
 
-      (function() { hours.addDay("Mon", "9:30AM-12:30AM"); }).should.throwError(/Invalid time/);
+        (function() { hours.addDay("Mon", "9:30AM-12:00AM"); }).should.not.throwError(/Invalid time/);
 
-      (function() { hours.addDay("Mon", "12:00AM-11:59PM"); }).should.not.throwError(/Invalid time/);
+        (function() { hours.addDay("Mon", "9:30AM-12:30AM"); }).should.throwError(/Invalid time/);
 
-      (function() { hours.addDay("Mon", "12:00AM-12:00AM"); }).should.not.throwError(/Invalid time/);
+        (function() { hours.addDay("Mon", "12:00AM-11:59PM"); }).should.not.throwError(/Invalid time/);
 
-      (function() { hours.addDay("Mon", "12:00AM-50PM"); }).should.throwError(/Invalid time/);
+        (function() { hours.addDay("Mon", "12:00AM-12:00AM"); }).should.not.throwError(/Invalid time/);
 
-      (function() { hours.addDay("Mon", "12:00AM-50:00PM"); }).should.throwError(/Invalid time/);
+        (function() { hours.addDay("Mon", "12:00AM-50PM"); }).should.throwError(/Invalid time/);
 
-      (function() { hours.addDay("Mon", "12:00AM-50AM"); }).should.throwError(/Invalid time/);
+        (function() { hours.addDay("Mon", "12:00AM-50:00PM"); }).should.throwError(/Invalid time/);
+
+        (function() { hours.addDay("Mon", "12:00AM-50AM"); }).should.throwError(/Invalid time/);
 
       (function() { hours.addDay("Mon", "12:00AM-50:00AM"); }).should.throwError(/Invalid time/);
+      });
 
+      it("should allow spaces", function() {
+        (function() { hours.addDay("Mon", "9am-10am, 11am-12pm"); }).should.not.throwError(/Invalid time/);
+      });
 
     });
   });
