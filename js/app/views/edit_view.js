@@ -168,10 +168,37 @@ var EditView = Backbone.View.extend({
     this.setupServiceElements(this.el);
   },
 
+  validateForm: function(formValues) {
+    var errors = [];
+    _($("input.required")).each(function(input) { 
+      if ( $(input).val() === "" ) {
+        var controlGroup = $(input).parents(".control-group");
+        controlGroup.addClass("error");
+        $(input).focus(function() { controlGroup.removeClass("error"); });
+        errors.push("Field missing: " + $(input).parents(".control-group").find("label").html());
+      }
+    });
+
+    if ( !formValues.services ) {
+      errors.push("Please add at least one service"); 
+    }
+
+    var ul = $("<ul>");
+
+    errors.forEach(function(msg) {
+      ul.append($("<li>" + msg + "</li>"));
+    });
+
+    $("#errorMessages").html(ul);
+    return errors.length === 0;
+  },
+
   saveForm: function() {
-    // var self = this;
     var servicePromises = [];
     var formValues = this.$('#facilityForm').serializeObject();
+
+    if ( !this.validateForm(formValues) ) 
+      return false;
 
     days.forEach(function(d) { delete formValues[d.key]; });
 

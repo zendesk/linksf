@@ -1,18 +1,20 @@
 {{#with facility}}
 <div>
   <dl>
+  <div id="errorMessages">
+  </div>
   <form Id="facilityForm" class="form-horizontal">
     <div class="control-group">
       <label class="control-label" for="name">Facility Name</label>
       <div class="controls">
-        <input type="text" name="name" value="{{name}}">
+        <input class="required" type="text" name="name" value="{{name}}">
       </div>
     </div>
 
     <div class="control-group">
       <label class="control-label" for="address">Address</label>
       <div class="controls">
-        <input type="text" name="address" value="{{address}}">
+        <input class="required" type="text" name="address" value="{{address}}">
       </div>
     </div>
 
@@ -48,7 +50,7 @@
         <input type="checkbox" name="age" id="age_S" value="S"> Seniors<br/>
       </div>
     </div>
-    <div class="control-group">
+    <div>
       <label class="control-label">Services</label>
       <div class="controls" id="services">
         {{#each services}}
