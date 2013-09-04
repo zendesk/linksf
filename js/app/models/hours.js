@@ -103,7 +103,7 @@ Hours.prototype.parseDay = function(str) {
   intervals = str.split(",");
 
   for(var idx = 0; idx < intervals.length; idx++) {
-    interval = intervals[idx].split("-");
+    interval = intervals[idx].trim().split("-");
     if(!interval[1]) { fail(str); }
 
     times = [ timeStringToOffset(interval[0]),

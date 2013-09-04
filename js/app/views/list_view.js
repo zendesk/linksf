@@ -180,6 +180,7 @@ var ListView = Backbone.View.extend({
 
     json = collection.models.map(function(model) {
       modelJson = model.toJSON();
+      modelJson.status = model.status();
       modelJson.services = [];
 
       model.attributes.services.forEach(function(service) {
