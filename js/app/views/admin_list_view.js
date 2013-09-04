@@ -9,7 +9,7 @@ var AdminListView = ListView.extend({
     var self = this;
     this.listenTo(this.collection, 'reset', this.render);
     $('#search_form').submit(function(el) {
-      self.performQuery({search: $('#search').val(), limit: 4000, sort: 'name'});
+      self.submitQuery({search: $('#search').val(), limit: 4000, sort: 'name'});
       return false;
     });
   }
