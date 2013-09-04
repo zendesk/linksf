@@ -66,6 +66,14 @@ var ListView = Backbone.View.extend({
     this.offset = this.hasMoreResults = null;
   },
 
+  showSpinner: function() {
+    this.$('#loading-spinner').show();
+  },
+
+  hideSpinner: function() {
+    this.$('#loading-spinner').hide();
+  },
+
   submitQuery: function(params, options) {
     options = options || {};
     return Query.submit(params).done(function(results) {
@@ -140,14 +148,15 @@ var ListView = Backbone.View.extend({
   },
 
   render: function() {
-    var deepJson = this.deepToJson(this.collection);
-    var templateJson = this.flattenServices(deepJson);
+    var deepJson     = this.collection ? this.deepToJson(this.collection) : [],
+        categories   = this.options.categories || [],
+        templateJson = this.flattenServices(deepJson);
 
     // replace with template
     this.$el.html(this.template({
-      facilities: templateJson,
-      categories: ListView.CATEGORIES,
-      searchParams: this.filterSelectCategories(this.options.categories),
+      facilities:   templateJson,
+      categories:   ListView.CATEGORIES,
+      searchParams: this.filterSelectCategories(categories),
       navButtons: [
         {class: 'left', id: 'backNav-button', text: 'Back'},
         {class: 'right', id: 'filter-button', text: 'Filter'}
