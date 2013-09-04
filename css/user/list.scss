@@ -44,17 +44,22 @@
 @mixin facility-status {
   float: right;
   padding-right: 10px;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
-.facility-status-open {
+.open {
   @include facility-status;
   color: #25BD2B; // green
 }
 
-.facility-status-closed {
+.closed {
   @include facility-status;
   color: #C43D29; // red
+}
+
+.unknown {
+  @include facility-status;
+  color: blue; // red
 }
 
 .query-representation {
