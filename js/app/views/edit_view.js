@@ -152,57 +152,66 @@ var EditView = Backbone.View.extend({
   },
 
   setupForm: function() {
-    var g = this.model.get('gender');
-    var el;
+    var g = this.model.get('gender'),
+        self = this,
+        el;
 
-    el = this.$('#gender_' + (g ? g : ''));
+    el = self.$('#gender_' + (g ? g : ''));
     el.prop('checked', true);
 
-    this.$("#age_everyone").click(function() {
-      this.$('[name="age"]').prop('checked', $(this).prop('checked'));
-    }.bind(this));
+    self.$("#age_everyone").click(function() {
+      self.$('[name="age"]').prop('checked', $(self).prop('checked'));
+    });
 
-    if ( this.model.get("age") ) {
-      _(this.model.get("age")).each(function(age) {
-        this.$("#age_" + age.toUpperCase()).prop('checked', true);
-      }.bind(this));
+    if ( self.model.get("age") ) {
+      _(self.model.get("age")).each(function(age) {
+        self.$("#age_" + age.toUpperCase()).prop('checked', true);
+      });
     } else {
-      this.$("#age_everyone").click();
+      self.$("#age_everyone").click();
     }
 
-    this.$('#submit').click(function() {
-      var formValues = this.$('#facilityForm').serializeObject();
+    self.$('#submit').click(function() {
+      var formValues = self.$('#facilityForm').serializeObject();
 
-      if ( !this.validateForm(formValues) ) 
+      if ( !self.validateForm(formValues) ) 
         return false;
 
       fetchLocation(formValues.address).then(
         function(loc) {
-          formValues.location = new Parse.Geopoint({latitude: loc.lat, longitude: loc.lon});
-          this.saveForm(formValues);
-        }.bind(this), 
+          formValues.location = new Parse.GeoPoint({latitude: loc.lat, longitude: loc.lon});
+          self.saveForm(formValues);
+        }, 
 
         function(err) { 
-          debugger;
+          self.addErrorToInput($("input[name='address']"));
+          $("#errorMessages").html("<ul><li>Could not find address</li></ul>");
         }
       );
-    }.bind(this));
+    });
 
 
     // setup all the service elements
-    this.setupServiceElements(this.el);
+    self.setupServiceElements(self.el);
+  },
+
+  addErrorToInput: function(input) {
+    var controlGroup = $(input).parents(".control-group");
+    controlGroup.addClass("error");
+    $(input).focus(function() { controlGroup.removeClass("error"); });
+    $('html, body').animate({
+        scrollTop: 0
+    }, 500);
   },
 
   validateForm: function(formValues) {
     var errors = [];
     _($("input.required")).each(function(input) { 
       if ( $(input).val() === "" ) {
-        var controlGroup = $(input).parents(".control-group");
-        controlGroup.addClass("error");
-        $(input).focus(function() { controlGroup.removeClass("error"); });
+        this.addErrorToInput(input);
         errors.push("Field missing: " + $(input).parents(".control-group").find("label").html());
       }
-    });
+    }.bind(this));
 
     if ( !formValues.services ) {
       errors.push("Please add at least one service"); 
