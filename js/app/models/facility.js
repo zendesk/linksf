@@ -2,7 +2,7 @@ var _     = require('underscore'),
     Hours = require('cloud/models/hours');
 
 module.exports = Parse.Object.extend('Facility', {
-  initialize: function() { 
+  initialize: function() {
     this.set("services", []);
   },
   // no gender restriction or gender == self.gender
@@ -58,12 +58,7 @@ module.exports = Parse.Object.extend('Facility', {
 
     if ( this._status ) return this._status;
 
-    // wrap in try because we may not have data or the data may not parse
-    try {
-      open = this.hours().within(new Date());
-    } catch (e) {
-      console.log(e);
-    }
+    open = this.hasOpenService(new Date());
 
     if ( open === true ) {
       this._status = 'open';
@@ -76,10 +71,16 @@ module.exports = Parse.Object.extend('Facility', {
     return this._status;
   },
 
-  hours: function() {
-    if(this._hours) { return this._hours; }
-    this._hours = new Hours(this.get('hours'));
-    return this._hours;
+  hasOpenService: function(time) {
+    var services = this.get('services');
+    try {
+      return _.any(services, function(service) {
+        return service.hours().within(time);
+      });
+    } catch(e) {
+      console.log(e);
+      return null;
+    }
   },
 
   hasServiceInCategories: function(categories) {
