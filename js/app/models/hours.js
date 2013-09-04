@@ -154,7 +154,11 @@ function humanizeInterval(intervals) {
 Hours.prototype.humanize = function() {
   var result = {}, dayNum;
   for(var idx = 0; idx < 7; idx++) {
-    result[daysInverse[idx]] = this.hours[idx].map(humanizeInterval).join(",");
+    if(this.hours[idx]) {
+      result[daysInverse[idx]] = this.hours[idx].map(humanizeInterval).join(",");
+    } else {
+      result[daysInverse[idx]] = "";
+    }
   }
 
   return result;
