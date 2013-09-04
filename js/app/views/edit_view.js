@@ -3,7 +3,7 @@ var Backbone            = require('backbone'),
     _                   = require('underscore'),
     Service             = require('cloud/models/service'),
     Hours               = require('cloud/models/hours'),
-    gmaps               = require('google-maps'),
+    fetchLocation       = require('cloud/lib/fetch_location'),
     editServiceTemplate = require('templates/_edit_service');
 
 function modelSaveFailCallback(args) {
@@ -171,7 +171,21 @@ var EditView = Backbone.View.extend({
     }
 
     this.$('#submit').click(function() {
-      this.saveForm();
+      var formValues = this.$('#facilityForm').serializeObject();
+
+      if ( !this.validateForm(formValues) ) 
+        return false;
+
+      fetchLocation(formValues.address).then(
+        function(loc) {
+          formValues.location = new Parse.Geopoint({latitude: loc.lat, longitude: loc.lon});
+          this.saveForm(formValues);
+        }.bind(this), 
+
+        function(err) { 
+          debugger;
+        }
+      );
     }.bind(this));
 
 
@@ -179,27 +193,55 @@ var EditView = Backbone.View.extend({
     this.setupServiceElements(this.el);
   },
 
-  saveForm: function() {
-    // var self = this;
-    var servicePromises = [];
-    var formValues = this.$('#facilityForm').serializeObject();
+  validateForm: function(formValues) {
+    var errors = [];
+    _($("input.required")).each(function(input) { 
+      if ( $(input).val() === "" ) {
+        var controlGroup = $(input).parents(".control-group");
+        controlGroup.addClass("error");
+        $(input).focus(function() { controlGroup.removeClass("error"); });
+        errors.push("Field missing: " + $(input).parents(".control-group").find("label").html());
+      }
+    });
 
+    if ( !formValues.services ) {
+      errors.push("Please add at least one service"); 
+    }
+
+    var ul = $("<ul>");
+
+    errors.forEach(function(msg) {
+      ul.append($("<li>" + msg + "</li>"));
+    });
+
+    $("#errorMessages").html(ul);
+    return errors.length === 0;
+  },
+
+  serializeAges: function() {
+    var ages;
+    if ( this.$("#age_everyone").prop('checked') ) {
+      return null;
+    }
+
+    ages = this.$("[name=age]input:checked").map(function(cb) {
+      return $(cb).attr('value');
+    });
+
+    return _(ages).compact();
+  },
+
+  saveForm: function(formValues) {
+    var servicePromises = [];
+
+    // the days-of-the-week inputs are named dumbly, get rid of them
     days.forEach(function(d) { delete formValues[d.key]; });
 
     if ( formValues.gender === "" ) {
       formValues.gender = null;
     }
 
-    if ( this.$("#age_everyone").prop('checked') ) {
-      formValues.age = null;
-    } else {
-      var ages = this.$("[name=age]input:checked").map(function(cb) {
-        return $(cb).attr('value');
-      });
-
-      ages = _(ages).compact();
-      formValues.age = ages;
-    }
+    formValues.age = this.serializeAges();
 
     var services = _.clone(formValues.services);
     this.geocodeAddress();
@@ -216,7 +258,6 @@ var EditView = Backbone.View.extend({
 
     var save = _.bind(saveFacility, this);
     save(this.model, services, _.bind(modelSaveSuccessCallback, this), _.bind(modelSaveFailCallback, this));
-
   },
 
   render: function() {
