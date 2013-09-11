@@ -28,9 +28,7 @@
     border-radius: 6px;
     border: 1px solid #DDD;
     padding: 10px;
-    &:active {
-      background-color: #ddd;
-    }
+
   }
 
   .inset { @include inset; }
@@ -53,6 +51,9 @@
     border-bottom: 1px solid #DDD;
     margin-top: 20px;
     a { font-weight: bold; }
+    &:active {
+      background-color: #ddd;
+    }
   }
 
   .inset-directions {
@@ -62,6 +63,9 @@
     margin-top: -1px;
     a { font-weight: bold; }
     label { cursor: pointer; }
+    &:active {
+      background-color: #ddd;
+    }
   }
 
   .inset-services {
