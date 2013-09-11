@@ -5,12 +5,17 @@
   {{#each facilities}}
     <li class="facility">
       <a href="#/detail/{{objectId}}" class="facility-item-link">
-        {{#if hasKnownStatus}}
-          <p class="facility-status-{{status}}">{{status}}</p>
-        {{/if}}
-        <p class="facility-name">{{name}}</p>
-        <p class="facility-address">{{address}}</p>
-        <p class="facility-status {{status}}">{{status}}</p>
+        <div style="float: right">
+          <p class="facility-distance">{{distance}} mi</p>
+          <p class="facility-status {{status}}">{{status}}</p>
+        </div>
+        <div>
+          {{#if hasKnownStatus}}
+            <p class="facility-status-{{status}}">{{status}}</p>
+          {{/if}}
+          <p class="facility-name">{{name}}</p>
+          <p class="facility-address">{{address}}</p>
+        </div>
         {{#each serviceCategories}}
           <span class="facility-services"><i class="category-icon icon-{{icon}}"></i>{{title}}</span>
         {{/each}}

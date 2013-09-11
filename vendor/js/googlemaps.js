@@ -1,4 +1,4 @@
-define('gmaps', ['async!http://maps.googleapis.com/maps/api/js?key=AIzaSyD9hllJNM0XC7OefAotjSArQI_p6pecu_Y&sensor=false'], function() {
+define('gmaps', ['async!http://maps.googleapis.com/maps/api/js?key=AIzaSyD9hllJNM0XC7OefAotjSArQI_p6pecu_Y&sensor=false&libraries=geometry'], function() {
     return google.maps;
 });
 
