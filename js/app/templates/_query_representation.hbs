@@ -1,10 +1,12 @@
 <div class="query-representation">
-  {{#each searchParams}}
-    <i class="list-header-item category-icon icon-{{icon}}"></i>
-    <span>{{title}} </span>
-  {{/each}}
-  {{^searchParams}}
-    <i class="list-header-item category-icon icon-th"></i>
-    <span>All </span>
-  {{/searchParams}}
+  <div class="query-representation-content">
+    {{#each searchParams}}
+      <i class="list-header-item category-icon icon-{{icon}}"></i>
+      <span>{{title}} </span>
+    {{/each}}
+    {{^searchParams}}
+      <i class="list-header-item category-icon icon-th"></i>
+      <span>All </span>
+    {{/searchParams}}
+  </div>
 </div>
