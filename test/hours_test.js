@@ -64,6 +64,9 @@ describe("Hours", function(){
 
       it("should allow spaces", function() {
         (function() { hours.addDay("Mon", "9am-10am, 11am-12pm"); }).should.not.throwError(/Invalid time/);
+
+        (function() { hours.addDay("Mon", "9 am-10 am, 11 am-12 pm"); }).should.not.throwError(/Invalid time/);
+
       });
 
     });
