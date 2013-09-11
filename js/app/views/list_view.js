@@ -52,9 +52,9 @@ function getData($elements, dataAttrName) {
   return result;
 }
 
-function caculateDistanceFromService(serviceJson) {
+function caculateDistanceFromService(serviceJson, currentLocation) {
   var location = serviceJson.location,
-      pos1     = new LatLng(37.7823772, -122.40984609999998), // hardcoded for now
+      pos1     = new LatLng(currentLocation.latitude, currentLocation.longitude),
       pos2     = new LatLng(location.latitude, location.longitude),
       distance = maps.geometry.spherical.computeDistanceBetween(pos1, pos2);
   distance = distance/1000*0.62137; // meters to miles
@@ -160,10 +160,11 @@ var ListView = Backbone.View.extend({
   },
 
   render: function() {
-    var deepJson       = this.collection ? this.deepToJson(this.collection) : [],
-        categories     = this.options.categories || [],
-        loadingResults = this.options.loadingResults || [],
-        templateJson   = this.flattenServices(deepJson);
+    var deepJson        = this.collection ? this.deepToJson(this.collection) : [],
+        categories      = this.options.categories || [],
+        currentLocation = this.options.currentLocation || { latitude: 37.7823772, longitude: -122.40984609999998 },
+        loadingResults  = this.options.loadingResults || [],
+        templateJson    = this.flattenServices(deepJson, currentLocation);
 
     // replace with template
     this.$el.html(this.template({
@@ -232,14 +233,14 @@ var ListView = Backbone.View.extend({
     return selectedCategories;
   },
 
-  flattenServices: function(jsonArray) {
+  flattenServices: function(jsonArray, currentLocation) {
     var serviceCategories,
         allNotes,
         flattened = [],
         self = this;
 
     jsonArray.forEach(function(jsonModel) {
-      jsonModel.distance = caculateDistanceFromService(jsonModel);
+      jsonModel.distance = caculateDistanceFromService(jsonModel, currentLocation);
       serviceCategories = [];
       allNotes = [];
 
