@@ -67,6 +67,8 @@ describe("Hours", function(){
 
         (function() { hours.addDay("Mon", "9 am-10 am, 11 am-12 pm"); }).should.not.throwError(/Invalid time/);
 
+        (function() { hours.addDay("Mon", "9:00 AM - 12:00 PM, 2:00 PM - 5:00 PM"); }).should.not.throwError(/Invalid time/);
+
       });
 
     });
