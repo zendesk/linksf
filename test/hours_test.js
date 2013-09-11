@@ -92,13 +92,13 @@ describe("Hours", function(){
 
     it("should convert back to AM/PM strings", function() {
       hours.humanize().should.eql({
-        "SUN": "9:00AM-6:00PM",
-        "MON": "9:00AM-12:00PM,2:00PM-5:00PM",
-        "TUE": "9:00AM-12:00AM",
-        "WED": "9:00AM-6:00PM",
-        "THU": "9:00AM-6:00PM",
-        "FRI": "9:00AM-6:00PM",
-        "SAT": "9:00AM-11:00AM,2:00PM-5:30PM"
+        "SUN": "9:00 AM - 6:00 PM",
+        "MON": "9:00 AM - 12:00 PM,2:00 PM - 5:00 PM",
+        "TUE": "9:00 AM - 12:00 AM",
+        "WED": "9:00 AM - 6:00 PM",
+        "THU": "9:00 AM - 6:00 PM",
+        "FRI": "9:00 AM - 6:00 PM",
+        "SAT": "9:00 AM - 11:00 AM,2:00 PM - 5:30 PM"
       });
     });
 
@@ -174,6 +174,36 @@ describe("Hours", function(){
         5: [[900,1800]],
         6: [[900,1730]]
       });
+
+    });
+  });
+
+  describe("#humanizeCondensed", function() {
+    var condensed;
+
+    beforeEach(function() {
+      condensed = hours.humanizeCondensed();
+    });
+
+    it("should condense intervals", function() {
+      condensed.should.eql([
+        {
+          label: "Sunday",
+          interval: "9:00 AM - 6:00 PM"
+        },
+        {
+          label: "Monday",
+          interval: "9:00 AM - 5:00 PM"
+        },
+        {
+          label: "Tuesday - Friday",
+          interval: "9:00 AM - 6:00 PM"
+        },
+        {
+          label: "Saturday",
+          interval: "9:00 AM - 5:30 PM"
+        }
+      ]);
 
     });
   });
