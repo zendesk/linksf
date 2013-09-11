@@ -1,5 +1,6 @@
 var _     = require('underscore'),
-    Hours = require('cloud/models/hours');
+    Hours = require('cloud/models/hours'), 
+    CATEGORIES = require("lib/categories");
 
 module.exports = Parse.Object.extend('Facility', {
   initialize: function() {
@@ -22,6 +23,7 @@ module.exports = Parse.Object.extend('Facility', {
       return service.toJSON();
     });
     asJSON.demographics = this.demographics();
+    asJSON.distinctCategories = this.distinctCategories();
     return asJSON;
   },
 
@@ -131,5 +133,16 @@ module.exports = Parse.Object.extend('Facility', {
       }
     }
     return output;
+  },
+  distinctCategories: function() {
+    var s = [], h = {};
+    _.each(this.get("services"), function(service) {
+      var cat = service.get("category");
+      if ( !h[cat] ) {
+        h[cat] = 1;
+        s.push(_.find(CATEGORIES, function(e) { return e.key == cat; }));
+      }
+    });
+    return s;
   }
 });
