@@ -162,7 +162,7 @@ var ListView = Backbone.View.extend({
   render: function() {
     var deepJson        = this.collection ? this.deepToJson(this.collection) : [],
         categories      = this.options.categories || [],
-        currentLocation = this.options.currentLocation || { lat: 37.7823772, lon: -122.40984609999998 },
+        currentLocation = this.options.currentLocation,
         loadingResults  = this.options.loadingResults || [],
         templateJson    = this.flattenServices(deepJson, currentLocation);
 
@@ -240,7 +240,9 @@ var ListView = Backbone.View.extend({
         self = this;
 
     jsonArray.forEach(function(jsonModel) {
-      jsonModel.distance = caculateDistanceFromService(jsonModel, currentLocation);
+      if (currentLocation) {
+        jsonModel.distance = caculateDistanceFromService(jsonModel, currentLocation);
+      }
       serviceCategories = [];
       allNotes = [];
 
