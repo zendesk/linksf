@@ -6,7 +6,6 @@ namespace :deploy do
     deploy_files = %w(
       index.html
       admin.html
-      images/spinner.gif
       js/static/output.js
       js/static/admin.js
       css/static/user.css
@@ -18,6 +17,9 @@ namespace :deploy do
 
     # deploy everything in vendor
     system("s3cmd sync --acl-public vendor/ s3://link-sf.com/vendor/")
+
+    # deploy everything in images
+    system("s3cmd sync --acl-public images/ s3://link-sf.com/images/")
   end
 
   task :parse do
