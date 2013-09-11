@@ -30,12 +30,18 @@
       font-size: 12px;
       margin-bottom: 8px;
     }
+
+    .facility-distance {
+      color: #c3c3c3;
+      margin-right: 0;
+      text-align: right;
+    }
   }
 }
 
 @mixin facility-status {
-  float: right;
-  padding-right: 10px;
+  margin-right: 0;
+  text-align: right;
   text-transform: capitalize;
 }
 

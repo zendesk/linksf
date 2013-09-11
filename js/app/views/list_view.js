@@ -5,7 +5,9 @@ var Backbone     = require('backbone'),
     _            = require('underscore'),
     facilities   = require('collections/facilities').instance,
     searchParams = ["fr"],
-    parseParams  = require('lib/query_param_parser');
+    parseParams  = require('lib/query_param_parser'),
+    maps         = require('google-maps'),
+    LatLng       = maps.LatLng;
 
 function generateQueryParams(queryString) {
   var params       = parseParams(queryString),
@@ -48,6 +50,16 @@ function getData($elements, dataAttrName) {
     result.push($(el).data(dataAttrName));
   });
   return result;
+}
+
+function caculateDistanceFromService(serviceJson) {
+  var location = serviceJson.location,
+      pos1     = new LatLng(37.7823772, -122.40984609999998), // hardcoded for now
+      pos2     = new LatLng(location.latitude, location.longitude),
+      distance = maps.geometry.spherical.computeDistanceBetween(pos1, pos2);
+  distance = distance/1000*0.62137; // meters to miles
+  distance = +distance.toFixed(2); // precision after decimal point
+  return distance;
 }
 
 var ListView = Backbone.View.extend({
@@ -227,6 +239,7 @@ var ListView = Backbone.View.extend({
         self = this;
 
     jsonArray.forEach(function(jsonModel) {
+      jsonModel.distance = caculateDistanceFromService(jsonModel);
       serviceCategories = [];
       allNotes = [];
 
