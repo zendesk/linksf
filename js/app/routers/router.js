@@ -68,7 +68,6 @@ var Router = Backbone.Router.extend({
         self.listView.options.categories      = queryParams.filter.categories || [];
         self.listView.options.currentLocation = loc;
         self.listView.hideSpinner();
-        applicationController.render(self.listView);
         window.scrollTo(0, 0); // Scroll to top
       });
     }).fail(function() {
