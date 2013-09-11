@@ -12,6 +12,16 @@ var days = {
 
 var daysInverse = _.invert(days);
 
+var dayNames = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday"
+];
+
 function fail(str) {
   throw new Error("Invalid time string: " + str);
 }
@@ -166,8 +176,8 @@ function humanizeInterval(intervals) {
       min = "0" + min;
     }
 
-    return [hour, ":", min, pm ? "PM" : "AM"].join("");
-  }).join("-");
+    return [hour, ":", min, pm ? " PM" : " AM"].join("");
+  }).join(" - ");
 }
 
 Hours.prototype.humanize = function() {
@@ -214,6 +224,42 @@ Hours.prototype.isEmpty = function () {
   }
 
   return (count === 0);
+};
+
+Hours.prototype.humanizeCondensed = function combine() {
+
+  var merged = this.merge(),
+      obj = merged.hours;
+
+  var condensed = Object.keys(obj).reduce(function(acc, i){
+    if(!acc.length) {
+      acc.push({days: [parseInt(i, 10)], interval: obj[i][0]});
+    } else {
+      var last = acc[acc.length - 1];
+      if(last.interval.join() == obj[i].join()) {
+        last.days.push(parseInt(i, 10));
+      } else {
+        acc.push({days: [parseInt(i, 10)], interval: obj[i][0]});
+      }
+    }
+    return acc;
+  }, []);
+
+  return condensed.map(function(run) {
+    if(run.days.length == 1) {
+      return {
+        label: dayNames[run.days[0]],
+        interval: humanizeInterval(run.interval)
+      };
+    } else {
+      var start = dayNames[Math.min.apply(Math, run.days)];
+      var end = dayNames[Math.max.apply(Math, run.days)];
+      return {
+        label: [start, end].join(" - "),
+        interval: humanizeInterval(run.interval)
+      };
+    }
+  });
 };
 
 module.exports = Hours;
