@@ -6,7 +6,9 @@
     <li class="facility">
       <a href="#/detail/{{objectId}}" class="facility-item-link">
         <div style="float: right">
-          <p class="facility-distance">{{distance}} mi</p>
+          {{#if distance}}
+            <p class="facility-distance">{{distance}} mi</p>
+          {{/if}}
           <p class="facility-status {{status}}">{{status}}</p>
         </div>
         <div>
