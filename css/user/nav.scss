@@ -30,7 +30,7 @@ nav {
   }
 
   button:active {
-    @include vertical-gradient(darken($nav-background-color, 6%), darken(#19658C, 6%));
+    @include vertical-gradient(darken($nav-background-color, 20%), darken(#19658C, 20%));
   }
 
   button.left { float: left; }
