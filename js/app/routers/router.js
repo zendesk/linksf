@@ -1,4 +1,4 @@
-/*globals window*/
+/*globals window,alert */
 var $                     = require('jquery'),
     _                     = require('underscore'),
     Backbone              = require('backbone'),
@@ -13,6 +13,7 @@ var $                     = require('jquery'),
     Query                 = require('lib/query'),
     applicationController = new BaseController({ el: '#linksf' }),
     facilities            = require('collections/facilities').instance,
+    FacilityCollection    = require('collections/facilities').FacilityCollection,
     fetchLocation         = require('cloud/lib/fetch_location');
 
 var Router = Backbone.Router.extend({
@@ -54,11 +55,11 @@ var Router = Backbone.Router.extend({
         self          = this,
         queryParams;
 
-    var emptyView = new listViewClass({ collection: facilities.reset(), loadingResults: true });
-    applicationController.render(emptyView);
-    emptyView.showSpinner();
-
     this.listView     = this.listView || new listViewClass({ collection: facilities, isSingleton: true });
+    applicationController.render(this.listView);
+    this.listView.showSpinner();
+    window.scrollTo(0, 0);
+
     queryParams       = this.listView.generateQueryParams(queryString);
     queryParams.limit = 20;
 
@@ -66,12 +67,13 @@ var Router = Backbone.Router.extend({
       fetchLocation().done(function(loc) {
         self.listView.options.categories      = queryParams.filter.categories || [];
         self.listView.options.currentLocation = loc;
+        self.listView.hideSpinner();
         applicationController.render(self.listView);
         window.scrollTo(0, 0); // Scroll to top
       });
     }).fail(function() {
       console.log('submitQuery error', arguments);
-      emptyView.hideSpinner();
+      self.listView.hideSpinner();
     });
   },
 
