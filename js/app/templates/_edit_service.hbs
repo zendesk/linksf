@@ -1,15 +1,15 @@
 <div class="service-edit-row container">
   <input type="hidden" name="services[][id]" value="{{objectId}}">
   <div class="control-group">
-    <label for="services[][name]">Service name</label>
-    <input type="text" name="services[][name]" value="{{name}}" class="span2 required">
-  </div>
-  <div class="control-group">
     <label for="services[][category]">Category</label>
     <p>
       {{category}}
       <input type="hidden" name="services[][category]" value="{{category}}">
     </p>
+  </div>
+  <div class="control-group">
+    <label for="services[][name]">Service name</label>
+    <input type="text" name="services[][name]" value="{{name}}" class="span2 required">
   </div>
   <div class="control-group">
     <label for="services[][description]">Description</label>
