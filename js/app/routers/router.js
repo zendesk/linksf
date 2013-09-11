@@ -12,7 +12,8 @@ var $                     = require('jquery'),
     AboutView             = require('views/about_view'),
     Query                 = require('lib/query'),
     applicationController = new BaseController({ el: '#linksf' }),
-    facilities            = require('collections/facilities').instance;
+    facilities            = require('collections/facilities').instance,
+    fetchLocation         = require('cloud/lib/fetch_location');
 
 var Router = Backbone.Router.extend({
   routes: {
@@ -62,9 +63,12 @@ var Router = Backbone.Router.extend({
     queryParams.limit = 20;
 
     this.listView.submitQuery(queryParams).done(function(results) {
-      self.listView.options.categories = queryParams.filter.categories || [];
-      applicationController.render(self.listView);
-      window.scrollTo(0, 0); // Scroll to top
+      fetchLocation().done(function(loc) {
+        self.listView.options.categories      = queryParams.filter.categories || [];
+        self.listView.options.currentLocation = loc;
+        applicationController.render(self.listView);
+        window.scrollTo(0, 0); // Scroll to top
+      });
     }).fail(function() {
       console.log('submitQuery error', arguments);
       emptyView.hideSpinner();
