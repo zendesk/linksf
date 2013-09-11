@@ -1,6 +1,6 @@
 var _     = require('underscore'),
     Hours = require('cloud/models/hours'), 
-    CATEGORIES = require("lib/categories");
+    CATEGORIES = require("cloud/lib/categories");
 
 module.exports = Parse.Object.extend('Facility', {
   initialize: function() {
