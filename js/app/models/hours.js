@@ -119,6 +119,26 @@ Hours.prototype.parseDay = function(str) {
   return result;
 };
 
+function mergeIntervals(intervals) {
+  var lower = Math.min.apply(Math, intervals.map(function(interval) {
+    return parseInt(interval[0], 10);
+  }));
+
+  var higher = Math.max.apply(Math, intervals.map(function(interval) {
+    return parseInt(interval[1], 10);
+  }));
+
+  return [[lower, higher]];
+}
+
+Hours.prototype.merge = function() {
+  var data = {};
+  Object.keys(this.hours).forEach(function(day) {
+    data[day] = mergeIntervals(this.hours[day]);
+  }, this);
+
+  return Hours.fromData(data);
+};
 
 function humanizeInterval(intervals) {
   return intervals.map(function(time) {
