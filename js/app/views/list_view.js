@@ -54,7 +54,7 @@ function getData($elements, dataAttrName) {
 
 function caculateDistanceFromService(serviceJson, currentLocation) {
   var location = serviceJson.location,
-      pos1     = new LatLng(currentLocation.latitude, currentLocation.longitude),
+      pos1     = new LatLng(currentLocation.lat, currentLocation.lon),
       pos2     = new LatLng(location.latitude, location.longitude),
       distance = maps.geometry.spherical.computeDistanceBetween(pos1, pos2);
   distance = distance/1000*0.62137; // meters to miles
@@ -162,7 +162,7 @@ var ListView = Backbone.View.extend({
   render: function() {
     var deepJson        = this.collection ? this.deepToJson(this.collection) : [],
         categories      = this.options.categories || [],
-        currentLocation = this.options.currentLocation || { latitude: 37.7823772, longitude: -122.40984609999998 },
+        currentLocation = this.options.currentLocation || { lat: 37.7823772, lon: -122.40984609999998 },
         loadingResults  = this.options.loadingResults || [],
         templateJson    = this.flattenServices(deepJson, currentLocation);
 
