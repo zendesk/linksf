@@ -23,7 +23,7 @@ var DetailView = Backbone.View.extend({
       facility: facility,
       isMobile: Features.isMobile(),
       navButtons: [
-      {class: 'left', id: 'backNav-button', text: 'Back'}
+      {'class': 'left', id: 'backNav-button', text: 'Back'}
       ]
     }));
     _.defer( function( view ){ view.setMap();}, this );
