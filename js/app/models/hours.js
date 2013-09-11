@@ -142,6 +142,17 @@ function mergeIntervals(intervals) {
   return [[lower, higher]];
 }
 
+Hours.merge = function() {
+  var data = {};
+  Array.prototype.slice.call(arguments).forEach(function(item) {
+    Object.keys(item.hours).forEach(function(day) {
+      data[day] = (data[day] || []).concat(item.hours[day] || []);
+    });
+  });
+
+  return Hours.fromData(data).merge();
+};
+
 Hours.prototype.merge = function() {
   var data = {};
   Object.keys(this.hours).forEach(function(day) {
