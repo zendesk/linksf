@@ -4,18 +4,21 @@ var should = require("should");
 describe("Hours", function(){
   var Hours = require('../js/app/models/hours'),
       hours;
-  describe("creating", function() {
-    beforeEach(function() {
-      hours = new Hours({
-        Sun: "9AM-6PM",
-        Mon: "9AM-12PM,2PM-5PM",
-        Tue: "9AM-6PM",
-        Wed: "9AM-6PM",
-        Thu: "9AM-6PM",
-        Fri: "9AM-6PM",
-        Sat: "9:00AM-11:00AM,2pm-5:30pm"
-      });
+
+  beforeEach(function() {
+    hours = new Hours({
+      Sun: "9AM-6PM",
+      Mon: "9AM-12PM,2PM-5PM",
+      Tue: "9AM-6PM",
+      Wed: "9AM-6PM",
+      Thu: "9AM-6PM",
+      Fri: "9AM-6PM",
+      Sat: "9:00AM-11:00AM,2pm-5:30pm"
     });
+
+  });
+
+  describe("creating", function() {
 
     it("should convert text times to offsets", function() {
       hours.hours.should.eql({
@@ -66,6 +69,8 @@ describe("Hours", function(){
         (function() { hours.addDay("Mon", "9am-10am, 11am-12pm"); }).should.not.throwError(/Invalid time/);
 
         (function() { hours.addDay("Mon", "9 am-10 am, 11 am-12 pm"); }).should.not.throwError(/Invalid time/);
+
+        (function() { hours.addDay("Mon", "9:00 AM - 12:00 PM, 2:00 PM - 5:00 PM"); }).should.not.throwError(/Invalid time/);
 
       });
 
@@ -149,6 +154,27 @@ describe("Hours", function(){
 
     it("should say yes if hours has no keys", function() {
       new Hours().isEmpty().should.equal(true);
+    });
+  });
+
+  describe("#merge", function() {
+    var merged;
+
+    beforeEach(function() {
+      merged = hours.merge();
+    });
+
+    it("should collapse intervals", function() {
+      merged.hours.should.eql({
+        0: [[900,1800]],
+        1: [[900,1700]],
+        2: [[900,1800]],
+        3: [[900,1800]],
+        4: [[900,1800]],
+        5: [[900,1800]],
+        6: [[900,1730]]
+      });
+
     });
   });
 });
