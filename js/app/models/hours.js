@@ -17,7 +17,7 @@ function fail(str) {
 }
 
 var parseTime = function parseTime(str) {
-  var match = str.match(/^(\d\d?)(:\d\d)?((?:A|P)M)$/i),
+  var match = str.match(/^(\d\d?)(:\d\d)?\s*((?:A|P)M)$/i),
       hour, min, pm;
 
   if(!match || !match[1] || !match[3]) {
