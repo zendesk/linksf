@@ -23,8 +23,8 @@
 
     <p class="title">Services</p>
     <div class="inset">
-      {{#each services}}
-        <p>{{name}} </p>
+      {{#each distinctCategories}}
+        <span class="facility-services"><i class="category-icon icon-{{icon}}"></i>{{title}}</span>
       {{/each}}
     </div>
 
