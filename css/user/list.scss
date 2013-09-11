@@ -33,14 +33,14 @@
 
     .facility-distance {
       color: #c3c3c3;
-      margin-right: 0;
+      margin: 4px 0;
       text-align: right;
     }
   }
 }
 
 @mixin facility-status {
-  margin-right: 0;
+  margin: 4px 0;
   text-align: right;
   text-transform: capitalize;
 }
@@ -61,6 +61,12 @@
 }
 
 .query-representation {
+  position: fixed;
+  width: 100%;
+  max-width: 650px;
+}
+
+.query-representation-content {
   margin-top: $navbar-height + 13px;
   padding: 8px 0 8px 8px;
   background-color: #E0E0E0;
@@ -68,9 +74,6 @@
   color: #7B7B7B;
   font-weight: bold;
   font-size: 14px;
-  position: fixed;
-  width: 100%;
-  max-width: 650px;
 }
 
 .list-header-item {

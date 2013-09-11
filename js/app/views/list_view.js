@@ -241,7 +241,8 @@ var ListView = Backbone.View.extend({
 
     jsonArray.forEach(function(jsonModel) {
       if (currentLocation) {
-        jsonModel.distance = caculateDistanceFromService(jsonModel, currentLocation);
+        jsonModel.distance     = caculateDistanceFromService(jsonModel, currentLocation);
+        jsonModel.showDistance = true;
       }
       serviceCategories = [];
       allNotes = [];
