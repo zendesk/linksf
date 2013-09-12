@@ -4,16 +4,6 @@ var $             = require('jquery'),
     Facility      = require('cloud/models/facility'),
     fetchLocation = require('cloud/lib/fetch_location');
 
-var runWithLocation = function(callback) {
-  fetchLocation()
-    .done(function(loc) {
-      callback(loc);
-    })
-    .fail(function() {
-      callback({lat: 37.782355, lon:-122.409825});
-    });
-};
-
 var queryFunction = function(runWhere) {
   return _.partial(Parse.Cloud.run, "browse");
 };
@@ -22,18 +12,10 @@ var submit = function(params) {
   // to keep track of when it finishes
   var deferred = $.Deferred();
 
-  // choose where to run the query
-  // var query = queryFunction(params.runwhere);
-
-  // add location if proximity sorting
-  if ( params.sort === 'near' ) {
-    runWithLocation(function(loc) {
-      $.extend(params, loc);
-      performQuery(params, deferred);
-    });
-  } else {
-    performQuery(params, deferred);
+  if ( !params.lat && params.sort == "near" ) { 
+    params.sort = "name";
   }
+  performQuery(params, deferred);
 
   return deferred.promise();
 };
