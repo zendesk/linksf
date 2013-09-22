@@ -11,20 +11,14 @@
   }
 
   .search-input {
-    width: 100%;
-    background-color: white;
+    width: 99%;
+  }
+
+  input {
+    padding-left: 10px;
     border-radius: 15px;
     border: 1px solid #E3E3E3;
     height: 30px;
-
-    input {
-      position: relative;
-      top: 2px;
-      left: 11px;
-      height: 25px;
-      width: 250px;
-      border: none;
-    }
   }
 }
 
