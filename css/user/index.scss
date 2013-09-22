@@ -11,12 +11,14 @@
   }
 
   .search-input {
-    width: 99%;
+    width: 100%;
   }
 
   input {
     padding-left: 10px;
     border-radius: 15px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
     border: 1px solid #E3E3E3;
     height: 30px;
   }
