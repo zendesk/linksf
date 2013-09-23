@@ -73,26 +73,37 @@ var DetailView = Backbone.View.extend({
   },
 
   setMap: function(){
-    if(this.$('#detail-gmap')) {
-      var location = new gmaps.LatLng(this.model.location.latitude,
-                                      this.model.location.longitude);
-      var mapOptions = {
-            center: location,
-            zoom: 15,
-            mapTypeId: gmaps.MapTypeId.ROADMAP,
-            mapTypeControl: false,
-            scrollwheel: false,
-            navigationControl: false,
-            draggable: false,
-            streetViewControl: false,
-            zoomControl: false
-          };
-      var map = new gmaps.Map(this.$('#detail-gmap')[0], mapOptions);
+    var location, mapOptions, map;
 
-      new gmaps.Marker({map: map,
-                        position: location,
-                        draggable: false});
-      }
+    if ( !this.$('#detail-gmap') ) return;
+
+    location = new gmaps.LatLng(
+      this.model.location.latitude,
+      this.model.location.longitude
+    );
+
+    mapOptions = {
+      center:            location,
+      zoom:              15,
+      mapTypeId:         gmaps.MapTypeId.ROADMAP,
+      mapTypeControl:    false,
+      scrollwheel:       false,
+      navigationControl: false,
+      draggable:         false,
+      streetViewControl: false,
+      zoomControl:       false
+    };
+
+    map = new gmaps.Map(
+      this.$('#detail-gmap')[0],
+      mapOptions
+    );
+
+    new gmaps.Marker({
+      map: map,
+      position: location,
+      draggable: false
+    });
   }
 });
 
