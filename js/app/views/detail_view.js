@@ -1,15 +1,26 @@
-/*globals window, document */
+/*globals window, document*/
 
-var Backbone      = require('backbone'),
-    Features      = require('lib/features'),
-    $             = require('jquery'),
-    _             = require('underscore'),
-    gmaps         = require('google-maps'),
-    fetchLocation = require('cloud/lib/fetch_location'),
-    Hours         = require('models/hours');
+var Backbone = require('backbone'),
+    Features = require('lib/features'),
+    $        = require('jquery'),
+    _        = require('underscore'),
+    Hours    = require('models/hours'),
+    gmaps    = require('google-maps');
+
+var aggregateOpenHours = function(facility) {
+  var mergedHours = Hours.merge.apply(
+    Hours,
+    facility.services.map(function(service) {
+      return Hours.fromData(service.openHours);
+    })
+  );
+
+  return mergedHours.humanizeCondensed();
+};
 
 var DetailView = Backbone.View.extend({
   template: require('templates/detail'),
+
   events: {
     "render.done":             'setMap',
     "click .inset-directions": 'launchDirections',
@@ -20,11 +31,7 @@ var DetailView = Backbone.View.extend({
     var facility = this.model;
     var $mapdiv =  this.$('#detail-gmap');
 
-    var mergedHours = Hours.merge.apply(Hours, facility.services.map(function(service) {
-      return Hours.fromData(service.openHours);
-    }));
-
-    facility.openHours = mergedHours.humanizeCondensed();
+    facility.openHours = aggregateOpenHours(facility);
 
     this.$el.html(this.template({
       facility: facility,
