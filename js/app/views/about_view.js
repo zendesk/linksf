@@ -1,18 +1,19 @@
-var Backbone	= require('backbone'),
-    _           = require('underscore'),
-    $			= require('jquery');
+var Backbone = require('backbone');
 
 var AboutView = Backbone.View.extend({
   template: require('templates/about'),
+
   render: function() {
     this.$el.html(this.template({
-      navButtons: [{class: 'left', id: 'backNav-button', text: 'Back'}	
+      navButtons: [
+        { class: 'left', id: 'backNav-button', text: 'Back' }
       ]
     }));
 
     this.$('#backNav-button').click(function(){
       require('routers/router').instance.back();
     });
+
     return this;
   }
 });
