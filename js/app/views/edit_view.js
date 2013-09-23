@@ -163,16 +163,16 @@ var EditView = Backbone.View.extend({
     self.$('#submit').click(function() {
       var formValues = self.$('#facilityForm').serializeObject();
 
-      if ( !self.validateForm(formValues) ) 
+      if ( !self.validateForm(formValues) )
         return false;
 
       fetchLocation(formValues.address).then(
         function(loc) {
           formValues.location = new Parse.GeoPoint({latitude: loc.lat, longitude: loc.lon});
           self.saveForm(formValues);
-        }, 
+        },
 
-        function(err) { 
+        function(err) {
           self.addErrorToInput($("input[name='address']"));
           $("#errorMessages").html("<ul><li>Could not find address</li></ul>");
         }
@@ -195,7 +195,7 @@ var EditView = Backbone.View.extend({
 
   validateForm: function(formValues) {
     var errors = [];
-    _($("input.required")).each(function(input) { 
+    _($("input.required")).each(function(input) {
       if ( $(input).val() === "" ) {
         this.addErrorToInput(input);
         errors.push("Field missing: " + $(input).parents(".control-group").find("label").html());
@@ -203,7 +203,7 @@ var EditView = Backbone.View.extend({
     }.bind(this));
 
     if ( !formValues.services ) {
-      errors.push("Please add at least one service"); 
+      errors.push("Please add at least one service");
     }
 
     var ul = $("<ul>");
@@ -270,7 +270,16 @@ var EditView = Backbone.View.extend({
     });
 
     $(this.el).html(this.template({facility: templateData}));
+
     this.setupForm();
+
+    _.defer(
+      function(view) {
+        view.$('.autosize').autosize();
+      },
+      this
+    );
+
     return this;
   }
 });
