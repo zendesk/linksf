@@ -179,7 +179,6 @@ var EditView = Backbone.View.extend({
       );
     });
 
-
     // setup all the service elements
     self.setupServiceElements(self.el);
   },
