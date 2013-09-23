@@ -22,14 +22,14 @@ var DetailView = Backbone.View.extend({
   template: require('templates/detail'),
 
   events: {
-    "render.done":             'setMap',
-    "click .inset-directions": 'launchDirections',
-    "click .inset-gmap":       'launchDirections'
+    'render.done':             'setMap',
+    'click .inset-directions': 'launchDirections',
+    'click .inset-gmap':       'launchDirections'
   },
 
   render: function() {
-    var facility = this.model;
-    var $mapdiv =  this.$('#detail-gmap');
+    var facility = this.model,
+        $mapdiv =  this.$('#detail-gmap');
 
     facility.openHours = aggregateOpenHours(facility);
 
@@ -86,20 +86,7 @@ var DetailView = Backbone.View.extend({
                         position: location,
                         draggable: false});
       }
-      this.layout();
-  },
-
-  layout: function(){
-    $.each(this.$('.desco'), function() {
-      if ($(this).text().length > 52) {
-        $(this).text($(this).text().substr(0,52)+"...");
-      }
-    });
-
-    this.$('.prevrow').last().remove();
-
   }
-
 });
 
 module.exports = DetailView;
