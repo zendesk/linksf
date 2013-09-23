@@ -37,31 +37,38 @@ var DetailView = Backbone.View.extend({
       facility: facility,
       isMobile: Features.isMobile(),
       navButtons: [
-      {'class': 'left', id: 'backNav-button', text: 'Back'}
+        { 'class': 'left', id: 'backNav-button', text: 'Back' }
       ]
     }));
-    _.defer( function( view ){ view.setMap();}, this );
+
     this.$('#backNav-button').click(function(){
       require('routers/router').instance.back();
     });
+
+    _.defer(
+      function(view) { view.setMap(); },
+      this
+    );
 
     return this;
   },
 
   launchDirections: function() {
-    var urlBase = Features.isMobile() ? "comgooglemaps://?daddr=" : 'https://maps.google.com?daddr=',
-        dAddr = encodeURIComponent(this.model.address +
-                                   "@" +
-                                   this.model.location.latitude +
-                                   "," +
-                                   this.model.location.longitude),
-        url = urlBase + dAddr;
+    var isMobile = Features.isMobile(),
+        baseGoogleMapsUrl = isMobile ? 'comgooglemaps://' : 'https://maps.google.com',
+        dAddr = encodeURIComponent(
+          this.model.address + '@' +
+          this.model.location.latitude + ',' +
+          this.model.location.longitude
+        ),
+        directionsUrl = baseGoogleMapsUrl + '?daddr=' + dAddr;
 
-    if (Features.isMobile()) {
-      document.location = url;
+    if ( isMobile ) {
+      document.location = directionsUrl;
     } else {
-      window.open(url, '_blank');
+      window.open(directionsUrl, '_blank');
     }
+
     return false;
   },
 
