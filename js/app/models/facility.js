@@ -145,16 +145,5 @@ module.exports = Parse.Object.extend('Facility', {
       }
     });
     return s;
-  },
-
-  aggregateOpenHours: function() {
-    var mergedHours = Hours.merge.apply(
-      Hours,
-      this.services.map(function(service) {
-        return Hours.fromData(service.openHours);
-      })
-    );
-
-    return mergedHours.humanizeCondensed();
   }
 });
