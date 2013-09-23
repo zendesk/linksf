@@ -1,9 +1,8 @@
-var Backbone   = require('backbone'),
-    $          = require('jquery'),
-    _          = require('underscore');
+var Backbone = require('backbone'),
+    $        = require('jquery');
 
-function navigate(categories, keyWords) {
-  var route  = 'query?categories=' + categories.join(',') + '&search=' + encodeURIComponent(keyWords),
+function navigate(categories, searchTerm) {
+  var route  = 'query?categories=' + categories.join(',') + '&search=' + encodeURIComponent(searchTerm),
       router = require('routers/router').instance;
 
   router.navigate(route, { trigger: true });
@@ -13,7 +12,7 @@ var IndexView = Backbone.View.extend({
   template: require('templates/index'),
 
   events: {
-    'submit #searchForm': 'submit',
+    'submit #search-form': 'submit',
     'click ul.filter-categories .btn': 'submit'
   },
 
@@ -26,11 +25,10 @@ var IndexView = Backbone.View.extend({
   },
 
   submit: function(event) {
-    var categories   = [],
-        keyWords     = this.$('#search_name').val(),
-        category     = $(event.target).data('value');
+    var searchTerm = this.$('#search-term').val(),
+        categories = [ $(event.target).data('value') ];
 
-    navigate([category], keyWords);
+    navigate(categories, searchTerm);
     return false;
   }
 });

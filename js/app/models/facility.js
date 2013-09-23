@@ -1,5 +1,5 @@
 var _     = require('underscore'),
-    Hours = require('cloud/models/hours'), 
+    Hours = require('cloud/models/hours'),
     CATEGORIES = require("cloud/lib/categories");
 
 module.exports = Parse.Object.extend('Facility', {
@@ -134,6 +134,7 @@ module.exports = Parse.Object.extend('Facility', {
     }
     return output;
   },
+
   distinctCategories: function() {
     var s = [], h = {};
     _.each(this.get("services"), function(service) {
