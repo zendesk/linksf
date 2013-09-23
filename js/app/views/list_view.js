@@ -136,7 +136,7 @@ var ListView = Backbone.View.extend({
     this.$(".query .selected").removeClass("selected");
     var self = this;
 
-    if ( this.options.categories ) { 
+    if ( this.options.categories ) {
       this.options.categories.forEach(function(category) {
         self.$categoryOption(category).addClass("selected");
       });
@@ -221,7 +221,7 @@ var ListView = Backbone.View.extend({
   filterSelectCategories: function(queryParams) {
     var match, selectedCategories = [];
 
-    if ( queryParams ) { 
+    if ( queryParams ) {
       queryParams.forEach(function(queryName) {
         var match = _.find(ListView.CATEGORIES, function(e){ return e.key == queryName; });
         if (!_.contains(selectedCategories, match)) {
@@ -253,7 +253,6 @@ var ListView = Backbone.View.extend({
       });
 
       jsonModel.serviceCategories = self.filterSelectCategories(serviceCategories);
-      // jsonModel.serviceCategories = serviceCategories.join(', ');
       jsonModel.allNotes = allNotes.join(' ');
       flattened.push(jsonModel);
     });
