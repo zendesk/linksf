@@ -166,9 +166,10 @@ var EditView = Backbone.View.extend({
       if ( !self.validateForm(formValues) )
         return false;
 
-      fetchLocation(formValues.address).then(
+      fetchLocation(formValues.address + ", " + formValues.city).then(
         function(loc) {
           formValues.location = new Parse.GeoPoint({latitude: loc.lat, longitude: loc.lon});
+          console.log("location ", formValues.location);
           self.saveForm(formValues);
         },
 
