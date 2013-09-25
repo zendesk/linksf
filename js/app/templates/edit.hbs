@@ -34,21 +34,23 @@
     <div class="control-group">
       <label class="control-label" for="notes">Notes</label>
       <div class="controls">
-        <textarea name="notes" class="autosize span5">{{notes}}</textarea>
+        <textarea data-trigger="hover" data-content="Brief description of the facility" name="notes" class="autosize span5 hasPopover">{{notes}}</textarea>
       </div>
     </div>
 
     <div class="control-group">
       <label class="control-label" for="gender">Gender</label>
       <div class="controls">
-        <input type="radio" name="gender" id="gender_" value=""> Everyone<br/>
-        <input type="radio" name="gender" id="gender_M" value="M"> Male</br>
-        <input type="radio" name="gender" id="gender_F" value="F"> Female</br>
+        <div class="hasPopover" data-trigger="hover" data-content="Who is welcome in the facility" style="width:150px;">
+          <input type="radio" name="gender" id="gender_" value=""> Everyone<br/>
+          <input type="radio" name="gender" id="gender_M" value="M"> Male</br>
+          <input type="radio" name="gender" id="gender_F" value="F"> Female</br>
+        </div>
       </div>
     </div>
     <div class="control-group">
       <label class="control-label" for="age">Ages</label>
-      <div class="controls">
+      <div class="controls hasPopover" style="width:150px;" data-trigger="hover" data-content="Who is welcome in the facility">
         <input type="checkbox" name="age" id="age_everyone" value=""> Everyone<br/>
         <input type="checkbox" name="age" id="age_C" value="C"> Children<br/>
         <input type="checkbox" name="age" id="age_Y" value="Y"> Youth<br/>
