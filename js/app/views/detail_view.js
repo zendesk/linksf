@@ -56,17 +56,23 @@ var DetailView = Backbone.View.extend({
 
   launchDirections: function() {
     var isMobile = Features.isMobile(),
-        baseGoogleMapsUrl = isMobile ? 'comgooglemaps://' : 'https://maps.google.com',
         dAddr = encodeURIComponent(
           this.model.address + '@' +
           this.model.location.latitude + ',' +
           this.model.location.longitude
         ),
-        directionsUrl = baseGoogleMapsUrl + '?daddr=' + dAddr;
+        directionsUrl;
 
     if ( isMobile ) {
+      directionsUrl = 'comgooglemaps://?daddr=' + dAddr;
       document.location = directionsUrl;
     } else {
+      fetchLocation().done(function(loc) {
+        var sAddr = '@' + loc.lat + ',' + loc.lon;
+        directionsUrl = 'https://maps.google.com?daddr=' + dAddr + '&saddr=' + sAddr;
+      }).fail(function() {
+        directionsUrl = 'https://maps.google.com?daddr=' + dAddr;
+      });
       window.open(directionsUrl, '_blank');
     }
 
