@@ -1,11 +1,12 @@
 /*globals window, document*/
 
-var Backbone = require('backbone'),
-    Features = require('lib/features'),
-    $        = require('jquery'),
-    _        = require('underscore'),
-    Hours    = require('models/hours'),
-    gmaps    = require('google-maps');
+var Backbone      = require('backbone'),
+    Features      = require('lib/features'),
+    $             = require('jquery'),
+    _             = require('underscore'),
+    Hours         = require('models/hours'),
+    gmaps         = require('google-maps'),
+    fetchLocation = require('cloud/lib/fetch_location');
 
 var aggregateOpenHours = function(facility) {
   var mergedHours = Hours.merge.apply(
@@ -99,10 +100,31 @@ var DetailView = Backbone.View.extend({
       mapOptions
     );
 
-    new gmaps.Marker({
-      map: map,
-      position: location,
-      draggable: false
+    fetchLocation().done(function(current) {
+      var directionsService = new gmaps.DirectionsService(),
+          directionsDisplay = new gmaps.DirectionsRenderer(),
+          request;
+
+      request = {
+        origin:      new gmaps.LatLng(current.lat, current.lon),
+        destination: location,
+        travelMode:  gmaps.DirectionsTravelMode.WALKING
+      };
+
+      directionsDisplay.setMap(map);
+
+      directionsService.route(request, function(response, status) {
+        if (status == gmaps.DirectionsStatus.OK) {
+          directionsDisplay.setDirections(response);
+        }
+      });
+
+    }).fail(function() {
+      new gmaps.Marker({
+        map:       map,
+        position:  location,
+        draggable: false
+      });
     });
   }
 });
