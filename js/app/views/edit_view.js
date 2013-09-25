@@ -270,6 +270,7 @@ var EditView = Backbone.View.extend({
     });
 
     $(this.el).html(this.template({facility: templateData}));
+    this.$('.hasPopover').popover();
 
     this.setupForm();
 
