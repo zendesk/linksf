@@ -1,8 +1,7 @@
 /*globals alert*/
 var $             = require('jquery'),
     _             = require('underscore'),
-    Facility      = require('cloud/models/facility'),
-    fetchLocation = require('cloud/lib/fetch_location');
+    Facility      = require('cloud/models/facility');
 
 var queryFunction = function(runWhere) {
   return _.partial(Parse.Cloud.run, "browse");
