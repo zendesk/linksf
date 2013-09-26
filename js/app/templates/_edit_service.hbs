@@ -9,15 +9,15 @@
   </div>
   <div class="control-group">
     <label for="services[][name]">Service name</label>
-    <input type="text" name="services[][name]" value="{{name}}" class="span2 required">
+    <input type="text" class="hasPopover" data-trigger='hover' data-content='example: "showers" or "breakfast"' name="services[][name]" value="{{name}}" class="span2 required">
   </div>
   <div class="control-group">
     <label for="services[][description]">Description</label>
-    <textarea class="autosize span5" name="services[][description]">{{description}}</textarea>
+    <textarea class="autosize span5 hasPopover" data-trigger='hover' data-content="A brief description of the service" name="services[][description]">{{description}}</textarea>
     </div>
   <div class="control-group">
     <label for="services[][notes]">Notes</label>
-    <textarea class="autosize span5" name="services[][notes]">{{notes}}</textarea>
+    <textarea class="autosize span5 hasPopover" data-trigger='hover' data-content="Further detail regarding the service" name="services[][notes]">{{notes}}</textarea>
   </div>
   <div>
     Open Hours
