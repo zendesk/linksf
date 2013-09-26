@@ -2,14 +2,14 @@
   <table>
   {{#each days}}
     <tr>
-      <td> {{name}}: </td>
+      <td class="label-hour"> {{name}} </td>
       <td> <input type="text" class="day hasPopover" name="{{key}}" value="{{hours}}" data-trigger="hover" data-content="example: 9am-3pm, 6pm-8pm"> </td>
       <td> <label class="checkbox"> <input type="checkbox" class="closed" name="{{key}}"> Closed </label> </td>
     </tr>
   {{/each}}
     <tr><td colspan="3">&nbsp;</td></tr>
     <tr>
-      <td id="preview_label">Preview:</td><td colspan="2" id="preview_hours"></td>
+      <td id="preview_label" class="label-hour">Preview</td><td colspan="2" id="preview_hours"></td>
     </tr>
   </table>
 </div>
