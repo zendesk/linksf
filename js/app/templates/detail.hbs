@@ -7,11 +7,7 @@
   <div class="facility-info">
     <p class="title">Hours</p>
     <div class="inset">
-      {{#each openHours}}
-       <div class="open-hours">
-         <b>{{label}}</b>: {{interval}}
-       </div>
-      {{/each}}
+      {{> openHours}}
     </div>
 
     <p class="title">Welcome</p>

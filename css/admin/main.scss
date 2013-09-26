@@ -18,6 +18,10 @@
   }
 }
 
+#facilityForm .hours .dayError {
+  color: red;
+}
+
 .service-edit-row {
   margin-left: 20px;
   margin-right: 20px;
@@ -26,6 +30,16 @@
   border-style: solid;
   border-width: 1px;
   padding: 10px;
+
+  .hours {
+    .day {
+      margin-right: 10px;
+    }
+
+    #preview_label {
+      vertical-align: top;
+    }
+  }
 }
 
 .service-edit-row div {
