@@ -7,10 +7,8 @@
   {{#each facilities}}
     <li class="facility">
       <a href="#/detail/{{objectId}}" class="facility-item-link">
-        <div style="float: right">
-          {{#if showDistance}}
-            <div class="facility-distance">{{distance}} mi</div>
-          {{/if}}
+        <i class="icon-angle-double-right right chevron"></i>
+        <div class="right right-info">
           <div class="facility-status {{status}}">{{status}}</div>
         </div>
         <div>
@@ -18,10 +16,14 @@
             <p class="facility-status-{{status}}">{{status}}</p>
           {{/if}}
           <p class="facility-name">{{name}}</p>
-          <p class="facility-address">{{address}}</p>
+          <p class="facility-address">{{address}}
+          {{#if showDistance}}
+            <span class="gray">{{distance}} mi</span>
+          {{/if}}
+          </p>
         </div>
         {{#each serviceCategories}}
-          <span class="facility-services"><i class="category-icon icon-{{icon}}"></i>{{title}}</span>
+          <span class="facility-services"><i class="category-icon icon-{{icon}}"></i></span>
         {{/each}}
       </a>
     </li>
