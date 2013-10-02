@@ -162,16 +162,26 @@ describe("Hours", function(){
       var merged = Hours.merge(Hours.fromData({ }), Hours.fromData({ }));
       merged.hours.should.eql({});
 
-      merged = Hours.merge(Hours.fromData({0:[[900,1700]]}), 
+      merged = Hours.merge(Hours.fromData({0:[[900,1700]]}),
                            Hours.fromData({1:[[900,1700]]}));
 
       merged.hours.should.eql({0: [[900,1700]], 1: [[900,1700]]});
 
-      merged = Hours.merge(Hours.fromData({0:[[900,1700]]}), 
+
+      merged = Hours.merge(Hours.fromData({0:[[900,1700]]}),
                            Hours.fromData({0:[[900,1800]]}));
 
       merged.hours.should.eql({0: [[900,1800]]});
 
+    });
+
+    it('does not merge intervals that do not overlap', function() {
+      var merged = Hours.merge(
+        Hours.fromData({0:[[900, 1200]]}),
+        Hours.fromData({0:[[1400, 1800]]})
+      );
+
+      merged.hours.should.eql({0: [[900, 1200], [1400, 1800]]});
     });
   });
 
