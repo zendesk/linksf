@@ -52,11 +52,7 @@ function saveFacility(model, services, successCallback, failCallback) {
       facilities.reset();
 
       if (services) {
-        model.set("services", services.map(function(s) {
-          var sObj = new Service();
-          sObj.id = s.id;
-          return sObj;
-        }));
+        model.set("services", services);
 
         model.save()
           .then(function(fac) {
@@ -290,6 +286,7 @@ var EditView = Backbone.View.extend({
 
     var templateData = this.model.presentJSON(),
         Hours = require('models/hours');
+
     templateData.services.forEach(function(service) {
       var openHours = Hours.fromData(service.openHours).humanize();
 
