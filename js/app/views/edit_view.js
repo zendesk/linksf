@@ -5,7 +5,8 @@ var Backbone            = require('backbone'),
     Hours               = require('cloud/models/hours'),
     fetchLocation       = require('cloud/lib/fetch_location'),
     editServiceTemplate = require('templates/_edit_service'),
-    openHoursTemplate   = require('templates/_open_hours');
+    openHoursTemplate   = require('templates/_open_hours'), 
+    facilities          = require('collections/facilities').instance;
 
 function modelSaveFailCallback(args) {
   this.$("#facilitySaveError").show().focus();
@@ -48,6 +49,8 @@ function saveFacility(model, services, successCallback, failCallback) {
     });
 
     Service.saveAll(serviceObjects, function(services, error) {
+      facilities.reset();
+
       if (services) {
         model.set("services", services.map(function(s) {
           var sObj = new Service();
