@@ -131,15 +131,32 @@ Hours.prototype.parseDay = function(str) {
 };
 
 function mergeIntervals(intervals) {
-  var lower = Math.min.apply(Math, intervals.map(function(interval) {
-    return parseInt(interval[0], 10);
-  }));
+  var boundaries = [],
+      openIntervals = [],
+      mergedIntervals = [];
 
-  var higher = Math.max.apply(Math, intervals.map(function(interval) {
-    return parseInt(interval[1], 10);
-  }));
+  intervals.forEach(function(interval) {
+    boundaries.push(
+      { side: 'start', time: parseInt(interval[0], 10) },
+      { side: 'end',   time: parseInt(interval[1], 10) }
+    );
+  });
 
-  return [[lower, higher]];
+  boundaries.sort(function(a, b) { return a.time - b.time; });
+
+  boundaries.forEach(function(boundary) {
+    if ( boundary.side === 'start' ) {
+      openIntervals.push(boundary);
+    } else {
+      if ( openIntervals.length === 1 ) {
+        mergedIntervals.push([openIntervals.pop().time, boundary.time]);
+      } else {
+        openIntervals.pop();
+      }
+    }
+  });
+
+  return mergedIntervals;
 }
 
 Hours.merge = function() {
