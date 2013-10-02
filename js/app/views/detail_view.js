@@ -15,7 +15,24 @@ var aggregateOpenHours = function(facility) {
     })
   );
 
-  return mergedHours.humanizeCondensed();
+  // giant hack to get humanize() output into template-ready shape
+  var unformatted = mergedHours.humanize(),
+      formatted = [];
+
+  function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.substring(1).toLowerCase();
+  }
+
+  ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].forEach(function(day) {
+    if (unformatted[day].length) {
+      formatted.push({
+        label: capitalize(day),
+        interval: unformatted[day]
+      });
+    }
+  });
+
+  return formatted;
 };
 
 var DetailView = Backbone.View.extend({
