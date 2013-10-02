@@ -19,6 +19,10 @@
       margin: 4px 4px 4px 0;
     }
 
+    .icon-right-open {
+      color: #909090;
+    }
+
     .facility-name {
       margin: 5px 0 3px 0;
       text-decoration: underline;
@@ -26,15 +30,19 @@
       font-weight: bold;
     }
 
-    .facility-address {
-      font-size: 12px;
-      margin-bottom: 8px;
+    .facility-info {
+      font-size: 13px;
+      margin-top: 15px;
     }
 
     .facility-distance {
       color: #c3c3c3;
       margin: 4px 0;
       text-align: right;
+    }
+
+    .facility-categories {
+      margin-top: 15px;
     }
   }
 }
@@ -99,7 +107,7 @@
 }
 .chevron {
   font-size: 30px;
-  margin-top: 15px;
+  margin-top: 20px;
 }
 .gray{
   color: #777;
