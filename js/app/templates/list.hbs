@@ -7,24 +7,23 @@
   {{#each facilities}}
     <li class="facility">
       <a href="#/detail/{{objectId}}" class="facility-item-link">
-        <i class="icon-angle-double-right right chevron"></i>
-        <div class="right right-info">
-          <div class="facility-status {{status}}">{{status}}</div>
-        </div>
+        <i class="icon-right-open right chevron"></i>
         <div>
           {{#if hasKnownStatus}}
             <p class="facility-status-{{status}}">{{status}}</p>
           {{/if}}
           <p class="facility-name">{{name}}</p>
-          <p class="facility-address">{{address}}
-          {{#if showDistance}}
-            <span class="gray">{{distance}} mi</span>
-          {{/if}}
+          <span class="facility-info">
+            <span class="facility-status {{status}}">{{status}}</span>
+            {{#if showDistance}}<span class="gray">{{distance}} mi</span>{{/if}}
+          </span>
           </p>
         </div>
-        {{#each serviceCategories}}
-          <span class="facility-services"><i class="category-icon icon-{{icon}}"></i></span>
-        {{/each}}
+        <div class="facility-categories">
+          {{#each serviceCategories}}
+            <span class="facility-services"><i class="category-icon icon-{{icon}}"></i>{{title}}</span>
+          {{/each}}
+        </div>
       </a>
     </li>
   {{/each}}
