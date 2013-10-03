@@ -1,4 +1,3 @@
-
 .facility-list {
   padding-top: $navbar-height + 45px;
   background-color: #F3F3F3;
@@ -47,25 +46,35 @@
   }
 }
 
-@mixin facility-status {
-  margin: 4px 0;
-  text-align: right;
-  text-transform: capitalize;
+.label-status {
+  display: inline-block;
+  padding: 2px 4px;
+  font-size: 11.844px;
+  font-weight: bold;
+  line-height: 14px;
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
+  vertical-align: baseline;
+  background-color: #999999;
+
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
 }
 
-.open {
-  @include facility-status;
-  color: #25BD2B; // green
-}
+.label-status {
+  &.open {
+    background-color: #468847; // green
+  }
 
-.closed {
-  @include facility-status;
-  color: #C43D29; // red
-}
+  &.closed {
+    background-color: #b94a48;
+  }
 
-.unknown {
-  @include facility-status;
-  color: blue; // red
+  &.unknown {
+    background-color: blue; // red
+  }
 }
 
 .query-representation {
