@@ -85,8 +85,9 @@ var Router = Backbone.Router.extend({
     applicationController.render(this.filterView);
   },
 
-  renderFacility: function(facility) {
+  renderFacility: function(facility, options) {
     var detailView = new DetailView({ model: facility.presentJSON() });
+    if (options) { detailView.options = options; }
     window.scrollTo(0, 0); // Scroll to top
     return applicationController.render(detailView);
   },
@@ -97,9 +98,17 @@ var Router = Backbone.Router.extend({
   },
 
   detail: function(id) {
-    this._getFacility(id, function(facility) {
-      this.renderFacility(facility);
-    }.bind(this));
+    var self = this, options = {};
+
+    fetchLocation().always(function(loc) {
+      if (loc.lon && loc.lat) {
+        options.currentLocation = loc;
+      }
+
+      self._getFacility(id, function(facility) {
+        self.renderFacility(facility, options);
+      });
+    });
   },
 
   edit: function(id) {
