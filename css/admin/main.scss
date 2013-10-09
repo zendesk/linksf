@@ -2,12 +2,24 @@
   padding-top: $navbar-height;
 }
 
+.navbar #search-form ul.nav li.search-input {
+  line-height: 40px;
+
+  input {
+    margin-bottom: 0;
+  }
+}
+
 .facility-list {
   padding-top: 10px;
 
   .not-found {
     margin: 10px;
   }
+}
+
+#facilityForm .hours .dayError {
+  color: red;
 }
 
 .service-edit-row {
@@ -18,6 +30,21 @@
   border-style: solid;
   border-width: 1px;
   padding: 10px;
+
+  .hours {
+    .day {
+      margin-right: 10px;
+    }
+
+    .label-hour {
+      padding-right: 10px;
+      text-align: right;
+    }
+
+    #preview_label {
+      vertical-align: top;
+    }
+  }
 }
 
 .service-edit-row div {
@@ -26,6 +53,10 @@
 
 .service-edit-row label {
   font-color: #333333;
+}
+
+#login {
+  margin-top: 20px;
 }
 
 #loginError {

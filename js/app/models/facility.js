@@ -51,10 +51,6 @@ module.exports = Parse.Object.extend('Facility', {
     return match;
   },
 
-  hasKnownStatus: function() {
-    return (this.status() !== 'unknown');
-  },
-
   status: function() {
     var open;
 

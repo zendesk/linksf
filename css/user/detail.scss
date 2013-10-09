@@ -23,6 +23,10 @@
     font-size: 18px;
   }
 
+  .icon-right-open {
+    color: #909090;
+  }
+
   @mixin inset {
     background-color: white;
     border-radius: 6px;
@@ -61,6 +65,7 @@
     @include inset;
     border-radius: 0 0 6px 6px;
     margin-top: -1px;
+
     a { font-weight: bold; }
     label { cursor: pointer; }
     &:active {

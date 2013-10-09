@@ -16,8 +16,9 @@
 
 <body>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDdHRnaDD-_z2aNUqyxxCoRBAf6PWZjS4&sensor=true&libraries=geometry"></script>
-  <script src="vendor/js/parse-1.2.2.min.js"></script>
+  <script src="vendor/js/parse-1.2.12.min.js"></script>
   <script src="js/static/admin.js"></script>
+  <script src="vendor/js/bootstrap.min.js"></script>
   <script src="vendor/js/jquery.autosize.min.js"></script>
   <script>
     window._ = require('underscore');
@@ -29,7 +30,7 @@
         <a class="brand" href="#">Link-SF Admin</a>
         <form id="search-form">
           <ul class="nav">
-          <li><input type="text" id="search" placeholder="Search for a facility..."></li>
+          <li class="search-input"><input type="text" id="search" placeholder="Search for a facility..."></li>
           <li><a href="#/new">New Facility</a></li>
           <li class='navbar-text' id='navUserInfo'></span>
           <li id="navUserLogout"><a href="#/logout">Logout</a></li>

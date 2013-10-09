@@ -4,7 +4,9 @@ var Backbone            = require('backbone'),
     Service             = require('cloud/models/service'),
     Hours               = require('cloud/models/hours'),
     fetchLocation       = require('cloud/lib/fetch_location'),
-    editServiceTemplate = require('templates/_edit_service');
+    editServiceTemplate = require('templates/_edit_service'),
+    openHoursTemplate   = require('templates/_open_hours'), 
+    facilities          = require('collections/facilities').instance;
 
 function modelSaveFailCallback(args) {
   this.$("#facilitySaveError").show().focus();
@@ -47,12 +49,10 @@ function saveFacility(model, services, successCallback, failCallback) {
     });
 
     Service.saveAll(serviceObjects, function(services, error) {
+      facilities.reset();
+
       if (services) {
-        model.set("services", services.map(function(s) {
-          var sObj = new Service();
-          sObj.id = s.id;
-          return sObj;
-        }));
+        model.set("services", services);
 
         model.save()
           .then(function(fac) {
@@ -74,7 +74,28 @@ var EditView = Backbone.View.extend({
 
   events: {
     'click #add_category':    'addCategory',
-    'click #remove_category': 'removeCategory'
+    'click #remove_category': 'removeCategory',
+    'click .closed':          'previewHours',
+    'blur .hours input':      'previewHours'
+  },
+
+  previewHours: function(event) {
+    var openHours, mergedHours, preview, html,
+        $hours = $(event.target).closest('.hours'),
+        hours  = this.parseHours($hours);
+
+    if ( !hours.isEmpty() )  {
+      openHours = hours.serialize();
+    }
+
+    mergedHours = Hours.merge.apply(
+      Hours,
+      [ { hours: openHours } ]
+    );
+
+    preview = mergedHours.humanizeCondensed();
+    html    = openHoursTemplate({ openHours: preview });
+    $hours.find('#preview_hours').html(html);
   },
 
   addCategory: function(argument) {
@@ -92,7 +113,8 @@ var EditView = Backbone.View.extend({
     return false;
   },
 
-  parseHourElement: function(hours, el) {
+  parseHourElement: function(hours, el, options) {
+    options = options || {};
     var closedCheckbox = $(el).next("input.closed");
 
     if ( closedCheckbox.prop("checked") || el.value === "" || el.value === "CLOSED" ) {
@@ -102,15 +124,18 @@ var EditView = Backbone.View.extend({
     try {
       hours.addDay(el.name, el.value);
     } catch(err) {
-      $(el).closest("tr").after($("<tr class='dayError'></tr>").html('<td colspan="3">' + err.message + '</td>'));
+      if (options.validate) {
+        $(el).closest("tr").after($("<tr class='dayError'></tr>").html('<td></td><td colspan="2">' + err.message + '</td>'));
+      }
     }
   },
 
-  parseHours: function(container) {
+  parseHours: function(container, options) {
+    options = options || {};
     var serviceHours = new Hours();
 
     _($(container).find('input.day')).each(function(el) {
-      this.parseHourElement(serviceHours, el);
+      this.parseHourElement(serviceHours, el, options);
     }.bind(this));
 
     return serviceHours;
@@ -119,7 +144,7 @@ var EditView = Backbone.View.extend({
   setupServiceElements: function(container) {
     $(container).find("input.day").first().attr("placeholder", "example: 9am-3pm, 6pm-8pm");
     $(container).find("input.day").blur(function(ev) {
-      this.parseHourElement(new Hours(), ev.target);
+      this.parseHourElement(new Hours(), ev.target, { validate: true });
       return true;
     }.bind(this));
 
@@ -166,9 +191,10 @@ var EditView = Backbone.View.extend({
       if ( !self.validateForm(formValues) )
         return false;
 
-      fetchLocation(formValues.address).then(
+      fetchLocation(formValues.address + ", " + formValues.city).then(
         function(loc) {
           formValues.location = new Parse.GeoPoint({latitude: loc.lat, longitude: loc.lon});
+          console.log("location ", formValues.location);
           self.saveForm(formValues);
         },
 
@@ -243,7 +269,7 @@ var EditView = Backbone.View.extend({
     var services = _.clone(formValues.services);
 
     _.each(services, function(service, i) {
-      var hours = this.parseHours($('.hours')[i]);
+      var hours = this.parseHours($('.hours')[i], { validate: true });
       if ( !hours.isEmpty() )  {
         service.openHours = hours.serialize();
       }
@@ -260,6 +286,7 @@ var EditView = Backbone.View.extend({
 
     var templateData = this.model.presentJSON(),
         Hours = require('models/hours');
+
     templateData.services.forEach(function(service) {
       var openHours = Hours.fromData(service.openHours).humanize();
 
@@ -269,6 +296,7 @@ var EditView = Backbone.View.extend({
     });
 
     $(this.el).html(this.template({facility: templateData}));
+    this.$('.hasPopover').popover();
 
     this.setupForm();
 
