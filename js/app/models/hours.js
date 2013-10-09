@@ -130,6 +130,25 @@ Hours.prototype.parseDay = function(str) {
   return result;
 };
 
+/*
+  mergeIntervals - take a set of open intervals and union them
+
+  1. Flatten [[S1, E1], [S2, E2], [S3, E3]] onto a timeline.
+
+    S1, E1, etc are all HHMM sortable integers; 1700 for 5PM.
+    S1--S2--E1--E2--S3--E3
+
+  2. Walk the timeline, opening/closing intervals at the shallowest level of nesting
+
+    S1 - depth 0 -> 1, open interval
+    S2 - depth 1 -> 2
+    E1 - depth 2 -> 1
+    E2 - depth 1 -> 0, close interval
+    S3 - depth 0 -> 1, open interval
+    E3 - depth 1 -> 0, close interval
+
+  return merged intervals: [[S1, E2], [S3, E3]]
+*/
 function mergeIntervals(intervals) {
   var boundaries = [],
       openIntervals = [],
