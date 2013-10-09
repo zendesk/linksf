@@ -1,4 +1,5 @@
 /*globals window */
+
 var $                     = require('jquery'),
     Backbone              = require('backbone'),
     AdminListView         = require('views/admin_list_view'),
@@ -66,11 +67,13 @@ var Router = Backbone.Router.extend({
 
   renderFacility: function(facility) {
     var detailView = new DetailView({ model: facility.presentJSON() });
+    window.scrollTo(0, 0);
     return applicationController.render(detailView);
   },
 
   renderEdit: function(facility) {
     var editView = new EditView({ model: facility });
+    window.scrollTo(0, 0);
     return applicationController.render(editView);
   },
 
@@ -118,7 +121,7 @@ var Router = Backbone.Router.extend({
     this.navigate('login', {replace: true, trigger: true});
   },
 
-  // todo -- move this into facility collection 
+  // todo -- move this into facility collection
   _getFacility: function(id, done) {
     var facility = facilities.get(id);
 
