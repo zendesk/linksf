@@ -1,13 +1,13 @@
 /* globals window */
-var Backbone     = require('backbone'),
-    $            = require('jquery'),
-    Query        = require('lib/query'),
-    _            = require('underscore'),
-    facilities   = require('collections/facilities').instance,
-    searchParams = ["fr"],
-    parseParams  = require('lib/query_param_parser'),
-    maps         = require('google-maps'),
-    LatLng       = maps.LatLng;
+var Backbone                         = require('backbone'),
+    $                                = require('jquery'),
+    Query                            = require('lib/query'),
+    _                                = require('underscore'),
+    facilities                       = require('collections/facilities').instance,
+    searchParams                     = ["fr"],
+    parseParams                      = require('lib/query_param_parser'),
+    calculateDistanceFromService     = require('lib/distance').calculateDistanceFromService,
+    calculateWalkingTimeFromDistance = require('lib/distance').calculateWalkingTimeFromDistance;
 
 function generateQueryParams(queryString) {
   var params       = parseParams(queryString),
@@ -50,16 +50,6 @@ function getData($elements, dataAttrName) {
     result.push($(el).data(dataAttrName));
   });
   return result;
-}
-
-function caculateDistanceFromService(serviceJson, currentLocation) {
-  var location = serviceJson.location,
-      pos1     = new LatLng(currentLocation.lat, currentLocation.lon),
-      pos2     = new LatLng(location.latitude, location.longitude),
-      distance = maps.geometry.spherical.computeDistanceBetween(pos1, pos2);
-  distance = distance/1000*0.62137; // meters to miles
-  distance = +distance.toFixed(2); // precision after decimal point
-  return distance;
 }
 
 var ListView = Backbone.View.extend({
@@ -241,8 +231,9 @@ var ListView = Backbone.View.extend({
 
     jsonArray.forEach(function(jsonModel) {
       if (currentLocation) {
-        jsonModel.distance     = caculateDistanceFromService(jsonModel, currentLocation);
-        jsonModel.showDistance = true;
+        jsonModel.distance     = calculateDistanceFromService(jsonModel.location, currentLocation);
+        jsonModel.walkingTime  = calculateWalkingTimeFromDistance(jsonModel.distance);
+        jsonModel.showDistance = jsonModel.showWalkingTime = true;
       }
       serviceCategories = [];
       allNotes = [];
