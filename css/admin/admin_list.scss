@@ -3,6 +3,7 @@
 	background: #EDEDED;
 	margin: 0 auto;	
 	ul {
+		margin: 4px 0 4px 0;
 		li{
 			display: inline;
 			float: left;
@@ -10,6 +11,9 @@
 	}
 	span {
 		padding-left: 5px;
+	}
+	i.category-icon {
+		margin-right: 8px;
 	}
 }
 
