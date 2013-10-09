@@ -18,7 +18,12 @@
     "mocha": "~1.9.0",
     "should": "~1.2.2",
     "grunt-simple-mocha": "~0.4.0",
-    "grunt-contrib-sass": "~0.3.0"
+    "grunt-contrib-sass": "~0.3.0",
+    "grunt-cachebuster": "~0.1.5",
+    "handlebars": "~1.0.12"
   },
-  "engines": { "npm": ">=1.2.10", "node": ">=0.8.19" }
+  "engines": {
+    "npm": ">=1.2.10",
+    "node": ">=0.8.19"
+  }
 }
