@@ -3,13 +3,20 @@ var $ = require('jquery'),
     Geocoder = maps.Geocoder,
     geocoder;
 
+var cachedPosition = null;
+
 function fetchCurrentLocation(deferred) {
+  if ( cachedPosition ) {
+    return deferred.resolve(cachedPosition);
+  }
   if ( navigator.geolocation ) {
     navigator.geolocation.getCurrentPosition(function(position) {
-      deferred.resolve({
+      cachedPosition = {
         lat: position.coords.latitude,
         lon: position.coords.longitude
-      });
+      };
+
+      deferred.resolve(cachedPosition);
     }, function(error) {
       deferred.reject(error);
     });

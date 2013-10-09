@@ -62,4 +62,17 @@ li {
     margin: 0 2px 0;
   }
 }
+.right {
+  float: right;
+}
+
+.open-hours {
+  padding: 5px 10px;
+  font-size: 14px;
+
+  .label-hour {
+    padding-right: 10px;
+    text-align: right;
+  }
+}
 

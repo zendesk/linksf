@@ -42,9 +42,12 @@
 
 .icon-plus:before { content: '\e807'; } /* '' */
 .icon-home:before { content: '\e803'; } /* '' */
+.icon-right-open-outline:before { content: '\e809'; } /* '' */
 .icon-compass:before { content: '\e801'; } /* '' */
+.icon-right-open-1:before { content: '\e808'; } /* '' */
 .icon-right-open:before { content: '\e804'; } /* '' */
 .icon-food:before { content: '\e806'; } /* '' */
+.icon-angle-double-right:before { content: '\e80a'; } /* '' */
 .icon-desktop:before { content: '\e805'; } /* '' */
 .icon-droplet:before { content: '\e802'; } /* '' */
 .icon-phone:before { content: '\e800'; } /* '' */
