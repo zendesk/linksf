@@ -150,32 +150,44 @@ Hours.prototype.parseDay = function(str) {
   return merged intervals: [[S1, E2], [S3, E3]]
 */
 function mergeIntervals(intervals) {
-  var boundaries = [],
-      openIntervals = [],
+  var stack = [],
       mergedIntervals = [];
 
-  intervals.forEach(function(interval) {
-    boundaries.push(
-      { side: 'start', time: parseInt(interval[0], 10) },
-      { side: 'end',   time: parseInt(interval[1], 10) }
-    );
-  });
-
-  boundaries.sort(function(a, b) { return a.time - b.time; });
-
-  boundaries.forEach(function(boundary) {
+  buildTimeline(intervals).forEach(function(boundary) {
     if ( boundary.side === 'start' ) {
-      openIntervals.push(boundary);
+      stack.push(boundary);
     } else {
-      if ( openIntervals.length === 1 ) {
-        mergedIntervals.push([openIntervals.pop().time, boundary.time]);
+      if ( stack.length === 1 ) {
+        mergedIntervals.push([stack.pop().time, boundary.time]);
       } else {
-        openIntervals.pop();
+        stack.pop();
       }
     }
   });
 
   return mergedIntervals;
+}
+
+function buildTimeline(intervals) {
+  var labeledBoundaries, boundaries, timeline;
+
+  // convert intervals to labeled start/end boundary objects
+  labeledBoundaries = intervals.map(function(interval) {
+    return [
+      { side: 'start', time: parseInt(interval[0], 10) },
+      { side: 'end',   time: parseInt(interval[1], 10) }
+    ];
+  });
+
+  // flatten interval boundaries to get a sortable list
+  boundaries = _.flatten(labeledBoundaries);
+
+  // sort boundaries by timestamp, generating timeline
+  timeline = boundaries.sort(function(a, b) {
+    return a.time - b.time;
+  });
+
+  return timeline;
 }
 
 Hours.merge = function() {
