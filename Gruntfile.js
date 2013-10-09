@@ -75,11 +75,7 @@ module.exports = function(grunt) {
             Object.keys(hashes).forEach(function(key) { 
               var outputFile = key + "-" + hashes[key];
               grunt.file.copy(key, outputFile);
-              context[key] = outputFile;
-            });
-
-            Object.keys(key_map).forEach(function(key) { 
-              context[key_map[key]] = context[key];
+              context[key_map[key]] = outputFile;
             });
 
             ["index.html", "admin.html"].forEach(function(file) { 
