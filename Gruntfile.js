@@ -73,13 +73,11 @@ module.exports = function(grunt) {
             var Handlebars = require('handlebars');
 
             Object.keys(hashes).forEach(function(key) { 
-              var outputFile = key + "-" + hashes[key];
-              grunt.file.copy(key, outputFile);
-              context[key] = outputFile;
-            });
+              var matches = key.match(/(.*)(\..*)$/);
+              var outputFile = matches[1] + "-" + hashes[key] + matches[2];
 
-            Object.keys(key_map).forEach(function(key) { 
-              context[key_map[key]] = context[key];
+              grunt.file.copy(key, outputFile);
+              context[key_map[key]] = outputFile;
             });
 
             ["index.html", "admin.html"].forEach(function(file) { 
