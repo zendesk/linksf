@@ -6,10 +6,10 @@ namespace :deploy do
     deploy_glob = %w(
       index.html
       admin.html
-      js/static/output.js-*
-      js/static/admin.js-*
-      css/static/user.css-*
-      css/static/admin.css-*
+      js/static/output-*.js
+      js/static/admin-*.js
+      css/static/user-*.css
+      css/static/admin-*.css
     )
     Dir.glob(deploy_glob).each do |d|
       system("s3cmd put --acl-public #{d} s3://link-sf.com/#{d}")
