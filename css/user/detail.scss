@@ -23,6 +23,10 @@
     font-size: 18px;
   }
 
+  .icon-right-open {
+    color: #909090;
+  }
+
   @mixin inset {
     background-color: white;
     border-radius: 6px;
@@ -36,12 +40,16 @@
   .inset-gmap {
     cursor: pointer;
     @include inset;
-    border-radius: 0 0 6px 6px;
+    border-radius: 6px;
     margin: 20px 0px 1px 0px;
     padding: 0;
 
     p {
       padding: 8px 8px 8px 12px;
+    }
+
+    .destination {
+      border-top: 1px solid #DDD;
     }
   }
 
@@ -61,6 +69,7 @@
     @include inset;
     border-radius: 0 0 6px 6px;
     margin-top: -1px;
+
     a { font-weight: bold; }
     label { cursor: pointer; }
     &:active {

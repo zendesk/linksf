@@ -1,12 +1,14 @@
 /*globals window, document*/
 
-var Backbone      = require('backbone'),
-    Features      = require('lib/features'),
-    $             = require('jquery'),
-    _             = require('underscore'),
-    Hours         = require('models/hours'),
-    gmaps         = require('google-maps'),
-    fetchLocation = require('cloud/lib/fetch_location');
+var Backbone                         = require('backbone'),
+    Features                         = require('lib/features'),
+    $                                = require('jquery'),
+    _                                = require('underscore'),
+    Hours                            = require('models/hours'),
+    gmaps                            = require('google-maps'),
+    fetchLocation                    = require('cloud/lib/fetch_location'),
+    calculateDistanceFromService     = require('lib/distance').calculateDistanceFromService,
+    calculateWalkingTimeFromDistance = require('lib/distance').calculateWalkingTimeFromDistance;
 
 var aggregateOpenHours = function(facility) {
   var mergedHours = Hours.merge.apply(
@@ -16,8 +18,36 @@ var aggregateOpenHours = function(facility) {
     })
   );
 
-  return mergedHours.humanizeCondensed();
+  return mergedHours.humanize();
+  // giant hack to get humanize() output into template-ready shape
+  // var unformatted = mergedHours.humanize(),
+  //     formatted = [];
+
+  // function capitalize(string) {
+  //   return string.charAt(0).toUpperCase() + string.substring(1).toLowerCase();
+  // }
+
+  // ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].forEach(function(day) {
+  //   if (unformatted[day].length) {
+  //     formatted.push({
+  //       label: capitalize(day),
+  //       interval: unformatted[day]
+  //     });
+  //   }
+  // });
+
+  // return formatted;
 };
+
+function extractDistanceTime(location, currentLocation) {
+  var destination = {};
+  if (location && currentLocation) {
+    destination.distance     = calculateDistanceFromService(location, currentLocation);
+    destination.walkingTime  = calculateWalkingTimeFromDistance(destination.distance);
+    destination.showDistance = destination.showWalkingTime = true;
+  }
+  return destination;
+}
 
 var DetailView = Backbone.View.extend({
   template: require('templates/detail'),
@@ -30,13 +60,14 @@ var DetailView = Backbone.View.extend({
 
   render: function() {
     var facility = this.model,
-        $mapdiv =  this.$('#detail-gmap');
+        $mapdiv  =  this.$('#detail-gmap');
 
-    facility.openHours = aggregateOpenHours(facility);
+    facility.destination = extractDistanceTime(facility.location, this.options.currentLocation);
+    facility.openHours   = aggregateOpenHours(facility);
 
     this.$el.html(this.template({
-      facility: facility,
-      isMobile: Features.isMobile(),
+      facility:    facility,
+      isMobile:    Features.isMobile(),
       navButtons: [
         { 'class': 'left', id: 'backNav-button', text: 'Back' }
       ]
