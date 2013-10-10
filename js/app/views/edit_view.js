@@ -5,7 +5,7 @@ var Backbone            = require('backbone'),
     Hours               = require('cloud/models/hours'),
     fetchLocation       = require('cloud/lib/fetch_location'),
     editServiceTemplate = require('templates/_edit_service'),
-    openHoursTemplate   = require('templates/_open_hours'), 
+    openHoursTemplate   = require('templates/_open_hours'),
     facilities          = require('collections/facilities').instance;
 
 function modelSaveFailCallback(args) {
@@ -23,13 +23,13 @@ function modelSaveSuccessCallback(args) {
 }
 
 var days = [
+  {key: "SUN", name: "Sunday"},
   {key: "MON", name: "Monday"},
   {key: "TUE", name: "Tuesday"},
   {key: "WED", name: "Wednesday"},
   {key: "THU", name: "Thursday"},
   {key: "FRI", name: "Friday"},
-  {key: "SAT", name: "Saturday"},
-  {key: "SUN", name: "Sunday"}
+  {key: "SAT", name: "Saturday"}
 ];
 
 function saveFacility(model, services, successCallback, failCallback) {
@@ -93,7 +93,7 @@ var EditView = Backbone.View.extend({
       [ { hours: openHours } ]
     );
 
-    preview = mergedHours.humanizeCondensed();
+    preview = mergedHours.humanize();
     html    = openHoursTemplate({ openHours: preview });
     $hours.find('#preview_hours').html(html);
   },
@@ -290,8 +290,8 @@ var EditView = Backbone.View.extend({
     templateData.services.forEach(function(service) {
       var openHours = Hours.fromData(service.openHours).humanize();
 
-      service.days = days.map(function(day) {
-        return {key: day.key, name: day.name, hours: openHours[day.key]};
+      service.days = days.map(function(day, index) {
+        return {key: day.key, name: day.name, hours: openHours[index].hours};
       });
     });
 
