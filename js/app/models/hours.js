@@ -240,16 +240,16 @@ function humanizeInterval(intervals) {
 }
 
 Hours.prototype.humanize = function() {
-  var result = {}, dayNum;
-  for(var idx = 0; idx < 7; idx++) {
-    if(this.hours[idx]) {
-      result[daysInverse[idx]] = this.hours[idx].map(humanizeInterval).join(",");
-    } else {
-      result[daysInverse[idx]] = "";
-    }
-  }
+  var hours = this.hours;
 
-  return result;
+  return dayNames.map(function(dayName, index) {
+    var intervals = hours[index];
+
+    return {
+      day: dayName,
+      hours: intervals ? intervals.map(humanizeInterval).join(', ') : null
+    };
+  });
 };
 
 Hours.prototype.within = function(time) {
