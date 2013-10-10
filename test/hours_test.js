@@ -84,22 +84,22 @@ describe("Hours", function(){
         Mon: "9AM-12PM,2PM-5PM",
         Tue: "9AM-12AM",
         Wed: "9AM-6PM",
-        Thu: "9AM-6PM",
         Fri: "9AM-6PM",
         Sat: "9:00AM-11:00AM,2pm-5:30pm"
       });
     });
 
-    it("should convert back to AM/PM strings", function() {
-      hours.humanize().should.eql({
-        "SUN": "9:00 AM - 6:00 PM",
-        "MON": "9:00 AM - 12:00 PM,2:00 PM - 5:00 PM",
-        "TUE": "9:00 AM - 12:00 AM",
-        "WED": "9:00 AM - 6:00 PM",
-        "THU": "9:00 AM - 6:00 PM",
-        "FRI": "9:00 AM - 6:00 PM",
-        "SAT": "9:00 AM - 11:00 AM,2:00 PM - 5:30 PM"
-      });
+
+    it('converts to templatable objects', function() {
+      hours.humanize().should.eql([
+        { day: 'Sunday', hours: '9:00 AM - 6:00 PM' },
+        { day: 'Monday', hours: '9:00 AM - 12:00 PM, 2:00 PM - 5:00 PM' },
+        { day: 'Tuesday', hours: '9:00 AM - 12:00 AM' },
+        { day: 'Wednesday', hours: '9:00 AM - 6:00 PM' },
+        { day: 'Thursday', hours: null },
+        { day: 'Friday', hours: '9:00 AM - 6:00 PM' },
+        { day: 'Saturday', hours: '9:00 AM - 11:00 AM, 2:00 PM - 5:30 PM' }
+      ]);
     });
 
   });
@@ -206,34 +206,4 @@ describe("Hours", function(){
     });
   });
 
-  describe("#humanizeCondensed", function() {
-    var condensed;
-
-    beforeEach(function() {
-      console.log(hours.hours);
-      condensed = hours.humanizeCondensed();
-    });
-
-    // it("should condense intervals", function() {
-    //   condensed.should.eql([
-    //     {
-    //       label: "Sunday",
-    //       interval: "9:00 AM - 6:00 PM"
-    //     },
-    //     {
-    //       label: "Monday",
-    //       interval: "9:00 AM - 5:00 PM"
-    //     },
-    //     {
-    //       label: "Tuesday - Friday",
-    //       interval: "9:00 AM - 6:00 PM"
-    //     },
-    //     {
-    //       label: "Saturday",
-    //       interval: "9:00 AM - 5:30 PM"
-    //     }
-    //   ]);
-
-    // });
-  });
 });
