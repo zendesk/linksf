@@ -3,15 +3,15 @@ namespace :deploy do
     if `which s3cmd`.chomp.empty?
       puts 'please install and configure s3cmd'
     end
-    deploy_files = %w(
+    deploy_glob = %w(
       index.html
       admin.html
-      js/static/output.js
-      js/static/admin.js
-      css/static/user.css
-      css/static/admin.css
+      js/static/output.js-*
+      js/static/admin.js-*
+      css/static/user.css-*
+      css/static/admin.css-*
     )
-    deploy_files.each do |d|
+    Dir.glob(deploy_glob).each do |d|
       system("s3cmd put --acl-public #{d} s3://link-sf.com/#{d}")
     end
 
