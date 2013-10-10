@@ -1,3 +1,5 @@
+/*globals window */
+
 var $                     = require('jquery'),
     Backbone              = require('backbone'),
     AdminListView         = require('views/admin_list_view'),
@@ -39,13 +41,14 @@ var Router = Backbone.Router.extend({
   },
 
   routes: {
-    '':                'list',
-    'list':            'list',
-    'login':           'login',
-    'logout':          'logout',
-    'detail/:id':      'detail',
-    'edit/:id':        'edit',
-    'new':             'newFacility'
+    '':                   'list',
+    'list':               'list',
+    'query?:queryString': 'query',
+    'login':              'login',
+    'logout':             'logout',
+    'detail/:id':         'detail',
+    'edit/:id':           'edit',
+    'new':                'newFacility'
   },
 
   listView: null,
@@ -64,11 +67,13 @@ var Router = Backbone.Router.extend({
 
   renderFacility: function(facility) {
     var detailView = new DetailView({ model: facility.presentJSON() });
+    window.scrollTo(0, 0);
     return applicationController.render(detailView);
   },
 
   renderEdit: function(facility) {
     var editView = new EditView({ model: facility });
+    window.scrollTo(0, 0);
     return applicationController.render(editView);
   },
 
@@ -87,7 +92,26 @@ var Router = Backbone.Router.extend({
   newFacility: function() {
     this.renderEdit(new Facility());
   },
+  query: function(queryString) {
+    var adminListViewClass = this.adminListViewClass,
+        self          = this,
+        queryParams;
 
+    var listView = this.listView || new AdminListView({collection: facilities});
+
+    applicationController.render(listView);
+    listView.showSpinner();
+    window.scrollTo(0, 0);
+    queryParams       = listView.generateQueryParams(queryString);
+    listView.submitQuery(queryParams).done(function(results) {
+      listView.hideSpinner();
+      window.scrollTo(0, 0); // Scroll to top
+    }).fail(function() {
+      console.log('submitQuery error', arguments);
+      listView.hideSpinner();
+    });
+
+  },
   login: function(return_to) {
     return new LoginView(this, return_to).render();
   },
@@ -97,7 +121,7 @@ var Router = Backbone.Router.extend({
     this.navigate('login', {replace: true, trigger: true});
   },
 
-  // todo -- move this into facility collection 
+  // todo -- move this into facility collection
   _getFacility: function(id, done) {
     var facility = facilities.get(id);
 

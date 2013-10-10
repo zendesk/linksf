@@ -130,16 +130,64 @@ Hours.prototype.parseDay = function(str) {
   return result;
 };
 
+/*
+  mergeIntervals - take a set of open intervals and union them
+
+  1. Flatten [[S1, E1], [S2, E2], [S3, E3]] onto a timeline.
+
+    S1, E1, etc are all HHMM sortable integers; 1700 for 5PM.
+    S1--S2--E1--E2--S3--E3
+
+  2. Walk the timeline, opening/closing intervals at the shallowest level of nesting
+
+    S1 - depth 0 -> 1, open interval
+    S2 - depth 1 -> 2
+    E1 - depth 2 -> 1
+    E2 - depth 1 -> 0, close interval
+    S3 - depth 0 -> 1, open interval
+    E3 - depth 1 -> 0, close interval
+
+  return merged intervals: [[S1, E2], [S3, E3]]
+*/
 function mergeIntervals(intervals) {
-  var lower = Math.min.apply(Math, intervals.map(function(interval) {
-    return parseInt(interval[0], 10);
-  }));
+  var stack = [],
+      mergedIntervals = [];
 
-  var higher = Math.max.apply(Math, intervals.map(function(interval) {
-    return parseInt(interval[1], 10);
-  }));
+  buildTimeline(intervals).forEach(function(boundary) {
+    if ( boundary.side === 'start' ) {
+      stack.push(boundary);
+    } else {
+      if ( stack.length === 1 ) {
+        mergedIntervals.push([stack.pop().time, boundary.time]);
+      } else {
+        stack.pop();
+      }
+    }
+  });
 
-  return [[lower, higher]];
+  return mergedIntervals;
+}
+
+function buildTimeline(intervals) {
+  var labeledBoundaries, boundaries, timeline;
+
+  // convert intervals to labeled start/end boundary objects
+  labeledBoundaries = intervals.map(function(interval) {
+    return [
+      { side: 'start', time: parseInt(interval[0], 10) },
+      { side: 'end',   time: parseInt(interval[1], 10) }
+    ];
+  });
+
+  // flatten interval boundaries to get a sortable list
+  boundaries = _.flatten(labeledBoundaries);
+
+  // sort boundaries by timestamp, generating timeline
+  timeline = boundaries.sort(function(a, b) {
+    return a.time - b.time;
+  });
+
+  return timeline;
 }
 
 Hours.merge = function() {
@@ -192,16 +240,16 @@ function humanizeInterval(intervals) {
 }
 
 Hours.prototype.humanize = function() {
-  var result = {}, dayNum;
-  for(var idx = 0; idx < 7; idx++) {
-    if(this.hours[idx]) {
-      result[daysInverse[idx]] = this.hours[idx].map(humanizeInterval).join(",");
-    } else {
-      result[daysInverse[idx]] = "";
-    }
-  }
+  var hours = this.hours;
 
-  return result;
+  return dayNames.map(function(dayName, index) {
+    var intervals = hours[index];
+
+    return {
+      day: dayName,
+      hours: intervals ? intervals.map(humanizeInterval).join(', ') : null
+    };
+  });
 };
 
 Hours.prototype.within = function(time) {

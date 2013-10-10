@@ -1,4 +1,10 @@
-<ul class="facility-list">
+{{#if facilities.length}}
+	<div class="admin-filter">
+		<span>Filter by Category: </span>
+		{{> filterCategories}}
+	</div>
+{{/if}}
+<ul class="admin-list facility-list">
   {{#each facilities}}
     <li class="facility">
       <p class="facility-name"><a href="#/edit/{{this.objectId}}" class="facility-link">{{this.name}}</a></p>
