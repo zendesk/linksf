@@ -4,12 +4,12 @@ namespace :deploy do
       puts 'please install and configure s3cmd'
     end
     deploy_glob = %w(
-      index.html
-      admin.html
       js/static/output-*.js
       js/static/admin-*.js
       css/static/user-*.css
       css/static/admin-*.css
+      index.html
+      admin.html
     )
     Dir.glob(deploy_glob).each do |d|
       system("s3cmd put --acl-public #{d} s3://link-sf.com/#{d}")
@@ -32,4 +32,8 @@ task :grunt do
   abort unless system("grunt")
 end
 
-task :deploy => ['grunt', 'deploy:parse', 'deploy:s3']
+task :clean do 
+  system("rm js/static/*")
+end
+
+task :deploy => ['clean', 'grunt', 'deploy:parse', 'deploy:s3']
