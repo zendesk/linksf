@@ -1,6 +1,10 @@
+// constants
+
 $navbar-height: 40px;
 $nav-background-color: #358FB2;
 $nav-button-width: 75px;
+
+// mixins
 
 @mixin vertical-gradient($from, $to) {
   background-color: $from;
@@ -10,8 +14,8 @@ $nav-button-width: 75px;
 
 @mixin gray-button {
   @include unselectable;
-  border: 1px solid #B8B8B8;
   @include vertical-gradient(white, #EBEBEB);
+  border: 1px solid #B8B8B8;
   border-radius: 4px;
   font-size: 20px;
   font-weight: bold;
@@ -31,10 +35,6 @@ $nav-button-width: 75px;
   border-radius: 6px;
 }
 
-li {
-  list-style-type: none;
-}
-
 @mixin unselectable {
   -moz-user-select: none;
   -webkit-user-select: none;
@@ -48,8 +48,28 @@ li {
   padding: 10px;
 }
 
+// mixin classes
+
+.inset {
+  @include inset;
+}
+
 .unselectable {
   @include unselectable;
+}
+
+// resets
+
+li {
+  list-style-type: none;
+}
+
+// common classes
+
+.title {
+  margin: 12px 0 0 1px;
+  color: #666;
+  font-size: 18px;
 }
 
 .facility-list {
@@ -69,6 +89,7 @@ li {
     margin: 0 2px 0;
   }
 }
+
 .right {
   float: right;
 }

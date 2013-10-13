@@ -1,12 +1,19 @@
 .about-us {
-  h2 {
-    text-align: center;
-  }
-  padding: 0 20px 0 20px;
   margin-top: $navbar-height + 23px;
+
+  .inset {
+    @include inset;
+  }
+
+  .title {
+    margin: 12px 0 0 1px;
+    color: #666;
+    font-size: 18px;
+  }
 }
 
 .credits {
+  font-size: 10px;
   color: #ACACAC;
   text-align: center;
 }
