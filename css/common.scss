@@ -41,6 +41,13 @@ li {
   -ms-user-select: none;
 }
 
+@mixin inset {
+  background-color: white;
+  border-radius: 6px;
+  border: 1px solid #DDD;
+  padding: 10px;
+}
+
 .unselectable {
   @include unselectable;
 }
