@@ -27,14 +27,6 @@
     color: #909090;
   }
 
-  @mixin inset {
-    background-color: white;
-    border-radius: 6px;
-    border: 1px solid #DDD;
-    padding: 10px;
-
-  }
-
   .inset { @include inset; }
 
   .inset-gmap {
@@ -86,7 +78,7 @@
   .open-hours {
     padding: 5px 10px;
     font-size: 14px;
-  }           
+  }
 }
 
 
