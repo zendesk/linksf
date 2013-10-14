@@ -1,14 +1,13 @@
 .about-us {
-  margin-top: $navbar-height + 23px;
+  margin-top: $navbar-height + 43px;
 
-  .inset {
-    @include inset;
+  p {
+    text-align: center;
   }
 
-  .title {
-    margin: 12px 0 0 1px;
-    color: #666;
-    font-size: 18px;
+  img {
+    margin: 10px;
+    height: 60px;
   }
 }
 
