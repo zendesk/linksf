@@ -2,8 +2,12 @@ var Backbone = require('backbone'),
     $        = require('jquery');
 
 function navigate(categories, searchTerm) {
-  var route  = 'query?categories=' + categories.join(',') + '&search=' + encodeURIComponent(searchTerm),
-      router = require('routers/router').instance;
+  var router = require('routers/router').instance,
+      route  = 'query?categories=' + categories.join(',');
+
+  if ( searchTerm ) {
+    route += '&search=' + encodeURIComponent(searchTerm);
+  }
 
   router.navigate(route, { trigger: true });
 }
