@@ -1,3 +1,5 @@
 node_modules
 css/static/*
 js/static/*
+index.html
+admin.html
