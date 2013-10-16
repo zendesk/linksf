@@ -314,8 +314,8 @@ Hours.prototype.humanizeCondensed = function combine() {
       var start = dayNames[Math.min.apply(Math, run.days)];
       var end = dayNames[Math.max.apply(Math, run.days)];
       return {
-        label: [start, end].join(" - "),
-        interval: humanizeInterval(run.interval)
+        day: [start, end].join(" - "),
+        hours: humanizeInterval(run.interval)
       };
     }
   });

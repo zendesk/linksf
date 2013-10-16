@@ -24,7 +24,17 @@ module.exports = Parse.Object.extend('Facility', {
     });
     asJSON.demographics = this.demographics();
     asJSON.distinctCategories = this.distinctCategories();
+    asJSON.openHours = this.openHours().humanizeCondensed();
     return asJSON;
+  },
+
+  openHours: function() {
+    return Hours.merge.apply(
+      Hours,
+      this.get("services").map(function(service) {
+        return Hours.fromData(service.get("openHours"));
+      })
+    );
   },
 
   matchesAges: function(ages) {
