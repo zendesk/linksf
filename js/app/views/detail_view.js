@@ -10,35 +10,6 @@ var Backbone                         = require('backbone'),
     calculateDistanceFromService     = require('lib/distance').calculateDistanceFromService,
     calculateWalkingTimeFromDistance = require('lib/distance').calculateWalkingTimeFromDistance;
 
-var aggregateOpenHours = function(facility) {
-  var mergedHours = Hours.merge.apply(
-    Hours,
-    facility.services.map(function(service) {
-      return Hours.fromData(service.openHours);
-    })
-  );
-
-  return mergedHours.humanize();
-  // giant hack to get humanize() output into template-ready shape
-  // var unformatted = mergedHours.humanize(),
-  //     formatted = [];
-
-  // function capitalize(string) {
-  //   return string.charAt(0).toUpperCase() + string.substring(1).toLowerCase();
-  // }
-
-  // ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].forEach(function(day) {
-  //   if (unformatted[day].length) {
-  //     formatted.push({
-  //       label: capitalize(day),
-  //       interval: unformatted[day]
-  //     });
-  //   }
-  // });
-
-  // return formatted;
-};
-
 function extractDistanceTime(location, currentLocation) {
   var destination = {};
   if (location && currentLocation) {
@@ -63,7 +34,6 @@ var DetailView = Backbone.View.extend({
         $mapdiv  =  this.$('#detail-gmap');
 
     facility.destination = extractDistanceTime(facility.location, this.options.currentLocation);
-    facility.openHours   = aggregateOpenHours(facility);
 
     this.$el.html(this.template({
       facility:    facility,
