@@ -20,11 +20,12 @@ module.exports = Parse.Object.extend('Facility', {
   presentJSON: function() {
     var asJSON = this.toJSON();
     asJSON.services = this.get('services').map(function(service) {
-      return service.toJSON();
+      return service.presentJSON();
     });
     asJSON.demographics = this.demographics();
     asJSON.distinctCategories = this.distinctCategories();
-    asJSON.openHours = this.openHours().humanizeCondensed();
+    asJSON.condensedHours = this.openHours().humanizeCondensed();
+    asJSON.openHours = this.openHours().humanize();
     return asJSON;
   },
 

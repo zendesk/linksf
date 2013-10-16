@@ -288,10 +288,8 @@ var EditView = Backbone.View.extend({
         Hours = require('models/hours');
 
     templateData.services.forEach(function(service) {
-      var openHours = Hours.fromData(service.openHours).humanize();
-
       service.days = days.map(function(day, index) {
-        return {key: day.key, name: day.name, hours: openHours[index].hours};
+        return {key: day.key, name: day.name, hours: service.openHours[index].hours};
       });
     });
 

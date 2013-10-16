@@ -307,8 +307,8 @@ Hours.prototype.humanizeCondensed = function combine() {
   return condensed.map(function(run) {
     if(run.days.length == 1) {
       return {
-        label: dayNames[run.days[0]],
-        interval: humanizeInterval(run.interval)
+        day: dayNames[run.days[0]],
+        hours: humanizeInterval(run.interval)
       };
     } else {
       var start = dayNames[Math.min.apply(Math, run.days)];
