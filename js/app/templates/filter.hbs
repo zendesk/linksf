@@ -3,8 +3,13 @@
 <div id="filter">
   <span class="categories-header">Sort by</span>
   <div class="filter filter-sort btn-group" data-toggle="buttons-radio">
-    <button data-value="name" class="btn first active">Name</button>
-    <button data-value="near" class="btn last" {{distanceDisabled}}>Distance</button>
+    {{#if distanceDisabled}}
+      <button data-value="near" class="btn first" disabled>Distance</button>
+      <button data-value="name" class="btn last active">Name</button>
+    {{else}}
+      <button data-value="near" class="btn first active">Distance</button>
+      <button data-value="name" class="btn last">Name</button>
+    {{/if}}
   </div>
 
   {{#if distanceDisabled}}
