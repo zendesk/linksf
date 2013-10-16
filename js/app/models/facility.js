@@ -119,23 +119,26 @@ module.exports = Parse.Object.extend('Facility', {
   },
 
   demographics: function() {
-    var g, a, output = "";
-    if ( !this.get('age') && !this.get('gender') ) {
-      output = "Anyone";
+    var age = this.get('age'),
+        gender = this.get('gender'), 
+        output = "";
+
+    if ( (!age || age.length === 0) && (!gender) ) {
+      output = "Everyone";
     } else {
-      if ( (g = this.get('gender') ) ) {
-        if ( this.get('age') ) {
-          output = g.toUpperCase() == "F" ? "Female " : "Male ";
+      if ( gender ) {
+        if ( age ) {
+          output = gender.toUpperCase() == "F" ? "Female " : "Male ";
         } else {
-          output = "Only " + (g.toUpperCase() == "F" ? "women" : "men");
+          output = "Only " + (gender.toUpperCase() == "F" ? "women" : "men");
         }
       } else {
         output = "All ";
       }
 
-      if ( (a = this.get('age') ) ) {
+      if ( age ) {
         // C-Y-A-S
-        var translated = _(a).map(this.age_as_string);
+        var translated = _(age).map(this.age_as_string);
         output += _(translated).join(", ");
       }
     }
