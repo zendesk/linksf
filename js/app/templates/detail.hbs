@@ -53,8 +53,10 @@
       <div class="inset-services">
         <label>Description:</label>
         <p>{{description}}</p>
-        <label>Notes:</label>
-        <p>{{notes}}</p>
+        {{#if notes}}
+          <label>Notes:</label>
+         <p>{{notes}}</p>
+        {{/if}}
       </div>
     {{/each}}
   </div>
