@@ -81,8 +81,17 @@ var Router = Backbone.Router.extend({
   },
 
   filter: function() {
-    this.filterView = this.filterView || new FilterView({isSingleton: true });
-    applicationController.render(this.filterView);
+    var self = this;
+
+    fetchLocation().always(function(loc) {
+      self.filterView = self.filterView || new FilterView({isSingleton: true });
+
+      if (loc.lon && loc.lat) {
+        self.filterView.options.currentLocation = loc;
+      }
+
+      applicationController.render(self.filterView);
+    });
   },
 
   renderFacility: function(facility, options) {

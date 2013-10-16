@@ -4,8 +4,14 @@
   <span class="categories-header">Sort by</span>
   <div class="filter filter-sort btn-group" data-toggle="buttons-radio">
     <button data-value="name" class="btn first active">Name</button>
-    <button data-value="near" class="btn last">Distance</button>
+    <button data-value="near" class="btn last" {{distanceDisabled}}>Distance</button>
   </div>
+
+  {{#if distanceDisabled}}
+    <div class="filter-sort alert">
+      <strong>Distance disabled:</strong> current location unavailable
+    </div>
+  {{/if}}
 
   <span class="categories-header">Service</span>
   {{> filterCategories}}

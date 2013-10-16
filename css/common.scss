@@ -48,6 +48,12 @@ $nav-button-width: 75px;
   padding: 10px;
 }
 
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
 // mixin classes
 
 .inset {
