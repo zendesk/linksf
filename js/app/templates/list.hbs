@@ -24,10 +24,8 @@
       </a>
     </li>
   {{/each}}
+  <li id="load-more" class="facility"></li>
   {{#unless loadingResults}}
     {{^facilities}}<p class="not-found">Sorry, no results found.</p>{{/facilities}}
   {{/unless}}
 </ul>
-<div id='load-more-container'>
-  <button class="btn btn-info" id="load-more">More...</button>
-</div>
