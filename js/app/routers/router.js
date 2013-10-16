@@ -14,17 +14,18 @@ var $                     = require('jquery'),
     applicationController = new BaseController({ el: '#linksf' }),
     facilities            = require('collections/facilities').instance,
     FacilityCollection    = require('collections/facilities').FacilityCollection,
-    fetchLocation         = require('cloud/lib/fetch_location');
+    fetchLocation         = require('cloud/lib/fetch_location'),
+    parseParams           = require('lib/query_param_parser');
 
 var Router = Backbone.Router.extend({
   routes: {
-    '':                   'index',
-    'query?:queryString': 'query',
-    'query':              'query',
-    'detail/:id':         'detail',
-    'edit/:id':           'edit',
-    'about' :             'about',
-    'filter':             'filter'
+    '':                    'index',
+    'query?:queryString':  'query',
+    'query':               'query',
+    'detail/:id':          'detail',
+    'edit/:id':            'edit',
+    'about' :              'about',
+    'filter?:queryString': 'filter'
   },
 
   listView: null,
@@ -80,11 +81,13 @@ var Router = Backbone.Router.extend({
 
   },
 
-  filter: function() {
-    var self = this;
+  filter: function(queryString) {
+    var self   = this,
+        params = parseParams(queryString);
 
     fetchLocation().always(function(loc) {
       self.filterView = self.filterView || new FilterView({isSingleton: true });
+      self.filterView.options.params = params;
 
       if (loc.lon && loc.lat) {
         self.filterView.options.currentLocation = loc;
