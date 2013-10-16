@@ -9,14 +9,14 @@ var Backbone                         = require('backbone'),
     calculateDistanceFromService     = require('lib/distance').calculateDistanceFromService,
     calculateWalkingTimeFromDistance = require('lib/distance').calculateWalkingTimeFromDistance;
 
-function generateQueryParams(queryString) {
+function generateQueryParams(queryString, limit ) {
   var params       = parseParams(queryString),
       categories   = _.compact((params.categories || '').split(',')),
       demographics = _.compact((params.demographics || '').split(',')),
       gender       = params.gender || null,
       search       = decodeURIComponent(params.search || ''),
       sort         = params.sort,
-      queryParams  = { search: search, limit: 10 },
+      queryParams  = { search: search, limit: limit || 10 },
       filterParams = {};
 
   if (categories.length > 0) {

@@ -102,7 +102,7 @@ var Router = Backbone.Router.extend({
     applicationController.render(listView);
     listView.showSpinner();
     window.scrollTo(0, 0);
-    queryParams       = listView.generateQueryParams(queryString);
+    queryParams       = listView.generateQueryParams(queryString, 1000);
     listView.selectedCategories = queryParams;
     listView.submitQuery(queryParams).done(function(results) {
       listView.hideSpinner();
