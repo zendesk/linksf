@@ -43,6 +43,10 @@
     .destination {
       border-top: 1px solid #DDD;
     }
+
+    &:active {
+      background-color: #ddd;
+    }
   }
 
   .inset-call {
