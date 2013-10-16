@@ -57,7 +57,7 @@ var ListView = Backbone.View.extend({
 
   events: {
     "click #filter-button": 'goToFilter',
-    "click #load-more":     'loadMore'
+    "click #load-more-link":'loadMore'
   },
 
   initialize: function() {
@@ -92,15 +92,15 @@ var ListView = Backbone.View.extend({
   },
 
   loadMore: function() {
-    $('#loading-spinner').show();
-    $('#load-more-container').hide();
+    $('#load-more').html($('#loading-spinner').html());
 
     var params = this.getFilterParams();
 
     this.submitQuery(params, { appendData: true }).done(function(results) {
-      $('#loading-spinner').hide();
       this.render();
     }.bind(this));
+
+    return false;
   },
 
   goToFilter: function() {
@@ -181,7 +181,8 @@ var ListView = Backbone.View.extend({
     });
 
     if ( this.hasMoreResults ) {
-      this.$('#load-more-container').show();
+      this.$('#load-more').html('<a href="#" id="load-more-link">More...</a>');
+      this.$('#load-more').show();
     }
 
     this.resetFilters();
