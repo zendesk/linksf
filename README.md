@@ -54,3 +54,15 @@ grunt watch
 `rake deploy` will generate static assets then use the `s3cmd` CLI tool to upload them to AWS.
 
 The latest deploy should be available at http://link-sf.com.
+
+
+### Icons
+
+We use http://fontello.com to generate an icon bundle.  Here's how to add or change:
+- go to fontello.com
+- upload the current bundle in vendor/ using their "import" feature
+- clicky clicky and change things
+- re-download the bundle.  make sure the name is "icons"
+- unzip the bundle and copy font/* as well as css/icons.css into place
+- correct the paths in css/icons.css
+- replace the zip file with the curent one
