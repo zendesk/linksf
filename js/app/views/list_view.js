@@ -56,8 +56,9 @@ var ListView = Backbone.View.extend({
   template: require('templates/list'),
 
   events: {
-    "click #filter-button": 'goToFilter',
-    "click #load-more-link":'loadMore'
+    "click #filter-button":  'goToFilter',
+    "click #load-more-link": 'loadMore',
+    "click #load-more":      'loadMore'
   },
 
   initialize: function() {
@@ -181,7 +182,7 @@ var ListView = Backbone.View.extend({
     });
 
     if ( this.hasMoreResults ) {
-      this.$('#load-more').html('<div id="load-more-container"><a href="#" id="load-more-link"><i class="icon-down-open chevron"></i> More...</a></div>');
+      this.$('#load-more').html('<span id="load-more-container"><a href="#" id="load-more-link"><i class="icon-down-open chevron"></i>More</a></span>');
       this.$('#load-more').show();
     }
 
