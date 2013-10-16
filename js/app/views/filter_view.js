@@ -44,13 +44,16 @@ var FilterView = Backbone.View.extend({
   },
 
   render: function() {
+    var distanceDisabled = this.options.currentLocation ? false : 'disabled';
+
     this.$el.html(this.template({
       navButtons: [
         {class: 'left', id: 'backNav-button', text: 'Back'},
         {class: 'right', id: 'searchNav-button', text: 'Search'}
       ],
-      categories: require('lib/categories'),
-      filter: true
+      categories:       require('lib/categories'),
+      filter:           true,
+      distanceDisabled: distanceDisabled
     }));
     return this;
   },
