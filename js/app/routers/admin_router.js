@@ -44,6 +44,7 @@ var Router = Backbone.Router.extend({
     '':                   'list',
     'list':               'list',
     'query?:queryString': 'query',
+    'query':              'query',
     'login':              'login',
     'logout':             'logout',
     'detail/:id':         'detail',

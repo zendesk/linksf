@@ -1,10 +1,17 @@
 var ListView = require('views/list_view'),
     $ = require('jquery');
 
-function navigate(categories, searchTerm) {
-  var route  = 'query?categories=' + categories.join(','),
+function navigate(category) {
+  var route  = 'query',
+      params = [],
       router = require('routers/admin_router').instance;
-  router.navigate(route, { trigger: true });
+      if ( category.length > 0 ) {
+        params.push( "categories=" + category );
+      }
+      if (params.length > 0) {
+        route = route + "?" + params.join("&");
+      }
+      router.navigate(route, { trigger: true });
 }
 
 var AdminListView = ListView.extend({
@@ -12,7 +19,7 @@ var AdminListView = ListView.extend({
   selectedCategory: '',
 
   events: {
-    'click ul.filter-categories .btn': 'filter'
+    'click .category.btn': 'filter'
   },
 
   initialize: function() {
@@ -31,9 +38,9 @@ var AdminListView = ListView.extend({
     });
   },
   filter: function(event) {
-    var categories = [ $(event.target).data('value') ];
-    navigate(categories);
-      return false;
+    var category = $(event.target).data('value');
+    navigate(category);
+    return false;
   }
 });
 
