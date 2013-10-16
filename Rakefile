@@ -33,7 +33,7 @@ task :grunt do
 end
 
 task :clean do 
-  system("rm js/static/*")
+  system("rm {js,css}/static/*")
 end
 
 task :deploy => ['clean', 'grunt', 'deploy:parse', 'deploy:s3']
