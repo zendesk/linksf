@@ -1,5 +1,6 @@
-var Backbone = require('backbone'),
-    $        = require('jquery');
+var Backbone      = require('backbone'),
+    $             = require('jquery'),
+    fetchLocation = require('cloud/lib/fetch_location');
 
 function navigate(categories, searchTerm) {
   var router = require('routers/router').instance,
@@ -7,9 +8,14 @@ function navigate(categories, searchTerm) {
 
   if ( searchTerm ) {
     route += '&search=' + encodeURIComponent(searchTerm);
+    router.navigate(route, { trigger: true });
+  } else {
+    fetchLocation().always(function(loc) {
+      if (loc.lon && loc.lat) { route += '&sort=near'; }
+      router.navigate(route, { trigger: true });
+    });
   }
 
-  router.navigate(route, { trigger: true });
 }
 
 var IndexView = Backbone.View.extend({
