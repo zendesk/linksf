@@ -106,14 +106,15 @@
 
 #load-more {
   display: none;
+  text-align: center;
+  text-decoration: underline;
   padding-bottom: 30px;
   margin-bottom: 20px;
   border-bottom: 0px;
 }
 
-#load-more-container {
-  width: 150px;
-  margin: 0 auto;
+.icon-down-open {
+  color: #909090;
 }
 
 .right-info {
