@@ -4,12 +4,12 @@ var ListView = require('views/list_view'),
 function navigate(categories, searchTerm) {
   var route  = 'query?categories=' + categories.join(','),
       router = require('routers/admin_router').instance;
-
   router.navigate(route, { trigger: true });
 }
 
 var AdminListView = ListView.extend({
   template: require('templates/admin_list'),
+  selectedCategory: '',
 
   events: {
     'click ul.filter-categories .btn': 'filter'

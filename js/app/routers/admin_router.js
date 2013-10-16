@@ -103,8 +103,10 @@ var Router = Backbone.Router.extend({
     listView.showSpinner();
     window.scrollTo(0, 0);
     queryParams       = listView.generateQueryParams(queryString);
+    listView.selectedCategories = queryParams;
     listView.submitQuery(queryParams).done(function(results) {
       listView.hideSpinner();
+
       window.scrollTo(0, 0); // Scroll to top
     }).fail(function() {
       console.log('submitQuery error', arguments);
