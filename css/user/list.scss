@@ -107,7 +107,13 @@
 #load-more {
   display: none;
   padding-bottom: 30px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  border-bottom: 0px;
+}
+
+#load-more-container {
+  width: 150px;
+  margin: 0 auto;
 }
 
 .right-info {

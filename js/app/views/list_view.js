@@ -181,7 +181,7 @@ var ListView = Backbone.View.extend({
     });
 
     if ( this.hasMoreResults ) {
-      this.$('#load-more').html('<a href="#" id="load-more-link">More...</a>');
+      this.$('#load-more').html('<div id="load-more-container"><a href="#" id="load-more-link"><i class="icon-down-open chevron"></i> More...</a></div>');
       this.$('#load-more').show();
     }
 
