@@ -27,9 +27,9 @@ function fail(str) {
 }
 
 var parseTime = function parseTime(str) {
-  var match = str.match(/^(\d\d?)(:\d\d)?\s*((?:A|P)M)$/i),
-      hour, min, pm;
+  var match, hour, min, pm;
 
+  match = str.match(/^(\d\d?)(:\d\d)?\s*((?:A|P)M)$/i);
   if(!match || !match[1] || !match[3]) {
     fail(str);
   }
@@ -67,6 +67,9 @@ var timeStringToOffset = function(timeString) {
   return val;
 };
 
+var is24HourString = function(timeString) {
+  return timeString.match(/^24\s*(hr|hour|hours)/i);
+};
 
 /* Input format:
 
@@ -111,20 +114,23 @@ Hours.prototype.parseDay = function(str) {
   intervals = str.split(',');
 
   for(var idx = 0; idx < intervals.length; idx++) {
+    if ( is24HourString(intervals[idx].trim()) ) {
+      result.push([0,2359]);
+    } else { 
+      interval = intervals[idx].trim().split(/\s?-\s?/);
+      if(!interval[1]) { fail(str); }
 
-    interval = intervals[idx].trim().split(/\s?-\s?/);
-    if(!interval[1]) { fail(str); }
+      times = [ timeStringToOffset(interval[0]),
+                timeStringToOffset(interval[1]) ];
 
-    times = [ timeStringToOffset(interval[0]),
-              timeStringToOffset(interval[1]) ];
+      if(times[0] > 2400 || times[1] > 2400) { fail(str); }
 
-    if(times[0] > 2400 || times[1] > 2400) { fail(str); }
+      if(times[0] == times[1] && times[0] !== 0) { fail(str); }
 
-    if(times[0] == times[1] && times[0] !== 0) { fail(str); }
+      if(times[0] >= times[1] && times[1] !== 0) { fail(str); }
 
-    if(times[0] >= times[1] && times[1] !== 0) { fail(str); }
-
-    result.push(times);
+      result.push(times);
+    }
   }
 
   return result;
@@ -211,6 +217,12 @@ Hours.prototype.merge = function() {
 };
 
 function humanizeInterval(intervals) {
+  if ( intervals.length == 2 &&
+        intervals[0] === 0 &&
+        intervals[1] === 2359 ) {
+    return "24 Hours";
+  }
+
   return intervals.map(function(time) {
     //1200 -> 12:00PM
     //1230 -> 12:30PM
@@ -235,7 +247,11 @@ function humanizeInterval(intervals) {
       min = "0" + min;
     }
 
-    return [hour, ":", min, pm ? " PM" : " AM"].join("");
+    if ( min == "00" ) {
+      return hour + (pm ? "pm" : "am");
+    } else { 
+      return [hour, ":", min, pm ? "pm" : "am"].join("");
+    }
   }).join(" - ");
 }
 
@@ -292,13 +308,14 @@ Hours.prototype.humanizeCondensed = function combine() {
 
   var condensed = Object.keys(obj).reduce(function(acc, i){
     if(!acc.length) {
-      acc.push({days: [parseInt(i, 10)], interval: obj[i][0]});
+      acc.push({days: [parseInt(i, 10)], intervals: obj[i]});
     } else {
       var last = acc[acc.length - 1];
-      if(last.interval.join() == obj[i].join()) {
+
+      if(_.isEqual(last.intervals, obj[i])) {
         last.days.push(parseInt(i, 10));
       } else {
-        acc.push({days: [parseInt(i, 10)], interval: obj[i][0]});
+        acc.push({days: [parseInt(i, 10)], intervals: obj[i]});
       }
     }
     return acc;
@@ -308,15 +325,19 @@ Hours.prototype.humanizeCondensed = function combine() {
     if(run.days.length == 1) {
       return {
         day: dayNames[run.days[0]],
-        hours: humanizeInterval(run.interval)
+        hours: _(run.intervals).map(humanizeInterval).join(", ")
       };
     } else {
-      var start = dayNames[Math.min.apply(Math, run.days)];
-      var end = dayNames[Math.max.apply(Math, run.days)];
-      return {
-        day: [start, end].join(" - "),
-        hours: humanizeInterval(run.interval)
-      };
+      var start = Math.min.apply(Math, run.days);
+      var end = Math.max.apply(Math, run.days);
+      var ret = {hours: _(run.intervals).map(humanizeInterval).join(", ")};
+
+      if ( start === 0 && end === 6 ) {
+        ret.day = "Every day";
+      } else { 
+        ret.day = [dayNames[start], dayNames[end]].join(" - ");
+      }
+      return ret;
     }
   });
 };
