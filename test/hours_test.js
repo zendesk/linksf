@@ -1,8 +1,8 @@
 /*globals describe, it, beforeEach*/
 
 var should = require("should");
-describe("Hours", function(){
-  var Hours = require('../js/app/models/hours'),
+describe("Hours", function() {
+  var Hours = require('../app/js/models/hours'),
       hours;
 
   beforeEach(function() {
