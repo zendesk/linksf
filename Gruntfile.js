@@ -1,38 +1,37 @@
 module.exports = function(grunt) {
-
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+
     jshint: {
       files: [
-        'js/app/**/*.js',
-        'js/shims/**/*.js',
-        'test/*.js'
+        'app/**/*.js',
+        'admin/**/*.js',
+        'test/**/*.js',
+        'shared/**/*.js',
+        'server/**/*.js'
       ],
       options: {
         globals: {
+          window: true,
+          document: true,
+          navigator: true,
           console: true,
           module: true,
           require: true,
-          navigator: true,
+          Fastclick: true,
+          $: true,
+          Backbone: true,
           Parse: true,
-          document: true
+          Handlebars: true,
+          _: true,
+          google: true
         },
         undef: true,
-        debug: true
+        debug: true,
+        '-W030': true
       }
     },
-    watch: {
-      files: [
-        'Gruntfile.js',
-        '<%= jshint.files %>',
-        'js/app/**/*.hbs',
-        'css/**/*.scss',
-        'test/**/*.js',
-        'html/*.html',
-        'vendor/**/*'
-      ],
-      tasks: ['default'],
-    },
+
     simplemocha: {
       options: {
         timeout: 3000,
@@ -41,51 +40,180 @@ module.exports = function(grunt) {
         reporter: 'list'
       },
 
-      all: { src: ['test/**/*.js'] }
+      all: {
+        src: 'test/**/*.js'
+      }
     },
+
+    watch: {
+      files: [
+        'Gruntfile.js',
+        'app/**/*',
+        'admin/**/*',
+        'shared/**/*',
+        'server/**/*',
+        'test/**/*'
+      ],
+      tasks: ['default']
+    },
+
     sass: {
-      dist: {
+      app: {
         files: {
-          'css/static/user.css': ['css/common.scss', 'vendor/css/icons.css', 'css/user/**/*.scss', 'vendor/css/normalize.min.css'],
-          'css/static/admin.css':  ['css/common.scss', 'vendor/css/icons.css', 'css/admin/**/*.scss', 'vendor/css/normalize.min.css']
+          'build/linksf.css': [
+            'vendor/css/normalize.min.css',
+            'vendor/css/icons.css',
+            'shared/css/**/*',
+            'app/css/**/*.scss'
+          ],
+        }
+      },
+      admin: {
+        files: {
+          'build/linksf_admin.css': [
+            'vendor/css/normalize.min.css',
+            'vendor/css/icons.css',
+            'shared/css/**/*',
+            'admin/css/**/*.scss'
+          ],
         }
       }
     },
-    cachebuster: {
-      index: {
-        files: [
-          {
-            src:  ['js/static/output.js', 'js/static/admin.js', 'css/static/user.css', 'css/static/admin.css'],
-          }
-        ],
-        options: {
 
+    browserify: {
+      options: {
+        transform: ['hbsfy'],
+        aliasMappings: [
+          { ext: '', src: 'app/js/collections/**/*', dest: 'collections/' },
+          { ext: '', src: 'app/js/lib/**/*', dest: 'lib/' },
+          { ext: '', src: 'app/js/lib/**/*', dest: 'cloud/lib/' },
+          { ext: '', src: 'app/js/models/**/*', dest: 'models/' },
+          { ext: '', src: 'app/js/models/**/*', dest: 'cloud/models/' },
+          { ext: '', src: 'app/js/views/**/*', dest: 'views/' },
+          { ext: '', src: 'app/js/routers/**/*', dest: 'routers/' },
+          { ext: '', src: 'app/js/templates/**/*', dest: 'templates/' }
+        ]
+      },
+      app: {
+        src: 'app/js/app.js',
+        dest: 'build/app.js'
+      },
+      admin: {
+        src: 'admin/js/admin.js',
+        dest: 'build/admin.js'
+      }
+    },
+
+    cssmin: {
+      app: {
+        src: 'build/linksf.css',
+        dest: 'build/linksf.css'
+      },
+      admin: {
+        src: 'build/linksf_admin.css',
+        dest: 'build/linksf_admin.css'
+      },
+    },
+
+    concat: {
+      vendor_dev: {
+        src: [
+          'vendor/js/jquery-2.0.3.js',
+          'vendor/js/jquery.serialize-object.js',
+          'vendor/js/underscore.js',
+          'vendor/js/backbone-1.1.0.js',
+          'vendor/js/backbone_filters.js',
+          'vendor/js/handlebars.runtime.js',
+          'vendor/js/fastclick.js',
+          'vendor/js/parse-1.2.12.js'
+          // 'vendor/js/googlemaps.js'
+        ],
+        dest: 'build/vendor.js'
+      },
+
+      vendor_prod: {
+        src: [
+          'vendor/js/jquery-2.0.3.min.js',
+          'vendor/js/handlebars.min.js',
+          'vendor/js/parse-1.2.12.min.js',
+          'vendor/js/googlemaps.min.js'
+        ],
+        dest: 'build/vendor.min.js'
+      },
+
+      app_dev: {
+        src: ['build/vendor.js', 'build/app.js'],
+        dest: 'build/linksf.js'
+      },
+
+      app_prod: {
+        src: ['build/vendor.min.js', 'build/app.min.js'],
+        dest: 'build/linksf.js'
+      },
+
+      admin_dev: {
+        src: ['build/vendor.js', 'build/admin.js'],
+        dest: 'build/linksf_admin.js'
+      },
+
+      admin_prod: {
+        src: ['build/vendor.min.js', 'build/admin.min.js'],
+        dest: 'build/linksf_admin.js'
+      }
+    },
+
+    uglify: {
+      options: {
+        mangle: false,
+        preserveComments: false,
+        report: 'min'
+      },
+
+      vendor: {files: {}},
+      app: {files: {'build/app.min.js': 'build/app.js'}},
+      admin: {files: {'build/admin.min.js': 'build/admin.js'}}
+    },
+
+    cachebuster: {
+      dist: {
+        files: {
+          src: [
+            'build/linksf.js',
+            'build/linksf.css',
+            'build/linksf_admin.js',
+            'build/linksf_admin.css'
+          ],
+        },
+        options: {
           complete: function(hashes) {
             // ugly but the only way to tag each file with a key
-            var key_map = {
-              'js/static/output.js': 'output_js',
-              'js/static/admin.js': 'admin_js',
-              'css/static/user.css': 'user_css',
-              'css/static/admin.css': 'admin_css'
-            };
-
-            var context = {};
-            var Handlebars = require('handlebars');
+            var keyMap = {
+                'build/linksf.js': 'linksf_js',
+                'build/linksf.css': 'linksf_css',
+                'build/linksf_admin.js': 'linksf_admin_js',
+                'build/linksf_admin.css': 'linksf_admin_css'
+               },
+               context = {},
+               Handlebars = require('handlebars'),
+               template,
+               output;
 
             Object.keys(hashes).forEach(function(key) {
-              var matches = key.match(/(.*)(\..*)$/);
-              var outputFile = matches[1] + "-" + hashes[key] + matches[2];
+              var matches = key.match(/^build\/(.*)(\..*)$/),
+                  // outputFile = matches[1] + '-' + hashes[key] + matches[2];
+                  outputFile = matches[1] + matches[2];
 
-              grunt.file.copy(key, outputFile);
-              context[key_map[key]] = outputFile;
+              // grunt.file.copy(key, outputLocation);
+              context[keyMap[key]] = outputFile;
             });
 
-            ["index.html", "admin.html"].forEach(function(file) {
-              var template = Handlebars.compile(grunt.file.read("html/" + file));
-              var output = template(context);
-              output = "<!-- THIS FILE IS AUTO-GENERATED BY GRUNT.  DO NOT EDIT. -->\n" + output;
-              grunt.file.write(file, output);
-            });
+            template = Handlebars.compile(grunt.file.read('app/index.html'));
+            output = template(context);
+            grunt.file.write('build/index.html', output);
+
+            template = Handlebars.compile(grunt.file.read('admin/admin.html'));
+            output = template(context);
+            grunt.file.write('build/admin.html', output);
           }
         }
       }
@@ -94,108 +222,57 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-simple-mocha');
   grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-simple-mocha');
   grunt.loadNpmTasks('grunt-cachebuster');
+  grunt.loadNpmTasks('grunt-browserify');
 
-  var browserifyThings = function(entryPoint, outputJS) {
-    var browserify  = require('browserify'),
-        shim        = require('browserify-shim'),
-        done        = this.async();
-
-    // this will be the js src'd in <script> tags
-    var output;
-
-    // vendor js
-    output = shim(browserify(), {
-      jquery: {
-        path: './vendor/js/jquery.min.js',
-        exports: '$'
-      },
-      'jquery-serialize-object': {
-        path: './vendor/js/jquery.serialize-object.js',
-        exports: null
-      },
-      bootstrap: {
-        path: './vendor/bootstrap/js/bootstrap.min.js',
-        exports: null,
-        depends: { jquery: '$' }
-      }
-    })
-      .require('./js/shims/parse.js', {expose: 'parse'})
-      .require('./js/shims/google-maps.js', {expose: 'google-maps'})
-      .require('backbone')
-      .require('underscore')
-      .require('./vendor/js/backbone_filters.js', {expose: 'backbone-filters'})
-      .require('./vendor/js/fastclick.min.js', {expose: 'fastclick'});
-
-    // use hbsfy transform to support requiring .hbs files
-    output = output.transform('hbsfy');
-
-    // shared modules.
-    // note: these are modules shared between the client and the server
-    [
-      './js/app/lib/*.js',
-      './js/app/models/*.js'
-    ].forEach(function(modules) {
-      require('glob')(modules, function(er, files) {
-        files.forEach(function(file) {
-          var name = file
-            .replace('./js/app/','')
-            .replace(/\.(js|hbs)$/,'');
-
-          output = output.require(file, {expose: "cloud/" + name});
-        });
-      });
-    });
-
-    // application modules
-    [
-      './js/app/lib/*.js',
-      './js/app/models/*.js',
-      './js/app/collections/*.js',
-      './js/app/routers/*.js',
-      './js/app/views/*.js',
-      './js/app/templates/*.hbs'
-    ].forEach(function(modules) {
-      require('glob')(modules, function(er, files) {
-        files.forEach(function(file) {
-          var name = file
-            .replace('./js/app/','')
-            .replace(/\.(js|hbs)$/,'');
-
-          output = output.require(file, {expose: name});
-        });
-      });
-    });
-
-    output.require(entryPoint, { entry: true });
-
-    // now bundle it all up!
-    output.bundle(function (err, src) {
-      if (err) return console.error(err);
-
-      require('fs').writeFileSync(outputJS, src);
-
-      // keep grunt alive until the write stream completes
-      done();
-    });
-  };
-
-  grunt.registerTask('browserify', 'Browserify and concatenate app sources', function() {
-    browserifyThings.call(this, "./js/app/index.js", "./js/static/output.js")
-  });
-
-  grunt.registerTask('browserify:admin', 'Browserify and concatenate admin sources', function() {
-    browserifyThings.call(this, "./js/app/admin.js", "./js/static/admin.js")
-  });
-
-  grunt.registerTask('default', [
+  grunt.registerTask('build', [
     'jshint',
     'simplemocha',
-    'sass',
-    'browserify',
-    'browserify:admin',
+    'sass:app',
+    'sass:admin',
+    'concat:vendor_dev',
+    'browserify:app',
+    'browserify:admin'
+  ]);
+
+  grunt.registerTask('concat:dev', [
+    'concat:app_dev',
+    'concat:admin_dev'
+  ]);
+
+  grunt.registerTask('concat:prod', [
+    'concat:vendor_prod',
+    'concat:app_prod',
+    'concat:admin_prod'
+  ]);
+
+  grunt.registerTask('uglify:all', [
+    'uglify:vendor',
+    'uglify:app',
+    'uglify:admin'
+  ]);
+
+  grunt.registerTask('cssmin:all', [
+    'cssmin:app',
+    'cssmin:admin'
+  ]);
+
+  grunt.registerTask('default', [
+    'build',
+    'concat:dev',
+    'cachebuster'
+  ]);
+
+  grunt.registerTask('release', [
+    'build',
+    'uglify:all',
+    'cssmin:all',
+    'concat:prod',
     'cachebuster'
   ]);
 };
