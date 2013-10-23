@@ -75,11 +75,35 @@ var EditView = Backbone.View.extend({
   template: require('templates/edit'),
 
   events: {
-    'click #add_category':    'addCategory',
-    'click #remove_category': 'removeCategory',
-    'click .closed':          'previewHours',
-    'blur .hours input':      'previewHours',
-    'click #delete_facility': 'deleteFacility'
+    'click #add_category':        'addCategory',
+    'click #remove_category':     'removeCategory',
+    'click .closed':              'previewHours',
+    'blur .hours input':          'previewHours',
+    'blur input[name="address"]': 'previewAddress',
+    'blur input[name="city"]':    'previewAddress',
+    'click #delete_facility':     'deleteFacility'
+  },
+
+  previewAddress: function(event) {
+    var address = this.$('input[name="address"]').val(),
+        city    = this.$('input[name="city"]').val(),
+        preview = this.$('.address-preview');
+    if (address === '' || city === '') { return; }
+    preview.removeClass('error');
+
+    var ul = $("<ul>");
+    fetchLocation(address + ", " + city).then(
+      function(loc) {
+        preview.html('Recognized address: ' + loc.formattedAddress);
+        preview.closest('.control-group').show();
+      },
+
+      function(err) {
+        preview.addClass('error');
+        preview.html("Couldn't recognized address!");
+        preview.closest('.control-group').show();
+      }
+    );
   },
 
   previewHours: function(event) {
@@ -119,10 +143,10 @@ var EditView = Backbone.View.extend({
   deleteFacility: function() {
     if ( window.confirm("Confirm deletion of " + this.model.get("name")) ) {
       this.model.destroy()
-        .then(function() { 
+        .then(function() {
           var router = require('routers/admin_router').instance;
           router.navigate("/", {trigger: true});
-        }, function(errors) { 
+        }, function(errors) {
           window.alert("errors");
         }
       );
@@ -278,8 +302,6 @@ var EditView = Backbone.View.extend({
   },
 
   saveForm: function(formValues) {
-    var servicePromises = [];
-
     // the days-of-the-week inputs are named dumbly, get rid of them
     days.forEach(function(d) { delete formValues[d.key]; });
 

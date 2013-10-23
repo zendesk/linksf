@@ -18,8 +18,10 @@
   }
 }
 
-#facilityForm .hours .dayError {
-  color: red;
+#facilityForm {
+  .hours .dayError, .address-preview.error {
+    color: red;
+  }
 }
 
 .service-edit-row {
