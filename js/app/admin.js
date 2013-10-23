@@ -4,6 +4,7 @@ var $          = require('jquery'),
 require('jquery-serialize-object');
 Handlebars.registerPartial("editService", require('templates/_edit_service'));
 Handlebars.registerPartial("editServiceHours", require('templates/_edit_service_hours'));
+Handlebars.registerPartial("openHours", require('templates/_open_hours'));
 Handlebars.registerPartial("filterCategories", require('templates/_filter_categories'));
 
 $(function() {
