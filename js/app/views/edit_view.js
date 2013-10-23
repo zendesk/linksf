@@ -1,3 +1,5 @@
+/* globals window */
+
 var Backbone            = require('backbone'),
     $                   = require('jquery'),
     _                   = require('underscore'),
@@ -76,7 +78,8 @@ var EditView = Backbone.View.extend({
     'click #add_category':    'addCategory',
     'click #remove_category': 'removeCategory',
     'click .closed':          'previewHours',
-    'blur .hours input':      'previewHours'
+    'blur .hours input':      'previewHours',
+    'click #delete_facility': 'deleteFacility'
   },
 
   previewHours: function(event) {
@@ -110,6 +113,20 @@ var EditView = Backbone.View.extend({
   removeCategory: function(event) {
     var parent = this.$(event.target).closest('.service-edit-row');
     parent.remove();
+    return false;
+  },
+
+  deleteFacility: function() {
+    if ( window.confirm("Confirm deletion of " + this.model.get("name")) ) {
+      this.model.destroy()
+        .then(function() { 
+          var router = require('routers/admin_router').instance;
+          router.navigate("/", {trigger: true});
+        }, function(errors) { 
+          window.alert("errors");
+        }
+      );
+    }
     return false;
   },
 

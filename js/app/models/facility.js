@@ -155,5 +155,12 @@ module.exports = Parse.Object.extend('Facility', {
       }
     });
     return s;
+  }, 
+
+  destroy: function() { 
+    var promises = [];
+    this.get("services").forEach(function(s) { promises.push(s.destroy()); });
+    promises.push(Parse.Object.prototype.destroy.call(this));
+    return Parse.Promise.when(promises);
   }
 });
