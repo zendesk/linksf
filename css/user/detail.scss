@@ -16,6 +16,7 @@
 
   p { margin: 0; }
   label { font-weight: bold; }
+  a { text-decoration: none; }
 
   .title {
     margin: 12px 0 0 1px;
@@ -30,7 +31,6 @@
   .inset { @include inset; }
 
   .inset-gmap {
-    cursor: pointer;
     @include inset;
     border-radius: 6px;
     margin: 20px 0px 1px 0px;
@@ -48,7 +48,13 @@
       background-color: #ddd;
     }
   }
-
+  .inset-website {
+    @include inset;
+    border-radius: 0px;
+    border-top: none;
+    color: black;
+    text-decoration: none;
+  }
   .inset-call {
     @include inset;
     border-radius: 6px 6px 0 0;
