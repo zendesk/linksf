@@ -5,11 +5,6 @@
   <h3>{{name}}</h3>
 
   <div class="facility-info">
-    <p class="title">Hours</p>
-    <div class="inset">
-      {{> openHours}}
-    </div>
-
     <p class="title">Welcome</p>
     <div class="inset">
       <p>{{demographics}}</p>
@@ -53,6 +48,8 @@
       <div class="inset-services">
         <label>Description:</label>
         <p>{{description}}</p>
+        <label>Hours:</label>
+          {{> openHours}}
         {{#if notes}}
           <label>Notes:</label>
          <p>{{notes}}</p>

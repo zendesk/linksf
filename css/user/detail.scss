@@ -43,6 +43,10 @@
     .destination {
       border-top: 1px solid #DDD;
     }
+
+    &:active {
+      background-color: #ddd;
+    }
   }
 
   .inset-call {
@@ -72,11 +76,17 @@
   .inset-services {
     @include inset;
     label { line-height: 2; }
-    p { line-height: 1.5; }
+    p { 
+        margin-left: 15px;
+        line-height: 1.5; 
+        margin-bottom: 10px;
+    }
   }
 
   .open-hours {
-    padding: 5px 10px;
+    margin-left: 15px;
+    margin-bottom: 10px;
+    padding: 5px;
     font-size: 14px;
   }
 }
