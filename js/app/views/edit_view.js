@@ -17,7 +17,7 @@ function modelSaveFailCallback(args) {
 function modelSaveSuccessCallback(args) {
   this.$("#facilitySaved").show().focus();
   this.$("#facilitySaved").delay(5000).fadeOut();
-
+  this.$("#errorMessages").hide();
   console.log("saved.");
   console.log(args);
 }
@@ -231,7 +231,7 @@ var EditView = Backbone.View.extend({
       errors.push("Please add at least one service");
     }
 
-    var website = $('input[name=website]').text();
+    var website = $('input[name=website]').val();
     if ( website.length > 0 && website.indexOf('.') === -1 ) {
       this.addErrorToInput($('input[name=website]'));
       errors.push("Please enter a valid URL for 'website'");
@@ -243,7 +243,7 @@ var EditView = Backbone.View.extend({
       ul.append($("<li>" + msg + "</li>"));
     });
 
-    $("#errorMessages").html(ul);
+    $("#errorMessages").show().html(ul);
     return errors.length === 0;
   },
 
