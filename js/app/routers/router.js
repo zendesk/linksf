@@ -1,11 +1,11 @@
-/*globals window,alert */
+/*globals window, alert */
 var $                     = require('jquery'),
     _                     = require('underscore'),
+    Facility              = require('cloud/models/facility'), // we don't use the models here in the router, 
+    Service               = require('cloud/models/service'),  // but loading them lets parse convert results to them */
     Backbone              = require('backbone'),
     BaseController        = require('lib/base_controller'),
-    AdminListView         = require('views/admin_list_view'),
     DetailView            = require('views/detail_view'),
-    EditView              = require('views/edit_view'),
     FilterView            = require('views/filter_view'),
     IndexView             = require('views/index_view'),
     ListView              = require('views/list_view'),
@@ -23,7 +23,6 @@ var Router = Backbone.Router.extend({
     'query?:queryString':  'query',
     'query':               'query',
     'detail/:id':          'detail',
-    'edit/:id':            'edit',
     'about' :              'about',
     'filter?:queryString': 'filter'
   },
@@ -104,11 +103,6 @@ var Router = Backbone.Router.extend({
     return applicationController.render(detailView);
   },
 
-  renderEdit: function(facility) {
-    var editView = new EditView({ model: facility });
-    return applicationController.render(editView);
-  },
-
   detail: function(id) {
     var self = this, options = {};
 
@@ -123,11 +117,6 @@ var Router = Backbone.Router.extend({
     });
   },
 
-  edit: function(id) {
-    this._getFacility(id, function(fac) {
-      this.renderEdit(fac);
-    }.bind(this));
-  },
   about: function() {
     this.aboutView = this.aboutView || new AboutView();
     applicationController.render(this.aboutView);
