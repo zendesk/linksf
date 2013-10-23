@@ -26,6 +26,7 @@
       {{/with}}
     </div>
 
+
     <div class="inset-call">
       <i class="icon-phone"></i>
       <label>Call</label>
@@ -36,6 +37,17 @@
       {{/if}}
       <i class="icon-right-open right"></i>
     </div>
+    
+    {{#if website}}
+    <a href="{{website}}">
+      <div class="inset-website">
+        <i class="icon-link"></i>
+        <label>Website</label>
+        <span>{{website}}</span>
+        <i class="icon-right-open right"></i>
+      </div>
+    </a>
+    {{/if}}
 
     <div class="inset-directions">
       <i class="icon-compass"></i>

@@ -286,7 +286,9 @@ var EditView = Backbone.View.extend({
     if ( formValues.gender === "" ) {
       formValues.gender = null;
     }
-
+    if ( formValues.website.length > 0 && formValues.website.indexOf("http") < 0 ) {
+      formValues.website = "http://" + formValues.website;
+    }
     formValues.age = this.serializeAges();
 
     var services = _.clone(formValues.services);
