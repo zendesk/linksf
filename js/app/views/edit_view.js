@@ -120,8 +120,8 @@ var EditView = Backbone.View.extend({
       [ { hours: openHours } ]
     );
 
-    preview = mergedHours.humanize();
-    html    = openHoursTemplate({ openHours: preview });
+    preview = mergedHours.humanizeCondensed();
+    html    = openHoursTemplate({ condensedHours: preview });
     $hours.find('#preview_hours').html(html);
   },
 
