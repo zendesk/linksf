@@ -9,44 +9,51 @@ nav {
   background-color: $nav-background-color;
 
   border-bottom: solid #2B7490 1px;
-  padding: 8px 6px 4px 6px;
   text-align: center;
   font-weight: bold;
+  padding: 8px 0 4px 0;
 
-  a {
-    color: #3081B7;
-    text-decoration: none;
-    font-weight: bold;
-    padding-top: 4px;
-  }
+  max-width: 650px;
+  margin: 0 auto;
 
-  li {
-    float: left;
-    margin: 20px 0 20px 20px;
-  }
+  .nav-container {
+    padding: 0 6px;
 
-  button {
-    @include blue-button;
-  }
+    a {
+      color: #3081B7;
+      text-decoration: none;
+      font-weight: bold;
+      padding-top: 4px;
+    }
 
-  button:active {
-    @include vertical-gradient(darken($nav-background-color, 20%), darken(#19658C, 20%));
-  }
+    li {
+      float: left;
+      margin: 20px 0 20px 20px;
+    }
 
-  button.left { float: left; }
-  button.right { float: right; }
+    button {
+      @include blue-button;
+    }
 
-  .title {
-    line-height: 36px;
-    font-size: 24px;
-    color: white;
-  }
-  .logo {
-    display: block;
-    margin: 0 auto;
-    width: 100px;
-    img {
-      width: 100%;
+    button:active {
+      @include vertical-gradient(darken($nav-background-color, 20%), darken(#19658C, 20%));
+    }
+
+    button.left { float: left; }
+    button.right { float: right; }
+
+    .title {
+      line-height: 36px;
+      font-size: 24px;
+      color: white;
+    }
+    .logo {
+      display: block;
+      margin: 0 auto;
+      width: 100px;
+      img {
+        width: 100%;
+      }
     }
   }
 }
