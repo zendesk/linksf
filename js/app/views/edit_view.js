@@ -231,6 +231,12 @@ var EditView = Backbone.View.extend({
       errors.push("Please add at least one service");
     }
 
+    var website = $('input[name=website]').text();
+    if ( website.length > 0 && website.indexOf('.') === -1 ) {
+      this.addErrorToInput($('input[name=website]'));
+      errors.push("Please enter a valid URL for 'website'");
+    }
+
     var ul = $("<ul>");
 
     errors.forEach(function(msg) {
