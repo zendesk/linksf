@@ -1,6 +1,6 @@
-var Hours = require('models/hours');
+var Hours = require('./hours.js');
 
-module.exports = Parse.Object.extend('Service', { 
+module.exports = Parse.Object.extend('Service', {
 
   hours: function() {
     if(this._hours) { return this._hours; }

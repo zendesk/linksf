@@ -1,10 +1,9 @@
-var ListView = require('views/list_view'),
-    $ = require('jquery');
+var ListView = require('shared/views/list_view');
 
 function navigate(category) {
   var route  = 'query',
       params = [],
-      router = require('routers/admin_router').instance;
+      router = require('routers/router').instance;
       if ( category.length > 0 ) {
         params.push( "categories=" + category );
       }
@@ -15,7 +14,7 @@ function navigate(category) {
 }
 
 var AdminListView = ListView.extend({
-  template: require('templates/admin_list'),
+  template: require('templates/list'),
   selectedCategory: '',
 
   events: {

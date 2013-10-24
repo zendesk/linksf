@@ -1,19 +1,16 @@
 /*globals window */
 
-var $                     = require('jquery'),
-    Backbone              = require('backbone'),
-    AdminListView         = require('views/admin_list_view'),
+var    AdminListView         = require('views/admin_list_view'),
     EditView              = require('views/edit_view'),
     LoginView             = require('views/login_view'),
     DetailView            = require('views/detail_view'),
     Facility              = require('cloud/models/facility'),
     Query                 = require('lib/query'),
-    _                     = require('underscore'),
     BaseController        = require('lib/base_controller'),
     applicationController = new BaseController({ el: '#linksf' }),
-    facilities            = require('collections/facilities').instance;
+    facilities            = require('shared/collections/facilities').instance;
 
-require('backbone-filters')();
+// require('backbone-filters')();
 
 var Router = Backbone.Router.extend({
 

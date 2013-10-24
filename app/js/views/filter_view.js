@@ -1,7 +1,3 @@
-var Backbone = require('backbone'),
-    $ = require('jquery'),
-    _ = require('underscore');
-
 function navigate(options) {
   var route  = 'query',
       params = [],
@@ -51,7 +47,7 @@ var FilterView = Backbone.View.extend({
         {class: 'left', id: 'backNav-button', text: 'Back'},
         {class: 'right', id: 'searchNav-button', text: 'Search'}
       ],
-      categories:       require('lib/categories'),
+      categories:       require('shared/lib/categories'),
       filter:           true,
       distanceDisabled: distanceDisabled
     }));

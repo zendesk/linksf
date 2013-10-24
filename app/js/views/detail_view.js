@@ -1,8 +1,8 @@
 var Features                         = require('lib/features'),
-    Hours                            = require('models/hours'),
-    fetchLocation                    = require('lib/fetch_location'),
-    calculateDistanceFromService     = require('lib/distance').calculateDistanceFromService,
-    calculateWalkingTimeFromDistance = require('lib/distance').calculateWalkingTimeFromDistance;
+    Hours                            = require('shared/models/hours'),
+    fetchLocation                    = require('shared/lib/fetch_location'),
+    calculateDistanceFromService     = require('shared/lib/distance').calculateDistanceFromService,
+    calculateWalkingTimeFromDistance = require('shared/lib/distance').calculateWalkingTimeFromDistance;
 
 var aggregateOpenHours = function(facility) {
   var mergedHours = Hours.merge.apply(

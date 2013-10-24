@@ -1,6 +1,7 @@
+var Facility = require('shared/models/facility'),
+    _ = require('underscore');
+
 module.exports = function (params, callbacks) {
-  var _ = require('underscore'),
-      Facility = require('cloud/models/facility');
 
   // all params are optional, NULL or missing means don't filter
   // {

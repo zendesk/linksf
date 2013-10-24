@@ -1,5 +1,3 @@
-var Backbone = require('backbone');
-
 var AboutView = Backbone.View.extend({
   template: require('templates/about'),
 

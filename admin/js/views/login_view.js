@@ -1,6 +1,3 @@
-var Backbone = require('backbone'),
-    $ = require('jquery');
-
 var LoginView = Backbone.View.extend({
   initialize: function(router, return_path) {
     this.router = router;
@@ -10,11 +7,11 @@ var LoginView = Backbone.View.extend({
   render: function(return_path) {
     var self = this;
     $('#linksf').html(this.template());
-    $('#loginForm').submit(function() { 
+    $('#loginForm').submit(function() {
       Parse.User.logIn($("#email").val(), $("#password").val(), {
         success: function(user) {
           self.router.navigate(self.return_path, {trigger: true, replace: true});
-        }, 
+        },
         error: function(user, error) {
           $('#loginError').show();
         }

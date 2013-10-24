@@ -1,5 +1,3 @@
-/*globals window */
-
 function isMobile () {
   return window.navigator.userAgent.match(/Mobile/);
 }
