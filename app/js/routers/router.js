@@ -1,17 +1,17 @@
 /*globals Backbone*/
 
-var BaseController        = require('lib/base_controller'),
+var BaseController        = require('shared/lib/base_controller'),
     DetailView            = require('views/detail_view'),
     EditView              = require('views/edit_view'),
     FilterView            = require('views/filter_view'),
     IndexView             = require('views/index_view'),
-    ListView              = require('views/list_view'),
+    ListView              = require('shared/views/list_view'),
     AboutView             = require('views/about_view'),
-    Query                 = require('lib/query'),
+    Query                 = require('shared/lib/query'),
     applicationController = new BaseController({ el: '#linksf' }),
-    facilities            = require('collections/facilities').instance,
-    FacilityCollection    = require('collections/facilities').FacilityCollection,
-    fetchLocation         = require('lib/fetch_location');
+    facilities            = require('shared/collections/facilities').instance,
+    FacilityCollection    = require('shared/collections/facilities').FacilityCollection,
+    fetchLocation         = require('shared/lib/fetch_location');
 
 var Router = Backbone.Router.extend({
   routes: {

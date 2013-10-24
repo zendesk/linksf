@@ -1,6 +1,4 @@
-var Backbone      = require('backbone'),
-    $             = require('jquery'),
-    fetchLocation = require('cloud/lib/fetch_location');
+var fetchLocation = require('shared/lib/fetch_location');
 
 function navigate(categories, searchTerm) {
   var router = require('routers/router').instance,
@@ -29,7 +27,7 @@ var IndexView = Backbone.View.extend({
   render: function() {
     this.$el.html(this.template({
       filter: false,
-      categories: require('lib/categories')
+      categories: require('shared/lib/categories')
     }));
     return this;
   },

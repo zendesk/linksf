@@ -1,13 +1,10 @@
 /* globals window */
-var Backbone                         = require('backbone'),
-    $                                = require('jquery'),
-    Query                            = require('lib/query'),
-    _                                = require('underscore'),
-    facilities                       = require('collections/facilities').instance,
+var Query                            = require('shared/lib/query'),
+    facilities                       = require('shared/collections/facilities').instance,
     searchParams                     = ["fr"],
-    parseParams                      = require('lib/query_param_parser'),
-    calculateDistanceFromService     = require('lib/distance').calculateDistanceFromService,
-    calculateWalkingTimeFromDistance = require('lib/distance').calculateWalkingTimeFromDistance;
+    parseParams                      = require('shared/lib/query_param_parser'),
+    calculateDistanceFromService     = require('shared/lib/distance').calculateDistanceFromService,
+    calculateWalkingTimeFromDistance = require('shared/lib/distance').calculateWalkingTimeFromDistance;
 
 function generateQueryParams(queryString, limit ) {
   var params       = parseParams(queryString),
@@ -255,6 +252,6 @@ var ListView = Backbone.View.extend({
 });
 
 
-ListView.CATEGORIES = require('lib/categories');
+ListView.CATEGORIES = require('shared/lib/categories');
 
 module.exports = ListView;

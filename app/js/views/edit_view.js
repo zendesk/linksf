@@ -1,12 +1,9 @@
-var Backbone            = require('backbone'),
-    $                   = require('jquery'),
-    _                   = require('underscore'),
-    Service             = require('cloud/models/service'),
-    Hours               = require('cloud/models/hours'),
-    fetchLocation       = require('cloud/lib/fetch_location'),
+var Service             = require('shared/models/service'),
+    Hours               = require('shared/models/hours'),
+    fetchLocation       = require('shared/lib/fetch_location'),
     editServiceTemplate = require('templates/_edit_service'),
     openHoursTemplate   = require('templates/_open_hours'),
-    facilities          = require('collections/facilities').instance;
+    facilities          = require('shared/collections/facilities').instance;
 
 function modelSaveFailCallback(args) {
   this.$("#facilitySaveError").show().focus();
@@ -285,7 +282,7 @@ var EditView = Backbone.View.extend({
   render: function() {
 
     var templateData = this.model.presentJSON(),
-        Hours = require('models/hours');
+        Hours = require('shared/models/hours');
 
     templateData.services.forEach(function(service) {
       var openHours = Hours.fromData(service.openHours).humanize();

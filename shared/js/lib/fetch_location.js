@@ -1,4 +1,4 @@
-var maps = require('google-maps'),
+var maps = google.maps,
     Geocoder = maps.Geocoder,
     geocoder;
 

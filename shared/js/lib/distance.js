@@ -1,4 +1,4 @@
-var maps   = require('google-maps'),
+var maps = google.maps,
     LatLng = maps.LatLng;
 
 function calculateDistanceFromService(location, currentLocation) {

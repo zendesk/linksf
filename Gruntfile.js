@@ -18,7 +18,7 @@ module.exports = function(grunt) {
           console: true,
           module: true,
           require: true,
-          Fastclick: true,
+          FastClick: true,
           $: true,
           Backbone: true,
           Parse: true,
@@ -81,26 +81,42 @@ module.exports = function(grunt) {
     },
 
     browserify: {
-      options: {
-        transform: ['hbsfy'],
-        aliasMappings: [
-          { ext: '', src: 'app/js/collections/**/*', dest: 'collections/' },
-          { ext: '', src: 'app/js/lib/**/*', dest: 'lib/' },
-          { ext: '', src: 'app/js/lib/**/*', dest: 'cloud/lib/' },
-          { ext: '', src: 'app/js/models/**/*', dest: 'models/' },
-          { ext: '', src: 'app/js/models/**/*', dest: 'cloud/models/' },
-          { ext: '', src: 'app/js/views/**/*', dest: 'views/' },
-          { ext: '', src: 'app/js/routers/**/*', dest: 'routers/' },
-          { ext: '', src: 'app/js/templates/**/*', dest: 'templates/' }
-        ]
-      },
+      options: { transform: ['hbsfy'] },
       app: {
         src: 'app/js/app.js',
-        dest: 'build/app.js'
+        dest: 'build/app.js',
+        options: {
+          aliasMappings: [
+            { cwd: 'shared/js/lib',         src: '*.js',  dest: 'shared/lib' },
+            { cwd: 'shared/js/models',      src: '*.js',  dest: 'shared/models' },
+            { cwd: 'shared/js/collections', src: '*.js',  dest: 'shared/collections' },
+            { cwd: 'shared/js/views',       src: '*.js',  dest: 'shared/views' },
+            { cwd: 'app/js/lib',            src: '*.js',  dest: 'lib' },
+            { cwd: 'app/js/models',         src: '*.js',  dest: 'models' },
+            { cwd: 'app/js/collections',    src: '*.js',  dest: 'collections' },
+            { cwd: 'app/js/routers',        src: '*.js',  dest: 'routers' },
+            { cwd: 'app/js/templates',      src: '*.hbs', dest: 'templates' },
+            { cwd: 'app/js/views',          src: '*.js',  dest: 'views' }
+          ]
+        }
       },
       admin: {
         src: 'admin/js/admin.js',
-        dest: 'build/admin.js'
+        dest: 'build/admin.js',
+        options: {
+          aliasMappings: [
+            { cwd: 'shared/js/lib',         src: '*.js',  dest: 'shared/lib' },
+            { cwd: 'shared/js/models',      src: '*.js',  dest: 'shared/models' },
+            { cwd: 'shared/js/collections', src: '*.js',  dest: 'shared/collections' },
+            { cwd: 'shared/js/views',       src: '*.js',  dest: 'shared/views' },
+            { cwd: 'admin/js/lib',          src: '*.js',  dest: 'lib' },
+            { cwd: 'admin/js/models',       src: '*.js',  dest: 'models' },
+            { cwd: 'admin/js/collections',  src: '*.js',  dest: 'collections' },
+            { cwd: 'admin/js/routers',      src: '*.js',  dest: 'routers' },
+            { cwd: 'admin/js/templates',    src: '*.hbs', dest: 'templates' },
+            { cwd: 'admin/js/views',        src: '*.js',  dest: 'views' }
+          ]
+        }
       }
     },
 
@@ -123,10 +139,9 @@ module.exports = function(grunt) {
           'vendor/js/underscore.js',
           'vendor/js/backbone-1.1.0.js',
           'vendor/js/backbone_filters.js',
-          'vendor/js/handlebars.runtime.js',
+          'vendor/js/handlebars.js',
           'vendor/js/fastclick.js',
           'vendor/js/parse-1.2.12.js'
-          // 'vendor/js/googlemaps.js'
         ],
         dest: 'build/vendor.js'
       },
@@ -135,8 +150,7 @@ module.exports = function(grunt) {
         src: [
           'vendor/js/jquery-2.0.3.min.js',
           'vendor/js/handlebars.min.js',
-          'vendor/js/parse-1.2.12.min.js',
-          'vendor/js/googlemaps.min.js'
+          'vendor/js/parse-1.2.12.min.js'
         ],
         dest: 'build/vendor.min.js'
       },
