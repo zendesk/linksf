@@ -2,7 +2,6 @@
 
 var BaseController        = require('shared/lib/base_controller'),
     DetailView            = require('views/detail_view'),
-    EditView              = require('views/edit_view'),
     FilterView            = require('views/filter_view'),
     IndexView             = require('views/index_view'),
     ListView              = require('shared/views/list_view'),
@@ -19,7 +18,7 @@ var Router = Backbone.Router.extend({
     'query?:queryString': 'query',
     'query':              'query',
     'detail/:id':         'detail',
-    'edit/:id':           'edit',
+    // 'edit/:id':           'edit',
     'about' :             'about',
     'filter':             'filter'
   },
@@ -98,10 +97,10 @@ var Router = Backbone.Router.extend({
     return applicationController.render(detailView);
   },
 
-  renderEdit: function(facility) {
-    var editView = new EditView({ model: facility });
-    return applicationController.render(editView);
-  },
+  // renderEdit: function(facility) {
+  //   var editView = new EditView({ model: facility });
+  //   return applicationController.render(editView);
+  // },
 
   detail: function(id) {
     var self = this, options = {};
@@ -117,11 +116,11 @@ var Router = Backbone.Router.extend({
     });
   },
 
-  edit: function(id) {
-    this._getFacility(id, function(fac) {
-      this.renderEdit(fac);
-    }.bind(this));
-  },
+  // edit: function(id) {
+  //   this._getFacility(id, function(fac) {
+  //     this.renderEdit(fac);
+  //   }.bind(this));
+  // },
   about: function() {
     this.aboutView = this.aboutView || new AboutView();
     applicationController.render(this.aboutView);

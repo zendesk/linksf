@@ -50,7 +50,7 @@ function getData($elements, dataAttrName) {
 }
 
 var ListView = Backbone.View.extend({
-  template: require('templates/list'),
+  template: require('shared/templates/list'),
 
   events: {
     "click #filter-button":  'goToFilter',

@@ -14,7 +14,7 @@ function navigate(category) {
 }
 
 var AdminListView = ListView.extend({
-  template: require('templates/list'),
+  template: require('templates/admin_list'),
   selectedCategory: '',
 
   events: {
