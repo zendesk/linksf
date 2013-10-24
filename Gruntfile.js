@@ -246,9 +246,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-cachebuster');
   grunt.loadNpmTasks('grunt-browserify');
 
+  grunt.registerTask('validate', [ 'jshint', 'simplemocha' ]);
+
   grunt.registerTask('build', [
-    'jshint',
-    'simplemocha',
+    'validate',
     'sass:app',
     'sass:admin',
     'concat:vendor_dev',
