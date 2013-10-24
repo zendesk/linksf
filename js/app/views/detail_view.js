@@ -29,6 +29,10 @@ var DetailView = Backbone.View.extend({
     'click .inset-gmap':       'launchDirections'
   },
 
+  navButtons: [
+    { 'class': 'left', id: 'backNav-button', text: 'Back' }
+  ],
+
   render: function() {
     var facility = this.model,
         $mapdiv  =  this.$('#detail-gmap');
@@ -37,15 +41,8 @@ var DetailView = Backbone.View.extend({
 
     this.$el.html(this.template({
       facility:    facility,
-      isMobile:    Features.isMobile(),
-      navButtons: [
-        { 'class': 'left', id: 'backNav-button', text: 'Back' }
-      ]
+      isMobile:    Features.isMobile()
     }));
-
-    this.$('#backNav-button').click(function(){
-      require('routers/router').instance.back();
-    });
 
     _.defer(
       function(view) { view.setMap(); },
