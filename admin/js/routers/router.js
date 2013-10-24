@@ -1,16 +1,14 @@
 /*globals window */
 
-var    AdminListView         = require('views/admin_list_view'),
+var AdminListView         = require('views/list_view'),
     EditView              = require('views/edit_view'),
     LoginView             = require('views/login_view'),
-    DetailView            = require('views/detail_view'),
-    Facility              = require('cloud/models/facility'),
-    Query                 = require('lib/query'),
-    BaseController        = require('lib/base_controller'),
+    // DetailView            = require('views/detail_view'),
+    Facility              = require('shared/models/facility'),
+    Query                 = require('shared/lib/query'),
+    BaseController        = require('shared/lib/base_controller'),
     applicationController = new BaseController({ el: '#linksf' }),
     facilities            = require('shared/collections/facilities').instance;
-
-// require('backbone-filters')();
 
 var Router = Backbone.Router.extend({
 
@@ -44,7 +42,7 @@ var Router = Backbone.Router.extend({
     'query':              'query',
     'login':              'login',
     'logout':             'logout',
-    'detail/:id':         'detail',
+    // 'detail/:id':         'detail',
     'edit/:id':           'edit',
     'new':                'newFacility'
   },
@@ -63,11 +61,11 @@ var Router = Backbone.Router.extend({
     applicationController.render(listView);
   },
 
-  renderFacility: function(facility) {
-    var detailView = new DetailView({ model: facility.presentJSON() });
-    window.scrollTo(0, 0);
-    return applicationController.render(detailView);
-  },
+  // renderFacility: function(facility) {
+  //   var detailView = new DetailView({ model: facility.presentJSON() });
+  //   window.scrollTo(0, 0);
+  //   return applicationController.render(detailView);
+  // },
 
   renderEdit: function(facility) {
     var editView = new EditView({ model: facility });
@@ -75,11 +73,11 @@ var Router = Backbone.Router.extend({
     return applicationController.render(editView);
   },
 
-  detail: function(id) {
-    this._getFacility(id, function(facility) {
-      this.renderFacility(facility);
-    }.bind(this));
-  },
+  // detail: function(id) {
+  //   this._getFacility(id, function(facility) {
+  //     this.renderFacility(facility);
+  //   }.bind(this));
+  // },
 
   edit: function(id) {
     this._getFacility(id, function(fac) {

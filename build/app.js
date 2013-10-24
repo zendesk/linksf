@@ -1,8 +1,8 @@
 require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 //Register partials
-Handlebars.registerPartial('filterCategories',    require('templates/_filter_categories'));
-Handlebars.registerPartial('editService',         require('templates/_edit_service'));
-Handlebars.registerPartial('openHours',           require('templates/_open_hours'));
+Handlebars.registerPartial('filterCategories',    require('shared/templates/_filter_categories'));
+// Handlebars.registerPartial('editService',         require('templates/_edit_service'));
+// Handlebars.registerPartial('openHours',           require('templates/_open_hours'));
 Handlebars.registerPartial('nav',                 require('templates/_nav'));
 Handlebars.registerPartial('queryRepresentation', require('templates/_query_representation'));
 
@@ -13,7 +13,7 @@ $(function() {
   Backbone.history.start();
 });
 
-},{"routers/router":"3BtXL3","templates/_edit_service":"eFFxjk","templates/_filter_categories":"NzBEuT","templates/_nav":"GF+cLy","templates/_open_hours":"nRddQv","templates/_query_representation":"DWnzWF"}],"lib/features":[function(require,module,exports){
+},{"routers/router":"3BtXL3","shared/templates/_filter_categories":"F4gOOw","templates/_nav":"GF+cLy","templates/_query_representation":"DWnzWF"}],"lib/features":[function(require,module,exports){
 module.exports=require('QqYPpM');
 },{}],"QqYPpM":[function(require,module,exports){
 function isMobile () {
@@ -33,7 +33,6 @@ module.exports=require('3BtXL3');
 
 var BaseController        = require('shared/lib/base_controller'),
     DetailView            = require('views/detail_view'),
-    EditView              = require('views/edit_view'),
     FilterView            = require('views/filter_view'),
     IndexView             = require('views/index_view'),
     ListView              = require('shared/views/list_view'),
@@ -50,7 +49,7 @@ var Router = Backbone.Router.extend({
     'query?:queryString': 'query',
     'query':              'query',
     'detail/:id':         'detail',
-    'edit/:id':           'edit',
+    // 'edit/:id':           'edit',
     'about' :             'about',
     'filter':             'filter'
   },
@@ -129,10 +128,10 @@ var Router = Backbone.Router.extend({
     return applicationController.render(detailView);
   },
 
-  renderEdit: function(facility) {
-    var editView = new EditView({ model: facility });
-    return applicationController.render(editView);
-  },
+  // renderEdit: function(facility) {
+  //   var editView = new EditView({ model: facility });
+  //   return applicationController.render(editView);
+  // },
 
   detail: function(id) {
     var self = this, options = {};
@@ -148,11 +147,11 @@ var Router = Backbone.Router.extend({
     });
   },
 
-  edit: function(id) {
-    this._getFacility(id, function(fac) {
-      this.renderEdit(fac);
-    }.bind(this));
-  },
+  // edit: function(id) {
+  //   this._getFacility(id, function(fac) {
+  //     this.renderEdit(fac);
+  //   }.bind(this));
+  // },
   about: function() {
     this.aboutView = this.aboutView || new AboutView();
     applicationController.render(this.aboutView);
@@ -175,124 +174,7 @@ var Router = Backbone.Router.extend({
 var instance = new Router();
 module.exports = { instance: instance };
 
-},{"shared/collections/facilities":"o90k/8","shared/lib/base_controller":"bwPs82","shared/lib/fetch_location":"ZSw8ws","shared/lib/query":"lf76si","shared/views/list_view":"vZbfJV","views/about_view":"4+z0LO","views/detail_view":"mVBmkq","views/edit_view":"ORtplp","views/filter_view":"/9hwvq","views/index_view":"dcajBu"}],"templates/_edit_service":[function(require,module,exports){
-module.exports=require('eFFxjk');
-},{}],"eFFxjk":[function(require,module,exports){
-var Handlebars = require('handlebars-runtime');
-module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
-  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
-
-
-  buffer += "<div class=\"service-edit-row container\">\n  <input type=\"hidden\" name=\"services[][id]\" value=\"";
-  if (stack1 = helpers.objectId) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.objectId; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\">\n  <div class=\"control-group\">\n    <label for=\"services[][category]\">Category</label>\n    <p>\n      ";
-  if (stack1 = helpers.category) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.category; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\n      <input type=\"hidden\" name=\"services[][category]\" value=\"";
-  if (stack1 = helpers.category) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.category; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\">\n    </p>\n  </div>\n  <div class=\"control-group\">\n    <label for=\"services[][name]\">Service name</label>\n    <input type=\"text\" class=\"hasPopover\" data-trigger='hover' data-content='example: \"showers\" or \"breakfast\"' name=\"services[][name]\" value=\"";
-  if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\" class=\"span2 required\">\n  </div>\n  <div class=\"control-group\">\n    <label for=\"services[][description]\">Description</label>\n    <textarea class=\"autosize span5 hasPopover\" data-trigger='hover' data-content=\"A brief description of the service\" name=\"services[][description]\">";
-  if (stack1 = helpers.description) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.description; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "</textarea>\n    </div>\n  <div class=\"control-group\">\n    <label for=\"services[][notes]\">Notes</label>\n    <textarea class=\"autosize span5 hasPopover\" data-trigger='hover' data-content=\"Further detail regarding the service\" name=\"services[][notes]\">";
-  if (stack1 = helpers.notes) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.notes; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "</textarea>\n  </div>\n  <div>\n    Open Hours\n    ";
-  stack1 = self.invokePartial(partials.editServiceHours, 'editServiceHours', depth0, helpers, partials, data);
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    <br/>\n    <p>\n      <a id=\"remove_category\" href=\"#\">Remove service</a>\n    </p>\n  </div>\n</div>\n";
-  return buffer;
-  });
-
-},{"handlebars-runtime":42}],"templates/_edit_service_hours":[function(require,module,exports){
-module.exports=require('kU1ZHm');
-},{}],"kU1ZHm":[function(require,module,exports){
-var Handlebars = require('handlebars-runtime');
-module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
-
-function program1(depth0,data) {
-  
-  var buffer = "", stack1;
-  buffer += "\n    <tr>\n      <td class=\"label-hour\"> ";
-  if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + " </td>\n      <td> <input type=\"text\" class=\"day hasPopover\" name=\"";
-  if (stack1 = helpers.key) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.key; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\" value=\"";
-  if (stack1 = helpers.hours) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.hours; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\" data-trigger=\"hover\" data-content=\"example: 9am-3pm, 6pm-8pm\"> </td>\n      <td> <label class=\"checkbox\"> <input type=\"checkbox\" class=\"closed\" name=\"";
-  if (stack1 = helpers.key) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.key; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\"> Closed </label> </td>\n    </tr>\n  ";
-  return buffer;
-  }
-
-  buffer += "<div class=\"hours\">\n  <table>\n  ";
-  stack1 = helpers.each.call(depth0, depth0.days, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    <tr><td colspan=\"3\">&nbsp;</td></tr>\n    <tr>\n      <td id=\"preview_label\" class=\"label-hour\">Preview</td><td colspan=\"2\" id=\"preview_hours\"></td>\n    </tr>\n  </table>\n</div>\n";
-  return buffer;
-  });
-
-},{"handlebars-runtime":42}],"NzBEuT":[function(require,module,exports){
-var Handlebars = require('handlebars-runtime');
-module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
-
-function program1(depth0,data) {
-  
-  var buffer = "", stack1;
-  buffer += "\n    <li class=\"unselectable\">\n      <div class=\"category btn\" data-value=\"";
-  if (stack1 = helpers.key) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.key; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\">\n        <i class=\"category-icon icon-";
-  if (stack1 = helpers.icon) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.icon; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\"></i>";
-  if (stack1 = helpers.title) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.title; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\n      </div>\n    </li>\n  ";
-  return buffer;
-  }
-
-  buffer += "<ul class=\"filter-categories btn-group\">\n  ";
-  stack1 = helpers.each.call(depth0, depth0.categories, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n</ul>\n";
-  return buffer;
-  });
-
-},{"handlebars-runtime":42}],"templates/_filter_categories":[function(require,module,exports){
-module.exports=require('NzBEuT');
-},{}],"templates/_nav":[function(require,module,exports){
-module.exports=require('GF+cLy');
-},{}],"GF+cLy":[function(require,module,exports){
+},{"shared/collections/facilities":"o90k/8","shared/lib/base_controller":"bwPs82","shared/lib/fetch_location":"ZSw8ws","shared/lib/query":"lf76si","shared/views/list_view":"vZbfJV","views/about_view":"4+z0LO","views/detail_view":"mVBmkq","views/filter_view":"/9hwvq","views/index_view":"dcajBu"}],"GF+cLy":[function(require,module,exports){
 var Handlebars = require('handlebars-runtime');
 module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
@@ -343,47 +225,9 @@ function program3(depth0,data) {
   return buffer;
   });
 
-},{"handlebars-runtime":42}],"templates/_open_hours":[function(require,module,exports){
-module.exports=require('nRddQv');
-},{}],"nRddQv":[function(require,module,exports){
-var Handlebars = require('handlebars-runtime');
-module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
-
-function program1(depth0,data) {
-  
-  var buffer = "", stack1;
-  buffer += "\n  ";
-  stack1 = helpers['if'].call(depth0, depth0.hours, {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n";
-  return buffer;
-  }
-function program2(depth0,data) {
-  
-  var buffer = "", stack1;
-  buffer += "\n    <tr>\n      <td class=\"label-hour\"><b>";
-  if (stack1 = helpers.day) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.day; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "</b>:</td>\n      <td class=\"hour\">";
-  if (stack1 = helpers.hours) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.hours; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "</td>\n    </tr>\n  ";
-  return buffer;
-  }
-
-  buffer += "<table class=\"open-hours\">\n";
-  stack1 = helpers.each.call(depth0, depth0.openHours, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n</table>\n";
-  return buffer;
-  });
-
-},{"handlebars-runtime":42}],"templates/_query_representation":[function(require,module,exports){
+},{"handlebars-runtime":26}],"templates/_nav":[function(require,module,exports){
+module.exports=require('GF+cLy');
+},{}],"templates/_query_representation":[function(require,module,exports){
 module.exports=require('DWnzWF');
 },{}],"DWnzWF":[function(require,module,exports){
 var Handlebars = require('handlebars-runtime');
@@ -426,7 +270,9 @@ function program3(depth0,data) {
   return buffer;
   });
 
-},{"handlebars-runtime":42}],"1Y6a27":[function(require,module,exports){
+},{"handlebars-runtime":26}],"templates/about":[function(require,module,exports){
+module.exports=require('1Y6a27');
+},{}],"1Y6a27":[function(require,module,exports){
 var Handlebars = require('handlebars-runtime');
 module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
@@ -440,62 +286,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   return buffer;
   });
 
-},{"handlebars-runtime":42}],"templates/about":[function(require,module,exports){
-module.exports=require('1Y6a27');
-},{}],"QxWleN":[function(require,module,exports){
-var Handlebars = require('handlebars-runtime');
-module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
-  var buffer = "", stack1, stack2, options, self=this, functionType="function", escapeExpression=this.escapeExpression, blockHelperMissing=helpers.blockHelperMissing;
-
-function program1(depth0,data) {
-  
-  var buffer = "", stack1;
-  buffer += "\n	<div class=\"admin-filter\">\n		<span>Filter by Category: </span>\n		";
-  stack1 = self.invokePartial(partials.filterCategories, 'filterCategories', depth0, helpers, partials, data);
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += " <div class=\"category btn\" data-value=\"\">All</div>\n	</div>\n";
-  return buffer;
-  }
-
-function program3(depth0,data) {
-  
-  var buffer = "", stack1;
-  buffer += "\n    <li class=\"facility\">\n      <p class=\"facility-name\"><a href=\"#/edit/"
-    + escapeExpression(((stack1 = depth0.objectId),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\" class=\"facility-link\">"
-    + escapeExpression(((stack1 = depth0.name),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</a></p>\n      <p class=\"facility-address\">"
-    + escapeExpression(((stack1 = depth0.address),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</p>\n    </li>\n  ";
-  return buffer;
-  }
-
-function program5(depth0,data) {
-  
-  
-  return "<p class=\"not-found\">Sorry, no results found.</p>";
-  }
-
-  stack2 = helpers['if'].call(depth0, ((stack1 = depth0.facilities),stack1 == null || stack1 === false ? stack1 : stack1.length), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
-  if(stack2 || stack2 === 0) { buffer += stack2; }
-  buffer += "\n<ul class=\"admin-list facility-list\">\n  ";
-  stack2 = helpers.each.call(depth0, depth0.facilities, {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
-  if(stack2 || stack2 === 0) { buffer += stack2; }
-  buffer += "\n  ";
-  options = {hash:{},inverse:self.program(5, program5, data),fn:self.noop,data:data};
-  if (stack2 = helpers.facilities) { stack2 = stack2.call(depth0, options); }
-  else { stack2 = depth0.facilities; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
-  if (!helpers.facilities) { stack2 = blockHelperMissing.call(depth0, stack2, options); }
-  if(stack2 || stack2 === 0) { buffer += stack2; }
-  buffer += "\n</ul>\n";
-  return buffer;
-  });
-
-},{"handlebars-runtime":42}],"templates/admin_list":[function(require,module,exports){
-module.exports=require('QxWleN');
-},{}],"ainqDI":[function(require,module,exports){
+},{"handlebars-runtime":26}],"ainqDI":[function(require,module,exports){
 var Handlebars = require('handlebars-runtime');
 module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
@@ -647,72 +438,8 @@ function program14(depth0,data) {
   return buffer;
   });
 
-},{"handlebars-runtime":42}],"templates/detail":[function(require,module,exports){
+},{"handlebars-runtime":26}],"templates/detail":[function(require,module,exports){
 module.exports=require('ainqDI');
-},{}],"templates/edit":[function(require,module,exports){
-module.exports=require('UsIBUJ');
-},{}],"UsIBUJ":[function(require,module,exports){
-var Handlebars = require('handlebars-runtime');
-module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
-  var buffer = "", stack1, self=this, functionType="function", escapeExpression=this.escapeExpression;
-
-function program1(depth0,data) {
-  
-  var buffer = "", stack1;
-  buffer += "\n<div>\n  <dl>\n  <div id=\"errorMessages\">\n  </div>\n  <form Id=\"facilityForm\" class=\"form-horizontal\">\n    <div class=\"control-group\">\n      <label class=\"control-label\" for=\"name\">Facility Name</label>\n      <div class=\"controls\">\n        <input class=\"required\" type=\"text\" name=\"name\" value=\"";
-  if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\">\n      </div>\n    </div>\n\n    <div class=\"control-group\">\n      <label class=\"control-label\" for=\"address\">Address</label>\n      <div class=\"controls\">\n        <input class=\"required\" type=\"text\" name=\"address\" value=\"";
-  if (stack1 = helpers.address) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.address; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\">\n      </div>\n    </div>\n    <div class=\"control-group\">    \n      <label class=\"control-label\" for=\"city\">City</label>\n      <div class=\"controls\">\n        <input class=\"required\" type=\"text\" name=\"city\" value=\"";
-  if (stack1 = helpers.city) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.city; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\">\n      </div>\n    </div>\n\n    <div class=\"control-group\">\n      <label class=\"control-label\" for=\"phone\">Phone</label>\n      <div class=\"controls\">\n        <input type=\"text\" name=\"phone\" value=\"";
-  if (stack1 = helpers.phone) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.phone; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\">\n      </div>\n    </div>\n\n    <div class=\"control-group\">\n      <label class=\"control-label\" for=\"notes\">Notes</label>\n      <div class=\"controls\">\n        <textarea data-trigger=\"hover\" data-content=\"Brief description of the facility\" name=\"notes\" class=\"autosize span5 hasPopover\">";
-  if (stack1 = helpers.notes) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.notes; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "</textarea>\n      </div>\n    </div>\n\n    <div class=\"control-group\">\n      <label class=\"control-label\" for=\"gender\">Gender</label>\n      <div class=\"controls\">\n        <div class=\"hasPopover\" data-trigger=\"hover\" data-content=\"Who is welcome in the facility\" style=\"width:150px;\">\n          <label class=\"radio\"> <input type=\"radio\" name=\"gender\" id=\"gender_\" value=\"\"> Everyone </label>\n          <label class=\"radio\"> <input type=\"radio\" name=\"gender\" id=\"gender_M\" value=\"M\"> Male </label>\n          <label class=\"radio\"> <input type=\"radio\" name=\"gender\" id=\"gender_F\" value=\"F\"> Female </label>\n        </div>\n      </div>\n    </div>\n    <div class=\"control-group\">\n      <label class=\"control-label\" for=\"age\">Ages</label>\n      <div class=\"controls hasPopover\" style=\"width:150px;\" data-trigger=\"hover\" data-content=\"Who is welcome in the facility\">\n        <label class =\"checkbox\"> <input type=\"checkbox\" name=\"age\" id=\"age_everyone\" value=\"\"> Everyone </label>\n        <label class =\"checkbox\"> <input type=\"checkbox\" name=\"age\" id=\"age_C\" value=\"C\"> Children </label>\n        <label class =\"checkbox\"> <input type=\"checkbox\" name=\"age\" id=\"age_Y\" value=\"Y\"> Youth </label>\n        <label class =\"checkbox\"> <input type=\"checkbox\" name=\"age\" id=\"age_A\" value=\"A\"> Adults </label>\n        <label class =\"checkbox\"> <input type=\"checkbox\" name=\"age\" id=\"age_S\" value=\"S\"> Seniors </label>\n      </div>\n    </div>\n    <div>\n      <label class=\"control-label\">Services</label>\n      <div class=\"controls\" id=\"services\">\n        ";
-  stack1 = helpers.each.call(depth0, depth0.services, {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n      </div>\n    </div>\n    <div class=\"control-group\">\n      <div class=\"controls\">\n        <select name=\"categories\" id=\"categories\" class=\"span2\">\n          <option value=\"food\">Food</option>\n          <option value=\"housing\">Housing</option>\n          <option value=\"hygiene\">Hygiene</option>\n          <option value=\"medical\">Medical</option>\n          <option value=\"technology\">Technology</option>\n        </select>\n        <span><a id=\"add_category\" href=\"#\">Add new service in this category</a></span>\n      </div>\n    </div>\n    <div class=\"alert\" id=\"facilitySaved\" style=\"display:none;\">\n      ";
-  if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + " saved.\n    </div>\n    <div class=\"alert\" id=\"facilitySaveError\" style=\"display:none;\">\n      Error saving ";
-  if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\n    </div>\n\n    <div class=\"control-group\" style=\"padding-top:20px;\">\n      <div class=\"controls\">\n        <input type=\"button\" id=\"submit\" value='save changes' class=\"btn-large\">\n      </div>\n    </div>\n  </form>\n</div>\n";
-  return buffer;
-  }
-function program2(depth0,data) {
-  
-  var buffer = "", stack1;
-  buffer += "\n          ";
-  stack1 = self.invokePartial(partials.editService, 'editService', depth0, helpers, partials, data);
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n        ";
-  return buffer;
-  }
-
-  stack1 = helpers['with'].call(depth0, depth0.facility, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n";
-  return buffer;
-  });
-
-},{"handlebars-runtime":42}],"templates/filter":[function(require,module,exports){
-module.exports=require('ri5Kd5');
 },{}],"ri5Kd5":[function(require,module,exports){
 var Handlebars = require('handlebars-runtime');
 module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -753,8 +480,8 @@ function program5(depth0,data) {
   return buffer;
   });
 
-},{"handlebars-runtime":42}],"templates/index":[function(require,module,exports){
-module.exports=require('zNt+Bp');
+},{"handlebars-runtime":26}],"templates/filter":[function(require,module,exports){
+module.exports=require('ri5Kd5');
 },{}],"zNt+Bp":[function(require,module,exports){
 var Handlebars = require('handlebars-runtime');
 module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -772,104 +499,8 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   return buffer;
   });
 
-},{"handlebars-runtime":42}],"templates/list":[function(require,module,exports){
-module.exports=require('eS8YFF');
-},{}],"eS8YFF":[function(require,module,exports){
-var Handlebars = require('handlebars-runtime');
-module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
-  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
-
-function program1(depth0,data) {
-  
-  var buffer = "", stack1;
-  buffer += "\n    <li class=\"facility\">\n      <a href=\"#/detail/";
-  if (stack1 = helpers.objectId) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.objectId; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\" class=\"facility-item-link\">\n        <i class=\"icon-right-open right chevron\"></i>\n        <div>\n          <p class=\"facility-name\">";
-  if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "</p>\n          <span class=\"facility-info\">\n            <span class=\"label-status ";
-  if (stack1 = helpers.status) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.status; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\">";
-  if (stack1 = helpers.status) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.status; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "</span>\n            ";
-  stack1 = helpers['if'].call(depth0, depth0.showWalkingTime, {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n          </span>\n          </p>\n        </div>\n        <div class=\"facility-categories\">\n          ";
-  stack1 = helpers.each.call(depth0, depth0.serviceCategories, {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n        </div>\n      </a>\n    </li>\n  ";
-  return buffer;
-  }
-function program2(depth0,data) {
-  
-  var buffer = "", stack1;
-  buffer += "<span class=\"label-status\">";
-  if (stack1 = helpers.walkingTime) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.walkingTime; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + " minutes walking</span>";
-  return buffer;
-  }
-
-function program4(depth0,data) {
-  
-  var buffer = "", stack1;
-  buffer += "\n            <span class=\"facility-services\"><i class=\"category-icon icon-";
-  if (stack1 = helpers.icon) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.icon; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\"></i>";
-  if (stack1 = helpers.title) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.title; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "</span>\n          ";
-  return buffer;
-  }
-
-function program6(depth0,data) {
-  
-  var buffer = "", stack1, options;
-  buffer += "\n    ";
-  options = {hash:{},inverse:self.program(7, program7, data),fn:self.noop,data:data};
-  if (stack1 = helpers.facilities) { stack1 = stack1.call(depth0, options); }
-  else { stack1 = depth0.facilities; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  if (!helpers.facilities) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n  ";
-  return buffer;
-  }
-function program7(depth0,data) {
-  
-  
-  return "<p class=\"not-found\">Sorry, no results found.</p>";
-  }
-
-  stack1 = self.invokePartial(partials.nav, 'nav', depth0, helpers, partials, data);
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n<div id='loading-spinner'>\n  <img src=\"images/spinner.gif\">Loading...\n</div>\n";
-  stack1 = self.invokePartial(partials.queryRepresentation, 'queryRepresentation', depth0, helpers, partials, data);
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n<ul class=\"facility-list\">\n  ";
-  stack1 = helpers.each.call(depth0, depth0.facilities, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n  <li id=\"load-more\" class=\"facility\"></li>\n  ";
-  stack1 = helpers.unless.call(depth0, depth0.loadingResults, {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n</ul>\n";
-  return buffer;
-  });
-
-},{"handlebars-runtime":42}],"views/about_view":[function(require,module,exports){
-module.exports=require('4+z0LO');
+},{"handlebars-runtime":26}],"templates/index":[function(require,module,exports){
+module.exports=require('zNt+Bp');
 },{}],"4+z0LO":[function(require,module,exports){
 var AboutView = Backbone.View.extend({
   template: require('templates/about'),
@@ -891,8 +522,8 @@ var AboutView = Backbone.View.extend({
 
 module.exports = AboutView;
 
-},{"routers/router":"3BtXL3","templates/about":"1Y6a27"}],"views/detail_view":[function(require,module,exports){
-module.exports=require('mVBmkq');
+},{"routers/router":"3BtXL3","templates/about":"1Y6a27"}],"views/about_view":[function(require,module,exports){
+module.exports=require('4+z0LO');
 },{}],"mVBmkq":[function(require,module,exports){
 var Features                         = require('lib/features'),
     Hours                            = require('shared/models/hours'),
@@ -1058,323 +689,8 @@ var DetailView = Backbone.View.extend({
 
 module.exports = DetailView;
 
-},{"lib/features":"QqYPpM","routers/router":"3BtXL3","shared/lib/distance":"CgvdKG","shared/lib/fetch_location":"ZSw8ws","shared/models/hours":"sxL0B6","templates/detail":"ainqDI"}],"views/edit_view":[function(require,module,exports){
-module.exports=require('ORtplp');
-},{}],"ORtplp":[function(require,module,exports){
-var Service             = require('shared/models/service'),
-    Hours               = require('shared/models/hours'),
-    fetchLocation       = require('shared/lib/fetch_location'),
-    editServiceTemplate = require('templates/_edit_service'),
-    openHoursTemplate   = require('templates/_open_hours'),
-    facilities          = require('shared/collections/facilities').instance;
-
-function modelSaveFailCallback(args) {
-  this.$("#facilitySaveError").show().focus();
-  console.log("failed.");
-  console.log(args);
-}
-
-function modelSaveSuccessCallback(args) {
-  this.$("#facilitySaved").show().focus();
-  this.$("#facilitySaved").delay(5000).fadeOut();
-
-  console.log("saved.");
-  console.log(args);
-}
-
-var days = [
-  {key: "SUN", name: "Sunday"},
-  {key: "MON", name: "Monday"},
-  {key: "TUE", name: "Tuesday"},
-  {key: "WED", name: "Wednesday"},
-  {key: "THU", name: "Thursday"},
-  {key: "FRI", name: "Friday"},
-  {key: "SAT", name: "Saturday"}
-];
-
-function saveFacility(model, services, successCallback, failCallback) {
-  model.save().then(function(foo) {
-    model.get("services").forEach(function(service) {
-      service.destroy();
-    });
-
-    var serviceObjects = services.map(function(serviceData) {
-      var service = new Service();
-      service.set("facility", model);
-
-      delete serviceData.id;
-      service.set(serviceData);
-
-      return service;
-    });
-
-    Service.saveAll(serviceObjects, function(services, error) {
-      facilities.reset();
-
-      if (services) {
-        model.set("services", services);
-
-        model.save()
-          .then(function(fac) {
-            successCallback(fac);
-          }, function(error) {
-            failCallback(error);
-          });
-
-      } else {
-        failCallback(error);
-      }
-    });
-  },
-  failCallback);
-}
-
-var EditView = Backbone.View.extend({
-  template: require('templates/edit'),
-
-  events: {
-    'click #add_category':    'addCategory',
-    'click #remove_category': 'removeCategory',
-    'click .closed':          'previewHours',
-    'blur .hours input':      'previewHours'
-  },
-
-  previewHours: function(event) {
-    var openHours, mergedHours, preview, html,
-        $hours = $(event.target).closest('.hours'),
-        hours  = this.parseHours($hours);
-
-    if ( !hours.isEmpty() )  {
-      openHours = hours.serialize();
-    }
-
-    mergedHours = Hours.merge.apply(
-      Hours,
-      [ { hours: openHours } ]
-    );
-
-    preview = mergedHours.humanize();
-    html    = openHoursTemplate({ openHours: preview });
-    $hours.find('#preview_hours').html(html);
-  },
-
-  addCategory: function(argument) {
-    var context = { category: this.$('#categories').val(), days: days };
-    var service = $(editServiceTemplate(context));
-
-    this.setupServiceElements(service);
-    $('#services').append(service);
-    return false;
-  },
-
-  removeCategory: function(event) {
-    var parent = this.$(event.target).closest('.service-edit-row');
-    parent.remove();
-    return false;
-  },
-
-  parseHourElement: function(hours, el, options) {
-    options = options || {};
-    var closedCheckbox = $(el).next("input.closed");
-
-    if ( closedCheckbox.prop("checked") || el.value === "" || el.value === "CLOSED" ) {
-      return;
-    }
-
-    try {
-      hours.addDay(el.name, el.value);
-    } catch(err) {
-      if (options.validate) {
-        $(el).closest("tr").after($("<tr class='dayError'></tr>").html('<td></td><td colspan="2">' + err.message + '</td>'));
-      }
-    }
-  },
-
-  parseHours: function(container, options) {
-    options = options || {};
-    var serviceHours = new Hours();
-
-    _($(container).find('input.day')).each(function(el) {
-      this.parseHourElement(serviceHours, el, options);
-    }.bind(this));
-
-    return serviceHours;
-  },
-
-  setupServiceElements: function(container) {
-    $(container).find("input.day").first().attr("placeholder", "example: 9am-3pm, 6pm-8pm");
-    $(container).find("input.day").blur(function(ev) {
-      this.parseHourElement(new Hours(), ev.target, { validate: true });
-      return true;
-    }.bind(this));
-
-    $(container).find("input.closed").change(function(ev) {
-      var el = ev.target;
-      var textBox = $(el).closest("tr").find("input.day[name='" + el.name + "']");
-
-      $(textBox).prop("disabled", $(el).prop("checked"));
-      if ( $(el).prop("checked") ) {
-        textBox.val("CLOSED");
-      } else {
-        textBox.val("");
-      }
-    });
-
-    $(container).find("input.day").keyup(function(ev) {
-      $(ev.target).closest("tr").next("tr.dayError").remove();
-    });
-  },
-
-  setupForm: function() {
-    var g = this.model.get('gender'),
-        self = this,
-        el;
-
-    el = self.$('#gender_' + (g ? g : ''));
-    el.prop('checked', true);
-
-    self.$("#age_everyone").click(function() {
-      self.$('[name="age"]').prop('checked', $(self).prop('checked'));
-    });
-
-    if ( self.model.get("age") ) {
-      _(self.model.get("age")).each(function(age) {
-        self.$("#age_" + age.toUpperCase()).prop('checked', true);
-      });
-    } else {
-      self.$("#age_everyone").click();
-    }
-
-    self.$('#submit').click(function() {
-      var formValues = self.$('#facilityForm').serializeObject();
-
-      if ( !self.validateForm(formValues) )
-        return false;
-
-      fetchLocation(formValues.address + ", " + formValues.city).then(
-        function(loc) {
-          formValues.location = new Parse.GeoPoint({latitude: loc.lat, longitude: loc.lon});
-          console.log("location ", formValues.location);
-          self.saveForm(formValues);
-        },
-
-        function(err) {
-          self.addErrorToInput($("input[name='address']"));
-          $("#errorMessages").html("<ul><li>Could not find address</li></ul>");
-        }
-      );
-    });
-
-    // setup all the service elements
-    self.setupServiceElements(self.el);
-  },
-
-  addErrorToInput: function(input) {
-    var controlGroup = $(input).parents(".control-group");
-    controlGroup.addClass("error");
-    $(input).focus(function() { controlGroup.removeClass("error"); });
-    $('html, body').animate({
-        scrollTop: 0
-    }, 500);
-  },
-
-  validateForm: function(formValues) {
-    var errors = [];
-    _($("input.required")).each(function(input) {
-      if ( $(input).val() === "" ) {
-        this.addErrorToInput(input);
-        errors.push("Field missing: " + $(input).parents(".control-group").find("label").html());
-      }
-    }.bind(this));
-
-    if ( !formValues.services ) {
-      errors.push("Please add at least one service");
-    }
-
-    var ul = $("<ul>");
-
-    errors.forEach(function(msg) {
-      ul.append($("<li>" + msg + "</li>"));
-    });
-
-    $("#errorMessages").html(ul);
-    return errors.length === 0;
-  },
-
-  serializeAges: function() {
-    var ages;
-    if ( this.$("#age_everyone").prop('checked') ) {
-      return null;
-    }
-
-    ages = this.$("[name=age]input:checked").map(function(cb) {
-      return $(cb).attr('value');
-    });
-
-    return _(ages).compact();
-  },
-
-  saveForm: function(formValues) {
-    var servicePromises = [];
-
-    // the days-of-the-week inputs are named dumbly, get rid of them
-    days.forEach(function(d) { delete formValues[d.key]; });
-
-    if ( formValues.gender === "" ) {
-      formValues.gender = null;
-    }
-
-    formValues.age = this.serializeAges();
-
-    var services = _.clone(formValues.services);
-
-    _.each(services, function(service, i) {
-      var hours = this.parseHours($('.hours')[i], { validate: true });
-      if ( !hours.isEmpty() )  {
-        service.openHours = hours.serialize();
-      }
-    }.bind(this));
-
-    delete formValues.services;
-    this.model.set(formValues);
-
-    var save = _.bind(saveFacility, this);
-    save(this.model, services, _.bind(modelSaveSuccessCallback, this), _.bind(modelSaveFailCallback, this));
-  },
-
-  render: function() {
-
-    var templateData = this.model.presentJSON(),
-        Hours = require('shared/models/hours');
-
-    templateData.services.forEach(function(service) {
-      var openHours = Hours.fromData(service.openHours).humanize();
-
-      service.days = days.map(function(day, index) {
-        return {key: day.key, name: day.name, hours: openHours[index].hours};
-      });
-    });
-
-    $(this.el).html(this.template({facility: templateData}));
-    this.$('.hasPopover').popover();
-
-    this.setupForm();
-
-    _.defer(
-      function(view) {
-        view.$('.autosize').autosize();
-      },
-      this
-    );
-
-    return this;
-  }
-});
-
-module.exports = EditView;
-
-},{"shared/collections/facilities":"o90k/8","shared/lib/fetch_location":"ZSw8ws","shared/models/hours":"sxL0B6","shared/models/service":"1C0T0C","templates/_edit_service":"eFFxjk","templates/_open_hours":"nRddQv","templates/edit":"UsIBUJ"}],"views/filter_view":[function(require,module,exports){
-module.exports=require('/9hwvq');
+},{"lib/features":"QqYPpM","routers/router":"3BtXL3","shared/lib/distance":"CgvdKG","shared/lib/fetch_location":"ZSw8ws","shared/models/hours":"sxL0B6","templates/detail":"ainqDI"}],"views/detail_view":[function(require,module,exports){
+module.exports=require('mVBmkq');
 },{}],"/9hwvq":[function(require,module,exports){
 function navigate(options) {
   var route  = 'query',
@@ -1470,8 +786,8 @@ var FilterView = Backbone.View.extend({
 
 module.exports = FilterView;
 
-},{"routers/router":"3BtXL3","shared/lib/categories":"JvcSSz","templates/filter":"ri5Kd5"}],"views/index_view":[function(require,module,exports){
-module.exports=require('dcajBu');
+},{"routers/router":"3BtXL3","shared/lib/categories":"JvcSSz","templates/filter":"ri5Kd5"}],"views/filter_view":[function(require,module,exports){
+module.exports=require('/9hwvq');
 },{}],"dcajBu":[function(require,module,exports){
 var fetchLocation = require('shared/lib/fetch_location');
 
@@ -1518,7 +834,9 @@ var IndexView = Backbone.View.extend({
 
 module.exports = IndexView;
 
-},{"routers/router":"3BtXL3","shared/lib/categories":"JvcSSz","shared/lib/fetch_location":"ZSw8ws","templates/index":"zNt+Bp"}],42:[function(require,module,exports){
+},{"routers/router":"3BtXL3","shared/lib/categories":"JvcSSz","shared/lib/fetch_location":"ZSw8ws","templates/index":"zNt+Bp"}],"views/index_view":[function(require,module,exports){
+module.exports=require('dcajBu');
+},{}],26:[function(require,module,exports){
 /*
 
 Copyright (C) 2011 by Yehuda Katz
@@ -1883,7 +1201,7 @@ Handlebars.template = Handlebars.VM.template;
 })(Handlebars);
 ;
 
-},{}],43:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 //     Underscore.js 1.5.2
 //     http://underscorejs.org
 //     (c) 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -3161,8 +2479,6 @@ Handlebars.template = Handlebars.VM.template;
 
 }).call(this);
 
-},{}],"shared/collections/facilities":[function(require,module,exports){
-module.exports=require('o90k/8');
 },{}],"o90k/8":[function(require,module,exports){
 var Facility = require('shared/models/facility');
 
@@ -3173,7 +2489,9 @@ var Facilities = Parse.Collection.extend({
 var instance = new Facilities();
 module.exports = { instance: instance };
 
-},{"shared/models/facility":"8iYNcH"}],"bwPs82":[function(require,module,exports){
+},{"shared/models/facility":"8iYNcH"}],"shared/collections/facilities":[function(require,module,exports){
+module.exports=require('o90k/8');
+},{}],"bwPs82":[function(require,module,exports){
 var BaseController = function (options) {
   options = options || {};
   var currentView,
@@ -3200,8 +2518,6 @@ module.exports = BaseController;
 
 },{}],"shared/lib/base_controller":[function(require,module,exports){
 module.exports=require('bwPs82');
-},{}],"shared/lib/browse":[function(require,module,exports){
-module.exports=require('/UqqYM');
 },{}],"/UqqYM":[function(require,module,exports){
 var Facility = require('shared/models/facility'),
     _ = require('underscore');
@@ -3271,7 +2587,11 @@ module.exports = function (params, callbacks) {
 };
 
 
-},{"shared/models/facility":"8iYNcH","underscore":43}],"JvcSSz":[function(require,module,exports){
+},{"shared/models/facility":"8iYNcH","underscore":27}],"shared/lib/browse":[function(require,module,exports){
+module.exports=require('/UqqYM');
+},{}],"shared/lib/categories":[function(require,module,exports){
+module.exports=require('JvcSSz');
+},{}],"JvcSSz":[function(require,module,exports){
 module.exports = [
   { icon: 'home',    key: 'housing',    title: 'Housing' },
   { icon: 'food',    key: 'food',       title: 'Food' },
@@ -3280,8 +2600,8 @@ module.exports = [
   { icon: 'desktop', key: 'technology', title: 'Technology' }
 ];
 
-},{}],"shared/lib/categories":[function(require,module,exports){
-module.exports=require('JvcSSz');
+},{}],"shared/lib/distance":[function(require,module,exports){
+module.exports=require('CgvdKG');
 },{}],"CgvdKG":[function(require,module,exports){
 var maps = google.maps,
     LatLng = maps.LatLng;
@@ -3305,8 +2625,6 @@ module.exports = {
   calculateWalkingTimeFromDistance: calculateWalkingTimeFromDistance
 };
 
-},{}],"shared/lib/distance":[function(require,module,exports){
-module.exports=require('CgvdKG');
 },{}],"ZSw8ws":[function(require,module,exports){
 var maps = google.maps,
     Geocoder = maps.Geocoder,
@@ -3367,8 +2685,6 @@ module.exports = function(address) {
 
 },{}],"shared/lib/fetch_location":[function(require,module,exports){
 module.exports=require('ZSw8ws');
-},{}],"shared/lib/query":[function(require,module,exports){
-module.exports=require('lf76si');
 },{}],"lf76si":[function(require,module,exports){
 /*globals alert*/
 var _             = require('underscore'),
@@ -3424,7 +2740,9 @@ var getByID = function(id) {
 
 module.exports = { submit: submit, getByID: getByID };
 
-},{"shared/models/facility":"8iYNcH","underscore":43}],"shared/lib/query_param_parser":[function(require,module,exports){
+},{"shared/models/facility":"8iYNcH","underscore":27}],"shared/lib/query":[function(require,module,exports){
+module.exports=require('lf76si');
+},{}],"shared/lib/query_param_parser":[function(require,module,exports){
 module.exports=require('tSWALn');
 },{}],"tSWALn":[function(require,module,exports){
 /* globals document */
@@ -3600,7 +2918,9 @@ module.exports = Parse.Object.extend('Facility', {
   }
 });
 
-},{"shared/lib/categories":"JvcSSz","shared/models/hours":"sxL0B6","underscore":43}],"sxL0B6":[function(require,module,exports){
+},{"shared/lib/categories":"JvcSSz","shared/models/hours":"sxL0B6","underscore":27}],"shared/models/hours":[function(require,module,exports){
+module.exports=require('sxL0B6');
+},{}],"sxL0B6":[function(require,module,exports){
 var _ = require('underscore');
 
 var days = {
@@ -3927,9 +3247,7 @@ Hours.prototype.humanizeCondensed = function combine() {
 
 module.exports = Hours;
 
-},{"underscore":43}],"shared/models/hours":[function(require,module,exports){
-module.exports=require('sxL0B6');
-},{}],"shared/models/service":[function(require,module,exports){
+},{"underscore":27}],"shared/models/service":[function(require,module,exports){
 module.exports=require('1C0T0C');
 },{}],"1C0T0C":[function(require,module,exports){
 var Hours = require('./hours.js');
@@ -3943,9 +3261,138 @@ module.exports = Parse.Object.extend('Service', {
   }
 });
 
-},{"./hours.js":"sxL0B6"}],"shared/views/list_view":[function(require,module,exports){
-module.exports=require('vZbfJV');
-},{}],"vZbfJV":[function(require,module,exports){
+},{"./hours.js":"sxL0B6"}],"shared/templates/_filter_categories":[function(require,module,exports){
+module.exports=require('F4gOOw');
+},{}],"F4gOOw":[function(require,module,exports){
+var Handlebars = require('handlebars-runtime');
+module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n    <li class=\"unselectable\">\n      <div class=\"category btn\" data-value=\"";
+  if (stack1 = helpers.key) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.key; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\">\n        <i class=\"category-icon icon-";
+  if (stack1 = helpers.icon) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.icon; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\"></i>";
+  if (stack1 = helpers.title) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.title; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\n      </div>\n    </li>\n  ";
+  return buffer;
+  }
+
+  buffer += "<ul class=\"filter-categories btn-group\">\n  ";
+  stack1 = helpers.each.call(depth0, depth0.categories, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n</ul>\n";
+  return buffer;
+  });
+
+},{"handlebars-runtime":26}],"shared/templates/list":[function(require,module,exports){
+module.exports=require('1f1+aS');
+},{}],"1f1+aS":[function(require,module,exports){
+var Handlebars = require('handlebars-runtime');
+module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n    <li class=\"facility\">\n      <a href=\"#/detail/";
+  if (stack1 = helpers.objectId) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.objectId; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\" class=\"facility-item-link\">\n        <i class=\"icon-right-open right chevron\"></i>\n        <div>\n          <p class=\"facility-name\">";
+  if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n          <span class=\"facility-info\">\n            <span class=\"label-status ";
+  if (stack1 = helpers.status) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.status; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\">";
+  if (stack1 = helpers.status) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.status; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n            ";
+  stack1 = helpers['if'].call(depth0, depth0.showWalkingTime, {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n          </span>\n          </p>\n        </div>\n        <div class=\"facility-categories\">\n          ";
+  stack1 = helpers.each.call(depth0, depth0.serviceCategories, {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n        </div>\n      </a>\n    </li>\n  ";
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "<span class=\"label-status\">";
+  if (stack1 = helpers.walkingTime) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.walkingTime; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + " minutes walking</span>";
+  return buffer;
+  }
+
+function program4(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n            <span class=\"facility-services\"><i class=\"category-icon icon-";
+  if (stack1 = helpers.icon) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.icon; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\"></i>";
+  if (stack1 = helpers.title) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.title; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n          ";
+  return buffer;
+  }
+
+function program6(depth0,data) {
+  
+  var buffer = "", stack1, options;
+  buffer += "\n    ";
+  options = {hash:{},inverse:self.program(7, program7, data),fn:self.noop,data:data};
+  if (stack1 = helpers.facilities) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.facilities; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.facilities) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n  ";
+  return buffer;
+  }
+function program7(depth0,data) {
+  
+  
+  return "<p class=\"not-found\">Sorry, no results found.</p>";
+  }
+
+  stack1 = self.invokePartial(partials.nav, 'nav', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n<div id='loading-spinner'>\n  <img src=\"images/spinner.gif\">Loading...\n</div>\n";
+  stack1 = self.invokePartial(partials.queryRepresentation, 'queryRepresentation', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n<ul class=\"facility-list\">\n  ";
+  stack1 = helpers.each.call(depth0, depth0.facilities, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n  <li id=\"load-more\" class=\"facility\"></li>\n  ";
+  stack1 = helpers.unless.call(depth0, depth0.loadingResults, {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n</ul>\n";
+  return buffer;
+  });
+
+},{"handlebars-runtime":26}],"vZbfJV":[function(require,module,exports){
 /* globals window */
 var Query                            = require('shared/lib/query'),
     facilities                       = require('shared/collections/facilities').instance,
@@ -3998,7 +3445,7 @@ function getData($elements, dataAttrName) {
 }
 
 var ListView = Backbone.View.extend({
-  template: require('templates/list'),
+  template: require('shared/templates/list'),
 
   events: {
     "click #filter-button":  'goToFilter',
@@ -4204,5 +3651,7 @@ ListView.CATEGORIES = require('shared/lib/categories');
 
 module.exports = ListView;
 
-},{"routers/router":"3BtXL3","shared/collections/facilities":"o90k/8","shared/lib/categories":"JvcSSz","shared/lib/distance":"CgvdKG","shared/lib/query":"lf76si","shared/lib/query_param_parser":"tSWALn","templates/list":"eS8YFF"}]},{},[1])
+},{"routers/router":"3BtXL3","shared/collections/facilities":"o90k/8","shared/lib/categories":"JvcSSz","shared/lib/distance":"CgvdKG","shared/lib/query":"lf76si","shared/lib/query_param_parser":"tSWALn","shared/templates/list":"1f1+aS"}],"shared/views/list_view":[function(require,module,exports){
+module.exports=require('vZbfJV');
+},{}]},{},[1])
 ;
