@@ -55,11 +55,13 @@ function setFilterOptions(view) {
 }
 
 var FilterView = Backbone.View.extend({
+  navButtons: [
+    {class: 'left', id: 'backNav-button', text: 'Back'},
+    {class: 'right', id: 'searchNav-button', text: 'Search', action: 'submitSearch'}
+  ],
   template: require('templates/filter'),
   events: {
     "click .search .search-button": "submitSearch",
-    "click #backNav-button": "goBack",
-    "click #searchNav-button": "submitSearch",
     'click ul.filter-categories .category': 'toggleCategory'
   },
 
@@ -71,10 +73,6 @@ var FilterView = Backbone.View.extend({
     var distanceDisabled = this.options.currentLocation ? false : 'disabled';
 
     this.$el.html(this.template({
-      navButtons: [
-        {class: 'left', id: 'backNav-button', text: 'Back'},
-        {class: 'right', id: 'searchNav-button', text: 'Search'}
-      ],
       categories:       require('lib/categories'),
       filter:           true,
       distanceDisabled: distanceDisabled
@@ -83,11 +81,6 @@ var FilterView = Backbone.View.extend({
     _.defer(setFilterOptions, this);
 
     return this;
-  },
-
-  goBack: function() {
-    var router = require('routers/router').instance;
-    router.back();
   },
 
   submitSearch: function() {
