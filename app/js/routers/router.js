@@ -1,9 +1,8 @@
-/*globals Backbone*/
-
 var BaseController        = require('shared/lib/base_controller'),
     applicationController = new BaseController({ el: '#linksf' }),
     facilities            = require('shared/collections/facilities').instance(),
     fetchLocation         = require('shared/lib/fetch_location');
+    parseParams           = require('shared/lib/query_param_parser');
 
 var Router = Backbone.Router.extend({
   routes: {
@@ -13,6 +12,7 @@ var Router = Backbone.Router.extend({
     'detail/:id':         'detail',
     'about' :             'about',
     'filter':             'filter'
+    'filter?:queryString': 'filter'
   },
 
   listView: null,
@@ -70,19 +70,20 @@ var Router = Backbone.Router.extend({
 
   },
 
-  filter: function() {
+  filter: function(queryString) {
     var FilterView = require('views/filter_view'),
-        self = this;
+        params = parseParams(queryString);
 
     fetchLocation().always(function(loc) {
-      self.filterView = self.filterView || new FilterView({isSingleton: true });
+      this.filterView = this.filterView || new FilterView({isSingleton: true });
+      this.filterView.options.params = params;
 
       if (loc.lon && loc.lat) {
-        self.filterView.options.currentLocation = loc;
+        this.filterView.options.currentLocation = loc;
       }
 
-      applicationController.render(self.filterView);
-    });
+      applicationController.render(this.filterView);
+    }.bind(this));
   },
 
   renderFacility: function(facility, options) {

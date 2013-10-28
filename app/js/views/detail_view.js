@@ -4,35 +4,6 @@ var Features                         = require('lib/features'),
     calculateDistanceFromService     = require('shared/lib/distance').calculateDistanceFromService,
     calculateWalkingTimeFromDistance = require('shared/lib/distance').calculateWalkingTimeFromDistance;
 
-var aggregateOpenHours = function(facility) {
-  var mergedHours = Hours.merge.apply(
-    Hours,
-    facility.services.map(function(service) {
-      return Hours.fromData(service.openHours);
-    })
-  );
-
-  return mergedHours.humanize();
-  // giant hack to get humanize() output into template-ready shape
-  // var unformatted = mergedHours.humanize(),
-  //     formatted = [];
-
-  // function capitalize(string) {
-  //   return string.charAt(0).toUpperCase() + string.substring(1).toLowerCase();
-  // }
-
-  // ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].forEach(function(day) {
-  //   if (unformatted[day].length) {
-  //     formatted.push({
-  //       label: capitalize(day),
-  //       interval: unformatted[day]
-  //     });
-  //   }
-  // });
-
-  // return formatted;
-};
-
 function extractDistanceTime(location, currentLocation) {
   var destination = {};
   if (location && currentLocation) {
@@ -52,24 +23,20 @@ var DetailView = Backbone.View.extend({
     'click .inset-gmap':       'launchDirections'
   },
 
+  navButtons: [
+    { 'class': 'left', id: 'backNav-button', text: 'Back' }
+  ],
+
   render: function() {
     var facility = this.model,
         $mapdiv  =  this.$('#detail-gmap');
 
     facility.destination = extractDistanceTime(facility.location, this.options.currentLocation);
-    facility.openHours   = aggregateOpenHours(facility);
 
     this.$el.html(this.template({
       facility:    facility,
-      isMobile:    Features.isMobile(),
-      navButtons: [
-        { 'class': 'left', id: 'backNav-button', text: 'Back' }
-      ]
+      isMobile:    Features.isMobile()
     }));
-
-    this.$('#backNav-button').click(function(){
-      require('routers/router').instance().back();
-    });
 
     _.defer(
       function(view) { view.setMap(); },

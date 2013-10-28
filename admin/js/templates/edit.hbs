@@ -14,13 +14,18 @@
     <div class="control-group">
       <label class="control-label" for="address">Address</label>
       <div class="controls">
-        <input class="required" type="text" name="address" value="{{address}}">
+        <input class="required hasPopover" type="text" name="address" value="{{address}}" data-trigger="hover" data-content="The address is used for both a human-readable address for the list and detail pages and calculating the map coordinates for the details page.">
       </div>
     </div>
-    <div class="control-group">    
+    <div class="control-group">
       <label class="control-label" for="city">City</label>
       <div class="controls">
         <input class="required" type="text" name="city" value="{{city}}">
+      </div>
+    </div>
+    <div class="control-group" style="display: none;">
+      <div class="controls">
+        <span class="address-preview"></span>
       </div>
     </div>
 
@@ -28,6 +33,13 @@
       <label class="control-label" for="phone">Phone</label>
       <div class="controls">
         <input type="text" name="phone" value="{{phone}}">
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="website">Website</label>
+      <div class="controls">
+        <input type="text" name="website" value="{{website}}">
       </div>
     </div>
 
@@ -88,6 +100,7 @@
     <div class="control-group" style="padding-top:20px;">
       <div class="controls">
         <input type="button" id="submit" value='save changes' class="btn-large">
+        <input type="button" id="delete_facility" value='delete facility' class="btn-large">
       </div>
     </div>
   </form>

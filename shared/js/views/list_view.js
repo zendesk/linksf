@@ -55,7 +55,6 @@ var ListView = Backbone.View.extend({
   options: {},
 
   events: {
-    "click #filter-button":  'goToFilter',
     "click #load-more-link": 'loadMore',
     "click #load-more":      'loadMore'
   },
@@ -104,8 +103,9 @@ var ListView = Backbone.View.extend({
   },
 
   goToFilter: function() {
+    var queryString  = window.location.hash.substring(window.location.hash.indexOf('?')+1);
     var router = require('routers/router').instance;
-    router.navigate("filter", {trigger: true});
+    router.navigate("filter?" + queryString, {trigger: true});
   },
 
   generateQueryParams: generateQueryParams,
@@ -149,6 +149,11 @@ var ListView = Backbone.View.extend({
     return collection.length >= searchLimit;
   },
 
+  navButtons: [
+    {class: 'left', id: 'backNav-button', text: 'Back'},
+    {class: 'right', id: 'filter-button', text: 'Filter', action: 'goToFilter'}
+  ],
+
   render: function() {
     var deepJson        = this.collection ? this.deepToJson(this.collection) : [],
         categories      = this.options.categories || [],
@@ -161,12 +166,9 @@ var ListView = Backbone.View.extend({
       facilities:     templateJson,
       categories:     ListView.CATEGORIES,
       loadingResults: loadingResults,
-      searchParams:   this.filterSelectCategories(categories),
-      navButtons: [
-        {class: 'left', id: 'backNav-button', text: 'Back'},
-        {class: 'right', id: 'filter-button', text: 'Filter'}
-      ]
+      searchParams:   this.filterSelectCategories(categories)
     }));
+
     this.$('.query').hide();
     this.$('.option-group-exclusive .query-option').click(function() {
       $(this).closest(".option-group-exclusive").find(".query-option").removeClass("selected");
@@ -175,9 +177,6 @@ var ListView = Backbone.View.extend({
 
     this.$('.option-group .query-option').click(function() {
       $(this).toggleClass("selected");
-    });
-    this.$('#backNav-button').click(function(){
-      require('routers/router').instance.back();
     });
 
     if ( this.hasMoreResults ) {

@@ -25,14 +25,14 @@
   }
 }
 
-#facilityForm .hours .dayError {
-  color: red;
+#facilityForm {
+  .hours .dayError, .address-preview.error {
+    color: red;
+  }
 }
 
 .service-edit-row {
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-bottom: 5px;
+  margin: 0 20px 20px 0;
   border-color: #DDDDDD;
   border-style: solid;
   border-width: 1px;
@@ -70,4 +70,8 @@
   display: none;
 }
 
+#delete_facility { 
+  background-color: #52000A;
+  color: #FFFFFF;
+}
 .clear { clear: both; }

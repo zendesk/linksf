@@ -12,14 +12,14 @@ namespace :deploy do
       admin.html
     )
     Dir.glob(deploy_glob).each do |d|
-      system("s3cmd put --acl-public #{d} s3://link-sf.com/#{d}")
+      system("s3cmd put --acl-public #{d} s3://www.link-sf.com/#{d}")
     end
 
     # deploy everything in vendor
-    system("s3cmd sync --acl-public vendor/ s3://link-sf.com/vendor/")
+    system("s3cmd sync --acl-public vendor/ s3://www.link-sf.com/vendor/")
 
     # deploy everything in images
-    system("s3cmd sync --acl-public images/ s3://link-sf.com/images/")
+    system("s3cmd sync --acl-public images/ s3://www.link-sf.com/images/")
   end
 
   task :parse do

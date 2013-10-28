@@ -46,6 +46,7 @@ $nav-button-width: 75px;
   border-radius: 6px;
   border: 1px solid #DDD;
   padding: 10px;
+  cursor: pointer;  
 }
 
 @mixin border-radius($radius) {
@@ -110,3 +111,13 @@ li {
   }
 }
 
+#errorMessages{
+  background-color: #F7D6D6;
+  border: 2px solid #C95F5F;
+  width: 327px;
+  margin: 10px 0 20px 70px;
+  padding-top: 10px;
+  border-radius: 4px;
+  color: #C95F5F;
+  display: none;
+}
