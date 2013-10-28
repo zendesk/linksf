@@ -259,17 +259,10 @@ module.exports = function(grunt) {
 
             Object.keys(hashes).forEach(function(key) {
               var matches = key.match(/^build\/(.*)(\..*)$/),
-                  outputFile = matches[1] + '-' + hashes[key] + matches[2];
-                  outputLocation = 'build/' + outputFile;
-                  // outputFile = matches[1] + matches[2];
+                  outputFile = 'build/' + matches[1] + '-' + hashes[key] + matches[2];
 
-              console.log('src file is ', key);
-              console.log('context key is ', keyMap[key]);
-              console.log('context value is ', outputFile);
-              console.log('hashed file is ', outputLocation);
-              grunt.file.copy(key, outputLocation);
-              // context[keyMap[key]] = outputFile;
-              context[keyMap[key]] = outputLocation;
+              grunt.file.copy(key, outputFile);
+              context[keyMap[key]] = outputFile;
             });
 
             template = Handlebars.compile(grunt.file.read('app/index.html'));
