@@ -10,19 +10,19 @@ var BaseController = function (options) {
 
   var _navRendered = false;
 
-  function setupNav(buttons, view) { 
+  function setupNav(buttons, view) {
     $(navEl).find('button').remove();
-    buttons.forEach(function(button) { 
+    buttons.forEach(function(button) {
       var el = $("<button type='button' class='unselectable'>").addClass(button.class).attr("id", button.id).html(button.text);
 
       if ( button.action ) {
         el.click(function(event) { return view[button.action].call(view.event); });
       }
-      $(navEl).prepend(el); 
+      $(navEl).prepend(el);
     });
 
     $('#backNav-button').click(function(){
-      require('routers/router').instance.back();
+      require('routers/router').instance().back();
     });
   }
 

@@ -139,7 +139,7 @@ var EditView = Backbone.View.extend({
     if ( window.confirm("Confirm deletion of " + this.model.get("name")) ) {
       this.model.destroy()
         .then(function() {
-          var router = require('routers/admin_router').instance;
+          var router = require('routers/router').instance();
           router.navigate("/", {trigger: true});
         }, function(errors) {
           window.alert("errors");

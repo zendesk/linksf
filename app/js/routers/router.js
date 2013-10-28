@@ -1,7 +1,7 @@
 var BaseController        = require('shared/lib/base_controller'),
     applicationController = new BaseController({ el: '#linksf' }),
     facilities            = require('shared/collections/facilities').instance(),
-    fetchLocation         = require('shared/lib/fetch_location');
+    fetchLocation         = require('shared/lib/fetch_location'),
     parseParams           = require('shared/lib/query_param_parser');
 
 var Router = Backbone.Router.extend({
@@ -11,7 +11,7 @@ var Router = Backbone.Router.extend({
     'query':              'query',
     'detail/:id':         'detail',
     'about' :             'about',
-    'filter':             'filter'
+    'filter':             'filter',
     'filter?:queryString': 'filter'
   },
 
