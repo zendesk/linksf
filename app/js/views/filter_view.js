@@ -51,11 +51,18 @@ function setFilterOptions(view) {
 }
 
 var FilterView = Backbone.View.extend({
+  constructor: function (options) {
+    Backbone.View.apply(this, arguments);
+    this.options = options;
+  },
+
   navButtons: [
     {class: 'left', id: 'backNav-button', text: 'Back'},
     {class: 'right', id: 'searchNav-button', text: 'Search', action: 'submitSearch'}
   ],
+
   template: require('templates/filter'),
+
   events: {
     "click .search .search-button": "submitSearch",
     'click ul.filter-categories .category': 'toggleCategory'
