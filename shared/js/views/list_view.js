@@ -52,11 +52,14 @@ function getData($elements, dataAttrName) {
 var ListView = Backbone.View.extend({
   template: require('shared/templates/list'),
 
-  options: {},
-
   events: {
     "click #load-more-link": 'loadMore',
     "click #load-more":      'loadMore'
+  },
+
+  constructor: function (options) {
+    Backbone.View.apply(this, arguments);
+    this.options = options;
   },
 
   initialize: function() {
