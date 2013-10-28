@@ -1,6 +1,6 @@
 /* globals window */
 var Query                            = require('shared/lib/query'),
-    facilities                       = require('shared/collections/facilities').instance,
+    facilities                       = require('shared/collections/facilities').instance(),
     searchParams                     = ["fr"],
     parseParams                      = require('shared/lib/query_param_parser'),
     calculateDistanceFromService     = require('shared/lib/distance').calculateDistanceFromService,
@@ -51,6 +51,8 @@ function getData($elements, dataAttrName) {
 
 var ListView = Backbone.View.extend({
   template: require('shared/templates/list'),
+
+  options: {},
 
   events: {
     "click #filter-button":  'goToFilter',

@@ -32,6 +32,7 @@ module.exports = function(grunt) {
       }
     },
 
+    // A simple Grunt invoker for mocha tests
     simplemocha: {
       options: {
         timeout: 3000,
@@ -45,6 +46,7 @@ module.exports = function(grunt) {
       }
     },
 
+    // run the 'default' task when any watched files change
     watch: {
       files: [
         'Gruntfile.js',
@@ -52,40 +54,47 @@ module.exports = function(grunt) {
         'admin/**/*',
         'shared/**/*',
         'server/**/*',
+        'vendor/**/*',
         'test/**/*'
       ],
       tasks: ['default']
     },
 
     sass: {
+      // generate app-specific css file
       app: {
-        files: {
-          'build/linksf.css': [
-            'vendor/css/normalize.min.css',
-            'vendor/css/icons.css',
-            'shared/css/**/*',
-            'app/css/**/*.scss'
-          ],
-        }
+        src: 'app/css/app.scss',
+        dest: 'build/linksf.css'
       },
+
       admin: {
-        files: {
-          'build/linksf_admin.css': [
-            'vendor/css/normalize.min.css',
-            'vendor/css/icons.css',
-            'shared/css/**/*',
-            'admin/css/**/*.scss'
-          ],
-        }
+        src: 'admin/css/admin.scss',
+        dest: 'build/linksf_admin.css'
       }
     },
 
+    // Browserify
     browserify: {
-      options: { transform: ['hbsfy'] },
+      options: {
+        // We want `.hbs` files to be `require`able. We use the hbsfy transform
+        // to precompile Handlebars templates and let us require the compiled
+        // JavaScript functions.
+        transform: ['hbsfy']
+      },
       app: {
+        // The entry point where Browserify will begin searching the AST for `require` calls
         src: 'app/js/app.js',
+
+        // The built file
         dest: 'build/app.js',
+
         options: {
+          // We want alias mappings because we'd rather
+          // `require('views/index_view')` than `require('./views/index_view.js')`
+          //
+          // There is a tradeoff for convenient here - all aliased files are exported
+          // into the built app.js file, even if they're never explicitly
+          // `require`d from the entry point tree.
           aliasMappings: [
             { cwd: 'shared/js/lib',         src: '*.js',  dest: 'shared/lib' },
             { cwd: 'shared/js/models',      src: '*.js',  dest: 'shared/models' },
@@ -101,6 +110,7 @@ module.exports = function(grunt) {
           ]
         }
       },
+      // See browserify:app above
       admin: {
         src: 'admin/js/admin.js',
         dest: 'build/admin.js',
@@ -122,6 +132,7 @@ module.exports = function(grunt) {
       }
     },
 
+    // Minify css files
     cssmin: {
       app: {
         src: 'build/linksf.css',
@@ -133,8 +144,10 @@ module.exports = function(grunt) {
       },
     },
 
+    // Concatenate files together.
     concat: {
-      shared: [
+      // Not a target, just a variable that we can interpolate in elsewhere.
+      shared_js: [
         'vendor/js/jquery-2.0.3.js',
         'vendor/js/jquery.serialize-object.js',
         'vendor/js/underscore.js',
@@ -142,7 +155,7 @@ module.exports = function(grunt) {
         'vendor/js/parse-1.2.12.js'
       ],
 
-      shared_minified: [
+      shared_js_minified: [
         'vendor/js/jquery-2.0.3.min.js',
         'vendor/js/jquery.serialize-object.min.js',
         'vendor/js/underscore.min.js',
@@ -150,51 +163,46 @@ module.exports = function(grunt) {
         'vendor/js/parse-1.2.12.min.js'
       ],
 
-      vendor_app: {
-        src: ['<%= concat.shared %>', 'vendor/js/fastclick.js'],
-        dest: 'build/vendor_app.js'
-      },
-
-      vendor_app_min: {
-        src: ['<%= concat.shared_minified %>', 'vendor/js/fastclick.min.js'],
-        dest: 'build/vendor_app.min.js'
-      },
-
-      vendor_admin: {
-        src: [
-          '<%= concat.shared %>',
-          'vendor/js/backbone_filters.js',
-          'vendor/js/jquery.autosize.js'
-        ],
-        dest: 'build/vendor_admin.js'
-      },
-
-      vendor_admin_min: {
-        src: [
-          '<%= concat.shared_minified %>',
-          'vendor/js/backbone_filters.min.js',
-          'vendor/js/jquery.autosize.min.js'
-        ],
-        dest: 'build/vendor_admin.min.js'
-      },
-
+      // App also uses the vendored fastclick library
       app: {
-        src: ['<%= concat.vendor_app.dest %>', 'build/app.js'],
+        src: [
+          '<%= concat.shared_js %>',
+          'vendor/js/fastclick.js',
+          'build/app.js'
+        ],
         dest: 'build/linksf.js'
       },
 
+      // Concat minified files
       app_min: {
-        src: ['<%= concat.vendor_app_min.dest %>', 'build/app.min.js'],
+        src: [
+          '<%= concat.shared_js_minified %>',
+          'vendor/js/fastclick.min.js',
+          'build/app.min.js'
+        ],
         dest: 'build/linksf.js'
       },
 
+      // Admin uses backbone filters for authentication and autosize for text entry
       admin: {
-        src: ['<%= concat.vendor_admin.dest %>', 'build/admin.js'],
+        src: [
+          '<%= concat.shared_js %>',
+          'vendor/js/backbone_filters.js',
+          'vendor/js/jquery.autosize.js',
+          'vendor/js/bootstrap.js',
+          'build/admin.js'
+        ],
         dest: 'build/linksf_admin.js'
       },
 
       admin_min: {
-        src: ['<%= concat.vendor_admin_min.dest %>', 'build/admin.min.js'],
+        src: [
+          '<%= concat.shared_js_minified %>',
+          'vendor/js/backbone_filters.min.js',
+          'vendor/js/jquery.autosize.min.js',
+          'vendor/js/bootstrap.min.js',
+          'build/admin.min.js'
+        ],
         dest: 'build/linksf_admin.js'
       }
     },
@@ -206,12 +214,23 @@ module.exports = function(grunt) {
         report: 'min'
       },
 
-      vendor: {files: {
-        'vendor/js/jquery.serialize-object.min.js': 'vendor/js/jquery.serialize-object.js',
-        'vendor/js/backbone_filters.min.js': 'vendor/js/backbone_filters.js'
-      }},
+      vendor: {
+        files: {
+          // These libraries are not distributed with minified versions, so we
+          // minify them ourselves.
+          'vendor/js/jquery.serialize-object.min.js': 'vendor/js/jquery.serialize-object.js',
+          'vendor/js/backbone_filters.min.js': 'vendor/js/backbone_filters.js'
+        }
+      },
       app: {files: {'build/app.min.js': 'build/app.js'}},
       admin: {files: {'build/admin.min.js': 'build/admin.js'}}
+    },
+
+    clean: {
+      build: {
+        src: 'build/*',
+        filter: function(filepath) { return filepath !== 'build/.gitkeep'; }
+      }
     },
 
     cachebuster: {
@@ -240,20 +259,26 @@ module.exports = function(grunt) {
 
             Object.keys(hashes).forEach(function(key) {
               var matches = key.match(/^build\/(.*)(\..*)$/),
-                  // outputFile = matches[1] + '-' + hashes[key] + matches[2];
-                  outputFile = matches[1] + matches[2];
+                  outputFile = matches[1] + '-' + hashes[key] + matches[2];
+                  outputLocation = 'build/' + outputFile;
+                  // outputFile = matches[1] + matches[2];
 
-              // grunt.file.copy(key, outputLocation);
-              context[keyMap[key]] = outputFile;
+              console.log('src file is ', key);
+              console.log('context key is ', keyMap[key]);
+              console.log('context value is ', outputFile);
+              console.log('hashed file is ', outputLocation);
+              grunt.file.copy(key, outputLocation);
+              // context[keyMap[key]] = outputFile;
+              context[keyMap[key]] = outputLocation;
             });
 
             template = Handlebars.compile(grunt.file.read('app/index.html'));
             output = template(context);
-            grunt.file.write('build/index.html', output);
+            grunt.file.write('index.html', output);
 
             template = Handlebars.compile(grunt.file.read('admin/admin.html'));
             output = template(context);
-            grunt.file.write('build/admin.html', output);
+            grunt.file.write('admin.html', output);
           }
         }
       }
@@ -269,20 +294,21 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-simple-mocha');
   grunt.loadNpmTasks('grunt-cachebuster');
   grunt.loadNpmTasks('grunt-browserify');
+  grunt.loadNpmTasks('grunt-contrib-clean');
 
   grunt.registerTask('build:development', [
+    'clean',
     'jshint',
     'simplemocha',
     'sass',
     'browserify',
-    'concat:vendor_app',
     'concat:app',
-    'concat:vendor_admin',
     'concat:admin',
     'cachebuster'
   ]);
 
   grunt.registerTask('build:production', [
+    'clean',
     'jshint',
     'simplemocha',
     'sass',
@@ -290,9 +316,7 @@ module.exports = function(grunt) {
     'browserify',
     'uglify',
     'concat:app_min',
-    'concat:vendor_app_min',
     'concat:admin_min',
-    'concat:vendor_admin_min',
     'cachebuster'
   ]);
 

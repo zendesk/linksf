@@ -41,32 +41,32 @@ var Router = Backbone.Router.extend({
   },
 
   query: function(queryString) {
-    var ListView  = require('shared/views/list_view'),
-        self = this,
-        queryParams;
+    var ListView  = require('shared/views/list_view');
 
     this.listView = this.listView || new ListView({ collection: facilities, isSingleton: true });
 
     fetchLocation().always(function(loc) {
-      queryParams       = self.listView.generateQueryParams(queryString);
-      queryParams.limit = 20;
-      self.listView.options.categories = queryParams.filter.categories || [];
+      var queryParams = this.listView.generateQueryParams(queryString);
+
+      queryParams.limit = 20,
+      this.listView.options.categories = queryParams.filter.categories || [];
+
       if (loc.lon && loc.lat) {
         $.extend(queryParams, loc);
-        self.listView.options.currentLocation = loc;
+        this.listView.options.currentLocation = loc;
       }
-      applicationController.render(self.listView);
-      self.listView.showSpinner();
+      applicationController.render(this.listView);
+      this.listView.showSpinner();
       window.scrollTo(0, 0);
 
-      self.listView.submitQuery(queryParams).done(function(results) {
-        self.listView.hideSpinner();
+      this.listView.submitQuery(queryParams).done(function(results) {
+        this.listView.hideSpinner();
         window.scrollTo(0, 0); // Scroll to top
-      }).fail(function() {
+      }.bind(this)).fail(function() {
         console.log('submitQuery error', arguments);
-        self.listView.hideSpinner();
-      });
-    });
+        this.listView.hideSpinner();
+      }.bind(this));
+    }.bind(this));
 
   },
 

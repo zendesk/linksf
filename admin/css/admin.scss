@@ -1,3 +1,10 @@
+@import 'shared/css/common.scss';
+@import 'vendor/css/normalize.min.scss';
+@import 'vendor/css/icons.scss';
+@import 'vendor/css/bootstrap.min.scss';
+
+@import 'admin/css/list.scss';
+
 #linksf {
   padding-top: $navbar-height;
 }

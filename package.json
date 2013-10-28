@@ -19,6 +19,7 @@
     "handlebars-runtime": "~1.0.12",
     "hbsfy": "~0.1.5",
     "localStorage": "~1.0.2",
-    "xmlhttprequest": "~1.6.0"
+    "xmlhttprequest": "~1.6.0",
+    "grunt-contrib-clean": "~0.5.0"
   }
 }
