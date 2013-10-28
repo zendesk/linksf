@@ -17,6 +17,8 @@ function navigate(categories, searchTerm) {
 }
 
 var IndexView = Backbone.View.extend({
+  options: {},
+
   template: require('templates/index'),
 
   events: {
