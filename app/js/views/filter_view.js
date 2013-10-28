@@ -26,12 +26,38 @@ function navigate(options) {
   router.navigate(route, { trigger: true });
 }
 
+function setFilterOptions(view) {
+  var params       = view.options.params,
+      categories   = _.compact((params.categories || '').split(',')),
+      demographics = _.compact((params.demographics || '').split(',')),
+      gender       = params.gender,
+      sort         = params.sort;
+
+  categories.forEach(function(category) {
+    view.$('.filter-categories .btn[data-value="' + category + '"]').button('toggle');
+  });
+
+  demographics.forEach(function(demographic) {
+    view.$('.filter-demographics .btn[data-value="' + demographic + '"]').button('toggle');
+  });
+
+  if (gender) {
+    view.$('.filter-gender .btn[data-value="' + gender + '"]').button('toggle');
+  }
+
+  if (sort === 'name') {
+    view.$('.filter-sort .btn[data-value="name"]').button('toggle');
+  }
+}
+
 var FilterView = Backbone.View.extend({
+  navButtons: [
+    {class: 'left', id: 'backNav-button', text: 'Back'},
+    {class: 'right', id: 'searchNav-button', text: 'Search', action: 'submitSearch'}
+  ],
   template: require('templates/filter'),
   events: {
     "click .search .search-button": "submitSearch",
-    "click #backNav-button": "goBack",
-    "click #searchNav-button": "submitSearch",
     'click ul.filter-categories .category': 'toggleCategory'
   },
 
@@ -43,20 +69,14 @@ var FilterView = Backbone.View.extend({
     var distanceDisabled = this.options.currentLocation ? false : 'disabled';
 
     this.$el.html(this.template({
-      navButtons: [
-        {class: 'left', id: 'backNav-button', text: 'Back'},
-        {class: 'right', id: 'searchNav-button', text: 'Search'}
-      ],
       categories:       require('shared/lib/categories'),
       filter:           true,
       distanceDisabled: distanceDisabled
     }));
-    return this;
-  },
 
-  goBack: function() {
-    var router = require('routers/router').instance();
-    router.back();
+    _.defer(setFilterOptions, this);
+
+    return this;
   },
 
   submitSearch: function() {

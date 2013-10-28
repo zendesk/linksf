@@ -1,15 +1,8 @@
-{{> nav}}
-
 {{#with facility}}
 <div class="container">
   <h3>{{name}}</h3>
 
   <div class="facility-info">
-    <p class="title">Hours</p>
-    <div class="inset">
-      {{> openHours}}
-    </div>
-
     <p class="title">Welcome</p>
     <div class="inset">
       <p>{{demographics}}</p>
@@ -31,6 +24,7 @@
       {{/with}}
     </div>
 
+
     <div class="inset-call">
       <i class="icon-phone"></i>
       <label>Call</label>
@@ -41,6 +35,17 @@
       {{/if}}
       <i class="icon-right-open right"></i>
     </div>
+    
+    {{#if website}}
+    <a href="{{website}}" target="_blank">
+      <div class="inset-website">
+        <i class="icon-link"></i>
+        <label>Website</label>
+        <span>{{website}}</span>
+        <i class="icon-right-open right"></i>
+      </div>
+    </a>
+    {{/if}}
 
     <div class="inset-directions">
       <i class="icon-compass"></i>
@@ -53,6 +58,8 @@
       <div class="inset-services">
         <label>Description:</label>
         <p>{{description}}</p>
+        <label>Hours:</label>
+          {{> openHours}}
         {{#if notes}}
           <label>Notes:</label>
          <p>{{notes}}</p>

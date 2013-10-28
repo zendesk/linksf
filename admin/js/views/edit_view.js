@@ -14,7 +14,7 @@ function modelSaveFailCallback(args) {
 function modelSaveSuccessCallback(args) {
   this.$("#facilitySaved").show().focus();
   this.$("#facilitySaved").delay(5000).fadeOut();
-
+  this.$("#errorMessages").hide();
   console.log("saved.");
   console.log(args);
 }
@@ -70,10 +70,35 @@ var EditView = Backbone.View.extend({
   template: require('templates/edit'),
 
   events: {
-    'click #add_category':    'addCategory',
-    'click #remove_category': 'removeCategory',
-    'click .closed':          'previewHours',
-    'blur .hours input':      'previewHours'
+    'click #add_category':        'addCategory',
+    'click #remove_category':     'removeCategory',
+    'click .closed':              'previewHours',
+    'blur .hours input':          'previewHours',
+    'blur input[name="address"]': 'previewAddress',
+    'blur input[name="city"]':    'previewAddress',
+    'click #delete_facility':     'deleteFacility'
+  },
+
+  previewAddress: function(event) {
+    var address = this.$('input[name="address"]').val(),
+        city    = this.$('input[name="city"]').val(),
+        preview = this.$('.address-preview');
+    if (address === '' || city === '') { return; }
+    preview.removeClass('error');
+
+    var ul = $("<ul>");
+    fetchLocation(address + ", " + city).then(
+      function(loc) {
+        preview.html('Recognized address: ' + loc.formattedAddress);
+        preview.closest('.control-group').show();
+      },
+
+      function(err) {
+        preview.addClass('error');
+        preview.html("Couldn't recognized address!");
+        preview.closest('.control-group').show();
+      }
+    );
   },
 
   previewHours: function(event) {
@@ -90,8 +115,8 @@ var EditView = Backbone.View.extend({
       [ { hours: openHours } ]
     );
 
-    preview = mergedHours.humanize();
-    html    = openHoursTemplate({ openHours: preview });
+    preview = mergedHours.humanizeCondensed();
+    html    = openHoursTemplate({ condensedHours: preview });
     $hours.find('#preview_hours').html(html);
   },
 
@@ -107,6 +132,20 @@ var EditView = Backbone.View.extend({
   removeCategory: function(event) {
     var parent = this.$(event.target).closest('.service-edit-row');
     parent.remove();
+    return false;
+  },
+
+  deleteFacility: function() {
+    if ( window.confirm("Confirm deletion of " + this.model.get("name")) ) {
+      this.model.destroy()
+        .then(function() {
+          var router = require('routers/admin_router').instance;
+          router.navigate("/", {trigger: true});
+        }, function(errors) {
+          window.alert("errors");
+        }
+      );
+    }
     return false;
   },
 
@@ -228,13 +267,19 @@ var EditView = Backbone.View.extend({
       errors.push("Please add at least one service");
     }
 
+    var website = $('input[name=website]').val();
+    if ( website.length > 0 && website.indexOf('.') === -1 ) {
+      this.addErrorToInput($('input[name=website]'));
+      errors.push("Please enter a valid URL for 'website'");
+    }
+
     var ul = $("<ul>");
 
     errors.forEach(function(msg) {
       ul.append($("<li>" + msg + "</li>"));
     });
 
-    $("#errorMessages").html(ul);
+    $("#errorMessages").show().html(ul);
     return errors.length === 0;
   },
 
@@ -252,15 +297,15 @@ var EditView = Backbone.View.extend({
   },
 
   saveForm: function(formValues) {
-    var servicePromises = [];
-
     // the days-of-the-week inputs are named dumbly, get rid of them
     days.forEach(function(d) { delete formValues[d.key]; });
 
     if ( formValues.gender === "" ) {
       formValues.gender = null;
     }
-
+    if ( formValues.website.length > 0 && formValues.website.indexOf("http") < 0 ) {
+      formValues.website = "http://" + formValues.website;
+    }
     formValues.age = this.serializeAges();
 
     var services = _.clone(formValues.services);
@@ -285,10 +330,8 @@ var EditView = Backbone.View.extend({
         Hours = require('shared/models/hours');
 
     templateData.services.forEach(function(service) {
-      var openHours = Hours.fromData(service.openHours).humanize();
-
       service.days = days.map(function(day, index) {
-        return {key: day.key, name: day.name, hours: openHours[index].hours};
+        return {key: day.key, name: day.name, hours: service.openHours[index].hours};
       });
     });
 

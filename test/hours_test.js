@@ -75,6 +75,17 @@ describe("Hours", function() {
 
       });
 
+      it("should allow various versions of '24 hours'", function() {
+        (function() { hours.addDay("Mon", "24hr"); }).should.not.throwError(/Invalid time/);
+        (function() { hours.addDay("Mon", "24 hours"); }).should.not.throwError(/Invalid time/);
+        (function() { hours.addDay("Mon", "24 HOURS"); }).should.not.throwError(/Invalid time/);
+      });
+
+      it("should convert '24 hours to 12am - 11:59pm'", function() {
+        hours = new Hours();
+        hours.addDay("Mon", "24 hours");
+        hours.hours[1].should.eql([[0, 2359]]);
+      });
     });
   });
 
@@ -93,13 +104,13 @@ describe("Hours", function() {
 
     it('converts to templatable objects', function() {
       hours.humanize().should.eql([
-        { day: 'Sunday', hours: '9:00 AM - 6:00 PM' },
-        { day: 'Monday', hours: '9:00 AM - 12:00 PM, 2:00 PM - 5:00 PM' },
-        { day: 'Tuesday', hours: '9:00 AM - 12:00 AM' },
-        { day: 'Wednesday', hours: '9:00 AM - 6:00 PM' },
+        { day: 'Sunday', hours: '9am - 6pm' },
+        { day: 'Monday', hours: '9am - 12pm, 2pm - 5pm' },
+        { day: 'Tuesday', hours: '9am - 12am' },
+        { day: 'Wednesday', hours: '9am - 6pm' },
         { day: 'Thursday', hours: null },
-        { day: 'Friday', hours: '9:00 AM - 6:00 PM' },
-        { day: 'Saturday', hours: '9:00 AM - 11:00 AM, 2:00 PM - 5:30 PM' }
+        { day: 'Friday', hours: '9am - 6pm' },
+        { day: 'Saturday', hours: '9am - 11am, 2pm - 5:30pm' }
       ]);
     });
 

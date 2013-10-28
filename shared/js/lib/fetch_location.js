@@ -34,10 +34,11 @@ function fetchLocationForAddress(address, deferred) {
   }, function(results, status) {
     console.log(status, results);
     if (status == maps.GeocoderStatus.OK) {
-      var location = results[0].geometry.location,
-          lat      = location.lat(),
-          lon      = location.lng();
-      deferred.resolve({lat: lat, lon: lon});
+      var location  = results[0].geometry.location,
+          formatted = results[0].formatted_address,
+          lat       = location.lat(),
+          lon       = location.lng();
+      deferred.resolve({lat: lat, lon: lon, formattedAddress: formatted});
     } else {
       deferred.reject();
     }
