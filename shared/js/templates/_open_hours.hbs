@@ -1,0 +1,10 @@
+<table class="open-hours">
+  {{#each openHours}}
+    {{#if hours}}
+      <tr>
+        <td class="label-hour"><b>{{day}}</b>:</td>
+        <td class="hour">{{hours}}</td>
+      </tr>
+    {{/if}}
+  {{/each}}
+</table>
