@@ -3,3 +3,5 @@ build/*.js
 build/*.html
 build/*.css
 .sass-cache
+index.html
+admin.html
