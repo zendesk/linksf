@@ -3,7 +3,7 @@ var ListView = require('shared/views/list_view');
 function navigate(category) {
   var route  = 'query',
       params = [],
-      router = require('routers/router').instance;
+      router = require('routers/router').instance();
       if ( category.length > 0 ) {
         params.push( "categories=" + category );
       }

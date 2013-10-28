@@ -1,15 +1,8 @@
 /*globals Backbone*/
 
 var BaseController        = require('shared/lib/base_controller'),
-    DetailView            = require('views/detail_view'),
-    FilterView            = require('views/filter_view'),
-    IndexView             = require('views/index_view'),
-    ListView              = require('shared/views/list_view'),
-    AboutView             = require('views/about_view'),
-    Query                 = require('shared/lib/query'),
     applicationController = new BaseController({ el: '#linksf' }),
-    facilities            = require('shared/collections/facilities').instance,
-    FacilityCollection    = require('shared/collections/facilities').FacilityCollection,
+    facilities            = require('shared/collections/facilities').instance(),
     fetchLocation         = require('shared/lib/fetch_location');
 
 var Router = Backbone.Router.extend({
@@ -18,19 +11,18 @@ var Router = Backbone.Router.extend({
     'query?:queryString': 'query',
     'query':              'query',
     'detail/:id':         'detail',
-    // 'edit/:id':           'edit',
     'about' :             'about',
     'filter':             'filter'
   },
 
   listView: null,
 
-  listViewClass: ListView,
   initialize: function() {
     this.routesHit = 0;
     //keep count of number of routes handled by your application
     Backbone.history.on('route', function() { this.routesHit++; }, this);
   },
+
   back: function() {
     if(this.routesHit > 1) {
       //more than one route hit -> user did not land to current page directly
@@ -41,17 +33,19 @@ var Router = Backbone.Router.extend({
       this.navigate('', {trigger:true, replace:true});
     }
   },
+
   index: function() {
-    var indexView = new IndexView();
+    var IndexView = require('views/index_view'),
+        indexView = new IndexView();
     return applicationController.render(indexView);
   },
 
   query: function(queryString) {
-    var listViewClass = this.listViewClass,
-        self          = this,
+    var ListView  = require('shared/views/list_view'),
+        self = this,
         queryParams;
 
-    this.listView = this.listView || new listViewClass({ collection: facilities, isSingleton: true });
+    this.listView = this.listView || new ListView({ collection: facilities, isSingleton: true });
 
     fetchLocation().always(function(loc) {
       queryParams       = self.listView.generateQueryParams(queryString);
@@ -77,7 +71,8 @@ var Router = Backbone.Router.extend({
   },
 
   filter: function() {
-    var self = this;
+    var FilterView = require('views/filter_view'),
+        self = this;
 
     fetchLocation().always(function(loc) {
       self.filterView = self.filterView || new FilterView({isSingleton: true });
@@ -91,16 +86,12 @@ var Router = Backbone.Router.extend({
   },
 
   renderFacility: function(facility, options) {
-    var detailView = new DetailView({ model: facility.presentJSON() });
+    var DetailView = require('views/detail_view'),
+        detailView = new DetailView({ model: facility.presentJSON() });
     if (options) { detailView.options = options; }
     window.scrollTo(0, 0); // Scroll to top
     return applicationController.render(detailView);
   },
-
-  // renderEdit: function(facility) {
-  //   var editView = new EditView({ model: facility });
-  //   return applicationController.render(editView);
-  // },
 
   detail: function(id) {
     var self = this, options = {};
@@ -116,22 +107,20 @@ var Router = Backbone.Router.extend({
     });
   },
 
-  // edit: function(id) {
-  //   this._getFacility(id, function(fac) {
-  //     this.renderEdit(fac);
-  //   }.bind(this));
-  // },
   about: function() {
+    var AboutView = require('views/about_view');
+
     this.aboutView = this.aboutView || new AboutView();
     applicationController.render(this.aboutView);
   },
 
   _getFacility: function(id, done) {
-    var facility = facilities.get(id);
+    var facility = facilities.get(id),
+        query = require('shared/lib/query');
 
     if ( !facility ) {
       //Fetch Facility from backend if not in collection
-      Query.getByID(id).then(function(facility) {
+      query.getByID(id).then(function(facility) {
         done(facility);
       });
     } else {
@@ -140,5 +129,14 @@ var Router = Backbone.Router.extend({
   }
 });
 
-var instance = new Router();
-module.exports = { instance: instance };
+var instance;
+
+module.exports = {
+  instance: function() {
+    if ( instance ) { return instance; }
+
+    instance = new Router();
+
+    return instance;
+  }
+};

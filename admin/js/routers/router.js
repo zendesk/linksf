@@ -3,12 +3,11 @@
 var AdminListView         = require('views/list_view'),
     EditView              = require('views/edit_view'),
     LoginView             = require('views/login_view'),
-    // DetailView            = require('views/detail_view'),
     Facility              = require('shared/models/facility'),
     Query                 = require('shared/lib/query'),
     BaseController        = require('shared/lib/base_controller'),
     applicationController = new BaseController({ el: '#linksf' }),
-    facilities            = require('shared/collections/facilities').instance;
+    facilities            = require('shared/collections/facilities').instance();
 
 var Router = Backbone.Router.extend({
 
@@ -134,6 +133,14 @@ var Router = Backbone.Router.extend({
   }
 });
 
-var instance = new Router();
-module.exports = { instance: instance };
+var instance;
 
+module.exports = {
+  instance: function() {
+    if ( instance ) { return instance; }
+
+    instance = new Router();
+
+    return instance;
+  }
+};

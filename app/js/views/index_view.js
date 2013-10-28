@@ -1,7 +1,7 @@
 var fetchLocation = require('shared/lib/fetch_location');
 
 function navigate(categories, searchTerm) {
-  var router = require('routers/router').instance,
+  var router = require('routers/router').instance(),
       route  = 'query?categories=' + categories.join(',');
 
   if ( searchTerm ) {

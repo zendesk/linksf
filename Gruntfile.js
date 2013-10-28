@@ -134,46 +134,67 @@ module.exports = function(grunt) {
     },
 
     concat: {
-      vendor_dev: {
+      shared: [
+        'vendor/js/jquery-2.0.3.js',
+        'vendor/js/jquery.serialize-object.js',
+        'vendor/js/underscore.js',
+        'vendor/js/backbone-1.1.0.js',
+        'vendor/js/parse-1.2.12.js'
+      ],
+
+      shared_minified: [
+        'vendor/js/jquery-2.0.3.min.js',
+        'vendor/js/jquery.serialize-object.min.js',
+        'vendor/js/underscore.min.js',
+        'vendor/js/backbone-1.1.0.min.js',
+        'vendor/js/parse-1.2.12.min.js'
+      ],
+
+      vendor_app: {
+        src: ['<%= concat.shared %>', 'vendor/js/fastclick.js'],
+        dest: 'build/vendor_app.js'
+      },
+
+      vendor_app_min: {
+        src: ['<%= concat.shared_minified %>', 'vendor/js/fastclick.min.js'],
+        dest: 'build/vendor_app.min.js'
+      },
+
+      vendor_admin: {
         src: [
-          'vendor/js/jquery-2.0.3.js',
-          'vendor/js/jquery.serialize-object.js',
-          'vendor/js/underscore.js',
-          'vendor/js/backbone-1.1.0.js',
+          '<%= concat.shared %>',
           'vendor/js/backbone_filters.js',
-          'vendor/js/handlebars.js',
-          'vendor/js/fastclick.js',
-          'vendor/js/parse-1.2.12.js'
+          'vendor/js/jquery.autosize.js'
         ],
-        dest: 'build/vendor.js'
+        dest: 'build/vendor_admin.js'
       },
 
-      vendor_prod: {
+      vendor_admin_min: {
         src: [
-          'vendor/js/jquery-2.0.3.min.js',
-          'vendor/js/handlebars.min.js',
-          'vendor/js/parse-1.2.12.min.js'
+          '<%= concat.shared_minified %>',
+          'vendor/js/backbone_filters.min.js',
+          'vendor/js/jquery.autosize.min.js'
         ],
-        dest: 'build/vendor.min.js'
+        dest: 'build/vendor_admin.min.js'
       },
 
-      app_dev: {
-        src: ['build/vendor.js', 'build/app.js'],
+      app: {
+        src: ['<%= concat.vendor_app.dest %>', 'build/app.js'],
         dest: 'build/linksf.js'
       },
 
-      app_prod: {
-        src: ['build/vendor.min.js', 'build/app.min.js'],
+      app_min: {
+        src: ['<%= concat.vendor_app_min.dest %>', 'build/app.min.js'],
         dest: 'build/linksf.js'
       },
 
-      admin_dev: {
-        src: ['build/vendor.js', 'build/admin.js'],
+      admin: {
+        src: ['<%= concat.vendor_admin.dest %>', 'build/admin.js'],
         dest: 'build/linksf_admin.js'
       },
 
-      admin_prod: {
-        src: ['build/vendor.min.js', 'build/admin.min.js'],
+      admin_min: {
+        src: ['<%= concat.vendor_admin_min.dest %>', 'build/admin.min.js'],
         dest: 'build/linksf_admin.js'
       }
     },
@@ -185,7 +206,10 @@ module.exports = function(grunt) {
         report: 'min'
       },
 
-      vendor: {files: {}},
+      vendor: {files: {
+        'vendor/js/jquery.serialize-object.min.js': 'vendor/js/jquery.serialize-object.js',
+        'vendor/js/backbone_filters.min.js': 'vendor/js/backbone_filters.js'
+      }},
       app: {files: {'build/app.min.js': 'build/app.js'}},
       admin: {files: {'build/admin.min.js': 'build/admin.js'}}
     },
@@ -246,50 +270,37 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-cachebuster');
   grunt.loadNpmTasks('grunt-browserify');
 
-  grunt.registerTask('validate', [ 'jshint', 'simplemocha' ]);
-
-  grunt.registerTask('build', [
-    'validate',
-    'sass:app',
-    'sass:admin',
-    'concat:vendor_dev',
-    'browserify:app',
-    'browserify:admin'
+  grunt.registerTask('build:development', [
+    'jshint',
+    'simplemocha',
+    'sass',
+    'browserify',
+    'concat:vendor_app',
+    'concat:app',
+    'concat:vendor_admin',
+    'concat:admin',
+    'cachebuster'
   ]);
 
-  grunt.registerTask('concat:dev', [
-    'concat:app_dev',
-    'concat:admin_dev'
-  ]);
-
-  grunt.registerTask('concat:prod', [
-    'concat:vendor_prod',
-    'concat:app_prod',
-    'concat:admin_prod'
-  ]);
-
-  grunt.registerTask('uglify:all', [
-    'uglify:vendor',
-    'uglify:app',
-    'uglify:admin'
-  ]);
-
-  grunt.registerTask('cssmin:all', [
-    'cssmin:app',
-    'cssmin:admin'
+  grunt.registerTask('build:production', [
+    'jshint',
+    'simplemocha',
+    'sass',
+    'cssmin',
+    'browserify',
+    'uglify',
+    'concat:app_min',
+    'concat:vendor_app_min',
+    'concat:admin_min',
+    'concat:vendor_admin_min',
+    'cachebuster'
   ]);
 
   grunt.registerTask('default', [
-    'build',
-    'concat:dev',
-    'cachebuster'
+    'build:development'
   ]);
 
   grunt.registerTask('release', [
-    'build',
-    'uglify:all',
-    'cssmin:all',
-    'concat:prod',
-    'cachebuster'
+    'build:production'
   ]);
 };
