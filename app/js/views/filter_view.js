@@ -1,7 +1,7 @@
 function navigate(options) {
   var route  = 'query',
       params = [],
-      router = require('routers/router').instance;
+      router = require('routers/router').instance();
 
   if (options.categories.length > 0) {
      params.push("categories=" + options.categories.join(","));
@@ -55,7 +55,7 @@ var FilterView = Backbone.View.extend({
   },
 
   goBack: function() {
-    var router = require('routers/router').instance;
+    var router = require('routers/router').instance();
     router.back();
   },
 

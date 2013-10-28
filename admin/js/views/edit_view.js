@@ -3,7 +3,7 @@ var Service             = require('shared/models/service'),
     fetchLocation       = require('shared/lib/fetch_location'),
     editServiceTemplate = require('templates/_edit_service'),
     openHoursTemplate   = require('templates/_open_hours'),
-    facilities          = require('shared/collections/facilities').instance;
+    facilities          = require('shared/collections/facilities').instance();
 
 function modelSaveFailCallback(args) {
   this.$("#facilitySaveError").show().focus();

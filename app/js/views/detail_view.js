@@ -68,7 +68,7 @@ var DetailView = Backbone.View.extend({
     }));
 
     this.$('#backNav-button').click(function(){
-      require('routers/router').instance.back();
+      require('routers/router').instance().back();
     });
 
     _.defer(

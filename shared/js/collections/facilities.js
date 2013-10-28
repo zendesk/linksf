@@ -4,5 +4,14 @@ var Facilities = Parse.Collection.extend({
   model: Facility
 });
 
-var instance = new Facilities();
-module.exports = { instance: instance };
+var instance;
+
+module.exports = {
+  instance: function() {
+    if ( instance ) { return instance; }
+
+    instance = new Facilities();
+
+    return instance;
+  }
+};
