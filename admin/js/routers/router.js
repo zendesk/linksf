@@ -60,23 +60,11 @@ var Router = Backbone.Router.extend({
     applicationController.render(listView);
   },
 
-  // renderFacility: function(facility) {
-  //   var detailView = new DetailView({ model: facility.presentJSON() });
-  //   window.scrollTo(0, 0);
-  //   return applicationController.render(detailView);
-  // },
-
   renderEdit: function(facility) {
     var editView = new EditView({ model: facility });
     window.scrollTo(0, 0);
     return applicationController.render(editView);
   },
-
-  // detail: function(id) {
-  //   this._getFacility(id, function(facility) {
-  //     this.renderFacility(facility);
-  //   }.bind(this));
-  // },
 
   edit: function(id) {
     this._getFacility(id, function(fac) {
