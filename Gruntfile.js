@@ -234,10 +234,6 @@ module.exports = function(grunt) {
       build: {
         src: 'build/*',
         filter: function(filepath) { return filepath !== 'build/.gitkeep'; }
-      },
-      tmp: {
-        src: 'tmp/*',
-        filter: function(filepath) { return filepath !== 'tmp/.gitkeep'; }
       }
     },
 

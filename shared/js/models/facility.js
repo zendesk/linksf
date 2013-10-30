@@ -18,9 +18,12 @@ module.exports = Parse.Object.extend('Facility', {
   },
 
   presentJSON: function() {
-    var asJSON = this.toJSON();
+    var asJSON = this.toJSON(),
+        Service = require('shared/models/service');
+
     asJSON.services = this.get('services').map(function(service) {
-      return service.presentJSON();
+      var test = new Service(service.attributes);
+      return test.presentJSON();
     });
     asJSON.demographics = this.demographics();
     asJSON.distinctCategories = this.distinctCategories();
@@ -128,7 +131,7 @@ module.exports = Parse.Object.extend('Facility', {
 
   demographics: function() {
     var age = this.get('age'),
-        gender = this.get('gender'), 
+        gender = this.get('gender'),
         output = "";
 
     if ( (!age || age.length === 0) && (!gender) ) {
