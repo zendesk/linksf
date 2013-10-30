@@ -64,12 +64,12 @@ module.exports = function(grunt) {
       // generate app-specific css file
       app: {
         src: 'app/css/app.scss',
-        dest: 'build/linksf.css'
+        dest: 'tmp/linksf.css'
       },
 
       admin: {
         src: 'admin/css/admin.scss',
-        dest: 'build/linksf_admin.css'
+        dest: 'tmp/linksf_admin.css'
       }
     },
 
@@ -86,7 +86,7 @@ module.exports = function(grunt) {
         src: 'app/js/app.js',
 
         // The built file
-        dest: 'build/app.js',
+        dest: 'tmp/app.js',
 
         options: {
           // We want alias mappings because we'd rather
@@ -115,7 +115,7 @@ module.exports = function(grunt) {
       // See browserify:app above
       admin: {
         src: 'admin/js/admin.js',
-        dest: 'build/admin.js',
+        dest: 'tmp/admin.js',
         options: {
           aliasMappings: [
             { cwd: 'shared/js/lib',         src: '*.js',  dest: 'shared/lib' },
@@ -139,12 +139,12 @@ module.exports = function(grunt) {
     // Minify css files
     cssmin: {
       app: {
-        src: 'build/linksf.css',
-        dest: 'build/linksf.css'
+        src: 'tmp/linksf.css',
+        dest: 'tmp/linksf.css'
       },
       admin: {
-        src: 'build/linksf_admin.css',
-        dest: 'build/linksf_admin.css'
+        src: 'tmp/linksf_admin.css',
+        dest: 'tmp/linksf_admin.css'
       },
     },
 
@@ -172,9 +172,9 @@ module.exports = function(grunt) {
         src: [
           '<%= concat.shared_js %>',
           'vendor/js/fastclick.js',
-          'build/app.js'
+          'tmp/app.js'
         ],
-        dest: 'build/linksf.js'
+        dest: 'tmp/linksf.js'
       },
 
       // Concat minified files
@@ -182,9 +182,9 @@ module.exports = function(grunt) {
         src: [
           '<%= concat.shared_js_minified %>',
           'vendor/js/fastclick.min.js',
-          'build/app.min.js'
+          'tmp/app.min.js'
         ],
-        dest: 'build/linksf.js'
+        dest: 'tmp/linksf.js'
       },
 
       // Admin uses backbone filters for authentication and autosize for text entry
@@ -194,9 +194,9 @@ module.exports = function(grunt) {
           'vendor/js/backbone_filters.js',
           'vendor/js/jquery.autosize.js',
           'vendor/js/bootstrap.js',
-          'build/admin.js'
+          'tmp/admin.js'
         ],
-        dest: 'build/linksf_admin.js'
+        dest: 'tmp/linksf_admin.js'
       },
 
       admin_min: {
@@ -205,9 +205,9 @@ module.exports = function(grunt) {
           'vendor/js/backbone_filters.min.js',
           'vendor/js/jquery.autosize.min.js',
           'vendor/js/bootstrap.min.js',
-          'build/admin.min.js'
+          'tmp/admin.min.js'
         ],
-        dest: 'build/linksf_admin.js'
+        dest: 'tmp/linksf_admin.js'
       }
     },
 
@@ -226,14 +226,18 @@ module.exports = function(grunt) {
           'vendor/js/backbone_filters.min.js': 'vendor/js/backbone_filters.js'
         }
       },
-      app: {files: {'build/app.min.js': 'build/app.js'}},
-      admin: {files: {'build/admin.min.js': 'build/admin.js'}}
+      app: {files: {'tmp/app.min.js': 'tmp/app.js'}},
+      admin: {files: {'tmp/admin.min.js': 'tmp/admin.js'}}
     },
 
     clean: {
       build: {
         src: 'build/*',
         filter: function(filepath) { return filepath !== 'build/.gitkeep'; }
+      },
+      tmp: {
+        src: 'tmp/*',
+        filter: function(filepath) { return filepath !== 'tmp/.gitkeep'; }
       }
     },
 
@@ -241,20 +245,20 @@ module.exports = function(grunt) {
       dist: {
         files: {
           src: [
-            'build/linksf.js',
-            'build/linksf.css',
-            'build/linksf_admin.js',
-            'build/linksf_admin.css'
+            'tmp/linksf.js',
+            'tmp/linksf.css',
+            'tmp/linksf_admin.js',
+            'tmp/linksf_admin.css'
           ],
         },
         options: {
           complete: function(hashes) {
             // ugly but the only way to tag each file with a key
             var keyMap = {
-                'build/linksf.js': 'linksf_js',
-                'build/linksf.css': 'linksf_css',
-                'build/linksf_admin.js': 'linksf_admin_js',
-                'build/linksf_admin.css': 'linksf_admin_css'
+                'tmp/linksf.js': 'linksf_js',
+                'tmp/linksf.css': 'linksf_css',
+                'tmp/linksf_admin.js': 'linksf_admin_js',
+                'tmp/linksf_admin.css': 'linksf_admin_css'
                },
                context = {},
                Handlebars = require('handlebars'),
@@ -262,7 +266,7 @@ module.exports = function(grunt) {
                output;
 
             Object.keys(hashes).forEach(function(key) {
-              var matches = key.match(/^build\/(.*)(\..*)$/),
+              var matches = key.match(/^tmp\/(.*)(\..*)$/),
                   outputFile = 'build/' + matches[1] + '-' + hashes[key] + matches[2];
 
               grunt.file.copy(key, outputFile);
