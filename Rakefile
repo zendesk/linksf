@@ -27,7 +27,7 @@ namespace :deploy do
 end
 
 task :grunt do
-  abort unless system("grunt")
+  abort unless system("grunt release")
 end
 
 task :clean do
