@@ -81,7 +81,8 @@ var EditView = Backbone.View.extend({
     'blur .hours input':          'previewHours',
     'blur input[name="address"]': 'previewAddress',
     'blur input[name="city"]':    'previewAddress',
-    'click #delete_facility':     'deleteFacility'
+    'click #delete_facility':     'deleteFacility',
+    'click #age_everyone':        'processEveryoneCB'
   },
 
   previewAddress: function(event) {
@@ -206,24 +207,34 @@ var EditView = Backbone.View.extend({
     });
   },
 
+  processEveryoneCB: function() {
+    var selector = this.$('[name=age]');
+
+    if ( this.$("#age_everyone").prop("checked") ) { 
+      selector.prop({checked: true, disabled: true});
+    } else {
+      selector.prop({checked: false, disabled: false});
+    }
+  },
+
   setupForm: function() {
     var g = this.model.get('gender'),
         self = this,
-        el;
+        el, 
+        ageRestrictions;
 
     el = self.$('#gender_' + (g ? g : ''));
     el.prop('checked', true);
 
-    self.$("#age_everyone").click(function() {
-      self.$('[name="age"]').prop('checked', $(self).prop('checked'));
-    });
+    self.$("#age_everyone").click(self.processEveryoneCB.bind(self));
 
-    if ( self.model.get("age") ) {
-      _(self.model.get("age")).each(function(age) {
+    if ( (ageRestrictions = self.model.get("age")) && ageRestrictions.length > 0 ) {
+      _(ageRestrictions).each(function(age) {
         self.$("#age_" + age.toUpperCase()).prop('checked', true);
       });
     } else {
-      self.$("#age_everyone").click();
+      self.$("#age_everyone").prop("checked", true);
+      self.processEveryoneCB();
     }
 
     self.$('#submit').click(function() {
@@ -297,8 +308,9 @@ var EditView = Backbone.View.extend({
     ages = this.$("[name=age]input:checked").map(function(cb) {
       return $(cb).attr('value');
     });
-
-    return _(ages).compact();
+    
+    ages = _(ages).compact();
+    return ages.length === 0 ? null : ages;
   },
 
   saveForm: function(formValues) {
