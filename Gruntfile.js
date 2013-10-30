@@ -97,7 +97,9 @@ module.exports = function(grunt) {
           // `require`d from the entry point tree.
           aliasMappings: [
             { cwd: 'shared/js/lib',         src: '*.js',  dest: 'shared/lib' },
+            { cwd: 'shared/js/lib',         src: '*.js',  dest: 'cloud/lib' },
             { cwd: 'shared/js/models',      src: '*.js',  dest: 'shared/models' },
+            { cwd: 'shared/js/models',      src: '*.js',  dest: 'cloud/models' },
             { cwd: 'shared/js/collections', src: '*.js',  dest: 'shared/collections' },
             { cwd: 'shared/js/views',       src: '*.js',  dest: 'shared/views' },
             { cwd: 'shared/js/templates',   src: '*.hbs', dest: 'shared/templates' },
@@ -117,7 +119,9 @@ module.exports = function(grunt) {
         options: {
           aliasMappings: [
             { cwd: 'shared/js/lib',         src: '*.js',  dest: 'shared/lib' },
+            { cwd: 'shared/js/lib',         src: '*.js',  dest: 'cloud/lib' },
             { cwd: 'shared/js/models',      src: '*.js',  dest: 'shared/models' },
+            { cwd: 'shared/js/models',      src: '*.js',  dest: 'cloud/models' },
             { cwd: 'shared/js/collections', src: '*.js',  dest: 'shared/collections' },
             { cwd: 'shared/js/views',       src: '*.js',  dest: 'shared/views' },
             { cwd: 'shared/js/templates',   src: '*.hbs', dest: 'shared/templates' },

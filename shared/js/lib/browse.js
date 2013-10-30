@@ -1,4 +1,4 @@
-var Facility = require('shared/models/facility'),
+var Facility = require('cloud/models/facility'),
     _ = require('underscore');
 
 module.exports = function (params, callbacks) {

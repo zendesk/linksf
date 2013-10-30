@@ -1,6 +1,6 @@
 /*globals alert*/
 var _             = require('underscore'),
-    Facility      = require('shared/models/facility');
+    Facility      = require('cloud/models/facility');
 
 var queryFunction = function(runWhere) {
   return _.partial(Parse.Cloud.run, "browse");
