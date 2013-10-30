@@ -2,6 +2,9 @@ node_modules
 build/*.js
 build/*.html
 build/*.css
+tmp/*.js
+tmp/*.html
+tmp/*.css
 .sass-cache
 index.html
 admin.html
