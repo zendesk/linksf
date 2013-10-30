@@ -1,5 +1,6 @@
 var _     = require('underscore'),
     Hours = require('cloud/models/hours'),
+    Service = require('cloud/models/service'),
     CATEGORIES = require("cloud/lib/categories");
 
 module.exports = Parse.Object.extend('Facility', {
@@ -50,9 +51,14 @@ module.exports = Parse.Object.extend('Facility', {
   },
 
   matchesOpen: function(status) {
+    if ( !status ) {
+      return true;
+    }
+
     var s = this.status();
-    if ( s === 'open' ) { return true; }
+    return s === 'open';
   },
+
   matchesFilter: function(filter) {
     var match = true;
     if ( !filter ) {
@@ -91,7 +97,6 @@ module.exports = Parse.Object.extend('Facility', {
         return service.hours().within(time);
       });
     } catch(e) {
-      console.log(e);
       return null;
     }
   },
