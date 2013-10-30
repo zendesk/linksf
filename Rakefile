@@ -4,10 +4,8 @@ namespace :deploy do
       puts 'please install and configure s3cmd'
     end
     deploy_glob = %w(
-      js/static/output-*.js
-      js/static/admin-*.js
-      css/static/user-*.css
-      css/static/admin-*.css
+      build/*.js
+      build/*.css
       index.html
       admin.html
     )
@@ -32,8 +30,8 @@ task :grunt do
   abort unless system("grunt")
 end
 
-task :clean do 
-  system("rm {js,css}/static/*")
+task :clean do
+  system("rm build/*")
 end
 
 task :deploy => ['clean', 'grunt', 'deploy:parse', 'deploy:s3']
