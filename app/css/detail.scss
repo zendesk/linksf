@@ -54,6 +54,17 @@
     border-top: none;
     color: black;
     text-decoration: none;
+    span {
+      width: 50%;
+      text-overflow: ellipsis;
+      -moz-text-overflow: ellipsis;
+      -o-text-overflow: ellipsis;
+      overflow: hidden;
+      display: inline-block;
+      vertical-align: top;
+      white-space: no-wrap;
+      color: #777;  
+    }
   }
   .inset-call {
     @include inset;
@@ -63,6 +74,9 @@
     a { font-weight: bold; }
     &:active {
       background-color: #ddd;
+    }
+    span {
+      color: #777;
     }
   }
 
