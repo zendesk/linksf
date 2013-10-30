@@ -61,11 +61,10 @@ Developing in a pure concatenation-based (or single-file) app is chaos. To allev
 
 Generally, the build steps are:
 
-1. empty `build` directory
+1. empty `build` and `tmp` directories
 1. `jshint` JavaScript
 1. run tests
-1. compile sass into CSS files
-1. concatenate CSS files
+1. feed scss files into sass compiler, producing one css file for app, one for admin
 1. browserify
 1. concatenate vendor and application JavaScript
 1. add MD5 hashes to filenames for cache busting

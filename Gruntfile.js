@@ -155,7 +155,7 @@ module.exports = function(grunt) {
         'vendor/js/jquery-2.0.3.js',
         'vendor/js/jquery.serialize-object.js',
         'vendor/js/underscore.js',
-        'vendor/js/backbone-1.1.0.js',
+        'vendor/js/backbone-1.0.0.js',
         'vendor/js/parse-1.2.12.js'
       ],
 
@@ -163,7 +163,7 @@ module.exports = function(grunt) {
         'vendor/js/jquery-2.0.3.min.js',
         'vendor/js/jquery.serialize-object.min.js',
         'vendor/js/underscore.min.js',
-        'vendor/js/backbone-1.1.0.min.js',
+        'vendor/js/backbone-1.0.0.min.js',
         'vendor/js/parse-1.2.12.min.js'
       ],
 
