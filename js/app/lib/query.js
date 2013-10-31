@@ -11,7 +11,7 @@ var submit = function(params) {
   // to keep track of when it finishes
   var deferred = $.Deferred();
 
-  if ( !params.lat && params.sort == "near" ) { 
+  if ( !params.lat && params.sort == "near" ) {
     params.sort = "name";
   }
   performQuery(params, deferred);

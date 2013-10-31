@@ -35,6 +35,10 @@ function generateQueryParams(queryString, limit ) {
     queryParams.sort = params.sort;
   }
 
+  if (params.hours) {
+    queryParams.hours = params.hours;
+  }
+
   queryParams.filter = filterParams;
 
   return queryParams;

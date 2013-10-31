@@ -10,6 +10,12 @@
     {{/if}}
   </div>
 
+  <span class="categories-header">Hours</span>
+  <div class="filter filter-hours btn-group" data-toggle="buttons-radio">
+    <button data-value="A" class="btn first active">All</button>
+    <button data-value="open" class="btn last">Open Now</button>
+  </div>
+
   {{#if distanceDisabled}}
     <div class="filter-sort alert">
       <strong>Distance disabled:</strong> current location unavailable
