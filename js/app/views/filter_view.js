@@ -8,20 +8,18 @@ function navigate(options) {
       router = require('routers/router').instance;
 
   if (options.categories.length > 0) {
-     params.push("categories=" + options.categories.join(","));
+    params.push("categories=" + options.categories.join(","));
   }
 
   if (options.demographics.length > 0) {
     params.push("demographics=" + options.demographics.join(","));
   }
 
-  if (options.gender) {
-    params.push("gender=" + options.gender);
-  }
-
-  if (params.sort) {
-    params.push("sort=" + options.sort);
-  }
+  [ "gender", "sort", "hours" ].forEach(function(key) {
+    if (options[key]) {
+      params.push(key + "=" + options[key]);
+    }
+  });
 
   if (params.length > 0) {
     route = route + "?" + params.join("&");
@@ -35,7 +33,8 @@ function setFilterOptions(view) {
       categories   = _.compact((params.categories || '').split(',')),
       demographics = _.compact((params.demographics || '').split(',')),
       gender       = params.gender,
-      sort         = params.sort;
+      sort         = params.sort,
+      hours        = params.hours;
 
   categories.forEach(function(category) {
     view.$('.filter-categories .btn[data-value="' + category + '"]').button('toggle');
@@ -51,6 +50,10 @@ function setFilterOptions(view) {
 
   if (sort === 'name') {
     view.$('.filter-sort .btn[data-value="name"]').button('toggle');
+  }
+
+  if (hours === 'open') {
+    view.$('.filter-hours .btn[data-value="open"]').button('toggle');
   }
 }
 
@@ -86,8 +89,9 @@ var FilterView = Backbone.View.extend({
   submitSearch: function() {
     var categories   = [],
         demographics = [],
-        gender = null,
-        sort = null;
+        gender       = null,
+        sort         = null,
+        hours        = null;
 
     categories = this.$('.filter-categories .btn.active').toArray().map(function(el) {
       return $(el).data('value');
@@ -105,11 +109,15 @@ var FilterView = Backbone.View.extend({
 
     sort = this.$(".filter-sort .btn.active").data("value");
 
+    hours = this.$(".filter-hours .btn.active").data("value");
+    if (hours == "A") { hours = null; }
+
     navigate({
-      categories: categories,
+      categories:   categories,
       demographics: demographics,
-      gender: gender,
-      sort: sort
+      gender:       gender,
+      sort:         sort,
+      hours:        hours
     });
   }
 });
