@@ -11,7 +11,7 @@
     "grunt-contrib-cssmin": "~0.6.2",
     "grunt-simple-mocha": "~0.4.0",
     "grunt-cachebuster": "~0.1.5",
-    "browserify": "~2.34.3",
+    "browserify": "~2.35",
     "grunt-browserify": "~1.2.9",
     "should": "~2.0.1",
     "underscore": "~1.5.2",
