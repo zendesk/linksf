@@ -1,5 +1,6 @@
 var _     = require('underscore'),
     Hours = require('cloud/models/hours'),
+    Service = require('cloud/models/service'),
     CATEGORIES = require('cloud/lib/categories');
 
 module.exports = Parse.Object.extend('Facility', {
@@ -18,12 +19,10 @@ module.exports = Parse.Object.extend('Facility', {
   },
 
   presentJSON: function() {
-    var asJSON = this.toJSON(),
-        Service = require('shared/models/service');
+    var asJSON = this.toJSON();
 
     asJSON.services = this.get('services').map(function(service) {
-      var test = new Service(service.attributes);
-      return test.presentJSON();
+      return new Service(service.attributes).presentJSON();
     });
     asJSON.demographics = this.demographics();
     asJSON.distinctCategories = this.distinctCategories();
@@ -93,8 +92,10 @@ module.exports = Parse.Object.extend('Facility', {
 
   hasOpenService: function(time) {
     var services = this.get('services');
+    var Service = require('shared/models/service');
     try {
-      return _.any(services, function(service) {
+      return _.any(services, function(parseObject) {
+        var service = new Service(parseObject.attributes);
         return service.hours().within(time);
       });
     } catch(e) {
