@@ -19,8 +19,8 @@ namespace :deploy do
     # deploy everything in vendor/font
     system("s3cmd sync --acl-public vendor/font/ s3://www.link-sf.com/vendor/font/")
 
-    # deploy everything in images
-    system("s3cmd sync --acl-public images/ s3://www.link-sf.com/images/")
+    # deploy everything in img
+    system("s3cmd sync --acl-public img/ s3://www.link-sf.com/img/")
   end
 
   task :parse do
