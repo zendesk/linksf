@@ -13,9 +13,6 @@ namespace :deploy do
       system("s3cmd put --acl-public #{d} s3://www.link-sf.com/#{d}")
     end
 
-    # deploy everything in vendor/img
-    system("s3cmd sync --acl-public vendor/img/ s3://www.link-sf.com/vendor/img/")
-
     # deploy everything in vendor/font
     system("s3cmd sync --acl-public vendor/font/ s3://www.link-sf.com/vendor/font/")
 
@@ -26,15 +23,14 @@ namespace :deploy do
   task :parse do
     system("cd #{File.dirname(__FILE__) + '/server'} && parse deploy")
   end
-
 end
 
 task :grunt do
-  abort unless system("grunt release")
+  abort unless system('grunt', 'release')
 end
 
 task :clean do
-  system("rm build/*")
+  system 'rm', 'build/*'
 end
 
 task :deploy => ['clean', 'grunt', 'deploy:parse', 'deploy:s3']
