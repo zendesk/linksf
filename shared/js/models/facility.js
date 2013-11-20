@@ -41,7 +41,6 @@ module.exports = Parse.Object.extend('Facility', {
   },
 
   matchesAges: function(ages) {
-    console.log("age");
     var a = this.get('age');
     if ( !ages || !a ) {
       return true;
@@ -53,17 +52,19 @@ module.exports = Parse.Object.extend('Facility', {
   },
 
   matchesOpen: function(status) {
+    if ( !status ) {
+      return true;
+    }
+
     var s = this.status();
-    console.log("meow meow ", s);
-    if ( s === 'open' ) { return true; }
+    return s === 'open';
   },
+
   matchesFilter: function(filter) {
     var match = true;
-    console.log("mewmew");
     if ( !filter ) {
       return true;
     }
-    console.log("mrrrrr");
 
     match &= this.matchesGender(filter.gender);
     match &= this.matchesAges(filter.age);
@@ -99,7 +100,6 @@ module.exports = Parse.Object.extend('Facility', {
         return service.hours().within(time);
       });
     } catch(e) {
-      console.log(e);
       return null;
     }
   },
