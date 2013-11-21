@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>LinkSF</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="{{linksf_admin_css}}">
+    <script>
+      parseAppKey = '{{parseAppKey}}';
+      parseJSKey = '{{parseJSKey}}';
+    </script>
+  </head>
+
+  <body>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDdHRnaDD-_z2aNUqyxxCoRBAf6PWZjS4&sensor=true&libraries=geometry"></script>
+    <script src="{{linksf_admin_js}}"></script>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="#">Link-SF Admin</a>
+          <form id="search-form">
+            <ul class="nav">
+            <li class="search-input"><input type="text" id="search" placeholder="Search for a facility..."></li>
+            <li><a href="#/new">New Facility</a></li>
+            <li class='navbar-text' id='navUserInfo'></span>
+            <li id="navUserLogout"><a href="#/logout">Logout</a></li>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div id="linksf"></div>
+  </body>
+</html>

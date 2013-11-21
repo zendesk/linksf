@@ -1,3 +1,5 @@
+require 'dotenv/tasks'
+
 namespace :deploy do
   task :s3 do
     s3cfg = File.expand_path(File.dirname(__FILE__) + "/s3cfg")
@@ -15,10 +17,8 @@ namespace :deploy do
     bucket = $bucket || abort("please call deploy:production or deploy:development")
 
     deploy_glob = %w(
-      js/static/output-*.js
-      js/static/admin-*.js
-      css/static/user-*.css
-      css/static/admin-*.css
+      build/*.js
+      build/*.css
       index.html
       admin.html
     )
@@ -26,28 +26,24 @@ namespace :deploy do
       system("#{s3cmd} put --acl-public #{d} s3://#{bucket}/#{d}")
     end
 
-    # deploy everything in vendor
-    system("#{s3cmd} sync --acl-public vendor/ s3://#{bucket}/vendor/")
+    # deploy everything in vendor/font
+    system("#{s3cmd} sync --acl-public vendor/font s3://#{bucket}/vendor/font")
 
     # deploy everything in images
-    system("#{s3cmd} sync --acl-public images/ s3://#{bucket}/images/")
+    system("#{s3cmd} sync --acl-public img/ s3://#{bucket}/img/")
   end
 
   task :parse do
     system("cd #{File.dirname(__FILE__) + '/server'} && parse deploy #{$parse_target}")
   end
 
-  task :setup_production do 
+  task :setup_production => :dotenv do
     $bucket = "www.link-sf.com"
-    ENV['PARSE_APP_KEY'] = 'Z2l0Zn6NGrHCDoBPKUeD7Tf1fAUDaazQihQFqnL8';
-    ENV['PARSE_JS_KEY'] = 'kGPp7cydleuFbhKB4mrviTmbIjrbTjhxGP4dP7Ls';
     $parse_target = '"Link SF"'
   end
 
-  task :setup_development do 
+  task :setup_development => :dotenv do
     $bucket = "dev.link-sf.com"
-    ENV['PARSE_APP_KEY'] = 'Y213cb9EqDqUka0d56iQ1ZEyCeqsi4TMIh5zGTtY';
-    ENV['PARSE_JS_KEY'] = 'CJrY4twgkR8KluQEtgMrbtciyk9rIFkILLxCRZGq';
     $parse_target = '"Link SF -- Development"'
   end
 
@@ -57,11 +53,11 @@ end
 
 task :grunt do
   abort "please call deploy:production or deploy:development" unless ENV['PARSE_APP_KEY']
-  abort unless system("grunt")
+  abort unless system('grunt', 'release')
 end
 
-task :clean do 
-  system("rm {js,css}/static/*")
+task :clean do
+  system 'rm', 'build/*'
 end
 
 task :deploy => ['clean', 'grunt', 'deploy:parse', 'deploy:s3']

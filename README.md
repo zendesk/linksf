@@ -39,13 +39,13 @@ npm install -g grunt-cli
 
 There is a `Gruntfile` that describes the available tasks.
 
-`grunt` invokes verification and compilation. Output goes to static files that are included in index.html and admin.html.
+`grunt` invokes verification and compilation. Output goes to static files that are included in build/index.html and build/admin.html.
 
 `grunt watch` invokes verification and compilation when JavaScript, HTML, SCSS, and Handlebars file changes are detected.
 
 ```
 grunt # Needed after cloning the repo or if `grunt watch` wasn't running, to pick lastest code changes.
-open index.html
+open build/index.html
 grunt watch
 ```
 
@@ -55,6 +55,21 @@ grunt watch
 
 The latest deploy should be available at http://link-sf.com.
 
+### Build process
+
+Developing in a pure concatenation-based (or single-file) app is chaos. To alleviate this pain, we use a CommonJS module system. Typically CommonJS modules are used on the server, but we use Browserify to generate the module registry and provide a `require` implementation on the client.
+
+Generally, the build steps are:
+
+1. empty `build` and `tmp` directories
+1. `jshint` JavaScript
+1. run tests
+1. feed scss files into sass compiler, producing one css file for app, one for admin
+1. browserify
+1. concatenate vendor and application JavaScript
+1. add MD5 hashes to filenames for cache busting
+
+For releasing to production, the `release` task also minifies CSS and JavaScript. Details are available in the Gruntfile comments.
 
 ### Icons
 

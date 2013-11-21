@@ -1,0 +1,30 @@
+<div id='loading-spinner'>
+  <img src="img/spinner.gif">Loading...
+</div>
+{{> queryRepresentation}}
+<ul class="facility-list">
+  {{#each facilities}}
+    <li class="facility">
+      <a href="#/detail/{{objectId}}" class="facility-item-link">
+        <i class="icon-right-open right chevron"></i>
+        <div>
+          <p class="facility-name">{{name}}</p>
+          <span class="facility-info">
+            <span class="label-status {{status}}">{{status}}</span>
+            {{#if showWalkingTime}}<span class="label-status">{{walkingTime}} minutes walking</span>{{/if}}
+          </span>
+          </p>
+        </div>
+        <div class="facility-categories">
+          {{#each serviceCategories}}
+            <span class="facility-services"><i class="category-icon icon-{{icon}}"></i>{{title}}</span>
+          {{/each}}
+        </div>
+      </a>
+    </li>
+  {{/each}}
+  <li id="load-more" class="facility"></li>
+  {{#unless loadingResults}}
+    {{^facilities}}<p class="not-found">Sorry, no results found.</p>{{/facilities}}
+  {{/unless}}
+</ul>

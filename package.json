@@ -1,29 +1,25 @@
 {
   "name": "LinkSF",
   "version": "v0.0.1",
-  "dependencies": {
-    "backbone": "1.0.0",
-    "localStorage": "1.0.2",
-    "xmlhttprequest": "1.5.0",
-    "underscore": "~1.4.4"
-  },
+  "engines": {},
   "devDependencies": {
-    "grunt": "0.4.1",
-    "browserify": "2.11.0",
-    "browserify-shim": "2.0.3",
-    "grunt-contrib-jshint": "~0.3.0",
-    "grunt-contrib-watch": "~0.3.1",
-    "glob": "3.1.21",
-    "hbsfy": "0.1.4",
-    "mocha": "~1.9.0",
-    "should": "~1.2.2",
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-contrib-sass": "~0.5.0",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-uglify": "~0.2.4",
+    "grunt-contrib-cssmin": "~0.6.2",
     "grunt-simple-mocha": "~0.4.0",
-    "grunt-contrib-sass": "~0.3.0",
     "grunt-cachebuster": "~0.1.5",
-    "handlebars": "~1.0.12"
-  },
-  "engines": {
-    "npm": ">=1.2.10",
-    "node": ">=0.8.19"
+    "browserify": "~2.35",
+    "grunt-browserify": "~1.2.9",
+    "should": "~2.0.1",
+    "underscore": "~1.5.2",
+    "handlebars": "~1.0.12",
+    "handlebars-runtime": "~1.0.12",
+    "hbsfy": "~0.1.5",
+    "localStorage": "~1.0.2",
+    "xmlhttprequest": "~1.6.0",
+    "grunt-contrib-clean": "~0.5.0"
   }
 }
