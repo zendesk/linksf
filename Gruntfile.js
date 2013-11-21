@@ -157,7 +157,6 @@ module.exports = function(grunt) {
       shared_js: [
         'vendor/js/jquery-2.0.3.js',
         'vendor/js/jquery.serialize-object.js',
-        'vendor/js/bootstrap-button.js',
         'vendor/js/underscore.js',
         'vendor/js/backbone-1.0.0.js',
         'vendor/js/parse-1.2.12.js'
@@ -166,7 +165,6 @@ module.exports = function(grunt) {
       shared_js_minified: [
         'vendor/js/jquery-2.0.3.min.js',
         'vendor/js/jquery.serialize-object.min.js',
-        'vendor/js/bootstrap-button.min.js',
         'vendor/js/underscore.min.js',
         'vendor/js/backbone-1.0.0.min.js',
         'vendor/js/parse-1.2.12.min.js'
@@ -176,6 +174,7 @@ module.exports = function(grunt) {
       app: {
         src: [
           '<%= concat.shared_js %>',
+          'vendor/js/bootstrap-button.js',
           'vendor/js/fastclick.js',
           'tmp/app.js'
         ],
@@ -186,6 +185,7 @@ module.exports = function(grunt) {
       app_min: {
         src: [
           '<%= concat.shared_js_minified %>',
+          'vendor/js/bootstrap-button.min.js',
           'vendor/js/fastclick.min.js',
           'tmp/app.min.js'
         ],
