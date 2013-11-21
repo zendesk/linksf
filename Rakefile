@@ -1,3 +1,5 @@
+require 'dotenv/tasks'
+
 namespace :deploy do
   task :s3 do
     s3cfg = File.expand_path(File.dirname(__FILE__) + "/s3cfg")
@@ -35,17 +37,13 @@ namespace :deploy do
     system("cd #{File.dirname(__FILE__) + '/server'} && parse deploy #{$parse_target}")
   end
 
-  task :setup_production do
+  task :setup_production => :dotenv do
     $bucket = "www.link-sf.com"
-    ENV['PARSE_APP_KEY'] = 'Z2l0Zn6NGrHCDoBPKUeD7Tf1fAUDaazQihQFqnL8';
-    ENV['PARSE_JS_KEY'] = 'kGPp7cydleuFbhKB4mrviTmbIjrbTjhxGP4dP7Ls';
     $parse_target = '"Link SF"'
   end
 
-  task :setup_development do
+  task :setup_development => :dotenv do
     $bucket = "dev.link-sf.com"
-    ENV['PARSE_APP_KEY'] = 'Y213cb9EqDqUka0d56iQ1ZEyCeqsi4TMIh5zGTtY';
-    ENV['PARSE_JS_KEY'] = 'CJrY4twgkR8KluQEtgMrbtciyk9rIFkILLxCRZGq';
     $parse_target = '"Link SF -- Development"'
   end
 

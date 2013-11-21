@@ -7,3 +7,4 @@ tmp/*.css
 index.html
 admin.html
 s3cfg
+.env
