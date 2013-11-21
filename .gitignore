@@ -6,3 +6,4 @@ tmp/*.css
 .sass-cache
 index.html
 admin.html
+s3cfg
