@@ -262,11 +262,12 @@ module.exports = function(grunt) {
                 'tmp/linksf_admin.css': 'linksf_admin_css'
                },
                context = {},
-               context.parseAppKey = process.env.PARSE_APP_KEY || 'Y213cb9EqDqUka0d56iQ1ZEyCeqsi4TMIh5zGTtY';
-               context.parseJSKey  = process.env.PARSE_JS_KEY || 'CJrY4twgkR8KluQEtgMrbtciyk9rIFkILLxCRZGq';
                Handlebars = require('handlebars'),
                template,
                output;
+
+            context.parseAppKey = process.env.PARSE_APP_KEY || 'Y213cb9EqDqUka0d56iQ1ZEyCeqsi4TMIh5zGTtY';
+            context.parseJSKey  = process.env.PARSE_JS_KEY || 'CJrY4twgkR8KluQEtgMrbtciyk9rIFkILLxCRZGq';
 
             Object.keys(hashes).forEach(function(key) {
               var matches = key.match(/^tmp\/(.*)(\..*)$/),
