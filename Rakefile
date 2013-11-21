@@ -12,7 +12,7 @@ namespace :deploy do
     end
 
     s3cmd = "s3cmd -c #{s3cfg}"
-    bucket = "ttl-link-sf-production"
+    bucket = $bucket || abort("please call deploy:production or deploy:development")
 
     deploy_glob = %w(
       js/static/output-*.js
@@ -34,12 +34,29 @@ namespace :deploy do
   end
 
   task :parse do
-    system("cd #{File.dirname(__FILE__) + '/server'} && parse deploy")
+    system("cd #{File.dirname(__FILE__) + '/server'} && parse deploy #{$parse_target}")
   end
 
+  task :setup_production do 
+    $bucket = "www.link-sf.com"
+    ENV['PARSE_APP_KEY'] = 'Z2l0Zn6NGrHCDoBPKUeD7Tf1fAUDaazQihQFqnL8';
+    ENV['PARSE_JS_KEY'] = 'kGPp7cydleuFbhKB4mrviTmbIjrbTjhxGP4dP7Ls';
+    $parse_target = '"Link SF"'
+  end
+
+  task :setup_development do 
+    $bucket = "dev.link-sf.com"
+    ENV['PARSE_APP_KEY'] = 'Y213cb9EqDqUka0d56iQ1ZEyCeqsi4TMIh5zGTtY';
+    ENV['PARSE_JS_KEY'] = 'CJrY4twgkR8KluQEtgMrbtciyk9rIFkILLxCRZGq';
+    $parse_target = '"Link SF -- Development"'
+  end
+
+  task :production => ['deploy:setup_production', 'deploy']
+  task :development => ['deploy:setup_development', 'deploy']
 end
 
 task :grunt do
+  abort "please call deploy:production or deploy:development" unless ENV['PARSE_APP_KEY']
   abort unless system("grunt")
 end
 
