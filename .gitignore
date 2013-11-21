@@ -1,6 +1,10 @@
 node_modules
-css/static/*
-js/static/*
+build/*.js
+build/*.css
+tmp/*.js
+tmp/*.css
+.sass-cache
 index.html
 admin.html
 s3cfg
+.env
