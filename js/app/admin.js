@@ -1,3 +1,4 @@
+/* global parseAppKey, parseJSKey */
 var $          = require('jquery'),
     Handlebars = require('handlebars-runtime');
 
@@ -9,7 +10,7 @@ Handlebars.registerPartial("filterCategories", require('templates/_filter_catego
 
 $(function() {
   var Parse = require('parse');
-  Parse.initialize("Z2l0Zn6NGrHCDoBPKUeD7Tf1fAUDaazQihQFqnL8", "kGPp7cydleuFbhKB4mrviTmbIjrbTjhxGP4dP7Ls");
+  Parse.initialize(parseAppKey, parseJSKey);
 
   // provision the router instance
   var router = require('routers/admin_router').instance;
