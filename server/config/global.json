@@ -4,6 +4,10 @@
             "applicationId": "Z2l0Zn6NGrHCDoBPKUeD7Tf1fAUDaazQihQFqnL8", 
             "masterKey": "xPD0ZjsE3ppyPkgFX4BxrHEOxJF0XSJ2lQBvfeW3"
         }, 
+        "Link SF -- Development": {
+            "applicationId": "Y213cb9EqDqUka0d56iQ1ZEyCeqsi4TMIh5zGTtY", 
+            "masterKey": "De233EamZbp6P4LRMqIoH5XDwOMAudnf26k3ZvpE"
+        }, 
         "_default": {
             "link": "Link SF"
         }

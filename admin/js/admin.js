@@ -6,10 +6,7 @@ Handlebars.registerPartial('filterCategories', require('shared/templates/_filter
 Handlebars.registerPartial('openHours', require('shared/templates/_open_hours'));
 
 $(function() {
-  Parse.initialize(
-    'Z2l0Zn6NGrHCDoBPKUeD7Tf1fAUDaazQihQFqnL8',
-    'kGPp7cydleuFbhKB4mrviTmbIjrbTjhxGP4dP7Ls'
-  );
+  Parse.initialize(parseAppKey, parseJSKey);
 
   require('routers/router').instance();
   Backbone.history.start();
