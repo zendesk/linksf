@@ -267,8 +267,15 @@ module.exports = function(grunt) {
                template,
                output;
 
-            context.parseAppKey = process.env.PARSE_APP_KEY || 'Y213cb9EqDqUka0d56iQ1ZEyCeqsi4TMIh5zGTtY';
-            context.parseJSKey  = process.env.PARSE_JS_KEY || 'CJrY4twgkR8KluQEtgMrbtciyk9rIFkILLxCRZGq';
+            context.parseAppKey = process.env.PARSE_APP_KEY;
+            context.parseJSKey  = process.env.PARSE_JS_KEY;
+
+            // extract into separate grunt check task
+            if ( !context.PARSE_APP_KEY || !context.PARSE_JS_KEY ) {
+              console.log('Need PARSE_APP_KEY and PARSE_JS_KEY in your environment.')
+              process.exit();
+            }
+            //
 
             Object.keys(hashes).forEach(function(key) {
               var matches = key.match(/^tmp\/(.*)(\..*)$/),
