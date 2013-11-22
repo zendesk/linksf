@@ -279,7 +279,9 @@ module.exports = function(grunt) {
 
             Object.keys(hashes).forEach(function(key) {
               var matches = key.match(/^tmp\/(.*)(\..*)$/),
-                  outputFile = 'build/' + matches[1] + '-' + hashes[key] + matches[2];
+                  filename = matches[1],
+                  extension = matches[2],
+                  outputFile = 'build/' + filename + '-' + hashes[key] + extension;
 
               grunt.file.copy(key, outputFile);
               context[keyMap[key]] = outputFile;
