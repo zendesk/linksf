@@ -20,9 +20,9 @@ From Steven:
 
 This will replace http://ttlsf.herokuapp.com/ which uses a [Google spreadsheet](https://docs.google.com/spreadsheet/ccc?key=0AkkJeKqc-HDpdE5INXRRYVdMVmd5ay15dm5LZEdPLWc#gid=0) for persistence.
 
-## LinkSF
+## Link-SF
 
-LinkSF is a Backbone.js application using Parse for our persistence and querying backend.
+Link-SF is a Backbone.js application using Parse for our persistence and querying backend.
 
 The current release is deployed to http://link-sf.com.
 
