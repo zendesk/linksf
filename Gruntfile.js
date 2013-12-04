@@ -267,6 +267,20 @@ module.exports = function(grunt) {
                template,
                output;
 
+            // read parse secrets from .env
+            require('fs').readFileSync('./.env')
+              .toString()
+              .split('\n')
+              .forEach(function(line) {
+                var segments = line.split('='),
+                    variable = segments[0],
+                    value = segments[1];
+
+                if ( variable && value ) {
+                  process.env[variable] = value;
+                }
+              });
+
             context.parseAppKey = process.env.PARSE_APP_KEY;
             context.parseJSKey  = process.env.PARSE_JS_KEY;
 
