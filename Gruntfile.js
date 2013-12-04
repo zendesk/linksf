@@ -271,7 +271,7 @@ module.exports = function(grunt) {
             context.parseJSKey  = process.env.PARSE_JS_KEY;
 
             // extract into separate grunt check task
-            if ( !context.PARSE_APP_KEY || !context.PARSE_JS_KEY ) {
+            if ( !context.parseAppKey || !context.parseJSKey ) {
               console.log('Need PARSE_APP_KEY and PARSE_JS_KEY in your environment.')
               process.exit();
             }
