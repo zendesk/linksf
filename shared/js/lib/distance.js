@@ -1,5 +1,5 @@
 var computeDistanceBetween = google.maps.geometry.spherical.computeDistanceBetween,
-    LatLng = maps.LatLng;
+    LatLng = google.maps.LatLng;
 
 function calculateDistanceFromService(location, currentLocation) {
   var pos1     = new LatLng(currentLocation.lat, currentLocation.lon),
