@@ -6,7 +6,7 @@ Handlebars.registerPartial('queryRepresentation', require('templates/_query_repr
 
 $(function() {
   window.FastClick(document.body);
-
+  require('lib/boot');
   Parse.initialize(parseAppKey, parseJSKey);
 
   require('routers/router').instance();

@@ -58,7 +58,8 @@ var ListView = Backbone.View.extend({
 
   events: {
     "click #load-more-link": 'loadMore',
-    "click #load-more":      'loadMore'
+    "click #load-more":      'loadMore',
+    "click .query-representation-content":    'goToFilter'
   },
 
   constructor: function (options) {
@@ -157,8 +158,7 @@ var ListView = Backbone.View.extend({
   },
 
   navButtons: [
-    {class: 'left', id: 'backNav-button', text: 'Back'},
-    {class: 'right', id: 'filter-button', text: 'Filter', action: 'goToFilter'}
+    {class: 'left', id: 'backNav-button', text: 'Back'}
   ],
 
   render: function() {
