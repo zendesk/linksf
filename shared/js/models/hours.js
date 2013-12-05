@@ -12,16 +12,6 @@ var days = {
 
 var daysInverse = _.invert(days);
 
-var dayNames = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday"
-];
-
 function fail(str) {
   throw new Error("Invalid time string: " + str);
 }
@@ -86,13 +76,13 @@ var is24HourString = function(timeString) {
 */
 
 var Hours = function Hours(hours){
-  var processed = {}, day;
+  var processed = {}, dayNum;
   this.hours = hours || {};
   for(var k in hours) {
     if(!hours.hasOwnProperty(k)) { continue; }
-    day = days[k.toUpperCase()];
+    dayNum = days[k.toUpperCase()];
 
-    processed[day] = this.parseDay(hours[k]);
+    processed[dayNum] = this.parseDay(hours[k]);
   }
 
   this.hours = processed;
@@ -196,6 +186,19 @@ function buildTimeline(intervals) {
   return timeline;
 }
 
+Hours.DAY_NAMES = [
+  {short: "Sun", long: "Sunday"},
+  {short: "Mon", long: "Monday"},
+  {short: "Tue", long: "Tuesday"},
+  {short: "Wed", long: "Wednesday"},
+  {short: "Thu", long: "Thursday"},
+  {short: "Fri", long: "Friday"},
+  {short: "Sat", long: "Saturday"}
+];
+
+Hours.SHORT_DAY_NAMES = _.map(Hours.DAY_NAMES, function(day) { return day.short; });
+Hours.LONG_DAY_NAMES = _.map(Hours.DAY_NAMES, function(day) { return day.long; });
+
 Hours.merge = function() {
   var data = {};
   Array.prototype.slice.call(arguments).forEach(function(item) {
@@ -255,8 +258,12 @@ function humanizeInterval(intervals) {
   }).join(" - ");
 }
 
-Hours.prototype.humanize = function() {
-  var hours = this.hours;
+Hours.prototype.humanize = function(options) {
+  var hours = this.hours, 
+      dayNames;
+
+  options = options || {};
+  dayNames = options.shortDayNames ? Hours.SHORT_DAY_NAMES : Hours.LONG_DAY_NAMES;
 
   return dayNames.map(function(dayName, index) {
     var intervals = hours[index];
@@ -302,10 +309,14 @@ Hours.prototype.isEmpty = function () {
   return (count === 0);
 };
 
-Hours.prototype.humanizeCondensed = function combine() {
+Hours.prototype.humanizeCondensed = function (options) {
 
   var merged = this.merge(),
-      obj = merged.hours;
+      obj = merged.hours, 
+      dayNames;
+
+  options = options || {};
+  dayNames = options.shortDayNames ? Hours.SHORT_DAY_NAMES : Hours.LONG_DAY_NAMES;
 
   var condensed = Object.keys(obj).reduce(function(acc, i){
     if(!acc.length) {
