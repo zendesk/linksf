@@ -267,29 +267,8 @@ module.exports = function(grunt) {
                template,
                output;
 
-            // read parse secrets from .env
-            require('fs').readFileSync('./.env')
-              .toString()
-              .split('\n')
-              .forEach(function(line) {
-                var segments = line.split('='),
-                    variable = segments[0],
-                    value = segments[1];
-
-                if ( variable && value ) {
-                  process.env[variable] = value;
-                }
-              });
-
-            context.parseAppKey = process.env.PARSE_APP_KEY;
-            context.parseJSKey  = process.env.PARSE_JS_KEY;
-
-            // extract into separate grunt check task
-            if ( !context.parseAppKey || !context.parseJSKey ) {
-              console.log('Need PARSE_APP_KEY and PARSE_JS_KEY in your environment.')
-              process.exit();
-            }
-            //
+            context.parseAppId = process.env.PARSE_APP_ID;
+            context.parseJSKey = process.env.PARSE_JS_KEY;
 
             Object.keys(hashes).forEach(function(key) {
               var matches = key.match(/^tmp\/(.*)(\..*)$/),
@@ -325,6 +304,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-contrib-clean');
 
+  grunt.loadTasks('tasks');
+
   grunt.registerTask('build:development', [
     'clean',
     'jshint',
@@ -333,6 +314,7 @@ module.exports = function(grunt) {
     'browserify',
     'concat:app',
     'concat:admin',
+    'configure:development',
     'cachebuster'
   ]);
 
@@ -346,6 +328,7 @@ module.exports = function(grunt) {
     'uglify',
     'concat:app_min',
     'concat:admin_min',
+    'configure:production',
     'cachebuster'
   ]);
 
