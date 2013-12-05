@@ -1,5 +1,5 @@
 .facility-list {
-  padding-top: $navbar-height + 45px;
+  padding-top: $navbar-height + 65px;
   background-color: #F3F3F3;
 
   .not-found {
@@ -24,7 +24,7 @@
 
     .facility-name {
       margin: 5px 0 3px 0;
-      text-decoration: underline;
+      text-decoration: none;
       font-size: 18px;
       font-weight: bold;
     }
@@ -76,21 +76,35 @@
     background-color: blue; // red
   }
 }
-
 .query-representation {
   position: fixed;
   width: 100%;
   max-width: 650px;
 }
-
 .query-representation-content {
-  margin-top: $navbar-height + 13px;
-  padding: 8px 0 8px 8px;
-  background-color: #E0E0E0;
-  border-bottom: 1px solid #999999;
+  margin-top: 53px;
+  border-bottom: 1px solid #999;
   color: #7B7B7B;
   font-weight: bold;
   font-size: 14px;
+  height: 37px;
+  background-color: #FFF;
+  background-image: linear-gradient(#FFF, #d8d8d8);
+  background-image: -webkit-linear-gradient(#FFF, #d8d8d8);
+  cursor: pointer;
+  padding: 18px 5px 0 5px;
+  >.open {
+    margin-left: 10px;
+    display: none;
+  }
+}
+.more-options {
+  float: right;
+  width: 82px;
+  padding-left: 10px;
+  margin-top: -24px;
+  border-left: 1px dotted #CCC;
+  // height: 55px;
 }
 
 .list-header-item {
