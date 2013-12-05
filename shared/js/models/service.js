@@ -6,14 +6,11 @@ module.exports = Parse.Object.extend('Service', {
     this._hours = Hours.fromData(this.get('openHours'));
     return this._hours;
   },
-  humanizedHours: function() {
-    return this.hours().humanizeCondensed();
-  },
 
   presentJSON: function() {
     var json = this.toJSON();
     json.openHours = this.hours().humanize();
-    json.condensedHours = this.hours().humanizeCondensed();
+    json.condensedHours = this.hours().humanizeCondensed({shortDayNames: true});
     return json;
   }
 });
