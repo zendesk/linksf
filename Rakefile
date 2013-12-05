@@ -40,11 +40,15 @@ namespace :deploy do
   task :setup_production => :dotenv do
     $bucket = "www.link-sf.com"
     $parse_target = '"Link SF"'
+    ENV['PARSE_APP_ID'] = ENV['PARSE_PROD_APP_ID']
+    ENV['PARSE_JS_KEY'] = ENV['PARSE_PROD_JS_KEY']
   end
 
   task :setup_development => :dotenv do
     $bucket = "dev.link-sf.com"
     $parse_target = '"Link SF -- Development"'
+    ENV['PARSE_APP_ID'] = ENV['PARSE_DEV_APP_ID']
+    ENV['PARSE_JS_KEY'] = ENV['PARSE_DEV_JS_KEY']
   end
 
   task :production => ['deploy:setup_production', 'deploy']
