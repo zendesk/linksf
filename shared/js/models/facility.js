@@ -26,7 +26,7 @@ module.exports = Parse.Object.extend('Facility', {
     });
     asJSON.demographics = this.demographics();
     asJSON.distinctCategories = this.distinctCategories();
-    asJSON.condensedHours = this.openHours().humanizeCondensed();
+    asJSON.condensedHours = this.openHours().humanizeCondensed({shortDayNames: true});
     asJSON.openHours = this.openHours().humanize();
     return asJSON;
   },

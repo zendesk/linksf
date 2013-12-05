@@ -19,16 +19,6 @@ function modelSaveSuccessCallback(args) {
   console.log(args);
 }
 
-var days = [
-  {key: "SUN", name: "Sunday"},
-  {key: "MON", name: "Monday"},
-  {key: "TUE", name: "Tuesday"},
-  {key: "WED", name: "Wednesday"},
-  {key: "THU", name: "Thursday"},
-  {key: "FRI", name: "Friday"},
-  {key: "SAT", name: "Saturday"}
-];
-
 function saveFacility(model, services, successCallback, failCallback) {
   model.save().then(function(foo) {
     model.get("services").forEach(function(service) {
@@ -116,13 +106,13 @@ var EditView = Backbone.View.extend({
       [ { hours: openHours } ]
     );
 
-    preview = mergedHours.humanizeCondensed();
+    preview = mergedHours.humanizeCondensed({shortDayNames: true});
     html    = openHoursTemplate({ condensedHours: preview });
     $hours.find('#preview_hours').html(html);
   },
 
   addCategory: function(argument) {
-    var context = { category: this.$('#categories').val(), days: days };
+    var context = { category: this.$('#categories').val(), days: Hours.DAY_NAMES };
     var service = $(editServiceTemplate(context));
 
     this.setupServiceElements(service);
@@ -310,7 +300,7 @@ var EditView = Backbone.View.extend({
 
   saveForm: function(formValues) {
     // the days-of-the-week inputs are named dumbly, get rid of them
-    days.forEach(function(d) { delete formValues[d.key]; });
+    Hours.SHORT_DAY_NAMES.forEach(function(d) { delete formValues[d]; });
 
     if ( formValues.gender === "" ) {
       formValues.gender = null;
@@ -342,8 +332,8 @@ var EditView = Backbone.View.extend({
         Hours = require('shared/models/hours');
 
     templateData.services.forEach(function(service) {
-      service.days = days.map(function(day, index) {
-        return {key: day.key, name: day.name, hours: service.openHours[index].hours};
+      service.days = Hours.DAY_NAMES.map(function(day, index) {
+        return {short: day.short, long: day.long, hours: service.openHours[index].hours};
       });
     });
 
