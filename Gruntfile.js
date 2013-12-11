@@ -335,8 +335,4 @@ module.exports = function(grunt) {
   grunt.registerTask('default', [
     'build:development'
   ]);
-
-  grunt.registerTask('release', [
-    'build:production'
-  ]);
 };
