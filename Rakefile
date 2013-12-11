@@ -38,6 +38,7 @@ namespace :deploy do
   end
 
   task :setup_production => :dotenv do
+    abort unless system("grunt", "build:production")
     $bucket = "www.link-sf.com"
     $parse_target = '"Link SF"'
     ENV['PARSE_APP_ID'] = ENV['PARSE_PROD_APP_ID']
@@ -45,23 +46,19 @@ namespace :deploy do
   end
 
   task :setup_development => :dotenv do
+    abort unless system("grunt", "build:development")
     $bucket = "dev.link-sf.com"
     $parse_target = '"Link SF -- Development"'
     ENV['PARSE_APP_ID'] = ENV['PARSE_DEV_APP_ID']
     ENV['PARSE_JS_KEY'] = ENV['PARSE_DEV_JS_KEY']
   end
 
-  task :production => ['deploy:setup_production', 'deploy']
-  task :development => ['deploy:setup_development', 'deploy']
-end
-
-task :grunt do
-  abort "please call deploy:production or deploy:development" unless ENV['PARSE_APP_KEY']
-  abort unless system('grunt', 'release')
+  task :production => ['clean', 'deploy:setup_production', 'deploy']
+  task :development => ['clean', 'deploy:setup_development', 'deploy']
 end
 
 task :clean do
   system 'rm', 'build/*'
 end
 
-task :deploy => ['clean', 'grunt', 'deploy:parse', 'deploy:s3']
+task :deploy => ['deploy:parse', 'deploy:s3']
