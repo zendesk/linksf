@@ -51,9 +51,11 @@ grunt watch
 
 ### Deploy
 
-`rake deploy` will generate static assets then use the `s3cmd` CLI tool to upload them to AWS.
+`rake deploy:development` and `rake deploy:production` will generate static assets then use the `s3cmd` CLI tool to upload them to AWS.
 
-The latest deploy should be available at http://link-sf.com.
+The latest production deploy should be available at http://link-sf.com.
+
+The latest development deploy should be available at http://dev.link-sf.com.
 
 ### Build process
 
@@ -68,8 +70,6 @@ Generally, the build steps are:
 1. browserify
 1. concatenate vendor and application JavaScript
 1. add MD5 hashes to filenames for cache busting
-
-For releasing to production, the `release` task also minifies CSS and JavaScript. Details are available in the Gruntfile comments.
 
 ### Icons
 
