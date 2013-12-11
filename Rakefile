@@ -53,8 +53,8 @@ namespace :deploy do
     ENV['PARSE_JS_KEY'] = ENV['PARSE_DEV_JS_KEY']
   end
 
-  task :production => ['clean', 'deploy:setup_production', 'deploy']
-  task :development => ['clean', 'deploy:setup_development', 'deploy']
+  task :production => ['clean', 'deploy:setup_production', 'deploy', 'clean']
+  task :development => ['clean', 'deploy:setup_development', 'deploy', 'clean']
 end
 
 task :clean do
