@@ -290,7 +290,7 @@ var EditView = Backbone.View.extend({
       return null;
     }
 
-    ages = this.$("[name=age]input:checked").map(function(cb) {
+    ages = this.$("[name=age]input:checked").map(function(i, cb) {
       return $(cb).attr('value');
     });
     
