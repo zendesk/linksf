@@ -25,7 +25,7 @@ module.exports = function(grunt) {
           Handlebars: true,
           _: true,
           google: true,
-          parseAppKey: true,
+          parseAppId: true,
           parseJSKey: true
         },
         undef: true,
