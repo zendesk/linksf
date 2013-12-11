@@ -93,7 +93,6 @@ module.exports = Parse.Object.extend('Facility', {
 
   hasOpenService: function(time) {
     var services = this.get('services');
-    var Service = require('shared/models/service');
     try {
       return _.any(services, function(parseObject) {
         var service = new Service(parseObject.attributes);
