@@ -17,7 +17,7 @@ function ensureInEnv(variables) {
   variables.forEach(function(variable) {
     if ( !process.env[variable] ) {
       console.log(variable, 'is needed in .env.')
-      process.exit();
+      process.exit(1);
     }
   });
 }
