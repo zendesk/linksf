@@ -117,20 +117,20 @@ li {
 
   .facility {
     border-bottom: solid #9B9B9B 1px;
-    padding: 10px;
+    padding: 10px 0 10px 10px;
 
     .facility-item-link {
       @include display-flex;
       @include flex-direction(row);
 
       .facility-item-box-info {
-        @include flex(1 0 auto);
+        @include flex(1 1 auto);
         @include order(0);
       }
 
       .facility-item-box-caret {
         @include align-self(center);
-        @include flex(0 1 auto);
+        @include flex(0 0 auto);
         @include order(1);
 
         .chevron {
