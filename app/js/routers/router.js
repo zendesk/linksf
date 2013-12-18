@@ -16,6 +16,7 @@ var Router = Backbone.Router.extend({
   },
 
   listView: null,
+  lastSearch: '',
 
   initialize: function() {
     this.routesHit = 0;
@@ -56,16 +57,21 @@ var Router = Backbone.Router.extend({
         this.listView.options.currentLocation = loc;
       }
       applicationController.render(this.listView);
-      this.listView.showSpinner();
-      window.scrollTo(0, 0);
+      if ( queryString != this.lastSearch ) {
+        this.listView.showSpinner();
+        window.scrollTo(0, 0);
+            
+        this.listView.submitQuery(queryParams).done(function(results) {
+          this.listView.hideSpinner();
+          window.scrollTo(0, 0); // Scroll to top
+        }.bind(this)).fail(function() {
+          console.log('submitQuery error', arguments);
+          this.listView.hideSpinner();
+        }.bind(this));
+        this.lastSearch = queryString;
 
-      this.listView.submitQuery(queryParams).done(function(results) {
-        this.listView.hideSpinner();
-        window.scrollTo(0, 0); // Scroll to top
-      }.bind(this)).fail(function() {
-        console.log('submitQuery error', arguments);
-        this.listView.hideSpinner();
-      }.bind(this));
+      }
+
     }.bind(this));
 
   },
