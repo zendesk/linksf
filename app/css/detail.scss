@@ -10,7 +10,10 @@
     padding: 2px 0 2px 0;
   }
 }
-
+.notes {
+  background: #f3f3f3;
+  padding: 8px;
+}
 .facility-info {
   font-size: 14px;
 
@@ -97,7 +100,6 @@
     @include inset;
     label { line-height: 2; }
     p { 
-        margin-left: 15px;
         line-height: 1.5; 
         margin-bottom: 10px;
     }
