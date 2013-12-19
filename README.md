@@ -51,7 +51,10 @@ grunt watch
 
 ### Deploy
 
-`rake deploy:development` and `rake deploy:production` will generate static assets then use the `s3cmd` CLI tool to upload them to AWS.
+`rake deploy:development` and `rake deploy:production` will generate static assets then use the `s3cmd` CLI tool to upload them to AWS and `parse` to upload cloud functions to parse.com.
+
+Install `s3cmd`: `brew install s3cmd`
+Install `parse`: `curl -s https://www.parse.com/downloads/cloud_code/installer.sh | sudo /bin/bash` (https://parse.com/docs/cloud_code_guide)
 
 The latest production deploy should be available at http://link-sf.com.
 
