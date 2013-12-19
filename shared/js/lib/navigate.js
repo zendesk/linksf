@@ -3,13 +3,11 @@ module.exports  = function navigate(options) {
       params = [],
       router = require('routers/router').instance();
 
-  if (options.categories.length > 0) {
-    params.push("categories=" + options.categories.join(","));
-  }
-
-  if (options.demographics.length > 0) {
-    params.push("demographics=" + options.demographics.join(","));
-  }
+  [ "categories", "demographics" ].forEach(function(key) {
+    if (options[key] && options[key].length > 0) {
+      params.push(key + "=" + options[key].join(","));
+    }
+  });
 
   [ "gender", "sort", "hours", "search" ].forEach(function(key) {
     if (options[key]) {
@@ -22,5 +20,5 @@ module.exports  = function navigate(options) {
   }
 
   router.navigate(route, { trigger: true });
-  
+
 };
