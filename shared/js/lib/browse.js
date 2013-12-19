@@ -1,5 +1,8 @@
-var Facility = require('cloud/models/facility'),
-    _ = require('underscore');
+var Facility         = require('cloud/models/facility'),
+    _                = require('underscore'),
+    spacesRegex      = /\s+/g,
+    punctuationRegex = /[^\d\w\s']/g,
+    possessionRegex  = /'s/g;
 
 module.exports = function (params, callbacks) {
 
@@ -37,7 +40,11 @@ module.exports = function (params, callbacks) {
   }
 
   if ( search ) {
-    q.matches('name', search, "i");
+    var sanitized = search.trim()
+                          .replace(spacesRegex, ' ')
+                          .replace(punctuationRegex, '$&?')
+                          .replace(possessionRegex, '($&)?');
+    q.matches('name', sanitized, "i");
   }
 
   q.limit(5000);
