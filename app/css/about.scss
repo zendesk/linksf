@@ -1,20 +1,18 @@
 .about-us {
-  margin-top: $navbar-height + 43px;
+  margin-top: $navbar-height + 10px;
 
   p {
-    text-align: center;
-    font-size: 14px;
+    font-size: 15px;
   }
 
   .inset {
-    margin: 0 auto;
-    width: 80%;
+    margin: 0 15px 0 15px;
     color: #666;
   }
 
   img {
-    margin: 10px;
-    height: 60px;
+    margin: 30px 10px 10px 15px;
+    height: 50px;
   }
 }
 

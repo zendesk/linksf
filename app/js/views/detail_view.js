@@ -40,7 +40,8 @@ var DetailView = Backbone.View.extend({
 
     _.defer(
       function(view) { view.setMap();
-      console.log("so ", facility.openHours); },
+    //  console.log("so ", facility.openHours); 
+    },
       this
     );
 
