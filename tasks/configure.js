@@ -25,17 +25,21 @@ function ensureInEnv(variables) {
 function configureGlobalJson(grunt) {
   var targetPath = 'server/config/global.json',
       templatePath = targetPath + '.template',
+      target,
       template = grunt.file.read(templatePath),
-      target = grunt.file.read(targetPath),
-      data = {
-        PARSE_DEV_APP_ID:      process.env.PARSE_DEV_APP_ID,
-        PARSE_DEV_MASTER_KEY:  process.env.PARSE_DEV_MASTER_KEY,
-        PARSE_PROD_APP_ID:     process.env.PARSE_PROD_APP_ID,
-        PARSE_PROD_MASTER_KEY: process.env.PARSE_PROD_MASTER_KEY
-      },
-      output = grunt.template.process(template, { data: data });
+      output,
+      env = process.env;
 
-  if ( output !== target ) {
+  output = grunt.template.process(template, {
+    data: {
+      PARSE_DEV_APP_ID:      env.PARSE_DEV_APP_ID,
+      PARSE_DEV_MASTER_KEY:  env.PARSE_DEV_MASTER_KEY,
+      PARSE_PROD_APP_ID:     env.PARSE_PROD_APP_ID,
+      PARSE_PROD_MASTER_KEY: env.PARSE_PROD_MASTER_KEY
+    }
+  });
+
+  if ( grunt.file.exists(targetPath) && output !== target ) {
     grunt.file.write(targetPath, output);
   }
 }
