@@ -1,20 +1,5 @@
-var fetchLocation = require('shared/lib/fetch_location');
-
-function navigate(categories, searchTerm) {
-  var router = require('routers/router').instance(),
-      route  = 'query?categories=' + categories.join(',');
-
-  if ( searchTerm ) {
-    route += '&search=' + encodeURIComponent(searchTerm);
-    router.navigate(route, { trigger: true });
-  } else {
-    fetchLocation().always(function(loc) {
-      if (loc.lon && loc.lat) { route += '&sort=near'; }
-      router.navigate(route, { trigger: true });
-    });
-  }
-
-}
+var fetchLocation = require('shared/lib/fetch_location'),
+    navigate = require('shared/lib/navigate');
 
 var IndexView = Backbone.View.extend({
   options: {},
@@ -38,7 +23,18 @@ var IndexView = Backbone.View.extend({
     var searchTerm = this.$('#search-term').val(),
         categories = [ $(event.target).data('value') ];
 
-    navigate(categories, searchTerm);
+
+    if ( searchTerm ) {
+      navigate({categories: categories, search: searchTerm});
+    } else {
+      fetchLocation().always(function(loc) {
+        if(loc.lat && loc.lon) {
+          navigate({categories: categories, sort: "near"});
+        } else {
+          navigate({categories: categories});
+        }
+      });
+    }
     return false;
   }
 });
