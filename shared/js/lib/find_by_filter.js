@@ -24,10 +24,10 @@ module.exports = function (params, callbacks) {
       filter = params.filter || {},
       offset = params.offset || 0,
       search = params.search,
-      sanitized,
-      geopoint,
       lat = params.lat,
       lon = params.lon,
+      sanitized,
+      geopoint,
       q = new Parse.Query(Facility);
 
   if ( sort === 'near' && lat && lon ) {
