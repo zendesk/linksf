@@ -85,7 +85,7 @@ var ListView = Backbone.View.extend({
 
   submitQuery: function(params, options) {
     options = options || {};
-    return Query.submit(params).done(function(results) {
+    return Query.findByFilter(params).done(function(results) {
       this.offset = results.offset;
       this.hasMoreResults = (results.data.length == params.limit);
 
