@@ -52,12 +52,9 @@ module.exports = Parse.Object.extend('Facility', {
   },
 
   matchesOpen: function(status) {
-    if ( !status ) {
-      return true;
-    }
+    if ( !status ) return true;
 
-    var s = this.status();
-    return s === 'open';
+    return this.status() === 'open';
   },
 
   matchesFilter: function(filter) {
