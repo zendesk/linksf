@@ -26,14 +26,12 @@ module.exports = function (params, callbacks) {
       search = params.search,
       sanitized,
       geopoint,
+      lat = params.lat,
+      lon = params.lon,
       q = new Parse.Query(Facility);
 
-  if ( sort === 'near' ) {
-    if ( !(params.lat && params.lon) ) {
-      return callbacks.error('Please provide a lat and lon');
-    }
-
-    geopoint = new Parse.GeoPoint(params.lat, params.lon);
+  if ( sort === 'near' && lat && lon ) {
+    geopoint = new Parse.GeoPoint(lat, lon);
     q.near('location', geopoint);
   } else {
     q.ascending('name');

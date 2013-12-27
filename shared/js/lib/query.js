@@ -8,9 +8,6 @@ var queryFunction = function(runWhere) {
 var submit = function(params) {
   var deferred = $.Deferred();
 
-  if ( !params.lat && params.sort == "near" ) {
-    params.sort = "name";
-  }
   performQuery(params, deferred);
 
   return deferred.promise();
