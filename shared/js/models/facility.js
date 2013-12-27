@@ -52,10 +52,8 @@ module.exports = Parse.Object.extend('Facility', {
   },
 
   matchesOpen: function(status) {
-    console.log('status is ', status);
     if ( !status ) return true;
 
-    console.log('this.status() is ', this.status());
     return this.status() === 'open';
   },
 
