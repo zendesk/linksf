@@ -109,7 +109,7 @@ module.exports = Parse.Object.extend('Facility', {
     });
   },
 
-  age_as_string: function(input) {
+  ageAsString: function(input) {
     switch ( input.toUpperCase() ) {
       case "C":
         return "children";
@@ -142,7 +142,7 @@ module.exports = Parse.Object.extend('Facility', {
 
       if ( age ) {
         // C-Y-A-S
-        var translated = _(age).map(this.age_as_string);
+        var translated = _(age).map(this.ageAsString);
         output += _(translated).join(", ");
       }
     }
