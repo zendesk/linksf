@@ -3,6 +3,14 @@ var Facility         = require('cloud/models/facility'),
     punctuationRegex = /[^\d\w\s']/g,
     possessionRegex  = /'s/g;
 
+function sanitize(input) {
+  return input
+    .trim()
+    .replace(spacesRegex, ' ')
+    .replace(punctuationRegex, '$&?')
+    .replace(possessionRegex, '($&)?');
+}
+
 module.exports = function (params, callbacks) {
 
   // all params are optional, NULL or missing means don't filter
@@ -38,12 +46,7 @@ module.exports = function (params, callbacks) {
   }
 
   if ( search ) {
-    sanitized = search.trim()
-                      .replace(spacesRegex, ' ')
-                      .replace(punctuationRegex, '$&?')
-                      .replace(possessionRegex, '($&)?');
-
-    q.matches('name', sanitized, 'i');
+    q.matches('name', sanitize(search), 'i');
   }
 
   q.limit(5000);
