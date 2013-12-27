@@ -112,7 +112,7 @@ var Router = Backbone.Router.extend({
 
     if ( !facility ) {
       //Fetch Facility from backend if not in collection
-      Query.getByID(id).then(function(facility) {
+      Query.findById(id).then(function(facility) {
         done(facility);
       });
     } else {

@@ -1,5 +1,4 @@
-var _             = require('underscore'),
-    Facility      = require('cloud/models/facility');
+var Facility = require('cloud/models/facility');
 
 var findByFilter = function(params) {
   var deferred = $.Deferred();
@@ -37,6 +36,6 @@ var findById = function(id) {
 };
 
 module.exports = {
-  submit: findByFilter,
-  getByID: findById
+  findByFilter: findByFilter,
+  findById: findById
 };

@@ -60,7 +60,7 @@ var Router = Backbone.Router.extend({
       if ( queryString != this.lastSearch ) {
         this.listView.showSpinner();
         window.scrollTo(0, 0);
-            
+
         this.listView.submitQuery(queryParams).done(function(results) {
           this.listView.hideSpinner();
           window.scrollTo(0, 0); // Scroll to top
@@ -127,7 +127,7 @@ var Router = Backbone.Router.extend({
 
     if ( !facility ) {
       //Fetch Facility from backend if not in collection
-      query.getByID(id).then(function(facility) {
+      query.findById(id).then(function(facility) {
         done(facility);
       });
     } else {
