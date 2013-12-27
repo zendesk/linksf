@@ -58,16 +58,12 @@ module.exports = Parse.Object.extend('Facility', {
   },
 
   matchesFilter: function(filter) {
-    var match = true;
-    if ( !filter ) {
-      return true;
-    }
+    if ( !filter ) return true;
 
-    match &= this.matchesGender(filter.gender);
-    match &= this.matchesAges(filter.age);
-    match &= this.hasServiceInCategories(filter.categories);
-    match &= this.matchesOpen(filter.open);
-    return match;
+    return this.hasServiceInCategories(filter.categories) &&
+           this.matchesOpen(filter.open) &&
+           this.matchesGender(filter.gender) &&
+           this.matchesAges(filter.age);
   },
 
   status: function() {
