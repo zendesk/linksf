@@ -1,4 +1,4 @@
-var Facility         = require('cloud/models/facility');
+var Facility = require('cloud/models/facility');
 
 module.exports = function (id, callbacks) {
   var q = new Parse.Query(Facility);
