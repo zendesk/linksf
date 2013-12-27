@@ -1,5 +1,4 @@
 var Facility         = require('cloud/models/facility'),
-    _                = require('underscore'),
     spacesRegex      = /\s+/g,
     punctuationRegex = /[^\d\w\s']/g,
     possessionRegex  = /'s/g;
@@ -20,55 +19,53 @@ module.exports = function (params, callbacks) {
   //
   //
 
-  var sort = params.sort || 'name';
-  var limit = params.limit || 10;
-  var filter = params.filter || {};
-  var offset = params.offset || 0;
-  var search = params.search;
-
-  var q = new Parse.Query(Facility);
+  var sort = params.sort || 'name',
+      limit = params.limit || 10,
+      filter = params.filter || {},
+      offset = params.offset || 0,
+      search = params.search,
+      sanitized,
+      geopoint,
+      q = new Parse.Query(Facility);
 
   if ( sort === 'near' ) {
     if ( !(params.lat && params.lon) ) {
-      return callbacks.error("Please provide a lat and lon");
+      return callbacks.error('Please provide a lat and lon');
     }
 
-    var geopoint = new Parse.GeoPoint(params.lat, params.lon);
+    geopoint = new Parse.GeoPoint(params.lat, params.lon);
     q.near('location', geopoint);
   } else {
     q.ascending('name');
   }
 
   if ( search ) {
-    var sanitized = search.trim()
-                          .replace(spacesRegex, ' ')
-                          .replace(punctuationRegex, '$&?')
-                          .replace(possessionRegex, '($&)?');
-    q.matches('name', sanitized, "i");
+    sanitized = search.trim()
+                      .replace(spacesRegex, ' ')
+                      .replace(punctuationRegex, '$&?')
+                      .replace(possessionRegex, '($&)?');
+
+    q.matches('name', sanitized, 'i');
   }
 
   q.limit(5000);
   q.include('services');
   q.skip(offset);
 
-  var resp = [];
-
   q.find().then(function(results) {
-    var filteredResults = [];
+    var filtered = [];
 
     results.forEach(function(f) {
-      if ( filteredResults.length >= limit ) {
-        return;
-      }
+      if ( filtered.length >= limit ) return;
 
       if ( f.matchesFilter(filter) ) {
-        filteredResults.push(f);
+        filtered.push(f);
       }
+
       offset++;
     });
-    callbacks.success([offset].concat(filteredResults));
+    callbacks.success([offset].concat(filtered));
   }, function(err) {
     callbacks.error(err);
   });
 };
-

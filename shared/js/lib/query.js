@@ -1,4 +1,3 @@
-/*globals alert*/
 var _             = require('underscore'),
     Facility      = require('cloud/models/facility');
 
@@ -7,7 +6,6 @@ var queryFunction = function(runWhere) {
 };
 
 var submit = function(params) {
-  // to keep track of when it finishes
   var deferred = $.Deferred();
 
   if ( !params.lat && params.sort == "near" ) {
@@ -34,10 +32,10 @@ var performQuery = function(params, deferred) {
 
 // TODO -- hoist this up a layer into "browse" -- or wherever we keep the direct parse communication lib.
 var getByID = function(id) {
-  var deferred = $.Deferred();
+  var deferred = $.Deferred(),
+      q = new Parse.Query(Facility);
 
-  var q = new Parse.Query(Facility);
-  q.include("services");
+  q.include('services');
   q.get(id, {
     success: function(result) {
       deferred.resolve(result);
@@ -50,4 +48,7 @@ var getByID = function(id) {
   return deferred.promise();
 };
 
-module.exports = { submit: submit, getByID: getByID };
+module.exports = {
+  submit: submit,
+  getByID: getByID
+};
