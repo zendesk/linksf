@@ -25,7 +25,6 @@ function ensureInEnv(variables) {
 function configureGlobalJson(grunt) {
   var targetPath = 'server/config/global.json',
       templatePath = targetPath + '.template',
-      target,
       template = grunt.file.read(templatePath),
       output,
       env = process.env;
@@ -39,7 +38,7 @@ function configureGlobalJson(grunt) {
     }
   });
 
-  if ( grunt.file.exists(targetPath) && output !== target ) {
+  if ( !grunt.file.exists(targetPath) || grunt.file.read(targetPath) !== output ) {
     grunt.file.write(targetPath, output);
   }
 }
