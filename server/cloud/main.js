@@ -1,8 +1,10 @@
-var _ = require('underscore');
-var facilityBrowse = require('cloud/lib/browse');
+var findByFilter = require('cloud/lib/find_by_filter'),
+    findById = require('cloud/lib/find_by_id');
 
-// Use Parse.Cloud.define to define as many cloud functions as you want.
-// For example:
-Parse.Cloud.define("browse", function(request, response) {
-  facilityBrowse(request.params, response);
+Parse.Cloud.define('findByFilter', function(request, response) {
+  findByFilter(request.params, response);
+});
+
+Parse.Cloud.define('findById', function(request, response) {
+  findById(request.id, response);
 });
