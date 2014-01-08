@@ -55,7 +55,7 @@ var DetailView = Backbone.View.extend({
           this.model.location.latitude + ',' +
           this.model.location.longitude
         ),
-        directionsUrl;
+        directionsUrl = '';
 
     if ( isMobile ) {
       directionsUrl = 'comgooglemaps://?daddr=' + dAddr;
@@ -64,10 +64,11 @@ var DetailView = Backbone.View.extend({
       fetchLocation().done(function(loc) {
         var sAddr = '@' + loc.lat + ',' + loc.lon;
         directionsUrl = 'https://maps.google.com?daddr=' + dAddr + '&saddr=' + sAddr;
+
       }).fail(function() {
-        directionsUrl = 'https://maps.google.com?daddr=' + dAddr;
+      directionsUrl = 'https://maps.google.com?daddr=' + dAddr;
       });
-      window.open(directionsUrl, '_blank');
+      _.defer( function(){window.open(directionsUrl); });
     }
 
     return false;
