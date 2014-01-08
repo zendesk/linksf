@@ -171,9 +171,11 @@ module.exports = function(grunt) {
       ],
 
       // App also uses the vendored fastclick library
+      // App uses backbone filters for tracking
       app: {
         src: [
           '<%= concat.shared_js %>',
+          'vendor/js/backbone_filters.js',
           'vendor/js/bootstrap-button.js',
           'vendor/js/fastclick.js',
           'tmp/app.js'
@@ -185,6 +187,7 @@ module.exports = function(grunt) {
       app_min: {
         src: [
           '<%= concat.shared_js_minified %>',
+          'vendor/js/backbone_filters.js',
           'vendor/js/bootstrap-button.min.js',
           'vendor/js/fastclick.min.js',
           'tmp/app.min.js'
