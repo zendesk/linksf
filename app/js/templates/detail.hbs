@@ -54,8 +54,8 @@
     </div>
 
     {{#each services}}
-      <p class="title">{{name}}</p>
       <div class="inset-services">
+        <p class="service-title">{{name}}</p>
           {{> openHours}}
         <p>{{description}}</p>
         {{#if notes}}

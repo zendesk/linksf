@@ -23,8 +23,10 @@
 
   .title {
     margin: 12px 0 0 1px;
+  }
+  .service-title, .title {
     color: #666;
-    font-size: 18px;
+    font-size: 18px;    
   }
 
   .icon-right-open {
@@ -98,6 +100,7 @@
 
   .inset-services {
     @include inset;
+    margin-top: 12px;
     label { line-height: 2; }
     p { 
         line-height: 1.5; 
