@@ -34,10 +34,14 @@ module.exports = function (params, callbacks) {
       search = params.search,
       lat = params.lat,
       lon = params.lon,
+      millisecondOffset = (params.tzOffset - (new Date()).getTimezoneOffset()) * 60 * 1000,
       sanitized,
       geopoint,
       q = new Parse.Query(Facility);
 
+  filter.date = new Date(new Date().getTime() - millisecondOffset);
+
+  console.log("filter.date == " + filter.date);
   if ( sort === 'near' && lat && lon ) {
     geopoint = new Parse.GeoPoint(lat, lon);
     q.near('location', geopoint);

@@ -6,5 +6,5 @@ Parse.Cloud.define('findByFilter', function(request, response) {
 });
 
 Parse.Cloud.define('findById', function(request, response) {
-  findById(request.id, response);
+  findById(request.params, response);
 });
