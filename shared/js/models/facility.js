@@ -51,27 +51,27 @@ module.exports = Parse.Object.extend('Facility', {
     });
   },
 
-  matchesOpen: function(status) {
+  matchesOpen: function(status, date) {
     if ( !status ) return true;
 
-    return this.status() === 'open';
+    return this.status(date) === 'open';
   },
 
   matchesFilter: function(filter) {
     if ( !filter ) return true;
 
     return this.hasServiceInCategories(filter.categories) &&
-           this.matchesOpen(filter.open) &&
+           this.matchesOpen(filter.open, filter.date) &&
            this.matchesGender(filter.gender) &&
            this.matchesAges(filter.age);
   },
 
-  status: function() {
+  status: function(date) {
     var open;
 
     if ( this._status ) return this._status;
 
-    open = this.hasOpenService(new Date());
+    open = this.hasOpenService(date || new Date());
 
     if ( open === true ) {
       this._status = 'open';
