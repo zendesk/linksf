@@ -22,7 +22,7 @@ var findByFilter = function(params) {
 var findById = function(id) {
   var deferred = $.Deferred();
 
-  Parse.Cloud.run('findById', id, {
+  Parse.Cloud.run('findById', {id: id}, {
     success: function(result) {
       deferred.resolve(result);
     },

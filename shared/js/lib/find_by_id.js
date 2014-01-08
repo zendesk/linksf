@@ -1,10 +1,10 @@
 var Facility = require('cloud/models/facility');
 
-module.exports = function (id, callbacks) {
+module.exports = function (params, callbacks) {
   var q = new Parse.Query(Facility);
 
   q.include('services');
-  q.get(id, {
+  q.get(params.id, {
     success: function(result) {
       callbacks.success(result);
     },

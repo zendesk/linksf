@@ -80,6 +80,8 @@ var ListView = Backbone.View.extend({
 
   submitQuery: function(params, options) {
     options = options || {};
+    params.tzOffset = (new Date()).getTimezoneOffset();
+
     return Query.findByFilter(params).done(function(results) {
       this.offset = results.offset;
       this.hasMoreResults = (results.data.length == params.limit);
