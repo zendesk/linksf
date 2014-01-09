@@ -14,7 +14,7 @@ function trackHomepageAction(searchTerm, category) {
 }
 
 function trackRoute(route) {
-  Parse.Analytics.track('visit', { page: route });
+  Parse.Analytics.track('visit', { page: route, platform: window.navigator.platform, userAgent: window.navigator.userAgent });
 }
 
 function trackQuery(params) {
