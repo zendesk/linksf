@@ -47,12 +47,12 @@ Subtle, but you'll need to first run `grunt` for the first-time compilation befo
 
 ### Deploy
 
-`rake deploy:development` and `rake deploy:production` will generate static assets then use the `s3cmd` CLI tool to upload them to AWS and `parse` to upload cloud functions to parse.com.
+`rake deploy:development` and `rake deploy:production` will generate static assets then use the `s3cmd` CLI tool to upload them to AWS and `parse` to upload cloud functions to parse.com. You'll need `s3cmd` and `parse` CLI tools:
 
-Install `s3cmd`: `brew install s3cmd`
-Install `parse`: `curl -s https://www.parse.com/downloads/cloud_code/installer.sh | sudo /bin/bash` (https://parse.com/docs/cloud_code_guide)
+* Install `s3cmd`: `brew install s3cmd`
+* Install `parse`: `curl -s https://www.parse.com/downloads/cloud_code/installer.sh | sudo /bin/bash` (https://parse.com/docs/cloud_code_guide)
 
-The latest production deploy should be available at http://link-sf.com. We should only deploy production when we are confident that the currently checked out code is usable. The latest development deploy should be available at http://dev.link-sf.com. Feel free to deploy any code here for testing, if desired.
+The latest production deploy is reachable at http://link-sf.com. We should only deploy production when we are confident that the currently checked out code is usable. The latest development deploy should be available at http://dev.link-sf.com. Feel free to deploy any code here for testing, if desired.
 
 ### Build process
 
