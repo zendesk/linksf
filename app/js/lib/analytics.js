@@ -1,3 +1,7 @@
+function trackDetailsAction(action) {
+  Parse.Analytics.track('detailsPageAction', { action: action });
+}
+
 function trackHomepageAction(searchTerm, category) {
   var dimensions = {};
   if (searchTerm) {
@@ -21,6 +25,7 @@ function trackQuery(params) {
 }
 
 module.exports = {
+  trackDetailsAction:  trackDetailsAction,
   trackHomepageAction: trackHomepageAction,
   trackRoute:          trackRoute,
   trackQuery:          trackQuery
