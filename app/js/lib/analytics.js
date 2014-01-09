@@ -1,3 +1,14 @@
+function trackHomepageAction(searchTerm, category) {
+  var dimensions = {};
+  if (searchTerm) {
+    dimensions.action = 'search';
+  } else {
+    dimensions.action   = 'category';
+    dimensions.category = category;
+  }
+  Parse.Analytics.track('homePageAction', dimensions);
+}
+
 function trackRoute(route) {
   Parse.Analytics.track('visit', { page: route });
 }
@@ -10,6 +21,7 @@ function trackQuery(params) {
 }
 
 module.exports = {
-  trackRoute: trackRoute,
-  trackQuery: trackQuery
+  trackHomepageAction: trackHomepageAction,
+  trackRoute:          trackRoute,
+  trackQuery:          trackQuery
 };
