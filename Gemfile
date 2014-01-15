@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
 
+gem 'rake'
 gem 'dotenv'
 gem 'sass'
-gem 's3cmd', '~>1.0.1'
