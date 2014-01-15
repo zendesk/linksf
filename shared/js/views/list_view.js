@@ -240,9 +240,10 @@ var ListView = Backbone.View.extend({
 
     jsonArray.forEach(function(jsonModel) {
       if (currentLocation) {
-        jsonModel.distance     = calculateDistanceFromService(jsonModel.location, currentLocation);
-        jsonModel.walkingTime  = calculateWalkingTimeFromDistance(jsonModel.distance);
-        jsonModel.showDistance = jsonModel.showWalkingTime = true;
+        jsonModel.distance        = calculateDistanceFromService(jsonModel.location, currentLocation);
+        jsonModel.walkingTime     = calculateWalkingTimeFromDistance(jsonModel.distance);
+        jsonModel.showDistance    = jsonModel.walkingTime > 60;
+        jsonModel.showWalkingTime = !jsonModel.showDistance;
       }
       serviceCategories = [];
       allNotes = [];
