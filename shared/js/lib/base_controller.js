@@ -13,7 +13,7 @@ var BaseController = function (options) {
   function setupNav(buttons, view) {
     $(navEl).find('button').remove();
     buttons.forEach(function(button) {
-      var el = $("<button type='button' class='unselectable'>").addClass(button.class).attr("id", button.id).html(button.text);
+      var el = $("<button type='button' class='unselectable'>").addClass(button['class']).attr("id", button.id).html(button.text);
 
       if ( button.action ) {
         el.click(function(event) { return view[button.action].call(view.event); });
