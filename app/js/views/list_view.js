@@ -155,8 +155,7 @@ var ListView = Backbone.View.extend({
   },
 
   navButtons: [
-    {class: 'left', id: 'backNav-button', text: 'Back'}
-    //{class: 'right', id: 'filter-button', text: 'Filter', action: 'goToFilter'}
+    {'class': 'left', 'id': 'backNav-button', 'text': 'Back'}
   ],
 
   render: function() {
