@@ -100,11 +100,13 @@
 }
 .more-options {
   float: right;
-  width: 82px;
-  padding-left: 10px;
-  margin-top: -24px;
-  border-left: 1px dotted #CCC;
+  width: 103px;
+  margin-top: -10px;
+  font-size: 13px;
   // height: 55px;
+  i {
+    margin-top: -13px;
+  }
 }
 
 .list-header-item {

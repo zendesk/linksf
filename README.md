@@ -61,16 +61,10 @@ Developing in a pure concatenation-based (or single-file) app is chaos. To allev
 Generally, the build steps are:
 
 1. empty `build` and `tmp` directories
-<<<<<<< HEAD
-1. `jshint` JavaScript
-1. run tests
-1. feed scss files into sass compiler, producing one css file for app, one for admin
-=======
   `build` is used to store built files, and `tmp` holds build artifacts (unconcatenated processed files)
 1. `jshint` JavaScript
 1. run tests
 1. compile scss files and produce app and admin css files
->>>>>>> 15fdbcef921095ab0f22b5e4a97197e20e450691
 1. browserify
 1. concatenate vendor and application JavaScript
 1. add MD5 hashes to filenames for cache busting
@@ -78,15 +72,6 @@ Generally, the build steps are:
 ### Icons
 
 We use http://fontello.com to generate an icon bundle.  Here's how to add or change:
-<<<<<<< HEAD
-- go to fontello.com
-- upload the current bundle in vendor/ using their "import" feature
-- clicky clicky and change things
-- re-download the bundle.  make sure the name is "icons"
-- unzip the bundle and copy font/* as well as css/icons.css into place
-- correct the paths in css/icons.css
-- replace the zip file with the curent one
-=======
 
 1. go to fontello.com
 1. upload the current bundle in vendor/ using their "import" feature
@@ -110,4 +95,3 @@ To get an android emulator setup on Mac OS:
 1. Click `New...` and configure a new device with 320x480 resolution and targeting Android 2.2.
 1. Click `Start...`
 1. Open the Android browser and visit Link-SF.
->>>>>>> 15fdbcef921095ab0f22b5e4a97197e20e450691
