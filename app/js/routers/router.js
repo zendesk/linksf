@@ -1,10 +1,16 @@
+<<<<<<< HEAD
 var BaseController        = require('shared/lib/base_controller'),
+=======
+var Analytics             = require('lib/analytics'),
+    BaseController        = require('shared/lib/base_controller'),
+>>>>>>> 15fdbcef921095ab0f22b5e4a97197e20e450691
     applicationController = new BaseController({ el: '#linksf' }),
     facilities            = require('shared/collections/facilities').instance(),
     fetchLocation         = require('shared/lib/fetch_location'),
     parseParams           = require('shared/lib/query_param_parser');
 
 var Router = Backbone.Router.extend({
+<<<<<<< HEAD
   routes: {
     '':                   'index',
     'query?:queryString': 'query',
@@ -12,6 +18,26 @@ var Router = Backbone.Router.extend({
     'detail/:id':         'detail',
     'about' :             'about',
     'filter':             'filter',
+=======
+  beforeAllFilters: function() { return [ this.trackRoute ]; },
+
+  trackRoute: function(routeRegex) {
+    var match = routeRegex.toString().match(/\/\^(\w*)/);
+    if (match) {
+      var route = _.isEmpty(match[1]) ? 'index' : match[1];
+      Analytics.trackRoute(route);
+    }
+    return true;
+  },
+
+  routes: {
+    '':                    'index',
+    'query?:queryString':  'query',
+    'query':               'query',
+    'detail/:id':          'detail',
+    'about' :              'about',
+    'filter':              'filter',
+>>>>>>> 15fdbcef921095ab0f22b5e4a97197e20e450691
     'filter?:queryString': 'filter'
   },
 
@@ -42,6 +68,10 @@ var Router = Backbone.Router.extend({
   },
 
   query: function(queryString) {
+<<<<<<< HEAD
+=======
+    Analytics.trackQuery(parseParams(queryString));
+>>>>>>> 15fdbcef921095ab0f22b5e4a97197e20e450691
     var ListView  = require('shared/views/list_view');
 
     this.listView = this.listView || new ListView({ collection: facilities, isSingleton: true });

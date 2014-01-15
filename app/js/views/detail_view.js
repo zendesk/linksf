@@ -1,4 +1,5 @@
-var Features                         = require('lib/features'),
+var Analytics                        = require('lib/analytics'),
+    Features                         = require('lib/features'),
     Hours                            = require('shared/models/hours'),
     fetchLocation                    = require('shared/lib/fetch_location'),
     calculateDistanceFromService     = require('shared/lib/distance').calculateDistanceFromService,
@@ -20,7 +21,10 @@ var DetailView = Backbone.View.extend({
   events: {
     'render.done':             'setMap',
     'click .inset-directions': 'launchDirections',
-    'click .inset-gmap':       'launchDirections'
+
+    'click .inset-gmap':       'launchDirections',
+    'click .inset-call':       'trackCalling',
+    'click .inset-website':    'trackClickingWebsite'
   },
 
   navButtons: [
@@ -45,10 +49,16 @@ var DetailView = Backbone.View.extend({
       this
     );
 
+
     return this;
   },
 
+
+  trackCalling:         function(event) { Analytics.trackDetailsAction('call'); },
+  trackClickingWebsite: function(event) { Analytics.trackDetailsAction('website'); },
+
   launchDirections: function() {
+    Analytics.trackDetailsAction('directions');
     var isMobile = Features.isMobile(),
         dAddr = encodeURIComponent(
           this.model.address + '@' +

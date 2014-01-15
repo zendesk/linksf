@@ -43,22 +43,16 @@ There is a `Gruntfile` that describes the available tasks.
 
 `grunt watch` invokes verification and compilation when JavaScript, HTML, SCSS, and Handlebars file changes are detected.
 
-```
-grunt # Needed after cloning the repo or if `grunt watch` wasn't running, to pick lastest code changes.
-open build/index.html
-grunt watch
-```
+Subtle, but you'll need to first run `grunt` for the first-time compilation before beginning work or after pulling the latest changes, then `grunt watch` to have recompilation happen as you edit files. Compilation will produce the app html at `build/index.html` and the admin site at `build/admin.html`. These files can be opened from the command line with `open build/index.html` or directly from a browser.
 
 ### Deploy
 
-`rake deploy:development` and `rake deploy:production` will generate static assets then use the `s3cmd` CLI tool to upload them to AWS and `parse` to upload cloud functions to parse.com.
+`rake deploy:development` and `rake deploy:production` will generate static assets then use the `s3cmd` CLI tool to upload them to AWS and `parse` to upload cloud functions to parse.com. You'll need `s3cmd` and `parse` CLI tools:
 
-Install `s3cmd`: `brew install s3cmd`
-Install `parse`: `curl -s https://www.parse.com/downloads/cloud_code/installer.sh | sudo /bin/bash` (https://parse.com/docs/cloud_code_guide)
+* Install `s3cmd`: `brew install s3cmd`
+* Install `parse`: `curl -s https://www.parse.com/downloads/cloud_code/installer.sh | sudo /bin/bash` (https://parse.com/docs/cloud_code_guide)
 
-The latest production deploy should be available at http://link-sf.com.
-
-The latest development deploy should be available at http://dev.link-sf.com.
+The latest production deploy is reachable at http://link-sf.com. We should only deploy production when we are confident that the currently checked out code is usable. The latest development deploy should be available at http://dev.link-sf.com. Feel free to deploy any code here for testing, if desired.
 
 ### Build process
 
@@ -67,9 +61,16 @@ Developing in a pure concatenation-based (or single-file) app is chaos. To allev
 Generally, the build steps are:
 
 1. empty `build` and `tmp` directories
+<<<<<<< HEAD
 1. `jshint` JavaScript
 1. run tests
 1. feed scss files into sass compiler, producing one css file for app, one for admin
+=======
+  `build` is used to store built files, and `tmp` holds build artifacts (unconcatenated processed files)
+1. `jshint` JavaScript
+1. run tests
+1. compile scss files and produce app and admin css files
+>>>>>>> 15fdbcef921095ab0f22b5e4a97197e20e450691
 1. browserify
 1. concatenate vendor and application JavaScript
 1. add MD5 hashes to filenames for cache busting
@@ -77,6 +78,7 @@ Generally, the build steps are:
 ### Icons
 
 We use http://fontello.com to generate an icon bundle.  Here's how to add or change:
+<<<<<<< HEAD
 - go to fontello.com
 - upload the current bundle in vendor/ using their "import" feature
 - clicky clicky and change things
@@ -84,3 +86,28 @@ We use http://fontello.com to generate an icon bundle.  Here's how to add or cha
 - unzip the bundle and copy font/* as well as css/icons.css into place
 - correct the paths in css/icons.css
 - replace the zip file with the curent one
+=======
+
+1. go to fontello.com
+1. upload the current bundle in vendor/ using their "import" feature
+1. clicky clicky and change things
+1. re-download the bundle.  make sure the name is "icons"
+1. unzip the bundle and copy font/* as well as css/icons.css into place
+1. correct the paths in css/icons.css
+1. replace the zip file with the curent one
+
+### Testing
+
+To test out the app, using an emulator is best in the absence of an actual device; this lets us simulate our target devices fairly well. Our target device is any 320x480 phone on Android 2.2.
+
+To get an android emulator setup on Mac OS:
+
+1. Download the [Android Developer Tools](https://developer.android.com/sdk/index.html#download)
+1. Open the `adt-bundle-mac-...` folder, and open `Eclipse.app`. You may have to control-click and select `Open`, since this is a `.app` directly downloaded from an untrusted source.
+1. Window -> Android SDK Manager
+1. In the list of packages, select `Android 2.2 (API 8)` and click `Install packages...`.
+1. Window -> Android Virtual Device Manager
+1. Click `New...` and configure a new device with 320x480 resolution and targeting Android 2.2.
+1. Click `Start...`
+1. Open the Android browser and visit Link-SF.
+>>>>>>> 15fdbcef921095ab0f22b5e4a97197e20e450691
