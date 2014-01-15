@@ -33,25 +33,19 @@ function configure(grunt, targetPath, data) {
 }
 
 function configureGoogleAnalytics(grunt) {
-  var targetPath = 'app/index.html',
-      data = {
-        GOOGLE_ANALYTICS_TOKEN: process.env.GOOGLE_ANALYTICS_TOKEN
-        GOOGLE_ANALYTICS_HOST: process.env.GOOGLE_ANALYTICS_HOST
-      };
-
-  configure(grunt, targetPath, data);
+  configure(grunt, 'app/index.html', {
+    GOOGLE_ANALYTICS_TOKEN: process.env.GOOGLE_ANALYTICS_TOKEN,
+    GOOGLE_ANALYTICS_HOST: process.env.GOOGLE_ANALYTICS_HOST
+  });
 }
 
 function configureGlobalJson(grunt) {
-  var targetPath = 'server/config/global.json',
-      data: {
-        PARSE_DEV_APP_ID:      process.env.PARSE_DEV_APP_ID,
-        PARSE_DEV_MASTER_KEY:  process.env.PARSE_DEV_MASTER_KEY,
-        PARSE_PROD_APP_ID:     process.env.PARSE_PROD_APP_ID,
-        PARSE_PROD_MASTER_KEY: process.env.PARSE_PROD_MASTER_KEY
-      };
-
-  configure(grunt, targetPath, data);
+  configure(grunt, 'server/config/global.json', {
+    PARSE_DEV_APP_ID:      process.env.PARSE_DEV_APP_ID,
+    PARSE_DEV_MASTER_KEY:  process.env.PARSE_DEV_MASTER_KEY,
+    PARSE_PROD_APP_ID:     process.env.PARSE_PROD_APP_ID,
+    PARSE_PROD_MASTER_KEY: process.env.PARSE_PROD_MASTER_KEY
+  });
 }
 
 module.exports = function(grunt) {
