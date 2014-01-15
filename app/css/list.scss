@@ -25,7 +25,7 @@
     .facility-name {
       margin: 5px 0 3px 0;
       text-decoration: none;
-      font-size: 18px;
+      font-size: 15px;
       font-weight: bold;
     }
 
@@ -50,14 +50,11 @@
   display: inline-block;
   padding: 2px 4px;
   font-size: 11.844px;
-  font-weight: bold;
   line-height: 14px;
   color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   white-space: nowrap;
   vertical-align: baseline;
-  background-color: #999999;
-
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
@@ -65,15 +62,15 @@
 
 .label-status {
   &.open {
-    background-color: #468847; // green
+    color: #468847; // green
   }
 
   &.closed {
-    background-color: #b94a48;
+    color: #b94a48;
   }
 
   &.unknown {
-    background-color: blue; // red
+    color: blue; // red
   }
 }
 .query-representation {
@@ -84,10 +81,10 @@
 .query-representation-content {
   margin-top: 53px;
   border-bottom: 1px solid #999;
-  color: #7B7B7B;
+  color: #929292;
   font-weight: bold;
   font-size: 14px;
-  height: 37px;
+  height: 36px;
   background-color: #FFF;
   background-image: linear-gradient(#FFF, #d8d8d8);
   background-image: -webkit-linear-gradient(#FFF, #d8d8d8);
@@ -100,12 +97,12 @@
 }
 .more-options {
   float: right;
-  width: 103px;
-  margin-top: -10px;
-  font-size: 13px;
+  width: 112px;
+  margin-top: -14px;
+  font-size: 14px;
   // height: 55px;
   i {
-    margin-top: -13px;
+    margin-top: -14px;
   }
 }
 
@@ -138,8 +135,8 @@
   margin-right: 10px;
 }
 .chevron {
-  font-size: 30px;
-  margin-top: 20px;
+  font-size: 15px;
+  margin-right: 5px;
 }
 .gray{
   color: #777;
