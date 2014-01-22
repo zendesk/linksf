@@ -9,18 +9,17 @@
         <div class="facility-item-box-info">
           <div>
             <p class="facility-name">{{name}}</p>
+          </div>
             <span class="facility-info">
               <span class="label-status {{status}}">{{status}}</span>
               {{#if showDistance}}<span class="label-status">{{distance}} miles</span>{{/if}}
-              {{#if showWalkingTime}}<span class="label-status">{{walkingTime}} minutes walking</span>{{/if}}
             </span>
-            </p>
-          </div>
           <div class="facility-categories">
             {{#each serviceCategories}}
-              <span class="facility-services"><i class="category-icon icon-{{icon}}"></i>{{title}}</span>
+              <span class="facility-services"><i class="category-icon icon-{{icon}}"></i></span>
             {{/each}}
           </div>
+          {{#if showWalkingTime}}<span class="label-status">{{walkingTime}} minutes walking</span>{{/if}}
         </div>
         <div class="facility-item-box-caret">
           <i class="icon-right-open-2 chevron"></i>
