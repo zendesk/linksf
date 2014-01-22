@@ -27,7 +27,7 @@ namespace :deploy do
     end
 
     # deploy everything in vendor/font
-    system("#{s3cmd} sync --acl-public vendor/font s3://#{bucket}/vendor/font")
+    system("#{s3cmd} sync --acl-public vendor/font/ s3://#{bucket}/vendor/font/")
 
     # deploy everything in images
     system("#{s3cmd} sync --acl-public img/ s3://#{bucket}/img/")
