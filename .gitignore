@@ -9,3 +9,4 @@ admin.html
 s3cfg
 .env
 server/config/global.json
+.DS_Store
