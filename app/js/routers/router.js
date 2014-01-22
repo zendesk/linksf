@@ -69,6 +69,7 @@ var Router = Backbone.Router.extend({
         $.extend(queryParams, loc);
         this.listView.options.currentLocation = loc;
       }
+
       applicationController.render(this.listView);
       if ( queryString != this.lastSearch ) {
         this.listView.showSpinner();
