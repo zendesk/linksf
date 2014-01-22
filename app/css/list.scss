@@ -48,8 +48,8 @@
 
 .label-status {
   display: inline-block;
-  padding: 2px 4px;
-  font-size: 11.844px;
+  padding: 2px 4px 0 0;
+  font-size: 15px;
   line-height: 14px;
   color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
@@ -102,7 +102,7 @@
   font-size: 14px;
   // height: 55px;
   i {
-    margin-top: -14px;
+    margin-top: -16px;
   }
 }
 
