@@ -73,6 +73,12 @@
     color: blue; // red
   }
 }
+
+.sort-options { 
+  margin-left: 10px;
+
+}
+
 .query-representation {
   position: fixed;
   width: 100%;
@@ -88,7 +94,6 @@
   background-color: #FFF;
   background-image: linear-gradient(#FFF, #d8d8d8);
   background-image: -webkit-linear-gradient(#FFF, #d8d8d8);
-  cursor: pointer;
   padding: 18px 5px 0 5px;
   >.open {
     margin-left: 10px;
@@ -100,6 +105,8 @@
   width: 112px;
   margin-top: -14px;
   font-size: 14px;
+  text-align: right;
+  cursor: pointer;
   // height: 55px;
   i {
     margin-top: -16px;

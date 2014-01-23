@@ -6,8 +6,9 @@ var Query                            = require('shared/lib/query'),
     calculateDistanceFromService     = require('shared/lib/distance').calculateDistanceFromService,
     calculateWalkingTimeFromDistance = require('shared/lib/distance').calculateWalkingTimeFromDistance;
 
-function generateQueryParams(queryString, limit ) {
-  var params       = parseParams(queryString),
+function generateQueryParams(inputString, limit ) {
+  var queryString  = inputString || window.location.hash.substring(window.location.hash.indexOf('?') + 1),
+      params       = parseParams(queryString),
       categories   = _.compact((params.categories || '').split(',')),
       demographics = _.compact((params.demographics || '').split(',')),
       gender       = params.gender || null,
@@ -59,7 +60,8 @@ var ListView = Backbone.View.extend({
   events: {
     "click #load-more-link": 'loadMore',
     "click #load-more":      'loadMore',
-    "click .query-representation-content":    'goToFilter'
+    "click .more-options":   'goToFilter',
+    "click .sort-toggle":    'sortToggle'
   },
 
   constructor: function (options) {
@@ -120,13 +122,13 @@ var ListView = Backbone.View.extend({
     var queryString  = window.location.hash.substring(window.location.hash.indexOf('?')+1);
     var router = require('routers/router').instance();
     router.navigate("filter?" + queryString, {trigger: true});
+    return false;
   },
 
   generateQueryParams: generateQueryParams,
 
   getFilterParams: function () {
-    var queryString  = window.location.hash.substring(window.location.hash.indexOf('?')+1),
-        queryParams  = generateQueryParams(queryString);
+    var queryParams  = generateQueryParams();
 
     queryParams.offset = this.offset;
     queryParams.limit  = 10;
@@ -134,6 +136,22 @@ var ListView = Backbone.View.extend({
     this.options.categories = queryParams.filter.categories || [];
 
     return queryParams;
+  },
+
+  sortToggle: function() { 
+    var currentParams = generateQueryParams(), 
+        navigate = require('shared/lib/navigate');
+
+    currentParams.sort = ( currentParams.sort == "near" ? "name" : "near" );
+    navigate({
+      categories:   currentParams.filter.categories,
+      demographics: currentParams.filter.demographics,
+      gender:       currentParams.filter.gender,
+      sort:         currentParams.sort,
+      hours:        currentParams.hours
+    });
+
+    return false;
   },
 
   resetFilters: function() {
@@ -172,14 +190,17 @@ var ListView = Backbone.View.extend({
         categories      = this.options.categories || [],
         currentLocation = this.options.currentLocation,
         loadingResults  = this.options.loadingResults || [],
-        templateJson    = this.flattenServices(deepJson, currentLocation);
+        templateJson    = this.flattenServices(deepJson, currentLocation),
+        currentParams   = generateQueryParams();
 
     // replace with template
     this.$el.html(this.template({
-      facilities:     templateJson,
-      categories:     ListView.CATEGORIES,
-      loadingResults: loadingResults,
-      searchParams:   this.filterSelectCategories(categories)
+      facilities:       templateJson,
+      categories:       ListView.CATEGORIES,
+      loadingResults:   loadingResults,
+      searchParams:     this.filterSelectCategories(categories),
+      sortIsProximity:  currentParams.sort == "near",
+      openNow:          currentParams.hours == "open"
     }));
 
     this.$('.query').hide();

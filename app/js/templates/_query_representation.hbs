@@ -15,7 +15,19 @@
       <i class="list-header-item category-icon icon-th"></i>
       <span>All </span>
     {{/searchParams}}
-    <div class="label-status open">open now</div>
-    <div class="more-options"><p>More Options <i class="icon-right-open-2 right"></i></p></div>
+    <span class="sort-options"><a href="#" class="sort-toggle">
+      {{#if sortIsProximity}}
+        sort by name
+      {{else}}
+        sort by proximity
+      {{/if}}
+    </a></span>
+    <span class="open-options">
+      <label>
+        <input type="checkbox" name="open">
+        open now
+      </label>
+    </span>
+    <div class="more-options"><p>Options <i class="icon-right-open-2"></i></p></div>
   </div>
 </div>
