@@ -61,7 +61,8 @@ var ListView = Backbone.View.extend({
     "click #load-more-link": 'loadMore',
     "click #load-more":      'loadMore',
     "click .more-options":   'goToFilter',
-    "click .sort-toggle":    'sortToggle'
+    "click .sort-toggle":    'sortToggle',
+    "click #open-toggle":    'openToggle'
   },
 
   constructor: function (options) {
@@ -138,19 +139,30 @@ var ListView = Backbone.View.extend({
     return queryParams;
   },
 
-  sortToggle: function() { 
-    var currentParams = generateQueryParams(), 
-        navigate = require('shared/lib/navigate');
-
-    currentParams.sort = ( currentParams.sort == "near" ? "name" : "near" );
+  // TODO: there's really no reason to have to cast back and forth like this. 
+  // we should define a common format for the url and for the parse cloud func.
+  _navigateFromQueryParams: function(p) {
+    var navigate = require('shared/lib/navigate');
     navigate({
-      categories:   currentParams.filter.categories,
-      demographics: currentParams.filter.demographics,
-      gender:       currentParams.filter.gender,
-      sort:         currentParams.sort,
-      hours:        currentParams.hours
+      categories:   p.filter.categories,
+      demographics: p.filter.demographics,
+      gender:       p.filter.gender,
+      sort:         p.sort,
+      hours:        p.filter.open ? "open" : null
     });
+  },
 
+  sortToggle: function() { 
+    var currentParams = generateQueryParams(); 
+    currentParams.sort = ( currentParams.sort == "near" ? "name" : "near" );
+    this._navigateFromQueryParams(currentParams);
+    return false;
+  },
+  
+  openToggle: function() { 
+    var currentParams = generateQueryParams(); 
+    currentParams.filter.open = !currentParams.filter.open;
+    this._navigateFromQueryParams(currentParams);
     return false;
   },
 
@@ -200,7 +212,7 @@ var ListView = Backbone.View.extend({
       loadingResults:   loadingResults,
       searchParams:     this.filterSelectCategories(categories),
       sortIsProximity:  currentParams.sort == "near",
-      openNow:          currentParams.hours == "open"
+      openNowChecked:   currentParams.filter.open ? "checked" : ""
     }));
 
     this.$('.query').hide();

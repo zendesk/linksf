@@ -17,14 +17,14 @@
     {{/searchParams}}
     <span class="sort-options"><a href="#" class="sort-toggle">
       {{#if sortIsProximity}}
-        sort by name
+        sort by name</a>
       {{else}}
-        sort by proximity
+        sort by proximity</a>
       {{/if}}
-    </a></span>
+    </span>
     <span class="open-options">
       <label>
-        <input type="checkbox" name="open">
+        <input type="checkbox" id="open-toggle" {{openNowChecked}}>
         open now
       </label>
     </span>
