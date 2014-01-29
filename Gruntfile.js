@@ -243,6 +243,11 @@ module.exports = function(grunt) {
       build: {
         src: 'build/*',
         filter: function(filepath) { return filepath !== 'build/.gitkeep'; }
+      },
+
+      tmp: {
+        src: 'tmp/*',
+        filter: function(filepath) { return filepath !== 'tmp/.gitkeep'; }
       }
     },
 
@@ -279,11 +284,11 @@ module.exports = function(grunt) {
               context[keyMap[key]] = outputFile;
             });
 
-            template = Handlebars.compile(grunt.file.read('app/index.html'));
+            template = Handlebars.compile(grunt.file.read('tmp/index.html'));
             output = template(context);
             grunt.file.write('index.html', output);
 
-            template = Handlebars.compile(grunt.file.read('admin/admin.html'));
+            template = Handlebars.compile(grunt.file.read('tmp/admin.html'));
             output = template(context);
             grunt.file.write('admin.html', output);
           }

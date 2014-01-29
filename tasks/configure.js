@@ -22,32 +22,32 @@ function ensureInEnv(variables) {
   });
 }
 
-function configure(grunt, targetPath, data) {
-  var templatePath = targetPath + '.template',
-      template = grunt.file.read(templatePath),
+function configure(grunt, templatePath, targetPath, data) {
+  var template = grunt.file.read(templatePath),
       output = grunt.template.process(template, { data: data });
 
   if ( !grunt.file.exists(targetPath) || grunt.file.read(targetPath) !== output ) {
     grunt.file.write(targetPath, output);
+    console.log('File "' + targetPath + '" created.');
   }
 }
 
 function insertTokens(grunt) {
-  configure(grunt, 'app/index.html', {
+  configure(grunt, 'app/index.html', 'tmp/index.html', {
     GOOGLE_ANALYTICS_TOKEN: process.env.GOOGLE_ANALYTICS_TOKEN,
     GOOGLE_ANALYTICS_HOST: process.env.GOOGLE_ANALYTICS_HOST,
     PARSE_APP_ID: process.env.PARSE_APP_ID,
     PARSE_JS_KEY: process.env.PARSE_JS_KEY
   });
 
-  configure(grunt, 'admin/admin.html', {
+  configure(grunt, 'admin/admin.html', 'tmp/admin.html', {
     PARSE_APP_ID: process.env.PARSE_APP_ID,
     PARSE_JS_KEY: process.env.PARSE_JS_KEY
   });
 }
 
 function configureGlobalJson(grunt) {
-  configure(grunt, 'server/config/global.json', {
+  configure(grunt, 'server/config/global.json.template', 'server/config/global.json', {
     PARSE_DEV_APP_ID:      process.env.PARSE_DEV_APP_ID,
     PARSE_DEV_MASTER_KEY:  process.env.PARSE_DEV_MASTER_KEY,
     PARSE_PROD_APP_ID:     process.env.PARSE_PROD_APP_ID,
