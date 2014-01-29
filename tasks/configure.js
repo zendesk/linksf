@@ -32,10 +32,17 @@ function configure(grunt, targetPath, data) {
   }
 }
 
-function configureGoogleAnalytics(grunt) {
+function insertTokens(grunt) {
   configure(grunt, 'app/index.html', {
     GOOGLE_ANALYTICS_TOKEN: process.env.GOOGLE_ANALYTICS_TOKEN,
-    GOOGLE_ANALYTICS_HOST: process.env.GOOGLE_ANALYTICS_HOST
+    GOOGLE_ANALYTICS_HOST: process.env.GOOGLE_ANALYTICS_HOST,
+    PARSE_APP_ID: process.env.PARSE_APP_ID,
+    PARSE_JS_KEY: process.env.PARSE_JS_KEY
+  });
+
+  configure(grunt, 'admin/admin.html', {
+    PARSE_APP_ID: process.env.PARSE_APP_ID,
+    PARSE_JS_KEY: process.env.PARSE_JS_KEY
   });
 }
 
@@ -66,7 +73,7 @@ module.exports = function(grunt) {
     process.env.GOOGLE_ANALYTICS_HOST = process.env.GOOGLE_ANALYTICS_DEV_HOST;
 
     configureGlobalJson(grunt);
-    configureGoogleAnalytics(grunt);
+    insertTokens(grunt);
   });
 
   grunt.registerTask('configure:production', 'Configure for the production environment.', function() {
@@ -86,6 +93,6 @@ module.exports = function(grunt) {
     process.env.GOOGLE_ANALYTICS_HOST = process.env.GOOGLE_ANALYTICS_PROD_HOST;
 
     configureGlobalJson(grunt);
-    configureGoogleAnalytics(grunt);
+    insertTokens(grunt);
   });
 };
