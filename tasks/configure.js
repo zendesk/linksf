@@ -25,7 +25,7 @@ function ensureInEnv(variables) {
 function configure(grunt, targetPath, data) {
   var templatePath = targetPath + '.template',
       template = grunt.file.read(templatePath),
-      output = grunt.template.process(template, data);
+      output = grunt.template.process(template, { data: data });
 
   if ( !grunt.file.exists(targetPath) || grunt.file.read(targetPath) !== output ) {
     grunt.file.write(targetPath, output);
