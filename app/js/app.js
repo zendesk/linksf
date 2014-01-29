@@ -8,8 +8,12 @@ Handlebars.registerPartial('queryRepresentation', require('templates/_query_repr
 $(function() {
   window.FastClick(document.body);
   require('lib/boot');
-  Parse.initialize(parseAppId, parseJSKey);
+  var features = require('lib/features');
+  if ( features.isIE() ) 
+    Parse.serverURL = "http://api.parse.com";
 
+  Parse.initialize(parseAppId, parseJSKey);
+  
   require('routers/router').instance();
   Backbone.history.start();
 });

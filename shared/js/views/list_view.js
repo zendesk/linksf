@@ -87,6 +87,10 @@ var ListView = Backbone.View.extend({
     options = options || {};
     params.tzOffset = (new Date()).getTimezoneOffset();
 
+    if ( this.options.currentLocation ) { 
+      $.extend(params, this.options.currentLocation);  
+    }
+
     return Query.findByFilter(params).done(function(results) {
       this.offset = results.offset;
       this.hasMoreResults = (results.data.length == params.limit);
