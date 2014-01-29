@@ -258,20 +258,16 @@ module.exports = function(grunt) {
         },
         options: {
           complete: function(hashes) {
-            // ugly but the only way to tag each file with a key
-            var keyMap = {
-                'tmp/linksf.js': 'linksf_js',
-                'tmp/linksf.css': 'linksf_css',
-                'tmp/linksf_admin.js': 'linksf_admin_js',
-                'tmp/linksf_admin.css': 'linksf_admin_css'
-               },
-               context = {},
-               Handlebars = require('handlebars'),
-               template,
-               output;
-
-            context.parseAppId = process.env.PARSE_APP_ID;
-            context.parseJSKey = process.env.PARSE_JS_KEY;
+            var context = {},
+                Handlebars = require('handlebars'),
+                template,
+                output,
+                keyMap = {
+                  'tmp/linksf.js': 'linksf_js',
+                  'tmp/linksf.css': 'linksf_css',
+                  'tmp/linksf_admin.js': 'linksf_admin_js',
+                  'tmp/linksf_admin.css': 'linksf_admin_css'
+                };
 
             Object.keys(hashes).forEach(function(key) {
               var matches = key.match(/^tmp\/(.*)(\..*)$/),
