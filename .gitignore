@@ -4,7 +4,7 @@
 /tmp/*.js
 /tmp/*.css
 /tmp/*.html
-.sass-cache
+/.sass-cache
 /index.html
 /admin.html
 /s3cfg
