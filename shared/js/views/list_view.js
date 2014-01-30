@@ -119,7 +119,7 @@ var ListView = Backbone.View.extend({
   goToFilter: function() {
     var queryString  = window.location.hash.substring(window.location.hash.indexOf('?')+1);
     var router = require('routers/router').instance();
-    router.navigate("filter?" + queryString, {trigger: true});
+    Backbone.history.navigate("filter?" + queryString, {trigger: true});
   },
 
   generateQueryParams: generateQueryParams,
