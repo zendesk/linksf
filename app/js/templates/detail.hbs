@@ -17,7 +17,7 @@
 
     <div class="inset-gmap">
       <div id="detail-gmap"></div>
-      <p>{{address}}</p>
+      <p>{{address}} {{#if cross_street}}({{cross_street}}){{/if}}</p>
       {{#with destination}}
         {{#if showDistance}}<p class="destination">{{distance}} miles</p>{{/if}}
         {{#if showWalkingTime}}<p class="destination">{{walkingTime}} minutes walking</p>{{/if}}
