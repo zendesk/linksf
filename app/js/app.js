@@ -9,8 +9,7 @@ $(function() {
   window.FastClick(document.body);
   require('lib/boot');
   var features = require('lib/features');
-  if ( features.isIE() ) 
-    Parse.serverURL = "http://api.parse.com";
+  Parse.serverURL = "http://api.link-sf.com";
 
   Parse.initialize(parseAppId, parseJSKey);
   
