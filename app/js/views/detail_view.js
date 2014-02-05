@@ -45,7 +45,6 @@ var DetailView = Backbone.View.extend({
 
     _.defer(
       function(view) { view.setMap();
-    //  console.log("so ", facility.openHours); 
     },
       this
     );
@@ -60,7 +59,8 @@ var DetailView = Backbone.View.extend({
 
   launchDirections: function() {
     Analytics.trackDetailsAction('directions');
-    var isMobile = Features.isMobile(),
+    var isAndroid22 = Features.isAndroid22(),
+        isMobile = Features.isMobile(),
         dAddr = encodeURIComponent(
           this.model.address + '@' +
           this.model.location.latitude + ',' +
@@ -68,7 +68,7 @@ var DetailView = Backbone.View.extend({
         ),
         directionsUrl = '';
 
-    if ( isMobile ) {
+    if ( isMobile && !isAndroid22 ) {
       directionsUrl = 'comgooglemaps://?daddr=' + dAddr;
       document.location = directionsUrl;
     } else {
@@ -77,9 +77,11 @@ var DetailView = Backbone.View.extend({
         directionsUrl = 'https://maps.google.com?daddr=' + dAddr + '&saddr=' + sAddr;
 
       }).fail(function() {
-      directionsUrl = 'https://maps.google.com?daddr=' + dAddr;
+        directionsUrl = 'https://maps.google.com?daddr=' + dAddr;
       });
-      _.defer( function(){window.open(directionsUrl); });
+      _.defer( function() {
+        isAndroid22 ? (document.location = directionsUrl) : window.open(directionsUrl, '_blank');
+      });
     }
 
     return false;

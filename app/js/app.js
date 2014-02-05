@@ -6,14 +6,13 @@ Handlebars.registerPartial('openHours',           require('shared/templates/_ope
 Handlebars.registerPartial('queryRepresentation', require('templates/_query_representation'));
 
 $(function() {
-  window.FastClick(document.body);
+  window.FastClick.attach(document.body);
   require('lib/boot');
   var features = require('lib/features');
-  if ( features.isIE() ) 
-    Parse.serverURL = "http://api.parse.com";
+  Parse.serverURL = "http://api.link-sf.com";
 
   Parse.initialize(parseAppId, parseJSKey);
-  
+
   require('routers/router').instance();
   Backbone.history.start();
 });

@@ -43,7 +43,7 @@ var Router = Backbone.Router.extend({
     } else {
       //otherwise go to the home page. Use replaceState if available so
       //the navigation doesn't create an extra history entry
-      this.navigate('', {trigger:true, replace:true});
+      Backbone.history.navigate('', {trigger:true, replace:true});
     }
   },
 
