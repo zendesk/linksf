@@ -2,17 +2,17 @@ var Analytics                        = require('lib/analytics'),
     Features                         = require('lib/features'),
     Hours                            = require('shared/models/hours'),
     fetchLocation                    = require('shared/lib/fetch_location'),
-    calculateDistanceFromService     = require('shared/lib/distance').calculateDistanceFromService,
-    calculateWalkingTimeFromDistance = require('shared/lib/distance').calculateWalkingTimeFromDistance;
+    calculateDistance            = require('shared/lib/distance').calculateDistance;
 
-function extractDistanceTime(location, currentLocation) {
-  var destination = {};
-  if (location && currentLocation) {
-    destination.distance     = calculateDistanceFromService(location, currentLocation);
-    destination.walkingTime  = calculateWalkingTimeFromDistance(destination.distance);
-    destination.showDistance = destination.showWalkingTime = true;
-  }
-  return destination;
+function calculateDistanceCallback (walkingData, facility){
+  var self = this;
+    if (!walkingData) { return; }
+    var distanceSpan = self.$("#distance_" + facility.objectId),
+        durationSpan = self.$("#duration_" + facility.objectId);
+    facility.distanceText = walkingData.distance.text;
+    facility.durationText = walkingData.duration.text;
+    $(distanceSpan).text( facility.distanceText );
+    $(durationSpan).text( facility.durationText );
 }
 
 var DetailView = Backbone.View.extend({
@@ -34,9 +34,10 @@ var DetailView = Backbone.View.extend({
   render: function() {
     var facility = this.model,
         $mapdiv  =  this.$('#detail-gmap');
-
-    facility.destination = extractDistanceTime(facility.location, this.options.currentLocation);
-
+    
+    if ( !facility.distanceData && this.options.currentLocation ) {
+      calculateDistance(facility, this.options.currentLocation, calculateDistanceCallback );
+    }
     this.$el.html(this.template({
       facility:    facility,
       isMobile:    Features.isMobile()

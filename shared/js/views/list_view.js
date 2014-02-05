@@ -3,8 +3,7 @@ var Query                            = require('shared/lib/query'),
     facilities                       = require('shared/collections/facilities').instance(),
     searchParams                     = ["fr"],
     parseParams                      = require('shared/lib/query_param_parser'),
-    calculateDistanceFromService     = require('shared/lib/distance').calculateDistanceFromService,
-    calculateWalkingTimeFromDistance = require('shared/lib/distance').calculateWalkingTimeFromDistance;
+    calculateAllDistances            = require('shared/lib/distance').calculateAllDistances;
 
 function generateQueryParams(queryString, limit ) {
   var params       = parseParams(queryString),
@@ -53,6 +52,21 @@ function getData($elements, dataAttrName) {
   return result;
 }
 
+function calculateDistanceCallback (walkingData, list){
+  var self = this;
+  list.forEach(function(facility, i){
+    if (!walkingData[i]) { return; }
+    var text,
+        distanceSpan = self.$("#distance_" + facility.id),
+        aboveLimit = walkingData[i].duration.value > 3600;
+
+    text = aboveLimit ? walkingData[i].distance.text : walkingData[i].duration.text;
+
+    facility.distanceData = text;
+    $(distanceSpan).text( text );
+  });
+}
+
 var ListView = Backbone.View.extend({
   template: require('shared/templates/list'),
 
@@ -87,14 +101,17 @@ var ListView = Backbone.View.extend({
     options = options || {};
     params.tzOffset = (new Date()).getTimezoneOffset();
 
-    if ( this.options.currentLocation ) { 
-      $.extend(params, this.options.currentLocation);  
+    if ( this.options.currentLocation ) {
+      $.extend(params, this.options.currentLocation);
     }
 
     return Query.findByFilter(params).done(function(results) {
       this.offset = results.offset;
       this.hasMoreResults = (results.data.length == params.limit);
 
+      if (this.options.currentLocation) {
+        calculateAllDistances( results.data, this.options.currentLocation, calculateDistanceCallback.bind(this) );
+      }
       if (options.appendData) {
         this.collection.add(results.data);
       } else {
@@ -206,11 +223,12 @@ var ListView = Backbone.View.extend({
         modelJson;
 
     json = collection.models.map(function(model) {
-      modelJson = model.toJSON();
+      modelJson = $.extend(true, { distanceData: model.distanceData }, model.toJSON());
       modelJson.status = model.status();
       modelJson.services = [];
 
       model.attributes.services.forEach(function(service) {
+        // var jsonService = $.extend(true, { distanceData: service.distanceData }, service.toJSON());
         modelJson.services.push(service.toJSON());
       });
 
@@ -241,14 +259,7 @@ var ListView = Backbone.View.extend({
         allNotes,
         flattened = [],
         self = this;
-
     jsonArray.forEach(function(jsonModel) {
-      if (currentLocation) {
-        jsonModel.distance        = calculateDistanceFromService(jsonModel.location, currentLocation);
-        jsonModel.walkingTime     = calculateWalkingTimeFromDistance(jsonModel.distance);
-        jsonModel.showDistance    = jsonModel.walkingTime > 60;
-        jsonModel.showWalkingTime = !jsonModel.showDistance;
-      }
       serviceCategories = [];
       allNotes = [];
 

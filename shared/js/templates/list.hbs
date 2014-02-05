@@ -12,14 +12,13 @@
           </div>
             <span class="facility-info">
               <span class="label-status {{status}}">{{status}}</span>
-              {{#if showDistance}}<span class="label-status">{{distance}} miles</span>{{/if}}
             </span>
           <div class="facility-categories">
             {{#each serviceCategories}}
               <span class="facility-services"><i class="category-icon icon-{{icon}}"></i></span>
             {{/each}}
           </div>
-          {{#if showWalkingTime}}<span class="label-status">{{walkingTime}} minutes walking</span>{{/if}}
+          <span id="distance_{{objectId}}" class="label-status">{{distanceData}}</span>
         </div>
         <div class="facility-item-box-caret">
           <i class="icon-right-open-2 chevron"></i>
