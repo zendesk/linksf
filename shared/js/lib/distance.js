@@ -1,8 +1,7 @@
-var LatLng = google.maps.LatLng;
 
 
 function calculateDistance(facility, currentLocation, callback) {
-  var pos = new LatLng(facility.location.latitude, facility.location.longitude);
+  var pos = new google.maps.LatLng(facility.location.latitude, facility.location.longitude);
   currentLocation = new google.maps.LatLng(currentLocation.lat, currentLocation.lon);
 
   function getDistanceMatrixCallback(response, status) {
@@ -18,7 +17,7 @@ function calculateAllDistances(list, currentLocation, callback) {
       locationHash = {};
 
   list.forEach(function(jsonModel) {
-    var pos = new LatLng(jsonModel.attributes.location.latitude, jsonModel.attributes.location.longitude);
+    var pos = new google.maps.LatLng(jsonModel.attributes.location.latitude, jsonModel.attributes.location.longitude);
     destinations.push(pos);
   });
 
