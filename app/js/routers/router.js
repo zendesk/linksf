@@ -13,6 +13,7 @@ var Router = Backbone.Router.extend({
     if (match) {
       var route = _.isEmpty(match[1]) ? 'index' : match[1];
       Analytics.trackRoute(route);
+      ga('send', 'pageview', '/#' + route);
     }
     return true;
   },

@@ -26,7 +26,8 @@ module.exports = function(grunt) {
           _: true,
           google: true,
           parseAppId: true,
-          parseJSKey: true
+          parseJSKey: true,
+          ga: true
         },
         undef: true,
         debug: true,
