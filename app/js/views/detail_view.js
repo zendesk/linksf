@@ -56,17 +56,17 @@ var DetailView = Backbone.View.extend({
 
   trackCalling: function(event) {
     Analytics.trackDetailsAction('call');
-    ga('send', 'event', 'call', this.model.id);
+    ga('send', 'event', 'external_link', 'call', this.model.id);
   },
 
   trackClickingWebsite: function(event) {
     Analytics.trackDetailsAction('website');
-    ga('send', 'event', 'website', this.model.id);
+    ga('send', 'event', 'external_link', 'website', this.model.id);
   },
 
   launchDirections: function() {
     Analytics.trackDetailsAction('directions');
-    ga('send', 'event', 'directions', this.model.id);
+    ga('send', 'event', 'external_link', 'directions', this.model.id);
     var isAndroid22 = Features.isAndroid22(),
         isMobile = Features.isMobile(),
         dAddr = encodeURIComponent(
