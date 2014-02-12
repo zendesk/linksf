@@ -75,8 +75,8 @@ var ListView = Backbone.View.extend({
     "click #load-more-link": 'loadMore',
     "click #load-more":      'loadMore',
     "click .more-options":   'goToFilter',
-    "click .sort-toggle":    'sortToggle',
-    "click #open-toggle":    'openToggle'
+    "click .sort-toggle":    'filterToggle',
+    "click .open-toggle":    'filterToggle'
   },
 
   constructor: function (options) {
@@ -169,16 +169,14 @@ var ListView = Backbone.View.extend({
     });
   },
 
-  sortToggle: function() { 
+  filterToggle: function(event) { 
     var currentParams = generateQueryParams(); 
-    currentParams.sort = ( currentParams.sort == "near" ? "name" : "near" );
-    this._navigateFromQueryParams(currentParams);
-    return false;
-  },
-  
-  openToggle: function() { 
-    var currentParams = generateQueryParams(); 
-    currentParams.filter.open = !currentParams.filter.open;
+    if ( $(event.target).hasClass('sort-toggle') ) {
+      currentParams.sort = $(event.target).data('sort');
+    } else if ( $(event.target).hasClass('open-toggle') ) {
+      currentParams.filter.open = $(event.target).data('open') == 'yes';
+    }
+
     this._navigateFromQueryParams(currentParams);
     return false;
   },
@@ -227,12 +225,14 @@ var ListView = Backbone.View.extend({
       facilities:       templateJson,
       categories:       ListView.CATEGORIES,
       loadingResults:   loadingResults,
-      searchParams:     this.filterSelectCategories(categories),
-      sortIsProximity:  currentParams.sort == "near",
-      openNowChecked:   currentParams.filter.open ? "checked" : ""
+      searchParams:     this.filterSelectCategories(categories)
     }));
 
     this.$('.query').hide();
+
+    this.$(currentParams.sort == "near" ? '#sort-distance' : '#sort-name').addClass('active');
+    this.$(currentParams.filter.open ? '#open-yes' : '#open-no').addClass('active');
+
     this.$('.option-group-exclusive .query-option').click(function() {
       $(this).closest(".option-group-exclusive").find(".query-option").removeClass("selected");
       $(this).toggleClass("selected");

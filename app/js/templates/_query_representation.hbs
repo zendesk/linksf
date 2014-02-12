@@ -1,33 +1,27 @@
 <div class="query-representation">
   <div class="query-representation-content">
-  {{#ifMultiple searchParams}}
-    {{#each searchParams}}
-      <i class="list-header-item category-icon icon-{{icon}}"></i>
-    {{/each}}
-  {{else}}
-    {{#each searchParams}}
-      <i class="list-header-item category-icon icon-{{icon}}"></i>
-      <span>{{title}} </span>
-    {{/each}}    
-  {{/ifMultiple}}
-
-    {{^searchParams}}
-      <i class="list-header-item category-icon icon-th"></i>
-      <span>All </span>
-    {{/searchParams}}
-    <span class="sort-options"><a href="#" class="sort-toggle">
-      {{#if sortIsProximity}}
-        sort by name</a>
-      {{else}}
-        sort by proximity</a>
-      {{/if}}
-    </span>
-    <span class="open-options">
-      <label>
-        <input type="checkbox" id="open-toggle" {{openNowChecked}}>
-        open now
-      </label>
-    </span>
-    <div class="more-options"><p>Options <i class="icon-right-open-2"></i></p></div>
+    <table>
+      <tr>
+        <td>Sort</td>
+        <td>Open now</td>
+        <td rowspan=2 style="width:25p%">
+         <div class="more-options">More <i class="icon-right-open-2"></i></div>
+        </td>
+      </tr>
+      <tr>
+        <td style="width:40%">
+          <div class="btn-group" data-toggle='buttons-radio'>
+            <button class="btn sort-toggle first" data-sort="name" id="sort-name">Name</button>
+            <button class="btn sort-toggle last" data-sort="near" id="sort-distance">Distance</button>
+          </div>
+        </td>
+        <td style="width:35%">
+          <div class="btn-group" data-toggle='buttons-radio'>
+            <button class="btn open-toggle first" data-open="yes" id="open-yes">Yes</button>
+            <button class="btn open-toggle last" data-open="no" id="open-no">No</button>
+          </div>
+        </td>
+      </tr>
+    </table>
   </div>
 </div>
