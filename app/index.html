@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="{{linksf_css}}">
     <script>
-      var parseAppId = '{{parseAppId}}';
-      var parseJSKey = '{{parseJSKey}}';
+      var parseAppId = '<%= PARSE_APP_ID %>';
+      var parseJSKey = '<%= PARSE_JS_KEY %>';
     </script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -16,13 +16,14 @@
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-46981709-1', 'link-sf.com');
+      ga('create', '<%= GOOGLE_ANALYTICS_TOKEN %>', '<%= GOOGLE_ANALYTICS_HOST %>');
       ga('send', 'pageview');
     </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDdHRnaDD-_z2aNUqyxxCoRBAf6PWZjS4&sensor=true&libraries=geometry"></script>
   </head>
 
   <body>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDdHRnaDD-_z2aNUqyxxCoRBAf6PWZjS4&sensor=true&libraries=geometry"></script>
     <script src="{{linksf_js}}"></script>
     <div>
       <nav>

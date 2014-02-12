@@ -1,7 +1,3 @@
-var maps = google.maps,
-    Geocoder = maps.Geocoder,
-    geocoder;
-
 var cachedPosition = null;
 
 function fetchCurrentLocation(deferred) {
@@ -24,7 +20,12 @@ function fetchCurrentLocation(deferred) {
   }
 }
 
+var geocoder; 
+
 function fetchLocationForAddress(address, deferred) {
+  var maps = google.maps,
+      Geocoder = maps.Geocoder;
+
   if(!geocoder) {
     geocoder = new Geocoder();
   }

@@ -2,17 +2,17 @@ var Analytics                        = require('lib/analytics'),
     Features                         = require('lib/features'),
     Hours                            = require('shared/models/hours'),
     fetchLocation                    = require('shared/lib/fetch_location'),
-    calculateDistanceFromService     = require('shared/lib/distance').calculateDistanceFromService,
-    calculateWalkingTimeFromDistance = require('shared/lib/distance').calculateWalkingTimeFromDistance;
+    calculateDistance            = require('shared/lib/distance').calculateDistance;
 
-function extractDistanceTime(location, currentLocation) {
-  var destination = {};
-  if (location && currentLocation) {
-    destination.distance     = calculateDistanceFromService(location, currentLocation);
-    destination.walkingTime  = calculateWalkingTimeFromDistance(destination.distance);
-    destination.showDistance = destination.showWalkingTime = true;
-  }
-  return destination;
+function calculateDistanceCallback (walkingData, facility){
+  var self = this;
+    if (!walkingData) { return; }
+    var distanceSpan = self.$("#distance_" + facility.objectId),
+        durationSpan = self.$("#duration_" + facility.objectId);
+    facility.distanceText = walkingData.distance.text;
+    facility.durationText = walkingData.duration.text;
+    $(distanceSpan).text( facility.distanceText );
+    $(durationSpan).text( facility.durationText );
 }
 
 var DetailView = Backbone.View.extend({
@@ -35,8 +35,9 @@ var DetailView = Backbone.View.extend({
     var facility = this.model,
         $mapdiv  =  this.$('#detail-gmap');
 
-    facility.destination = extractDistanceTime(facility.location, this.options.currentLocation);
-
+    if ( !facility.distanceData && this.options.currentLocation ) {
+      calculateDistance(facility, this.options.currentLocation, calculateDistanceCallback );
+    }
     this.$el.html(this.template({
       facility:    facility,
       isMobile:    Features.isMobile()
@@ -44,7 +45,6 @@ var DetailView = Backbone.View.extend({
 
     _.defer(
       function(view) { view.setMap();
-    //  console.log("so ", facility.openHours); 
     },
       this
     );
@@ -54,12 +54,21 @@ var DetailView = Backbone.View.extend({
   },
 
 
-  trackCalling:         function(event) { Analytics.trackDetailsAction('call'); },
-  trackClickingWebsite: function(event) { Analytics.trackDetailsAction('website'); },
+  trackCalling: function(event) {
+    Analytics.trackDetailsAction('call');
+    ga('send', 'event', 'external_link', 'call', this.model.name);
+  },
+
+  trackClickingWebsite: function(event) {
+    Analytics.trackDetailsAction('website');
+    ga('send', 'event', 'external_link', 'website', this.model.name);
+  },
 
   launchDirections: function() {
     Analytics.trackDetailsAction('directions');
-    var isMobile = Features.isMobile(),
+    ga('send', 'event', 'external_link', 'directions', this.model.name);
+    var isAndroid22 = Features.isAndroid22(),
+        isMobile = Features.isMobile(),
         dAddr = encodeURIComponent(
           this.model.address + '@' +
           this.model.location.latitude + ',' +
@@ -67,7 +76,7 @@ var DetailView = Backbone.View.extend({
         ),
         directionsUrl = '';
 
-    if ( isMobile ) {
+    if ( isMobile && !isAndroid22 ) {
       directionsUrl = 'comgooglemaps://?daddr=' + dAddr;
       document.location = directionsUrl;
     } else {
@@ -76,9 +85,11 @@ var DetailView = Backbone.View.extend({
         directionsUrl = 'https://maps.google.com?daddr=' + dAddr + '&saddr=' + sAddr;
 
       }).fail(function() {
-      directionsUrl = 'https://maps.google.com?daddr=' + dAddr;
+        directionsUrl = 'https://maps.google.com?daddr=' + dAddr;
       });
-      _.defer( function(){window.open(directionsUrl); });
+      _.defer( function() {
+        isAndroid22 ? (document.location = directionsUrl) : window.open(directionsUrl, '_blank');
+      });
     }
 
     return false;
