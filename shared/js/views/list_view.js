@@ -176,7 +176,6 @@ var ListView = Backbone.View.extend({
   },
 
   showMore: function(collection, searchLimit) {
-    console.log('showMore', collection.length, searchLimit);
     return collection.length >= searchLimit;
   },
 

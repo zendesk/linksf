@@ -10,7 +10,13 @@ var AdminListView         = require('views/list_view'),
     facilities            = require('shared/collections/facilities').instance();
 
 var Router = Backbone.Router.extend({
-
+  initialize: function() {
+    // this.navigate('AdminListView')
+    var self = this;
+    $('#search-form').submit(function() {
+      self.navigate('query?search=' + encodeURIComponent($('#search').val()), true);
+    });
+  },
   beforeAllFilters: function() {
     return [this.authenticationFilter];
   },

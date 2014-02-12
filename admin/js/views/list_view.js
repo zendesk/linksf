@@ -11,18 +11,7 @@ var AdminListView = ListView.extend({
 
   initialize: function() {
     var self = this;
-
     this.listenTo(this.collection, 'reset', this.render);
-
-    $('#search-form').submit(function() {
-      self.submitQuery({
-        search: $('#search').val(),
-        limit: 4000,
-        sort: 'name'
-      });
-
-      return false;
-    });
   },
   filter: function(event) {
     var category = $(event.target).data('value');
