@@ -9,8 +9,8 @@ function calculateDistanceCallback (walkingData, facility){
     if (!walkingData) { return; }
     var distanceSpan = self.$("#distance_" + facility.objectId),
         durationSpan = self.$("#duration_" + facility.objectId);
-    facility.distanceText = walkingData.distance.text;
-    facility.durationText = walkingData.duration.text;
+    facility.distanceText = walkingData.distance.text + "les";
+    facility.durationText = Math.floor(walkingData.duration.value/60) + " minutes walking";
     $(distanceSpan).text( facility.distanceText );
     $(durationSpan).text( facility.durationText );
 }
