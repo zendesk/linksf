@@ -95,3 +95,14 @@ To get an android emulator setup on Mac OS:
 1. Click `New...` and configure a new device with 320x480 resolution and targeting Android 2.2.
 1. Click `Start...`
 1. Open the Android browser and visit Link-SF.
+
+### Mobile support
+
+We currently support:
+
+* Android 2.2+
+* IE10+ on desktop
+* iOS 7+
+* Recent Chrome, Safari, Firefox on desktop
+
+We're currently testing versions of Windows Phone.
