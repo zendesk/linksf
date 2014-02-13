@@ -51,11 +51,17 @@ var Router = Backbone.Router.extend({
   index: function() {
     var IndexView = require('views/index_view'),
         indexView = new IndexView();
+
+    fetchLocation().always(function(loc) {
+      if (loc.lon && loc.lat) { Analytics.trackLocation('homePage', loc); }
+    });
+
     return applicationController.render(indexView);
   },
 
   query: function(queryString) {
-    Analytics.trackQuery(parseParams(queryString));
+    var parsedParams = parseParams(queryString);
+    Analytics.trackQuery(parsedParams);
     var ListView  = require('shared/views/list_view');
 
     this.listView = this.listView || new ListView({ collection: facilities, isSingleton: true });
@@ -69,6 +75,7 @@ var Router = Backbone.Router.extend({
       if (loc.lon && loc.lat) {
         $.extend(queryParams, loc);
         this.listView.options.currentLocation = loc;
+        Analytics.trackLocation('query', loc, parsedParams);
       }
 
       applicationController.render(this.listView);
