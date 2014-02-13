@@ -58,9 +58,11 @@ function calculateDistanceCallback (walkingData, list){
     if (!walkingData[i]) { return; }
     var text,
         distanceSpan = self.$("#distance_" + facility.id),
-        aboveLimit = walkingData[i].duration.value > 3600;
+        aboveLimit = walkingData[i].duration.value > 3600,
+        distanceDesc = walkingData[i].distance.text + "les",
+        durationDesc = Math.floor(walkingData[i].duration.value/60) + " minutes walking";
 
-    text = aboveLimit ? walkingData[i].distance.text : walkingData[i].duration.text;
+    text = aboveLimit ? distanceDesc : durationDesc;
 
     facility.distanceData = text;
     $(distanceSpan).text( text );
