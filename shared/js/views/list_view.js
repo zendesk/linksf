@@ -230,8 +230,10 @@ var ListView = Backbone.View.extend({
 
     this.$('.query').hide();
 
-    this.$(currentParams.sort == "near" ? '#sort-distance' : '#sort-name').addClass('active');
-    this.$(currentParams.filter.open ? '#open-yes' : '#open-no').addClass('active');
+    this.$('#sort-toggle').switchify();
+    this.$('#open-toggle').switchify();
+    //this.$(currentParams.sort == "near" ? '#sort-distance' : '#sort-name').addClass('active');
+    //this.$(currentParams.filter.open ? '#open-yes' : '#open-no').addClass('active');
 
     this.$('.option-group-exclusive .query-option').click(function() {
       $(this).closest(".option-group-exclusive").find(".query-option").removeClass("selected");

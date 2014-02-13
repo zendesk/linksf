@@ -11,15 +11,17 @@
       <tr>
         <td style="width:40%">
           <div class="btn-group" data-toggle='buttons-radio'>
-            <button class="btn sort-toggle first" data-sort="name" id="sort-name">Name</button>
-            <button class="btn sort-toggle last" data-sort="near" id="sort-distance">Distance</button>
+            <select id="sort-toggle">
+              <option value="Near">Near</option>
+              <option value="Name">Name</option>
+            </select>
           </div>
         </td>
         <td style="width:35%">
-          <div class="btn-group" data-toggle='buttons-radio'>
-            <button class="btn open-toggle first" data-open="yes" id="open-yes">Yes</button>
-            <button class="btn open-toggle last" data-open="no" id="open-no">No</button>
-          </div>
+          <select id="open-toggle">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
         </td>
       </tr>
     </table>
