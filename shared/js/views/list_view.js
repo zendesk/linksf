@@ -74,9 +74,7 @@ var ListView = Backbone.View.extend({
   events: {
     "click #load-more-link": 'loadMore',
     "click #load-more":      'loadMore',
-    "click .more-options":   'goToFilter',
-    "click .sort-toggle":    'filterToggle',
-    "click .open-toggle":    'filterToggle'
+    "click .more-options":   'goToFilter'
   },
 
   constructor: function (options) {
@@ -85,7 +83,10 @@ var ListView = Backbone.View.extend({
   },
 
   initialize: function() {
-    this.listenTo(this.collection, 'reset', this.render);
+    this.listenTo(this.collection, 'reset', function() {
+      this.render();
+      this.afterRender();
+    });
   },
 
   reset: function() {
@@ -131,6 +132,7 @@ var ListView = Backbone.View.extend({
 
     this.submitQuery(params, { appendData: true }).done(function(results) {
       this.render();
+      this.afterRender();
     }.bind(this));
 
     return false;
@@ -171,14 +173,15 @@ var ListView = Backbone.View.extend({
 
   filterToggle: function(event) { 
     var currentParams = generateQueryParams(); 
-    if ( $(event.target).hasClass('sort-toggle') ) {
-      currentParams.sort = $(event.target).data('sort');
-    } else if ( $(event.target).hasClass('open-toggle') ) {
-      currentParams.filter.open = $(event.target).data('open') == 'yes';
+    var select = $(event.target).prev('select');
+
+    if ( select.attr('id') == 'sort-toggle' ) {
+      currentParams.sort = select.val();
+    } else if ( select.attr('id') == 'open-toggle' ) {
+      currentParams.filter.open = select.val() == 'yes';
     }
 
     this._navigateFromQueryParams(currentParams);
-    return false;
   },
 
   resetFilters: function() {
@@ -230,11 +233,6 @@ var ListView = Backbone.View.extend({
 
     this.$('.query').hide();
 
-    this.$('#sort-toggle').switchify();
-    this.$('#open-toggle').switchify();
-    //this.$(currentParams.sort == "near" ? '#sort-distance' : '#sort-name').addClass('active');
-    //this.$(currentParams.filter.open ? '#open-yes' : '#open-no').addClass('active');
-
     this.$('.option-group-exclusive .query-option').click(function() {
       $(this).closest(".option-group-exclusive").find(".query-option").removeClass("selected");
       $(this).toggleClass("selected");
@@ -251,6 +249,19 @@ var ListView = Backbone.View.extend({
 
     this.resetFilters();
     return this;
+  },
+
+  afterRender: function() { 
+    var currentParams   = generateQueryParams();
+    this.$('#sort-toggle')
+      .val(currentParams.sort)
+      .switchify()
+      .data('switch').bind('switch:slide-complete', this.filterToggle.bind(this));
+
+    this.$('#open-toggle')
+      .val(currentParams.filter.open ? 'yes' : 'no')
+      .switchify()
+      .data('switch').bind('switch:slide-complete', this.filterToggle.bind(this));
   },
 
   deepToJson: function(collection) {

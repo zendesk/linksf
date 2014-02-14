@@ -35,6 +35,10 @@ var BaseController = function (options) {
     currentView = view;
     setupNav(view.navButtons || [], view);
     ret = $(el).html(view.render().el);
+
+    if ( view.afterRender ) 
+      view.afterRender();
+
     view.delegateEvents(view.events);
     return ret;
   }
