@@ -101,43 +101,6 @@
     margin-left: 10px;
     display: none;
   }
-
-  button {
-    @include gray-button;
-  }
-
-  button.active {
-    @include vertical-gradient(darken(#EEE, 8%), darken(#D9D9D9, 8%));
-    border-color: darken(#B8B8B8, 8%);
-  }
-
-  .btn {
-    font-size: 10px;
-    font-weight: bold;
-    padding: 8px 6px;
-    margin: 0px;
-    float: left;
-    border-right: none;
-    border-radius: 0px;
-    width: 50%;
-  }
-
-  .first {
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-  }
-
-  .last {
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-right: 1px solid #B8B8B8;
-  }
-
-  &.btn-group {
-    padding-bottom: 30px;
-    padding-top: 5px;
-    height: 20px;
-  }
 }
 
 .query-representation-content table {
