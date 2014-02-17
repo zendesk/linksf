@@ -189,7 +189,6 @@ module.exports = function(grunt) {
       app_min: {
         src: [
           '<%= concat.shared_js_minified %>',
-          'vendor/js/bootstrap-button.js',
           'vendor/js/backbone_filters.js',
           'vendor/js/jquery.switch.min.js',
           'vendor/js/bootstrap-button.min.js',
