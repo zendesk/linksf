@@ -1,5 +1,4 @@
 .facility-list {
-  padding-top: $navbar-height + 65px;
   background-color: #F3F3F3;
 
   .not-found {
@@ -74,33 +73,50 @@
     color: blue; // red
   }
 }
+
+.sort-options { 
+  margin-left: 10px;
+}
+
+.open-options {
+  margin-left: 10px;
+}
+
 .query-representation {
-  position: fixed;
   width: 100%;
   max-width: 650px;
 }
+
 .query-representation-content {
   margin-top: 53px;
   border-bottom: 2px solid #929292;
   color: #929292;
   font-weight: bold;
   font-size: 14px;
-  height: 36px;
   background-color: #FFF;
   background-image: linear-gradient(#FFF, #d8d8d8);
   background-image: -webkit-linear-gradient(#FFF, #d8d8d8);
-  cursor: pointer;
-  padding: 18px 5px 0 5px;
+  padding: 5px 5px 0 5px;
   >.open {
     margin-left: 10px;
     display: none;
   }
 }
+
+.query-representation-content table {
+  width: 100%;
+}
+
+.filter-toggle {
+  padding: 5px 15px 15px 0px;
+}
+
 .more-options {
   float: right;
-  width: 112px;
   margin-top: -14px;
   font-size: 14px;
+  text-align: right;
+  cursor: pointer;
   // height: 55px;
   i {
     margin-top: -16px;
@@ -143,3 +159,4 @@
   color: #777;
   margin-left: 3px;
 }
+

@@ -5,8 +5,9 @@ var Query                            = require('shared/lib/query'),
     parseParams                      = require('shared/lib/query_param_parser'),
     calculateAllDistances            = require('shared/lib/distance').calculateAllDistances;
 
-function generateQueryParams(queryString, limit ) {
-  var params       = parseParams(queryString),
+function generateQueryParams(inputString, limit ) {
+  var queryString  = inputString || window.location.hash.substring(window.location.hash.indexOf('?') + 1),
+      params       = parseParams(queryString),
       categories   = _.compact((params.categories || '').split(',')),
       demographics = _.compact((params.demographics || '').split(',')),
       gender       = params.gender || null,
@@ -75,7 +76,7 @@ var ListView = Backbone.View.extend({
   events: {
     "click #load-more-link": 'loadMore',
     "click #load-more":      'loadMore',
-    "click .query-representation-content":    'goToFilter'
+    "click .more-options":   'goToFilter'
   },
 
   constructor: function (options) {
@@ -84,7 +85,10 @@ var ListView = Backbone.View.extend({
   },
 
   initialize: function() {
-    this.listenTo(this.collection, 'reset', this.render);
+    this.listenTo(this.collection, 'reset', function() {
+      this.render();
+      this.afterRender();
+    });
   },
 
   reset: function() {
@@ -130,6 +134,7 @@ var ListView = Backbone.View.extend({
 
     this.submitQuery(params, { appendData: true }).done(function(results) {
       this.render();
+      this.afterRender();
     }.bind(this));
 
     return false;
@@ -139,13 +144,13 @@ var ListView = Backbone.View.extend({
     var queryString  = window.location.hash.substring(window.location.hash.indexOf('?')+1);
     var router = require('routers/router').instance();
     Backbone.history.navigate("filter?" + queryString, {trigger: true});
+    return false;
   },
 
   generateQueryParams: generateQueryParams,
 
   getFilterParams: function () {
-    var queryString  = window.location.hash.substring(window.location.hash.indexOf('?')+1),
-        queryParams  = generateQueryParams(queryString);
+    var queryParams  = generateQueryParams();
 
     queryParams.offset = this.offset;
     queryParams.limit  = 10;
@@ -153,6 +158,32 @@ var ListView = Backbone.View.extend({
     this.options.categories = queryParams.filter.categories || [];
 
     return queryParams;
+  },
+
+  // TODO: there's really no reason to have to cast back and forth like this. 
+  // we should define a common format for the url and for the parse cloud func.
+  _navigateFromQueryParams: function(p) {
+    var navigate = require('shared/lib/navigate');
+    navigate({
+      categories:   p.filter.categories,
+      demographics: p.filter.demographics,
+      gender:       p.filter.gender,
+      sort:         p.sort,
+      hours:        p.filter.open ? "open" : null
+    });
+  },
+
+  filterToggle: function(event) { 
+    var currentParams = generateQueryParams(); 
+    var select = $(event.target).prev('select');
+
+    if ( select.attr('id') == 'sort-toggle' ) {
+      currentParams.sort = select.val();
+    } else if ( select.attr('id') == 'open-toggle' ) {
+      currentParams.filter.open = select.val() == 'yes';
+    }
+
+    this._navigateFromQueryParams(currentParams);
   },
 
   resetFilters: function() {
@@ -190,17 +221,19 @@ var ListView = Backbone.View.extend({
         categories      = this.options.categories || [],
         currentLocation = this.options.currentLocation,
         loadingResults  = this.options.loadingResults || [],
-        templateJson    = this.flattenServices(deepJson, currentLocation);
+        templateJson    = this.flattenServices(deepJson, currentLocation),
+        currentParams   = generateQueryParams();
 
     // replace with template
     this.$el.html(this.template({
-      facilities:     templateJson,
-      categories:     ListView.CATEGORIES,
-      loadingResults: loadingResults,
-      searchParams:   this.filterSelectCategories(categories)
+      facilities:       templateJson,
+      categories:       ListView.CATEGORIES,
+      loadingResults:   loadingResults,
+      searchParams:     this.filterSelectCategories(categories)
     }));
 
     this.$('.query').hide();
+
     this.$('.option-group-exclusive .query-option').click(function() {
       $(this).closest(".option-group-exclusive").find(".query-option").removeClass("selected");
       $(this).toggleClass("selected");
@@ -217,6 +250,19 @@ var ListView = Backbone.View.extend({
 
     this.resetFilters();
     return this;
+  },
+
+  afterRender: function() { 
+    var currentParams   = generateQueryParams();
+    this.$('#sort-toggle')
+      .val(currentParams.sort)
+      .switchify()
+      .data('switch').bind('switch:slide-complete', this.filterToggle.bind(this));
+
+    this.$('#open-toggle')
+      .val(currentParams.filter.open ? 'yes' : 'no')
+      .switchify()
+      .data('switch').bind('switch:slide-complete', this.filterToggle.bind(this));
   },
 
   deepToJson: function(collection) {

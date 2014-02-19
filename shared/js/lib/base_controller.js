@@ -27,14 +27,20 @@ var BaseController = function (options) {
   }
 
   function render (view) {
+    var ret;
     if (currentView && !currentView.options.isSingleton) {
       currentView.remove();
     }
 
     currentView = view;
     setupNav(view.navButtons || [], view);
+    ret = $(el).html(view.render().el);
+
+    if ( view.afterRender ) 
+      view.afterRender();
+
     view.delegateEvents(view.events);
-    return $(el).html(view.render().el);
+    return ret;
   }
 
   this.render = render;

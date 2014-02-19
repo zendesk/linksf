@@ -1,21 +1,29 @@
 <div class="query-representation">
   <div class="query-representation-content">
-  {{#ifMultiple searchParams}}
-    {{#each searchParams}}
-      <i class="list-header-item category-icon icon-{{icon}}"></i>
-    {{/each}}
-  {{else}}
-    {{#each searchParams}}
-      <i class="list-header-item category-icon icon-{{icon}}"></i>
-      <span>{{title}} </span>
-    {{/each}}    
-  {{/ifMultiple}}
-
-    {{^searchParams}}
-      <i class="list-header-item category-icon icon-th"></i>
-      <span>All </span>
-    {{/searchParams}}
-    <div class="label-status open">open now</div>
-    <div class="more-options"><p>More Options <i class="icon-right-open-2 right"></i></p></div>
+    <table>
+      <tr>
+        <td>Sort</td>
+        <td>Open now</td>
+        <td rowspan=2>
+         <div class="more-options">More <i class="icon-right-open-2"></i></div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="btn-group" data-toggle='buttons-radio'>
+            <select id="sort-toggle" style="width: 64px;">
+              <option value="near">Near</option>
+              <option value="name">Name</option>
+            </select>
+          </div>
+        </td>
+        <td>
+          <select id="open-toggle">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </td>
+      </tr>
+    </table>
   </div>
 </div>

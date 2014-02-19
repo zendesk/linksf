@@ -177,6 +177,7 @@ module.exports = function(grunt) {
         src: [
           '<%= concat.shared_js %>',
           'vendor/js/backbone_filters.js',
+          'vendor/js/jquery.switch.js',
           'vendor/js/bootstrap-button.js',
           'vendor/js/fastclick.js',
           'tmp/app.js'
@@ -189,6 +190,7 @@ module.exports = function(grunt) {
         src: [
           '<%= concat.shared_js_minified %>',
           'vendor/js/backbone_filters.js',
+          'vendor/js/jquery.switch.min.js',
           'vendor/js/bootstrap-button.min.js',
           'vendor/js/fastclick.min.js',
           'tmp/app.min.js'
