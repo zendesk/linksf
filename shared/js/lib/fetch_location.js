@@ -14,13 +14,14 @@ function fetchCurrentLocation(deferred) {
       deferred.resolve(cachedPosition);
     }, function(error) {
       deferred.reject(error);
-    });
+    },
+    { maximumAge:60000, timeout:5000, enableHighAccuracy:true });
   } else {
     deferred.reject();
   }
 }
 
-var geocoder; 
+var geocoder;
 
 function fetchLocationForAddress(address, deferred) {
   var maps = google.maps,
