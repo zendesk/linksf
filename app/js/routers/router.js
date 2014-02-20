@@ -60,15 +60,18 @@ var Router = Backbone.Router.extend({
   },
 
   query: function(queryString) {
-    var parsedParams = parseParams(queryString);
-    Analytics.trackQuery(parsedParams);
-    var ListView  = require('shared/views/list_view');
-
+    var parsedParams = parseParams(queryString),
+        ListView     = require('shared/views/list_view');
     this.listView = this.listView || new ListView({ collection: facilities, isSingleton: true });
+
+    Analytics.trackQuery(parsedParams);
+    applicationController.render(this.listView);
+    if ( queryString == this.lastSearch ) { return; }
+    this.lastSearch = queryString;
+    this.listView.showSpinner(); // Show the spinner before fetching location, changes the UI much faster
 
     fetchLocation().always(function(loc) {
       var queryParams = this.listView.generateQueryParams(queryString);
-
       queryParams.limit = 20,
       this.listView.options.categories = queryParams.filter.categories || [];
 
@@ -76,24 +79,19 @@ var Router = Backbone.Router.extend({
         $.extend(queryParams, loc);
         this.listView.options.currentLocation = loc;
         Analytics.trackLocation('query', loc, parsedParams);
+      } else {
+        // Default sort is near when navigating from index, unset it if location isn't available
+        delete queryParams.sort;
       }
 
-      applicationController.render(this.listView);
-      if ( queryString != this.lastSearch ) {
-        this.listView.showSpinner();
-        window.scrollTo(0, 0);
-
-        this.listView.submitQuery(queryParams).done(function(results) {
-          this.listView.hideSpinner();
-          window.scrollTo(0, 0); // Scroll to top
-        }.bind(this)).fail(function() {
-          console.log('submitQuery error', arguments);
-          this.listView.hideSpinner();
-        }.bind(this));
-        this.lastSearch = queryString;
-
-      }
-
+      window.scrollTo(0, 0);
+      this.listView.submitQuery(queryParams).done(function(results) {
+        this.listView.hideSpinner();
+        window.scrollTo(0, 0); // Scroll to top
+      }.bind(this)).fail(function() {
+        console.log('submitQuery error', arguments);
+        this.listView.hideSpinner();
+      }.bind(this));
     }.bind(this));
 
   },

@@ -160,7 +160,7 @@ var ListView = Backbone.View.extend({
     return queryParams;
   },
 
-  // TODO: there's really no reason to have to cast back and forth like this. 
+  // TODO: there's really no reason to have to cast back and forth like this.
   // we should define a common format for the url and for the parse cloud func.
   _navigateFromQueryParams: function(p) {
     var navigate = require('shared/lib/navigate');
@@ -173,8 +173,8 @@ var ListView = Backbone.View.extend({
     });
   },
 
-  filterToggle: function(event) { 
-    var currentParams = generateQueryParams(); 
+  filterToggle: function(event) {
+    var currentParams = generateQueryParams();
     var select = $(event.target).prev('select');
 
     if ( select.attr('id') == 'sort-toggle' ) {
@@ -252,7 +252,7 @@ var ListView = Backbone.View.extend({
     return this;
   },
 
-  afterRender: function() { 
+  afterRender: function() {
     var currentParams   = generateQueryParams();
     this.$('#sort-toggle')
       .val(currentParams.sort)

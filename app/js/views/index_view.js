@@ -30,13 +30,7 @@ var IndexView = Backbone.View.extend({
     if ( searchTerm ) {
       navigate({categories: categories, search: searchTerm});
     } else {
-      fetchLocation().always(function(loc) {
-        if(loc.lat && loc.lon) {
-          navigate({categories: categories, sort: "near"});
-        } else {
-          navigate({categories: categories});
-        }
-      });
+      navigate({categories: categories, sort: "near"});
     }
     return false;
   }
