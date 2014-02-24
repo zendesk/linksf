@@ -1,18 +1,18 @@
-var Analytics                        = require('lib/analytics'),
-    Features                         = require('lib/features'),
-    Hours                            = require('shared/models/hours'),
-    fetchLocation                    = require('shared/lib/fetch_location'),
-    calculateDistance            = require('shared/lib/distance').calculateDistance;
+var Analytics         = require('lib/analytics'),
+    Features          = require('lib/features'),
+    Hours             = require('shared/models/hours'),
+    fetchLocation     = require('shared/lib/fetch_location'),
+    calculateDistance = require('shared/lib/distance').calculateDistance;
 
 function calculateDistanceCallback (walkingData, facility){
-  var self = this;
-    if (!walkingData) { return; }
-    var distanceSpan = self.$("#distance_" + facility.objectId),
-        durationSpan = self.$("#duration_" + facility.objectId);
-    facility.distanceText = walkingData.distance.text + "les";
-    facility.durationText = Math.floor(walkingData.duration.value/60) + " minutes walking";
-    $(distanceSpan).text( facility.distanceText );
-    $(durationSpan).text( facility.durationText );
+  if ( !walkingData ) return;
+
+  var distanceSpan = this.$("#distance_" + facility.objectId),
+      durationSpan = this.$("#duration_" + facility.objectId);
+  facility.distanceText = walkingData.distance.text + "les";
+  facility.durationText = Math.floor(walkingData.duration.value/60) + ' minutes walking';
+  $(distanceSpan).text( facility.distanceText );
+  $(durationSpan).text( facility.durationText );
 }
 
 var DetailView = Backbone.View.extend({
@@ -21,7 +21,6 @@ var DetailView = Backbone.View.extend({
   events: {
     'render.done':             'setMap',
     'click .inset-directions': 'launchDirections',
-
     'click .inset-gmap':       'launchDirections',
     'click .inset-call':       'trackCalling',
     'click .inset-website':    'trackClickingWebsite'
@@ -32,27 +31,24 @@ var DetailView = Backbone.View.extend({
   ],
 
   render: function() {
-    var facility = this.model,
-        $mapdiv  =  this.$('#detail-gmap');
+    var facility = this.model;
 
     if ( !facility.distanceData && this.options.currentLocation ) {
       calculateDistance(facility, this.options.currentLocation, calculateDistanceCallback );
     }
+
     this.$el.html(this.template({
-      facility:    facility,
-      isMobile:    Features.isMobile()
+      facility: facility,
+      isMobile: Features.isMobile()
     }));
 
     _.defer(
-      function(view) { view.setMap();
-    },
+      function(view) { view.setMap(); },
       this
     );
 
-
     return this;
   },
-
 
   trackCalling: function(event) {
     Analytics.trackDetailsAction('call', { location: this.options.currentLocation });
@@ -83,11 +79,11 @@ var DetailView = Backbone.View.extend({
       fetchLocation().done(function(loc) {
         var sAddr = '@' + loc.lat + ',' + loc.lon;
         directionsUrl = 'https://maps.google.com?daddr=' + dAddr + '&saddr=' + sAddr;
-
       }).fail(function() {
         directionsUrl = 'https://maps.google.com?daddr=' + dAddr;
       });
-      _.defer( function() {
+
+      _.defer(function() {
         isAndroid22 ? (document.location = directionsUrl) : window.open(directionsUrl, '_blank');
       });
     }
