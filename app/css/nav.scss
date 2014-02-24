@@ -35,13 +35,6 @@ nav {
       @include blue-button;
     }
 
-    button:active {
-      @include vertical-gradient(darken($nav-background-color, 20%), darken(#19658C, 20%));
-    }
-
-    button.left { float: left; }
-    button.right { float: right; }
-
     .title {
       line-height: 36px;
       font-size: 24px;
