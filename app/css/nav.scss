@@ -5,10 +5,12 @@ nav {
   right: 0;
   z-index: 200;
 
+  @include box-shadow(0px 1px 3px #EEE);
+
   height: $navbar-height;
   background-color: $nav-background-color;
 
-  border-bottom: solid #2B7490 1px;
+  border-bottom: solid #EEE 1px;
   text-align: center;
   font-weight: bold;
   padding: 8px 0 4px 0;

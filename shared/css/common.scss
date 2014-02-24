@@ -104,6 +104,11 @@ $nav-button-width: 75px;
   -webkit-order: 0;
 }
 
+@mixin box-shadow($shadows...) {
+  box-shadow: $shadows;
+  -webkit-box-shadow: $shadows;
+};
+
 // mixin classes
 
 .inset {
