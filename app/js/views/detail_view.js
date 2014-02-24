@@ -15,6 +15,33 @@ function calculateDistanceCallback (walkingData, facility){
   $(durationSpan).text( facility.durationText );
 }
 
+function directionsUrl(facility, startingLocation) {
+  var isMobile = Features.isMobile(),
+      isAndroid22 = Features.isAndroid22(),
+      url;
+
+  // pick the base Google Maps url
+  if ( isMobile && !isAndroid22 ) {
+    url = 'comgooglemaps://';
+  } else {
+    url = 'https://maps.google.com';
+  }
+
+  // add the destination
+  url += '?daddr=' + encodeURIComponent(
+    facility.address + '@' +
+    facility.location.latitude + ',' +
+    facility.location.longitude
+  );
+
+  // add the starting location, if available
+  if ( startingLocation ) {
+    url += '&saddr=@' + startingLocation.lat + ',' + startingLocation.lon;
+  }
+
+  return url;
+}
+
 var DetailView = Backbone.View.extend({
   template: require('templates/detail'),
 
