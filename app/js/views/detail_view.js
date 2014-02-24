@@ -88,32 +88,32 @@ var DetailView = Backbone.View.extend({
   },
 
   launchDirections: function() {
-    Analytics.trackDetailsAction('directions', { location: this.options.currentLocation });
-    ga('send', 'event', 'external_link', 'directions', this.model.name);
     var isAndroid22 = Features.isAndroid22(),
         isMobile = Features.isMobile(),
-        dAddr = encodeURIComponent(
-          this.model.address + '@' +
-          this.model.location.latitude + ',' +
-          this.model.location.longitude
-        ),
-        directionsUrl = '';
+        facility = this.model;
+
+    Analytics.trackDetailsAction('directions', { location: this.options.currentLocation });
+    ga('send', 'event', 'external_link', 'directions', facility.name);
 
     if ( isMobile && !isAndroid22 ) {
-      directionsUrl = 'comgooglemaps://?daddr=' + dAddr;
-      document.location = directionsUrl;
-    } else {
-      fetchLocation().done(function(loc) {
-        var sAddr = '@' + loc.lat + ',' + loc.lon;
-        directionsUrl = 'https://maps.google.com?daddr=' + dAddr + '&saddr=' + sAddr;
-      }).fail(function() {
-        directionsUrl = 'https://maps.google.com?daddr=' + dAddr;
-      });
-
-      _.defer(function() {
-        isAndroid22 ? (document.location = directionsUrl) : window.open(directionsUrl, '_blank');
-      });
+      document.location = directionsUrl(facility);
+      return false;
     }
+
+    fetchLocation().always(function(data) {
+      var location = null,
+          url;
+
+      if ( data.lat && data.lon ) location = data;
+
+      url = directionsUrl(facility, location);
+
+      if ( isAndroid22 ) {
+        document.location = url;
+      } else {
+        window.open(url, '_blank');
+      }
+    });
 
     return false;
   },
