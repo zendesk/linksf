@@ -1,7 +1,7 @@
 // constants
 
 $navbar-height: 40px;
-$nav-background-color: #358FB2;
+$nav-background-color: white;
 $nav-button-width: 75px;
 
 // mixins
@@ -24,7 +24,7 @@ $nav-button-width: 75px;
 
 @mixin blue-button {
   @include unselectable;
-  @include vertical-gradient($nav-background-color, #19658C);
+  @include vertical-gradient(#358FB2, #19658C);
   height: 36px;
   color: white;
   font-size: 14px;
