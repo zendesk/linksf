@@ -2,7 +2,9 @@ function trackDetailsAction(action, opts) {
   opts = opts || {};
   Parse.Analytics.track('detailsPageAction', { action: action });
   var detailsAction = 'details' + action.charAt(0).toUpperCase() + action.substring(1);
-  if (opts.location.lat && opts.location.lon) { trackLocation(detailsAction, opts.location); }
+  if ( opts.location && opts.location.lat && opts.location.lon ) {
+    trackLocation(detailsAction, opts.location);
+  }
 }
 
 function trackHomepageAction(searchTerm, category) {
