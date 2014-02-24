@@ -44,12 +44,22 @@ $nav-button-width: 75px;
   border: 1px solid #0D2D39;
   border-radius: 6px;
 
+
   &:active {
     @include vertical-gradient(darken(#358FB2, 10%), darken(#19658C, 10%));
   }
 
-  &.left { float: left; }
-  &.right { float: right; }
+  &.left {
+    float: left;
+    position: relative;
+    left: 5px;
+  }
+
+  &.right {
+    float: right;
+    position: relative;
+    right: 5px;
+  }
 }
 
 @mixin unselectable {

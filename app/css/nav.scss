@@ -1,24 +1,23 @@
 nav {
+  height: $navbar-height;
+  background-color: $background-color;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 200;
-
-  @include box-shadow(0px 1px 3px #EEE);
-
-  height: $navbar-height;
-
-  border-bottom: solid #EEE 1px;
-  text-align: center;
-  font-weight: bold;
   padding: 8px 0 4px 0;
 
-  max-width: 650px;
-  margin: 0 auto;
+  @include box-shadow(0px 1px 3px #EEE);
+  border-bottom: solid #EEE 1px;
 
   .nav-container {
-    padding: 0 8px;
+    text-align: center;
+    font-weight: bold;
+
+    margin: 0 auto;
+
+    max-width: 650px;
 
     a {
       color: #3081B7;
