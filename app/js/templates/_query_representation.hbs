@@ -1,11 +1,11 @@
 <div class="query-representation">
   <div class="query-representation-content">
-    <table>
+{{!     <table>
       <tr>
         <td>Sort</td>
         <td>Open now</td>
         <td rowspan=2>
-         <div class="more-options">More <i class="icon-right-open-2"></i></div>
+         <div class="more-options">More Options<i class="icon-right-open-2"></i></div>
         </td>
       </tr>
       <tr>
@@ -25,5 +25,22 @@
         </td>
       </tr>
     </table>
+ }}
+    {{#ifMultiple searchParams}}
+      {{#each searchParams}}
+        <i class="list-header-item category-icon icon-{{icon}}"></i>
+      {{/each}}
+    {{else}}
+      {{#each searchParams}}
+        <i class="list-header-item category-icon icon-{{icon}}"></i>
+        <span>{{title}} </span>
+      {{/each}}
+    {{/ifMultiple}}
+
+    {{^searchParams}}
+      <i class="list-header-item category-icon icon-th"></i>
+      <span>All </span>
+    {{/searchParams}}
+    <div class="more-options"><p>More Options <i class="icon-right-open-2 right"></i></p></div>
   </div>
 </div>
