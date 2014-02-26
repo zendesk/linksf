@@ -1,4 +1,4 @@
 module.exports = {
-  domain: "",
-  api_key: ""
+  domain: "xxxxxxx",
+  api_key: "xxxxxxx"
 };
