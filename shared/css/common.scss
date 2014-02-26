@@ -193,7 +193,7 @@ li {
   }
 }
 
-#errorMessages{
+#errorMessages {
   background-color: #F7D6D6;
   border: 2px solid #C95F5F;
   width: 327px;
@@ -203,3 +203,10 @@ li {
   color: #C95F5F;
   display: none;
 }
+
+// Icons
+.icon-desktop { color: #CBAA4B }
+.icon-droplet { color: #7E7485 }
+.icon-food { color: #9EA861; }
+.icon-home { color: #62919C; }
+.icon-plus { color: #A97A60 }
