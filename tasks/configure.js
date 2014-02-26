@@ -44,6 +44,11 @@ function insertTokens(grunt) {
     PARSE_APP_ID: process.env.PARSE_APP_ID,
     PARSE_JS_KEY: process.env.PARSE_JS_KEY
   });
+
+  configure(grunt, 'server/cloud/cloud/mailgun_credentials.js.template', 'server/cloud/cloud/mailgun_credentials.js', {
+    MAILGUN_DOMAIN: process.env.MAILGUN_DOMAIN,
+    MAILGUN_API_KEY: process.env.MAILGUN_API_KEY,
+  })
 }
 
 function configureGlobalJson(grunt) {
