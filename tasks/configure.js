@@ -48,6 +48,8 @@ function insertTokens(grunt) {
   configure(grunt, 'server/cloud/cloud/mailgun_credentials.js.template', 'server/cloud/cloud/mailgun_credentials.js', {
     MAILGUN_DOMAIN: process.env.MAILGUN_DOMAIN,
     MAILGUN_API_KEY: process.env.MAILGUN_API_KEY,
+    MAILGUN_TO_EMAIL_ADDRESS: process.env.MAILGUN_TO_EMAIL_ADDRESS,
+    MAILGUN_FROM_EMAIL_ADDRESS: process.env.MAILGUN_FROM_EMAIL_ADDRESS,
   })
 }
 

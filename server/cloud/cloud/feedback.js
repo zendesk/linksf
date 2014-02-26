@@ -2,15 +2,15 @@ var mailgunCredentials = require('cloud/cloud/mailgun_credentials');
 var Mailgun = require('mailgun');
 
 module.exports = function (params, response) {
-  Mailgun.initialize(mailgunCredentials.domain, mailgunCredentials.api_key);
+  Mailgun.initialize(mailgunCredentials.domain, mailgunCredentials.apiKey);
 
-  if ( !params.from_email || !params.from_name || !params.subject || !params.body ) { 
+  if ( !params.from_email || !params.from_name || !params.subject || !params.body ) {
     response.error("Please fill everything out");
   }
 
   Mailgun.sendEmail({
-    to: "linksf@zendesk.com",
-    from: params.from_email,
+    to: mailgunCredentials.toEmailAddress,
+    from: mailgunCredentials.fromEmailAddress,
     subject: params.subject,
     text: params.body
   }, {
