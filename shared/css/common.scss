@@ -163,6 +163,8 @@ li {
         @include align-self(center);
         @include flex(0 0 auto);
         @include order(1);
+        float: right;
+        margin-top: -10px;
 
         .chevron {
           margin-top: 0;
