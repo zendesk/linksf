@@ -67,8 +67,9 @@ $nav-button-width: 75px;
   border: 1px solid #DCDCDC;
   border-radius: 25px;
   color: #989898;
+  font-size: 15px;
   float: left;
-  padding: 8px 24px;
+  padding: 8px 13px;
 
   &.left {
     float: left;
@@ -236,5 +237,5 @@ li {
   color: #DADADA;
   font-size: 14px;
   font-weight: lighter;
-  margin: 0 5px 0 -10px;
+  margin: 0 1px 0 -5px;
 }
