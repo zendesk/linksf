@@ -63,6 +63,7 @@ $nav-button-width: 75px;
 }
 
 @mixin gray-rounded-button {
+  @include unselectable;
   background-color: #F3F3F3;
   border: 1px solid #DCDCDC;
   border-radius: 25px;
