@@ -62,11 +62,11 @@
   position: absolute;
   top: -7px; left: -19px;
   background-size: 30px 30px;
-  border-radius: 50%;
+  @include border-radius(15px);
   border: solid 1px rgb(210,210,210);
   background-color: #fff;
 
-  box-shadow: 0px 3px 3px;
+  @include box-shadow(0px 3px 3px #929292);
 }
 
 .ui-switch-.disabled .ui-switch-handle:after {
