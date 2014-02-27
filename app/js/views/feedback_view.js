@@ -9,6 +9,7 @@ var FeedbackView = Backbone.View.extend({
     { 'class': 'left', id: 'backNav-button', text: 'Back' }
   ],
   sendFeedback: function() {
+  this.$('input[name=user_agent]').val(window.navigator.userAgent);
 	Parse.Cloud.run('sendFeedback', this.$('#feedback-form').serializeObject()).then(
 		function() {
 			Backbone.history.navigate('index', { trigger: true });
