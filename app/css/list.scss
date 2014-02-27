@@ -136,9 +136,13 @@
   display: none;
   text-align: center;
   text-decoration: underline;
-  padding-bottom: 30px;
   margin-bottom: 20px;
-  border-bottom: 0px;
+  padding: 20px;
+
+  .load-more-button {
+    @include gray-rounded-button;
+    padding: 8px 25px;
+  }
 }
 
 .icon-down-open {
