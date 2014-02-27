@@ -1,0 +1,26 @@
+.control, .control-group {
+	width: 100%;
+	input {
+		float: left;
+	}
+	label {
+		display: block;
+		width: 100%;
+	}
+}
+.control-group {
+	height: 50px;
+}
+#feedback-form {
+	display: block;
+}
+.control {
+	height: 90px;
+}
+.feedback-error {
+	display: none;
+	background: #FFFFBA;
+	height: 30px;
+	text-align: center;
+	padding-top: 5px;
+}
