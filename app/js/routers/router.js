@@ -20,10 +20,12 @@ var Router = Backbone.Router.extend({
 
   routes: {
     '':                    'index',
+    'index':               'index',
     'query?:queryString':  'query',
     'query':               'query',
     'detail/:id':          'detail',
     'about' :              'about',
+    'feedback' :           'feedback',
     'filter':              'filter',
     'filter?:queryString': 'filter'
   },
@@ -139,6 +141,12 @@ var Router = Backbone.Router.extend({
 
     this.aboutView = this.aboutView || new AboutView();
     applicationController.render(this.aboutView);
+  },
+
+  feedback: function() {
+    var FeedbackView = require('views/feedback_view');
+    this.feedbackView = this.feedbackView || new FeedbackView();
+    applicationController.render(this.feedbackView);
   },
 
   _getFacility: function(id, done) {

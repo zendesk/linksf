@@ -87,11 +87,12 @@
 
 .query-representation-content {
   margin-top: 53px;
-  border-bottom: 2px solid #929292;
-  color: #000;
-  font-size: 13px;
-  background-color: #FFF;
-  padding: 5px 5px 0 5px;
+  border-bottom: 1px solid #DDDDDD;
+  color: #929292;
+  font-weight: bold;
+  font-size: 14px;
+  // padding: 5px 5px 0 5px; TODO
+  padding: 18px 5px 0 5px;
   >.open {
     margin-left: 10px;
     display: none;
@@ -133,9 +134,13 @@
   display: none;
   text-align: center;
   text-decoration: underline;
-  padding-bottom: 30px;
   margin-bottom: 20px;
-  border-bottom: 0px;
+  padding: 20px;
+
+  .load-more-button {
+    @include gray-rounded-button;
+    padding: 8px 25px;
+  }
 }
 
 .icon-down-open {

@@ -213,7 +213,7 @@ var ListView = Backbone.View.extend({
   },
 
   navButtons: [
-    {"class": 'left', id: 'backNav-button', text: 'Back'}
+    {"class": 'left', id: 'backNav-button', text: '<i class="icon-left-open back"></i> BACK'}
   ],
 
   render: function() {
@@ -244,7 +244,7 @@ var ListView = Backbone.View.extend({
     });
 
     if ( this.hasMoreResults ) {
-      this.$('#load-more').html('<span id="load-more-container"><a href="#" id="load-more-link"><i class="icon-down-open chevron"></i>More</a></span>');
+      this.$('#load-more').html('<span id="load-more-container"><a href="#" id="load-more-link"><button class="load-more-button">SHOW MORE</button></a></span>');
       this.$('#load-more').show();
     }
 

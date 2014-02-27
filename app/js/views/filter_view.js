@@ -36,8 +36,8 @@ var FilterView = Backbone.View.extend({
   },
 
   navButtons: [
-    {'class': 'left', id: 'backNav-button', text: 'Back'},
-    {'class': 'right', id: 'searchNav-button', text: 'Search', action: 'submitSearch'}
+    {'class': 'left', id: 'backNav-button', text: '<i class="icon-left-open back"></i> BACK'},
+    {'class': 'right', id: 'searchNav-button', text: 'SEARCH', action: 'submitSearch'}
   ],
 
   template: require('templates/filter'),

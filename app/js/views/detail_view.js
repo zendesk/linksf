@@ -54,7 +54,7 @@ var DetailView = Backbone.View.extend({
   },
 
   navButtons: [
-    { 'class': 'left', id: 'backNav-button', text: 'Back' }
+    { 'class': 'left', id: 'backNav-button', text: '<i class="icon-left-open back"></i> BACK' }
   ],
 
   render: function() {
