@@ -17,11 +17,11 @@ function calculateDistanceCallback (walkingData, facility){
 
 function directionsUrl(facility, startingLocation) {
   var isMobile = Features.isMobile(),
-      isAndroid22 = Features.isAndroid22(),
+      isIOS = Features.isIOS(),
       url;
 
   // pick the base Google Maps url
-  if ( isMobile && !isAndroid22 ) {
+  if ( isIOS ) {
     url = 'comgooglemaps://';
   } else {
     url = 'https://maps.google.com';
@@ -88,14 +88,14 @@ var DetailView = Backbone.View.extend({
   },
 
   launchDirections: function() {
-    var isAndroid22 = Features.isAndroid22(),
+    var isIOS    = Features.isIOS(),
         isMobile = Features.isMobile(),
         facility = this.model;
 
     Analytics.trackDetailsAction('directions', { location: this.options.currentLocation });
     ga('send', 'event', 'external_link', 'directions', facility.name);
 
-    if ( isMobile && !isAndroid22 ) {
+    if ( isIOS ) {
       document.location = directionsUrl(facility);
       return false;
     }
@@ -108,11 +108,7 @@ var DetailView = Backbone.View.extend({
 
       url = directionsUrl(facility, location);
 
-      if ( isAndroid22 ) {
-        document.location = url;
-      } else {
-        window.open(url, '_blank');
-      }
+      window.open(url, '_blank');
     });
 
     return false;
