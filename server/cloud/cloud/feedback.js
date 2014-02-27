@@ -8,7 +8,7 @@ module.exports = function (params, response) {
     response.error("Please fill everything out");
   }
 
-  var body = "Feedback from :\n" + params.from_name + " <" + params.from_email + ">" + "\n" + params.body;
+  var body = "Feedback from: " + params.from_name + " <" + params.from_email + ">" + "\n\n" + params.body;
 
   Mailgun.sendEmail({
     to: mailgunCredentials.toEmailAddress,
