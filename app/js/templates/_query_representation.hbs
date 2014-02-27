@@ -4,25 +4,24 @@
       <tr>
         <td>Sort</td>
         <td>Open now</td>
-        <td rowspan=2>
-         <div class="more-options">More <i class="icon-right-open-2"></i></div>
-        </td>
+        <td></td>
       </tr>
       <tr>
         <td>
           <div class="btn-group" data-toggle='buttons-radio'>
-            <select id="sort-toggle" style="width: 64px;">
-              <option value="near">Near</option>
-              <option value="name">Name</option>
+            <select id="sort-toggle" style="width: 64px;" class="query-representation-toggle">
+              <option value="near">NEAR</option>
+              <option value="name">NAME</option>
             </select>
           </div>
         </td>
         <td>
-          <select id="open-toggle">
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
+          <select id="open-toggle" class="query-representation-toggle">
+            <option value="yes">YES</option>
+            <option value="no">NO</option>
           </select>
         </td>
+        <td class="more-options-td"><div class="more-options"><button class="more-options-button">OPTIONS</button></div></td>
       </tr>
     </table>
   </div>
