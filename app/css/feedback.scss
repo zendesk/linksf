@@ -7,6 +7,12 @@
 		display: block;
 		width: 100%;
 	}
+	input, textarea {
+		max-width: 300px;
+		width: 100%;
+		border: 1px solid #ccc;
+		padding: 3px;
+	}
 }
 .control-group {
 	height: 50px;
