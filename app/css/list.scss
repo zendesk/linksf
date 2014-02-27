@@ -88,13 +88,10 @@
 .query-representation-content {
   height: 36px; // TODO
   margin-top: 53px;
-  border-bottom: 2px solid #929292;
+  border-bottom: 1px solid #DDDDDD;
   color: #929292;
   font-weight: bold;
   font-size: 14px;
-  background-color: #FFF;
-  background-image: linear-gradient(#FFF, #d8d8d8);
-  background-image: -webkit-linear-gradient(#FFF, #d8d8d8);
   // padding: 5px 5px 0 5px; TODO
   padding: 18px 5px 0 5px;
   >.open {
