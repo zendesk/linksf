@@ -1,7 +1,8 @@
 .control, .control-group {
 	width: 100%;
 	input {
-		float: left;
+		display: block;
+    margin: 5px 0px;
 	}
 	label {
 		display: block;
@@ -15,7 +16,6 @@
 	}
 }
 .control-group {
-	height: 50px;
 }
 #feedback-form {
 	display: block;
