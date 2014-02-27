@@ -62,6 +62,27 @@ $nav-button-width: 75px;
   }
 }
 
+@mixin gray-rounded-button {
+  background-color: #F3F3F3;
+  border: 1px solid #DCDCDC;
+  border-radius: 25px;
+  color: #989898;
+  float: left;
+  padding: 8px 24px;
+
+  &.left {
+    float: left;
+    position: relative;
+    left: 5px;
+  }
+
+  &.right {
+    float: right;
+    position: relative;
+    right: 5px;
+  }
+}
+
 @mixin unselectable {
   -moz-user-select: none;
   -webkit-user-select: none;
@@ -210,3 +231,10 @@ li {
 .icon-food { color: #9EA861; }
 .icon-home { color: #62919C; }
 .icon-plus { color: #A97A60 }
+
+.icon-left-open.back {
+  color: #DADADA;
+  font-size: 14px;
+  font-weight: lighter;
+  margin: 0 5px 0 -10px;
+}
