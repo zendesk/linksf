@@ -32,21 +32,21 @@ function directionsUrl(facility, startingLocation) {
 
   // pick the base Google Maps url
   if ( isIOS ) {
-    url = 'comgooglemaps://';
+    url = 'comgooglemaps://?daddr=' + encodeURIComponent(
+      facility.location.latitude + ',' +
+      facility.location.longitude
+    );
   } else {
-    url = 'https://maps.google.com';
+    url = 'https://maps.google.com?daddr=' + encodeURIComponent(
+      facility.address + '@' +
+      facility.location.latitude + ',' +
+      facility.location.longitude
+    );
   }
-
-  // add the destination
-  url += '?daddr=' + encodeURIComponent(
-    facility.address + '@' +
-    facility.location.latitude + ',' +
-    facility.location.longitude
-  );
 
   // add the starting location, if available
   if ( startingLocation ) {
-    url += '&saddr=@' + startingLocation.lat + ',' + startingLocation.lon;
+    url += '&saddr=' + startingLocation.lat + ',' + startingLocation.lon;
   }
 
   return url;

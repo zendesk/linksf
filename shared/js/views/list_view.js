@@ -162,14 +162,15 @@ var ListView = Backbone.View.extend({
 
   // TODO: there's really no reason to have to cast back and forth like this.
   // we should define a common format for the url and for the parse cloud func.
-  _navigateFromQueryParams: function(p) {
+  _navigateFromQueryParams: function(p, replace) {
     var navigate = require('shared/lib/navigate');
     navigate({
       categories:   p.filter.categories,
       demographics: p.filter.demographics,
       gender:       p.filter.gender,
       sort:         p.sort,
-      hours:        p.filter.open ? "open" : null
+      hours:        p.filter.open ? "open" : null,
+      replace:      replace
     });
   },
 
@@ -183,7 +184,7 @@ var ListView = Backbone.View.extend({
       currentParams.filter.open = select.val() == 'yes';
     }
 
-    this._navigateFromQueryParams(currentParams);
+    this._navigateFromQueryParams(currentParams, true);
   },
 
   resetFilters: function() {
