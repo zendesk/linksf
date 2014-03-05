@@ -23,7 +23,7 @@ var IndexView = Backbone.View.extend({
   submit: function(event) {
     var category   = $(event.target).data('value'),
         categories = [ category ];
-        Analytics.trackHomepageAction(searchTerm, category);
+        Analytics.trackHomepageAction(category);
 
     navigate({categories: categories, sort: "near"});
     return false;

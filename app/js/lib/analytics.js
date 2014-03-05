@@ -7,14 +7,11 @@ function trackDetailsAction(action, opts) {
   }
 }
 
-function trackHomepageAction(searchTerm, category) {
-  var dimensions = {};
-  if (searchTerm) {
-    dimensions.action = 'search';
-  } else {
-    dimensions.action   = 'category';
-    dimensions.category = category;
-  }
+function trackHomepageAction(category) {
+  var dimensions = {
+    action: 'category',
+    category: category
+  };
   Parse.Analytics.track('homePageAction', dimensions);
 }
 
