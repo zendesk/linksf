@@ -21,17 +21,11 @@ var IndexView = Backbone.View.extend({
   },
 
   submit: function(event) {
-    var searchTerm = this.$('#search-term').val(),
-        category   = $(event.target).data('value'),
+    var category   = $(event.target).data('value'),
         categories = [ category ];
         Analytics.trackHomepageAction(searchTerm, category);
 
-
-    if ( searchTerm ) {
-      navigate({categories: categories, search: searchTerm});
-    } else {
-      navigate({categories: categories, sort: "near"});
-    }
+    navigate({categories: categories, sort: "near"});
     return false;
   }
 });
