@@ -113,6 +113,7 @@
 .more-options .more-options-button {
   @include gray-rounded-button;
   padding: 8px 14px;
+  float: right;
 }
 
 .list-header-item {
@@ -156,4 +157,3 @@
   color: #777;
   margin-left: 3px;
 }
-
