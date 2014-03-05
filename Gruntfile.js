@@ -58,6 +58,7 @@ module.exports = function(grunt) {
         'shared/**/*',
         'server/**/*',
         'vendor/**/*',
+        '!vendor/**/*.min.*',
         'test/**/*'
       ],
       tasks: ['default']
