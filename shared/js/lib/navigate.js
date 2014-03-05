@@ -19,5 +19,5 @@ module.exports  = function navigate(options) {
     route = route + "?" + params.join("&");
   }
 
-  Backbone.history.navigate(route, { trigger: true });
+  Backbone.history.navigate(route, { trigger: true, replace: options.replace });
 };
