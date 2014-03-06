@@ -254,7 +254,10 @@ var ListView = Backbone.View.extend({
   },
 
   afterRender: function() {
-    var currentParams   = generateQueryParams();
+    // Admin doesn't bundle switchify nor has those toggles
+    if (!this.$('#sort-toggle').length || !this.$('#open-toggle').length) { return; }
+
+    var currentParams = generateQueryParams();
     this.$('#sort-toggle')
       .val(currentParams.sort)
       .switchify()
