@@ -9,7 +9,7 @@ var IndexView = Backbone.View.extend({
 
   events: {
     'submit #search-form': 'submit',
-    'click ul.filter-categories .btn': 'submit'
+    'click ul.categories .btn': 'submit'
   },
 
   render: function() {
