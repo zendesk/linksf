@@ -255,15 +255,17 @@ var ListView = Backbone.View.extend({
 
   afterRender: function() {
     var currentParams   = generateQueryParams();
-    this.$('#sort-toggle')
-      .val(currentParams.sort)
-      .switchify()
-      .data('switch').bind('switch:slide-complete', this.filterToggle.bind(this));
+    var switches = [{selector: '#sort-toggle', val: currentParams.sort},
+                    {selector: '#open-toggle', val: currentParams.filter.open ? 'yes' : 'no'}];
 
-    this.$('#open-toggle')
-      .val(currentParams.filter.open ? 'yes' : 'no')
-      .switchify()
-      .data('switch').bind('switch:slide-complete', this.filterToggle.bind(this));
+    switches.forEach(function(sw) {
+      if ( this.$(sw.selector).length > 0 ) {
+        this.$(sw.selector)
+          .val(sw.val)
+          .switchify()
+          .data('switch').bind('switch:slide-complete', this.filterToggle.bind(this));
+      }
+    }.bind(this));
   },
 
   deepToJson: function(collection) {
