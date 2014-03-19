@@ -5,6 +5,7 @@ function trackDetailsAction(action, opts) {
   if ( opts.location && opts.location.lat && opts.location.lon ) {
     trackLocation(detailsAction, opts.location);
   }
+  ga('send', 'event', 'external_link', action, opts.externalLinkTarget);
 }
 
 function trackHomepageAction(category) {
@@ -17,6 +18,7 @@ function trackHomepageAction(category) {
 
 function trackRoute(route) {
   Parse.Analytics.track('visit', { page: route, platform: window.navigator.platform, userAgent: window.navigator.userAgent });
+  ga('send', 'pageview', '/#' + route);
 }
 
 function trackQuery(params) {

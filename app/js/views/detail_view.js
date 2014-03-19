@@ -88,13 +88,11 @@ var DetailView = Backbone.View.extend({
   },
 
   trackCalling: function(event) {
-    Analytics.trackDetailsAction('call', { location: this.options.currentLocation });
-    ga('send', 'event', 'external_link', 'call', this.model.name);
+    Analytics.trackDetailsAction('call', { location: this.options.currentLocation, externalLinkTarget: this.model.name });
   },
 
   trackClickingWebsite: function(event) {
-    Analytics.trackDetailsAction('website', { location: this.options.currentLocation });
-    ga('send', 'event', 'external_link', 'website', this.model.name);
+    Analytics.trackDetailsAction('website', { location: this.options.currentLocation, externalLinkTarget: this.model.name });
   },
 
   launchDirections: function() {
@@ -102,8 +100,7 @@ var DetailView = Backbone.View.extend({
         isMobile = Features.isMobile(),
         facility = this.model;
 
-    Analytics.trackDetailsAction('directions', { location: this.options.currentLocation });
-    ga('send', 'event', 'external_link', 'directions', facility.name);
+    Analytics.trackDetailsAction('directions', { location: this.options.currentLocation, externalLinkTarget: facility.name });
 
     if ( isIOS ) {
       document.location = directionsUrl(facility);
