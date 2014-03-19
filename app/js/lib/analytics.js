@@ -32,6 +32,7 @@ function trackLocation(action, location, params) {
   var string     = [ location.lat, location.lon ].join(':'),
       dimensions = $.extend(true, { action: action, location: string }, params);
   Parse.Analytics.track('location', dimensions);
+  ga('send', 'event', 'geo_location', action, string);
 }
 
 module.exports = {
