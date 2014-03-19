@@ -4,7 +4,18 @@ http://link-sf.com
 
 A mobile website designed to connect those in need in San Francisco to the services that can help them, on their own terms.
 
-Link-SF is a Backbone.js application using Parse for our persistence and querying backend.
+### Architecture
+
+Link-SF is a static single page Backbone.js application using [Parse](https://parse.com/) for our persistence and querying backend.
+
+There are three core views:
+
+* Home
+  A button for each category that goes to the list view with a preconfigured query. The only constraint for these queries is the button's service category.
+* List
+  A list of services that match the current query. Each list item may be tapped to drill down into the detail view. The sorting toggles and 'more options' can be used to further filter the search.
+* Detail
+  Information for the facility selected, external links (call/directions/website), details on services offered.
 
 ### Setup
 
