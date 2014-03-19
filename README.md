@@ -1,12 +1,10 @@
 ## Link-SF
 
+http://link-sf.com
+
 A mobile website designed to connect those in need in San Francisco to the services that can help them, on their own terms.
 
 Link-SF is a Backbone.js application using Parse for our persistence and querying backend.
-
-The current release is deployed to http://link-sf.com.
-
-The original mockup is at http://f.cl.ly/items/2q1D093m3R3W2C3s3M40/TTL%20Mobile%20Resource.pdf.
 
 ### Setup
 
@@ -23,7 +21,7 @@ There is a `Gruntfile` that describes the available tasks.
 
 `grunt watch` invokes verification and compilation when JavaScript, HTML, SCSS, and Handlebars file changes are detected.
 
-Subtle, but you'll need to first run `grunt` for the first-time compilation before beginning work or after pulling the latest changes, then `grunt watch` to have recompilation happen as you edit files. Compilation will produce the app html at `build/index.html` and the admin site at `build/admin.html`. These files can be opened from the command line with `open build/index.html` or directly from a browser.
+You'll need to first run `grunt` for the first-time compilation before beginning work or after pulling the latest changes, then `grunt watch` to have recompilation happen as you edit and save files. Compilation will produce the app html at `/index.html` and the admin site at `/admin.html`. These files can be opened from the command line with `open index.html` or directly from a browser.
 
 ### Deploy
 
@@ -84,5 +82,4 @@ We currently support:
 * IE10+ on desktop
 * iOS 7+
 * Recent Chrome, Safari, Firefox on desktop
-
-We're currently testing versions of Windows Phone.
+* Windows Phone 7.8+
