@@ -5,7 +5,7 @@ function calculateDistance(facility, currentLocation, callback) {
   currentLocation = new google.maps.LatLng(currentLocation.lat, currentLocation.lon);
 
   function getDistanceMatrixCallback(response, status) {
-    response = (status == 'OK') ? response.rows[0].elements[0] : {};
+    response = (status === 'OK') ? response.rows[0].elements[0] : {};
     callback(response, facility);
   }
   fetchDistanceAndDuration([currentLocation], [pos], getDistanceMatrixCallback);
@@ -22,7 +22,7 @@ function calculateAllDistances(list, currentLocation, callback) {
   });
 
   function getDistanceMatrixCallback(response, status) {
-    response = (status == 'OK') ? response.rows[0].elements : {};
+    response = (status === 'OK') ? response.rows[0].elements : {};
     callback(response, list);
   }
   fetchDistanceAndDuration(origins, destinations, getDistanceMatrixCallback);

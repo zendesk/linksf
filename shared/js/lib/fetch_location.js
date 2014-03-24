@@ -35,7 +35,7 @@ function fetchLocationForAddress(address, deferred) {
     address: address
   }, function(results, status) {
     console.log(status, results);
-    if (status == maps.GeocoderStatus.OK) {
+    if (status === maps.GeocoderStatus.OK) {
       var location  = results[0].geometry.location,
           formatted = results[0].formatted_address,
           lat       = location.lat(),

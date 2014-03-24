@@ -41,7 +41,7 @@ module.exports = function (params, callbacks) {
 
   filter.date = new Date(new Date().getTime() - millisecondOffset);
 
-  console.log("filter.date == " + filter.date);
+  console.log("filter.date === " + filter.date);
   if ( sort === 'near' && lat && lon ) {
     geopoint = new Parse.GeoPoint(lat, lon);
     q.near('location', geopoint);

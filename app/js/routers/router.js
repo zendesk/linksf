@@ -67,7 +67,7 @@ var Router = Backbone.Router.extend({
 
     Analytics.trackQuery(parsedParams);
     applicationController.render(this.listView);
-    if ( queryString == this.lastSearch ) { return; }
+    if ( queryString === this.lastSearch ) { return; }
     this.lastSearch = queryString;
     this.listView.showSpinner(); // Show the spinner before fetching location, changes the UI much faster
 
