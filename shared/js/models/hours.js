@@ -106,7 +106,7 @@ Hours.prototype.parseDay = function(str) {
   for(var idx = 0; idx < intervals.length; idx++) {
     if ( is24HourString(intervals[idx].trim()) ) {
       result.push([0,2359]);
-    } else { 
+    } else {
       interval = intervals[idx].trim().split(/\s?-\s?/);
       if(!interval[1]) { fail(str); }
 
@@ -115,7 +115,7 @@ Hours.prototype.parseDay = function(str) {
 
       if(times[0] > 2400 || times[1] > 2400) { fail(str); }
 
-      if(times[0] == times[1] && times[0] !== 0) { fail(str); }
+      if(times[0] === times[1] && times[0] !== 0) { fail(str); }
 
       if(times[0] >= times[1] && times[1] !== 0) { fail(str); }
 
@@ -220,7 +220,7 @@ Hours.prototype.merge = function() {
 };
 
 function humanizeInterval(intervals) {
-  if ( intervals.length == 2 &&
+  if ( intervals.length === 2 &&
         intervals[0] === 0 &&
         intervals[1] === 2359 ) {
     return "24 Hours";
@@ -250,16 +250,16 @@ function humanizeInterval(intervals) {
       min = "0" + min;
     }
 
-    if ( min == "00" ) {
+    if ( min === "00" ) {
       return hour + (pm ? "pm" : "am");
-    } else { 
+    } else {
       return [hour, ":", min, pm ? "pm" : "am"].join("");
     }
   }).join(" - ");
 }
 
 Hours.prototype.humanize = function(options) {
-  var hours = this.hours, 
+  var hours = this.hours,
       dayNames;
 
   options = options || {};
@@ -312,7 +312,7 @@ Hours.prototype.isEmpty = function () {
 Hours.prototype.humanizeCondensed = function (options) {
 
   var merged = this.merge(),
-      obj = merged.hours, 
+      obj = merged.hours,
       dayNames;
 
   options = options || {};
@@ -334,7 +334,7 @@ Hours.prototype.humanizeCondensed = function (options) {
   }, []);
 
   return condensed.map(function(run) {
-    if(run.days.length == 1) {
+    if(run.days.length === 1) {
       return {
         day: dayNames[run.days[0]],
         hours: _(run.intervals).map(humanizeInterval).join(", ")
@@ -346,7 +346,7 @@ Hours.prototype.humanizeCondensed = function (options) {
 
       if ( start === 0 && end === 6 ) {
         ret.day = "Every day";
-      } else { 
+      } else {
         ret.day = [dayNames[start], dayNames[end]].join(" - ");
       }
       return ret;

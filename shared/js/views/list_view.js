@@ -113,7 +113,7 @@ var ListView = Backbone.View.extend({
 
     return Query.findByFilter(params).done(function(results) {
       this.offset = results.offset;
-      this.hasMoreResults = (results.data.length == params.limit);
+      this.hasMoreResults = (results.data.length === params.limit);
 
       if (this.options.currentLocation) {
         calculateAllDistances( results.data, this.options.currentLocation, calculateDistanceCallback.bind(this) );
@@ -178,10 +178,10 @@ var ListView = Backbone.View.extend({
     var currentParams = generateQueryParams();
     var select = $(event.target).prev('select');
 
-    if ( select.attr('id') == 'sort-toggle' ) {
+    if ( select.attr('id') === 'sort-toggle' ) {
       currentParams.sort = select.val();
-    } else if ( select.attr('id') == 'open-toggle' ) {
-      currentParams.filter.open = select.val() == 'yes';
+    } else if ( select.attr('id') === 'open-toggle' ) {
+      currentParams.filter.open = select.val() === 'yes';
     }
 
     this._navigateFromQueryParams(currentParams, true);
@@ -294,7 +294,7 @@ var ListView = Backbone.View.extend({
 
     if ( queryParams ) {
       queryParams.forEach(function(queryName) {
-        var match = _.find(ListView.CATEGORIES, function(e){ return e.key == queryName; });
+        var match = _.find(ListView.CATEGORIES, function(e){ return e.key === queryName; });
         if (!_.contains(selectedCategories, match)) {
           selectedCategories.push(match);
         }

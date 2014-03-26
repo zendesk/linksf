@@ -14,7 +14,7 @@ module.exports = Parse.Object.extend('Facility', {
     if ( !g || !targetGender )  {
       return true;
     } else {
-      return g.toUpperCase() == targetGender.toUpperCase();
+      return g.toUpperCase() === targetGender.toUpperCase();
     }
   },
 
@@ -132,9 +132,9 @@ module.exports = Parse.Object.extend('Facility', {
     } else {
       if ( gender ) {
         if ( age ) {
-          output = gender.toUpperCase() == "F" ? "Female " : "Male ";
+          output = gender.toUpperCase() === "F" ? "Female " : "Male ";
         } else {
-          output = "Only " + (gender.toUpperCase() == "F" ? "women" : "men");
+          output = "Only " + (gender.toUpperCase() === "F" ? "women" : "men");
         }
       } else {
         output = "All ";
@@ -155,7 +155,7 @@ module.exports = Parse.Object.extend('Facility', {
       var cat = service.get("category");
       if ( !h[cat] ) {
         h[cat] = 1;
-        s.push(_.find(CATEGORIES, function(e) { return e.key == cat; }));
+        s.push(_.find(CATEGORIES, function(e) { return e.key === cat; }));
       }
     });
     return s;
