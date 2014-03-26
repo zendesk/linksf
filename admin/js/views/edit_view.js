@@ -202,6 +202,16 @@ var EditView = Backbone.View.extend({
     }
   },
 
+  addPhoneNumberBlurHandler: function(selector) { 
+    selector.blur(function(event) { 
+      var target = $(event.target),
+          matches;
+      if ( (matches = target.val().match(/.*(\d{3}).*(\d{3}).*(\d{4})/)) ) {
+        target.val("(" + matches[1] + ") " + matches[2] + "-" + matches[3]);
+      }
+    });
+  },
+
   setupForm: function() {
     var g = this.model.get('gender'),
         self = this,
@@ -221,6 +231,20 @@ var EditView = Backbone.View.extend({
       self.$("#age_everyone").prop("checked", true);
       self.processEveryoneCB();
     }
+
+    self.$("#add-phone-number").click(function() { 
+      var oldDiv = $('.phone-number').last();
+      var newDiv = oldDiv.clone();
+      $(newDiv).find('input').val('');
+
+      self.addPhoneNumberBlurHandler($(newDiv).find('.phone-number-input'));
+
+      oldDiv.after(newDiv);
+      return false;
+    });
+    
+    self.addPhoneNumberBlurHandler(self.$('.phone-number-input'));
+
 
     self.$('#submit').click(function() {
       var formValues = self.$('#facilityForm').serializeObject();

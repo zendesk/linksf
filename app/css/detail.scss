@@ -72,11 +72,17 @@
       color: #777;  
     }
   }
+
+  .contact-info div.inset-header:nth-of-type(1) {
+    border-radius: 6px 6px 0 0;
+    margin-top: 20px;
+  }
+
   .inset-call {
     @include inset;
-    border-radius: 6px 6px 0 0;
+    border-radius: 0px;
+    margin-top: -1px;
     border-bottom: 1px solid #DDD;
-    margin-top: 20px;
     a { font-weight: bold; }
     &:active {
       background-color: #ddd;
