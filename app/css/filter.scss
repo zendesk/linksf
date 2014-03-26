@@ -3,9 +3,10 @@
     @include gray-button;
   }
 
-  ul.filter-categories {
-    padding-bottom: 15px;
-    padding-top: 5px;
+  .categories {
+    .chevron-container {
+      display: none;
+    }
   }
 
   .filter {

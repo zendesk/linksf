@@ -82,14 +82,14 @@ $nav-button-width: 75px;
     position: relative;
     right: 5px;
   }
-  
+
   &:active {
     border: none;
     background-color: #E3E3E3;
     border: 1px solid #CBCBCB;
   }
 
-  &:focus { 
+  &:focus {
     outline: 0;
   }
 }

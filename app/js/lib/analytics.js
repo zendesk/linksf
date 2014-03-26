@@ -5,21 +5,20 @@ function trackDetailsAction(action, opts) {
   if ( opts.location && opts.location.lat && opts.location.lon ) {
     trackLocation(detailsAction, opts.location);
   }
+  ga('send', 'event', 'external_link', action, opts.externalLinkTarget);
 }
 
-function trackHomepageAction(searchTerm, category) {
-  var dimensions = {};
-  if (searchTerm) {
-    dimensions.action = 'search';
-  } else {
-    dimensions.action   = 'category';
-    dimensions.category = category;
-  }
+function trackHomepageAction(category) {
+  var dimensions = {
+    action: 'category',
+    category: category
+  };
   Parse.Analytics.track('homePageAction', dimensions);
 }
 
 function trackRoute(route) {
   Parse.Analytics.track('visit', { page: route, platform: window.navigator.platform, userAgent: window.navigator.userAgent });
+  ga('send', 'pageview', '/#' + route);
 }
 
 function trackQuery(params) {
@@ -33,6 +32,7 @@ function trackLocation(action, location, params) {
   var string     = [ location.lat, location.lon ].join(':'),
       dimensions = $.extend(true, { action: action, location: string }, params);
   Parse.Analytics.track('location', dimensions);
+  ga('send', 'event', 'geo_location', action, string);
 }
 
 module.exports = {

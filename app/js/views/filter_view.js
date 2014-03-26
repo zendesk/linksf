@@ -9,7 +9,7 @@ function setFilterOptions(view) {
       hours        = params.hours;
 
   categories.forEach(function(category) {
-    view.$('.filter-categories .btn[data-value="' + category + '"]').button('toggle');
+    view.$('.categories .btn[data-value="' + category + '"]').button('toggle');
   });
 
   demographics.forEach(function(demographic) {
@@ -44,7 +44,7 @@ var FilterView = Backbone.View.extend({
 
   events: {
     "click .search .search-button": "submitSearch",
-    'click ul.filter-categories .category': 'toggleCategory'
+    'click ul.categories .category': 'toggleCategory'
   },
 
   toggleCategory: function(event) {
@@ -72,7 +72,7 @@ var FilterView = Backbone.View.extend({
         sort         = null,
         hours        = null;
 
-    categories = this.$('.filter-categories .btn.active').toArray().map(function(el) {
+    categories = this.$('.categories .btn.active').toArray().map(function(el) {
       return $(el).data('value');
     });
 

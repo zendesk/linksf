@@ -37,7 +37,7 @@
       text-align: right;
     }
 
-    .facility-categories {
+    .categories {
       margin-bottom: 7px;
       display: inline-block;
     }
@@ -45,7 +45,6 @@
 }
 
 .label-status {
-  text-transform: capitalize;
   display: inline-block;
   padding: 2px 4px 0 0;
   font-size: 15px;
@@ -56,9 +55,7 @@
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
-}
 
-.label-status {
   &.open {
     color: #468847; // green
   }
@@ -113,6 +110,7 @@
 .more-options .more-options-button {
   @include gray-rounded-button;
   padding: 8px 14px;
+  float: right;
 }
 
 .list-header-item {
@@ -156,4 +154,3 @@
   color: #777;
   margin-left: 3px;
 }
-
