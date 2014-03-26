@@ -22,33 +22,38 @@
       <p class="destination" id="duration_{{objectId}}">{{durationText}}</p>
     </div>
 
-
-    <div class="inset-call">
-      <i class="icon-phone"></i>
-      <label>Call</label>
-      {{#if ../isMobile}}
-        <a href="tel:{{phone}}">{{phone}}</a>
-      {{else}}
-        <span>{{phone}}</span>
-      {{/if}}
-      <i class="icon-right-open right"></i>
-    </div>
-
-    {{#if website}}
-    <a href="{{website}}" target="_blank">
-      <div class="inset-website">
-        <i class="icon-link"></i>
-        <label>Website</label>
-        <span>{{website}}</span>
+    <div class="contact-info">
+      {{#each phoneNumbers}}
+      <div class="inset-call inset-header">
+        <i class="icon-phone"></i>
+        <label>Call</label>
+        {{#if ../isMobile}}
+          <a href="tel:{{number}}">{{number}}</a> {{info}}
+        {{else}}
+          <span>{{number}}</span> {{info}}
+        {{/if}}
         <i class="icon-right-open right"></i>
       </div>
-    </a>
-    {{/if}}
+      {{/each}}
 
-    <div class="inset-directions">
-      <i class="icon-compass"></i>
-      <label>Directions</label>
-      <i class="icon-right-open right"></i>
+      {{#if website}}
+        <div class="inset-website inset-header">
+          <a href="{{website}}" target="_blank">
+            <div>
+              <i class="icon-link"></i>
+              <label>Website</label>
+              <span>{{website}}</span>
+              <i class="icon-right-open right"></i>
+            </div>
+          </a>
+        </div>
+      {{/if}}
+
+      <div class="inset-directions">
+        <i class="icon-compass"></i>
+        <label>Directions</label>
+        <i class="icon-right-open right"></i>
+      </div>
     </div>
 
     {{#each services}}

@@ -28,6 +28,7 @@ module.exports = Parse.Object.extend('Facility', {
     asJSON.distinctCategories = this.distinctCategories();
     asJSON.condensedHours = this.openHours().humanizeCondensed({shortDayNames: true});
     asJSON.openHours = this.openHours().humanize();
+    asJSON.phoneNumbers = this.phoneNumbers();
     return asJSON;
   },
 
@@ -147,6 +148,10 @@ module.exports = Parse.Object.extend('Facility', {
       }
     }
     return output;
+  },
+
+  phoneNumbers: function() {
+    return this.get('phoneNumbers') || [{number: this.get('phone'), info: ''}];
   },
 
   distinctCategories: function() {

@@ -34,11 +34,20 @@
         <span class="address-preview"></span>
       </div>
     </div>
+    {{#each phoneNumbers}}
+      <div class="control-group phone-number">
+        <label class="control-label" for="phone">Phone</label>
+        <div class="controls">
+          <input type="text" name="phoneNumbers[][number]" class='phone-number-input' value="{{number}}" placeholder="415-123-4567">
+          <br>
+          <input type="text" name="phoneNumbers[][info]" value="{{info}}" placeholder="notes about this number">
+        </div>
+      </div>
+    {{/each}}
 
     <div class="control-group">
-      <label class="control-label" for="phone">Phone</label>
       <div class="controls">
-        <input type="text" name="phone" value="{{phone}}">
+        <a href="#" id="add-phone-number">+ Add another phone number</a> 
       </div>
     </div>
 

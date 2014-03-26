@@ -69,7 +69,6 @@ var DetailView = Backbone.View.extend({
 
   render: function() {
     var facility = this.model;
-
     if ( !facility.distanceData && this.options.currentLocation ) {
       calculateDistance(facility, this.options.currentLocation, calculateDistanceCallback );
     }
