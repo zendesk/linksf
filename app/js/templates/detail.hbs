@@ -25,14 +25,19 @@
     <div class="contact-info">
       {{#each phoneNumbers}}
       <div class="inset-call inset-header">
-        <i class="icon-phone"></i>
-        <label>Call</label>
-        {{#if ../isMobile}}
-          <a href="tel:{{number}}">{{number}}</a> {{info}}
-        {{else}}
-          <span>{{number}}</span> {{info}}
+        <div>
+          <i class="icon-phone"></i>
+          <label>Call</label>
+          {{#if ../isMobile}}
+            <a href="tel:{{number}}">{{number}}</a>
+          {{else}}
+            <span>{{number}}</span>
+          {{/if}}
+          <i class="icon-right-open right"></i>
+        </div>
+        {{#if info}}
+        <div class="call-info">{{info}}</div>
         {{/if}}
-        <i class="icon-right-open right"></i>
       </div>
       {{/each}}
 

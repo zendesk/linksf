@@ -92,6 +92,12 @@
     }
   }
 
+  .call-info {
+    margin-top: 5px;
+    margin-left: 25px;
+    color: #777;
+  }
+
   .inset-directions {
     cursor: pointer;
     @include inset;
