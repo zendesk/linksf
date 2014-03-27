@@ -1,12 +1,25 @@
 var Analytics             = require('lib/analytics'),
     BaseController        = require('shared/lib/base_controller'),
+    Storage               = require('lib/storage'),
     applicationController = new BaseController({ el: '#linksf' }),
     facilities            = require('shared/collections/facilities').instance(),
     fetchLocation         = require('shared/lib/fetch_location'),
     parseParams           = require('shared/lib/query_param_parser');
 
 var Router = Backbone.Router.extend({
-  beforeAllFilters: function() { return [ this.trackRoute ]; },
+  beforeAllFilters: function() { return [ this.checkPrivateBrowsing, this.trackRoute ]; },
+
+  checkPrivateBrowsing: function() {
+    // https://parse.com/questions/private-browsing-breaks-login-is-there-a-workaround
+    try {
+      window.localStorage.setItem('checkPrivateBrowsing', '1');
+      window.localStorage.removeItem('checkPrivateBrowsing');
+      return true;
+    } catch (e) {
+      Parse.localStorage = new Storage('local');
+      return true;
+    }
+  },
 
   trackRoute: function(routeRegex) {
     var match = routeRegex.toString().match(/\/\^(\w*)/);
