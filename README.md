@@ -19,10 +19,7 @@ There are three core views:
 
 ### Setup
 
-```
-npm install
-npm install -g grunt-cli
-```
+https://github.com/zendesk/linksf/blob/master/SETUP.md
 
 ### Development
 
