@@ -60,9 +60,8 @@ Keep your `.env` file secret (out of source control, etc).
 
 From the project root (and with the command line tools outlined above installed):
 
-1. `npm install grunt`
-1. `npm install -g grunt-cli`
 1. `npm install`
+1. `npm install -g grunt-cli`
 1. `grunt`
 1. `parse deploy`
 1. `open index.html`
