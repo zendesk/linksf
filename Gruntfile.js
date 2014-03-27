@@ -223,6 +223,7 @@ module.exports = function(grunt) {
       }
     },
 
+    // Minify JavaScript files
     uglify: {
       options: {
         mangle: false,
@@ -243,6 +244,7 @@ module.exports = function(grunt) {
       admin: {files: {'tmp/admin.min.js': 'tmp/admin.js'}}
     },
 
+    // Remove built files and temporary artifacts between builds
     clean: {
       build: {
         src: 'build/*',
@@ -255,6 +257,7 @@ module.exports = function(grunt) {
       }
     },
 
+    // Add cache-busting hashes to each built file. The hashes change with file content.
     cachebuster: {
       dist: {
         files: {
@@ -311,7 +314,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-cachebuster');
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-contrib-clean');
-
   grunt.loadTasks('tasks');
 
   grunt.registerTask('build:development', [
