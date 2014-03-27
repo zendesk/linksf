@@ -45,15 +45,34 @@ Keep your `.env` file secret (out of source control, etc).
 
 #### Building the site
 
+Link-SF is a static site. To build the site (turn a file tree into a monolithic html, js, and css file), you'll need some command line tools installed:
+
+* [ruby](https://www.ruby-lang.org/)
+* [rake](http://rake.rubyforge.org/)
+* [node](http://nodejs.org/)
+* [grunt](http://gruntjs.com/)
+* [sass](http://sass-lang.com/)
+* [parse](https://www.parse.com/docs/cloud_code_guide)
+
+If you intend on deploying the site, you'll also need:
+
+* [s3cmd](http://s3tools.org/s3cmd)
+
+Once you have installed the tools above, follow these steps:
+
+1. `npm install grunt`
+1. `npm install -g grunt-cli`
+1. `npm install`
+1. `grunt`
+1. `parse deploy`
+1. `open index.html`
+
+If everything was installed, you should have Link-SF open and running in your browser. You won't see any facilities listed in search, so you'll want to add one in the admin interface. First, create a new user in the Parse interface, then:
+
+1. `open admin.html`
+
+Login using the credentials for the user you just added, then add a facility. Once saved, you will be able to return to the enduser app and see the facility in search results.
+
 #### Making changes to the site
-
-Download
-
-The development toolkit uses
-* ruby
-* node
-* npm
-* s3cmd
-* parse
 
 ### Deployment
