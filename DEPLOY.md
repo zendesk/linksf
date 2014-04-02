@@ -5,7 +5,7 @@ We've gone with a combination of S3 and [fast.ly](www.fastly.com) to serve the s
 although really any old hosting provider could do. 
 
 
-## setup
+### How to do it
 
 First, setup your `.env` file as described in the 'Secrets' section of SETUP.md.  This will get you 
 going with the credentials needed to push to S3.
