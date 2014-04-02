@@ -1,6 +1,6 @@
-# Deploying link-sf
+# Deploying Link-SF
 
-link-sf has two major components, a parse.com backend and a static HTML/js/css component.
+Link-SF has two major components, a parse.com backend and a static HTML/js/css component.
 We've gone with a combination of S3 and [fast.ly](http://www.fastly.com) to serve the static components, 
 although really any old hosting provider could do. 
 
