@@ -97,6 +97,11 @@
   .ui-switch-labels a { color: #989898; }
 
   .more-options-td { width: 30%; }
+
+  .ui-switch.disabled {
+    .ui-switch-handle { background-color: #f3f3f3; }
+    .ui-switch-on, .ui-switch-off { background: transparent; }
+  }
 }
 
 .query-representation-content table {

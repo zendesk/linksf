@@ -254,8 +254,15 @@ var ListView = Backbone.View.extend({
   },
 
   afterRender: function() {
-    var currentParams   = generateQueryParams();
-    var switches = [{selector: '#sort-toggle', val: currentParams.sort},
+    var currentParams = generateQueryParams(),
+        sort          = currentParams.sort;
+
+    if (this.options.disabledLocation) {
+      this.$('#sort-toggle').prop('disabled', true);
+      sort = 'name';
+    }
+
+    var switches = [{selector: '#sort-toggle', val: sort},
                     {selector: '#open-toggle', val: currentParams.filter.open ? 'yes' : 'no'}];
 
     switches.forEach(function(sw) {

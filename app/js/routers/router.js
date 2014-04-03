@@ -89,6 +89,7 @@ var Router = Backbone.Router.extend({
       queryParams.limit = 20,
       this.listView.options.categories = queryParams.filter.categories || [];
 
+      this.listView.options.disabledLocation = true;
       if (loc.lon && loc.lat) {
         $.extend(queryParams, loc);
         this.listView.options.currentLocation = loc;
@@ -96,6 +97,7 @@ var Router = Backbone.Router.extend({
       } else {
         // Default sort is near when navigating from index, unset it if location isn't available
         delete queryParams.sort;
+        this.listView.options.disabledLocation = true;
       }
 
       window.scrollTo(0, 0);
