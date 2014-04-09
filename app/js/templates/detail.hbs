@@ -24,7 +24,7 @@
 
     <div class="contact-info">
       {{#each phoneNumbers}}
-      <div class="inset-call inset-header">
+      <button class="inset-call inset-header">
         <div>
           <i class="icon-phone"></i>
           <label>Call</label>
@@ -38,11 +38,11 @@
         {{#if info}}
         <div class="call-info">{{info}}</div>
         {{/if}}
-      </div>
+      </button>
       {{/each}}
 
       {{#if website}}
-        <div class="inset-website inset-header">
+        <button class="inset-website inset-header">
           <a href="{{website}}" target="_blank">
             <div>
               <i class="icon-link"></i>
@@ -51,15 +51,15 @@
               <i class="icon-right-open right"></i>
             </div>
           </a>
-        </div>
+        </button>
       {{/if}}
 
-      <div class="inset-directions">
+      <button class="inset-directions">
         <i class="icon-compass"></i>
         <label>Directions</label>
         <i class="icon-right-open right"></i>
       </div>
-    </div>
+    </button>
 
     {{#each services}}
       <div class="inset-services">

@@ -39,7 +39,7 @@
   .inset-gmap {
     @include inset;
     border-radius: 6px;
-    margin: 20px 0px 1px 0px;
+    margin: 20px 0px 20px 0px;
     padding: 0;
 
     p {
@@ -80,7 +80,8 @@
 
   .inset-call {
     @include inset;
-    border-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
     margin-top: -1px;
     border-bottom: 1px solid #DDD;
     a { font-weight: bold; }

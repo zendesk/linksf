@@ -105,6 +105,10 @@ $nav-button-width: 75px;
   border-radius: 6px;
   border: 1px solid #DDD;
   padding: 14px;
+  width: 100%;
+  text-align: left;
+  box-sizing: border-box;
+  margin-bottom: 1px;
 }
 
 @mixin border-radius($radius) {
