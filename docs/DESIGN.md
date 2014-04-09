@@ -16,6 +16,14 @@ Link-SF is designed to connect service-seekers to the facilities that can serve 
 
 Our current success metric is to track the number of users that connect externally via calling, getting directions, or visiting the facility website from the detail view. We track this in Google Analytics; just add your analytics token to the `.env` file and redeploy.
 
-## Target device
+## Target browsers & guidelines
 
-After some research into what phones the typical service-seeker uses, we settled on building for an Android 2.2 phone with a 320x480 resolution display. As an example, a good target device would be an LG Motion.
+We try to make sure Link-SF works for the following browsers:
+
+* Android 2.2+
+* iOS 7+
+* Evergreen browsers (Chrome, Firefox, IE10+)
+* Safari 7+
+* Windows Phone 7.8+
+
+For the Tenderloin demographic, the most common phone would be something like an LG Motion. It's best to design something that is useful at a 320x480 resolution. For instance, all service categories on the home view should be displayed above the fold.
