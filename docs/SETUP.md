@@ -6,7 +6,7 @@ This guide explains how to install and setup the Link-SF application.
 
 ### Accounts
 
-Link-SF is designed to be free to setup and free to run in perpetuity. Since hosting files is cheap, we've decided to go with building a static site. There's only one hard dependency as far as accounts go. Parse gives us data persistence, authentication for admins, and querying:
+Link-SF is designed to be free to setup and free to run in perpetuity. Since hosting files is cheap, we've decided to go with building a [static site](https://en.wikipedia.org/wiki/Static_web_page). There's only one hard dependency as far as accounts go. Parse gives us data persistence, authentication for admins, and querying:
 
 * [Parse](https://parse.com/#signup)
 
