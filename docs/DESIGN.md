@@ -14,4 +14,4 @@ There is also a feedback link at the bottom that gives visitors a way to share t
 
 Link-SF is designed to connect service-seekers to the facilities that can serve their needs. Thus, tracking successful uses of Link-SF means seeing how frequently users are able to connect to facilities, both in raw volume and as a proportion of all service-seeker visitors.
 
-Our current success metric is to track the number of users that connect externally via calling, getting directions, or visiting the facility website from the detail view.
+Our current success metric is to track the number of users that connect externally via calling, getting directions, or visiting the facility website from the detail view. We track this in Google Analytics; just add your analytics token to the `.env` file and redeploy.
