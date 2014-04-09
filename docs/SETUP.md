@@ -6,7 +6,7 @@ This guide explains how to install and setup the Link-SF application.
 
 ### Accounts
 
-Link-SF is designed to be free to setup and free to run in perpetuity. Since hosting files is cheap, we've decided to go with building a static site. There's only one hard dependency as far as accounts go. Parse gives us data persistence, authentication for admins, and querying:
+Link-SF is designed to be free to setup and free to run in perpetuity. Since hosting files is cheap, we've decided to go with building a [static site](https://en.wikipedia.org/wiki/Static_web_page). There's only one hard dependency as far as accounts go. Parse gives us data persistence, authentication for admins, and querying:
 
 * [Parse](https://parse.com/#signup)
 
@@ -81,3 +81,30 @@ Making changes to the site is pretty simple. `grunt` will build the site once, t
 1. edit a watched file, then save
 1. see the site rebuild in your terminal
 1. reload the page and see updated build
+
+#### Updating fonts
+
+We use http://fontello.com to generate an icon bundle.  Here's how to add or change:
+
+1. go to fontello.com
+1. upload the current bundle in vendor/ using their "import" feature
+1. clicky clicky and change things
+1. re-download the bundle.  make sure the name is "icons"
+1. unzip the bundle and copy font/* as well as css/icons.css into place
+1. correct the paths in css/icons.css
+1. replace the zip file with the current one
+
+### Testing
+
+To test out the app, using an emulator is best in the absence of an actual device; this lets us simulate our target devices fairly well. Our target device is any 320x480 phone on Android 2.2.
+
+To get an android emulator setup on Mac OS:
+
+1. Download the [Android Developer Tools](https://developer.android.com/sdk/index.html#download)
+1. Open the `adt-bundle-mac-...` folder, and open `Eclipse.app`. You may have to control-click and select `Open`, since this is a `.app` directly downloaded from an untrusted source.
+1. Window -> Android SDK Manager
+1. In the list of packages, select `Android 2.2 (API 8)` and click `Install packages...`.
+1. Window -> Android Virtual Device Manager
+1. Click `New...` and configure a new device with 320x480 resolution and targeting Android 2.2.
+1. Click `Start...`
+1. Open the Android browser and visit Link-SF.
