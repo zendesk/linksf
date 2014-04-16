@@ -58,7 +58,7 @@ var DetailView = Backbone.View.extend({
   events: {
     'render.done':             'setMap',
     'click .inset-directions': 'launchDirections',
-    'click .inset-gmap':       'launchDirections',
+    'click #link_gmap':        'launchDirections',
     'click .inset-call':       'trackCalling',
     'click .inset-website':    'trackClickingWebsite'
   },
