@@ -2,10 +2,10 @@
 <div id='loading-spinner'>
   <img src="img/linksf_loader.gif" alt="Spinner icon indicating content is being loaded">
 </div>
-<ul class="facility-list">
+<ul class="facility-list" title="{{listDescription}}">
   {{#each facilities}}
     <li class="facility">
-      <a href="#/detail/{{objectId}}" class="facility-item-link">
+      <a href="#/detail/{{objectId}}" class="facility-item-link" title="Click to see more details about {{name}}">
         <div class="facility-item-box-info">
           <div>
             <p class="facility-name">{{name}}</p>
