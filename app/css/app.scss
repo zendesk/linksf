@@ -30,7 +30,9 @@ ul {
 .btn-info {
   border: 1px solid #1C5E79;
 }
-
+button:focus, a:focus {
+  border: 2px solid #62919C !important;
+}
 footer {
   max-width: 650px;
   margin: 0 auto;
