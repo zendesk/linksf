@@ -225,10 +225,10 @@ var ListView = Backbone.View.extend({
         templateJson    = this.flattenServices(deepJson, currentLocation),
         currentParams   = generateQueryParams(),
         listCategories  = categories.length ? categories.join(', ') : 'all',
-        listDescription = 'List of ' + listCategories + ' facilities';
+        listDescription = listCategories + ' facilities';
 
     if (currentParams.sort) { listDescription += ' sorted by ' + currentParams.sort; }
-    if (currentParams.hours) { listDescription += ' currently ' + currentParams.hours; }
+    if (currentParams.filter.open) { listDescription += ' currently open'; }
 
     // replace with template
     this.$el.html(this.template({
