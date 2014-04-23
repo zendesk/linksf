@@ -10,7 +10,7 @@ function trackDetailsAction(action, opts) {
 
 function trackListAction(action, opts) {
   opts = opts || {};
-  Parse.Analytics.track('listPageAction', { action: action, selected: this.options.selected });
+  Parse.Analytics.track('listPageAction', { action: action, target: opts.target });
   var listAction = 'list' + action.charAt(0).toUpperCase() + action.substring(1);
   if ( opts.location && opts.location.lat && opts.location.lon ) {
     trackLocation(listAction, opts.location);
