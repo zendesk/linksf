@@ -1,4 +1,4 @@
-var Analytics             = require('lib/analytics'),
+var Analytics             = require('shared/lib/analytics'),
     BaseController        = require('shared/lib/base_controller'),
     Storage               = require('lib/storage'),
     applicationController = new BaseController({ el: '#linksf' }),
