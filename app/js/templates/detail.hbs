@@ -61,8 +61,9 @@
       </div>
     </button>
 
+    <ul title="Services details">
     {{#each services}}
-      <div class="inset-services">
+      <li title="Service: {{name}}" class="inset-services">
         <p class="service-title">{{name}}</p>
         <p>{{description}}</p>
         {{> openHours}}
@@ -72,7 +73,8 @@
            <p>{{notes}}</p>
           </div>
         {{/if}}
-      </div>
+      </li>
     {{/each}}
+    </ul>
   </div>
 {{/with}}
