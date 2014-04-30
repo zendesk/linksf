@@ -4,35 +4,38 @@
   min-width: 290px;
   margin: ($navbar-height + 10px) auto;
   padding-top: 5px;
-
-  h3 {
-    font-size: 24px;
-    padding: 2px 0 2px 0;
-  }
 }
+
 .notes {
   background: #f3f3f3;
   padding: 8px;
   border-radius: 6px;
 }
+
+.facility-name {
+  font-size: 24px;
+  padding: 2px 0;
+}
+
 .facility-info {
   font-size: 14px;
 
   p { margin: 0; }
   label { font-weight: bold; }
-  a { 
+  a {
     text-decoration: none;
     width: 100%;
     height: 100%;
     display: block;
-   }
+  }
 
   .title {
+    font-weight: normal;
     margin: 12px 0 0 1px;
   }
   .service-title, .title {
     color: #666;
-    font-size: 18px;    
+    font-size: 18px;
   }
 
   .icon-right-open {
@@ -121,8 +124,8 @@
     @include inset;
     margin-top: 12px;
     label { line-height: 2; }
-    p { 
-        line-height: 1.5; 
+    p {
+        line-height: 1.5;
         margin-bottom: 10px;
     }
   }

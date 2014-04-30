@@ -1,14 +1,14 @@
 {{#with facility}}
 <div class="container">
-  <h3>{{name}}</h3>
+  <h1 class="facility-name">{{name}}</h1>
 
   <div class="facility-info">
-    <p class="title">Welcome</p>
+    <h2 class="title">Welcome</h2>
     <div class="inset">
       <p>{{demographics}}</p>
     </div>
 
-    <p class="title">Services</p>
+    <h2 class="title">Services</h2>
     <div class="inset">
       {{#each distinctCategories}}
         <span class="facility-services"><i class="category-icon icon-{{icon}}"></i>{{title}}</span>
