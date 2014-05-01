@@ -5,7 +5,7 @@
   <div class="facility-info">
     <h2 class="title">Welcome</h2>
     <div class="inset">
-      <p>{{demographics}}</p>
+      <p title="Who is this facility suitable for">{{demographics}}</p>
     </div>
 
     <h2 class="title">Services</h2>
@@ -24,26 +24,26 @@
 
     <div class="contact-info">
       {{#each phoneNumbers}}
-      <div class="inset-call inset-header">
-        <div>
-          <i class="icon-phone"></i>
-          <label>Call</label>
-          {{#if ../isMobile}}
-            <a href="tel:{{number}}">{{number}}</a>
-          {{else}}
-            <span>{{number}}</span>
+        <div title="Facility phone number" class="inset-call inset-header">
+          <div>
+            <i class="icon-phone"></i>
+            <label>Call</label>
+            {{#if ../isMobile}}
+              <a href="tel:{{number}}">{{number}}</a>
+            {{else}}
+              <span>{{number}}</span>
+            {{/if}}
+            <i class="icon-right-open right"></i>
+          </div>
+          {{#if info}}
+          <div class="call-info">{{info}}</div>
           {{/if}}
-          <i class="icon-right-open right"></i>
         </div>
-        {{#if info}}
-        <div class="call-info">{{info}}</div>
-        {{/if}}
-      </div>
       {{/each}}
 
       {{#if website}}
         <div class="inset-website inset-header">
-          <a href="{{website}}" target="_blank">
+          <a title="Facility website" href="{{website}}" target="_blank">
             <div>
               <i class="icon-link"></i>
               <label>Website</label>
@@ -64,7 +64,7 @@
     <ul title="Services details">
     {{#each services}}
       <li title="Service: {{name}}" class="inset-services">
-        <p class="service-title">{{name}}</p>
+        <h3 class="service-title">{{name}}</h3>
         <p>{{description}}</p>
         {{> openHours}}
         {{#if notes}}

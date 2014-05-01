@@ -29,13 +29,16 @@
     display: block;
   }
 
+  .service-title { margin-top: 0; }
+
   .title {
-    font-weight: normal;
     margin: 12px 0 0 1px;
   }
+
   .service-title, .title {
     color: #666;
     font-size: 18px;
+    font-weight: normal;
   }
 
   .icon-right-open {
