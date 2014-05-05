@@ -27,7 +27,9 @@ module.exports = function(grunt) {
           google: true,
           parseAppId: true,
           parseJSKey: true,
-          ga: true
+          ga: true,
+          test: true,
+          ok: true
         },
         undef: true,
         debug: true,
@@ -45,7 +47,7 @@ module.exports = function(grunt) {
       },
 
       all: {
-        src: 'test/**/*.js'
+        src: 'test/unit/**/*.js'
       }
     },
 
@@ -304,7 +306,7 @@ module.exports = function(grunt) {
     },
 
     qunit: {
-      all: ['test/**/*.html']
+      all: ['test/acceptance/**/*.html']
     }
   });
 
@@ -325,6 +327,7 @@ module.exports = function(grunt) {
     'clean',
     'jshint',
     'simplemocha',
+    'qunit',
     'sass',
     'browserify',
     'concat:app',
@@ -337,6 +340,7 @@ module.exports = function(grunt) {
     'clean',
     'jshint',
     'simplemocha',
+    'qunit',
     'sass',
     'cssmin',
     'browserify',

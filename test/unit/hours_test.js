@@ -3,7 +3,7 @@
 var should = require('should');
 
 describe("Hours", function() {
-  var Hours = require('../shared/js/models/hours.js'),
+  var Hours = require('../../shared/js/models/hours.js'),
       hours;
 
   beforeEach(function() {
