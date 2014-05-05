@@ -301,6 +301,10 @@ module.exports = function(grunt) {
           }
         }
       }
+    },
+
+    qunit: {
+      all: ['test/**/*.html']
     }
   });
 
@@ -314,6 +318,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-cachebuster');
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadTasks('tasks');
 
   grunt.registerTask('build:development', [
