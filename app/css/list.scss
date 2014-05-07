@@ -93,14 +93,26 @@
     margin-left: 10px;
     display: none;
   }
-
   .ui-switch-labels a { color: #989898; }
 
-  .more-options-td { width: 30%; }
+  .more-options-td { 
+    width: 32%;
+    display: inline-block;
+   }
 
   .ui-switch.disabled {
     .ui-switch-handle { background-color: #f3f3f3; }
     .ui-switch-on, .ui-switch-off { background: transparent; }
+  }
+  .filter-option {
+    width: 32%;
+    display: inline-block;
+    label {
+      display: block;
+    }
+  }
+  .second.filter-option {
+    margin-left: 4px;
   }
 }
 
