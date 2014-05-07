@@ -1,14 +1,14 @@
 {{#with facility}}
 <div class="container">
-  <h3>{{name}}</h3>
+  <h1 class="facility-name">{{name}}</h1>
 
   <div class="facility-info">
-    <p class="title">Welcome</p>
+    <h2 class="title">Welcome</h2>
     <div class="inset">
-      <p>{{demographics}}</p>
+      <p title="Who is this facility suitable for">{{demographics}}</p>
     </div>
 
-    <p class="title">Services</p>
+    <h2 class="title">Services</h2>
     <div class="inset">
       {{#each distinctCategories}}
         <span class="facility-services"><i class="category-icon icon-{{icon}}"></i>{{title}}</span>
@@ -24,26 +24,26 @@
 
     <div class="contact-info">
       {{#each phoneNumbers}}
-      <div class="inset-call inset-header">
-        <div>
-          <i class="icon-phone"></i>
-          <label>Call</label>
-          {{#if ../isMobile}}
-            <a href="tel:{{number}}">{{number}}</a>
-          {{else}}
-            <span>{{number}}</span>
+        <div title="Facility phone number" class="inset-call inset-header">
+          <div>
+            <i class="icon-phone"></i>
+            <label>Call</label>
+            {{#if ../isMobile}}
+              <a href="tel:{{number}}">{{number}}</a>
+            {{else}}
+              <span>{{number}}</span>
+            {{/if}}
+            <i class="icon-right-open right"></i>
+          </div>
+          {{#if info}}
+          <div class="call-info">{{info}}</div>
           {{/if}}
-          <i class="icon-right-open right"></i>
         </div>
-        {{#if info}}
-        <div class="call-info">{{info}}</div>
-        {{/if}}
-      </div>
       {{/each}}
 
       {{#if website}}
         <div class="inset-website inset-header">
-          <a href="{{website}}" target="_blank">
+          <a title="Facility website" href="{{website}}" target="_blank">
             <div>
               <i class="icon-link"></i>
               <label>Website</label>
@@ -61,18 +61,20 @@
       </div>
     </button>
 
+    <ul title="Services details">
     {{#each services}}
-      <div class="inset-services">
-        <p class="service-title">{{name}}</p>
-          {{> openHours}}
+      <li title="Service: {{name}}" class="inset-services">
+        <h3 class="service-title">{{name}}</h3>
         <p>{{description}}</p>
+        {{> openHours}}
         {{#if notes}}
           <div class="notes">
             <label>Notes:</label>
            <p>{{notes}}</p>
           </div>
         {{/if}}
-      </div>
+      </li>
     {{/each}}
+    </ul>
   </div>
 {{/with}}

@@ -8,6 +8,15 @@ function trackDetailsAction(action, opts) {
   ga('send', 'event', 'external_link', action, opts.externalLinkTarget);
 }
 
+function trackListAction(action, opts) {
+  opts = opts || {};
+  Parse.Analytics.track('listPageAction', { action: action, target: opts.target });
+  var listAction = 'list' + action.charAt(0).toUpperCase() + action.substring(1);
+  if ( opts.location && opts.location.lat && opts.location.lon ) {
+    trackLocation(listAction, opts.location);
+  }
+}
+
 function trackHomepageAction(category) {
   var dimensions = {
     action: 'category',
@@ -38,6 +47,7 @@ function trackLocation(action, location, params) {
 module.exports = {
   trackDetailsAction:  trackDetailsAction,
   trackHomepageAction: trackHomepageAction,
+  trackListAction:     trackListAction,
   trackLocation:       trackLocation,
   trackRoute:          trackRoute,
   trackQuery:          trackQuery

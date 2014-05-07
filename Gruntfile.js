@@ -261,13 +261,11 @@ module.exports = function(grunt) {
 
     // Add cache-busting hashes to each built file. The hashes change with file content.
     cachebuster: {
-      dist: {
+      app: {
         files: {
           src: [
             'tmp/linksf.js',
-            'tmp/linksf.css',
-            'tmp/linksf_admin.js',
-            'tmp/linksf_admin.css'
+            'tmp/linksf.css'
           ],
         },
         options: {
@@ -278,9 +276,7 @@ module.exports = function(grunt) {
                 output,
                 keyMap = {
                   'tmp/linksf.js': 'linksf_js',
-                  'tmp/linksf.css': 'linksf_css',
-                  'tmp/linksf_admin.js': 'linksf_admin_js',
-                  'tmp/linksf_admin.css': 'linksf_admin_css'
+                  'tmp/linksf.css': 'linksf_css'
                 };
 
             Object.keys(hashes).forEach(function(key) {
@@ -296,6 +292,37 @@ module.exports = function(grunt) {
             template = Handlebars.compile(grunt.file.read('tmp/index.html'));
             output = template(context);
             grunt.file.write('index.html', output);
+          }
+        }
+      },
+
+      admin: {
+        files: {
+          src: [
+            'tmp/linksf_admin.js',
+            'tmp/linksf_admin.css'
+          ]
+        },
+        options: {
+          complete: function(hashes) {
+            var context = {},
+                Handlebars = require('handlebars'),
+                template,
+                output,
+                keyMap = {
+                  'tmp/linksf_admin.js': 'linksf_admin_js',
+                  'tmp/linksf_admin.css': 'linksf_admin_css'
+                };
+
+            Object.keys(hashes).forEach(function(key) {
+              var matches = key.match(/^tmp\/(.*)(\..*)$/),
+                  filename = matches[1],
+                  extension = matches[2],
+                  outputFile = 'build/' + filename + '-' + hashes[key] + extension;
+
+              grunt.file.copy(key, outputFile);
+              context[keyMap[key]] = outputFile;
+            });
 
             template = Handlebars.compile(grunt.file.read('tmp/admin.html'));
             output = template(context);
@@ -333,7 +360,8 @@ module.exports = function(grunt) {
     'concat:app',
     'concat:admin',
     'configure:development',
-    'cachebuster'
+    'cachebuster:app',
+    'cachebuster:admin'
   ]);
 
   grunt.registerTask('build:production', [

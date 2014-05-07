@@ -1,9 +1,10 @@
 /* globals window */
-var Query                            = require('shared/lib/query'),
-    facilities                       = require('shared/collections/facilities').instance(),
-    searchParams                     = ["fr"],
-    parseParams                      = require('shared/lib/query_param_parser'),
-    calculateAllDistances            = require('shared/lib/distance').calculateAllDistances;
+var Analytics             = require('shared/lib/analytics'),
+    Query                 = require('shared/lib/query'),
+    facilities            = require('shared/collections/facilities').instance(),
+    searchParams          = ["fr"],
+    parseParams           = require('shared/lib/query_param_parser'),
+    calculateAllDistances = require('shared/lib/distance').calculateAllDistances;
 
 function generateQueryParams(inputString, limit ) {
   var queryString  = inputString || window.location.hash.substring(window.location.hash.indexOf('?') + 1),
@@ -141,8 +142,9 @@ var ListView = Backbone.View.extend({
   },
 
   goToFilter: function() {
-    var queryString  = window.location.hash.substring(window.location.hash.indexOf('?')+1);
-    var router = require('routers/router').instance();
+    Analytics.trackListAction('options', { location: this.options.currentLocation, target: 'options' });
+    var queryString = window.location.hash.substring(window.location.hash.indexOf('?')+1),
+        router      = require('routers/router').instance();
     Backbone.history.navigate("filter?" + queryString, {trigger: true});
     return false;
   },
@@ -175,8 +177,9 @@ var ListView = Backbone.View.extend({
   },
 
   filterToggle: function(event) {
-    var currentParams = generateQueryParams();
-    var select = $(event.target).prev('select');
+    var currentParams = generateQueryParams(),
+        select        = $(event.target).prev('select'),
+        key           = select.attr('id') + '-' + select.val();
 
     if ( select.attr('id') === 'sort-toggle' ) {
       currentParams.sort = select.val();
@@ -184,6 +187,7 @@ var ListView = Backbone.View.extend({
       currentParams.filter.open = select.val() === 'yes';
     }
 
+    Analytics.trackListAction('toggle', { location: this.options.currentLocation, target: key });
     this._navigateFromQueryParams(currentParams, true);
   },
 
@@ -225,10 +229,10 @@ var ListView = Backbone.View.extend({
         templateJson    = this.flattenServices(deepJson, currentLocation),
         currentParams   = generateQueryParams(),
         listCategories  = categories.length ? categories.join(', ') : 'all',
-        listDescription = 'List of ' + listCategories + ' facilities';
+        listDescription = listCategories + ' facilities';
 
     if (currentParams.sort) { listDescription += ' sorted by ' + currentParams.sort; }
-    if (currentParams.hours) { listDescription += ' currently ' + currentParams.hours; }
+    if (currentParams.filter.open) { listDescription += ' currently open'; }
 
     // replace with template
     this.$el.html(this.template({

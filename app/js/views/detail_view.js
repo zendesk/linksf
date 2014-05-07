@@ -1,4 +1,4 @@
-var Analytics         = require('lib/analytics'),
+var Analytics         = require('shared/lib/analytics'),
     Features          = require('lib/features'),
     Hours             = require('shared/models/hours'),
     fetchLocation     = require('shared/lib/fetch_location'),

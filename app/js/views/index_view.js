@@ -1,4 +1,4 @@
-var Analytics     = require('lib/analytics'),
+var Analytics     = require('shared/lib/analytics'),
     fetchLocation = require('shared/lib/fetch_location'),
     navigate      = require('shared/lib/navigate');
 
