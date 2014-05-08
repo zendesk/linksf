@@ -5,6 +5,10 @@ Handlebars.registerPartial('filterCategories',    require('shared/templates/_fil
 Handlebars.registerPartial('openHours',           require('shared/templates/_open_hours'));
 Handlebars.registerPartial('queryRepresentation', require('templates/_query_representation'));
 
+if ( typeof ga === 'undefined' ) {
+  window.ga = function(){};
+}
+
 $(function() {
   window.FastClick.attach(document.body);
   require('lib/boot');
