@@ -22,7 +22,7 @@
       <p title="Time from current location to facility" class="destination" id="duration_{{objectId}}">{{durationText}}</p>
     </div>
 
-    <div class="contact-info">
+    <div title="Facility contact info" class="contact-info">
       {{#each phoneNumbers}}
         <div title="Facility phone number" class="inset-call inset-header">
           <div>
@@ -42,8 +42,8 @@
       {{/each}}
 
       {{#if website}}
-        <div class="inset-website inset-header">
-          <a title="Facility website" href="{{website}}" target="_blank">
+        <div title="Facility website" class="inset-website inset-header">
+          <a href="{{website}}" target="_blank">
             <div>
               <i class="icon-link"></i>
               <label>Website</label>
@@ -58,8 +58,8 @@
         <i class="icon-compass"></i>
         <label>Directions</label>
         <i class="icon-right-open right"></i>
-      </div>
-    </button>
+      </button>
+    </div>
 
     <ul title="Services details">
     {{#each services}}
