@@ -256,6 +256,10 @@ module.exports = function(grunt) {
       tmp: {
         src: 'tmp/*',
         filter: function(filepath) { return filepath !== 'tmp/.gitkeep'; }
+      },
+
+      test: {
+        src: 'test/acceptance/app.html'
       }
     },
 
@@ -292,6 +296,10 @@ module.exports = function(grunt) {
             template = Handlebars.compile(grunt.file.read('tmp/index.html'));
             output = template(context);
             grunt.file.write('index.html', output);
+
+            template = Handlebars.compile(grunt.file.read('test/acceptance/app.template'));
+            output = template(context);
+            grunt.file.write('test/acceptance/app.html', output);
           }
         }
       },
@@ -354,14 +362,14 @@ module.exports = function(grunt) {
     'clean',
     'jshint',
     'simplemocha',
-    'qunit',
     'sass',
     'browserify',
     'concat:app',
-    'concat:admin',
+    // 'concat:admin',
     'configure:development',
     'cachebuster:app',
-    'cachebuster:admin'
+    'qunit'
+    // 'cachebuster:admin'
   ]);
 
   grunt.registerTask('build:production', [

@@ -13,3 +13,4 @@
 .DS_Store
 /server/cloud/cloud/mailgun_credentials.js
 docs/CSV_IMPORT.md
+/test/acceptance/app.html
