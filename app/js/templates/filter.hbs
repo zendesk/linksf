@@ -1,19 +1,23 @@
-<div id="filter">
-  <span class="categories-header">Sort by</span>
-  <div class="filter filter-sort btn-group" data-toggle="buttons-radio">
-    {{#if distanceDisabled}}
-      <button data-value="near" class="btn first" disabled>Distance</button>
-      <button data-value="name" class="btn last active">Name</button>
-    {{else}}
-      <button data-value="near" class="btn first active">Distance</button>
-      <button data-value="name" class="btn last">Name</button>
-    {{/if}}
+<div title="Search facilities restricted by the options below" id="filter">
+  <div title="Select facilities sorted by name or near your current location">
+    <span class="categories-header">Sort by</span>
+    <div class="filter filter-sort btn-group" data-toggle="buttons-radio">
+      {{#if distanceDisabled}}
+        <button data-value="near" class="btn first" disabled>Distance</button>
+        <button data-value="name" class="btn last active">Name</button>
+      {{else}}
+        <button data-value="near" class="btn first active">Distance</button>
+        <button data-value="name" class="btn last">Name</button>
+      {{/if}}
+    </div>
   </div>
 
-  <span class="categories-header">Hours</span>
-  <div class="filter filter-hours btn-group" data-toggle="buttons-radio">
-    <button data-value="A" class="btn first active">All</button>
-    <button data-value="open" class="btn last">Open Now</button>
+  <div title="Select showing only facilities that are open now or all facilities">
+    <span class="categories-header">Hours</span>
+    <div class="filter filter-hours btn-group" data-toggle="buttons-radio">
+      <button data-value="A" class="btn first active">All</button>
+      <button data-value="open" class="btn last">Open Now</button>
+    </div>
   </div>
 
   {{#if distanceDisabled}}
@@ -22,22 +26,28 @@
     </div>
   {{/if}}
 
-  <span class="categories-header">Service</span>
-  {{> filterCategories}}
-
-  <span class="categories-header">Suitable for</span>
-  <div class="filter filter-demographics btn-group" data-toggle="buttons-checkbox">
-    <button data-value="C" class="btn first">Children</button>
-    <button data-value="Y" class="btn">Teens/Youth</button>
-    <button data-value="A" class="btn">Adults</button>
-    <button data-value="S" class="btn last">Seniors</button>
+  <div title="Select one or more services provided by the facility">
+    <span class="categories-header">Service</span>
+    {{> filterCategories}}
   </div>
 
-  <span class="categories-header">Welcome</span>
-  <div class="filter filter-gender btn-group" data-toggle="buttons-radio">
-    <button data-value="A" class="btn first active">All</button>
-    <button data-value="M"  class="btn">Men</button>
-    <button data-value="F"  class="btn last">Women</button>
+  <div title="Select one or more groups which facility is suitable for">
+    <span class="categories-header">Suitable for</span>
+    <div class="filter filter-demographics btn-group" data-toggle="buttons-checkbox">
+      <button data-value="C" class="btn first">Children</button>
+      <button data-value="Y" class="btn">Teens/Youth</button>
+      <button data-value="A" class="btn">Adults</button>
+      <button data-value="S" class="btn last">Seniors</button>
+    </div>
+  </div>
+
+  <div title="Select allowed gender">
+    <span class="categories-header">Welcome</span>
+    <div class="filter filter-gender btn-group" data-toggle="buttons-radio">
+      <button data-value="A" class="btn first active">All</button>
+      <button data-value="M"  class="btn">Men</button>
+      <button data-value="F"  class="btn last">Women</button>
+    </div>
   </div>
 
   <div class="search">
