@@ -67,7 +67,7 @@ var Router = Backbone.Router.extend({
         indexView = new IndexView();
 
     fetchLocation().always(function(loc) {
-      if (loc.lon && loc.lat) { Analytics.trackLocation('homePage', loc); }
+      if (loc && loc.lon && loc.lat) { Analytics.trackLocation('homePage', loc); }
     });
 
     return applicationController.render(indexView);
