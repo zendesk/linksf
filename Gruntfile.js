@@ -29,7 +29,9 @@ module.exports = function(grunt) {
           parseJSKey: true,
           ga: true,
           test: true,
-          ok: true
+          ok: true,
+          equal: true,
+          deepEqual: true
         },
         undef: true,
         debug: true,
