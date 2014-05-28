@@ -378,7 +378,6 @@ module.exports = function(grunt) {
     'clean',
     'jshint',
     'simplemocha',
-    // 'qunit',
     'sass',
     'cssmin',
     'browserify',
@@ -386,7 +385,8 @@ module.exports = function(grunt) {
     'concat:app_min',
     'concat:admin_min',
     'configure:production',
-    'cachebuster'
+    'cachebuster',
+    'qunit'
   ]);
 
   grunt.registerTask('default', [
