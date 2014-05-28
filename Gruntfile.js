@@ -360,24 +360,37 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadTasks('tasks');
 
-  grunt.registerTask('build:development', [
+  grunt.registerTask('build:prereqs', [
     'clean',
     'jshint',
-    'simplemocha',
-    'sass',
-    'browserify',
+    'simplemocha'
+  ]);
+
+  grunt.registerTask('build:development', [
+    'build:prereqs',
+    'build:development:app',
+    'build:development:admin'
+  ]);
+
+  grunt.registerTask('build:development:app', [
+    'sass:app',
+    'browserify:app',
     'concat:app',
-    // 'concat:admin',
-    'configure:development',
+    'configure:development:app',
     'cachebuster:app',
     'qunit'
-    // 'cachebuster:admin'
+  ]);
+
+  grunt.registerTask('build:development:admin', [
+    'sass:admin',
+    'browserify:admin',
+    'concat:admin',
+    'configure:development:admin',
+    'cachebuster:admin'
   ]);
 
   grunt.registerTask('build:production', [
-    'clean',
-    'jshint',
-    'simplemocha',
+    'build:prereqs',
     'sass',
     'cssmin',
     'browserify',
@@ -390,6 +403,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('default', [
-    'build:development'
+    'build:prereqs',
+    'build:development:app'
   ]);
 };
