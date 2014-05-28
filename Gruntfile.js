@@ -378,7 +378,7 @@ module.exports = function(grunt) {
     'clean',
     'jshint',
     'simplemocha',
-    'qunit',
+    // 'qunit',
     'sass',
     'cssmin',
     'browserify',
