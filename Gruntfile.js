@@ -45,7 +45,7 @@ module.exports = function(grunt) {
         timeout: 3000,
         ignoreLeaks: false,
         ui: 'bdd',
-        reporter: 'list'
+        reporter: 'dot'
       },
 
       all: {
