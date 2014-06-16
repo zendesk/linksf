@@ -78,15 +78,9 @@ module.exports = function(grunt) {
     loadEnv('.env');
 
     ensureInEnv([
-      'MAILGUN_DOMAIN',
-      'MAILGUN_API_KEY',
-      'MAILGUN_TO_EMAIL_ADDRESS',
-      'MAILGUN_FROM_EMAIL_ADDRESS',
       'PARSE_DEV_APP_ID',
       'PARSE_DEV_JS_KEY',
-      'PARSE_DEV_MASTER_KEY',
-      'GOOGLE_ANALYTICS_DEV_TOKEN',
-      'GOOGLE_ANALYTICS_DEV_HOST'
+      'PARSE_DEV_MASTER_KEY'
     ]);
 
     process.env.PARSE_APP_ID = process.env.PARSE_DEV_APP_ID;
