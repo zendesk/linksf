@@ -1,18 +1,19 @@
-function loadEnv(envFile) {
-  var fs = require('fs');
+function loadEnv(grunt, envFile) {
+  var exists = grunt.file.exists;
+  var read   = grunt.file.read;
 
-  if ( !fs.existsSync(envFile) ) {
+  if ( !exists(envFile) ) {
     console.log(envFile + ' not found; assuming ENV variables are already present.');
     return;
   }
 
-  fs.readFileSync(envFile)
+  read(envFile)
     .toString()
     .split('\n')
     .forEach(function(line) {
-      var segments = line.split('='),
-          variable = segments[0],
-          value = segments[1];
+      var segments = line.split('=');
+      var variable = segments[0];
+      var value    = segments[1];
 
       if ( variable && value ) {
         process.env[variable] = value;
@@ -23,19 +24,22 @@ function loadEnv(envFile) {
 function ensureInEnv(variables) {
   variables.forEach(function(variable) {
     if ( !process.env[variable] ) {
-      console.log(variable, 'is needed in .env.')
+      console.log(variable, 'is needed in .env or ENV.')
       process.exit(1);
     }
   });
 }
 
-function configure(grunt, templatePath, targetPath, data) {
-  var template = grunt.file.read(templatePath),
-      output = grunt.template.process(template, { data: data });
+function configure(grunt, source, destination, context) {
+  var read    = grunt.file.read;
+  var write   = grunt.file.write;
+  var exists  = grunt.file.exists;
+  var process = grunt.template.process;
 
-  if ( !grunt.file.exists(targetPath) || grunt.file.read(targetPath) !== output ) {
-    grunt.file.write(targetPath, output);
-    console.log('File "' + targetPath + '" created.');
+  var output = process(read(source), { data: context });
+
+  if ( !exists(destination) || read(destination) !== output ) {
+    write(destination, output);
   }
 }
 
@@ -75,7 +79,7 @@ function configureGlobalJson(grunt) {
 
 module.exports = function(grunt) {
   grunt.registerTask('configure:development:app', 'Configure for the development app environment.', function() {
-    loadEnv('.env');
+    loadEnv(grunt, '.env');
 
     ensureInEnv([
       'PARSE_DEV_APP_ID',
@@ -94,7 +98,7 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('configure:development:admin', 'Configure for the development admin environment.', function() {
-    loadEnv('.env');
+    loadEnv(grunt, '.env');
 
     ensureInEnv([
       'PARSE_DEV_APP_ID',
@@ -110,7 +114,7 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('configure:production', 'Configure for the production environment.', function() {
-    loadEnv('.env');
+    loadEnv(grunt, '.env');
 
     ensureInEnv([
       'MAILGUN_DOMAIN',
