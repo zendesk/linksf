@@ -1,4 +1,4 @@
-## Link-SF
+## Link-SF [![Build Status](https://travis-ci.org/zendesk/linksf.svg?branch=master)](https://travis-ci.org/zendesk/linksf)
 
 http://link-sf.com
 
