@@ -1,7 +1,10 @@
 function loadEnv(envFile) {
   var fs = require('fs');
 
-  if ( !fs.existsSync(envFile) ) return;
+  if ( !fs.existsSync(envFile) ) {
+    console.log(envFile + ' not found; assuming ENV variables are already present.');
+    return;
+  }
 
   fs.readFileSync(envFile)
     .toString()
