@@ -1,5 +1,9 @@
 function loadEnv(envFile) {
-  require('fs').readFileSync(envFile)
+  var fs = require('fs');
+
+  if ( !fs.existsSync(envFile) ) return;
+
+  fs.readFileSync(envFile)
     .toString()
     .split('\n')
     .forEach(function(line) {
