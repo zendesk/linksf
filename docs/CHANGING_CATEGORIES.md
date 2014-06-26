@@ -25,7 +25,9 @@ This completes part 1.
 
 ## Part II: The category Icon
 At this point your instance of LinkSF should show your new category name everywhere. But if it doesn't match the icon, you may want to change this for a better user experience.
+
 1. Locate our current icon set at /vendor/fontello***.zip, where the asterisks will be a random looking string of numbers and/or letters. This is a zipfile of our icons.
+
 2. Go to http://fontello.com/
 Click the wrench icon at the top-right, next to the search bar, then click on 'Import' from the drop-down. Select the zipfile mentioned in step 1 and upload it. Now a set of the icons currently used by LinkSF will be selected in fontello. Search through the icons and pick one out that best suits your new category name. Perhaps I would choose the icon called hammer for our example.
 
