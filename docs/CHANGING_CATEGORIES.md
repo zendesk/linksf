@@ -31,7 +31,7 @@ At this point your instance of LinkSF should show your new category name everywh
 2. Go to http://fontello.com/
 Click the wrench icon at the top-right, next to the search bar, then click on 'Import' from the drop-down. Select the zipfile mentioned in step 1 and upload it. Now a set of the icons currently used by LinkSF will be selected in fontello. Search through the icons and pick one out that best suits your new category name. Perhaps I would choose the icon called hammer for our example.
 
-Once you have selected the icon that you want to use, and if you like, de-selected the one you no longer need, click the big red button at the top-right that says 'Download Webfont'
+  Once you have selected the icon that you want to use, and if you like, de-selected the one you no longer need, click the big red button at the top-right that says 'Download Webfont'
 
 3. This gives you a new zipfile. Delete the one currently in /vendor/ in link-sf, and replace it with this new one. You also need to expand/open the zipfile to get its contents
 
