@@ -76,14 +76,12 @@ var is24HourString = function(timeString) {
 */
 
 var Hours = function Hours(hours){
-  var processed = {}, dayNum;
-  this.hours = hours || {};
-  for(var k in hours) {
-    if(!hours.hasOwnProperty(k)) { continue; }
-    dayNum = days[k.toUpperCase()];
+  var processed = {};
 
-    processed[dayNum] = this.parseDay(hours[k]);
-  }
+  Object.keys(hours || {}).forEach(function(day) {
+    var dayNum = days[day.toUpperCase()];
+    processed[dayNum] = this.parseDay(hours[day]);
+  }.bind(this));
 
   this.hours = processed;
 };
