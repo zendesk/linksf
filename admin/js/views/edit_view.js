@@ -96,9 +96,7 @@ var EditView = Backbone.View.extend({
         $hours = $(event.target).closest('.hours'),
         hours  = this.parseHours($hours);
 
-    if ( !hours.isEmpty() )  {
-      openHours = hours.serialize();
-    }
+    var openHours = hours.serialize();
 
     mergedHours = Hours.merge.apply(
       Hours,
@@ -337,9 +335,7 @@ var EditView = Backbone.View.extend({
 
     _.each(services, function(service, i) {
       var hours = this.parseHours($('.hours')[i], { validate: true });
-      if ( !hours.isEmpty() )  {
-        service.openHours = hours.serialize();
-      }
+      service.openHours = hours.serialize();
     }.bind(this));
 
     delete formValues.services;

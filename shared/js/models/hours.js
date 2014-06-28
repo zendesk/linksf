@@ -296,7 +296,11 @@ Hours.prototype.within = function(time) {
 };
 
 Hours.prototype.serialize = function () {
-  return this.hours;
+  if ( !this.isEmpty() ) {
+    return this.hours;
+  } else {
+    return null;
+  }
 };
 
 Hours.prototype.isEmpty = function () {
