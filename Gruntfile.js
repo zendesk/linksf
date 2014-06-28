@@ -404,6 +404,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', [
     'build:prereqs',
-    'build:development:app'
+    'build:development:app',
+    'build:development:admin'
   ]);
 };
