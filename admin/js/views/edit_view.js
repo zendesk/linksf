@@ -61,7 +61,7 @@ var EditView = Backbone.View.extend({
     'blur input[name="address"]': 'previewAddress',
     'blur input[name="city"]':    'previewAddress',
     'click #delete_facility':     'deleteFacility',
-    'click #age_everyone':        'applyAllowedAges'
+    'click #age_everyone':        'applyAgeRestrictions'
   },
 
   previewAddress: function() {
@@ -215,11 +215,11 @@ var EditView = Backbone.View.extend({
       }.bind(this));
     } else {
       this.$("#age_everyone").prop('checked', true);
-      this.applyAllowedAges();
+      this.applyAgeRestrictions();
     }
   },
 
-  applyAllowedAges: function() {
+  applyAgeRestrictions: function() {
     var selector = this.$('[name=age]');
 
     if ( this.$("#age_everyone").prop("checked") ) {
