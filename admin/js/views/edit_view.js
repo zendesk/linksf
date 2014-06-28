@@ -101,12 +101,14 @@ var EditView = Backbone.View.extend({
   },
 
   addService: function() {
-    var serviceName = this.$('#categories').val();
-    var $service = this.createService(serviceName);
+    var $service = this.createService(this.$('#categories').val());
 
     this.setupServiceElements($service);
 
-    $('#services').append($service);
+    this.$('#services').append($service);
+    this.$('#services div:last-child .hasPopover').popover();
+    this.$('#services div:last-child .autosize').autosize();
+
     return false;
   },
 
@@ -190,6 +192,7 @@ var EditView = Backbone.View.extend({
     $(container).find("input.day").keyup(function(ev) {
       $(ev.target).closest("tr").next("tr.dayError").remove();
     });
+
   },
 
 
@@ -353,19 +356,16 @@ var EditView = Backbone.View.extend({
     });
 
     $(this.el).html(this.template({facility: templateData}));
-    this.$('.hasPopover').popover();
 
     this.setupDemographics();
     this.setupPhoneField();
     this.setupFormSubmit();
     this.setupServiceElements(this.el);
 
-    window.setTimeout(this.autoSize.bind(this), 0);
-    return this;
-  },
-
-  autoSize: function() {
+    this.$('.hasPopover').popover();
     this.$('.autosize').autosize();
+
+    return this;
   }
 });
 
