@@ -54,14 +54,14 @@ var EditView = Backbone.View.extend({
   template: require('templates/edit'),
 
   events: {
-    'click #add_category':        'addService',
-    'click #remove_category':     'removeCategory',
+    'click #addService':          'addService',
+    'click #removeService':       'removeService',
     'click .closed':              'generateHoursPreview',
     'blur .hours input':          'generateHoursPreview',
     'blur input[name="address"]': 'previewAddress',
     'blur input[name="city"]':    'previewAddress',
     'click #delete_facility':     'deleteFacility',
-    'click #age_everyone':        'processEveryoneCB'
+    'click #age_everyone':        'applyAllowedAges'
   },
 
   previewAddress: function() {
@@ -120,7 +120,7 @@ var EditView = Backbone.View.extend({
     return $(template(context));
   },
 
-  removeCategory: function(event) {
+  removeService: function(event) {
     var parent = this.$(event.target).closest('.service-edit-row');
     parent.remove();
     return false;
@@ -192,15 +192,6 @@ var EditView = Backbone.View.extend({
     });
   },
 
-  processEveryoneCB: function() {
-    var selector = this.$('[name=age]');
-
-    if ( this.$("#age_everyone").prop("checked") ) {
-      selector.prop({checked: true, disabled: true});
-    } else {
-      selector.prop({checked: false, disabled: false});
-    }
-  },
 
   addPhoneNumberBlurHandler: function(selector) {
     selector.blur(function(event) {
@@ -212,30 +203,29 @@ var EditView = Backbone.View.extend({
     });
   },
 
-  setupForm: function() {
-    this.setupDemographics();
-    this.setupPhoneField();
-    this.setupFormSubmit();
-    this.setupServiceElements(this.el);
+  setupDemographics: function() {
+    var gender = this.model.get('gender') || '';
+    this.$('#gender_' + gender).prop('checked', true);
+
+    var ageRestrictions = this.model.get('age') || [];
+
+    if ( ageRestrictions.length > 0 ) {
+      ageRestrictions.forEach(function(age) {
+        this.$("#age_" + age.toUpperCase()).prop('checked', true);
+      }.bind(this));
+    } else {
+      this.$("#age_everyone").prop('checked', true);
+      this.applyAllowedAges();
+    }
   },
 
-  setupDemographics: function() {
-    var g = this.model.get('gender'),
-        el,
-        ageRestrictions;
+  applyAllowedAges: function() {
+    var selector = this.$('[name=age]');
 
-    el = this.$('#gender_' + (g || ''));
-    el.prop('checked', true);
-
-    this.$("#age_everyone").click(this.processEveryoneCB.bind(this));
-
-    if ( (ageRestrictions = this.model.get("age")) && ageRestrictions.length > 0 ) {
-      _(ageRestrictions).each(function(age) {
-        this.$("#age_" + age.toUpperCase()).prop('checked', true);
-      });
+    if ( this.$("#age_everyone").prop("checked") ) {
+      selector.prop({checked: true, disabled: true});
     } else {
-      this.$("#age_everyone").prop("checked", true);
-      this.processEveryoneCB();
+      selector.prop({checked: false, disabled: false});
     }
   },
 
@@ -354,9 +344,7 @@ var EditView = Backbone.View.extend({
   },
 
   render: function() {
-
-    var templateData = this.model.presentJSON(),
-        Hours = require('shared/models/hours');
+    var templateData = this.model.presentJSON();
 
     templateData.services.forEach(function(service) {
       service.days = Hours.DAY_NAMES.map(function(day, index) {
@@ -367,16 +355,17 @@ var EditView = Backbone.View.extend({
     $(this.el).html(this.template({facility: templateData}));
     this.$('.hasPopover').popover();
 
-    this.setupForm();
+    this.setupDemographics();
+    this.setupPhoneField();
+    this.setupFormSubmit();
+    this.setupServiceElements(this.el);
 
-    _.defer(
-      function(view) {
-        view.$('.autosize').autosize();
-      },
-      this
-    );
-
+    window.setTimeout(this.autoSize.bind(this), 0);
     return this;
+  },
+
+  autoSize: function() {
+    this.$('.autosize').autosize();
   }
 });
 
