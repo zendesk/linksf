@@ -2,18 +2,18 @@ var Service             = require('shared/models/service'),
     Hours               = require('shared/models/hours'),
     fetchLocation       = require('shared/lib/fetch_location');
 
-function modelSaveFailCallback(args) {
+function modelSaveFailCallback() {
   this.$("#facilitySaveError").show().focus();
 }
 
-function modelSaveSuccessCallback(args) {
+function modelSaveSuccessCallback() {
   this.$("#facilitySaved").show().focus();
   this.$("#facilitySaved").delay(5000).fadeOut();
   this.$("#errorMessages").hide();
 }
 
 function saveFacility(model, services, successCallback, failCallback) {
-  model.save().then(function(foo) {
+  model.save().then(function() {
     model.get("services").forEach(function(service) {
       service.destroy();
     });
@@ -64,7 +64,7 @@ var EditView = Backbone.View.extend({
     'click #age_everyone':        'processEveryoneCB'
   },
 
-  previewAddress: function(event) {
+  previewAddress: function() {
     var address = this.$('input[name="address"]').val(),
         city    = this.$('input[name="city"]').val(),
         preview = this.$('.address-preview');
@@ -77,9 +77,9 @@ var EditView = Backbone.View.extend({
         preview.closest('.control-group').show();
       },
 
-      function(err) {
+      function() {
         preview.addClass('error');
-        preview.html("Couldn't recognized address!");
+        preview.html("Couldn't recognize address!");
         preview.closest('.control-group').show();
       }
     );
@@ -132,8 +132,8 @@ var EditView = Backbone.View.extend({
         .then(function() {
           var router = require('routers/router').instance();
           router.navigate("/", {trigger: true});
-        }, function(errors) {
-          window.alert("errors");
+        }, function() {
+          window.alert("Sorry, something went wrong while trying to delete this facility.");
         }
       );
     }
@@ -213,61 +213,66 @@ var EditView = Backbone.View.extend({
   },
 
   setupForm: function() {
+    this.setupDemographics();
+    this.setupPhoneField();
+    this.setupFormSubmit();
+    this.setupServiceElements(this.el);
+  },
+
+  setupDemographics: function() {
     var g = this.model.get('gender'),
-        self = this,
         el,
         ageRestrictions;
 
-    el = self.$('#gender_' + (g ? g : ''));
+    el = this.$('#gender_' + (g || ''));
     el.prop('checked', true);
 
-    self.$("#age_everyone").click(self.processEveryoneCB.bind(self));
+    this.$("#age_everyone").click(this.processEveryoneCB.bind(this));
 
-    if ( (ageRestrictions = self.model.get("age")) && ageRestrictions.length > 0 ) {
+    if ( (ageRestrictions = this.model.get("age")) && ageRestrictions.length > 0 ) {
       _(ageRestrictions).each(function(age) {
-        self.$("#age_" + age.toUpperCase()).prop('checked', true);
+        this.$("#age_" + age.toUpperCase()).prop('checked', true);
       });
     } else {
-      self.$("#age_everyone").prop("checked", true);
-      self.processEveryoneCB();
+      this.$("#age_everyone").prop("checked", true);
+      this.processEveryoneCB();
     }
+  },
 
-    self.$("#add-phone-number").click(function() {
+  setupPhoneField: function() {
+    this.$("#add-phone-number").click(function() {
       var oldDiv = $('.phone-number').last();
       var newDiv = oldDiv.clone();
       $(newDiv).find('input').val('');
 
-      self.addPhoneNumberBlurHandler($(newDiv).find('.phone-number-input'));
+      this.addPhoneNumberBlurHandler($(newDiv).find('.phone-number-input'));
 
       oldDiv.after(newDiv);
       return false;
-    });
+    }.bind(this));
 
-    self.addPhoneNumberBlurHandler(self.$('.phone-number-input'));
+    this.addPhoneNumberBlurHandler(this.$('.phone-number-input'));
+  },
 
+  setupFormSubmit: function() {
+    this.$('#submit').click(function() {
+      var formValues = this.$('#facilityForm').serializeObject();
 
-    self.$('#submit').click(function() {
-      var formValues = self.$('#facilityForm').serializeObject();
-
-      if ( !self.validateForm(formValues) )
-        return false;
+      if ( !this.validateForm(formValues) ) return false;
 
       fetchLocation(formValues.address + ", " + formValues.city).then(
         function(loc) {
           formValues.location = new Parse.GeoPoint({latitude: loc.lat, longitude: loc.lon});
           console.log("location ", formValues.location);
-          self.saveForm(formValues);
-        },
+          this.saveForm(formValues);
+        }.bind(this),
 
         function(err) {
-          self.addErrorToInput($("input[name='address']"));
+          this.addErrorToInput($("input[name='address']"));
           $("#errorMessages").html("<ul><li>Could not find address</li></ul>");
-        }
+        }.bind(this)
       );
-    });
-
-    // setup all the service elements
-    self.setupServiceElements(self.el);
+    }.bind(this));
   },
 
   addErrorToInput: function(input) {
