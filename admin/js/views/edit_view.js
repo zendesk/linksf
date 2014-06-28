@@ -93,9 +93,7 @@ var EditView = Backbone.View.extend({
     );
     var preview = mergedHours.humanizeCondensed({shortDayNames: true});
     var template = require('shared/templates/_open_hours');
-    var html = template({
-      condensedHours: preview
-    });
+    var html = template({ condensedHours: preview });
 
     $hours.find('#preview_hours').html(html);
   },
@@ -192,9 +190,7 @@ var EditView = Backbone.View.extend({
     $(container).find("input.day").keyup(function(ev) {
       $(ev.target).closest("tr").next("tr.dayError").remove();
     });
-
   },
-
 
   addPhoneNumberBlurHandler: function(selector) {
     selector.blur(function(event) {
