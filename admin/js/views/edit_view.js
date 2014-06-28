@@ -77,7 +77,6 @@ var EditView = Backbone.View.extend({
     if (address === '' || city === '') { return; }
     preview.removeClass('error');
 
-    var ul = $("<ul>");
     fetchLocation(address + ", " + city).then(
       function(loc) {
         preview.html('Recognized address: ' + loc.formattedAddress);
