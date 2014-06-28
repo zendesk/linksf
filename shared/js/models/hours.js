@@ -200,7 +200,7 @@ Hours.LONG_DAY_NAMES = _.map(Hours.DAY_NAMES, function(day) { return day.long; }
 Hours.merge = function() {
   var data = {};
   Array.prototype.slice.call(arguments).forEach(function(item) {
-    Object.keys(item.hours).forEach(function(day) {
+    Object.keys(item.hours || {}).forEach(function(day) {
       data[day] = (data[day] || []).concat(item.hours[day] || []);
     });
   });
