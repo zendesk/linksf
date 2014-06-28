@@ -1,22 +1,15 @@
 var Service             = require('shared/models/service'),
     Hours               = require('shared/models/hours'),
-    fetchLocation       = require('shared/lib/fetch_location'),
-    editServiceTemplate = require('templates/_edit_service'),
-    openHoursTemplate   = require('shared/templates/_open_hours'),
-    facilities          = require('shared/collections/facilities').instance();
+    fetchLocation       = require('shared/lib/fetch_location');
 
 function modelSaveFailCallback(args) {
   this.$("#facilitySaveError").show().focus();
-  console.log("failed.");
-  console.log(args);
 }
 
 function modelSaveSuccessCallback(args) {
   this.$("#facilitySaved").show().focus();
   this.$("#facilitySaved").delay(5000).fadeOut();
   this.$("#errorMessages").hide();
-  console.log("saved.");
-  console.log(args);
 }
 
 function saveFacility(model, services, successCallback, failCallback) {
@@ -36,6 +29,7 @@ function saveFacility(model, services, successCallback, failCallback) {
     });
 
     Service.saveAll(serviceObjects, function(services, error) {
+      var facilities = require('shared/collections/facilities').instance();
       facilities.reset();
 
       if (services) {
@@ -60,10 +54,10 @@ var EditView = Backbone.View.extend({
   template: require('templates/edit'),
 
   events: {
-    'click #add_category':        'addCategory',
+    'click #add_category':        'addService',
     'click #remove_category':     'removeCategory',
-    'click .closed':              'previewHours',
-    'blur .hours input':          'previewHours',
+    'click .closed':              'generateHoursPreview',
+    'blur .hours input':          'generateHoursPreview',
     'blur input[name="address"]': 'previewAddress',
     'blur input[name="city"]':    'previewAddress',
     'click #delete_facility':     'deleteFacility',
@@ -91,30 +85,39 @@ var EditView = Backbone.View.extend({
     );
   },
 
-  previewHours: function(event) {
-    var openHours, mergedHours, preview, html,
-        $hours = $(event.target).closest('.hours'),
-        hours  = this.parseHours($hours);
-
-    var openHours = hours.serialize();
-
-    mergedHours = Hours.merge.apply(
-      Hours,
-      [ { hours: openHours } ]
+  generateHoursPreview: function(event) {
+    var $hours = $(event.target).closest('.hours');
+    var hours  = this.parseHours($hours);
+    var mergedHours = Hours.merge.apply(Hours,
+      [ { hours: hours.serialize() } ]
     );
+    var preview = mergedHours.humanizeCondensed({shortDayNames: true});
+    var template = require('shared/templates/_open_hours');
+    var html = template({
+      condensedHours: preview
+    });
 
-    preview = mergedHours.humanizeCondensed({shortDayNames: true});
-    html    = openHoursTemplate({ condensedHours: preview });
     $hours.find('#preview_hours').html(html);
   },
 
-  addCategory: function(argument) {
-    var context = { category: this.$('#categories').val(), days: Hours.DAY_NAMES };
-    var service = $(editServiceTemplate(context));
+  addService: function() {
+    var serviceName = this.$('#categories').val();
+    var $service = this.createService(serviceName);
 
-    this.setupServiceElements(service);
-    $('#services').append(service);
+    this.setupServiceElements($service);
+
+    $('#services').append($service);
     return false;
+  },
+
+  createService: function(category) {
+    var context = {
+      category: category,
+      days: Hours.DAY_NAMES
+    };
+    var template = require('templates/_edit_service');
+
+    return $(template(context));
   },
 
   removeCategory: function(event) {
@@ -192,15 +195,15 @@ var EditView = Backbone.View.extend({
   processEveryoneCB: function() {
     var selector = this.$('[name=age]');
 
-    if ( this.$("#age_everyone").prop("checked") ) { 
+    if ( this.$("#age_everyone").prop("checked") ) {
       selector.prop({checked: true, disabled: true});
     } else {
       selector.prop({checked: false, disabled: false});
     }
   },
 
-  addPhoneNumberBlurHandler: function(selector) { 
-    selector.blur(function(event) { 
+  addPhoneNumberBlurHandler: function(selector) {
+    selector.blur(function(event) {
       var target = $(event.target),
           matches;
       if ( (matches = target.val().match(/.*(\d{3}).*(\d{3}).*(\d{4})/)) ) {
@@ -212,7 +215,7 @@ var EditView = Backbone.View.extend({
   setupForm: function() {
     var g = this.model.get('gender'),
         self = this,
-        el, 
+        el,
         ageRestrictions;
 
     el = self.$('#gender_' + (g ? g : ''));
@@ -229,7 +232,7 @@ var EditView = Backbone.View.extend({
       self.processEveryoneCB();
     }
 
-    self.$("#add-phone-number").click(function() { 
+    self.$("#add-phone-number").click(function() {
       var oldDiv = $('.phone-number').last();
       var newDiv = oldDiv.clone();
       $(newDiv).find('input').val('');
@@ -239,7 +242,7 @@ var EditView = Backbone.View.extend({
       oldDiv.after(newDiv);
       return false;
     });
-    
+
     self.addPhoneNumberBlurHandler(self.$('.phone-number-input'));
 
 
@@ -314,7 +317,7 @@ var EditView = Backbone.View.extend({
     ages = this.$("[name=age]input:checked").map(function(i, cb) {
       return $(cb).attr('value');
     });
-    
+
     ages = _(ages).compact();
     return ages.length === 0 ? null : ages;
   },
