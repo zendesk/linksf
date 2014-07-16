@@ -63,7 +63,7 @@ From the project root (and with the command line tools outlined above installed)
 1. `npm install`
 1. `npm install -g grunt-cli`
 1. `grunt`
-1. `parse deploy`
+1. `cd server && parse deploy && cd ..`
 1. `open index.html`
 
 If everything worked, you should have Link-SF open and running in your browser. You won't see any facilities listed in search, so you'll want to add one in the admin interface. First, create a new user in the Parse interface, then:
