@@ -70,7 +70,7 @@ If everything worked, you should have Link-SF open and running in your browser. 
 
 1. `open admin.html`
 
-Login using the credentials for the user you just added, then add a facility. Once saved, you will be able to return to the enduser app and see the facility in search results.
+Login using the credentials for the user you just added, then add a facility and service. From the Parse website, go to the Data Browser and set the permissions on the Facility and Service objects to have public GET and FIND permissions. You will be able to return to the enduser app and see the facility in search results.
 
 ### Making changes to the site
 
