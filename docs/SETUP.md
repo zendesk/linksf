@@ -111,4 +111,9 @@ To get an android emulator setup on Mac OS:
 
 ### Feedback form
 
-If you setup a [Mailgun](http://www.mailgun.com/) account, you can plug in your Mailgun domain and API key to the `.env` file (see [example .env file](https://github.com/zendesk/linksf/blob/master/.env.example) as well as any to/from email address you'd like. This will capture any information from the feedback form and email it to your selected 'to' email address.
+If you'd like to use a feedback form:
+
+1. Setup a [Mailgun](http://www.mailgun.com/) account
+2. Add your Mailgun domain and API key to the `.env` file (see [example .env file](https://github.com/zendesk/linksf/blob/master/.env.example))
+3. Addany to/from email address you'd like to the `.env` file on the `MAILGUN_TO_EMAIL_ADDRESS` and `MAILGUN_FROM_EMAIL_ADDRESS` lines.
+4. Deploy your new changes, then check to see if your feedback form works as intended (you'll find the feedback link on the footer of the home and detail pages).
