@@ -108,3 +108,7 @@ To get an android emulator setup on Mac OS:
 1. Click `New...` and configure a new device with 320x480 resolution and targeting Android 2.2.
 1. Click `Start...`
 1. Open the Android browser and visit Link-SF.
+
+### Feedback form
+
+If you setup a [Mailgun](http://www.mailgun.com/) account, you can plug in your Mailgun domain and API key to the `.env` file (see [example .env file](https://github.com/zendesk/linksf/blob/master/.env.example) as well as any to/from email address you'd like. This will capture any information from the feedback form and email it to your selected 'to' email address.
