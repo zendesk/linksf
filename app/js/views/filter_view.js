@@ -27,6 +27,11 @@ function setFilterOptions(view) {
   if (hours === 'open') {
     view.$('.filter-hours .btn[data-value="open"]').button('toggle');
   }
+
+  view.$('button[role=checkbox]').click(function() {
+    var button = $(this);
+    button.attr('aria-checked', !button.hasClass('active'));
+  });
 }
 
 var FilterView = Backbone.View.extend({
