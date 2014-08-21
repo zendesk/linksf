@@ -58,7 +58,7 @@
   padding: $navbar-height+15px 20px 60px 20px;
 
   .search {
-    button {
+    input[type=submit], button {
       @include gray-rounded-button;
       width: 100%;
       text-align: center;

@@ -28,6 +28,15 @@ function setFilterOptions(view) {
     view.$('.filter-hours .btn[data-value="open"]').button('toggle');
   }
 
+  view.$('div[role=radiogroup]').click(function(event) {
+    if ($(event.target).attr("role") != 'radio') { return; }
+    var radiogroup = $(this),
+        oldOpt = radiogroup.find('button[aria-checked="true"]');
+
+    $(oldOpt).attr('aria-checked', false);
+    $(event.target).attr('aria-checked', true);
+  });
+
   view.$('button[role=checkbox]').click(function() {
     var button = $(this);
     button.attr('aria-checked', !button.hasClass('active'));
