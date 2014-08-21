@@ -3,11 +3,11 @@
   <div id="sort_description" style="display:none">Select facilities sorted by name or near your current location</div>
   <div role="radiogroup" aria-labelledby="sort_header" aria-describedby="sort_description" class="filter filter-sort btn-group" data-toggle="buttons-radio">
     {{#if distanceDisabled}}
-      <button role="radio" aria-checked="false" data-value="near" class="btn first" disabled>Distance</button>
-      <button role="radio" aria-checked="true" data-value="name" class="btn last active">Name</button>
+      <button role="radio" data-value="near" class="btn first" disabled>Distance</button>
+      <button role="radio" data-value="name" class="btn last active">Name</button>
     {{else}}
-      <button role="radio" aria-checked="true" data-value="near" class="btn first active">Distance</button>
-      <button role="radio" aria-checked="false" data-value="name" class="btn last">Name</button>
+      <button role="radio" data-value="near" class="btn first active">Distance</button>
+      <button role="radio" data-value="name" class="btn last">Name</button>
     {{/if}}
   </div>
 
@@ -20,8 +20,8 @@
   <h1 id="hours_header" class="categories-header">Hours</h1>
   <div id="hours_description" style="display:none">Select showing only facilities that are open now or all facilities</div>
   <div role="radiogroup" aria-labelledby="hours_header" aria-describedby="hours_description" class="filter filter-hours btn-group" data-toggle="buttons-radio">
-    <button role="radio" aria-checked="true" data-value="A" class="btn first active">All</button>
-    <button role="radio" aria-checked="false" data-value="open" class="btn last">Open Now</button>
+    <button role="radio" data-value="A" class="btn first active">All</button>
+    <button role="radio" data-value="open" class="btn last">Open Now</button>
   </div>
 
   <div title="Select one or more services provided by the facility">
@@ -33,19 +33,19 @@
   <div id="suitable_description" style="display:none">Select one or more groups which facility is suitable for</div>
   <div role="group" aria-labelledby="suitable_header" aria-describedby="suitable_description"
        class="filter filter-demographics btn-group" data-toggle="buttons-checkbox">
-    <button role="checkbox" aria-checked="false" data-value="C" class="btn first">Children</button>
-    <button role="checkbox" aria-checked="false" data-value="Y" class="btn">Teens/Youth</button>
-    <button role="checkbox" aria-checked="false" data-value="A" class="btn">Adults</button>
-    <button role="checkbox" aria-checked="false" data-value="S" class="btn last">Seniors</button>
+    <button role="checkbox" data-value="C" class="btn first">Children</button>
+    <button role="checkbox" data-value="Y" class="btn">Teens/Youth</button>
+    <button role="checkbox" data-value="A" class="btn">Adults</button>
+    <button role="checkbox" data-value="S" class="btn last">Seniors</button>
   </div>
 
   <h1 id="gender_header" class="categories-header">Welcome</h1>
   <div id="gender_description" style="display:none">Select allowed gender</div>
   <div role="radiogroup" aria-labelledby="gender_header" aria-describedby="gender_description"
        class="filter filter-gender btn-group" data-toggle="buttons-radio">
-    <button role="radio" aria-checked="true" data-value="A" class="btn first active">All</button>
-    <button role="radio" aria-checked="false" data-value="M"  class="btn">Men</button>
-    <button role="radio" aria-checked="false" data-value="F"  class="btn last">Women</button>
+    <button role="radio" data-value="A" class="btn first active">All</button>
+    <button role="radio" data-value="M"  class="btn">Men</button>
+    <button role="radio" data-value="F"  class="btn last">Women</button>
   </div>
 
   <div class="search">

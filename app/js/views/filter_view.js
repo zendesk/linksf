@@ -41,6 +41,12 @@ function setFilterOptions(view) {
     var button = $(this);
     button.attr('aria-checked', !button.hasClass('active'));
   });
+
+  view.$('button[role=checkbox], button[role=radio]').each(function() {
+    var button = $(this);
+    button.attr('aria-checked', button.hasClass('active'));
+    button.attr('aria-describedby', button.parent().attr('aria-describedby'));
+  });
 }
 
 var FilterView = Backbone.View.extend({
