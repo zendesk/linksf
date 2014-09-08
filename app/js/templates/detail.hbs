@@ -18,8 +18,12 @@
     <div class="inset-gmap" title="Map &amp; Directions">
       <a title="Click to open Google Maps in a new window with directions to facility" id="link_gmap"><div id="detail-gmap"></div></a>
       <p title="Facility Address">{{address}} {{#if cross_street}}({{cross_street}}){{/if}}</p>
-      <p title="Distance from current location to facility" class="destination" id="distance_{{objectId}}">{{distanceText}}</p>
-      <p title="Time from current location to facility" class="destination" id="duration_{{objectId}}">{{durationText}}</p>
+      {{#if distanceText}}
+        <p title="Distance from current location to facility" class="destination" id="distance_{{objectId}}">{{distanceText}}</p>
+      {{/if}}
+      {{#if durationText}}
+        <p title="Time from current location to facility" class="destination" id="duration_{{objectId}}">{{durationText}}</p>
+      {{/if}}
     </div>
 
     <div title="Facility contact info" class="contact-info">
@@ -36,7 +40,7 @@
             <i class="icon-right-open right"></i>
           </div>
           {{#if info}}
-          <div class="call-info">{{info}}</div>
+            <div class="call-info">{{info}}</div>
           {{/if}}
         </div>
       {{/each}}
