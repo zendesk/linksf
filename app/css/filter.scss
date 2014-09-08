@@ -55,7 +55,7 @@
     @include border-radius(4px);
   }
 
-  padding: $navbar-height+15px 20px 60px 20px;
+  padding: $navbar-height+15px 20px 0 20px;
 
   .search {
     input[type=submit], button {
