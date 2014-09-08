@@ -94,6 +94,7 @@
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
     margin-top: -1px;
+    margin-bottom: 0;
     border-bottom: 1px solid #DDD;
     a { font-weight: bold; }
     &:active {
@@ -114,6 +115,7 @@
     cursor: pointer;
     @include inset;
     border-radius: 0 0 6px 6px;
+    border-top: none;
     margin-top: -1px;
 
     a { font-weight: bold; }
