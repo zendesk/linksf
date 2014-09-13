@@ -3,6 +3,7 @@
 /build/*.css
 /tmp/*.js
 /tmp/*.css
+/tmp/*.map
 /tmp/*.html
 /.sass-cache
 /index.html
