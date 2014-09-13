@@ -72,7 +72,8 @@ module.exports = function(grunt) {
       // generate app-specific css file
       // sass performs both the processing and concatenation steps for css
       options: {
-        loadPath: '.'
+        loadPath: '.',
+        bundleExec: true
       },
       app: {
         src: 'app/css/app.scss',
