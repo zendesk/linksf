@@ -71,6 +71,9 @@ module.exports = function(grunt) {
     sass: {
       // generate app-specific css file
       // sass performs both the processing and concatenation steps for css
+      options: {
+        loadPath: '.'
+      },
       app: {
         src: 'app/css/app.scss',
         dest: 'tmp/linksf.css'
