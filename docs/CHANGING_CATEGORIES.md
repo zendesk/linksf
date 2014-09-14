@@ -8,8 +8,11 @@ It shows you a list of categories in the following format:   `{ icon: 'desktop',
   First, edit the values for key and title; i.e. change lowercase 'technology' to a lowercase, space-free version of your new category name. For example, if I want to swap Technology for School Services, I would change this key to the following: 'schoolServices'
 
   Then change the title to the name of your new category. For example at this point I could have something like:
+  
   `{ icon: 'desktop', key: 'schoolServices', title: 'School Services' }`
+  
   or
+  
   `{ icon: 'desktop', key: 'legal', title: 'Legal' }`
 
 2. Next, find the test for this at `/test/acceptance/tests.js` 
