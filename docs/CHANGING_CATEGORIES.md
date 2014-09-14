@@ -12,7 +12,7 @@ It shows you a list of categories in the following format:   `{ icon: 'desktop',
   or
   `{ icon: 'desktop', key: 'legal', title: 'Legal' }`
 
-2. Next, find the test for this at /test/acceptance/tests.js 
+2. Next, find the test for this at `/test/acceptance/tests.js` 
 After the word 'expected' you will see an array of categories. Change the name of the one that you want to replace with your new category.
 
 3. Find the edit template at `/admin/js/templates/edit.hbs`
