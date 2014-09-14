@@ -19,4 +19,4 @@ After the word 'expected' you will see an array of categories. Change the name o
 Search for the html element: `<select name="categories" id="categories" class="span2">`
 At the time of writing, this begins on line 98. Find the option for the category you are replacing, and fill it in with your new category key and title from step 1. For example, I might change `<option value="technology">Technology</option>` into this: `<option value="legal">Legal</option>`
 
-At this point your instance of LinkSF should show your new category name everywhere. You can also choose the icon by [following this guide](https://github.com/zendesk/linksf/blob/master/docs/ICONS.md).
+At this point your instance of Link-SF should show your new category name everywhere. You can also choose the icon by [following this guide](https://github.com/zendesk/linksf/blob/master/docs/ICONS.md).
