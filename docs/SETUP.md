@@ -29,6 +29,7 @@ To build the site (turn a file tree into a monolithic html, js, and css file), y
 * [grunt](http://gruntjs.com/)
 * [sass](http://sass-lang.com/)
 * [parse](https://www.parse.com/docs/cloud_code_guide)
+* [bundler](http://bundler.io/)
 
 If you intend on deploying the site, you'll also need:
 
@@ -40,7 +41,7 @@ Download the source (via [git](git@github.com:zendesk/linksf.git) or [.zip file]
 
 ### Secrets
 
-In the project root, you'll find a `.env.example` file. Make a copy of that file called `.env` in the same directory. It will probably look like this:
+In the project root, you'll find a `.env.example` file. Make a copy of that file called `.env` in the same directory. It will probably look something like this:
 
 ```
 PARSE_DEV_APP_ID=xxxxxxx
@@ -62,6 +63,7 @@ From the project root (and with the command line tools outlined above installed)
 
 1. `npm install`
 1. `npm install -g grunt-cli`
+1. `bundle`
 1. `grunt`
 1. `cd server && parse deploy && cd ..`
 1. `open index.html`
