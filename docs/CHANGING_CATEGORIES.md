@@ -1,6 +1,6 @@
-# Changing a category in your instance of LinkSF
+# Changing a category in your instance of Link-SF
 
-There is a total of three files that you will need to edit in your link-sf project.
+There is a total of three files that you will need to edit in your Link-SF project.
 
 1. The first thing you will need to edit is the categories file, found at /shared/js/lib/categories.js
 It shows you a list of categories in the following format:   `{ icon: 'desktop', key: 'technology', title: 'Technology' }`
