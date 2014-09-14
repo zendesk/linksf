@@ -86,16 +86,7 @@ Making changes to the site is pretty simple. `grunt` will build the site once, t
 
 #### Updating fonts
 
-We use http://fontello.com to generate an icon bundle.  Here's how to add or change:
-
-1. go to fontello.com
-1. upload the current bundle (something like fontello-d2b02765.zip) in vendor/ using their "import" feature
-1. select any new icons you'd like to use, and deselect any you no longer need
-1. re-download the bundle.  make sure the name is "icons"
-1. unzip the bundle and copy font/* as well as css/icons.css into place
-1. rename the new css/icons.css to css/icons.scss, replacing the old css/icons.scss file
-1. match up the icon names in the new css/icons.scss file to the 'icon' values in https://github.com/zendesk/linksf/blob/master/shared/js/lib/categories.js
-1. replace the old zip file with the current one
+We use http://fontello.com to generate an icon bundle. [Here's a guide on how to add or change icons](https://github.com/zendesk/linksf/blob/master/docs/ICONS.md).
 
 ### Testing
 
