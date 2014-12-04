@@ -408,7 +408,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', [
     'build:prereqs',
-    'build:development:app'
-    // 'build:development:admin'
+    'build:development:app',
+    'build:development:admin'
   ]);
 };
