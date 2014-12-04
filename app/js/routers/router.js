@@ -36,8 +36,9 @@ var Router = Backbone.Router.extend({
     'query?:queryString':  'query',
     'query':               'query',
     'detail/:id':          'detail',
-    'about' :              'about',
-    'feedback' :           'feedback',
+    'about':               'about',
+    'feedback':            'feedback',
+    'terms':               'terms',
     'filter':              'filter',
     'filter?:queryString': 'filter'
   },
@@ -155,7 +156,6 @@ var Router = Backbone.Router.extend({
 
   about: function() {
     var AboutView = require('views/about_view');
-
     this.aboutView = this.aboutView || new AboutView();
     applicationController.render(this.aboutView);
   },
@@ -164,6 +164,12 @@ var Router = Backbone.Router.extend({
     var FeedbackView = require('views/feedback_view');
     this.feedbackView = this.feedbackView || new FeedbackView();
     applicationController.render(this.feedbackView);
+  },
+
+  terms: function() {
+    var TermsView = require('views/terms_view');
+    this.termsView = this.termsView || new TermsView();
+    applicationController.render(this.termsView);
   },
 
   _getFacility: function(id, done) {
