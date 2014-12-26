@@ -348,6 +348,18 @@ module.exports = function(grunt) {
 
     qunit: {
       all: ['test/acceptance/**/*.html']
+    },
+
+    autoprefixer: {
+      options: {
+        browsers: [
+          'android >= 2.3',
+          'last 3 versions'
+        ]
+      },
+      default: {
+        src: 'tmp/*.css'
+      }
     }
   });
 
@@ -362,6 +374,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-qunit');
+  grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadTasks('tasks');
 
   grunt.registerTask('build:prereqs', [
@@ -381,6 +394,7 @@ module.exports = function(grunt) {
     'browserify:app',
     'concat:app',
     'configure:development:app',
+    'autoprefixer',
     'cachebuster:app',
     'qunit'
   ]);
@@ -390,6 +404,7 @@ module.exports = function(grunt) {
     'browserify:admin',
     'concat:admin',
     'configure:development:admin',
+    'autoprefixer',
     'cachebuster:admin'
   ]);
 
@@ -402,6 +417,7 @@ module.exports = function(grunt) {
     'concat:app_min',
     'concat:admin_min',
     'configure:production',
+    'autoprefixer',
     'cachebuster',
     'qunit'
   ]);
