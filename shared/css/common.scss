@@ -9,11 +9,10 @@ $nav-button-width: 75px;
 @mixin vertical-gradient($from, $to) {
   background-color: $from;
   background-image: linear-gradient($from, $to);
-  background-image: -webkit-linear-gradient($from, $to);
 }
 
 @mixin gray-button {
-  @include unselectable;
+  user-select: none;
   @include vertical-gradient(white, #EBEBEB);
   border: 1px solid #B8B8B8;
   border-radius: 4px;
@@ -33,7 +32,7 @@ $nav-button-width: 75px;
 }
 
 @mixin blue-button {
-  @include unselectable;
+  user-select: none;
   @include vertical-gradient(#358FB2, #19658C);
   height: 36px;
   color: white;
@@ -63,7 +62,7 @@ $nav-button-width: 75px;
 }
 
 @mixin gray-rounded-button {
-  @include unselectable;
+  user-select: none;
   background-color: #F3F3F3;
   border: 1px solid #DCDCDC;
   border-radius: 25px;
@@ -94,12 +93,6 @@ $nav-button-width: 75px;
   }
 }
 
-@mixin unselectable {
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-}
-
 @mixin inset {
   background-color: white;
   border-radius: 6px;
@@ -111,50 +104,6 @@ $nav-button-width: 75px;
   margin-bottom: 1px;
 }
 
-@mixin border-radius($radius) {
-  -webkit-border-radius: $radius;
-  -moz-border-radius: $radius;
-  border-radius: $radius;
-}
-
-// Flexible box attributes
-
-@mixin align-self($alignment) {
-  align-self: $alignment;
-  -ms-flex-item-align: $alignment;
-  -webkit-align-self: $alignment;
-}
-
-@mixin display-flex {
-  display: flex;
-  display: -ms-flex;
-  display: -webkit-flex;
-}
-
-@mixin flex($options) {
-  flex: $options;
-  -webkit-flex: $options;
-  -moz-flex: $options;
-  -ms-flex: $options;
-}
-
-@mixin flex-direction($direction) {
-  flex-direction: $direction;
-  -ms-flex-direction: $direction;
-  -webkit-flex-direction: $direction;
-}
-
-@mixin order($num) {
-  order: 0;
-  -ms-flex-order: 0;
-  -webkit-order: 0;
-}
-
-@mixin box-shadow($shadows...) {
-  box-shadow: $shadows;
-  -webkit-box-shadow: $shadows;
-};
-
 // mixin classes
 
 .inset {
@@ -162,7 +111,7 @@ $nav-button-width: 75px;
 }
 
 .unselectable {
-  @include unselectable;
+  user-select: none;
 }
 
 // resets
@@ -187,18 +136,18 @@ li {
     padding: 10px 0 10px 8px;
 
     .facility-item-link {
-      @include display-flex;
-      @include flex-direction(row);
+      display: flex;
+      flex-direction: row;
 
       .facility-item-box-info {
-        @include flex(1 1 auto);
-        @include order(0);
+        flex: 1 1 auto;
+        order: 0;
       }
 
       .facility-item-box-caret {
-        @include align-self(center);
-        @include flex(0 0 auto);
-        @include order(1);
+        align-self: center;
+        flex: 0 0 auto;
+        order: 1;
         float: right;
         margin-top: -10px;
 

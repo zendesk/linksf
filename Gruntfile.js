@@ -65,7 +65,7 @@ module.exports = function(grunt) {
     },
 
     sass: {
-      options: {loadPath: '.', bundleExec: true},
+      options: {includePaths: ['.']},
       app: {src: 'app/css/app.scss', dest: 'tmp/linksf.css'},
       admin: {src: 'admin/css/admin.scss', dest: 'tmp/linksf_admin.css'}
     },
@@ -274,12 +274,24 @@ module.exports = function(grunt) {
     env: {
       dev: {src: '.env.dev'},
       prod: {src: '.env.prod'}
+    },
+
+    autoprefixer: {
+      options: {
+        browsers: [
+          'android >= 2.3',
+          'last 3 versions'
+        ]
+      },
+      default: {
+        src: 'tmp/*.css'
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
@@ -289,6 +301,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-env');
+  grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadTasks('tasks');
 
   grunt.registerTask('build:prereqs', [
@@ -305,6 +318,7 @@ module.exports = function(grunt) {
     'browserify',
     'concat:app',
     'concat:admin',
+    'autoprefixer',
     'cachebuster',
     'qunit'
   ]);
@@ -318,6 +332,7 @@ module.exports = function(grunt) {
     'uglify',
     'concat:app_min',
     'concat:admin_min',
+    'autoprefixer',
     'cachebuster',
     'qunit'
   ]);
