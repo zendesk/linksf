@@ -283,7 +283,7 @@ module.exports = function(grunt) {
           'last 3 versions'
         ]
       },
-      default: {
+      all: {
         src: 'tmp/*.css'
       }
     }
@@ -308,7 +308,7 @@ module.exports = function(grunt) {
     'clean',
     'jshint',
     'simplemocha',
-    'configure'
+    'tokens'
   ]);
 
   grunt.registerTask('build:dev', [

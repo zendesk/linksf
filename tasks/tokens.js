@@ -1,5 +1,5 @@
 module.exports = function(grunt) {
-  grunt.registerTask('configure', 'Configure Parse and Mailgun.', function() {
+  grunt.registerTask('tokens', 'Configure Parse and Mailgun tokens.', function() {
     [
       'PARSE_APP_NAME',
       'PARSE_APP_ID',
