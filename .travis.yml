@@ -1,7 +1,6 @@
 language: node_js
 before_install:
 - npm install -g grunt-cli
-- bundle install
 env:
   global:
     - secure: Jui6UzQnjUzmDE14YCuTdo4lzu5Z7Z5Z7Jo+ORt6CZlu3kYpPOxNaxxmv6NNZ2uFRl1jz7gvYnmBKGDWPeaS9xdKY7wLGEDpj8hs67hV0X0LiqY4YYhwn0VwPHfuzlADD4cKcoKDJD7wilggyd0s1yNyb1ocIOem7t/BXFcyI2I=
