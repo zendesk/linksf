@@ -9,7 +9,7 @@
 /index.html
 /admin.html
 /s3cfg
-.env
+.env*
 /server/config/global.json
 .DS_Store
 /server/cloud/cloud/mailgun_credentials.js

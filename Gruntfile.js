@@ -39,7 +39,6 @@ module.exports = function(grunt) {
       }
     },
 
-    // A simple Grunt invoker for mocha tests
     simplemocha: {
       options: {
         timeout: 3000,
@@ -48,12 +47,9 @@ module.exports = function(grunt) {
         reporter: 'dot'
       },
 
-      all: {
-        src: 'test/unit/**/*.js'
-      }
+      all: {src: 'test/unit/**/*.js'}
     },
 
-    // run the 'default' task when any watched files change
     watch: {
       files: [
         'Gruntfile.js',
@@ -69,24 +65,11 @@ module.exports = function(grunt) {
     },
 
     sass: {
-      // generate app-specific css file
-      // sass performs both the processing and concatenation steps for css
-      options: {
-        loadPath: '.',
-        bundleExec: true
-      },
-      app: {
-        src: 'app/css/app.scss',
-        dest: 'tmp/linksf.css'
-      },
-
-      admin: {
-        src: 'admin/css/admin.scss',
-        dest: 'tmp/linksf_admin.css'
-      }
+      options: {loadPath: '.', bundleExec: true},
+      app: {src: 'app/css/app.scss', dest: 'tmp/linksf.css'},
+      admin: {src: 'admin/css/admin.scss', dest: 'tmp/linksf_admin.css'}
     },
 
-    // Browserify
     browserify: {
       options: {
         // We want `.hbs` files to be `require`able. We use the hbsfy transform
@@ -105,7 +88,7 @@ module.exports = function(grunt) {
           // We want alias mappings because we'd rather
           // `require('views/index_view')` than `require('./views/index_view.js')`
           //
-          // There is a tradeoff for convenient here - all aliased files are exported
+          // There is a tradeoff for convenience here - all aliased files are exported
           // into the built app.js file, even if they're never explicitly
           // `require`d from the entry point tree.
           aliasMappings: [
@@ -125,7 +108,7 @@ module.exports = function(grunt) {
           ]
         }
       },
-      // See browserify:app above
+
       admin: {
         src: 'admin/js/admin.js',
         dest: 'tmp/admin.js',
@@ -149,19 +132,11 @@ module.exports = function(grunt) {
       }
     },
 
-    // Minify css files
     cssmin: {
-      app: {
-        src: 'tmp/linksf.css',
-        dest: 'tmp/linksf.css'
-      },
-      admin: {
-        src: 'tmp/linksf_admin.css',
-        dest: 'tmp/linksf_admin.css'
-      },
+      app: {src: 'tmp/linksf.css', dest: 'tmp/linksf.css'},
+      admin: {src: 'tmp/linksf_admin.css', dest: 'tmp/linksf_admin.css'}
     },
 
-    // Concatenate files together.
     concat: {
       // Not a target, just a variable that we can interpolate in elsewhere.
       shared_js: [
@@ -180,8 +155,6 @@ module.exports = function(grunt) {
         'vendor/js/parse-1.2.12.min.js'
       ],
 
-      // App also uses the vendored fastclick library
-      // App uses backbone filters for tracking
       app: {
         src: [
           '<%= concat.shared_js %>',
@@ -194,11 +167,10 @@ module.exports = function(grunt) {
         dest: 'tmp/linksf.js'
       },
 
-      // Concat minified files
       app_min: {
         src: [
           '<%= concat.shared_js_minified %>',
-          'vendor/js/backbone_filters.js',
+          'vendor/js/backbone_filters.min.js',
           'vendor/js/jquery.switch.min.js',
           'vendor/js/bootstrap-button.min.js',
           'vendor/js/fastclick.min.js',
@@ -207,7 +179,6 @@ module.exports = function(grunt) {
         dest: 'tmp/linksf.js'
       },
 
-      // Admin uses backbone filters for authentication and autosize for text entry
       admin: {
         src: [
           '<%= concat.shared_js %>',
@@ -231,7 +202,6 @@ module.exports = function(grunt) {
       }
     },
 
-    // Minify JavaScript files
     uglify: {
       options: {
         mangle: false,
@@ -241,8 +211,6 @@ module.exports = function(grunt) {
 
       vendor: {
         files: {
-          // These libraries are not distributed with minified versions, so we
-          // minify them ourselves.
           'vendor/js/jquery.serialize-object.min.js': 'vendor/js/jquery.serialize-object.js',
           'vendor/js/backbone_filters.min.js': 'vendor/js/backbone_filters.js',
           'vendor/js/bootstrap-button.min.js': 'vendor/js/bootstrap-button.js'
@@ -252,102 +220,60 @@ module.exports = function(grunt) {
       admin: {files: {'tmp/admin.min.js': 'tmp/admin.js'}}
     },
 
-    // Remove built files and temporary artifacts between builds
     clean: {
-      build: {
-        src: 'build/*',
-        filter: function(filepath) { return filepath !== 'build/.gitkeep'; }
-      },
-
-      tmp: {
-        src: 'tmp/*',
-        filter: function(filepath) { return filepath !== 'tmp/.gitkeep'; }
-      },
-
-      test: {
-        src: 'test/acceptance/app.html'
-      }
+      build: {src: 'build/*', filter: function(filepath) {return filepath !== 'build/.gitkeep';}},
+      tmp: {src: 'tmp/*', filter: function(filepath) {return filepath !== 'tmp/.gitkeep'; }},
+      test: {src: 'test/acceptance/app.html'}
     },
 
-    // Add cache-busting hashes to each built file. The hashes change with file content.
     cachebuster: {
-      app: {
-        files: {
-          src: [
-            'tmp/linksf.js',
-            'tmp/linksf.css'
-          ],
-        },
+      all: {
+        files: {src: ['tmp/*.js', 'tmp/*.css']},
         options: {
           complete: function(hashes) {
-            var context = {},
-                Handlebars = require('handlebars'),
-                template,
-                output,
-                keyMap = {
-                  'tmp/linksf.js': 'linksf_js',
-                  'tmp/linksf.css': 'linksf_css'
-                };
+            var keyMap = {
+              'tmp/linksf.js': 'appJs',
+              'tmp/linksf.css': 'appCss',
+              'tmp/linksf_admin.js': 'adminJs',
+              'tmp/linksf_admin.css': 'adminCss'
+            };
+
+            var context = {
+              parseAppId: process.env.PARSE_APP_ID,
+              parseJsKey: process.env.PARSE_JS_KEY,
+              gaToken:    process.env.GOOGLE_ANALYTICS_TOKEN,
+              gaHost:     process.env.GOOGLE_ANALYTICS_HOST
+            };
 
             Object.keys(hashes).forEach(function(key) {
-              var matches = key.match(/^tmp\/(.*)(\..*)$/),
-                  filename = matches[1],
-                  extension = matches[2],
-                  outputFile = 'build/' + filename + '-' + hashes[key] + extension;
+              var matches = key.match(/^tmp\/(.*)(\..*)$/); // tmp/(filename)(.js)
+              var outputFile = 'build/' + matches[1] + '-' + hashes[key] + matches[2];
 
               grunt.file.copy(key, outputFile);
               context[keyMap[key]] = outputFile;
             });
 
-            template = Handlebars.compile(grunt.file.read('tmp/index.html'));
-            output = template(context);
-            grunt.file.write('index.html', output);
+            grunt.file.write('index.html',
+              grunt.template.process(grunt.file.read('app/index.html'), {data: context})
+            );
 
-            template = Handlebars.compile(grunt.file.read('test/acceptance/app.template'));
-            output = template(context);
-            grunt.file.write('test/acceptance/app.html', output);
-          }
-        }
-      },
+            grunt.file.write('admin.html',
+              grunt.template.process(grunt.file.read('admin/admin.html'), {data: context})
+            );
 
-      admin: {
-        files: {
-          src: [
-            'tmp/linksf_admin.js',
-            'tmp/linksf_admin.css'
-          ]
-        },
-        options: {
-          complete: function(hashes) {
-            var context = {},
-                Handlebars = require('handlebars'),
-                template,
-                output,
-                keyMap = {
-                  'tmp/linksf_admin.js': 'linksf_admin_js',
-                  'tmp/linksf_admin.css': 'linksf_admin_css'
-                };
-
-            Object.keys(hashes).forEach(function(key) {
-              var matches = key.match(/^tmp\/(.*)(\..*)$/),
-                  filename = matches[1],
-                  extension = matches[2],
-                  outputFile = 'build/' + filename + '-' + hashes[key] + extension;
-
-              grunt.file.copy(key, outputFile);
-              context[keyMap[key]] = outputFile;
-            });
-
-            template = Handlebars.compile(grunt.file.read('tmp/admin.html'));
-            output = template(context);
-            grunt.file.write('admin.html', output);
+            grunt.file.write('test/acceptance/app.html',
+              grunt.template.process(grunt.file.read('test/acceptance/app.template'), {data: context})
+            );
           }
         }
       }
     },
 
-    qunit: {
-      all: ['test/acceptance/**/*.html']
+    qunit: {all: ['test/acceptance/**/*.html']},
+
+    env: {
+      dev: {src: '.env.dev'},
+      prod: {src: '.env.prod'}
     }
   });
 
@@ -362,38 +288,29 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-qunit');
+  grunt.loadNpmTasks('grunt-env');
   grunt.loadTasks('tasks');
 
   grunt.registerTask('build:prereqs', [
     'clean',
     'jshint',
-    'simplemocha'
+    'simplemocha',
+    'configure'
   ]);
 
-  grunt.registerTask('build:development', [
+  grunt.registerTask('build:dev', [
+    'env:dev',
     'build:prereqs',
-    'build:development:app',
-    'build:development:admin'
-  ]);
-
-  grunt.registerTask('build:development:app', [
-    'sass:app',
-    'browserify:app',
+    'sass',
+    'browserify',
     'concat:app',
-    'configure:development:app',
-    'cachebuster:app',
+    'concat:admin',
+    'cachebuster',
     'qunit'
   ]);
 
-  grunt.registerTask('build:development:admin', [
-    'sass:admin',
-    'browserify:admin',
-    'concat:admin',
-    'configure:development:admin',
-    'cachebuster:admin'
-  ]);
-
   grunt.registerTask('build:production', [
+    'env:prod',
     'build:prereqs',
     'sass',
     'cssmin',
@@ -401,14 +318,9 @@ module.exports = function(grunt) {
     'uglify',
     'concat:app_min',
     'concat:admin_min',
-    'configure:production',
     'cachebuster',
     'qunit'
   ]);
 
-  grunt.registerTask('default', [
-    'build:prereqs',
-    'build:development:app',
-    'build:development:admin'
-  ]);
+  grunt.registerTask('default', 'build:dev');
 };
