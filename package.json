@@ -4,6 +4,7 @@
   "engines": {},
   "devDependencies": {
     "browserify": "~2.35",
+    "grunt-autoprefixer": "^2.0.0",
     "grunt-browserify": "~1.2.9",
     "grunt-cachebuster": "~0.1.5",
     "grunt-cli": "^0.1.13",
