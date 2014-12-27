@@ -69,12 +69,10 @@ module.exports = function(grunt) {
     },
 
     sass: {
-      // generate app-specific css file
-      // sass performs both the processing and concatenation steps for css
       options: {
-        loadPath: '.',
-        bundleExec: true
+        includePaths: ['.']
       },
+
       app: {
         src: 'app/css/app.scss',
         dest: 'tmp/linksf.css'
@@ -365,7 +363,7 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
