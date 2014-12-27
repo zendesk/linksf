@@ -4,6 +4,5 @@ before_install:
 - bundle install
 env:
   global:
-    - secure: Jui6UzQnjUzmDE14YCuTdo4lzu5Z7Z5Z7Jo+ORt6CZlu3kYpPOxNaxxmv6NNZ2uFRl1jz7gvYnmBKGDWPeaS9xdKY7wLGEDpj8hs67hV0X0LiqY4YYhwn0VwPHfuzlADD4cKcoKDJD7wilggyd0s1yNyb1ocIOem7t/BXFcyI2I=
-    - secure: kxTkNYUM1srfewf7A+uSpd32JT4PHfhcEH+lZkxClkjb4y8cvqpeM3Yq/Icv5wRWskQpcfa0A8HmCvqE4vuZDGsyrcLCmqvlXvG0aHyQJp7D62+HtgxkPLyFNNMa4i397Q+SrAyNUKxg6M5TVfTqXfb/gjXofC+90fFWi5wsefM=
-    - secure: hWqA+K/8ZAOBJYBaWvw1vmih0rIUVwmQJ/4F1gqHZQkW+e1vSAn9JPZ/DhrMEAPRT8N9v4Z53Y5kdjpUEQpdOvZFQqOGf6uo/FbIZBIkc7J8xfLgA7te0kmvgxrNgcgVytZvNWcRHGeDYZhb40kbiESOdM2/U3Je7I50/InS4DA=
+  - secure: JW6DF1fCv3qFSYlMnH7Q4FzGCOgPWwjul77DwCL3u5MU6wNda+q7ErGASLSStyNVCX8R78eU+71v5c+VZ6NQ54P3xCcS0Ut/ZA9B468H80B+xZkHqGbactmYULWCa/+fUHHxRNC3Jq3nJ6FrRSAQF7y29ii+J/xL4d8gBA0JpB8=
+  - secure: W7SIHF8oUoxjAr8a8HDv+UM4uIKUmuj9eAuB3AkGjyxLeIIO/tPHQ2yFx8tEtTqXWNnuve7AvnIAD6PmG67VvXBvESGRXxe7nH4qRCclDScfWahzxLdZyGbhMO742mjr/dItrtwUTo8T/T7wam6yTg4xVN4ukxJyu7v5i8aqN+c=

@@ -232,9 +232,9 @@ module.exports = function(grunt) {
         options: {
           complete: function(hashes) {
             var keyMap = {
-              'tmp/linksf.js': 'appJs',
-              'tmp/linksf.css': 'appCss',
-              'tmp/linksf_admin.js': 'adminJs',
+              'tmp/linksf.js':        'appJs',
+              'tmp/linksf.css':       'appCss',
+              'tmp/linksf_admin.js':  'adminJs',
               'tmp/linksf_admin.css': 'adminCss'
             };
 

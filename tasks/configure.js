@@ -1,6 +1,7 @@
 module.exports = function(grunt) {
   grunt.registerTask('configure', 'Configure Parse and Mailgun.', function() {
     [
+      'PARSE_APP_NAME',
       'PARSE_APP_ID',
       'PARSE_MASTER_KEY'
     ].forEach(function(variable) {
