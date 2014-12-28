@@ -286,6 +286,40 @@ module.exports = function(grunt) {
       all: {
         src: 'tmp/*.css'
       }
+    },
+
+    aws: grunt.file.readJSON('s3.json'),
+    aws_s3: {
+      options: {
+        accessKeyId: '<%= aws.AWS_ACCESS_KEY_ID %>',
+        secretAccessKey: '<%= aws.AWS_SECRET_ACCESS_KEY %>',
+      },
+      dev: {
+        options: {
+          debug: true,
+          bucket: '<%= aws.AWS_DEV_BUCKET %>'
+        },
+        files: [
+          {expand: true, src: 'build/linksf**'},
+          {expand: true, src: 'index.html'},
+          {expand: true, src: 'admin.html'},
+          {expand: true, src: 'vendor/font/**'},
+          {expand: true, src: 'img/**'}
+        ]
+      },
+      prod: {
+        options: {
+          debug: true,
+          bucket: '<%= aws.AWS_PROD_BUCKET %>'
+        },
+        files: [
+          {expand: true, src: 'build/linksf**'},
+          {expand: true, src: 'index.html'},
+          {expand: true, src: 'admin.html'},
+          {expand: true, src: 'vendor/font/**'},
+          {expand: true, src: 'img/**'}
+        ]
+      }
     }
   });
 
@@ -302,6 +336,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-env');
   grunt.loadNpmTasks('grunt-autoprefixer');
+  grunt.loadNpmTasks('grunt-aws-s3');
   grunt.loadTasks('tasks');
 
   grunt.registerTask('build:prereqs', [
@@ -338,4 +373,14 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('default', 'build:dev');
+
+  grunt.registerTask('deploy:dev', [
+    'build:dev',
+    'aws_s3:dev'
+  ]);
+
+  grunt.registerTask('deploy:prod', [
+    'build:prod',
+    'aws_s3:prod'
+  ]);
 };
