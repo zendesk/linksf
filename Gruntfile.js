@@ -293,10 +293,11 @@ module.exports = function(grunt) {
       options: {
         accessKeyId: '<%= aws.AWS_ACCESS_KEY_ID %>',
         secretAccessKey: '<%= aws.AWS_SECRET_ACCESS_KEY %>',
+        region: '<%= aws.AWS_S3_REGION %>',
+        uploadConcurrency: 4
       },
       dev: {
         options: {
-          debug: true,
           bucket: '<%= aws.AWS_DEV_BUCKET %>'
         },
         files: [
@@ -309,7 +310,6 @@ module.exports = function(grunt) {
       },
       prod: {
         options: {
-          debug: true,
           bucket: '<%= aws.AWS_PROD_BUCKET %>'
         },
         files: [
