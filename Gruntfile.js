@@ -300,25 +300,17 @@ module.exports = function(grunt) {
         options: {
           bucket: '<%= aws.AWS_DEV_BUCKET %>'
         },
-        files: [
-          {expand: true, src: 'build/linksf**'},
-          {expand: true, src: 'index.html'},
-          {expand: true, src: 'admin.html'},
-          {expand: true, src: 'vendor/font/**'},
-          {expand: true, src: 'img/**'}
-        ]
+        files: [{expand: true, src: [
+          'build/linksf**', 'index.html', 'admin.html', 'vendor/font/**', 'img/**'
+        ]}
       },
       prod: {
         options: {
           bucket: '<%= aws.AWS_PROD_BUCKET %>'
         },
-        files: [
-          {expand: true, src: 'build/linksf**'},
-          {expand: true, src: 'index.html'},
-          {expand: true, src: 'admin.html'},
-          {expand: true, src: 'vendor/font/**'},
-          {expand: true, src: 'img/**'}
-        ]
+        files: [{expand: true, src: [
+          'build/linksf**', 'index.html', 'admin.html', 'vendor/font/**', 'img/**'
+        ]}
       }
     }
   });
