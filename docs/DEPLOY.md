@@ -1,13 +1,13 @@
 # Deploying Link-SF
 
 Link-SF has two major components, a parse.com backend and a static HTML/js/css component.
-We've gone with a combination of S3 and [fast.ly](http://www.fastly.com) to serve the static components, 
-although really any old hosting provider could do. 
+We've gone with a combination of S3 and [fast.ly](http://www.fastly.com) to serve the static components,
+although really any old hosting provider could do.
 
 
 ### How to do it
 
-First, setup your `.env` file as described in the 'Secrets' section of SETUP.md.  This will get you 
+First, setup your `.env.dev` and `.env.prod` file as described in the 'Secrets' section of SETUP.md.  This will get you
 going with the credentials needed to push to S3.
 
 Next, download the parse command line tools as described here: https://parse.com/docs/cloud_code_guide
@@ -38,7 +38,7 @@ Associated apps are:
 Finally, deploy away!
 
 ```
-$ rake deploy:development
-$ rake deploy:production
+$ grunt deploy:dev
+$ grunt deploy:prod
 ```
 
