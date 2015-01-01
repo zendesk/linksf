@@ -292,7 +292,7 @@ module.exports = function(grunt) {
       }
     },
 
-    s3: grunt.file.readJSON('s3.json'),
+    s3: grunt.file.exists('s3.json') && grunt.file.readJSON('s3.json') || {},
     aws_s3: {
       options: {
         accessKeyId: '<%= s3.accessKeyId %>',
