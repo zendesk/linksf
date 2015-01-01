@@ -12,11 +12,8 @@ if ( typeof ga === 'undefined' ) {
 $(function() {
   window.FastClick.attach(document.body);
   require('lib/boot');
-  var features = require('lib/features');
-  Parse.serverURL = "http://api.link-sf.com";
-
-  Parse.initialize(parseAppId, parseJSKey);
-
+  Parse.serverURL = 'http://api.link-sf.com';
+  Parse.initialize(config.parseAppId, config.parseJsKey);
   require('routers/router').instance();
   Backbone.history.start();
 });

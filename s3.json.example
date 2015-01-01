@@ -1,7 +1,7 @@
 {
-  "AWS_S3_REGION": "XXXXXXX",
-  "AWS_ACCESS_KEY_ID": "XXXXXXX",
-  "AWS_SECRET_ACCESS_KEY": "XXXXXXX",
-  "AWS_DEV_BUCKET": "XXXXXXX",
-  "AWS_PROD_BUCKET": "XXXXXXX"
+  "accessKeyId": "xxxxxxx",
+  "secretAccessKey": "xxxxxxx",
+  "region": "xxxxxxx",
+  "devBucket": "xxxxxxx",
+  "prodBucket": "xxxxxxx"
 }

@@ -7,17 +7,19 @@
     <meta name="viewport" content="width=device-width">
     <meta name="description" content="San Francisco website that connects homeless and low-income residents with critical and life-saving resources" />
     <link rel="stylesheet" href="../../vendor/css/qunit-1.14.0.css">
-    <link rel="stylesheet" href="../../<%= appCss %>">
+    <link rel="stylesheet" href="../../build/<%= appCss %>">
     <script>
-      var parseAppId = '<%= parseAppId %>';
-      var parseJSKey = '<%= parseJsKey %>';
+      var config = {
+        parseAppId: '<%= parseAppId %>',
+        parseJsKey: '<%= parseJsKey %>'
+      };
     </script>
   </head>
 
   <body>
     <div id="qunit"></div>
     <div id="qunit-fixture"></div>
-    <script src="../../<%= appJs %>"></script>
+    <script src="../../build/<%= appJs %>"></script>
     <script src="../../vendor/js/qunit-1.14.0.js"></script>
     <script src="tests.js"></script>
     <div>

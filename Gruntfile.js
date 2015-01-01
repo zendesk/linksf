@@ -25,8 +25,7 @@ module.exports = function(grunt) {
           Handlebars: true,
           _: true,
           google: true,
-          parseAppId: true,
-          parseJSKey: true,
+          config: true,
           ga: true,
           test: true,
           ok: true,
@@ -228,7 +227,12 @@ module.exports = function(grunt) {
 
     cachebuster: {
       all: {
-        files: {src: ['tmp/*.js', 'tmp/*.css']},
+        files: {src: [
+          'tmp/linksf.js',
+          'tmp/linksf.css',
+          'tmp/linksf_admin.js',
+          'tmp/linksf_admin.css'
+        ]},
         options: {
           complete: function(hashes) {
             var keyMap = {
@@ -238,7 +242,7 @@ module.exports = function(grunt) {
               'tmp/linksf_admin.css': 'adminCss'
             };
 
-            var context = {
+            var config = {
               parseAppId: process.env.PARSE_APP_ID,
               parseJsKey: process.env.PARSE_JS_KEY,
               gaToken:    process.env.GOOGLE_ANALYTICS_TOKEN,
@@ -247,22 +251,22 @@ module.exports = function(grunt) {
 
             Object.keys(hashes).forEach(function(key) {
               var matches = key.match(/^tmp\/(.*)(\..*)$/); // tmp/(filename)(.js)
-              var outputFile = 'build/' + matches[1] + '-' + hashes[key] + matches[2];
+              var outputFile = matches[1] + '-' + hashes[key] + matches[2];
 
-              grunt.file.copy(key, outputFile);
-              context[keyMap[key]] = outputFile;
+              grunt.file.copy(key, 'build/' + outputFile);
+              config[keyMap[key]] = outputFile;
             });
 
-            grunt.file.write('index.html',
-              grunt.template.process(grunt.file.read('app/index.html'), {data: context})
+            grunt.file.write('build/index.html',
+              grunt.template.process(grunt.file.read('app/index.html'), {data: config})
             );
 
-            grunt.file.write('admin.html',
-              grunt.template.process(grunt.file.read('admin/admin.html'), {data: context})
+            grunt.file.write('build/admin.html',
+              grunt.template.process(grunt.file.read('admin/index.html'), {data: config})
             );
 
             grunt.file.write('test/acceptance/app.html',
-              grunt.template.process(grunt.file.read('test/acceptance/app.template'), {data: context})
+              grunt.template.process(grunt.file.read('test/acceptance/app.html.template'), {data: config})
             );
           }
         }
@@ -284,33 +288,42 @@ module.exports = function(grunt) {
         ]
       },
       all: {
-        src: 'tmp/*.css'
+        src: ['tmp/linksf.css', 'tmp/linksf_admin.css']
       }
     },
 
-    aws: grunt.file.readJSON('s3.json'),
+    s3: grunt.file.readJSON('s3.json'),
     aws_s3: {
       options: {
-        accessKeyId: '<%= aws.AWS_ACCESS_KEY_ID %>',
-        secretAccessKey: '<%= aws.AWS_SECRET_ACCESS_KEY %>',
-        region: '<%= aws.AWS_S3_REGION %>',
+        accessKeyId: '<%= s3.accessKeyId %>',
+        secretAccessKey: '<%= s3.secretAccessKey %>',
+        region: '<%= s3.region %>',
         uploadConcurrency: 4
       },
       dev: {
-        options: {
-          bucket: '<%= aws.AWS_DEV_BUCKET %>'
-        },
-        files: [{expand: true, src: [
-          'build/linksf**', 'index.html', 'admin.html', 'vendor/font/**', 'img/**'
-        ]}
+        options: { bucket: '<%= s3.devBucket %>' },
+        files: [
+          {expand: true, src: ['vendor/font/**', 'img/**']},
+          {expand: true, src: 'build/*', dest: ''}
+        ]
       },
       prod: {
+        options: { bucket: '<%= s3.prodBucket %>' },
+        files: [
+          {expand: true, src: ['vendor/font/**', 'img/**']},
+          {expand: true, src: 'build/*', dest: ''}
+        ]
+      }
+    },
+
+    shell: {
+      parse: {
+        command: 'parse deploy',
         options: {
-          bucket: '<%= aws.AWS_PROD_BUCKET %>'
-        },
-        files: [{expand: true, src: [
-          'build/linksf**', 'index.html', 'admin.html', 'vendor/font/**', 'img/**'
-        ]}
+          execOptions: {
+            cwd: 'server'
+          }
+        }
       }
     }
   });
@@ -329,50 +342,53 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-env');
   grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-aws-s3');
+  grunt.loadNpmTasks('grunt-shell');
   grunt.loadTasks('tasks');
 
-  grunt.registerTask('build:prereqs', [
+  grunt.registerTask('build:common', [
     'clean',
     'jshint',
     'simplemocha',
-    'tokens'
+    'sass',
+    'autoprefixer',
+    'browserify'
   ]);
 
   grunt.registerTask('build:dev', [
     'env:dev',
-    'build:prereqs',
-    'sass',
-    'browserify',
-    'concat:app',
-    'concat:admin',
-    'autoprefixer',
+    'build:common',
+    'concat:app', 'concat:admin',
     'cachebuster',
     'qunit'
   ]);
 
   grunt.registerTask('build:production', [
     'env:prod',
-    'build:prereqs',
-    'sass',
-    'cssmin',
-    'browserify',
-    'uglify',
-    'concat:app_min',
-    'concat:admin_min',
-    'autoprefixer',
+    'build:common',
+    'cssmin', 'uglify',
+    'concat:app_min', 'concat:admin_min',
     'cachebuster',
     'qunit'
+  ]);
+
+  grunt.registerTask('parse:deploy', [
+    'parse:config',
+    'shell:parse'
   ]);
 
   grunt.registerTask('default', 'build:dev');
 
   grunt.registerTask('deploy:dev', [
     'build:dev',
-    'aws_s3:dev'
+    'aws_s3:dev',
+    'parse:deploy',
+    'clean'
   ]);
 
   grunt.registerTask('deploy:prod', [
     'build:prod',
-    'aws_s3:prod'
+    'aws_s3:prod',
+    'parse:deploy',
+    'clean'
   ]);
 };

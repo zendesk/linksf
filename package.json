@@ -19,6 +19,7 @@
     "grunt-env": "^0.4.2",
     "grunt-preprocess": "^4.1.0",
     "grunt-sass": "^0.17.0",
+    "grunt-shell": "^1.1.1",
     "grunt-simple-mocha": "~0.4.0",
     "handlebars": "~1.0.12",
     "handlebars-runtime": "~1.0.12",
