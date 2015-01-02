@@ -7,8 +7,9 @@ although really any old hosting provider could do.
 
 ### How to do it
 
-First, setup your `.env.dev` and `.env.prod` file as described in the 'Secrets' section of SETUP.md.  This will get you
-going with the credentials needed to push to S3.
+First, setup your `.env.dev` and `.env.prod` file as described in the 'Secrets' section of SETUP.md.
+
+Make a copy of the `s3.json.example` file (stripping off the `.example`) nand replace with your Amazon S3 tokens. This will get you going with the credentials needed to push to S3.
 
 Next, download the parse command line tools as described here: https://parse.com/docs/cloud_code_guide
 
@@ -41,4 +42,3 @@ Finally, deploy away!
 $ grunt deploy:dev
 $ grunt deploy:prod
 ```
-
