@@ -371,24 +371,23 @@ module.exports = function(grunt) {
     'qunit'
   ]);
 
-  grunt.registerTask('parse:deploy', [
-    'parse:config',
-    'shell:parse'
-  ]);
+  grunt.registerTask('parse:deploy', ['parse:config', 'shell:parse']);
+  grunt.registerTask('parse:deploy:dev', ['env:dev', 'parse:deploy']);
+  grunt.registerTask('parse:deploy:prod', ['env:prod', 'parse:deploy']);
 
   grunt.registerTask('default', 'build:dev');
 
   grunt.registerTask('deploy:dev', [
     'build:dev',
     'aws_s3:dev',
-    'parse:deploy',
+    'parse:deploy:dev',
     'clean'
   ]);
 
   grunt.registerTask('deploy:prod', [
     'build:prod',
     'aws_s3:prod',
-    'parse:deploy',
+    'parse:deploy:prod',
     'clean'
   ]);
 };
