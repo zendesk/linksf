@@ -1,10 +1,11 @@
 {
-  "name": "LinkSF",
+  "name": "Link-SF",
   "version": "v0.0.1",
   "engines": {},
   "devDependencies": {
     "browserify": "~2.35",
     "grunt-autoprefixer": "^2.0.0",
+    "grunt-aws-s3": "^0.10.0",
     "grunt-browserify": "~1.2.9",
     "grunt-cachebuster": "~0.1.5",
     "grunt-cli": "^0.1.13",
@@ -15,7 +16,10 @@
     "grunt-contrib-qunit": "~0.4.0",
     "grunt-contrib-uglify": "~0.2.4",
     "grunt-contrib-watch": "~0.5.3",
+    "grunt-env": "^0.4.2",
+    "grunt-preprocess": "^4.1.0",
     "grunt-sass": "^0.17.0",
+    "grunt-shell": "^1.1.1",
     "grunt-simple-mocha": "~0.4.0",
     "handlebars": "~1.0.12",
     "handlebars-runtime": "~1.0.12",

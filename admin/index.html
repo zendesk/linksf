@@ -5,16 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Link-SF</title>
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="{{linksf_admin_css}}">
+    <link rel="stylesheet" href="<%= adminCss %>">
     <script>
-      var parseAppId = '<%= PARSE_APP_ID %>';
-      var parseJSKey = '<%= PARSE_JS_KEY %>';
+      var config = {
+        parseAppId: '<%= parseAppId %>',
+        parseJsKey: '<%= parseJsKey %>'
+      };
     </script>
   </head>
 
   <body>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDdHRnaDD-_z2aNUqyxxCoRBAf6PWZjS4&sensor=true&libraries=geometry"></script>
-    <script src="{{linksf_admin_js}}"></script>
+    <script src="<%= adminJs %>"></script>
 
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">

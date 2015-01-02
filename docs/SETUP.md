@@ -23,17 +23,9 @@ The following accounts are optional:
 
 To build the site (turn a file tree into a monolithic html, js, and css file), you'll need some command line tools installed:
 
-* [ruby](https://www.ruby-lang.org/)
-* [rake](http://rake.rubyforge.org/)
 * [node](http://nodejs.org/)
 * [grunt](http://gruntjs.com/)
-* [sass](http://sass-lang.com/)
 * [parse](https://www.parse.com/docs/cloud_code_guide)
-* [bundler](http://bundler.io/)
-
-If you intend on deploying the site, you'll also need:
-
-* [s3cmd](http://s3tools.org/s3cmd)
 
 ## Development
 
@@ -41,36 +33,34 @@ Download the source (via [git](git@github.com:zendesk/linksf.git) or [.zip file]
 
 ### Secrets
 
-In the project root, you'll find a `.env.example` file. Make a copy of that file called `.env` in the same directory. It will probably look something like this:
+In the project root, you'll find a `.env.example` file. Make copies of that file called `.env.dev` and `.env.prod` in the same directory. They will probably look something like this:
 
 ```
-PARSE_DEV_APP_ID=xxxxxxx
-PARSE_DEV_JS_KEY=xxxxxxx
-PARSE_DEV_MASTER_KEY=xxxxxxx
-PARSE_PROD_APP_ID=xxxxxxx
-PARSE_PROD_JS_KEY=xxxxxxx
-PARSE_PROD_MASTER_KEY=xxxxxxx
+PARSE_APP_NAME=xxxxxxx
+PARSE_APP_ID=xxxxxxx
+PARSE_JS_KEY=xxxxxxx
+PARSE_MASTER_KEY=xxxxxxx
 ...
 ```
 
 There are placeholders for development and production Parse tokens because we don't want any breakage during development to affect the production site. Create a [new Parse app](https://parse.com/apps/new) and call it whatever you'd like. Replace the token placeholder values (`xxxx`) with those specific to your apps from [Parse](https://parse.com/account/keys). The Mailgun and Google Analytics tokens can be ignored for now, if you'd like.
 
-Keep your `.env` file secret (out of source control, etc).
+Keep your `.env.dev` and `.env.prod` files secret (out of source control, etc).
 
 ### Building the site
+
+For convenience, I recommend that you put the following line in your `.bash_profile`: `export PATH=./node_modules/.bin:$PATH`, which lets you use the local copy of grunt and avoid installing it globally. The instructions here reflect this.
 
 From the project root (and with the command line tools outlined above installed):
 
 1. `npm install`
-1. `npm install -g grunt-cli`
-1. `bundle`
 1. `grunt`
-1. `cd server && parse deploy && cd ..`
-1. `open index.html`
+1. `grunt parse:deploy:dev`
+1. `open build/index.html`
 
 If everything worked, you should have Link-SF open and running in your browser. You won't see any facilities listed in search, so you'll want to add one in the admin interface. First, create a new user in the Parse interface, then:
 
-1. `open admin.html`
+1. `open build/admin.html`
 
 Login using the credentials for the user you just added, then add a facility and service. From the Parse website, go to the Data Browser and set the permissions on the Facility and Service objects to have public GET and FIND permissions. You will be able to return to the enduser app and see the facility in search results.
 
@@ -108,6 +98,6 @@ To get an android emulator setup on Mac OS:
 If you'd like to use a feedback form:
 
 1. Setup a [Mailgun](http://www.mailgun.com/) account
-2. Add your Mailgun domain and API key to the `.env` file (see [example .env file](https://github.com/zendesk/linksf/blob/master/.env.example))
-3. Addany to/from email address you'd like to the `.env` file on the `MAILGUN_TO_EMAIL_ADDRESS` and `MAILGUN_FROM_EMAIL_ADDRESS` lines.
+2. Add your Mailgun domain and API key to the `.env.xxx` files (see [example .env.xxx file](https://github.com/zendesk/linksf/blob/master/.env.example))
+3. Addany to/from email address you'd like to the `.env.xxx` files on the `MAILGUN_TO_EMAIL_ADDRESS` and `MAILGUN_FROM_EMAIL_ADDRESS` lines.
 4. Deploy your new changes, then check to see if your feedback form works as intended (you'll find the feedback link on the footer of the home and detail pages).

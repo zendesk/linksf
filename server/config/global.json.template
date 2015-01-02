@@ -1,15 +1,11 @@
 {
     "applications": {
-        "Link SF": {
-            "applicationId": "<%= PARSE_PROD_APP_ID %>",
-            "masterKey": "<%= PARSE_PROD_MASTER_KEY %>"
-        },
-        "Link SF -- Development": {
-            "applicationId": "<%= PARSE_DEV_APP_ID %>",
-            "masterKey": "<%= PARSE_DEV_MASTER_KEY %>"
+        "<%= parseAppName %>": {
+            "applicationId": "<%= parseAppId %>",
+            "masterKey": "<%= parseMasterKey %>"
         },
         "_default": {
-            "link": "Link SF"
+          "link": "<%= parseAppName %>"
         }
     },
     "global": {

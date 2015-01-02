@@ -1,8 +1,14 @@
-var mailgunCredentials = require('cloud/cloud/mailgun_credentials');
+var config = {
+  domain: "<%= mailgunDomain %>",
+  apiKey: "<%= mailgunApiKey %>",
+  toEmail: "<%= mailgunToEmail %>",
+  fromEmail: "<%= mailgunFromEmail %>"
+};
+
 var Mailgun = require('mailgun');
 
 module.exports = function (params, response) {
-  Mailgun.initialize(mailgunCredentials.domain, mailgunCredentials.apiKey);
+  Mailgun.initialize(config.domain, config.apiKey);
 
   if ( !params.from_email || !params.from_name || !params.subject || !params.body ) {
     response.error("Please fill everything out");
@@ -11,8 +17,8 @@ module.exports = function (params, response) {
   var body = "Feedback from: " + params.from_name + " <" + params.from_email + ">" + "\n\n" + params.body;
 
   Mailgun.sendEmail({
-    to: mailgunCredentials.toEmailAddress,
-    from: mailgunCredentials.fromEmailAddress,
+    to: config.toEmail,
+    from: config.fromEmail,
     subject: "[feedback]: " + params.subject,
     text: body
   }, {
