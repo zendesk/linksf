@@ -24,7 +24,7 @@ The following accounts are optional:
 To build the site (turn a file tree into a monolithic html, js, and css file), you'll need some command line tools installed:
 
 * [node](http://nodejs.org/)
-* [grunt](http://gruntjs.com/)
+* [grunt](http://gruntjs.com/) (I recommend you add `./node_modules/.bin` to your PATH, or install it globally)
 * [parse](https://www.parse.com/docs/cloud_code_guide)
 
 ## Development
@@ -48,8 +48,6 @@ There are placeholders for development and production Parse tokens because we do
 Keep your `.env.dev` and `.env.prod` files secret (out of source control, etc).
 
 ### Building the site
-
-For convenience, I recommend that you put the following line in your `.bash_profile`: `export PATH=./node_modules/.bin:$PATH`, which lets you use the local copy of grunt and avoid installing it globally. The instructions here reflect this.
 
 From the project root (and with the command line tools outlined above installed):
 
