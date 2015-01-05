@@ -1,6 +1,6 @@
 # Setup
 
-This guide explains how to install and setup the Link-SF application.
+This guide explains how to install and setup Link-SF .
 
 ## Prerequisites
 
@@ -24,7 +24,7 @@ The following accounts are optional:
 To build the site (turn a file tree into a monolithic html, js, and css file), you'll need some command line tools installed:
 
 * [node](http://nodejs.org/)
-* [grunt](http://gruntjs.com/) (I recommend you add `./node_modules/.bin` to your PATH, or install it globally)
+* [grunt](http://gruntjs.com/)
 * [parse](https://www.parse.com/docs/cloud_code_guide)
 
 ## Development
