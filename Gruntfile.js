@@ -304,14 +304,14 @@ module.exports = function(grunt) {
         options: { bucket: '<%= s3.devBucket %>' },
         files: [
           {expand: true, src: ['vendor/font/**', 'img/**']},
-          {expand: true, src: 'build/*', dest: ''}
+          {expand: true, cwd: 'build', src: '*', dest: '' }
         ]
       },
       prod: {
         options: { bucket: '<%= s3.prodBucket %>' },
         files: [
           {expand: true, src: ['vendor/font/**', 'img/**']},
-          {expand: true, src: 'build/*', dest: ''}
+          {expand: true, cwd: 'build', src: '*', dest: ''}
         ]
       }
     },
