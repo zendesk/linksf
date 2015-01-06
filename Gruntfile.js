@@ -362,7 +362,7 @@ module.exports = function(grunt) {
     'qunit'
   ]);
 
-  grunt.registerTask('build:production', [
+  grunt.registerTask('build:prod', [
     'env:prod',
     'build:common',
     'cssmin', 'uglify',
