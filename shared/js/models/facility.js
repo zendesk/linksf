@@ -135,7 +135,7 @@ module.exports = Parse.Object.extend('Facility', {
         if ( age ) {
           output = gender.toUpperCase() === "F" ? "Female " : "Male ";
         } else {
-          output = "Only " + (gender.toUpperCase() === "F" ? "women" : "men");
+          output = gender.toUpperCase() === "F" ? "Women" : "Men";
         }
       } else {
         output = "All ";
