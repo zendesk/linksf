@@ -1,4 +1,4 @@
-var navigate = require('shared/lib/navigate');
+var navigate = require('../../../shared/js/lib/navigate');
 
 function setFilterOptions(view) {
   var params       = view.options.params,
@@ -60,7 +60,7 @@ var FilterView = Backbone.View.extend({
     {'class': 'right', id: 'searchNav-button', text: 'SEARCH', action: 'submitSearch'}
   ],
 
-  template: require('templates/filter'),
+  template: require('../templates/filter.hbs'),
 
   events: {
     "click .search .search-button": "submitSearch",
@@ -75,7 +75,7 @@ var FilterView = Backbone.View.extend({
     var distanceDisabled = this.options.currentLocation ? false : 'disabled';
 
     this.$el.html(this.template({
-      categories:       require('shared/lib/categories'),
+      categories:       require('cloud/lib/categories'),
       filter:           true,
       distanceDisabled: distanceDisabled
     }));

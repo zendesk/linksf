@@ -1,8 +1,8 @@
-var ListView = require('shared/views/list_view'),
-    navigate = require('shared/lib/navigate');
+var ListView = require('../../../shared/js/views/list_view');
+var navigate = require('../../../shared/js/lib/navigate');
 
 var AdminListView = ListView.extend({
-  template: require('templates/admin_list'),
+  template: require('../../js/templates/list.hbs'),
   selectedCategory: '',
 
   events: {
@@ -13,6 +13,7 @@ var AdminListView = ListView.extend({
     var self = this;
     this.listenTo(this.collection, 'reset', this.render);
   },
+
   filter: function(event) {
     var category = $(event.target).data('value');
     navigate({categories: [category]});

@@ -1,11 +1,11 @@
-var Analytics     = require('shared/lib/analytics'),
-    fetchLocation = require('shared/lib/fetch_location'),
-    navigate      = require('shared/lib/navigate');
+var Analytics     = require('../../../shared/js/lib/analytics'),
+    fetchLocation = require('../../../shared/js/lib/fetch_location'),
+    navigate      = require('../../../shared/js/lib/navigate');
 
 var IndexView = Backbone.View.extend({
   options: {},
 
-  template: require('templates/index'),
+  template: require('../templates/index.hbs'),
 
   events: {
     'submit #search-form': 'submit',
@@ -15,7 +15,7 @@ var IndexView = Backbone.View.extend({
   render: function() {
     this.$el.html(this.template({
       filter: false,
-      categories: require('shared/lib/categories')
+      categories: require('cloud/lib/categories')
     }));
     return this;
   },

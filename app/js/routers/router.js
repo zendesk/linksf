@@ -1,10 +1,10 @@
-var Analytics             = require('shared/lib/analytics'),
-    BaseController        = require('shared/lib/base_controller'),
-    Storage               = require('lib/storage'),
+var Analytics             = require('../../../shared/js/lib/analytics'),
+    BaseController        = require('../../../shared/js/lib/base_controller'),
+    Storage               = require('../lib/storage'),
     applicationController = new BaseController({ el: '#linksf' }),
-    facilities            = require('shared/collections/facilities').instance(),
-    fetchLocation         = require('shared/lib/fetch_location'),
-    parseParams           = require('shared/lib/query_param_parser');
+    facilities            = require('../../../shared/js/collections/facilities').instance(),
+    fetchLocation         = require('../../../shared/js/lib/fetch_location'),
+    parseParams           = require('../../../shared/js/lib/query_param_parser');
 
 var Router = Backbone.Router.extend({
   beforeAllFilters: function() { return [ this.checkPrivateBrowsing, this.trackRoute ]; },
@@ -64,7 +64,7 @@ var Router = Backbone.Router.extend({
   },
 
   index: function() {
-    var IndexView = require('views/index_view'),
+    var IndexView = require('../views/index_view'),
         indexView = new IndexView();
 
     fetchLocation().always(function(loc) {
@@ -79,7 +79,7 @@ var Router = Backbone.Router.extend({
 
   query: function(queryString) {
     var parsedParams = parseParams(queryString),
-        ListView     = require('shared/views/list_view');
+        ListView     = require('../../../shared/js/views/list_view');
     this.listView = this.listView || new ListView({ collection: facilities, isSingleton: true });
 
     Analytics.trackQuery(parsedParams);
@@ -117,7 +117,7 @@ var Router = Backbone.Router.extend({
   },
 
   filter: function(queryString) {
-    var FilterView = require('views/filter_view'),
+    var FilterView = require('../views/filter_view'),
         params = parseParams(queryString);
 
     fetchLocation().always(function(loc) {
@@ -133,7 +133,7 @@ var Router = Backbone.Router.extend({
   },
 
   renderFacility: function(facility, options) {
-    var DetailView = require('views/detail_view'),
+    var DetailView = require('../views/detail_view'),
         detailView = new DetailView({ model: facility.presentJSON() });
     if (options) { detailView.options = options; }
     window.scrollTo(0, 0); // Scroll to top
@@ -155,26 +155,26 @@ var Router = Backbone.Router.extend({
   },
 
   about: function() {
-    var AboutView = require('views/about_view');
+    var AboutView = require('../views/about_view');
     this.aboutView = this.aboutView || new AboutView();
     applicationController.render(this.aboutView);
   },
 
   feedback: function() {
-    var FeedbackView = require('views/feedback_view');
+    var FeedbackView = require('../views/feedback_view');
     this.feedbackView = this.feedbackView || new FeedbackView();
     applicationController.render(this.feedbackView);
   },
 
   terms: function() {
-    var TermsView = require('views/terms_view');
+    var TermsView = require('../views/terms_view');
     this.termsView = this.termsView || new TermsView();
     applicationController.render(this.termsView);
   },
 
   _getFacility: function(id, done) {
     var facility = facilities.get(id),
-        query = require('shared/lib/query');
+        query = require('../../../shared/js/lib/query');
 
     if ( !facility ) {
       //Fetch Facility from backend if not in collection

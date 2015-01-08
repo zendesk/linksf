@@ -1,6 +1,6 @@
-var Service             = require('shared/models/service'),
-    Hours               = require('shared/models/hours'),
-    fetchLocation       = require('shared/lib/fetch_location');
+var Service       = require('cloud/models/service'),
+    Hours         = require('cloud/models/hours'),
+    fetchLocation = require('../../../shared/js/lib/fetch_location');
 
 function modelSaveFailCallback() {
   this.$("#facilitySaveError").show().focus();
@@ -29,7 +29,7 @@ function saveFacility(model, services, successCallback, failCallback) {
     });
 
     Service.saveAll(serviceObjects, function(services, error) {
-      var facilities = require('shared/collections/facilities').instance();
+      var facilities = require('../../../shared/js/collections/facilities').instance();
       facilities.reset();
 
       if (services) {
@@ -51,7 +51,7 @@ function saveFacility(model, services, successCallback, failCallback) {
 }
 
 var EditView = Backbone.View.extend({
-  template: require('templates/edit'),
+  template: require('../templates/edit.hbs'),
 
   events: {
     'click #addService':          'addService',
@@ -92,7 +92,7 @@ var EditView = Backbone.View.extend({
       [ { hours: hours.serialize() } ]
     );
     var preview = mergedHours.humanizeCondensed({shortDayNames: true});
-    var template = require('shared/templates/_open_hours');
+    var template = require('../../../shared/js/templates/_open_hours.hbs');
     var html = template({ condensedHours: preview });
 
     $hours.find('#preview_hours').html(html);
@@ -115,8 +115,7 @@ var EditView = Backbone.View.extend({
       category: category,
       days: Hours.DAY_NAMES
     };
-    var template = require('templates/_edit_service');
-
+    var template = require('../templates/_edit_service.hbs');
     return $(template(context));
   },
 
@@ -130,7 +129,7 @@ var EditView = Backbone.View.extend({
     if ( window.confirm("Confirm deletion of " + this.model.get("name")) ) {
       this.model.destroy()
         .then(function() {
-          var router = require('routers/router').instance();
+          var router = require('../routers/router').instance();
           router.navigate("/", {trigger: true});
         }, function() {
           window.alert("Sorry, something went wrong while trying to delete this facility.");

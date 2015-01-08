@@ -3,7 +3,7 @@ var LoginView = Backbone.View.extend({
     this.router = router;
     this.return_path = return_path;
   },
-  template: require('templates/login'),
+  template: require('../templates/login.hbs'),
   render: function(return_path) {
     var self = this;
     $('#linksf').html(this.template());

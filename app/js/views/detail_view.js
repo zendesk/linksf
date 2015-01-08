@@ -1,8 +1,8 @@
-var Analytics         = require('shared/lib/analytics'),
-    Features          = require('lib/features'),
-    Hours             = require('shared/models/hours'),
-    fetchLocation     = require('shared/lib/fetch_location'),
-    calculateDistance = require('shared/lib/distance').calculateDistance;
+var Features          = require('../lib/features'),
+    Analytics         = require('../../../shared/js/lib/analytics'),
+    Hours             = require('cloud/models/hours'),
+    fetchLocation     = require('../../../shared/js/lib/fetch_location'),
+    calculateDistance = require('../../../shared/js/lib/distance').calculateDistance;
 
 function calculateDistanceCallback (walkingData, facility){
   if ( !walkingData ) return;
@@ -53,7 +53,7 @@ function directionsUrl(facility, startingLocation) {
 }
 
 var DetailView = Backbone.View.extend({
-  template: require('templates/detail'),
+  template: require('../templates/detail.hbs'),
 
   events: {
     'render.done':             'setMap',
