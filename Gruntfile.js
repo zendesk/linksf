@@ -72,27 +72,7 @@ module.exports = function(grunt) {
     browserify: {
       options: {transform: ['hbsfy']},
       app: {src: 'app/js/app.js', dest: 'tmp/app.js'},
-      admin: {
-        src: 'admin/js/admin.js',
-        dest: 'tmp/admin.js',
-        options: {
-          aliasMappings: [
-            { cwd: 'shared/js/lib',         src: '*.js',  dest: 'shared/lib' },
-            { cwd: 'shared/js/lib',         src: '*.js',  dest: 'cloud/lib' },
-            { cwd: 'shared/js/models',      src: '*.js',  dest: 'shared/models' },
-            { cwd: 'shared/js/models',      src: '*.js',  dest: 'cloud/models' },
-            { cwd: 'shared/js/collections', src: '*.js',  dest: 'shared/collections' },
-            { cwd: 'shared/js/views',       src: '*.js',  dest: 'shared/views' },
-            { cwd: 'shared/js/templates',   src: '*.hbs', dest: 'shared/templates' },
-            { cwd: 'admin/js/lib',          src: '*.js',  dest: 'lib' },
-            { cwd: 'admin/js/models',       src: '*.js',  dest: 'models' },
-            { cwd: 'admin/js/collections',  src: '*.js',  dest: 'collections' },
-            { cwd: 'admin/js/routers',      src: '*.js',  dest: 'routers' },
-            { cwd: 'admin/js/templates',    src: '*.hbs', dest: 'templates' },
-            { cwd: 'admin/js/views',        src: '*.js',  dest: 'views' }
-          ]
-        }
-      }
+      admin: {src: 'admin/js/admin.js', dest: 'tmp/admin.js'}
     },
 
     cssmin: {
