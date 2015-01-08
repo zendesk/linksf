@@ -22,7 +22,7 @@ var BaseController = function (options) {
     });
 
     $('#backNav-button').click(function(){
-      require('routers/router').instance().back();
+      require('../../../app/js/routers/router').instance().back();
     });
   }
 
@@ -36,7 +36,7 @@ var BaseController = function (options) {
     setupNav(view.navButtons || [], view);
     ret = $(el).html(view.render().el);
 
-    if ( view.afterRender ) 
+    if ( view.afterRender )
       view.afterRender();
 
     view.delegateEvents(view.events);

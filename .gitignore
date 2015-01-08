@@ -3,6 +3,6 @@
 /tmp/*
 /.env*
 /server/config/global.json
-/server/cloud/cloud/feedback.js
+/server/cloud/feedback.js
 /test/acceptance/app.html
 /s3.json

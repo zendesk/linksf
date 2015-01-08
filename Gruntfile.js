@@ -70,44 +70,8 @@ module.exports = function(grunt) {
     },
 
     browserify: {
-      options: {
-        // We want `.hbs` files to be `require`able. We use the hbsfy transform
-        // to precompile Handlebars templates and let us require the compiled
-        // JavaScript functions.
-        transform: ['hbsfy']
-      },
-      app: {
-        // The entry point where Browserify will begin searching the AST for `require` calls
-        src: 'app/js/app.js',
-
-        // The built file
-        dest: 'tmp/app.js',
-
-        options: {
-          // We want alias mappings because we'd rather
-          // `require('views/index_view')` than `require('./views/index_view.js')`
-          //
-          // There is a tradeoff for convenience here - all aliased files are exported
-          // into the built app.js file, even if they're never explicitly
-          // `require`d from the entry point tree.
-          aliasMappings: [
-            { cwd: 'shared/js/lib',         src: '*.js',  dest: 'shared/lib' },
-            { cwd: 'shared/js/lib',         src: '*.js',  dest: 'cloud/lib' },
-            { cwd: 'shared/js/models',      src: '*.js',  dest: 'shared/models' },
-            { cwd: 'shared/js/models',      src: '*.js',  dest: 'cloud/models' },
-            { cwd: 'shared/js/collections', src: '*.js',  dest: 'shared/collections' },
-            { cwd: 'shared/js/views',       src: '*.js',  dest: 'shared/views' },
-            { cwd: 'shared/js/templates',   src: '*.hbs', dest: 'shared/templates' },
-            { cwd: 'app/js/lib',            src: '*.js',  dest: 'lib' },
-            { cwd: 'app/js/models',         src: '*.js',  dest: 'models' },
-            { cwd: 'app/js/collections',    src: '*.js',  dest: 'collections' },
-            { cwd: 'app/js/routers',        src: '*.js',  dest: 'routers' },
-            { cwd: 'app/js/templates',      src: '*.hbs', dest: 'templates' },
-            { cwd: 'app/js/views',          src: '*.js',  dest: 'views' }
-          ]
-        }
-      },
-
+      options: {transform: ['hbsfy']},
+      app: {src: 'app/js/app.js', dest: 'tmp/app.js'},
       admin: {
         src: 'admin/js/admin.js',
         dest: 'tmp/admin.js',

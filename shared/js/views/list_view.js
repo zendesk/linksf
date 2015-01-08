@@ -1,10 +1,10 @@
 /* globals window */
-var Analytics             = require('shared/lib/analytics'),
-    Query                 = require('shared/lib/query'),
-    facilities            = require('shared/collections/facilities').instance(),
+var Analytics             = require('../lib/analytics'),
+    Query                 = require('../lib/query'),
+    facilities            = require('../collections/facilities').instance(),
     searchParams          = ["fr"],
-    parseParams           = require('shared/lib/query_param_parser'),
-    calculateAllDistances = require('shared/lib/distance').calculateAllDistances;
+    parseParams           = require('../lib/query_param_parser'),
+    calculateAllDistances = require('../lib/distance').calculateAllDistances;
 
 function generateQueryParams(inputString, limit ) {
   var queryString  = inputString || window.location.hash.substring(window.location.hash.indexOf('?') + 1),
@@ -72,7 +72,7 @@ function calculateDistanceCallback (walkingData, list){
 }
 
 var ListView = Backbone.View.extend({
-  template: require('shared/templates/list'),
+  template: require('../templates/list.hbs'),
 
   events: {
     "click #load-more-link": 'loadMore',
@@ -144,7 +144,7 @@ var ListView = Backbone.View.extend({
   goToFilter: function() {
     Analytics.trackListAction('options', { location: this.options.currentLocation, target: 'options' });
     var queryString = window.location.hash.substring(window.location.hash.indexOf('?')+1),
-        router      = require('routers/router').instance();
+        router      = require('../../../app/js/routers/router').instance();
     Backbone.history.navigate("filter?" + queryString, {trigger: true});
     return false;
   },
@@ -165,7 +165,7 @@ var ListView = Backbone.View.extend({
   // TODO: there's really no reason to have to cast back and forth like this.
   // we should define a common format for the url and for the parse cloud func.
   _navigateFromQueryParams: function(p, replace) {
-    var navigate = require('shared/lib/navigate');
+    var navigate = require('../lib/navigate');
     navigate({
       categories:   p.filter.categories,
       demographics: p.filter.demographics,
@@ -345,6 +345,6 @@ var ListView = Backbone.View.extend({
 });
 
 
-ListView.CATEGORIES = require('shared/lib/categories');
+ListView.CATEGORIES = require('../lib/categories');
 
 module.exports = ListView;

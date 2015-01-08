@@ -1,7 +1,7 @@
 module.exports  = function navigate(options) {
   var route  = 'query',
       params = [],
-      router = require('routers/router').instance();
+      router = require('../../../app/js/routers/router').instance();
 
   [ "categories", "demographics" ].forEach(function(key) {
     if (options[key] && options[key].length > 0) {

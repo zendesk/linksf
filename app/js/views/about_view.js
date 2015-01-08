@@ -1,7 +1,7 @@
 var AboutView = Backbone.View.extend({
   options: {},
 
-  template: require('templates/about'),
+  template: require('../templates/about.hbs'),
   navButtons: [
     { 'class': 'left', id: 'backNav-button', text: '<i class="icon-left-open back"></i> BACK' }
   ],

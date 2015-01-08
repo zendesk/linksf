@@ -1,7 +1,7 @@
 var FeedbackView = Backbone.View.extend({
   options: {},
 
-  template: require('templates/feedback'),
+  template: require('../templates/feedback.hbs'),
   events: {
 	'submit #feedback-form': 'sendFeedback'
   },

@@ -11,8 +11,8 @@ module.exports = function(grunt) {
       }
     });
 
-    grunt.file.write('server/cloud/cloud/feedback.js',
-      grunt.template.process(grunt.file.read('server/cloud/cloud/feedback.js.template'), {data: {
+    grunt.file.write('server/cloud/lib/feedback.js',
+      grunt.template.process(grunt.file.read('server/cloud/lib/feedback.js.template'), {data: {
         mailgunDomain:    process.env.MAILGUN_DOMAIN,
         mailgunApiKey:    process.env.MAILGUN_API_KEY,
         mailgunToEmail:   process.env.MAILGUN_TO_EMAIL_ADDRESS,
