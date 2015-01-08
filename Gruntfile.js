@@ -72,13 +72,19 @@ module.exports = function(grunt) {
     browserify: {
       options: {transform: ['hbsfy']},
       app: {src: 'app/js/app.js', dest: 'tmp/app.js',
-        options: {aliasMappings: [
-          {cwd: 'shared/js', src: '**/*.js', dest: 'cloud' }
+        options: {alias: [
+          './shared/js/models/facility:cloud/models/facility',
+          './shared/js/models/service:cloud/models/service',
+          './shared/js/models/hours:cloud/models/hours',
+          './shared/js/lib/categories:cloud/lib/categories'
         ]}
       },
       admin: {src: 'admin/js/admin.js', dest: 'tmp/admin.js',
-        options: {aliasMappings: [
-          {cwd: 'shared/js', src: '**/*.js', dest: 'cloud' }
+        options: {alias: [
+          './shared/js/models/facility:cloud/models/facility',
+          './shared/js/models/service:cloud/models/service',
+          './shared/js/models/hours:cloud/models/hours',
+          './shared/js/lib/categories:cloud/lib/categories'
         ]}
       }
     },
