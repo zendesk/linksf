@@ -20,6 +20,7 @@
     "grunt-sass": "^0.17.0",
     "grunt-shell": "^1.1.1",
     "grunt-simple-mocha": "~0.4.0",
+    "handlebars": "~2.0.0",
     "hbsfy": "~2.2.1",
     "localStorage": "~1.0.3",
     "should": "~4.4.2",

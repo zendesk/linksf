@@ -1,4 +1,4 @@
-var Handlebars = require('handlebars-runtime');
+var Handlebars = require('hbsfy/runtime');
 Handlebars.registerHelper('ifMultiple', function(collection, options) {
   if(collection.length > 1) {
     return options.fn(this);

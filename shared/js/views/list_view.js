@@ -345,6 +345,6 @@ var ListView = Backbone.View.extend({
 });
 
 
-ListView.CATEGORIES = require('../lib/categories');
+ListView.CATEGORIES = require('cloud/lib/categories');
 
 module.exports = ListView;
