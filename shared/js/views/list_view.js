@@ -272,19 +272,17 @@ var ListView = Backbone.View.extend({
       sort = 'name';
     }
 
-    if ($.fn.switchify) {
-      var switches = [{selector: '#sort-toggle', val: sort},
-                      {selector: '#open-toggle', val: currentParams.filter.open ? 'yes' : 'no'}];
+    var switches = [{selector: '#sort-toggle', val: sort},
+                    {selector: '#open-toggle', val: currentParams.filter.open ? 'yes' : 'no'}];
 
-      switches.forEach(function(sw) {
-        if ( this.$(sw.selector).length > 0 ) {
-          this.$(sw.selector)
-            .val(sw.val)
-            .switchify()
-            .data('switch').bind('switch:slide-complete', this.filterToggle.bind(this));
-        }
-      }.bind(this));
-    }
+    switches.forEach(function(sw) {
+      if ( this.$(sw.selector).length > 0 ) {
+        this.$(sw.selector)
+          .val(sw.val)
+          .switchify()
+          .data('switch').bind('switch:slide-complete', this.filterToggle.bind(this));
+      }
+    }.bind(this));
   },
 
   deepToJson: function(collection) {
