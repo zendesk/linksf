@@ -1,6 +1,6 @@
-var Service             = require('../../../shared/js/models/service'),
-    Hours               = require('../../../shared/js/models/hours'),
-    fetchLocation       = require('../../../shared/js/lib/fetch_location');
+var Service       = require('cloud/models/service'),
+    Hours         = require('cloud/models/hours'),
+    fetchLocation = require('../../../shared/js/lib/fetch_location');
 
 function modelSaveFailCallback() {
   this.$("#facilitySaveError").show().focus();

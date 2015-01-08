@@ -71,8 +71,16 @@ module.exports = function(grunt) {
 
     browserify: {
       options: {transform: ['hbsfy']},
-      app: {src: 'app/js/app.js', dest: 'tmp/app.js'},
-      admin: {src: 'admin/js/admin.js', dest: 'tmp/admin.js'}
+      app: {src: 'app/js/app.js', dest: 'tmp/app.js',
+        options: {aliasMappings: [
+          {cwd: 'shared/js', src: '**/*.js', dest: 'cloud' }
+        ]}
+      },
+      admin: {src: 'admin/js/admin.js', dest: 'tmp/admin.js',
+        options: {aliasMappings: [
+          {cwd: 'shared/js', src: '**/*.js', dest: 'cloud' }
+        ]}
+      }
     },
 
     cssmin: {

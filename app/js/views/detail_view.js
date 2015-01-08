@@ -1,6 +1,6 @@
 var Features          = require('../lib/features'),
     Analytics         = require('../../../shared/js/lib/analytics'),
-    Hours             = require('../../../shared/js/models/hours'),
+    Hours             = require('cloud/models/hours'),
     fetchLocation     = require('../../../shared/js/lib/fetch_location'),
     calculateDistance = require('../../../shared/js/lib/distance').calculateDistance;
 

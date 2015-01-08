@@ -75,7 +75,7 @@ var FilterView = Backbone.View.extend({
     var distanceDisabled = this.options.currentLocation ? false : 'disabled';
 
     this.$el.html(this.template({
-      categories:       require('../../../shared/js/lib/categories'),
+      categories:       require('cloud/lib/categories'),
       filter:           true,
       distanceDisabled: distanceDisabled
     }));

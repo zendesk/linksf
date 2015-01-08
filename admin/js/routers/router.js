@@ -3,7 +3,7 @@
 var AdminListView         = require('../views/list_view'),
     EditView              = require('../views/edit_view'),
     LoginView             = require('../views/login_view'),
-    Facility              = require('../../../shared/js/models/facility'),
+    Facility              = require('cloud/models/facility'),
     Query                 = require('../../../shared/js/lib/query'),
     BaseController        = require('../../../shared/js/lib/base_controller'),
     applicationController = new BaseController({ el: '#linksf' }),
