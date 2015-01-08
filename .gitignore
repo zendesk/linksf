@@ -1,7 +1,6 @@
 /node_modules
 /build/*
 /tmp/*
-/.sass-cache
 /.env*
 /server/config/global.json
 /server/cloud/cloud/feedback.js
