@@ -1,4 +1,4 @@
-var Facility = require('../models/facility');
+var Facility = require('cloud/models/facility');
 
 var findByFilter = function(params) {
   var deferred = $.Deferred();

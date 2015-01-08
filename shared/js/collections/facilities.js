@@ -1,4 +1,4 @@
-var Facility = require('../models/facility');
+var Facility = require('cloud/models/facility');
 var instance;
 
 var Facilities = Parse.Collection.extend({

@@ -1,5 +1,5 @@
 require('./lib/shim_bind');
-var Handlebars = require('handlebars-runtime');
+var Handlebars = require('hbsfy/runtime');
 
 Handlebars.registerPartial('filterCategories',    require('../../shared/js/templates/_filter_categories.hbs'));
 Handlebars.registerPartial('openHours',           require('../../shared/js/templates/_open_hours.hbs'));

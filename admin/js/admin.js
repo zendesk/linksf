@@ -1,4 +1,4 @@
-var Handlebars = require('handlebars-runtime');
+var Handlebars = require('hbsfy/runtime');
 
 Handlebars.registerPartial('editService',      require('./templates/_edit_service.hbs'));
 Handlebars.registerPartial('editServiceHours', require('./templates/_edit_service_hours.hbs'));
