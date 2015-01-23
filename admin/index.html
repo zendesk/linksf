@@ -6,18 +6,9 @@
     <title>Link-SF</title>
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="<%= adminCss %>">
-    <script>
-      var config = {
-        parseAppId: '<%= parseAppId %>',
-        parseJsKey: '<%= parseJsKey %>'
-      };
-    </script>
   </head>
 
   <body>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDdHRnaDD-_z2aNUqyxxCoRBAf6PWZjS4&sensor=true&libraries=geometry"></script>
-    <script src="<%= adminJs %>"></script>
-
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -34,5 +25,13 @@
     </div>
 
     <div id="linksf"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDdHRnaDD-_z2aNUqyxxCoRBAf6PWZjS4&sensor=true&libraries=geometry"></script>
+    <script>
+      var config = {
+        parseAppId: '<%= parseAppId %>',
+        parseJsKey: '<%= parseJsKey %>'
+      };
+    </script>
+    <script src="<%= adminJs %>"></script>
   </body>
 </html>

@@ -24,12 +24,9 @@
       ga('create', config.gaToken, config.gaHost);
       ga('send', 'pageview');
     </script>
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDdHRnaDD-_z2aNUqyxxCoRBAf6PWZjS4&sensor=true&libraries=geometry"></script>
   </head>
 
   <body>
-    <script src="<%= appJs %>"></script>
     <nav role="navigation">
       <div>
         <div class="nav-container">
@@ -44,5 +41,7 @@
       <a title="Provide feedback about Link-SF" href="#/feedback">Feedback</a>&nbsp;&nbsp;
       <a title="More information about Link-SF" href="#/about">About</a>
     </footer>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDdHRnaDD-_z2aNUqyxxCoRBAf6PWZjS4&sensor=true&libraries=geometry"></script>
+    <script src="<%= appJs %>"></script>
   </body>
 </html>
