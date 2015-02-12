@@ -1,7 +1,9 @@
 {
   "name": "Link-SF",
   "version": "v0.0.1",
-  "engines": {},
+  "engines": {
+    "node" : ">=0.10.3 <0.12"
+  },
   "devDependencies": {
     "grunt-autoprefixer": "^2.1.0",
     "grunt-aws-s3": "^0.10.0",
