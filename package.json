@@ -2,6 +2,18 @@
   "name": "Link-SF",
   "version": "v0.0.1",
   "engines": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/zendesk/linksf.git"
+  },
+  "license": "Apache-2.0",
+  "contributors": [
+    { "name": "Benjamin Osheroff" },
+    { "name": "Igor Justino de Souza" },
+    { "name": "Rose Trujillo" },
+    { "name": "Shajith Chacko" },
+    { "name": "Kenshiro Nakagawa" }
+  ],
   "devDependencies": {
     "grunt-autoprefixer": "^2.1.0",
     "grunt-aws-s3": "^0.10.0",
