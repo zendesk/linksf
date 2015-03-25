@@ -21,7 +21,7 @@ The following accounts are optional:
 
 ### Command line tools
 
-To build the site (turn a file tree into a monolithic html, js, and css file), you'll need some command line tools installed:
+To build the site (turn a file tree into a monolithic html, js, and css file), you'll need some command line tools installed from the sites below:
 
 * [node](http://nodejs.org/)
 * [grunt](http://gruntjs.com/)
