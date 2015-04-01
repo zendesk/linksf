@@ -29,7 +29,7 @@
     "grunt-contrib-watch": "~0.6.1",
     "grunt-env": "0.4.2",
     "grunt-preprocess": "^4.1.0",
-    "grunt-sass": "^0.17.0",
+    "grunt-sass": "^0.18.1",
     "grunt-shell": "^1.1.1",
     "grunt-simple-mocha": "~0.4.0",
     "handlebars": "~2.0.0",
