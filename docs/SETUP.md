@@ -10,6 +10,33 @@ Link-SF is designed to be free to setup and free to run in perpetuity. Since hos
 
 * [Parse](https://parse.com/#signup)
 
+* If you are on OS X 10.10 the Parse CLI tools may not be installed in their documented fashion. Alternatively the following may be copied into a text editor:
+
+```
+#!/bin/bash
+
+TMP_FILE=/tmp/parse.tmp
+if [ -e /tmp/parse.tmp ]; then
+echo "Cleaning up from previous install failure"
+rm -f /tmp/parse.tmp
+fi
+echo "Fetching latest version ..."
+curl --progress-bar https://www.parse.com/downloads/cloud_code/parse -o /tmp/parse.tmp
+if [ ! -d /usr/local/bin ]; then
+echo "Making /usr/local/bin"
+mkdir -p /usr/local/bin
+fi
+echo "Installing ..."
+mv /tmp/parse.tmp /usr/local/bin/parse
+chmod 755 /usr/local/bin/parse
+```
+
+Call the file ```install.sh``` (or be creative, whatevs) and execute:
+
+```
+$ bash install.sh
+```
+
 If you want to deploy the site publicly, S3 gives us free file hosting:
 
 * [Amazon Web Services](http://aws.amazon.com/s3/?nc1=h_l2_sc)
