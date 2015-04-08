@@ -105,6 +105,10 @@
     span {
       color: #777;
     }
+    &:first-of-type {
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px; 
+    }
   }
 
   .call-info {
