@@ -9,7 +9,7 @@ although really any old hosting provider could do.
 
 First, setup your `.env.dev` and `.env.prod` file as described in the 'Secrets' section of SETUP.md.
 
-Make a copy of the `s3.json.example` file (stripping off the `.example`) nand replace with your Amazon S3 tokens. This will get you going with the credentials needed to push to S3.
+Make a copy of the `s3.json.example` file (stripping off the `.example`) and replace with your Amazon S3 tokens (use the [`region` found here](https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region)). This will get you going with the credentials needed to push to S3.
 
 Next, download the parse command line tools as described here: https://parse.com/docs/cloud_code_guide
 
