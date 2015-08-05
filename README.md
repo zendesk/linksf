@@ -18,6 +18,8 @@ Link-SF is an ongoing collaboration between the [Tenderloin Technology Lab](http
 
 ### History
 
+https://vimeo.com/87203260
+
 The Tenderloin Technology Lab serves many low-income residents that are looking for web access. One of the trends in recent years has been that a significant percentage of users (40% as of February 2014, up from 33% the previous year) have access to smartphones. Low-income households especially are increasingly reliant on smartphones - 45% of smartphone-owning <30k households use mobile web as their primary device for internet access vs 27% of >75k households. Web access and literacy is crucial for job or housing applications, as well as family and social networks.
 
 Link-SF is a mobile web app designed to give this growing community of smartphone users instant access to relevant services on the go by surfacing crucial information like open hours, phone numbers, and Google Maps directions.
