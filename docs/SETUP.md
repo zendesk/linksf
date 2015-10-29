@@ -16,18 +16,18 @@ Link-SF is designed to be free to setup and free to run in perpetuity. Since hos
 #!/bin/bash
 
 TMP_FILE=/tmp/parse.tmp
-if [ -e /tmp/parse.tmp ]; then
+if [ -e $TMP_FILE ]; then
 echo "Cleaning up from previous install failure"
-rm -f /tmp/parse.tmp
+rm -f $TMP_FILE
 fi
 echo "Fetching latest version ..."
-curl --progress-bar https://www.parse.com/downloads/cloud_code/parse -o /tmp/parse.tmp
+curl --progress-bar https://www.parse.com/downloads/cloud_code/parse -o $TMP_FILE
 if [ ! -d /usr/local/bin ]; then
 echo "Making /usr/local/bin"
 mkdir -p /usr/local/bin
 fi
 echo "Installing ..."
-mv /tmp/parse.tmp /usr/local/bin/parse
+mv $TMP_FILE /usr/local/bin/parse
 chmod 755 /usr/local/bin/parse
 ```
 
