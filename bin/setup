@@ -1,7 +1,11 @@
 #!env bash
 
-PARSE_APP_ID=FILL_ME_IN
-PARSE_MASTER_KEY=FILL_ME_IN
+echo "We need your Parse credentials in order to set up your database."
+echo "Find them at https://www.parse.com/apps/YOUR_APP_NAME/edit#keys"
+
+read -p "Please enter your Parse app id: " PARSE_APP_ID
+read -p "Please enter your Parse master key: " PARSE_MASTER_KEY
+
 USERNAME="testuser"
 PASSWORD="password"
 
