@@ -2,7 +2,7 @@
     "applications": {
         "<%= parseAppName %>": {
             "applicationId": "<%= parseAppId %>",
-            "masterKey": "<%= parseMasterKey %>"
+            "masterKey": ""
         },
         "_default": {
           "link": "<%= parseAppName %>"
