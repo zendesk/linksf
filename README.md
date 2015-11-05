@@ -11,7 +11,7 @@ Documentation is available under `docs` for offline viewing or via links below:
 * [Setup](https://github.com/zendesk/linksf/blob/master/docs/SETUP.md)
 * [Design](https://github.com/zendesk/linksf/blob/master/docs/DESIGN.md)
 * [Deploy](https://github.com/zendesk/linksf/blob/master/docs/DEPLOY.md)
-* [Adding an admin user in Parse](https://github.com/zendesk/linksf/blob/master/docs/ADD_USER.md)
+* [Securing Parse](https://github.com/zendesk/linksf/blob/master/docs/PARSE_SECURITY.md)
 * [Managing facilities and services](https://github.com/zendesk/linksf/blob/master/docs/MANAGE.md)
 
 Link-SF is an ongoing collaboration between the [Tenderloin Technology Lab](http://www.tenderlointechnologylab.org/) and [Zendesk, Inc](http://www.zendesk.com/).
