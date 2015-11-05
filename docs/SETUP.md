@@ -60,8 +60,7 @@ Keep your `.env.dev` and `.env.prod` files secret (out of source control, etc).
 
 From the project root (and with the command line tools outlined above installed):
 
-1. `npm install`
-1. `grunt`
+1. `./bin/setup`
 1. `grunt parse:deploy:dev`
 1. `open build/index.html`
 
