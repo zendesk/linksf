@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# todo: load in `.env` file,
+# check for existence of PARSE_APP_ID and PARSE_MASTER_KEY
+bin/setup_parse
+
+# todo: check for existence of `npm`
+npm install
+
+# todo: check for existence of `grunt`
+grunt

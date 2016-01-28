@@ -1,0 +1,37 @@
+#!/bin/bash
+
+echo "We need your Parse credentials in order to set up your database."
+echo "Find them at https://www.parse.com/apps/YOUR_APP_NAME/edit#keys"
+
+read -p "Please enter your Parse app id: " PARSE_APP_ID
+read -p "Please enter your Parse master key: " PARSE_MASTER_KEY
+
+USERNAME="testuser"
+PASSWORD="password"
+
+function request_parse() {
+  REQUEST_PATH=$1;
+  REQUEST_DATA=$2;
+
+  curl -X POST \
+    -H "X-Parse-Application-Id: $PARSE_APP_ID" \
+    -H "X-Parse-Master-Key: $PARSE_MASTER_KEY" \
+    -H "Content-Type: application/json" \
+    -d "$REQUEST_DATA" https://api.parse.com/1/$REQUEST_PATH
+}
+
+echo
+echo 'Creating `Facility` Class'
+request_parse '/schemas/Facility' '{ "className": "Facility" }'
+echo
+
+echo 'Creating `Service` Class'
+request_parse '/schemas/Service' '{ "className": "Service" }'
+echo
+
+echo "Creating user with credentials:"
+echo "Username: '$USERNAME'"
+echo "Password: '$PASSWORD'"
+
+request_parse '/users' "{\"username\":\"$USERNAME\",\"password\":\"$PASSWORD\"}"
+echo
