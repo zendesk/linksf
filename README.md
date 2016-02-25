@@ -1,5 +1,8 @@
 ## Link-SF [![Build Status](https://travis-ci.org/zendesk/linksf.svg?branch=master)](https://travis-ci.org/zendesk/linksf) [![Code Climate](https://codeclimate.com/github/zendesk/linksf.png)](https://codeclimate.com/github/zendesk/linksf)
 
+### Open Referral Transition
+This version of linksf is currently undergoing a data model transition to be HSDS compliant.
+
 http://link-sf.com
 
 A mobile website designed to connect those in need in San Francisco to the services that can help them, on their own terms.
