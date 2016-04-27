@@ -1,0 +1,10 @@
+.btn {
+  @include gray-button;
+  cursor: pointer;
+  padding: 10px 0;
+  width: 100%;
+}
+
+i.category-icon {
+  margin: 5px 10px;
+}
