@@ -1,0 +1,5 @@
+{
+  "private": true,
+  "name": "ServiceList",
+  "main": "./ServiceList.js"
+}

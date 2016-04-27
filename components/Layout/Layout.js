@@ -4,9 +4,9 @@
  * Copyright (c) Konstantin Tarkus (@koistya) | MIT license
  */
 
-import React, { PropTypes } from 'react';
-import './Layout.scss';
-import Navigation from '../Navigation';
+import React, { PropTypes } from 'react'
+import './Layout.scss'
+import Navigation from '../Navigation'
 
 function Layout({ children }) {
   return (
@@ -16,11 +16,11 @@ function Layout({ children }) {
         {children}
       </div>
     </div>
-  );
+  )
 }
 
 Layout.propTypes = {
   children: PropTypes.element.isRequired,
-};
+}
 
-export default Layout;
+export default Layout

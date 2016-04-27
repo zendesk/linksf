@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import './root.scss';
-import CategoryList from './../components/CategoryList';
+import React, { Component } from 'react'
+import './root.scss'
+import CategoryList from './../components/CategoryList'
 
 export default class extends Component {
   render() {
@@ -11,6 +11,6 @@ export default class extends Component {
           <CategoryList />
         </form>
       </div>
-    );
+    )
   }
 }

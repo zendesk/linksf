@@ -1,6 +1,6 @@
-import React, { PropTypes } from 'react';
-import './Category.scss';
-import Link from '../Link';
+import React, { PropTypes } from 'react'
+import './Category.scss'
+import Link from '../Link'
 
 const category = (props) => (
   <Link to="/">
@@ -11,11 +11,11 @@ const category = (props) => (
       </div>
     </button>
   </Link>
-);
+)
 
 category.propTypes = {
   name: PropTypes.string.isRequired,
   iconClass: PropTypes.string.isRequired,
-};
+}
 
-export default category;
+export default category

@@ -5,6 +5,8 @@
   },
   "rules": {
     "react/jsx-quotes": 0,
-    "jsx-quotes": [2, "prefer-double"]
+    "jsx-quotes": [2, "prefer-double"],
+    "semi": [2, "never"],
+    "comma-dangle": [1, "always-multiline"],
   }
 }

@@ -4,9 +4,9 @@
  * Copyright (c) Konstantin Tarkus (@koistya) | MIT license
  */
 
-import React, { PropTypes } from 'react';
-import GoogleAnalytics from '../GoogleAnalytics';
-import config from '../../config';
+import React, { PropTypes } from 'react'
+import GoogleAnalytics from '../GoogleAnalytics'
+import config from '../../config'
 
 function Html({ title, description, body, debug }) {
   return (
@@ -26,7 +26,7 @@ function Html({ title, description, body, debug }) {
         <GoogleAnalytics />
       </body>
     </html>
-  );
+  )
 }
 
 Html.propTypes = {
@@ -34,6 +34,6 @@ Html.propTypes = {
   description: PropTypes.string,
   body: PropTypes.string.isRequired,
   debug: PropTypes.bool.isRequired,
-};
+}
 
-export default Html;
+export default Html

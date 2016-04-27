@@ -1,5 +1,5 @@
 {
   "private": true,
-  "name": "Category",
-  "main": "./Category.js"
+  "name": "FilterBar",
+  "main": "./FilterBar.js"
 }

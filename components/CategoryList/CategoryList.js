@@ -1,6 +1,6 @@
-import React from 'react';
-import './CategoryList.scss';
-import Category from '../Category';
+import React from 'react'
+import './CategoryList.scss'
+import Category from '../Category'
 
 const categories = [
   { name: 'icon-home', 'icon': 'Shelter'},
@@ -8,7 +8,7 @@ const categories = [
   { name: 'icon-plus', 'icon': 'Medical'},
   { name: 'icon-droplet', 'icon': 'Hygiene'},
   { name: 'icon-desktop', 'icon': 'Technology'},
-];
+]
 
 export default () => (
   <ul title="Services" className="categories btn-group">
@@ -18,4 +18,4 @@ export default () => (
       </li>
     ))}
   </ul>
-);
+)
