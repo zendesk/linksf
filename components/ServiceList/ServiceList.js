@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react'
 
-const category = (props) => (
-  <div>filters</div>
+const services = () => (
+  <div>hey</div>
 )
 
-category.propTypes = {
+services.propTypes = {
   name: PropTypes.string.isRequired,
   iconClass: PropTypes.string.isRequired,
 }
 
-export default category
+export default services
