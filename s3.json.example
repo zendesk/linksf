@@ -1,7 +1,0 @@
-{
-  "accessKeyId": "xxxxxxx",
-  "secretAccessKey": "xxxxxxx",
-  "region": "xxxxxxx",
-  "devBucket": "xxxxxxx",
-  "prodBucket": "xxxxxxx"
-}
