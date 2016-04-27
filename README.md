@@ -11,7 +11,11 @@ Link-SF is a single page Backbone.js application using [Parse](https://parse.com
 
 Documentation is available under `docs` for offline viewing or via links below:
 
-* [Setup](https://github.com/zendesk/linksf/blob/master/docs/SETUP.md)
+~~* [Setup](https://github.com/zendesk/linksf/blob/master/docs/SETUP.md)~~
+New setup:
+`npm i`
+`npm start`
+
 * [Design](https://github.com/zendesk/linksf/blob/master/docs/DESIGN.md)
 * [Deploy](https://github.com/zendesk/linksf/blob/master/docs/DEPLOY.md)
 * [Adding an admin user in Parse](https://github.com/zendesk/linksf/blob/master/docs/ADD_USER.md)
