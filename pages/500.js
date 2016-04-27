@@ -4,13 +4,13 @@
  * Copyright (c) Konstantin Tarkus (@koistya) | MIT license
  */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react'
 
 export default class extends Component {
 
   static propTypes = {
     error: PropTypes.instanceOf(Error),
-  };
+  }
 
   render() {
     return (
@@ -22,7 +22,7 @@ export default class extends Component {
             'A critical error occurred.'
         }</pre>
       </div>
-    );
+    )
   }
 
 }

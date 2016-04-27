@@ -4,13 +4,13 @@
  * Copyright (c) Konstantin Tarkus (@koistya) | MIT license
  */
 
-import path from 'path';
-import webpack from 'webpack';
-import merge from 'lodash.merge';
+import path from 'path'
+import webpack from 'webpack'
+import merge from 'lodash.merge'
 
-const DEBUG = !process.argv.includes('release');
-const VERBOSE = process.argv.includes('verbose');
-const WATCH = global.watch;
+const DEBUG = !process.argv.includes('release')
+const VERBOSE = process.argv.includes('verbose')
+const WATCH = global.watch
 const AUTOPREFIXER_BROWSERS = [
   'Android 2.3',
   'Android >= 4',
@@ -20,7 +20,7 @@ const AUTOPREFIXER_BROWSERS = [
   'iOS >= 7',
   'Opera >= 12',
   'Safari >= 7.1',
-];
+]
 const JS_LOADER = {
   test: /\.jsx?$/,
   include: [
@@ -31,7 +31,7 @@ const JS_LOADER = {
     path.resolve(__dirname, '../config.js'),
   ],
   loader: 'babel-loader',
-};
+}
 
 
 // Base configuration
@@ -88,9 +88,9 @@ const config = {
       require('autoprefixer')({
         browsers: AUTOPREFIXER_BROWSERS,
       }),
-    ];
+    ]
   },
-};
+}
 
 // Configuration for the client-side bundle
 const appConfig = merge({}, config, {
@@ -149,7 +149,7 @@ const appConfig = merge({}, config, {
       },
     ],
   },
-});
+})
 
 // Configuration for server-side pre-rendering bundle
 const pagesConfig = merge({}, config, {
@@ -181,6 +181,6 @@ const pagesConfig = merge({}, config, {
       },
     ],
   },
-});
+})
 
-export default [appConfig, pagesConfig];
+export default [appConfig, pagesConfig]

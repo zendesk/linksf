@@ -4,18 +4,18 @@
  * Copyright (c) Konstantin Tarkus (@koistya) | MIT license
  */
 
-import browserSync from 'browser-sync';
-import webpack from 'webpack';
-import hygienistMiddleware from 'hygienist-middleware';
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
+import browserSync from 'browser-sync'
+import webpack from 'webpack'
+import hygienistMiddleware from 'hygienist-middleware'
+import webpackDevMiddleware from 'webpack-dev-middleware'
+import webpackHotMiddleware from 'webpack-hot-middleware'
 
-global.watch = true;
-const webpackConfig = require('./webpack.config')[0];
-const bundler = webpack(webpackConfig);
+global.watch = true
+const webpackConfig = require('./webpack.config')[0]
+const bundler = webpack(webpackConfig)
 
 export default async () => {
-  await require('./build')();
+  await require('./build')()
 
   browserSync({
     server: {
@@ -47,5 +47,5 @@ export default async () => {
       'build/**/*.css',
       'build/**/*.html',
     ],
-  });
-};
+  })
+}
