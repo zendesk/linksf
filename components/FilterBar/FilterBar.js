@@ -1,12 +1,25 @@
-import React, { PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react'
+import Toggle from '../Toggle'
+import Button from '../Button'
 
-const category = (props) => (
-  <div>filters</div>
-)
-
-category.propTypes = {
-  name: PropTypes.string.isRequired,
-  iconClass: PropTypes.string.isRequired,
+class FilterBar extends Component {
+  render() {
+    return (
+      <div>
+        <label>
+          <Toggle />
+          <span>Sort by</span>
+        </label>
+        <label>
+            <Toggle />
+            <span>Open now</span>
+        </label>
+        <Button>OPTIONS</Button>
+    </div>
+    )
+  }
 }
 
-export default category
+FilterBar.propTypes = {}
+
+export default FilterBar
