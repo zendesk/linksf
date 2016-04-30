@@ -1,0 +1,5 @@
+{
+  "private": true,
+  "name": "ServiceRow",
+  "main": "./ServiceRow.js"
+}
