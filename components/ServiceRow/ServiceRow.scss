@@ -1,3 +1,44 @@
-.row {
+.service {
   display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #DCDCDC;
+  font-size: 15px;
+  padding: 10px 4px;
+}
+
+.serviceLink {
+  text-decoration: none;
+  color: #000;
+  display: block;
+}
+
+.serviceText {
+  margin: 4px 4px 4px 0;
+}
+
+.serviceIcon {
+  color: #909090;
+}
+
+.serviceName {
+  margin: 5px 0 3px 0;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.serviceInfo {
+  font-size: 13px;
+  margin-top: 15px;
+}
+
+.serviceDistance {
+  color: #c3c3c3;
+  margin: 4px 0;
+  text-align: right;
+}
+
+.categoryIcons {
+  margin-bottom: 7px;
+  display: inline-block;
 }
