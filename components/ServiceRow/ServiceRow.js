@@ -1,11 +1,12 @@
 import React, { PropTypes } from 'react'
 import './ServiceRow.scss'
 
+import Link from '../Link'
 import ServiceStatus from '../ServiceStatus'
 
 const ServiceRow = (props) => (
   <li className="service">
-      <a href="/" className="serviceLink" title={`Click to see more details about ${props.name}`}>
+      <Link to={`/services/detail/${props.id}`} className="serviceLink" title={`Click to see more details about ${props.name}`}>
         <div>
           <div>
             <p className="serviceName">{props.name}</p>
@@ -21,7 +22,7 @@ const ServiceRow = (props) => (
             <i className="icon-right-open-2 chevron"></i>
           </div>
         </div>
-      </a>
+      </Link>
     </li>
 )
 

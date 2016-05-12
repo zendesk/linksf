@@ -1,6 +1,6 @@
-import React, { PropTypes } from 'react'
-import './ServiceList.scss'
-import ServiceRow from '../ServiceRow'
+import React, { Component } from 'react'
+import './root.scss'
+import Service from './../components/Service'
 
 const services = [
   {
@@ -107,15 +107,15 @@ const services = [
   },
 ]
 
-const ServiceList = () => (
-  <div className="column">
-    {services.map(ServiceRow)}
-  </div>
-)
 
-ServiceList.propTypes = {
-  name: PropTypes.string.isRequired,
-  iconClass: PropTypes.string.isRequired,
+export default class extends Component {
+  render() {
+    console.log(this.props)
+    const { serviceId } = this.props
+    return (
+      <div className="root">
+        <Service service={services[serviceId]} />
+      </div>
+    )
+  }
 }
-
-export default ServiceList
