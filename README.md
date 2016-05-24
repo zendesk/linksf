@@ -3,6 +3,10 @@
 ### Open Referral Transition
 This version of linksf is currently undergoing a data model transition to be HSDS compliant.
 
+#### [In Active Development] Current Boilerplate
+
+Project structure based on https://github.com/koistya/react-static-boilerplate
+
 http://link-sf.com
 
 A mobile website designed to connect those in need in San Francisco to the services that can help them, on their own terms.

@@ -110,7 +110,6 @@ const services = [
 
 export default class extends Component {
   render() {
-    console.log(this.props)
     const { serviceId } = this.props
     return (
       <div className="root">
