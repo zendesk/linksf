@@ -5,7 +5,7 @@
  */
 
 export default {
-  title: 'React Static Boilerplate',
-  description: 'Static website generator for React.js web applications.',
+  title: 'Link-SF',
+  description: 'San Francisco website that connects homeless and low-income residents with critical and life-saving resources',
   googleAnalyticsId: 'UA-XXXXX-X',
 }

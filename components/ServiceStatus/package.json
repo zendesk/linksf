@@ -1,0 +1,5 @@
+{
+  "private": true,
+  "name": "ServiceStatus",
+  "main": "./ServiceStatus.js"
+}
