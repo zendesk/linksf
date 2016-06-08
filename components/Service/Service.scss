@@ -40,9 +40,27 @@
 
 .inset-call {
   margin: 20px 0 0 0;
-  border-radius: 6px;
+  border-radius: 6px 6px 0 0;
   border: 1px solid #DDD;
   padding: 14px;
+}
+
+.inset-website {
+  margin: -1px 0 0 0;
+  border: 1px solid #DDD;
+  padding: 14px;
+}
+
+.inset-directions {
+  cursor: pointer;
+  margin: -1px 0 1px 0;
+  border-radius: 0 0 6px 6px;
+  border: 1px solid #DDD;
+  padding: 14px;
+}
+
+.contact-label {
+  font-weight: 700;
 }
 
 .services-list {
@@ -61,6 +79,7 @@
 }
 
 .service-title {
+  margin-top: 0;
   color: #666;
   font-size: 18px;
   font-weight: 400;

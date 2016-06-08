@@ -22,13 +22,14 @@ const Service = (props) => {
           <p className="address">1049 Howard St</p>
         </div>
         <div className="inset-call">
-          Call 867-5309
+          <label className="contact-label">Call </label>
+          <span>867-5309</span>
         </div>
-        <div className="inset">
-          Website http://www.zendesk.com
+        <div className="inset-website">
+          <label className="contact-label">Website</label> http://www.zendesk.com
         </div>
-        <div className="inset">
-          Directions
+        <div className="inset-directions">
+          <label className="contact-label">Directions</label>
         </div>
         <ul title="Services details" className="services-list">
           <li className="inset-services">
