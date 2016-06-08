@@ -6,9 +6,9 @@ const Service = (props) => {
     return (
       <div>
         <div className="inset">
-          {service.name}
+          service
         </div>
-        {service.description}
+        description
       </div>
     )
   }
