@@ -1,5 +1,28 @@
+.service {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 18px;
+  color: #666;
+  font-weight: 400;
+}
+
 .inset {
   border-radius: 6px;
   border: 1px solid #DDD;
   padding: 14px;
+}
+
+.inset-map {
+  text-align: left;
+  height: 182px;
+  border: 1px solid #DDD;
+  box-sizing: border-box;
+  margin-bottom: 1px;
+  border-radius: 6px;
+  margin: 20px 0 1px 0;
+  padding: 0;
 }
