@@ -17,9 +17,9 @@ const Service = (props) => {
         </div>
         <div className="inset-map">
           <GoogleMap />
-          <p>1049 Howard St</p>
+          <p className="address">1049 Howard St</p>
         </div>
-        
+
       </div>
     )
 }
