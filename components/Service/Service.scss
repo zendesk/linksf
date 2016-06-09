@@ -57,10 +57,30 @@
   border-radius: 0 0 6px 6px;
   border: 1px solid #DDD;
   padding: 14px;
+  background-color: #fff;
+  width: 100%;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.directions-label {
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 14px;
 }
 
 .contact-label {
   font-weight: 700;
+}
+
+.call-phone {
+  color: #777;
+}
+
+.website-url {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: #777;
 }
 
 .services-list {
