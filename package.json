@@ -1,7 +1,10 @@
 {
   "name": "Link-SF",
   "version": "v0.0.1",
-  "engines": {},
+  "engines": {
+    "node": "~0.12.0",
+    "npm": "^2.0"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/zendesk/linksf.git"
