@@ -51,7 +51,7 @@ The following accounts are optional:
 To build the site (turn a file tree into a monolithic html, js, and css file), you'll need some command line tools installed from the sites below:
 
 * [node](http://nodejs.org/)
-* [grunt](http://gruntjs.com/)
+* [grunt-cli](http://gruntjs.com/)
 * [parse](https://www.parse.com/docs/cloud_code_guide)
 
 ## Development
