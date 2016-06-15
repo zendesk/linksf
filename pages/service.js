@@ -15,7 +15,8 @@ const services = [
     locationId: 0,
     name: 'UCSF Alliance Health Project',
     organization: 0,
-    physicalAddress: 0,
+    phone: '914-869-5309',
+    physicalAddress: '1019 Market St',
     regularSchedules: [
       {
         closesAt: 1500,
@@ -58,7 +59,7 @@ const services = [
         weekday: 'Friday',
       },
     ],
-    taxonomy: 'food',
+    taxonomy: 'Hygiene',
     updatedAt: 'now',
     url: 'http://sfcool.com',
   },
@@ -74,7 +75,8 @@ const services = [
     locationId: 1,
     name: 'Zendesk Project Dos',
     organization: 1,
-    physicalAddress: 1,
+    phone: '914-867-5309',
+    physicalAddress: '1019 Charket Dr',
     regularSchedules: [
       {
         closesAt: 1600,
@@ -101,7 +103,7 @@ const services = [
         weekday: 'Thursday',
       },
     ],
-    taxonomy: 'food',
+    taxonomy: 'Shelter',
     updatedAt: 'now',
     url: 'http://google.com',
   },
@@ -111,9 +113,10 @@ const services = [
 export default class extends Component {
   render() {
     const { serviceId } = this.props
+    const service = services[serviceId]
     return (
       <div className="root">
-        <Service service={services[serviceId]} />
+        <Service service={service} />
       </div>
     )
   }
