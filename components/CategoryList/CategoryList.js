@@ -5,7 +5,7 @@ import Category from '../Category'
 const CategoryList = (props) => (
   <ul title="Services" className="categories btn-group">
     {props.categories.map((category, index) => (
-      <li key={index} className="unselectable">
+      <li key={`category-${index}`} className="unselectable">
         <Category iconClass={category.icon} name={category.name} />
       </li>
     ))}
