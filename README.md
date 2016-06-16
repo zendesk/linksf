@@ -25,3 +25,8 @@ The Tenderloin Technology Lab serves many low-income residents that are looking 
 Link-SF is a mobile web app designed to give this growing community of smartphone users instant access to relevant services on the go by surfacing crucial information like open hours, phone numbers, and Google Maps directions.
 
 Contact us at linksf@zendesk.com.
+
+### Note
+In January 2016, Facebook [announced](http://blog.parse.com/announcements/moving-on/) the impending shutdown of the Parse service. Since that time, our team has been working on creating a new solution for all instances of the Link-SF project that does not rely on Parse. Our secondary mission for Version 2 is to support data which is in the [OpenReferral format](https://openreferral.org/) and inspired by the [Ohana API](https://github.com/codeforamerica/ohana-api). 
+
+This current work can be found in the [open-referral](https://github.com/zendesk/linksf/tree/open-referral) branch of this project. We aim to have everything in place to give current users of Link-SF a smooth way to transition to the new platform without losing data before Parse shuts down. If you would like to use the original version before the release of the second one, you will need to set up your own [Parse server](https://github.com/ParsePlatform/parse-server/wiki/Parse-Server-Guide) and please note that we are not presently developing the master branch of this project. Contact us at linksf@zendesk.com if you need assistance during this interim.
