@@ -5,6 +5,13 @@
   </div>
   <form id="facilityForm" class="form-horizontal">
     <div class="control-group">
+      <label class="control-label" for="name">Last updated</label>
+      <div class="controls">
+        <input class="hasPopover" disabled=true type="text" name="updated_at" value="{{updatedAt}}" data-trigger="hover" data-content="This is the timestamp of the last time this facility was updated.">
+      </div>
+    </div>
+
+    <div class="control-group">
       <label class="control-label" for="name">Facility Name</label>
       <div class="controls">
         <input class="required" type="text" name="name" value="{{name}}">
