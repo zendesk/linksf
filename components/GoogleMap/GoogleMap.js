@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react'
-import './GoogleMap.scss'
 
 import { GoogleMapLoader, GoogleMap, Marker } from 'react-google-maps'
 

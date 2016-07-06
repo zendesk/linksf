@@ -1,0 +1,16 @@
+.btn {
+  background-color: white;
+  background-image: linear-gradient(white, #ebebeb);
+  border: 1px solid #bababa;
+  border-radius: 4px;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+  padding: 10px 0;
+  width: 100%;
+}
+
+.category-icon {
+  margin: 5px 10px;
+}
