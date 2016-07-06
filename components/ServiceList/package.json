@@ -1,0 +1,6 @@
+{
+  "name": "ServiceList",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./ServiceList.js"
+}

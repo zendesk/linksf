@@ -6,3 +6,4 @@
 /server/cloud/lib/feedback.js
 /test/acceptance/app.html
 /s3.json
+.DS_Store

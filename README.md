@@ -1,5 +1,12 @@
 ## Link-SF [![Build Status](https://travis-ci.org/zendesk/linksf.svg?branch=master)](https://travis-ci.org/zendesk/linksf) [![Code Climate](https://codeclimate.com/github/zendesk/linksf.png)](https://codeclimate.com/github/zendesk/linksf)
 
+### Open Referral Transition
+This version of linksf is currently undergoing a data model transition to be HSDS compliant.
+
+#### [In Active Development] Current Boilerplate
+
+Project structure based on https://github.com/koistya/react-static-boilerplate
+
 http://link-sf.com
 
 A mobile website designed to connect those in need in San Francisco to the services that can help them, on their own terms.
@@ -8,7 +15,11 @@ Link-SF is a single page Backbone.js application using [Parse](https://parse.com
 
 Documentation is available under `docs` for offline viewing or via links below:
 
-* [Setup](https://github.com/zendesk/linksf/blob/master/docs/SETUP.md)
+~~* [Setup](https://github.com/zendesk/linksf/blob/master/docs/SETUP.md)~~
+New setup:
+`npm i`
+`npm start`
+
 * [Design](https://github.com/zendesk/linksf/blob/master/docs/DESIGN.md)
 * [Deploy](https://github.com/zendesk/linksf/blob/master/docs/DEPLOY.md)
 * [Adding an admin user in Parse](https://github.com/zendesk/linksf/blob/master/docs/ADD_USER.md)
