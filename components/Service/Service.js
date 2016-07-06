@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import './Service.scss'
+import s from './Service.css'
 
 import GoogleMap from '../GoogleMap'
 
@@ -7,49 +7,49 @@ const Service = (props) => {
   const { service } = props
   const { eligibility } = service
   return (
-    <div className="service">
-      <h2 className="title">Welcome</h2>
-      <div className="inset">
+    <div className={s.service}>
+      <h2 className={s.title}>Welcome</h2>
+      <div className={s.inset}>
         {eligibility.gender === 'F' ? 'Women' : 'Men'}
       </div>
-      <h2 className="title">Services</h2>
-      <div className="inset">
+      <h2 className={s.title}>Services</h2>
+      <div className={s.inset}>
        {service.taxonomy}
       </div>
-      <div className="inset-map">
-        <div className="map">
+      <div className={s.insetMap}>
+        <div className={s.map}>
           <GoogleMap />
         </div>
-        <p className="address">{service.physicalAddress}</p>
+        <p className={s.address}>{service.physicalAddress}</p>
       </div>
-      <div className="inset-call">
-        <label className="contact-label">Call </label>
-        <span className="call-phone">{service.phone}</span>
+      <div className={s.insetCall}>
+        <label className={s.contactLabel}>Call </label>
+        <span className={s.callPhone}>{service.phone}</span>
       </div>
-      <div className="inset-website">
-        <label className="contact-label">Website </label>
-        <span className="website-url">{service.url}</span>
+      <div className={s.insetWebsite}>
+        <label className={s.contactLabel}>Website </label>
+        <span className={s.websiteUrl}>{service.url}</span>
       </div>
-      <button className="inset-directions">
-        <label className="directions-label">Directions</label>
+      <button className={s.insetDirections}>
+        <label className={s.directionsLabel}>Directions</label>
       </button>
-      <ul title="Services details" className="services-list">
-        <li className="inset-services">
-          <h3 className="service-title">Women's Shelter</h3>
-          <p className="service-description">Shelter for youths. Don't stop being a great influence on society. We can read this now.</p>
-          <table className="open-hours">
+      <ul title="Services details" className={s.servicesList}>
+        <li className={s.insetServices}>
+          <h3 className={s.serviceTitle}>{service.name}</h3>
+          <p className={s.serviceDescription}>{service.description}</p>
+          <table className={s.openHours}>
             <tbody>
               <tr>
-                <td className="label-hour">
+                <td className={s.labelHour}>
                   <b>Every day:</b>
                 </td>
-                <td className="hour">
+                <td className={s.hour}>
                   24 Hours
                 </td>
               </tr>
             </tbody>
           </table>
-          <div className="notes">
+          <div className={s.notes}>
             <label>Notes</label>
             <p>Youths 11-21 who are not on probation, call if you can or show up to be assessed for short-term housing. If accepted, they’ll contact your guardians within 24 hrs.</p>
           </div>

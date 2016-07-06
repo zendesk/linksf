@@ -1,5 +1,6 @@
 {
-  "private": true,
   "name": "ServiceRow",
+  "version": "0.0.0",
+  "private": true,
   "main": "./ServiceRow.js"
 }

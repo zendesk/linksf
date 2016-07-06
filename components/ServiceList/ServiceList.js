@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import './ServiceList.scss'
+import s from './ServiceList.css'
 import ServiceRow from '../ServiceRow'
 
 const services = [
@@ -108,7 +108,7 @@ const services = [
 ]
 
 const ServiceList = () => (
-  <div className="column">
+  <div className={s.column}>
     {services.map(ServiceRow)}
   </div>
 )

@@ -1,8 +1,8 @@
 import React from 'react'
-import './Button.scss'
+import s from './Button.css'
 
 export default (props) => (
-  <button className="button">
+  <button className={s.button}>
     {props.children}
   </button>
 )

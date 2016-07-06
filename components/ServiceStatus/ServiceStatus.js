@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import './ServiceStatus.scss'
+import s from './ServiceStatus.css'
 
 const isOpen = (schedules) => {
   const currentDay = 'Wednesday'
@@ -19,8 +19,9 @@ const isOpen = (schedules) => {
 
 const ServiceStatus = (props) => {
   const openOrClosed = isOpen(props.schedules) ? 'open' : 'closed'
+  const statusClassName = openOrClosed === 'open' ? s.open : s.closed
   return (
-    <span className={openOrClosed}>{openOrClosed}</span>
+    <span className={statusClassName}>{openOrClosed}</span>
   )
 }
 
