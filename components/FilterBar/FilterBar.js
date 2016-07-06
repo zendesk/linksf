@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react'
 import Toggle from '../Toggle'
 import Button from '../Button'
-import './FilterBar.scss'
+import s from './FilterBar.css'
 
 class FilterBar extends Component {
   render() {
     return (
-      <div className="row">
+      <div className={s.row}>
         <label>
           <Toggle />
           <span>Sort by</span>
