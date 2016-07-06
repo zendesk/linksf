@@ -11,6 +11,7 @@
 import React from 'react'
 import Home from '../../components/Home'
 import Layout from '../../components/Layout'
+import icons from '../../icons/css/icons.css'
 
 class HomePage extends React.Component {
 
@@ -21,6 +22,7 @@ class HomePage extends React.Component {
   render() {
     return (
       <Layout>
+        <i className='asdf-my-icon icon-my-icon'>Hello</i>
         <Home />
       </Layout>
     )
