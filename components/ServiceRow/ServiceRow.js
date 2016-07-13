@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import s from './ServiceRow.css'
+import icons from '../../icons/css/icons.css'
 
 import ServiceStatus from '../ServiceStatus'
 
@@ -14,11 +15,11 @@ const ServiceRow = (props) => (
               <ServiceStatus schedules={props.regularSchedules} />
             </span>
           <div className={s.categoryIcons}>
-              <span><i className="category-icon icon-home"></i></span>
+              <span><i className={'category-icon ' + icons.iconHome}></i></span>
           </div>
           <span id="someidlater" className="label-status"></span>
           <div className="service-item-box-caret">
-            <i className="icon-right-open-2 chevron"></i>
+            <i className={icons.iconRightOpen2 + ' chevron'}></i>
           </div>
         </div>
       </a>
