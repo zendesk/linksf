@@ -22,7 +22,7 @@ class HomePage extends React.Component {
   render() {
     return (
       <Layout>
-        <i className='asdf-my-icon icon-my-icon'>Hello</i>
+        <i className={icons.iconHome}>Hello</i>
         <Home />
       </Layout>
     )
