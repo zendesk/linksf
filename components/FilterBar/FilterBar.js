@@ -8,15 +8,22 @@ class FilterBar extends Component {
     return (
       <div className={s.row}>
         <label>
-          <Toggle />
-          <span>Sort by</span>
+          <Toggle
+            onLabel="NAME"
+            offLabel="NEAR"
+            disabled
+            on
+          />
         </label>
         <label>
-            <Toggle />
-            <span>Open now</span>
+          <Toggle
+            onLabel="YES"
+            offLabel="NO"
+            on={false}
+          />
         </label>
         <Button>OPTIONS</Button>
-    </div>
+      </div>
     )
   }
 }
