@@ -99,6 +99,7 @@ const config = {
             sourceMap: isDebug,
             // CSS Modules https://github.com/css-modules/css-modules
             modules: true,
+            camelCase: 'dashes',
             localIdentName: isDebug ? '[name]_[local]_[hash:base64:3]' : '[hash:base64:4]',
             // CSS Nano http://cssnano.co/options/
             minimize: !isDebug,
@@ -125,11 +126,15 @@ const config = {
         loader: path.resolve(__dirname, './utils/markdown-loader.js'),
       },
       {
-        test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
+        test: /\.(png|jpg|jpeg|gif)$/,
         loader: 'url-loader?limit=10000',
       },
       {
-        test: /\.(eot|ttf|wav|mp3)$/,
+        test: /\.(eot|svg|ttf|woff|woff2)/,
+        loader: 'url-loader'
+      },
+      {
+        test: /\.(wav|mp3)$/,
         loader: 'file-loader',
       },
     ],
