@@ -1,10 +1,15 @@
 import React from 'react'
 import s from './Toggle.css'
 
+
 const Toggle = (props) => (
-  <div className={`${s.switch} ${props.disabled ? s.disabled : ''}`} tabIndex="0">
+  <div
+    className={`${s.switch} ${props.disabled ? s.disabled : ''}`}
+    tabIndex="0"
+    onMouseUp={(e) => props.onMouseUp && props.onMouseUp(e)}
+  >
     <div className={s.mask}>
-      <div className={s.container}>
+      <div className={`${s.container} ${props.on ? s.containerOn : s.containerOff}`}>
         <div className={s.switchUpper}>
           <span className={s.handle}></span>
         </div>
