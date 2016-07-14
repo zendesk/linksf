@@ -1,13 +1,14 @@
 import React from 'react'
 import s from './CategoryList.css'
 import Category from '../Category'
+import icons from '../../icons/css/icons.css'
 
 const categories = [
-  { icon: 'icon-home', name: 'Shelter' },
-  { icon: 'icon-food', name: 'Food' },
-  { icon: 'icon-plus', name: 'Medical' },
-  { icon: 'icon-droplet', name: 'Hygiene' },
-  { icon: 'icon-desktop', name: 'Technology' },
+  { icon: icons.iconHome, name: 'Shelter' },
+  { icon: icons.iconFood, name: 'Food' },
+  { icon: icons.iconPlus, name: 'Medical' },
+  { icon: icons.iconDroplet, name: 'Hygiene' },
+  { icon: icons.iconDesktop, name: 'Technology' },
 ]
 
 const CategoryList = () => (
