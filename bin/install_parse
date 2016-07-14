@@ -1,0 +1,21 @@
+#!/bin/bash
+
+TMP_FILE=/tmp/parse.tmp
+INSTALL_DIR=/usr/local/bin
+
+if [ -e $TMP_FILE ]; then
+  echo "Cleaning up from previous install failure"
+  rm -f $TMP_FILE
+fi
+
+echo "Fetching latest version ..."
+curl --progress-bar https://www.parse.com/downloads/cloud_code/parse -o $TMP_FILE
+
+if [ ! -d $INSTALL_DIR ]; then
+  echo "Making $INSTALL_DIR"
+  mkdir -p $INSTALL_DIR
+fi
+
+echo "Installing ..."
+mv $TMP_FILE $INSTALL_DIR/parse
+chmod 755 $INSTALL_DIR/parse
