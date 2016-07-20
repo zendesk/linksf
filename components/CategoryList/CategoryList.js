@@ -1,14 +1,7 @@
 import React, { PropTypes } from 'react'
 import s from './CategoryList.css'
 import Category from '../Category'
-
-// const categories = [
-//   { icon: 'icon-home', name: 'Shelter' },
-//   { icon: 'icon-food', name: 'Food' },
-//   { icon: 'icon-plus', name: 'Medical' },
-//   { icon: 'icon-droplet', name: 'Hygiene' },
-//   { icon: 'icon-desktop', name: 'Technology' },
-// ]
+import icons from '../../icons/css/icons.css'
 
 const CategoryList = (props) => (
   <ul title="Services" className={`${s.categories} btn-group`}>

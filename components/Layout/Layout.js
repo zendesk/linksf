@@ -4,10 +4,12 @@ import Navigation from './Navigation'
 
 function Layout({ children }) {
   return (
-    <div className={s.layout}>
+    <div>
       <Navigation />
-      <div id="index">
-        {children}
+      <div className={s.center}>
+        <div id="index" className={s.content}>
+          {children}
+        </div>
       </div>
     </div>
   )

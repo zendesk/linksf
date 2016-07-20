@@ -8,7 +8,13 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-.layout {
+.center {
+  margin: 53px 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.content {
   max-width: 650px;
-  margin: 0 auto;
+  width: 100%;
 }
