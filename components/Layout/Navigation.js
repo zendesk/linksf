@@ -5,7 +5,7 @@ import s from './Navigation.css'
 class Navigation extends React.Component {
   render() {
     return (
-      <nav role="navigation">
+      <nav className={s.header} role="navigation">
         <div>
           <div className="nav-container">
             <Link className={s.logo} to="/">

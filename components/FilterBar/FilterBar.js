@@ -1,25 +1,35 @@
-import React, { Component, PropTypes } from 'react'
+import React, { PropTypes } from 'react'
 import Toggle from '../Toggle'
 import Button from '../Button'
 import s from './FilterBar.css'
 
-class FilterBar extends Component {
-  render() {
-    return (
-      <div className={s.row}>
-        <label>
-          <Toggle />
-          <span>Sort by</span>
-        </label>
-        <label>
-            <Toggle />
-            <span>Open now</span>
-        </label>
-        <Button>OPTIONS</Button>
+const FilterBar = (props) => (
+  <div className={s.row}>
+    <div className={s.filterOption}>
+      <label className={s.filterLabel}>
+        Sort by
+      </label>
+      <Toggle
+        onLabel="NAME"
+        offLabel="NEAR"
+        disabled
+        on
+      />
     </div>
-    )
-  }
-}
+    <div className={s.filterOption}>
+      <label className={s.filterLabel}>
+        Open now
+      </label>
+      <Toggle
+        onLabel="YES"
+        offLabel="NO"
+        on={props.showOpen}
+        onMouseUp={props.onToggleOpen}
+      />
+    </div>
+    <Button>OPTIONS</Button>
+  </div>
+)
 
 FilterBar.propTypes = {}
 
