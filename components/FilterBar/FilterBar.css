@@ -1,11 +1,22 @@
 .row {
   display: flex;
+  justify-content:space-between;
+  align-items:flex-end;
   border-bottom: 1px solid #DCDCDC;
   padding: 10px 4px;
 }
 
+.filterOption {
+  display: flex;
+  flex-direction: column;
+}
+
+.filterLabel {
+  color: #929292;
+  font-size: 15px;
+}
+
 .btn {
-  @include gray-button;
   cursor: pointer;
   padding: 10px 0;
   width: 100%;

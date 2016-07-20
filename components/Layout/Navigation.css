@@ -8,3 +8,14 @@
 .logoImg {
   width: 100%;
 }
+
+.header {
+  height: 40px;
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 8px 0 4px;
+  border-bottom: 1px solid #DDD;
+}
