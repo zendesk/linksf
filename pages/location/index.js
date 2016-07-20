@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Layout from '../../components/Layout'
 import Location from '../../components/Location'
 import { getLocation } from '../../core/firebaseApi'
+import camelize from 'camelize'
 
 export default class LocationPage extends Component {
   constructor(props) {
@@ -16,7 +17,7 @@ export default class LocationPage extends Component {
     const locationId = match[1]
     getLocation(locationId)
       .then(location => {
-        this.setState({ location })
+        this.setState({ location: camelize(location) })
       })
   }
 
