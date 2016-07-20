@@ -7,5 +7,5 @@
 /test/acceptance/app.html
 /s3.json
 .DS_Store
-/public/dist/assets.json
+/public/dist/*
 icons

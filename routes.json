@@ -1,10 +1,7 @@
 [
   {
     "path": "/",
-    "page": "./pages/home",
-    "data": {
-      "commits": "GET https://api.github.com/repos/koistya/react-static-boilerplate/commits"
-    }
+    "page": "./pages/home"
   },
   {
     "path": "/error",
@@ -19,11 +16,11 @@
     "page": "./pages/home"
   },
   {
-    "path": "/services",
-    "page": "./pages/services"
+    "path": "/locations",
+    "page": "./pages/locations"
   },
   {
-    "path": "/services/detail/:id",
-    "page": "./pages/service"
+    "path": "/locations/:id",
+    "page": "./pages/location"
   }
 ]

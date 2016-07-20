@@ -1,0 +1,6 @@
+{
+  "name": "LocationRow",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./LocationRow.js"
+}
