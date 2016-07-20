@@ -42,7 +42,7 @@ const Location = (props) => {
         <label className={s.directionsLabel}>Directions</label>
       </button>
       <ul title="Services details" className={s.servicesList}>
-        {services.map(service => (
+        {services && services.map(service => (
           <li className={s.insetServices}>
             <h3 className={s.serviceTitle}>{service.name}</h3>
             <p className={s.serviceDescription}>{service.description}</p>

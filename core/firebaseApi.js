@@ -2,6 +2,18 @@ import Firebase from 'firebase'
 
 const ref = new Firebase('https://vivid-inferno-4672.firebaseio.com')
 
+export function getLocations() {
+  return ref.child('locations/').once('value').then(locationsResponse => (
+    locationsResponse.val()
+  ))
+}
+
+export function getLocation(id) {
+  return ref.child(`locations/${id}`).once('value').then(locationResponse => (
+    locationResponse.val()
+  ))
+}
+
 // Fetches an organization with its services. Returns a Promise
 export function fetchOrganization(id) {
   let organizationOut
