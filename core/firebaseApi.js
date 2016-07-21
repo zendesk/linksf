@@ -21,9 +21,7 @@ export function fetchOrganization(locationId, orgId) {
                                                       .once('value')
     .then((orgRes) => {
       const maybeOrg = orgRes.val()
-      const organization = (maybeOrg instanceof Array) ?
-        maybeOrg[0] :
-        maybeOrg[locationId]
+      const organization = maybeOrg[locationId]
       organizationOut = organization
       return ref.child(`phones/${locationId}`).once('value')
     })
