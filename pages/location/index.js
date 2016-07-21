@@ -21,7 +21,6 @@ export default class LocationPage extends Component {
         this.setState({ location: camelize(location) })
         return fetchOrganization(locationId, location.organization_id)
       }).then(organization => {
-        console.log(organization)
         this.setState({ organization: camelize(organization) })
       })
   }
