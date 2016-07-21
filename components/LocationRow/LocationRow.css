@@ -1,4 +1,4 @@
-.service {
+.location {
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid #DCDCDC;
@@ -6,33 +6,33 @@
   padding: 10px 4px;
 }
 
-.serviceLink {
+.locationLink {
   text-decoration: none;
   color: #000;
   display: block;
 }
 
-.serviceText {
+.locationText {
   margin: 4px 4px 4px 0;
 }
 
-.serviceIcon {
+.locationIcon {
   color: #909090;
 }
 
-.serviceName {
+.locationName {
   margin: 5px 0 3px 0;
   text-decoration: none;
   font-size: 15px;
   font-weight: bold;
 }
 
-.serviceInfo {
+.locationInfo {
   font-size: 13px;
   margin-top: 15px;
 }
 
-.serviceDistance {
+.locationDistance {
   color: #c3c3c3;
   margin: 4px 0;
   text-align: right;
