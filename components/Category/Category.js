@@ -4,7 +4,7 @@ import Link from '../Link'
 import icons from '../../icons/css/icons.css'
 
 const category = (props) => (
-  <Link className="mdl-navigation__link" to="/services">
+  <Link to="/locations">
     <button role="link" className={s.btn} aria-label="Look for ${props.name} services">
       <i className={icons.iconRightOpen2 + ` category-icon ${props.iconClass}`}></i>{props.name}
     </button>

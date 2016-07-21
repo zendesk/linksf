@@ -1,33 +1,40 @@
-/**
- * React Static Boilerplate
- * https://github.com/kriasoft/react-static-boilerplate
- *
- * Copyright © 2015-present Kriasoft, LLC. All rights reserved.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.txt file in the root directory of this source tree.
- */
-
-import React from 'react'
+import React, { Component } from 'react'
 import Home from '../../components/Home'
 import Layout from '../../components/Layout'
 import icons from '../../icons/css/icons.css'
+import { fetchCategories } from '../../core/firebaseApi'
 
-class HomePage extends React.Component {
+class HomePage extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      categories: [],
+      loading: true,
+    }
+  }
+
+  componentWillMount() {
+    fetchCategories().then((categories) => {
+      this.setState({
+        categories,
+        loading: false,
+      })
+    })
+  }
 
   componentDidMount() {
     document.title = 'Home'
   }
 
   render() {
+    const { categories } = this.state
     return (
       <Layout>
         <i className={icons.iconHome}>Hello</i>
-        <Home />
+        <Home categories={categories} />
       </Layout>
     )
   }
-
 }
 
 export default HomePage
