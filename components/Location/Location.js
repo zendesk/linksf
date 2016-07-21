@@ -4,7 +4,7 @@ import s from './Location.css'
 import GoogleMap from '../GoogleMap'
 
 const Location = (props) => {
-  const { location } = props
+  const { location, organization } = props
   const { services } = location
   return (
     <div className={s.location}>
@@ -27,10 +27,14 @@ const Location = (props) => {
       </div>
       <div className={s.insetCall}>
         <label className={s.contactLabel}>Call </label>
-        <span className={s.callPhone}>
-          {/*{location.organization.phone}*/}
-          867-5309
-        </span>
+        <div className={s.callPhone}>
+          {organization.phones.map(phone => (
+            <div>
+              <span>{phone.number}</span>
+              <span>{phone.department}</span>
+            </div>
+          ))}
+        </div>
       </div>
       <div className={s.insetWebsite}>
         <label className={s.contactLabel}>Website </label>

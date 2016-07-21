@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Layout from '../../components/Layout'
 import FilterBar from '../../components/FilterBar'
 import LocationList from '../../components/LocationList'
-import { getLocations } from '../../core/firebaseApi'
+import { fetchLocations } from '../../core/firebaseApi'
 
 export default class LocationsPage extends Component {
   constructor(props) {
@@ -14,7 +14,7 @@ export default class LocationsPage extends Component {
   }
 
   componentWillMount() {
-    getLocations()
+    fetchLocations()
       .then(locations => {
         this.setState({ locations })
       })
