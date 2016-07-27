@@ -17,6 +17,7 @@ const LocationRow = (props) => (
             </span>
           <div className={s.categoryIcons}>
               <span><i className={'category-icon ' + icons.iconHome}></i></span>
+              {/*<span>{props.distance} minutes walking</span>*/}
           </div>
           <span id="someidlater" className="label-status"></span>
           <div className="location-item-box-caret">
