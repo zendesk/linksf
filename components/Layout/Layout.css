@@ -18,3 +18,24 @@
   max-width: 650px;
   width: 100%;
 }
+
+/*Global Icon Colors*/
+[class*="icon-plus"]:before {
+ color:#A97A60;
+ }
+
+ [class*="icon-food"]:before {
+  color: #9EA861;
+}
+
+[class*="icon-droplet"]:before {
+ color: #7E7485;
+ }
+
+ [class*="icon-desktop"]:before {
+  color: #CBAA4B;
+}
+
+[class*="icon-home"]:before {
+ color: #62919C;
+ }
