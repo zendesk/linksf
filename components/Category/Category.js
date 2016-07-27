@@ -6,7 +6,8 @@ import icons from '../../icons/css/icons.css'
 const category = (props) => (
   <Link to="/locations">
     <button role="link" className={s.btn} aria-label="Look for ${props.name} services">
-      <i className={icons.iconRightOpen2 + ` category-icon ${props.iconClass}`}></i>{props.name}
+      <i className={`${s.categoryIcon} ${props.iconClass}`}></i>{props.name}
+      <i className={`${s.rightCaret} ${icons.iconRightOpen2}`}></i>
     </button>
   </Link>
 )
