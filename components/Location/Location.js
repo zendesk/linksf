@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import s from './Location.css'
+import icons from '../../icons/css/icons.css'
 
 import GoogleMap from '../GoogleMap'
 
@@ -77,7 +78,7 @@ const Location = (props) => {
         </p>
       </div>
       <div className={s.insetCall}>
-        <label className={s.contactLabel}>Call </label>
+        <label className={`${s.contactLabel} ${icons.iconPhone}`}>Call </label>
         <div className={s.callPhone}>
           {organization.phones && organization.phones.map(phone => (
             <div>
@@ -88,13 +89,13 @@ const Location = (props) => {
         </div>
       </div>
       <div className={s.insetWebsite}>
-        <label className={s.contactLabel}>Website </label>
+        <label className={`${s.contactLabel} ${icons.iconLink}`}>Website </label>
         <span className={s.websiteUrl}>
           {/*{service.url}*/}
         </span>
       </div>
       <button className={s.insetDirections}>
-        <label className={s.directionsLabel}>Directions</label>
+        <label className={`${s.directionsLabel} ${icons.iconCompass}`}>Directions</label>
       </button>
       <ul title="Services details" className={s.servicesList}>
         {services && services.map(service => (
