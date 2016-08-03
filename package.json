@@ -30,6 +30,7 @@
   "dependencies": {
     "babel-polyfill": "^6.9.1",
     "camelize": "^1.0.0",
+    "es6-promisify": "^4.1.0",
     "fastclick": "^1.0.6",
     "google-maps": "^3.2.1",
     "history": "^3.0.0",

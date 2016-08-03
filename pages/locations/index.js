@@ -28,25 +28,41 @@ export default class LocationsPage extends Component {
     this.state = {
       showOpen: false,
       locations: [],
+      currentLocation: null,
     }
   }
 
   componentWillMount() {
-    navigator.geolocation.getCurrentPosition()
-      .then(currentLocation => {
+    if (navigator) {
+      navigator.geolocation.getCurrentPosition(currentLocation => {
         this.setState({ currentLocation }, this.setLocations)
-      })
+      }, () => this.setLocations)
+    } else {
+      this.setLocations()
+    }
   }
 
   setLocations() {
     const { currentLocation } = this.state
-    fetchLocations()
-      .then(locations => (
-        mergeLocationsAndDistances(locations, calculateAllDistances(locations, currentLocation))
-      ))
-      .then(locations => {
-        this.setState({ locations })
-      })
+    if (currentLocation) {
+      let locationsCache
+      fetchLocations()
+        .then(locations => {
+          locationsCache = locations
+          return calculateAllDistances(locations, currentLocation)
+
+          //const locationsWithDistance = mergeLocationsAndDistances(locationsCache, distances)
+          //this.setState({ locations: locationsWithDistance })
+        })
+        .then(directions => {
+          console.log(directions)
+        })
+    } else {
+      fetchLocations()
+        .then(locations => {
+          this.setState({ locations })
+        })
+    }
   }
 
   handleToggleOpen() {
