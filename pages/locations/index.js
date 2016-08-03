@@ -12,14 +12,16 @@ const compose = (fn, ...rest) =>
     fn :
     (...args) => fn(compose(...rest)(...args))
 
-function mergeLocationsAndDistances(locations, distances) {
-  const zip = (e, index) => [locations[index], distances[index]]
-  const merge = (location, distance) => {
+function mergeLocationsAndDistances(locations, matrixResponses) {
+  const zip = (e, index) => {
+    return [locations[index], matrixResponses[index]]
+  }
+  const merge = ([location, responseObj]) => {
     const locationAndDistance = location
-    locationAndDistance.distance = distance // i hate this; it breaks the consistency of the whole app
+    locationAndDistance.duration = responseObj.duration // i hate this; it breaks the consistency of the whole app
     return locationAndDistance
   }
-  return locations.map(compose(zip, merge))
+  return locations.map((e, i) => merge(zip(e, i)))
 }
 
 export default class LocationsPage extends Component {
@@ -50,12 +52,13 @@ export default class LocationsPage extends Component {
         .then(locations => {
           locationsCache = locations
           return calculateAllDistances(locations, currentLocation)
-
-          //const locationsWithDistance = mergeLocationsAndDistances(locationsCache, distances)
-          //this.setState({ locations: locationsWithDistance })
         })
-        .then(directions => {
-          console.log(directions)
+        .then(matrixResponse => {
+          const matrixResponses = matrixResponse.rows[0].elements
+          const locationsWithDistance = mergeLocationsAndDistances(locationsCache, matrixResponses)
+          console.log(locationsWithDistance)
+
+          //this.setState({ locations: locationsWithDistance })
         })
     } else {
       fetchLocations()

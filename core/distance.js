@@ -11,11 +11,12 @@ function fetchDistanceAndDuration(origins, destinations) {
     unitSystem: google.maps.UnitSystem.IMPERIAL,
   }
 
-  return new Promise(function(resolve, reject) {
+  return new Promise((resolve, reject) => {
     // Put all your code here, this section is throw-safe.
     googleService.getDistanceMatrix(matrixParams, (response, status) => (
         status == google.maps.DistanceMatrixStatus.OK ? resolve(response) :
-                                                        reject(status))
+                                                        reject(status)
+    ))
   })
 }
 
