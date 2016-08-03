@@ -12,16 +12,11 @@ function fetchDistanceAndDuration(origins, destinations) {
   }
 
   return new Promise(function(resolve, reject) {
-        // Put all your code here, this section is throw-safe.
-        googleService.getDistanceMatrix(matrixParams, function(response, status) {
-          if (status == google.maps.DistanceMatrixStatus.OK) {
-              resolve(response)
-            }
-          else {
-              reject(status)
-            }
-        })
-    })
+    // Put all your code here, this section is throw-safe.
+    googleService.getDistanceMatrix(matrixParams, (response, status) => (
+        status == google.maps.DistanceMatrixStatus.OK ? resolve(response) :
+                                                        reject(status))
+  })
 }
 
 export function calculateDistance(location, currentLocation) {
