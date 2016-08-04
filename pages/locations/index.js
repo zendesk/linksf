@@ -48,7 +48,7 @@ export default class LocationsPage extends Component {
     const { currentLocation } = this.state
     if (currentLocation) {
       let locationsCache
-      fetchLocations()
+      fetchLocations(0)
         .then(locations => {
           locationsCache = locations
           return calculateAllDistances(locations, currentLocation)
@@ -58,10 +58,10 @@ export default class LocationsPage extends Component {
           const locationsWithDistance = mergeLocationsAndDistances(locationsCache, matrixResponses)
           console.log(locationsWithDistance)
 
-          //this.setState({ locations: locationsWithDistance })
+          this.setState({ locations: locationsWithDistance })
         })
     } else {
-      fetchLocations()
+      fetchLocations(0)
         .then(locations => {
           this.setState({ locations })
         })

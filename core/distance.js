@@ -1,9 +1,11 @@
+const DESTINATION_RESPONSES = 10
+
 function fetchDistanceAndDuration(origins, destinations) {
   const googleService = new google.maps.DistanceMatrixService()
   // const promiseGoogleService = Promise.promisifyAll(, { promisifier: noErrPromisifier })
   const matrixParams = {
     origins,
-    destinations: destinations.slice(0, 10),
+    destinations: destinations.slice(0, DESTINATION_RESPONSES),
     travelMode: google.maps.TravelMode.WALKING,
     durationInTraffic: true,
     avoidHighways: true,
@@ -15,8 +17,7 @@ function fetchDistanceAndDuration(origins, destinations) {
     // Put all your code here, this section is throw-safe.
     googleService.getDistanceMatrix(matrixParams, (response, status) => (
         status == google.maps.DistanceMatrixStatus.OK ? resolve(response) :
-                                                        reject(status)
-    ))
+                                                        reject(status)))
   })
 }
 

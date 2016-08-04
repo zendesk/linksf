@@ -4,6 +4,10 @@ import icons from '../../icons/css/icons.css'
 
 import ServiceStatus from '../ServiceStatus'
 
+const renderDistanceText = (time) => (
+  <span className={s.distanceText}>{time} minutes walking</span>
+)
+
 const LocationRow = (props) => (
   <li className={s.location} key={`location-${props.id}`}>
       <a href={`/locations/${props.id}`} className={s.locationLink} title={`Click to see more details about ${props.name}`}>
@@ -17,9 +21,8 @@ const LocationRow = (props) => (
             </span>
           <div className={s.categoryIcons}>
               <span><i className={'category-icon ' + icons.iconHome}></i></span>
-              {/*<span>{props.distance} minutes walking</span>*/}
+              {props.duration ? renderDistanceText(props.duration.text) : ''}
           </div>
-          <span id="someidlater" className="label-status"></span>
           <div className="location-item-box-caret">
             <i className={icons.iconRightOpen2 + ' chevron'}></i>
           </div>

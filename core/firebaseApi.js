@@ -1,11 +1,16 @@
 import Firebase from 'firebase'
 
+const PAGINATION_VAL = 9 //firebase is inclusive so 0-9 includes 10 vals
 const ref = new Firebase('https://vivid-inferno-4672.firebaseio.com')
 
-export function fetchLocations() {
-  return ref.child('locations/').once('value').then(locationsResponse => (
-    locationsResponse.val()
-  ))
+export function fetchLocations(index) {
+  const startIndex = index.toString()
+  const endIndex = (index + PAGINATION_VAL).toString()
+  return ref.child('locations').orderByKey()
+                               .startAt(startIndex)
+                               .endAt(endIndex)
+                               .once('value')
+                               .then(locationsResponse => (locationsResponse.val()))
 }
 
 export function fetchLocation(id) {
