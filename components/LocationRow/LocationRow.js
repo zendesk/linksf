@@ -15,16 +15,20 @@ const LocationRow = (props) => (
           <div>
             <p className={s.locationName}>{props.name}</p>
           </div>
-            <span className={s.locationInfo}>
-              {/*<ServiceStatus schedules={props.regularSchedules} />*/}
-              open maybe
-            </span>
-          <div className={s.categoryIcons}>
-              <span><i className={'category-icon ' + icons.iconHome}></i></span>
-              {props.duration ? renderDistanceText(props.duration.text) : ''}
-          </div>
-          <div className="location-item-box-caret">
-            <i className={icons.iconRightOpen2 + ' chevron'}></i>
+          <div className={s.locationBox}>
+            <div className={s.locationInfo}>
+              <span className={s.locationStatus}>
+                {/*<ServiceStatus schedules={props.regularSchedules} />*/}
+                open maybe
+              </span>
+              <div className={s.categoryIcons}>
+                <span><i className={'category-icon ' + icons.iconHome}></i></span>
+                {props.duration ? renderDistanceText(props.duration.text) : ''}
+              </div>
+            </div>
+            <div className="location-item-box-caret">
+              <i className={`${icons.iconRightOpen2} s.rightCaret`}></i>
+            </div>
           </div>
         </div>
       </a>
