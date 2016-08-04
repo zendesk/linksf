@@ -6,6 +6,11 @@
   padding: 10px 4px;
 }
 
+.locationBox {
+  display: flex;
+  justify-content: space-between;
+}
+
 .locationLink {
   text-decoration: none;
   color: #000;
@@ -31,6 +36,10 @@
   color: #909090;
 }
 
+.locationInfo {
+  flex-direction: column;
+}
+
 .locationName {
   margin: 5px 0 3px 0;
   text-decoration: none;
@@ -38,7 +47,7 @@
   font-weight: bold;
 }
 
-.locationInfo {
+.locationStatus {
   font-size: 13px;
   margin-top: 15px;
 }
@@ -52,4 +61,8 @@
 .categoryIcons {
   margin-bottom: 7px;
   display: inline-block;
+}
+
+.rightCaret {
+  float: right;
 }

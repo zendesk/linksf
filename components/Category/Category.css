@@ -11,6 +11,10 @@
   width: 100%;
 }
 
-.category-icon {
+.categoryIcon {
   margin: 5px 10px;
+}
+
+.rightCaret {
+  float: right;
 }
