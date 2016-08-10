@@ -26,5 +26,9 @@
   {
     "path": "/locations/:id",
     "page": "./pages/location"
+  },
+  {
+    "path": "/admin",
+    "page": "./pages/admin"
   }
 ]
