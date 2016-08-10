@@ -8,3 +8,4 @@
 /s3.json
 .DS_Store
 /public/dist/*
+npm-debug.log
