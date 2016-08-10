@@ -1,0 +1,6 @@
+{
+  "name": "AdminLocationRow",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./AdminLocationRow.js"
+}

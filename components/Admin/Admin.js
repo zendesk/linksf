@@ -1,7 +1,10 @@
 import React, { PropTypes } from 'react'
 import AdminTopBar from '../AdminTopBar'
 import LocationList from '../LocationList'
-import history from '../../core/history'
+import LocationEdit from '../LocationEdit'
+import CategoryFilter from '../CategoryFilter'
+import AdminLocationList from '../AdminLocationList'
+import history from '../../core/history';
 import { fetchLocations } from '../../core/firebaseApi'
 
 class Admin extends React.Component {
@@ -12,6 +15,8 @@ class Admin extends React.Component {
       selectedCategories: [],
       matchingSearchLocations: null,
       matchingCategoryLocations: null,
+      showEditPage: false,
+      currentLocation: null,
     }
   }
 
@@ -57,6 +62,14 @@ class Admin extends React.Component {
     })
   }
 
+  renderEditPage = function(location) {
+    Object.assign({}, this.state, {showEditPage: true, currentLocation: location})
+  }
+
+  static propTypes = {
+    to: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+  };
+
   render() {
     const {
       locations,
@@ -87,7 +100,13 @@ class Admin extends React.Component {
           onNewFacility={this.handleNewFacility}
           onCategoryFilter={this.handleCategoryFilter}
         />
-        <LocationList locations={filteredLocations || locations} />
+        {showEditPage ? 
+          <LocationEdit /> :
+          <div>
+            <CategoryFilter />
+            <AdminLocationList locations={filteredLocations || locations} editLink={this.renderEditPage} />
+          </div>
+        }
       </div>
     )
   }
