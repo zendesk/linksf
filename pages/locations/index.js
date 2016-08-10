@@ -74,13 +74,17 @@ export default class LocationsPage extends Component {
 
   render() {
     const { locations } = this.state
+    const filteredLocations = locations.filter(loc => (
+      loc.services &&
+      loc.services.filter(service => service.taxonomy === 'housing'))
+    )
     return (
       <Layout>
         <FilterBar
           showOpen={this.state.showOpen}
           onToggleOpen={(e) => this.handleToggleOpen(e)}
         />
-        <LocationList locations={locations} />
+        <LocationList locations={filteredLocations} />
       </Layout>
     )
   }
