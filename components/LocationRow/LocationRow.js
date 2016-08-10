@@ -1,16 +1,13 @@
 import React, { PropTypes } from 'react'
 import s from './LocationRow.css'
 import icons from '../../icons/css/icons.css'
-
+import { relevantTaxonomies, getIcon } from '../../lib/categories'
 import ServiceStatus from '../ServiceStatus'
 
 const DistanceText = (props) => (
   <span className={s.distanceText}>{props.time} minutes walking</span>
 )
 
-const capitalize = (string) => string && string[0].toUpperCase() + string.slice(1)
-
-const getIcon = (taxonomy) => icons[`icon${capitalize(taxonomy)}`]
 
 const IconSpans = (props) => (
   <div className={s.categoryIcons}>
@@ -19,14 +16,7 @@ const IconSpans = (props) => (
         <i className={`category-icon ${getIcon(taxonomy)}`}></i>
       </span>
     ))}
-    <span key={'category-152341214'}>
-      <i className={`category-icon ${icons.iconMedical}`}></i>
-    </span>
   </div>
-)
-
-const relevantTaxonomies = (services) => (
-  Array.from(new Set(services.map(service => service.taxonomy)))
 )
 
 const LocationRow = (props) => (
