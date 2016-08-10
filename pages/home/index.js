@@ -30,7 +30,6 @@ class HomePage extends Component {
     const { categories } = this.state
     return (
       <Layout>
-        <i className={icons.iconHome}>Hello</i>
         <Home categories={categories} />
       </Layout>
     )
