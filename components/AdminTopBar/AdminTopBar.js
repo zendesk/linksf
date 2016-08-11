@@ -1,13 +1,3 @@
-/**
- * React Static Boilerplate
- * https://github.com/kriasoft/react-static-boilerplate
- *
- * Copyright © 2015-present Kriasoft, LLC. All rights reserved.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.txt file in the root directory of this source tree.
- */
-
 import React, { PropTypes } from 'react'
 import history from '../../core/history'
 import s from './AdminTopBar.css'
@@ -30,8 +20,7 @@ class AdminTopBar extends React.Component {
             type="text"
             className={s.locationFilter}
             onChange={this.props.onSearch}
-            placeholder="Search for a facility"
-          />
+            placeholder="Search for a facility" />
           <button
             className={s.newFacility}
             onClick={this.props.onNewFacility}
@@ -55,7 +44,6 @@ class AdminTopBar extends React.Component {
       </div>
     )
   }
-
 }
 
 export default AdminTopBar

@@ -23,10 +23,7 @@ class AdminPage extends Component {
     const { loggedIn, username, password } = this.state
     return (
       <Layout admin>
-        {loggedIn ?
-          <Admin/> :
-          <Login/>
-        }
+        { loggedIn ? <Admin /> : <Login /> }
       </Layout>
     )
   }
