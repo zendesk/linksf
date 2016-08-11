@@ -10,6 +10,7 @@
 
 import React from 'react';
 import Layout from '../../components/Layout';
+var mailgun = require('mailgun.js');
 
 class FeedbackPage extends React.Component {
 
@@ -27,6 +28,16 @@ class FeedbackPage extends React.Component {
   handleSubmit(e) {
     //  TODO: send email
     console.log(this.state);
+    var mg = mailgun.client({username: 'api', key: process.env.MAILGUN_API_KEY || 'key-yourkeyhere'});
+
+    mg.messages.create('link-sf.com', {
+      from: "mhuston@zendesk.com",
+      to: "mhuston@zendesk.com",
+      subject: this.state.subject,
+      text: this.state.message
+    })
+    .then(msg => console.log(msg)) // logs response data
+    .catch(err => console.log(err)); // logs any error
   }
 
   render() {
