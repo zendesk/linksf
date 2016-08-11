@@ -2,7 +2,8 @@ import React, { PropTypes } from 'react'
 import s from './Location.css'
 import icons from '../../icons/css/icons.css'
 import GoogleMap from '../GoogleMap'
-import { capitalize, relevantTaxonomies, getIcon } from '../../lib/categories'
+import { relevantTaxonomies, getIcon } from '../../lib/categories'
+import { capitalize } from '../../lib/stringHelpers'
 
 const getGender = (abbr) => {
   if (abbr === '' || abbr === 'MF' || abbr === 'FM') return 'Everyone'

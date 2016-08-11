@@ -9,6 +9,11 @@
   width: 100%;
 }
 
+.adminContent {
+  max-width: 1000px;
+  width: 100%;
+}
+
 /*Global Icon Colors*/
 [class*="icon-plus"]:before {
  color:#A97A60;
