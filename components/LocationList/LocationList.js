@@ -8,9 +8,4 @@ const LocationList = (props) => (
   </div>
 )
 
-LocationList.propTypes = {
-  name: PropTypes.string.isRequired,
-  iconClass: PropTypes.string.isRequired,
-}
-
 export default LocationList
