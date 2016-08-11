@@ -13,12 +13,12 @@ class Admin extends React.Component {
     }
   }
 
-  // componentWillMount() {
-  //   fetchLocations()
-  //     .then(locations => {
-  //       this.setState({ locations })
-  //     })
-  // }
+  componentWillMount() {
+    fetchLocations()
+      .then(locations => {
+        this.setState({ locations })
+      })
+  }
 
   handleSearch = (event) => {
     const searchTerm = event.currentTarget.value

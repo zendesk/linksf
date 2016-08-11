@@ -9,21 +9,18 @@ class HomePage extends Component {
     super(props)
     this.state = {
       categories: [],
-      loading: true,
     }
   }
 
   componentWillMount() {
-    fetchCategories().then((categories) => {
-      this.setState({
-        categories,
-        loading: false,
+    fetchCategories()
+      .then(categories => {
+        this.setState({ categories })
       })
-    })
   }
 
   componentDidMount() {
-    document.title = 'Home'
+    document.title = 'Link-SF'
   }
 
   render() {

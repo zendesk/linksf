@@ -16,7 +16,7 @@ class AdminPage extends Component {
   }
 
   componentDidMount() {
-    document.title = 'Admin'
+    document.title = 'Link-SF Admin'
   }
 
   render() {

@@ -5,11 +5,11 @@ const LOCATIONS     = 'locations'
 const ORGANIZATIONS = 'organizations'
 const TAXONOMIES    = 'taxonomies'
 const PHONES        = 'phones'
-const ONCE_VALUE    = 'once'
+const ONCE_VALUE    = 'value'
 
 const firebase = new Firebase('https://vivid-inferno-4672.firebaseio.com')
 
-export function fetchLocations(index) {
+export function fetchLocations(index = 0) {
   const startIndex = index.toString()
   const endIndex = (index + PAGINATION_VAL).toString()
 
