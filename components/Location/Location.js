@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react'
 import s from './Location.css'
 import icons from '../../icons/css/icons.css'
-
 import GoogleMap from '../GoogleMap'
+import { capitalize, relevantTaxonomies, getIcon } from '../../lib/categories'
 
 const getGender = (abbr) => {
   if (abbr === '' || abbr === 'MF' || abbr === 'FM') return 'Everyone'
@@ -67,7 +67,14 @@ const Location = (props) => {
       </div>
       <h2 className={s.title}>Locations</h2>
       <div className={s.inset}>
-       Some categories
+        <div className={s.categoryIcons}>
+          {relevantTaxonomies(services).map((taxonomy, index) => (
+            <span key={`category-${index}`}>
+              <i className={`category-icon ${getIcon(taxonomy)}`}></i>
+              {capitalize(taxonomy)}
+            </span>
+          ))}
+        </div>
       </div>
       <div className={s.insetMap}>
         <div className={s.map}>

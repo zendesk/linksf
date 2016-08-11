@@ -56,7 +56,6 @@ export default class LocationsPage extends Component {
         .then(matrixResponse => {
           const matrixResponses = matrixResponse.rows[0].elements
           const locationsWithDistance = mergeLocationsAndDistances(locationsCache, matrixResponses)
-          console.log(locationsWithDistance)
 
           this.setState({ locations: locationsWithDistance })
         })
@@ -74,13 +73,17 @@ export default class LocationsPage extends Component {
 
   render() {
     const { locations } = this.state
+    const filteredLocations = locations.filter(loc => (
+      loc.services &&
+      loc.services.filter(service => service.taxonomy === 'housing'))
+    )
     return (
       <Layout>
         <FilterBar
           showOpen={this.state.showOpen}
           onToggleOpen={(e) => this.handleToggleOpen(e)}
         />
-        <LocationList locations={locations} />
+        <LocationList locations={filteredLocations} />
       </Layout>
     )
   }

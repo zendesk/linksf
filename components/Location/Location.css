@@ -124,6 +124,10 @@
   font-size: 14px;
 }
 
+.categoryIcons {
+  display: flex;
+}
+
 .notes {
   background: #f3f3f3;
   padding: 8px;
