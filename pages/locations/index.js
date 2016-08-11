@@ -56,7 +56,6 @@ export default class LocationsPage extends Component {
         .then(matrixResponse => {
           const matrixResponses = matrixResponse.rows[0].elements
           const locationsWithDistance = mergeLocationsAndDistances(locationsCache, matrixResponses)
-          console.log(locationsWithDistance)
 
           this.setState({ locations: locationsWithDistance })
         })
