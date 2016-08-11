@@ -4,11 +4,11 @@ import Category from '../Category'
 import icons from '../../icons/css/icons.css'
 
 const categories = [
-  { icon: icons.iconHome, name: 'Shelter' },
+  { icon: icons.iconHousing, name: 'Shelter' },
   { icon: icons.iconFood, name: 'Food' },
-  { icon: icons.iconPlus, name: 'Medical' },
-  { icon: icons.iconDroplet, name: 'Hygiene' },
-  { icon: icons.iconDesktop, name: 'Technology' },
+  { icon: icons.iconMedical, name: 'Medical' },
+  { icon: icons.iconHygiene, name: 'Hygiene' },
+  { icon: icons.iconTechnology, name: 'Technology' },
 ]
 
 const CategoryList = (props) => (

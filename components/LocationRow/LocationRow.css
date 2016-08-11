@@ -3,11 +3,17 @@
   flex-direction: column;
   border-bottom: 1px solid #DCDCDC;
   font-size: 15px;
-  padding: 10px 4px;
+  padding: 10px 0 16px 8px;
 }
 
 .locationBox {
   display: flex;
+  flex-direction: column;
+}
+
+.locationAndCaret {
+  display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 
@@ -15,10 +21,6 @@
   text-decoration: none;
   color: #000;
   display: block;
-}
-
-.locationText {
-  margin: 4px 4px 4px 0;
 }
 
 .distanceText {
@@ -37,11 +39,12 @@
 }
 
 .locationInfo {
-  flex-direction: column;
+  display: flex;
+  justify-content: space-between;
 }
 
 .locationName {
-  margin: 5px 0 3px 0;
+  padding: 5px 0 3px 0;
   text-decoration: none;
   font-size: 15px;
   font-weight: bold;
@@ -49,18 +52,16 @@
 
 .locationStatus {
   font-size: 13px;
-  margin-top: 15px;
 }
 
 .locationDistance {
   color: #c3c3c3;
-  margin: 4px 0;
+  padding: 4px 0;
   text-align: right;
 }
 
 .categoryIcons {
-  margin-bottom: 7px;
-  display: inline-block;
+  display: flex;
 }
 
 .rightCaret {
