@@ -9,7 +9,7 @@ class AdminPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      loggedIn: false,
+      loggedIn: true,
       username: "",
       password: "",
     }
@@ -22,7 +22,7 @@ class AdminPage extends Component {
   render() {
     const { loggedIn, username, password } = this.state
     return (
-      <Layout>
+      <Layout admin>
         {loggedIn ?
           <Admin/> :
           <Login/>
