@@ -1,34 +1,48 @@
 import Firebase from 'firebase'
 
 const PAGINATION_VAL = 9 //firebase is inclusive so 0-9 includes 10 vals
-const ref = new Firebase('https://vivid-inferno-4672.firebaseio.com')
+const LOCATIONS     = 'locations'
+const ORGANIZATIONS = 'organizations'
+const TAXONOMIES    = 'taxonomies'
+const PHONES        = 'phones'
+const ONCE_VALUE    = 'once'
+
+const firebase = new Firebase('https://vivid-inferno-4672.firebaseio.com')
 
 export function fetchLocations(index) {
   const startIndex = index.toString()
   const endIndex = (index + PAGINATION_VAL).toString()
-  return ref.child('locations').orderByKey()
-                               .startAt(startIndex)
-                               .endAt(endIndex)
-                               .once('value')
-                               .then(locationsResponse => (locationsResponse.val()))
+
+  return firebase
+    .child(LOCATIONS)
+    .orderByKey()
+    .startAt(startIndex)
+    .endAt(endIndex)
+    .once(ONCE_VALUE)
+    .then(locationsResponse => (locationsResponse.val()))
 }
 
 export function fetchLocation(id) {
-  return ref.child(`locations/${id}`).once('value').then(locationResponse => (
-    locationResponse.val()
-  ))
+  return firebase
+    .child(`${LOCATIONS}/${id}`)
+    .once(ONCE_VALUE)
+    .then(locationResponse => (locationResponse.val()))
 }
 
 // Fetches an organization with its services. Returns a Promise
 export function fetchOrganization(locationId, orgId) {
   let organizationOut
-  return ref.child('organizations').orderByChild('id').equalTo(orgId)
-                                                      .once('value')
+
+  return firebase
+    .child(ORGANIZATIONS)
+    .orderByChild('id')
+    .equalTo(orgId)
+    .once(ONCE_VALUE)
     .then((orgRes) => {
       const maybeOrg = orgRes.val()
       const organization = maybeOrg[locationId]
       organizationOut = organization
-      return ref.child(`phones/${locationId}`).once('value')
+      return firebase.child(`${PHONES}/${locationId}`).once(ONCE_VALUE)
     })
     .then((phonesResponse) => {
       organizationOut.phones = phonesResponse.val()
@@ -38,7 +52,8 @@ export function fetchOrganization(locationId, orgId) {
 
 // Fetchs all available categories
 export function fetchCategories() {
-  return ref.child('taxonomies').once('value').then((res) => (
-    res.val()
-  ))
+  return firebase
+    .child(TAXONOMIES)
+    .once(ONCE_VALUE)
+    .then((res) => (res.val()))
 }
