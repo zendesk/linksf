@@ -6,8 +6,8 @@ import icons from '../../icons/css/icons.css'
 const categories = [
   { icon: icons.iconHousing, name: 'Shelter' },
   { icon: icons.iconFood, name: 'Food' },
-  { icon: icons.iconPlus, name: 'Medical' },
-  { icon: icons.iconMedical, name: 'Hygiene' },
+  { icon: icons.iconMedical, name: 'Medical' },
+  { icon: icons.iconHygiene, name: 'Hygiene' },
   { icon: icons.iconTechnology, name: 'Technology' },
 ]
 
