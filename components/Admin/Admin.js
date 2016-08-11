@@ -8,11 +8,10 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import React, { PropTypes } from 'react';
+import React, { PropTypes } from 'react'
 import AdminTopBar from '../AdminTopBar'
-import CategoryFilter from '../CategoryFilter'
 import LocationList from '../LocationList'
-import history from '../../core/history';
+import history from '../../core/history'
 import { fetchLocations } from '../../core/firebaseApi'
 
 class Admin extends React.Component {
@@ -21,27 +20,54 @@ class Admin extends React.Component {
     this.state = {
       showOpen: false,
       locations: [],
+      filteredLocations: null,
     }
   }
 
   componentWillMount() {
     fetchLocations()
       .then(locations => {
-        this.setState({ locations })
+        this.setState(Object.assign({}, this.state, { locations }))
       })
   }
 
-  static propTypes = {
-    to: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
-  };
+  handleSearch = (event) => {
+    const searchTerm = event.currentTarget.value
+    let { locations, filteredLocations } = this.state
+
+    if (!searchTerm || searchTerm.length < 1) {
+      filteredLocations = null
+    } else {
+      filteredLocations = locations.filter(function(loc) {
+        return loc.name.indexOf(searchTerm) >= 0
+      })
+    }
+
+    this.setState(Object.assign({}, this.state, {
+      locations,
+      filteredLocations,
+    }))
+  }
+
+  handleNewFacility = () => {
+
+  }
+
+  handleCategoryFilter = (category) => {
+
+  }
 
   render() {
-    const { locations } = this.state
+    const { locations, filteredLocations } = this.state
+
     return (
       <div>
-        <AdminTopBar/>
-        <CategoryFilter/>
-        <LocationList locations={locations}/>
+        <AdminTopBar
+          onSearch={this.handleSearch}
+          onNewFacility={this.handleNewFacility}
+          onCategoryFilter={this.handleCategoryFilter}
+        />
+        <LocationList locations={filteredLocations || locations} />
       </div>
     )
   }

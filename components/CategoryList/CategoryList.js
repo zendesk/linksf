@@ -2,14 +2,7 @@ import React, { PropTypes } from 'react'
 import s from './CategoryList.css'
 import Category from '../Category'
 import icons from '../../icons/css/icons.css'
-
-const categories = [
-  { icon: icons.iconHousing, name: 'Shelter' },
-  { icon: icons.iconFood, name: 'Food' },
-  { icon: icons.iconMedical, name: 'Medical' },
-  { icon: icons.iconHygiene, name: 'Hygiene' },
-  { icon: icons.iconTechnology, name: 'Technology' },
-]
+import { categories } from '../../lib/categories' // This should eventuall go away when firebase has icons
 
 const CategoryList = (props) => (
   <ul title="Services" className={`${s.categories} btn-group`}>
@@ -24,6 +17,5 @@ const CategoryList = (props) => (
 CategoryList.propTypes = {
   categories: PropTypes.array.isRequired,
 }
-
 
 export default CategoryList
