@@ -9,7 +9,9 @@ class Admin extends React.Component {
     super(props)
     this.state = {
       locations: [],
-      filteredLocations: null,
+      selectedCategories: [],
+      matchingSearchLocations: null,
+      matchingCategoryLocations: null,
     }
   }
 
@@ -22,35 +24,67 @@ class Admin extends React.Component {
 
   handleSearch = (event) => {
     const searchTerm = event.currentTarget.value
-    let { locations, filteredLocations } = this.state
+    let { locations, matchingSearchLocations } = this.state
 
     if (searchTerm) {
-      filteredLocations = locations.filter(location =>
+      matchingSearchLocations = locations.filter(location =>
         location.name.indexOf(searchTerm) >= 0)
     } else {
-      filteredLocations = null
+      matchingSearchLocations = null
     }
 
-    this.setState({
-      locations,
-      filteredLocations,
-    })
+    this.setState({ matchingSearchLocations })
   }
 
   handleNewFacility = () => {
 
   }
 
-  handleCategoryFilter = (category) => {
+  handleCategoryFilter = (category, active=false) => {
+    let { locations, selectedCategories, matchingCategoryLocations } = this.state
 
+    if (active) {
+      selectedCategories.push(category.taxonomy)
+    } else {
+      selectedCategories = selectedCategories.filter(cat => cat != category.taxonomy)
+    }
+
+    if (selectedCategories.length > 0) {
+      matchingCategoryLocations = locations.filter(location =>
+        (location.services || []).some(service => selectedCategories.indexOf(service.taxonomy) >= 0))
+    } else {
+      matchingCategoryLocations = null
+    }
+
+    this.setState({ selectedCategories, matchingCategoryLocations })
   }
 
   render() {
-    const { locations, filteredLocations } = this.state
+    const {
+      locations,
+      selectedCategories,
+      matchingSearchLocations,
+      matchingCategoryLocations,
+    } = this.state
+
+    let filteredLocations = null
+
+    if (matchingSearchLocations) {
+      const a = new Set(locations)
+      const b = new Set(matchingSearchLocations)
+      filteredLocations = [...(new Set([...a].filter(x => b.has(x))))]
+    }
+
+    if (matchingCategoryLocations) {
+      const a = new Set(filteredLocations || locations)
+      const b = new Set(matchingCategoryLocations)
+      filteredLocations = [...(new Set([...a].filter(x => b.has(x))))]
+    }
 
     return (
       <div>
         <AdminTopBar
+          selectedCategories={selectedCategories}
           onSearch={this.handleSearch}
           onNewFacility={this.handleNewFacility}
           onCategoryFilter={this.handleCategoryFilter}

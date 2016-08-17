@@ -57,3 +57,8 @@
   border: 1px solid #ccc;
   background-color: #e5e5e5;
 }
+
+.facilityCategoryFilterButtonActive {
+  background-color: #999;
+  color: white;
+}
