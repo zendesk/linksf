@@ -15,11 +15,11 @@ Link-SF is a single page React.js application using [Firebase](https://www.fireb
 
 Documentation is available under `docs` for offline viewing or via links below:
 
-* [Setup](https://github.com/zendesk/linksf/blob/master/docs/SETUP.md)
-* [Design](https://github.com/zendesk/linksf/blob/master/docs/DESIGN.md)
-* [Deploy](https://github.com/zendesk/linksf/blob/master/docs/DEPLOY.md)
-* [Adding an admin user in Firebase](https://github.com/zendesk/linksf/blob/master/docs/ADD_USER.md)
-* [Managing facilities and services](https://github.com/zendesk/linksf/blob/master/docs/MANAGE.md)
+* [Setup](https://github.com/zendesk/linksf/blob/open-referral/docs/SETUP.md)
+* [Design](https://github.com/zendesk/linksf/blob/open-referral/docs/DESIGN.md)
+* [Deploy](https://github.com/zendesk/linksf/blob/open-referral/docs/DEPLOY.md)
+* [Adding an admin user in Firebase](https://github.com/zendesk/linksf/blob/open-referral/docs/ADD_USER.md)
+* [Managing facilities and services](https://github.com/zendesk/linksf/blob/open-referral/docs/MANAGE.md)
 
 Link-SF is an ongoing collaboration between the [Tenderloin Technology Lab](http://www.tenderlointechnologylab.org/) and [Zendesk, Inc](http://www.zendesk.com/).
 
