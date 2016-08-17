@@ -24,16 +24,13 @@ class Admin extends React.Component {
 
   handleSearch = (event) => {
     const searchTerm = event.currentTarget.value
-    let { locations, matchingSearchLocations } = this.state
+    const { locations } = this.state
+    const locationMatchesSearch = (location) => (location.name.indexOf(searchTerm) >= 0)
+    const newMatchingSearchLocations = searchTerm ?
+      locations.filter(locationMatchesSearch) :
+      null
 
-    if (searchTerm) {
-      matchingSearchLocations = locations.filter(location =>
-        location.name.indexOf(searchTerm) >= 0)
-    } else {
-      matchingSearchLocations = null
-    }
-
-    this.setState({ matchingSearchLocations })
+    this.setState({ matchingSearchLocations: newMatchingSearchLocations })
   }
 
   handleNewFacility = () => {
@@ -41,22 +38,23 @@ class Admin extends React.Component {
   }
 
   handleCategoryFilter = (category, active=false) => {
-    let { locations, selectedCategories, matchingCategoryLocations } = this.state
+    const { locations, selectedCategories } = this.state
 
-    if (active) {
-      selectedCategories.push(category.taxonomy)
-    } else {
-      selectedCategories = selectedCategories.filter(cat => cat != category.taxonomy)
-    }
+    const categoryNotMatchTaxonomy = (cat) => (cat != category.taxonomy)
+    const newSelectedCategories = active ?
+      selectedCategories.concat(category.taxonomy) :
+      selectedCategories.filter(categoryNotMatchTaxonomy)
 
-    if (selectedCategories.length > 0) {
-      matchingCategoryLocations = locations.filter(location =>
-        (location.services || []).some(service => selectedCategories.indexOf(service.taxonomy) >= 0))
-    } else {
-      matchingCategoryLocations = null
-    }
+    const serviceHasMatchingTaxonomy = (service) => (newSelectedCategories.indexOf(service.taxonomy) >= 0)
+    const locationHasServiceMatchingCategory = (location) => (location.services || []).some(serviceHasMatchingTaxonomy)
+    const newMatchingCategoryLocations = (newSelectedCategories.length > 0) ?
+      locations.filter(locationHasServiceMatchingCategory) :
+      null
 
-    this.setState({ selectedCategories, matchingCategoryLocations })
+    this.setState({
+      selectedCategories: newSelectedCategories,
+      matchingCategoryLocations: newMatchingCategoryLocations,
+    })
   }
 
   render() {
