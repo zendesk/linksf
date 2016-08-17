@@ -12,6 +12,20 @@ class AdminTopBar extends React.Component {
     onCategoryFilter: PropTypes.func,
   }
 
+  getCategoryFilterClass = (category) => {
+    const { selectedCategories } = this.props
+    let classes = [s.facilityCategoryFilterButton]
+
+    if (this.isSelectedCategory(category))
+      classes.push(s.facilityCategoryFilterButtonActive)
+
+    return classes.join(' ')
+  }
+
+  isSelectedCategory = (category) => (
+    this.props.selectedCategories.indexOf(category.taxonomy) >= 0
+  )
+
   render() {
     return (
       <div className={s.adminTopBar}>
@@ -33,8 +47,8 @@ class AdminTopBar extends React.Component {
           {categories.map((category, i) => (
             <button
               key={`category-${i}`}
-              className={s.facilityCategoryFilterButton}
-              onClick={this.props.onCategoryFilter}
+              className={this.getCategoryFilterClass(category)}
+              onClick={(e) => this.props.onCategoryFilter(category, !this.isSelectedCategory(category))}
             >
               <i className={`${s.categoryIcon} ${category.icon}`}></i>
               {category.name}
