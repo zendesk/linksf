@@ -1,5 +1,6 @@
-import React, { PropTypes } from 'react';
-import history from '../../core/history';
+import React, { PropTypes } from 'react'
+import s from './Login.css'
+import history from '../../core/history'
 
 class Login extends React.Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class Login extends React.Component {
   }
 
   handleChange = function(event) {
-    this.setState({value: event.target.value});
+    this.setState({value: event.target.value})
   }
 
   handleSubmit = function(event) {
@@ -20,26 +21,26 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div className={`loginBox`}>
-        <div className={`username`}>
-          <span className={`usernameLabel`}>Username </span>
+      <div className={s.loginBox}>
+        <div className={s.username}>
+          <span className={s.usernameLabel}>Username </span>
           <input
             type="text"
             value={this.state.username}
             onChange={this.handleChange} />
         </div>
-        <div className={`password`}>
-          <span className={`passwordLabel`}>Password </span>
+        <div className={s.password}>
+          <span className={s.passwordLabel}>Password </span>
           <input
             type="password"
             value={this.state.password}
             onChange={this.handleChange} />
         </div>
-        <div className={`loginSubmit`}>
+        <div className={s.loginSubmit}>
           <button type="button" onClick={this.handleSubmit}>Login</button>
         </div>
       </div>
-    );
+    )
   }
 }
 

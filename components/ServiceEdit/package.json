@@ -1,0 +1,6 @@
+{
+  "name": "ServiceEdit",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./ServiceEdit.js"
+}
