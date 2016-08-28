@@ -30,7 +30,7 @@ export function fetchLocation(id) {
 }
 
 // Fetches an organization with its services. Returns a Promise
-export function fetchOrganization(locationId, orgId) {
+export function fetchOrganization(orgId) {
   let organizationOut
 
   return firebase
@@ -39,9 +39,9 @@ export function fetchOrganization(locationId, orgId) {
     .equalTo(orgId)
     .once(ONCE_VALUE)
     .then((orgRes) => {
-      const maybeOrg = orgRes.val()
-      const organization = maybeOrg[locationId]
-      organizationOut = organization
+      const orgVal = orgRes.val()
+      // orgVal should only have one key
+      organizationOut = orgVal[Object.keys(orgVal)[0]]
       return firebase.child(`${PHONES}/${locationId}`).once(ONCE_VALUE)
     })
     .then((phonesResponse) => {

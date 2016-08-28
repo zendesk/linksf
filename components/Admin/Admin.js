@@ -24,7 +24,7 @@ class Admin extends React.Component {
     fetchLocations()
       .then(locations => {
         this.setState({ locations })
-      })
+    })
   }
 
   handleSearch = (event) => {
@@ -62,8 +62,8 @@ class Admin extends React.Component {
     })
   }
 
-  renderEditPage = function(location) {
-    Object.assign({}, this.state, {showEditPage: true, currentLocation: location})
+  renderEditPage = (location) => {
+    this.setState(Object.assign({}, this.state, {showEditPage: true, currentLocation: location}))
   }
 
   static propTypes = {
@@ -76,6 +76,8 @@ class Admin extends React.Component {
       selectedCategories,
       matchingSearchLocations,
       matchingCategoryLocations,
+      showEditPage,
+      currentLocation
     } = this.state
 
     let filteredLocations = null
@@ -92,6 +94,8 @@ class Admin extends React.Component {
       filteredLocations = [...(new Set([...a].filter(x => b.has(x))))]
     }
 
+    const { locations, showEditPage, currentLocation } = this.state
+
     return (
       <div>
         <AdminTopBar
@@ -101,7 +105,7 @@ class Admin extends React.Component {
           onCategoryFilter={this.handleCategoryFilter}
         />
         {showEditPage ? 
-          <LocationEdit /> :
+          <LocationEdit location={currentLocation}/> :
           <div>
             <CategoryFilter />
             <AdminLocationList locations={filteredLocations || locations} editLink={this.renderEditPage} />
