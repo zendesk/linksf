@@ -14,8 +14,6 @@ class Admin extends React.Component {
       selectedCategories: [],
       matchingSearchLocations: null,
       matchingCategoryLocations: null,
-      showEditPage: false,
-      currentLocation: null,
     }
   }
 
@@ -23,7 +21,7 @@ class Admin extends React.Component {
     fetchLocations()
       .then(locations => {
         this.setState({ locations })
-    })
+      })
   }
 
   handleSearch = (event) => {
@@ -61,18 +59,12 @@ class Admin extends React.Component {
     })
   }
 
-  renderEditPage = (location) => {
-    this.setState({ showEdidtPage: true, currentLocation: location })
-  }
-
   render() {
     const {
       locations,
       selectedCategories,
       matchingSearchLocations,
-      matchingCategoryLocations,
-      showEditPage,
-      currentLocation
+      matchingCategoryLocations
     } = this.state
 
     let filteredLocations = null
@@ -97,10 +89,7 @@ class Admin extends React.Component {
           onNewFacility={this.handleNewFacility}
           onCategoryFilter={this.handleCategoryFilter}
         />
-        {showEditPage ? 
-          <LocationEdit location={currentLocation}/> :
-          <AdminLocationList locations={filteredLocations || locations} editLink={this.renderEditPage} />
-        }
+        <AdminLocationList locations={filteredLocations || locations} />
       </div>
     )
   }
