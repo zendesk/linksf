@@ -37,8 +37,13 @@ class Link extends React.Component {
 
     event.preventDefault();
 
-    if (this.props.to) {
-      history.push(this.props.to);
+    if (this.props.to && this.props.query) {
+      history.push({
+        pathname: this.props.to,
+        query: this.props.query,
+      })
+    } else if (this.props.to) {
+      history.push(this.props.to)
     } else {
       history.push({
         pathname: event.currentTarget.pathname,
@@ -48,7 +53,7 @@ class Link extends React.Component {
   };
 
   render() {
-    const { to, ...props } = this.props; // eslint-disable-line no-use-before-define
+    const { to, query, ...props } = this.props; // eslint-disable-line no-use-before-define
     return <a href={history.createHref(to)} {...props} onClick={this.handleClick} />;
   }
 

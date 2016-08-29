@@ -6,11 +6,10 @@ import { fetchLocations } from '../../core/firebaseApi'
 
 import { calculateAllDistances } from '../../core/distance'
 
-
-const compose = (fn, ...rest) =>
-  rest.length === 0 ?
-    fn :
-    (...args) => fn(compose(...rest)(...args))
+function getParameterByName(name) {
+  const match = RegExp(`[?&]${name}=([^&]*)`).exec(window.location.search)
+  return match && decodeURIComponent(match[1].replace(/\+/g, ' '))
+}
 
 function mergeLocationsAndDistances(locations, matrixResponses) {
   const zip = (e, index) => {
