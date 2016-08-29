@@ -32,6 +32,10 @@
     "page": "./pages/admin"
   },
   {
+    "path": "/admin/locations/:id",
+    "page": "./pages/admin/location"
+  },
+  {
     "path": "/feedback",
     "page": "./pages/feedback"
   }
