@@ -32,7 +32,7 @@ class ServiceEdit extends React.Component{
           <span className={s.applicationLabel}>Application Process </span>
           <input
             type="text"
-            value={this.props.service.application_process}
+            value={this.props.service.applicationProcess}
             onChange={this.props.handleChange}
           />
         </div>
