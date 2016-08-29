@@ -4,13 +4,12 @@ import AdminLocationRow from '../AdminLocationRow'
 
 const AdminLocationList = (props) => (
   <div className={s.column}>
-    {props.locations.map((loc) => <AdminLocationRow location={loc} editLink={props.editLink} /> )}
+    {props.locations.map((loc, i) => (
+      <AdminLocationRow
+        key={`location-${i}`}
+        location={loc} />)
+    )}
   </div>
 )
-
-AdminLocationList.propTypes = {
-  name: PropTypes.string.isRequired,
-  iconClass: PropTypes.string.isRequired,
-}
 
 export default AdminLocationList

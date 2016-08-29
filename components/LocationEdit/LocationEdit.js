@@ -21,7 +21,6 @@ class LocationEdit extends React.Component{
   }
 
   render() {
-    console.log(this.state.location)
     return (
       <div>
       <div className={s.editBox}>
@@ -46,7 +45,7 @@ class LocationEdit extends React.Component{
             <span className={s.addressLineOneLabel}>Address </span>
             <input
               type="text"
-              value={this.state.location.physical_address.address_1}
+              value={this.state.location.physicalAddress.address1}
               onChange={this.handleChange}
             />
           </div>
@@ -54,14 +53,14 @@ class LocationEdit extends React.Component{
             <span className={s.addressCityLabel}>City </span>
             <input
               type="text"
-              value={this.state.location.physical_address.city}
+              value={this.state.location.physicalAddress.city}
               onChange={this.handleChange}
             />
           </div>
         </div>
         <div className={s.servicesBox}>
           <span className={s.servicesBoxLabel}>Services </span>
-          {(this.state.location.services || []).map((obj) => < ServiceEdit service={obj} changeState={this.handleChange} /> )}
+          {(this.state.location.services || []).map((obj) => <ServiceEdit service={obj} changeState={this.handleChange} /> )}
         </div>
         <div className={s.loginSubmit}>
           <button type="button" onClick={this.handleSubmit}>Login</button>
