@@ -11,7 +11,7 @@
   padding: 10px;
 }
 
-.newFacility {
+.newOrganization {
   float: right;
   font-size: 14px;
   border-right: 6px;
@@ -22,17 +22,9 @@
   cursor: pointer;
 }
 
-.newFacility:active {
+.newOrganization:active {
   border: 1px solid #ccc;
   background-color: #e5e5e5;
-}
-
-.facilityCategoryFilterBar {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 10px 0;
 }
 
 .helpText {
@@ -41,24 +33,4 @@
   margin: 0;
   text-align: center;
   font-weight: bold;
-}
-
-.facilityCategoryFilterButton {
-  font-size: 14px;
-  border-radius: 6px;
-  border: 1px solid #ddd;
-  padding: 10px;
-  background-color: #f8f8f8;
-  cursor: pointer;
-  margin: 0 5px;
-}
-
-.facilityCategoryFilterButton:active {
-  border: 1px solid #ccc;
-  background-color: #e5e5e5;
-}
-
-.facilityCategoryFilterButtonActive {
-  background-color: #999;
-  color: white;
 }

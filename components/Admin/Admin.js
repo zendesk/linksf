@@ -5,70 +5,59 @@ import history from '../../core/history';
 
 import Loading from '../Loading'
 import AdminTopBar from '../AdminTopBar'
-import LocationList from '../LocationList'
+import OrganizationList from '../OrganizationList'
+import OrganizationEdit from '../OrganizationEdit'
 import LocationEdit from '../LocationEdit'
-import AdminLocationList from '../AdminLocationList'
+
+import history from '../../core/history';
+import { fetchOrganizations } from '../../core/firebaseApi'
 
 
 class Admin extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      locations: [],
+      organizations: [],
       selectedCategories: [],
-      matchingSearchLocations: null,
-      matchingCategoryLocations: null,
+      matchingSearchOrganizations: null,
+      showEditPage: false,
+      currentOrganization: null,
     }
   }
 
   componentWillMount() {
-    fetchLocations()
-      .then(locations => {
-        this.setState({ locations })
+    fetchOrganizations()
+      .then(organizations => {
+        this.setState({ organizations })
       })
   }
 
   handleSearch = (event) => {
     const searchTerm = event.currentTarget.value
-    const { locations } = this.state
-    const locationMatchesSearch = (location) => (location.name.indexOf(searchTerm) >= 0)
-    const newMatchingSearchLocations = searchTerm ?
-      locations.filter(locationMatchesSearch) :
+    const { organizations } = this.state
+    const organizationMatchesSearch = (organization) => (organization.name.indexOf(searchTerm) >= 0)
+    const newMatchingSearchOrganizations = searchTerm ?
+      organizations.filter(organizationMatchesSearch) :
       null
 
-    this.setState({ matchingSearchLocations: newMatchingSearchLocations })
+    this.setState({ matchingSearchOrganizations: newMatchingSearchOrganizations })
   }
 
-  handleNewFacility = () => {
+  handleNewOrganization = () => {
 
   }
 
-  handleCategoryFilter = (category, active=false) => {
-    const { locations, selectedCategories } = this.state
-
-    const categoryNotMatchTaxonomy = (cat) => (cat != category.taxonomy)
-    const newSelectedCategories = active ?
-      selectedCategories.concat(category.taxonomy) :
-      selectedCategories.filter(categoryNotMatchTaxonomy)
-
-    const serviceHasMatchingTaxonomy = (service) => (newSelectedCategories.indexOf(service.taxonomy) >= 0)
-    const locationHasServiceMatchingCategory = (location) => (location.services || []).some(serviceHasMatchingTaxonomy)
-    const newMatchingCategoryLocations = (newSelectedCategories.length > 0) ?
-      locations.filter(locationHasServiceMatchingCategory) :
-      null
-
-    this.setState({
-      selectedCategories: newSelectedCategories,
-      matchingCategoryLocations: newMatchingCategoryLocations,
-    })
+  renderEditPage = (organization) => {
+    this.setState({ showEditPage: true, currentOrganization: organization })
   }
 
   render() {
     const {
-      locations,
+      organizations,
       selectedCategories,
-      matchingSearchLocations,
-      matchingCategoryLocations
+      matchingSearchOrganizations,
+      showEditPage,
+      currentOrganization
     } = this.state
 
     const loading = locations == null
@@ -91,12 +80,13 @@ class Admin extends React.Component {
         <AdminTopBar
           selectedCategories={selectedCategories}
           onSearch={this.handleSearch}
-          onNewFacility={this.handleNewFacility}
-          onCategoryFilter={this.handleCategoryFilter}
+          onNewOrganization={this.handleNewOrganization}
         />
         { loading ?
           <Loading /> :
-          <AdminLocationList locations={filteredLocations || locations} /> }
+          (showEditPage ?
+            <OrganizationEdit organization={currentOrganization}/> :
+            <OrganizationList organizations={matchingSearchOrganizations || organizations} editLink={this.renderEditPage} />) }
       </div>
     )
   }
