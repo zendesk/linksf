@@ -37,7 +37,7 @@
   },
   {
     "path": "/admin/oauth2",
-    "page": "./pages/admin/oauth"
+    "page": "./pages/auth/oauth"
   },
   {
     "path": "/login",

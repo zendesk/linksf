@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Link from '../Link'
 import s from './Navigation.css'
 
@@ -15,7 +15,7 @@ const CurrentUser = (props) => {
   }
 }
 
-class Navigation extends React.Component {
+class Navigation extends Component {
   render() {
     return (
       <nav className={s.header} role="navigation">
