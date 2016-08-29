@@ -11,7 +11,7 @@ class LogoutPage extends Component {
 
   componentWillMount() {
     destroySession()
-    window.location = '/login'
+    window.location.replace('/login')
   }
 
   render() {
