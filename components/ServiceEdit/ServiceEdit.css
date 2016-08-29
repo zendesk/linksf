@@ -1,57 +1,10 @@
-.location {
-  display: flex;
-  flex-direction: column;
-  border-bottom: 1px solid #DCDCDC;
-  font-size: 15px;
-  padding: 10px 4px;
+.selectableButton:active {
+  border: 1px solid #ccc;
+  background-color: #e5e5e5;
 }
 
-.locationBox {
-  display: flex;
-  justify-content: space-between;
+.selectableButtonActive{
+  background-color: #999;
+  color: white;
 }
 
-.locationLink {
-  text-decoration: none;
-  color: #000;
-  display: block;
-}
-
-.locationText {
-  margin: 4px 4px 4px 0;
-}
-
-.locationIcon {
-  color: #909090;
-}
-
-.locationInfo {
-  flex-direction: column;
-}
-
-.locationName {
-  margin: 5px 0 3px 0;
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: bold;
-}
-
-.locationStatus {
-  font-size: 13px;
-  margin-top: 15px;
-}
-
-.locationDistance {
-  color: #c3c3c3;
-  margin: 4px 0;
-  text-align: right;
-}
-
-.categoryIcons {
-  margin-bottom: 7px;
-  display: inline-block;
-}
-
-.rightCaret {
-  float: right;
-}

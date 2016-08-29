@@ -55,6 +55,26 @@ export function fetchOrganization(orgId) {
     })
 }
 
+export function fetchLocations(index = 0) {
+  const startIndex = index.toString()
+  const endIndex = (index + PAGINATION_VAL).toString()
+
+  return firebase
+    .child(LOCATIONS)
+    .orderByKey()
+    .startAt(startIndex)
+    .endAt(endIndex)
+    .once(ONCE_VALUE)
+    .then(locationsResponse => (locationsResponse.val()))
+}
+
+export function fetchLocation(id) {
+  return firebase
+    .child(`${LOCATIONS}/${id}`)
+    .once(ONCE_VALUE)
+    .then(locationResponse => (locationResponse.val()))
+}
+
 // Fetchs all available categories
 export function fetchTaxonomies() {
   return firebaseClient()

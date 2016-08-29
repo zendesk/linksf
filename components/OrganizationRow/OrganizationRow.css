@@ -1,4 +1,4 @@
-.location {
+.organization {
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid #DCDCDC;
@@ -6,42 +6,37 @@
   padding: 10px 4px;
 }
 
-.locationBox {
+.organizationBox {
   display: flex;
   justify-content: space-between;
 }
 
-.locationLink {
+.organizationLink {
   text-decoration: none;
   color: #000;
   display: block;
 }
 
-.locationText {
+.organizationText {
   margin: 4px 4px 4px 0;
 }
 
-.locationIcon {
+.organizationIcon {
   color: #909090;
 }
 
-.locationInfo {
+.organizationInfo {
   flex-direction: column;
 }
 
-.locationName {
+.organizationName {
   margin: 5px 0 3px 0;
   text-decoration: none;
   font-size: 15px;
   font-weight: bold;
 }
 
-.locationAddress {
-  font-size: 13px;
-  margin-top: 15px;
-}
-
-.locationDistance {
+.organizationDistance {
   color: #c3c3c3;
   margin: 4px 0;
   text-align: right;
