@@ -3,6 +3,7 @@ import { fetchLocation } from '../../core/firebaseApi'
 import camelize from 'camelize'
 
 import icons from '../../icons/css/icons.css'
+import { authenticate } from '../../lib/adminSession'
 
 import Layout from '../../components/Layout'
 import LocationEdit from '../../components/LocationEdit'
@@ -16,6 +17,7 @@ class AdminLocationPage extends Component {
   }
 
   componentWillMount() {
+    authenticate()
     const match = this.props.route.pattern.exec(window.location.pathname)
     const locationId = match[1]
 

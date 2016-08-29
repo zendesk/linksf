@@ -40,8 +40,12 @@
     "page": "./pages/admin/oauth"
   },
   {
+    "path": "/login",
+    "page": "./pages/auth/login"
+  },
+  {
     "path": "/logout",
-    "page": "./pages/logout"
+    "page": "./pages/auth/logout"
   },
   {
     "path": "/feedback",

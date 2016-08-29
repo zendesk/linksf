@@ -17,7 +17,6 @@ const CurrentUser = (props) => {
 
 class Navigation extends React.Component {
   render() {
-    console.log(this.props)
     return (
       <nav className={s.header} role="navigation">
         <div>

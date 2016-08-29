@@ -1,23 +1,21 @@
 import React, { Component } from 'react'
 import { destroySession } from '../../lib/adminSession'
 
+import Layout from '../../components/Layout'
+import Login from '../../components/Login'
+
 class LogoutPage extends Component {
   constructor(props) {
+    document.title = 'Link-SF Admin'
     super(props)
   }
 
-  componentWillMount() {
-    destroySession()
-
-    window.location = "/"
-  }
-
-  componentDidMount() {
-    document.title = 'Link-SF Admin'
-  }
-
   render() {
-    return "Logging you out..."
+    return (
+      <Layout admin>
+        <Login />
+      </Layout>
+    )
   }
 }
 
