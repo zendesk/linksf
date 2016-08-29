@@ -4,15 +4,12 @@ import Admin from '../../components/Admin'
 import Login from '../../components/Login'
 import icons from '../../icons/css/icons.css'
 import { fetchCategories } from '../../core/firebaseApi'
+import { currentUser } from '../../lib/adminSession'
 
 class AdminPage extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      loggedIn: true,
-      username: "",
-      password: "",
-    }
+    this.state = {}
   }
 
   componentDidMount() {
@@ -20,10 +17,14 @@ class AdminPage extends Component {
   }
 
   render() {
-    const { loggedIn, username, password } = this.state
+    const user = currentUser()
+
     return (
-      <Layout admin>
-        { loggedIn ? <Admin /> : <Login /> }
+      <Layout
+        currentUser={user}
+        admin
+      >
+        { user ? <Admin /> : <Login /> }
       </Layout>
     )
   }

@@ -1,10 +1,13 @@
 import React, { PropTypes } from 'react'
+
+import history from '../../core/history'
+import { fetchLocations } from '../../core/firebaseApi'
+import { currentUser } from '../../lib/adminSession'
+
 import AdminTopBar from '../AdminTopBar'
 import LocationList from '../LocationList'
 import LocationEdit from '../LocationEdit'
 import AdminLocationList from '../AdminLocationList'
-import history from '../../core/history';
-import { fetchLocations } from '../../core/firebaseApi'
 
 class Admin extends React.Component {
   constructor(props) {

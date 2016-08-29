@@ -3,10 +3,10 @@ import s from './Layout.css'
 import Navigation from './Navigation'
 import Footer from './Footer'
 
-function Layout({ admin, children }) {
+function Layout({ admin, currentUser, children }) {
   return (
     <div>
-      <Navigation />
+      <Navigation currentUser={currentUser}/>
       <div className={s.center}>
         <div id="index" className={admin ? s.adminContent : s.content}>
           {children}
