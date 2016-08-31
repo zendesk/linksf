@@ -13,6 +13,7 @@ import Layout from '../../components/Layout'
 import TextInput from '../../components/TextInput'
 import TextArea from '../../components/TextArea'
 import Button from '../../components/Button'
+import Error from '../../components/Error'
 
 class FeedbackPage extends React.Component {
 
@@ -23,6 +24,7 @@ class FeedbackPage extends React.Component {
       email: '',
       subject: '',
       message: '',
+      error: '',
     }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -30,13 +32,18 @@ class FeedbackPage extends React.Component {
   handleSubmit(e) {
     e.preventDefault()
     if (!this.state.name || !this.state.email || !this.state.subject || !this.state.message) {
-      console.log(this.state)
+      this.setState({ error: 'Please fill out all fields' })
+    } else {
+      this.setState({ name: '', email: '', subject: '', message: '', error: '' })
+      // TODO: post data to FireBase
+      console.log({ name: this.state.name, email: this.state.email, subject: this.state.subject, message: this.state.message })
     }
   }
 
   render() {
     return (
       <Layout>
+        {this.state.error ? <Error message={this.state.error} /> : ''}
         <h4>Give us feedback</h4>
         <form onSubmit={this.handleSubmit}>
           <label>Name</label>
@@ -44,24 +51,28 @@ class FeedbackPage extends React.Component {
             placeholder="Your name"
             value={this.state.name}
             onChange={e => this.setState({ name: e.target.value })}
+            required
           />
           <label>Email</label>
           <TextInput
             placeholder="Your email"
             value={this.state.email}
             onChange={e => this.setState({ email: e.target.value })}
+            required
           />
           <label>Subject</label>
           <TextInput
             placeholder="Subject"
             value={this.state.subject}
             onChange={e => this.setState({ subject: e.target.value })}
+            required
           />
           <label>Message</label>
           <TextArea
             placeholder="Message"
             value={this.state.message}
             onChange={e => this.setState({ message: e.target.value })}
+            required
           />
           <Button type="submit" value="Post">Submit Feedback</Button>
         </form>
