@@ -10,6 +10,9 @@
 
 import React from 'react'
 import Layout from '../../components/Layout'
+import TextInput from '../../components/TextInput'
+import TextArea from '../../components/TextArea'
+import Button from '../../components/Button'
 
 class FeedbackPage extends React.Component {
 
@@ -26,38 +29,41 @@ class FeedbackPage extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    console.log(this.state)
+    if (!this.state.name || !this.state.email || !this.state.subject || !this.state.message) {
+      console.log(this.state)
+    }
   }
 
   render() {
     return (
       <Layout>
+        <h4>Give us feedback</h4>
         <form onSubmit={this.handleSubmit}>
-          <input
-            type="text"
+          <label>Name</label>
+          <TextInput
             placeholder="Your name"
             value={this.state.name}
             onChange={e => this.setState({ name: e.target.value })}
           />
-          <input
-            type="text"
+          <label>Email</label>
+          <TextInput
             placeholder="Your email"
             value={this.state.email}
             onChange={e => this.setState({ email: e.target.value })}
           />
-          <input
-            type="text"
+          <label>Subject</label>
+          <TextInput
             placeholder="Subject"
             value={this.state.subject}
             onChange={e => this.setState({ subject: e.target.value })}
           />
-          <textarea
-            type="text"
+          <label>Message</label>
+          <TextArea
             placeholder="Message"
             value={this.state.message}
             onChange={e => this.setState({ message: e.target.value })}
           />
-          <input type="submit" value="Post" />
+          <Button type="submit" value="Post">Submit Feedback</Button>
         </form>
       </Layout>
     )
