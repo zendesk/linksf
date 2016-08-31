@@ -9,7 +9,7 @@ class Footer extends React.Component {
         <Link className={s.nav} to="/terms">
           Terms
         </Link>
-        <Link className={s.nav} to="#">
+        <Link className={s.nav} to="/feedback">
           Feedback
         </Link>
         <Link className={s.nav} to="/about">
