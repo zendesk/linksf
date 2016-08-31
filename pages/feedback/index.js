@@ -34,9 +34,12 @@ class FeedbackPage extends React.Component {
     if (!this.state.name || !this.state.email || !this.state.subject || !this.state.message) {
       this.setState({ error: 'Please fill out all fields' })
     } else {
-      this.setState({ name: '', email: '', subject: '', message: '', error: '' })
       // TODO: post data to FireBase
-      console.log({ name: this.state.name, email: this.state.email, subject: this.state.subject, message: this.state.message })
+      console.log({ name: this.state.name,
+                    email: this.state.email,
+                    subject: this.state.subject,
+                    message: this.state.message })
+      this.setState({ name: '', email: '', subject: '', message: '', error: '' })
     }
   }
 
