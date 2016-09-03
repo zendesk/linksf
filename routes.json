@@ -36,6 +36,18 @@
     "page": "./pages/admin/location"
   },
   {
+    "path": "/admin/oauth2",
+    "page": "./pages/auth/oauth"
+  },
+  {
+    "path": "/login",
+    "page": "./pages/auth/login"
+  },
+  {
+    "path": "/logout",
+    "page": "./pages/auth/logout"
+  },
+  {
     "path": "/feedback",
     "page": "./pages/feedback"
   }
