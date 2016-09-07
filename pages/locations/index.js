@@ -16,11 +16,13 @@ function mergeLocationsAndDistances(locations, matrixResponses) {
   const zip = (e, index) => {
     return [locations[index], matrixResponses[index]]
   }
+
   const merge = ([location, responseObj]) => {
     const locationAndDistance = location
-    locationAndDistance.duration = responseObj.duration // i hate this; it breaks the consistency of the whole app
+    locationAndDistance.duration = (responseObj || {}).duration // i hate this; it breaks the consistency of the whole app
     return locationAndDistance
   }
+
   return locations.map((e, i) => merge(zip(e, i)))
 }
 
@@ -46,9 +48,10 @@ export default class LocationsPage extends Component {
 
   setLocations() {
     const { currentLocation } = this.state
+
     if (currentLocation) {
       let locationsCache
-      fetchLocations(0)
+      fetchLocations()
         .then(locations => {
           locationsCache = locations
           return calculateAllDistances(locations, currentLocation)
@@ -60,7 +63,7 @@ export default class LocationsPage extends Component {
           this.setState({ locations: locationsWithDistance })
         })
     } else {
-      fetchLocations(0)
+      fetchLocations()
         .then(locations => {
           this.setState({ locations })
         })

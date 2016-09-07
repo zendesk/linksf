@@ -3,7 +3,6 @@ import Layout from '../../components/Layout'
 import Admin from '../../components/Admin'
 import Login from '../../components/Login'
 import icons from '../../icons/css/icons.css'
-import { fetchCategories } from '../../core/firebaseApi'
 
 class AdminPage extends Component {
   constructor(props) {
@@ -13,10 +12,6 @@ class AdminPage extends Component {
       username: "",
       password: "",
     }
-  }
-
-  componentDidMount() {
-    document.title = 'Link-SF Admin'
   }
 
   render() {
