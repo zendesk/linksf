@@ -16,6 +16,7 @@ export default class LocationPage extends Component {
   componentWillMount() {
     const match = this.props.route.pattern.exec(window.location.pathname)
     const locationId = match[1]
+
     fetchLocation(locationId)
       .then(location => {
         this.setState({ location: camelize(location) })
@@ -27,6 +28,7 @@ export default class LocationPage extends Component {
 
   render() {
     const { location, organization } = this.state
+
     return (
       <Layout>
         {(location && organization) ?

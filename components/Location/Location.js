@@ -88,8 +88,8 @@ const Location = (props) => {
       <div className={s.insetCall}>
         <label className={`${s.contactLabel} ${icons.iconPhone}`}>Call </label>
         <div className={s.callPhone}>
-          {organization.phones && organization.phones.map(phone => (
-            <div>
+          {organization.phones && organization.phones.map((phone, index) => (
+            <div key={`phone-${index}`}>
               <span>{phone.number}</span>
               <span>{phone.department}</span>
             </div>
@@ -106,8 +106,8 @@ const Location = (props) => {
         <label className={`${s.directionsLabel} ${icons.iconCompass}`}>Directions</label>
       </button>
       <ul title="Services details" className={s.servicesList}>
-        {services && services.map(service => (
-          <li className={s.insetServices}>
+        {services && services.map((service, index) => (
+          <li key={`service-${index}`} className={s.insetServices}>
             <h3 className={s.serviceTitle}>{service.name}</h3>
             <p className={s.serviceDescription}>{service.description}</p>
             <table className={s.openHours}>
