@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Home from '../../components/Home'
 import Layout from '../../components/Layout'
 import icons from '../../icons/css/icons.css'
-import { fetchCategories } from '../../core/firebaseApi'
+import { fetchTaxonomies } from '../../core/firebaseApi'
 
 class HomePage extends Component {
   constructor(props) {
@@ -13,14 +13,10 @@ class HomePage extends Component {
   }
 
   componentWillMount() {
-    fetchCategories()
+    fetchTaxonomies()
       .then(categories => {
         this.setState({ categories })
       })
-  }
-
-  componentDidMount() {
-    document.title = 'Link-SF'
   }
 
   render() {
