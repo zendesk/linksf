@@ -21,7 +21,7 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 
 // TODO: Update configuration settings
 const config = {
-  title: 'Link-Sf',           // Your website title
+  title: 'Link-SF',           // Your website title
   url: 'https://link-sf.com', // Your website URL
   project: 'link-sf',         // Firebase project. See README.md -> How to Deploy
   trackingID: 'UA-XXXXX-Y',   // Google Analytics Site's ID
