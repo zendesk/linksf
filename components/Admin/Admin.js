@@ -17,7 +17,7 @@ class Admin extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      organizations: [],
+      organizations: null,
       selectedCategories: [],
       matchingSearchOrganizations: null,
       showEditPage: false,
@@ -60,20 +60,7 @@ class Admin extends React.Component {
       currentOrganization
     } = this.state
 
-    const loading = locations == null
-    let filteredLocations = null
-
-    if (matchingSearchLocations) {
-      const a = new Set(locations)
-      const b = new Set(matchingSearchLocations)
-      filteredLocations = [...(new Set([...a].filter(x => b.has(x))))]
-    }
-
-    if (matchingCategoryLocations) {
-      const a = new Set(filteredLocations || locations)
-      const b = new Set(matchingCategoryLocations)
-      filteredLocations = [...(new Set([...a].filter(x => b.has(x))))]
-    }
+    const loading = organizations == null
 
     return (
       <div>
@@ -86,11 +73,10 @@ class Admin extends React.Component {
           <Loading /> :
           (showEditPage ?
             <OrganizationEdit organization={currentOrganization}/> :
-            <OrganizationList organizations={matchingSearchOrganizations || organizations} editLink={this.renderEditPage} />) }
+            <OrganizationList organizations={matchingSearchOrganizations || organizations || []} editLink={this.renderEditPage} />) }
       </div>
     )
   }
-
 }
 
 export default Admin

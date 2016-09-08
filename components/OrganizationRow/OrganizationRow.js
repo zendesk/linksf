@@ -3,7 +3,6 @@ import s from './OrganizationRow.css'
 import icons from '../../icons/css/icons.css'
 
 const OrganizationRow = (props) => {
-  console.log(props.organization)
   return (
     <li className={s.organization} key={`organization-${props.organization.id}`}>
       <a onClick={() => props.editLink(props.organization)} className={s.organizationLink} title={`Click to edit ${props.organization.name}`}>

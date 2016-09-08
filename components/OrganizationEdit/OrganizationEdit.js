@@ -18,7 +18,8 @@ class OrganizationEdit extends React.Component{
   componentWillMount() {
     fetchLocationsForOrganization(this.state.organization.id)
       .then(locations => {
-        this.setStatetate({ locations })
+        console.log(locations)
+        this.setState({ locations })
       })
   }
 
@@ -26,11 +27,19 @@ class OrganizationEdit extends React.Component{
     this.setState({value: event.target.value});
   }
 
+  handleLocations = (newLocation, index) => {
+    const { locations } = this.state
+    const newLocations = locations
+    newLocations[index] = newLocation
+    this.setState(Object.assign(this.state, { locations: newLocations }))
+  }
+
   handleSubmit = (event)  => {
     // Do some stuff with firebase to login yee
   }
 
   render() {
+    console.log(this.state)
     return (
       <div className={s.organizationEditBox}>
         <div className={s.name}>
@@ -63,7 +72,7 @@ class OrganizationEdit extends React.Component{
           />
         </div>
         <div className={s.locationsBox}>
-          {(this.state.locations || []).map((loc) => <LocationEdit key={`location-${obj.id}`} location={loc} />)}
+          {(this.state.locations || []).map((loc, index) => <LocationEdit key={`location-${loc.id}`} location={loc} handleChange={this.handleLocations} index={index} />)}
         </div>
         <div className={s.loginSubmit}>
           <button type="button" onClick={this.handleSubmit}>Login</button>

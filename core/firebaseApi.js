@@ -23,21 +23,13 @@ export function firebaseClient() {
   return firebase
 }
 
-export function fetchLocations() {
+export function fetchOrganizations() {
   return firebaseClient()
     .database()
-    .ref(LOCATIONS)
+    .ref(ORGANIZATIONS)
     .orderByKey()
     .once(ONCE_VALUE)
-    .then(locationsResponse => locationsResponse.val())
-}
-
-export function fetchLocation(id) {
-  return firebaseClient()
-    .database()
-    .ref(`${LOCATIONS}/${id}`)
-    .once(ONCE_VALUE)
-    .then(locationResponse => locationResponse.val())
+    .then(organizationsResponse => organizationsResponse.val())
 }
 
 // Fetches an organization with its services. Returns a Promise
@@ -55,24 +47,34 @@ export function fetchOrganization(orgId) {
     })
 }
 
-export function fetchLocations(index = 0) {
-  const startIndex = index.toString()
-  const endIndex = (index + PAGINATION_VAL).toString()
-
-  return firebase
-    .child(LOCATIONS)
+export function fetchLocations() {
+  return firebaseClient()
+    .database()
+    .ref(LOCATIONS)
     .orderByKey()
-    .startAt(startIndex)
-    .endAt(endIndex)
     .once(ONCE_VALUE)
-    .then(locationsResponse => (locationsResponse.val()))
+    .then(locationsResponse => locationsResponse.val())
 }
 
 export function fetchLocation(id) {
-  return firebase
-    .child(`${LOCATIONS}/${id}`)
+  return firebaseClient()
+    .database()
+    .ref(`${LOCATIONS}/${id}`)
     .once(ONCE_VALUE)
-    .then(locationResponse => (locationResponse.val()))
+    .then(locationResponse => locationResponse.val())
+}
+
+export function fetchLocationsForOrganization(orgId) {
+  return firebaseClient()
+    .database()
+    .ref(LOCATIONS)
+    .orderByChild('organization_id')
+    .equalTo(orgId)
+    .once(ONCE_VALUE)
+    .then(locationResponse => {
+      const data = locationResponse.val()
+      return Object.keys(data).map(function(val) { return data[val] })
+    })
 }
 
 // Fetchs all available categories
