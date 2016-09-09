@@ -29,6 +29,10 @@ class FeedbackPage extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
+  componentDidMount() {
+    document.title = 'Feedback'
+  }
+
   handleSubmit(e) {
     e.preventDefault()
     if (!this.state.name || !this.state.email || !this.state.subject || !this.state.message) {

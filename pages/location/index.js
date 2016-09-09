@@ -26,6 +26,11 @@ export default class LocationPage extends Component {
       })
   }
 
+  componentDidUpdate() {
+    const { location } = this.state
+    document.title = location ? location.name : 'Link-SF'
+  }
+
   render() {
     const { location, organization } = this.state
 

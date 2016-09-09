@@ -5,7 +5,7 @@ import s from './terms.css'
 class TermsPage extends React.Component {
 
   componentDidMount() {
-    document.title = "Terms";
+    document.title = 'Terms'
   }
 
   render() {
