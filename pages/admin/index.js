@@ -14,6 +14,10 @@ class AdminPage extends Component {
     }
   }
 
+  componentDidMount() {
+    document.title = 'Link-SF Admin'
+  }
+
   render() {
     const { loggedIn, username, password } = this.state
     return (
