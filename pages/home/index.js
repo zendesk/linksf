@@ -19,6 +19,10 @@ class HomePage extends Component {
       })
   }
 
+  componentDidMount() {
+    document.title = 'Link-SF'
+  }
+
   render() {
     const { categories } = this.state
     return (

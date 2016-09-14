@@ -46,6 +46,10 @@ export default class LocationsPage extends Component {
     }
   }
 
+  componentDidMount() {
+    document.title = 'Link-SF'
+  }
+
   setLocations() {
     const { currentLocation } = this.state
 
