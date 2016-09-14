@@ -15,7 +15,7 @@ import s from './about.css'
 class AboutPage extends React.Component {
 
   componentDidMount() {
-    document.title = "About";
+    document.title = 'About'
   }
 
   render() {
