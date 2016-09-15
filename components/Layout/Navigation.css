@@ -20,3 +20,17 @@
   border-bottom: 1px solid #DDD;
   z-index: 999;
 }
+
+.currentUser {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.currentUserDetails {
+  float: left;
+}
+
+.logout {
+  float: right;
+}

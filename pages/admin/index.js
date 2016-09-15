@@ -1,17 +1,14 @@
 import React, { Component } from 'react'
+
+import Loading from '../../components/Loading'
 import Layout from '../../components/Layout'
 import Admin from '../../components/Admin'
-import Login from '../../components/Login'
-import icons from '../../icons/css/icons.css'
+
+import { authenticate, currentUser } from '../../lib/session'
 
 class AdminPage extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      loggedIn: true,
-      username: "",
-      password: "",
-    }
+  componentWillMount() {
+    authenticate()
   }
 
   componentDidMount() {
@@ -19,10 +16,11 @@ class AdminPage extends Component {
   }
 
   render() {
-    const { loggedIn, username, password } = this.state
+    const user = currentUser()
+
     return (
       <Layout admin>
-        { loggedIn ? <Admin /> : <Login /> }
+        {user ? <Admin /> : <Loading />}
       </Layout>
     )
   }
