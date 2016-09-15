@@ -6,35 +6,40 @@ class Login extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: null,
-      password: null,
+      email: '',
+      password: '',
     }
   }
 
-  handleChange = function(event) {
-    this.setState({value: event.target.value})
+  handleChange = (field, event) => {
+    const fields = {}
+    fields[field] = event.target.value
+
+    this.setState(fields)
   }
 
-  handleSubmit = function(event) {
-    // Do some stuff with firebase to login yee
+  handleSubmit = (event) => {
+    const { email, password } = this.state
+
+    this.props.handleSubmit(email, password)
   }
 
   render() {
     return (
       <div className={s.loginBox}>
-        <div className={s.username}>
-          <span className={s.usernameLabel}>Username </span>
+        <div className={s.email}>
+          <span className={s.emailLabel}>email </span>
           <input
             type="text"
-            value={this.state.username}
-            onChange={this.handleChange} />
+            value={this.state.email}
+            onChange={(e) => this.handleChange('email', e)} />
         </div>
         <div className={s.password}>
           <span className={s.passwordLabel}>Password </span>
           <input
             type="password"
             value={this.state.password}
-            onChange={this.handleChange} />
+            onChange={(e) => this.handleChange('password', e)} />
         </div>
         <div className={s.loginSubmit}>
           <button type="button" onClick={this.handleSubmit}>Login</button>

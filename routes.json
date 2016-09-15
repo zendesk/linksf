@@ -4,18 +4,6 @@
     "page": "./pages/home"
   },
   {
-    "path": "/error",
-    "page": "./pages/error"
-  },
-  {
-    "path": "/about",
-    "page": "./pages/about"
-  },
-  {
-    "path": "/terms",
-    "page": "./pages/terms"
-  },
-  {
     "path": "/tasks/:status(pending|completed)?",
     "page": "./pages/home"
   },
@@ -36,7 +24,27 @@
     "page": "./pages/admin/location"
   },
   {
+    "path": "/login",
+    "page": "./pages/auth/login"
+  },
+  {
+    "path": "/logout",
+    "page": "./pages/auth/logout"
+  },
+  {
     "path": "/feedback",
     "page": "./pages/feedback"
+  },
+  {
+    "path": "/error",
+    "page": "./pages/error"
+  },
+  {
+    "path": "/about",
+    "page": "./pages/about"
+  },
+  {
+    "path": "/terms",
+    "page": "./pages/terms"
   }
 ]
