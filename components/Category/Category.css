@@ -12,7 +12,10 @@
 }
 
 .categoryIcon {
-  margin: 5px 10px;
+  display: inline-block;
+  text-align: center;
+  min-width: 35px;
+  margin: 0 10px;
 }
 
 .rightCaret {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Layout from '../../components/Layout'
 import Location from '../../components/Location'
-import { fetchLocation, fetchOrganization } from '../../core/firebaseApi'
+import { fetchLocation, fetchOrganization } from '../../core/firebaseRestAPI'
 import camelize from 'camelize'
 
 export default class LocationPage extends Component {
