@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Layout from '../../components/Layout'
 import FilterBar from '../../components/FilterBar'
 import LocationList from '../../components/LocationList'
-import { fetchLocations } from '../../core/firebaseApi'
+import { fetchLocations } from '../../core/firebaseRestAPI'
 
 import { calculateAllDistances } from '../../core/distance'
 
@@ -80,6 +80,7 @@ export default class LocationsPage extends Component {
 
   render() {
     const { locations } = this.state
+
     const filteredLocations = locations.filter(loc => (
       loc.services &&
       loc.services.filter(service => service.taxonomy === 'housing'))
