@@ -13,10 +13,10 @@ export function firebaseClient() {
   }
 
   const config = {
-    apiKey: "AIzaSyCr7KlhsN-On4LrXTKkRdU-Df0s-WCR-TU",
-    authDomain: "vivid-inferno-4672.firebaseapp.com",
-    databaseURL: "https://vivid-inferno-4672.firebaseio.com",
-    storageBucket: "vivid-inferno-4672.appspot.com",
+    apiKey: "",
+    authDomain: "",
+    databaseURL: "",
+    storageBucket: "",
   }
 
   firebase.initializeApp(config)

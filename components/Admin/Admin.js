@@ -14,7 +14,6 @@ class Admin extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      loading: true,
       locations: [],
       selectedCategories: [],
       matchingSearchLocations: null,
@@ -25,7 +24,7 @@ class Admin extends React.Component {
   componentWillMount() {
     fetchLocations()
       .then(locations => {
-        this.setState({ loading: false, locations })
+        this.setState({ locations })
       })
   }
 
@@ -66,13 +65,13 @@ class Admin extends React.Component {
 
   render() {
     const {
-      loading,
       locations,
       selectedCategories,
       matchingSearchLocations,
       matchingCategoryLocations
     } = this.state
 
+    const loading = locations == null
     let filteredLocations = null
 
     if (matchingSearchLocations) {

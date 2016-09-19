@@ -31,9 +31,8 @@ export default class LocationsPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      loading: true,
       showOpen: false,
-      locations: [],
+      locations: null,
       currentLocation: null,
     }
   }
@@ -83,12 +82,14 @@ export default class LocationsPage extends Component {
   }
 
   render() {
-    const { loading, locations } = this.state
+    const { locations } = this.state
+    const loading = locations == null
 
-    const filteredLocations = locations.filter(loc => (
+    const filteredLocations = (locations || []).filter(loc => (
       loc.services &&
       loc.services.filter(service => service.taxonomy === 'housing'))
     )
+
     return (
       <Layout>
         { loading ?
