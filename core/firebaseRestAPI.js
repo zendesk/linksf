@@ -35,7 +35,7 @@ export function fetchLocations() {
     .then(response => response.json())
     .then(locations => {
       return Object.keys(locations).map(locationId => (
-        locations[locationId]
+        camelize(locations[locationId])
       ))
     })
 }
@@ -47,7 +47,9 @@ export function fetchLocation(id) {
     id
   ].join(SLASH).concat(FORMAT)
 
-  fetch(url).then(response => response.json())
+  return fetch(url)
+    .then(response => response.json())
+    .then(json => camelize(json))
 }
 
 export function fetchOrganizations() {
@@ -60,7 +62,7 @@ export function fetchOrganizations() {
     .then(response => response.json())
     .then(organizations => {
       return Object.keys(organizations).map(orgId => (
-        organizations[orgId]
+        camelize(organizations[orgId])
       ))
     })
 }
@@ -72,5 +74,7 @@ export function fetchOrganization(id) {
     id
   ].join(SLASH).concat(FORMAT)
 
-  return fetch(url).then(response => response.json())
+  return fetch(url)
+    .then(response => response.json())
+    .then(json => camelize(json))
 }
