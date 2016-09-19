@@ -21,7 +21,7 @@ const AdminLocationRow = (props) => {
         <div className={s.locationBox}>
           <div className={s.locationInfo}>
             <span className={s.locationAddress}>
-              {`${location.physical_address.address_1}, ${location.physical_address.city}`}
+              {`${location.physicalAddress.address1}, ${location.physicalAddress.city}`}
             </span>
             <div className={s.categoryIcons}>
               <i className={`category-icon ${icons.iconHome}`}></i>

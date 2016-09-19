@@ -1,15 +1,20 @@
 import React, { PropTypes } from 'react'
+
+import { fetchLocations } from '../../core/firebaseRestAPI'
+import history from '../../core/history';
+
+import Loading from '../Loading'
 import AdminTopBar from '../AdminTopBar'
 import LocationList from '../LocationList'
 import LocationEdit from '../LocationEdit'
 import AdminLocationList from '../AdminLocationList'
-import history from '../../core/history';
-import { fetchLocations } from '../../core/firebaseApi'
+
 
 class Admin extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      loading: true,
       locations: [],
       selectedCategories: [],
       matchingSearchLocations: null,
@@ -20,7 +25,7 @@ class Admin extends React.Component {
   componentWillMount() {
     fetchLocations()
       .then(locations => {
-        this.setState({ locations })
+        this.setState({ loading: false, locations })
       })
   }
 
@@ -61,6 +66,7 @@ class Admin extends React.Component {
 
   render() {
     const {
+      loading,
       locations,
       selectedCategories,
       matchingSearchLocations,
@@ -89,7 +95,9 @@ class Admin extends React.Component {
           onNewFacility={this.handleNewFacility}
           onCategoryFilter={this.handleCategoryFilter}
         />
-        <AdminLocationList locations={filteredLocations || locations} />
+        { loading ?
+          <Loading /> :
+          <AdminLocationList locations={filteredLocations || locations} /> }
       </div>
     )
   }

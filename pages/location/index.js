@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import Layout from '../../components/Layout'
-import Location from '../../components/Location'
+
 import { fetchLocation, fetchOrganization } from '../../core/firebaseRestAPI'
-import camelize from 'camelize'
+
+import Layout from '../../components/Layout'
+import Loading from '../../components/Loading'
+import Location from '../../components/Location'
 
 export default class LocationPage extends Component {
   constructor(props) {
@@ -19,10 +21,10 @@ export default class LocationPage extends Component {
 
     fetchLocation(locationId)
       .then(location => {
-        this.setState({ location: camelize(location) })
-        return fetchOrganization(location.organization_id)
+        this.setState({ location })
+        return fetchOrganization(location.organizationId)
       }).then(organization => {
-        this.setState({ organization: camelize(organization) })
+        this.setState({ organization })
       })
   }
 
@@ -38,7 +40,7 @@ export default class LocationPage extends Component {
       <Layout>
         {(location && organization) ?
           <Location location={location} organization={organization} /> :
-          'Loading'
+          <Loading />
         }
       </Layout>
     )
