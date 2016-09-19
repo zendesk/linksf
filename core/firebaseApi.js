@@ -29,7 +29,14 @@ export function fetchOrganizations() {
     .ref(ORGANIZATIONS)
     .orderByKey()
     .once(ONCE_VALUE)
-    .then(organizationsResponse => organizationsResponse.val())
+    .then(organizationsResponse => {
+      const data = organizationsResponse.val()
+      return Object.keys(data).map(function(val) {
+        var org = data[val]
+        org.key = val
+        return org
+      })
+    })
 }
 
 // Fetches an organization with its services. Returns a Promise
@@ -47,13 +54,33 @@ export function fetchOrganization(orgId) {
     })
 }
 
+export function putOrganization(organization) {
+  var orgKey = organization.key
+  if (!orgKey) {
+    orgKey = firebaseClient().database().ref().child(ORGANIZATIONS).push().key
+  }
+
+  var update = {}
+  update['/' + ORGANIZATIONS + '/' + orgKey] = organization
+
+  firebaseClient().database().ref().update(update)
+  return orgKey
+}
+
 export function fetchLocations() {
   return firebaseClient()
     .database()
     .ref(LOCATIONS)
     .orderByKey()
     .once(ONCE_VALUE)
-    .then(locationsResponse => locationsResponse.val())
+    .then(locationsResponse => {
+      const data = locationsResponse.val()
+      return Object.keys(data).map(function(val) {
+        var loc = data[val]
+        loc.key = val
+        return loc
+      })
+    })
 }
 
 export function fetchLocation(id) {
@@ -64,6 +91,19 @@ export function fetchLocation(id) {
     .then(locationResponse => locationResponse.val())
 }
 
+export function putLocation(location) {
+  var locKey = location.key
+  if (!locKey) {
+    locKey = firebaseClient().database().ref().child(LOCATIONS).push().key
+  }
+
+  var update = {}
+  update['/' + LOCATIONS + '/' + locKey] = location
+
+  firebaseClient().database().ref().update(update)
+  return locKey
+}
+
 export function fetchLocationsForOrganization(orgId) {
   return firebaseClient()
     .database()
@@ -71,9 +111,13 @@ export function fetchLocationsForOrganization(orgId) {
     .orderByChild('organization_id')
     .equalTo(orgId)
     .once(ONCE_VALUE)
-    .then(locationResponse => {
-      const data = locationResponse.val()
-      return Object.keys(data).map(function(val) { return data[val] })
+    .then(locationsResponse => {
+      const data = locationsResponse.val()
+      return Object.keys(data).map(function(val) {
+        var loc = data[val]
+        loc.key = val
+        return loc
+      })
     })
 }
 

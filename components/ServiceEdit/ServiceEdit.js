@@ -14,6 +14,10 @@ const ServiceEdit = (props) => {
     props.handleChange(newService, props.index)
   }
 
+  function deleteService() {
+    props.handleDelete(props.index)
+  }
+
   function handleServiceChange(field, event) {
     updateService(field, event.target.value)
   }
@@ -127,6 +131,14 @@ const ServiceEdit = (props) => {
           </button>
         ))}
       </div>
+      <div className={s.deleteBox}>
+        <button
+          className={s.deleteButton}
+          onClick={deleteService}
+        >
+        Delete
+        </button>
+      </div>
     </div>
   )
 }
@@ -164,7 +176,6 @@ const AgeBox = (props) => (
 
 const ScheduleBox = (props) => (
   <div className={s.scheduleBox}>
-    <span className={s.scheduleLabel}>Schedule </span>
     {props.schedule.map((obj, index) => <TimeRangePicker rangeLabel={obj.weekday} startTime={obj.opens_at} endTime={obj.closes_at} handleUpdate={props.handleTimeChange} metadata={{ scheduleNum: props.index, day: index}}/> )}
   </div>
 )

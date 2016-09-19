@@ -5,12 +5,26 @@ import icons from '../../icons/css/icons.css'
 import ServiceEdit from '../ServiceEdit'
 
 const LocationEdit = (props) => {
+  const blankService = {
+    application_process: "",
+    description: "",
+    eligibility: {},
+    location_id: props.location.id,
+    name: "",
+    organization: props.location.organization_id,
+    schedules: [],
+    taxonomy: ""
+  }
 
   function updateLocation(field, value) {
     const { location } = props
     const newLocation = location
     newLocation[field] = value
     props.handleChange(newLocation, props.index)
+  }
+
+  function deleteLocation() {
+    props.handleDelete(props.index)
   }
 
   function handleLocationChange(field, event) {
@@ -24,10 +38,24 @@ const LocationEdit = (props) => {
     updateLocation('physical_address', newPhysicalAddress)
   }
 
-  function handleService(newService, index) {
+  function handleServices(newService, index) {
     const { services } = props.location
     const newServices = services
     newServices[index] = newService
+    updateLocation('services', newServices)
+  }
+
+  function newService() {
+    const { services } = props.location
+    const newServices = services || []
+    newServices.push(blankService)
+    updateLocation('services', newServices)
+  }
+
+  function deleteService(index) {
+    const { services } = props.location
+    const newServices = services
+    newServices.splice(index, 1)
     updateLocation('services', newServices)
   }
 
@@ -72,9 +100,11 @@ const LocationEdit = (props) => {
           />
         </div>
       </div>
+      <button onClick={deleteLocation}>Delete</button>
       <div className={s.servicesBox}>
         <h4 className={s.sectionLabel}>Services</h4>
-        {(props.location.services || []).map((service, index) => <ServiceEdit service={service} index={index} handleChange={handleService} /> )}
+        {(props.location.services || []).map((service, index) => <ServiceEdit key={`service-${index}`}service={service} index={index} handleChange={handleServices} handleDelete={deleteService} /> )}
+        <button onClick={newService} title={`Click to add a new service`}>Add a Service</button>
       </div>
     </div>
   )
