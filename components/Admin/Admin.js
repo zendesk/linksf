@@ -1,10 +1,14 @@
 import React, { PropTypes } from 'react'
+
+import { fetchLocations } from '../../core/firebaseRestAPI'
+import history from '../../core/history';
+
+import Loading from '../Loading'
 import AdminTopBar from '../AdminTopBar'
 import LocationList from '../LocationList'
 import LocationEdit from '../LocationEdit'
 import AdminLocationList from '../AdminLocationList'
-import history from '../../core/history';
-import { fetchLocations } from '../../core/firebaseApi'
+
 
 class Admin extends React.Component {
   constructor(props) {
@@ -67,6 +71,7 @@ class Admin extends React.Component {
       matchingCategoryLocations
     } = this.state
 
+    const loading = locations == null
     let filteredLocations = null
 
     if (matchingSearchLocations) {
@@ -89,7 +94,9 @@ class Admin extends React.Component {
           onNewFacility={this.handleNewFacility}
           onCategoryFilter={this.handleCategoryFilter}
         />
-        <AdminLocationList locations={filteredLocations || locations} />
+        { loading ?
+          <Loading /> :
+          <AdminLocationList locations={filteredLocations || locations} /> }
       </div>
     )
   }

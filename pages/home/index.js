@@ -1,21 +1,27 @@
 import React, { Component } from 'react'
+
+import icons from '../../icons/css/icons.css'
+import { fetchTaxonomies } from '../../core/firebaseRestAPI'
+import { taxonomiesWithIcons } from '../../lib/taxonomies'
+
 import Home from '../../components/Home'
 import Layout from '../../components/Layout'
-import icons from '../../icons/css/icons.css'
-import { fetchTaxonomies } from '../../core/firebaseApi'
+
 
 class HomePage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      categories: [],
+      taxonomies: [],
     }
   }
 
   componentWillMount() {
     fetchTaxonomies()
-      .then(categories => {
-        this.setState({ categories })
+      .then(taxonomies => {
+        this.setState({
+          taxonomies: taxonomiesWithIcons(taxonomies)
+        })
       })
   }
 
@@ -24,10 +30,11 @@ class HomePage extends Component {
   }
 
   render() {
-    const { categories } = this.state
+    const { taxonomies } = this.state
+
     return (
       <Layout>
-        <Home categories={categories} />
+        <Home categories={taxonomies} />
       </Layout>
     )
   }

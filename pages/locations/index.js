@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import Layout from '../../components/Layout'
-import FilterBar from '../../components/FilterBar'
-import LocationList from '../../components/LocationList'
-import { fetchLocations } from '../../core/firebaseApi'
 
+import { fetchLocations } from '../../core/firebaseRestAPI'
 import { calculateAllDistances } from '../../core/distance'
 
+import Layout from '../../components/Layout'
+import Loading from '../../components/Loading'
+import FilterBar from '../../components/FilterBar'
+import LocationList from '../../components/LocationList'
 
 const compose = (fn, ...rest) =>
   rest.length === 0 ?
@@ -31,16 +32,14 @@ export default class LocationsPage extends Component {
     super(props)
     this.state = {
       showOpen: false,
-      locations: [],
+      locations: null,
       currentLocation: null,
     }
   }
 
   componentWillMount() {
     if (navigator) {
-      navigator.geolocation.getCurrentPosition(currentLocation => {
-        this.setState({ currentLocation }, this.setLocations)
-      }, () => this.setLocations)
+      navigator.geolocation.getCurrentPosition(this.setCurrentLocation, this.setLocations)
     } else {
       this.setLocations()
     }
@@ -50,7 +49,11 @@ export default class LocationsPage extends Component {
     document.title = 'Link-SF'
   }
 
-  setLocations() {
+  setCurrentLocation = (currentLocation) => {
+    this.setState({ currentLocation }, this.setLocations)
+  }
+
+  setLocations = () => {
     const { currentLocation } = this.state
 
     if (currentLocation) {
@@ -64,34 +67,42 @@ export default class LocationsPage extends Component {
           const matrixResponses = matrixResponse.rows[0].elements
           const locationsWithDistance = mergeLocationsAndDistances(locationsCache, matrixResponses)
 
-          this.setState({ locations: locationsWithDistance })
+          this.setState({ loading: false, locations: locationsWithDistance })
         })
     } else {
       fetchLocations()
         .then(locations => {
-          this.setState({ locations })
+          this.setState({ loading: false, locations })
         })
     }
   }
 
-  handleToggleOpen() {
+  handleToggleOpen = () => {
     this.setState({ showOpen: !this.state.showOpen })
   }
 
   render() {
     const { locations } = this.state
-    const filteredLocations = locations.filter(loc => (
+    const loading = locations == null
+
+    const filteredLocations = (locations || []).filter(loc => (
       loc.services &&
       loc.services.filter(service => service.taxonomy === 'housing'))
     )
+
     return (
       <Layout>
-        <FilterBar
-          showOpen={this.state.showOpen}
-          onToggleOpen={(e) => this.handleToggleOpen(e)}
-        />
-        <LocationList locations={filteredLocations} />
-      </Layout>
+        { loading ?
+          <Loading /> :
+          <div>
+            <FilterBar
+              showOpen={this.state.showOpen}
+              onToggleOpen={(e) => this.handleToggleOpen(e)}
+            />
+            <LocationList locations={filteredLocations} />
+          </div>
+        }
+        </Layout>
     )
   }
 }
