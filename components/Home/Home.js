@@ -8,7 +8,7 @@ const Home = (props) => (
   <div>
     <h1 className={s.title}>What service are you looking for?</h1>
     <form id="search-form">
-      <CategoryList categories={buildCategories(props.categories)} />
+      <CategoryList categories={props.categories} />
     </form>
   </div>
 )

@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { fetchLocation } from '../../core/firebaseApi'
-import camelize from 'camelize'
+import { fetchLocation } from '../../core/firebaseRestAPI'
 
 import icons from '../../icons/css/icons.css'
 
 import Layout from '../../components/Layout'
+import Loading from '../../components/Loading'
 import LocationEdit from '../../components/LocationEdit'
 
 class AdminLocationPage extends Component {
@@ -21,7 +21,7 @@ class AdminLocationPage extends Component {
 
     fetchLocation(locationId)
       .then(location => {
-        this.setState({ location: camelize(location) })
+        this.setState({ location })
       })
   }
 
@@ -32,7 +32,7 @@ class AdminLocationPage extends Component {
       <Layout admin>
         {location ?
           <LocationEdit location={location} /> :
-          "Loading..."}
+          <Loading />}
       </Layout>
     )
   }
