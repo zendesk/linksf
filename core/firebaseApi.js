@@ -1,4 +1,5 @@
 import firebase from 'firebase'
+import globalConfig from '../config'
 
 const LOCATIONS     = 'locations'
 const ORGANIZATIONS = 'organizations'
@@ -13,10 +14,8 @@ export function firebaseClient() {
   }
 
   const config = {
-    apiKey: "",
-    authDomain: "",
-    databaseURL: "",
-    storageBucket: "",
+    apiKey: globalConfig.firebaseApiKey,
+    authDomain: globalConfig.firebaseAuthDomain,
   }
 
   firebase.initializeApp(config)
