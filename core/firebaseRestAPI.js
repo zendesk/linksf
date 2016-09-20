@@ -1,6 +1,8 @@
 import 'whatwg-fetch'
 import camelize from 'camelize'
 
+import config from '../config'
+
 const LOCATIONS     = 'locations'
 const ORGANIZATIONS = 'organizations'
 const TAXONOMIES    = 'taxonomies'
@@ -9,16 +11,10 @@ const PHONES        = 'phones'
 const SLASH         = '/'
 const FORMAT        = '.json'
 
-export const config = {
-  apiKey: "",
-  authDomain: "",
-  databaseURL: "",
-  storageBucket: "",
-}
 
 export function fetchTaxonomies() {
   const url = [
-    config.databaseURL,
+    config.firebaseDatabaseUrl,
     TAXONOMIES
   ].join(SLASH).concat(FORMAT)
 
@@ -27,7 +23,7 @@ export function fetchTaxonomies() {
 
 export function fetchLocations() {
   const url = [
-    config.databaseURL,
+    config.firebaseDatabaseUrl,
     LOCATIONS
   ].join(SLASH).concat(FORMAT)
 
@@ -42,7 +38,7 @@ export function fetchLocations() {
 
 export function fetchLocation(id) {
   const url = [
-    config.databaseURL,
+    config.firebaseDatabaseUrl,
     LOCATIONS,
     id
   ].join(SLASH).concat(FORMAT)
@@ -54,7 +50,7 @@ export function fetchLocation(id) {
 
 export function fetchOrganizations() {
   const url = [
-    config.databaseURL,
+    config.firebaseDatabaseUrl,
     ORGANIZATIONS
   ].join(SLASH).concat(FORMAT)
 
@@ -69,7 +65,7 @@ export function fetchOrganizations() {
 
 export function fetchOrganization(id) {
   const url = [
-    config.databaseURL,
+    config.firebaseDatabaseUrl,
     ORGANIZATIONS,
     id
   ].join(SLASH).concat(FORMAT)
