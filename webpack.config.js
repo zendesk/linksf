@@ -87,6 +87,7 @@ const config = {
           path.resolve(__dirname, './core'),
           path.resolve(__dirname, './lib'),
           path.resolve(__dirname, './pages'),
+          path.resolve(__dirname, './config.js'),
           path.resolve(__dirname, './main.js'),
         ],
         loader: 'babel-loader',
