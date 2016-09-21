@@ -5,9 +5,9 @@ import icons from '../../icons/css/icons.css'
 
 const CategoryList = (props) => (
   <ul title="Services" className={`${s.categories} btn-group`}>
-    {props.categories.map((category, index) => (
-      <li key={`category-${index}`} className={s.categoryItem}>
-        <Category iconClass={category.icon} name={category.name} />
+    {props.categories.map(category => (
+      <li key={`category-${category.id}`} className={s.categoryItem}>
+        <Category id={category.id} iconClass={category.icon} name={category.name} />
       </li>
     ))}
   </ul>
