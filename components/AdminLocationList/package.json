@@ -1,6 +1,0 @@
-{
-  "name": "AdminLocationList",
-  "version": "0.0.0",
-  "private": true,
-  "main": "./AdminLocationList.js"
-}

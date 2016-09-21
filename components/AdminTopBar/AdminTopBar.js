@@ -8,23 +8,8 @@ class AdminTopBar extends React.Component {
 
   static propTypes = {
     onSearch: PropTypes.func,
-    onNewFacility: PropTypes.func,
-    onCategoryFilter: PropTypes.func,
+    onNewOrganization: PropTypes.func,
   }
-
-  getCategoryFilterClass = (category) => {
-    const { selectedCategories } = this.props
-    let classes = [s.facilityCategoryFilterButton]
-
-    if (this.isSelectedCategory(category))
-      classes.push(s.facilityCategoryFilterButtonActive)
-
-    return classes.join(' ')
-  }
-
-  isSelectedCategory = (category) => (
-    this.props.selectedCategories.indexOf(category.taxonomy) >= 0
-  )
 
   render() {
     return (
@@ -34,26 +19,13 @@ class AdminTopBar extends React.Component {
             type="text"
             className={s.locationFilter}
             onChange={this.props.onSearch}
-            placeholder="Search for a facility" />
+            placeholder="Search for an organization" />
           <button
-            className={s.newFacility}
-            onClick={this.props.onNewFacility}
+            className={s.newOrganization}
+            onClick={this.props.onNewOrganization}
           >
-          New Facility
+          New Organization
           </button>
-        </div>
-        <div className={s.facilityCategoryFilterBar}>
-          <p className={s.helpText}>Filter by Category</p>
-          {categories.map((category, i) => (
-            <button
-              key={`category-${i}`}
-              className={this.getCategoryFilterClass(category)}
-              onClick={(e) => this.props.onCategoryFilter(category, !this.isSelectedCategory(category))}
-            >
-              <i className={`${s.categoryIcon} ${category.icon}`}></i>
-              {category.name}
-            </button>
-          ))}
         </div>
       </div>
     )

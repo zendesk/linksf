@@ -23,21 +23,20 @@ export function firebaseClient() {
   return firebase
 }
 
-export function fetchLocations() {
+export function fetchOrganizations() {
   return firebaseClient()
     .database()
-    .ref(LOCATIONS)
+    .ref(ORGANIZATIONS)
     .orderByKey()
     .once(ONCE_VALUE)
-    .then(locationsResponse => locationsResponse.val())
-}
-
-export function fetchLocation(id) {
-  return firebaseClient()
-    .database()
-    .ref(`${LOCATIONS}/${id}`)
-    .once(ONCE_VALUE)
-    .then(locationResponse => locationResponse.val())
+    .then(organizationsResponse => {
+      const data = organizationsResponse.val()
+      return Object.keys(data).map(function(val) {
+        var org = data[val]
+        org.key = val
+        return org
+      })
+    })
 }
 
 // Fetches an organization with its services. Returns a Promise
@@ -52,6 +51,73 @@ export function fetchOrganization(orgId) {
       const data = orgResponse.val()
       const index = Object.keys(data)[0]
       return orgResponse.val()[index]
+    })
+}
+
+export function putOrganization(organization) {
+  var orgKey = organization.key
+  if (!orgKey) {
+    orgKey = firebaseClient().database().ref().child(ORGANIZATIONS).push().key
+  }
+
+  var update = {}
+  update['/' + ORGANIZATIONS + '/' + orgKey] = organization
+
+  firebaseClient().database().ref().update(update)
+  return orgKey
+}
+
+export function fetchLocations() {
+  return firebaseClient()
+    .database()
+    .ref(LOCATIONS)
+    .orderByKey()
+    .once(ONCE_VALUE)
+    .then(locationsResponse => {
+      const data = locationsResponse.val()
+      return Object.keys(data).map(function(val) {
+        var loc = data[val]
+        loc.key = val
+        return loc
+      })
+    })
+}
+
+export function fetchLocation(id) {
+  return firebaseClient()
+    .database()
+    .ref(`${LOCATIONS}/${id}`)
+    .once(ONCE_VALUE)
+    .then(locationResponse => locationResponse.val())
+}
+
+export function putLocation(location) {
+  var locKey = location.key
+  if (!locKey) {
+    locKey = firebaseClient().database().ref().child(LOCATIONS).push().key
+  }
+
+  var update = {}
+  update['/' + LOCATIONS + '/' + locKey] = location
+
+  firebaseClient().database().ref().update(update)
+  return locKey
+}
+
+export function fetchLocationsForOrganization(orgId) {
+  return firebaseClient()
+    .database()
+    .ref(LOCATIONS)
+    .orderByChild('organization_id')
+    .equalTo(orgId)
+    .once(ONCE_VALUE)
+    .then(locationsResponse => {
+      const data = locationsResponse.val()
+      return Object.keys(data).map(function(val) {
+        var loc = data[val]
+        loc.key = val
+        return loc
+      })
     })
 }
 

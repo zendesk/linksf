@@ -1,57 +1,65 @@
-.location {
+.locationEdit {
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid #DCDCDC;
-  font-size: 15px;
-  padding: 10px 4px;
+  justify-content: space-between;
+  align-items: center;
+  height: calc(100vh - 20%);
 }
 
-.locationBox {
+.addressBox {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+}
+
+.group {
+  padding: 20px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
-.locationLink {
-  text-decoration: none;
-  color: #000;
-  display: block;
+.input {
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  vertical-align: middle;
+  box-shadow: inset 0 1px 3px #ddd;
+  color: #777;
 }
 
-.locationText {
-  margin: 4px 4px 4px 0;
-}
-
-.locationIcon {
-  color: #909090;
-}
-
-.locationInfo {
+.servicesBox {
+  display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
-.locationName {
-  margin: 5px 0 3px 0;
+.locationFields {
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px 4px 0 0;
+  width: 350px;
+}
+
+.sectionLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.submit {
+  padding: 20px;
+  height: 40px;
+  display: flex;
+}
+
+.submitBtn {
+  padding: .5em 1em;
+  color: #444;
+  border: 1px solid #999;
+  background-color: #E6E6E6;
   text-decoration: none;
-  font-size: 15px;
-  font-weight: bold;
-}
-
-.locationStatus {
-  font-size: 13px;
-  margin-top: 15px;
-}
-
-.locationDistance {
-  color: #c3c3c3;
-  margin: 4px 0;
-  text-align: right;
-}
-
-.categoryIcons {
-  margin-bottom: 7px;
-  display: inline-block;
-}
-
-.rightCaret {
-  float: right;
+  border-radius: 2px;
+  font-size: 14px;
+  cursor: pointer;
 }

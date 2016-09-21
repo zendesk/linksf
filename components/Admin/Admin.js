@@ -1,106 +1,183 @@
 import React, { PropTypes } from 'react'
 
-import { fetchLocations } from '../../core/firebaseRestAPI'
+import { fetchOrganizations } from '../../core/firebaseRestAPI'
 import history from '../../core/history';
 
 import Loading from '../Loading'
 import AdminTopBar from '../AdminTopBar'
-import LocationList from '../LocationList'
+import OrganizationList from '../OrganizationList'
+import OrganizationEdit from '../OrganizationEdit'
 import LocationEdit from '../LocationEdit'
-import AdminLocationList from '../AdminLocationList'
+
+import { putOrganization } from '../../core/firebaseApi'
+import { putLocation } from '../../core/firebaseApi'
+
+function makeId() {
+  var text = ""
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+
+  for( var i=0; i < 10; i++ )
+      text += possible.charAt(Math.floor(Math.random() * possible.length))
+
+  return text
+}
+
+const IndexOrShow = (props) => {
+  const {
+    showEditPage,
+    handleSearch,
+    handleNewOrganization,
+    selectedCategories,
+    currentOrganization,
+    currentOrganizationIndex,
+    handleEditFormSubmit,
+    handleDeleteOrganization,
+    matchingSearchOrganizations,
+    organizations,
+    renderEditPage,
+  } = props
+
+  return (
+    showEditPage ?
+      <OrganizationEdit
+        organization={currentOrganization}
+        index={currentOrganizationIndex}
+        handleUpdate={handleEditFormSubmit}
+        handleDelete={handleDeleteOrganization} /> :
+      <div>
+        <AdminTopBar
+          selectedCategories={selectedCategories}
+          onSearch={handleSearch}
+          onNewOrganization={handleNewOrganization}
+        />
+        <OrganizationList
+          organizations={matchingSearchOrganizations || organizations || []}
+          editLink={renderEditPage} />
+      </div>
+  )
+}
 
 
 class Admin extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      locations: [],
+      organizations: null,
       selectedCategories: [],
-      matchingSearchLocations: null,
-      matchingCategoryLocations: null,
+      matchingSearchOrganizations: null,
+      showEditPage: false,
+      currentOrganization: null,
+      currentOrganizationIndex: 0,
     }
   }
 
   componentWillMount() {
-    fetchLocations()
-      .then(locations => {
-        this.setState({ locations })
+    this.refreshOrganizations()
+  }
+
+  refreshOrganizations = () => {
+    fetchOrganizations()
+      .then(organizations => {
+        this.setState({ organizations })
       })
   }
 
   handleSearch = (event) => {
+    const { organizations } = this.state
     const searchTerm = event.currentTarget.value
-    const { locations } = this.state
-    const locationMatchesSearch = (location) => (location.name.indexOf(searchTerm) >= 0)
-    const newMatchingSearchLocations = searchTerm ?
-      locations.filter(locationMatchesSearch) :
-      null
 
-    this.setState({ matchingSearchLocations: newMatchingSearchLocations })
-  }
+    if (!searchTerm) {
+      this.setState({ matchingSearchOrganizations: null })
+      return
+    }
 
-  handleNewFacility = () => {
-
-  }
-
-  handleCategoryFilter = (category, active=false) => {
-    const { locations, selectedCategories } = this.state
-
-    const categoryNotMatchTaxonomy = (cat) => (cat != category.taxonomy)
-    const newSelectedCategories = active ?
-      selectedCategories.concat(category.taxonomy) :
-      selectedCategories.filter(categoryNotMatchTaxonomy)
-
-    const serviceHasMatchingTaxonomy = (service) => (newSelectedCategories.indexOf(service.taxonomy) >= 0)
-    const locationHasServiceMatchingCategory = (location) => (location.services || []).some(serviceHasMatchingTaxonomy)
-    const newMatchingCategoryLocations = (newSelectedCategories.length > 0) ?
-      locations.filter(locationHasServiceMatchingCategory) :
-      null
+    const doesMatchSearch = (organization) => (
+      organization.name.toLowerCase().indexOf(searchTerm.toLowerCase()) >= 0
+    )
 
     this.setState({
-      selectedCategories: newSelectedCategories,
-      matchingCategoryLocations: newMatchingCategoryLocations,
+      matchingSearchOrganizations: organizations.filter(doesMatchSearch)
+    })
+  }
+
+  blankOrganization = () => ({
+    id: makeId(),
+    long_description: "",
+    name: "",
+    url: ""
+  })
+
+  handleNewOrganization = () => {
+    this.setState({
+      showEditPage: true,
+      currentOrganization: this.blankOrganization()
+    })
+  }
+
+  handleDeleteOrganization = (index) => {
+    const { organizations } = this.state
+    const newOrganizations = organizations
+
+    newOrganizations.splice(index, 1)
+
+    this.setState({
+      showEditPage: false,
+      organizations: newOrganizations
+    })
+  }
+
+  handleEditFormSubmit = (organization, locations) => {
+    var orgKey = putOrganization(organization)
+    locations.map((loc) => putLocation(loc))
+
+    this.refreshOrganizations()
+    organization.key = newKey
+
+    this.setState({
+      showEditPage: true,
+      currentOrganization: organization
+    })
+  }
+
+  renderEditPage = (organization, index) => {
+    this.setState({
+      showEditPage: true,
+      currentOrganization: organization,
+      currentOrganizationIndex: index
     })
   }
 
   render() {
     const {
-      locations,
+      organizations,
       selectedCategories,
-      matchingSearchLocations,
-      matchingCategoryLocations
+      matchingSearchOrganizations,
+      showEditPage,
+      currentOrganization,
+      currentOrganizationIndex
     } = this.state
 
-    const loading = locations == null
-    let filteredLocations = null
-
-    if (matchingSearchLocations) {
-      const a = new Set(locations)
-      const b = new Set(matchingSearchLocations)
-      filteredLocations = [...(new Set([...a].filter(x => b.has(x))))]
-    }
-
-    if (matchingCategoryLocations) {
-      const a = new Set(filteredLocations || locations)
-      const b = new Set(matchingCategoryLocations)
-      filteredLocations = [...(new Set([...a].filter(x => b.has(x))))]
-    }
+    const loading = organizations == null
 
     return (
       <div>
-        <AdminTopBar
-          selectedCategories={selectedCategories}
-          onSearch={this.handleSearch}
-          onNewFacility={this.handleNewFacility}
-          onCategoryFilter={this.handleCategoryFilter}
-        />
         { loading ?
-          <Loading /> :
-          <AdminLocationList locations={filteredLocations || locations} /> }
+            <Loading /> :
+            <IndexOrShow
+              showEditPage={showEditPage}
+              handleSearch={this.handleSearch}
+              handleNewOrganization={this.handleNewOrganization}
+              selectedCategories={selectedCategories}
+              currentOrganization={currentOrganization}
+              currentOrganizationIndex={currentOrganizationIndex}
+              handleEditFormSubmit={this.handleEditFormSubmit}
+              handleDeleteOrganization={this.handleDeleteOrganization}
+              matchingSearchOrganizations={matchingSearchOrganizations}
+              organizations={organizations}
+              renderEditPage={this.renderEditPage} /> }
       </div>
     )
   }
-
 }
 
 export default Admin
