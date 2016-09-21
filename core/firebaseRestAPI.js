@@ -48,6 +48,25 @@ export function fetchLocation(id) {
     .then(json => camelize(json))
 }
 
+export function updateLocation(location) {
+  const url = [
+    config.firebaseDatabaseUrl,
+    LOCATIONS,
+    location.id
+  ].join(SLASH).concat(FORMAT)
+
+  return fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(location)
+    })
+    .then(response => response.json())
+    .then(json => camelize(json))
+}
+
 export function fetchOrganizations() {
   const url = [
     config.firebaseDatabaseUrl,
@@ -71,6 +90,25 @@ export function fetchOrganization(id) {
   ].join(SLASH).concat(FORMAT)
 
   return fetch(url)
+    .then(response => response.json())
+    .then(json => camelize(json))
+}
+
+export function updateOrganization(organization) {
+  const url = [
+    config.firebaseDatabaseUrl,
+    ORGANIZATIONS,
+    organization.id
+  ].join(SLASH).concat(FORMAT)
+
+  return fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(organization)
+    })
     .then(response => response.json())
     .then(json => camelize(json))
 }

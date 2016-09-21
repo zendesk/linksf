@@ -4,7 +4,7 @@ import icons from '../../icons/css/icons.css'
 
 import LocationEdit from '../LocationEdit'
 
-import { fetchLocationsForOrganization } from '../../core/firebaseApi'
+import { fetchLocations } from '../../core/firebaseRestAPI'
 
 class OrganizationEdit extends React.Component{
   constructor(props) {
@@ -20,7 +20,14 @@ class OrganizationEdit extends React.Component{
   }
 
   refreshLocations = () => {
-    fetchLocationsForOrganization(this.state.organization.id)
+    const { organization } = this.state
+
+    fetchLocations()
+      .then(locations => (
+        locations.filter(location => (
+          location.organizationId == organization.id
+        ))
+      ))
       .then(locations => {
         this.setState({ locations })
       })
@@ -72,19 +79,17 @@ class OrganizationEdit extends React.Component{
     this.setState(Object.assign(this.state, { locations: newLocations }))
   }
 
-  blankLocation = () => {
-    return {
-      description: "",
-      latitude: 0,
-      longitude: 0,
-      name: "",
-      organization_id: this.state.organization.id || "",
-      physical_address: {
-        address_1: "",
-        city: ""
-      }
+  blankLocation = () => ({
+    description: "",
+    latitude: 0,
+    longitude: 0,
+    name: "",
+    organizationId: this.state.organization.id || "",
+    physicalAddress: {
+      address1: "",
+      city: ""
     }
-  }
+  })
 
   newLocation = () => {
     const { locations } = this.state
@@ -106,7 +111,6 @@ class OrganizationEdit extends React.Component{
   }
 
   render() {
-    console.log(this.state)
     return (
       <div className={s.organizationEditBox}>
         <button onClick={this.deleteOrganization}>Delete Organization</button>
