@@ -176,7 +176,15 @@ const AgeBox = (props) => (
 
 const ScheduleBox = (props) => (
   <div className={s.scheduleBox}>
-    {props.schedule.map((obj, index) => <TimeRangePicker rangeLabel={obj.weekday} startTime={obj.opens_at} endTime={obj.closes_at} handleUpdate={props.handleTimeChange} metadata={{ scheduleNum: props.index, day: index}}/> )}
+    {props.schedule.map((obj, index) => (
+      <TimeRangePicker
+        key={`timePicker-${index}`}
+        rangeLabel={obj.weekday}
+        startTime={obj.opensAt}
+        endTime={obj.closesAt}
+        handleUpdate={props.handleTimeChange}
+        metadata={{ scheduleNum: props.index, day: index}}/>
+    ))}
   </div>
 )
 

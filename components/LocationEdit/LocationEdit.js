@@ -6,12 +6,12 @@ import ServiceEdit from '../ServiceEdit'
 
 const LocationEdit = (props) => {
   const blankService = {
-    application_process: "",
+    applicationProcess: "",
     description: "",
     eligibility: {},
-    location_id: props.location.id,
+    locationId: props.location.id,
     name: "",
-    organization: props.location.organization_id,
+    organization: props.location.organizationId,
     schedules: [],
     taxonomy: ""
   }
@@ -32,10 +32,10 @@ const LocationEdit = (props) => {
   }
 
   function handleAddress(field, event) {
-    const { physical_address } = props.location
-    const newPhysicalAddress = physical_address
+    const { physicalAddress } = props.location
+    const newPhysicalAddress = physicalAddress
     newPhysicalAddress[field] = event.target.value
-    updateLocation('physical_address', newPhysicalAddress)
+    updateLocation('physicalAddress', newPhysicalAddress)
   }
 
   function handleServices(newService, index) {
@@ -86,8 +86,8 @@ const LocationEdit = (props) => {
           <input
             className={s.input}
             type="text"
-            value={props.location.physical_address.address_1}
-            onChange={(e) => handleAddress('address_1', e)}
+            value={props.location.physicalAddress.address1}
+            onChange={(e) => handleAddress('address1', e)}
           />
         </div>
         <div className={s.group}>
@@ -95,7 +95,7 @@ const LocationEdit = (props) => {
           <input
             className={s.input}
             type="text"
-            value={props.location.physical_address.city}
+            value={props.location.physicalAddress.city}
             onChange={(e) => handleAddress('city', e)}
           />
         </div>

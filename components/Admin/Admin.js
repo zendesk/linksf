@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 
-import { fetchLocations } from '../../core/firebaseRestAPI'
+import { fetchOrganizations } from '../../core/firebaseRestAPI'
 import history from '../../core/history';
 
 import Loading from '../Loading'
@@ -9,19 +9,52 @@ import OrganizationList from '../OrganizationList'
 import OrganizationEdit from '../OrganizationEdit'
 import LocationEdit from '../LocationEdit'
 
-import history from '../../core/history';
-import { fetchOrganizations } from '../../core/firebaseApi'
 import { putOrganization } from '../../core/firebaseApi'
 import { putLocation } from '../../core/firebaseApi'
 
 function makeId() {
-  var text = "";
-  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  var text = ""
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 
   for( var i=0; i < 10; i++ )
-      text += possible.charAt(Math.floor(Math.random() * possible.length));
+      text += possible.charAt(Math.floor(Math.random() * possible.length))
 
-  return text;
+  return text
+}
+
+const IndexOrShow = (props) => {
+  const {
+    showEditPage,
+    handleSearch,
+    handleNewOrganization,
+    selectedCategories,
+    currentOrganization,
+    currentOrganizationIndex,
+    handleEditFormSubmit,
+    handleDeleteOrganization,
+    matchingSearchOrganizations,
+    organizations,
+    renderEditPage,
+  } = props
+
+  return (
+    showEditPage ?
+      <OrganizationEdit
+        organization={currentOrganization}
+        index={currentOrganizationIndex}
+        handleUpdate={handleEditFormSubmit}
+        handleDelete={handleDeleteOrganization} /> :
+      <div>
+        <AdminTopBar
+          selectedCategories={selectedCategories}
+          onSearch={handleSearch}
+          onNewOrganization={handleNewOrganization}
+        />
+        <OrganizationList
+          organizations={matchingSearchOrganizations || organizations || []}
+          editLink={renderEditPage} />
+      </div>
+  )
 }
 
 
@@ -45,40 +78,52 @@ class Admin extends React.Component {
   refreshOrganizations = () => {
     fetchOrganizations()
       .then(organizations => {
-        console.log(organizations)
         this.setState({ organizations })
       })
   }
 
   handleSearch = (event) => {
-    const searchTerm = event.currentTarget.value
     const { organizations } = this.state
-    const organizationMatchesSearch = (organization) => (organization.name.indexOf(searchTerm) >= 0)
-    const newMatchingSearchOrganizations = searchTerm ?
-      organizations.filter(organizationMatchesSearch) :
-      null
+    const searchTerm = event.currentTarget.value
 
-    this.setState({ matchingSearchOrganizations: newMatchingSearchOrganizations })
-  }
-
-  blankOrganization = () => {
-    return {
-      id: makeId(),
-      long_description: "",
-      name: "",
-      url: ""
+    if (!searchTerm) {
+      this.setState({ matchingSearchOrganizations: null })
+      return
     }
+
+    const doesMatchSearch = (organization) => (
+      organization.name.toLowerCase().indexOf(searchTerm.toLowerCase()) >= 0
+    )
+
+    this.setState({
+      matchingSearchOrganizations: organizations.filter(doesMatchSearch)
+    })
   }
+
+  blankOrganization = () => ({
+    id: makeId(),
+    long_description: "",
+    name: "",
+    url: ""
+  })
 
   handleNewOrganization = () => {
-    this.setState({ showEditPage: true, currentOrganization: this.blankOrganization()})
+    this.setState({
+      showEditPage: true,
+      currentOrganization: this.blankOrganization()
+    })
   }
 
   handleDeleteOrganization = (index) => {
     const { organizations } = this.state
     const newOrganizations = organizations
+
     newOrganizations.splice(index, 1)
-    this.setState({ showEditPage: false, organizations: newOrganizations})
+
+    this.setState({
+      showEditPage: false,
+      organizations: newOrganizations
+    })
   }
 
   handleEditFormSubmit = (organization, locations) => {
@@ -88,11 +133,18 @@ class Admin extends React.Component {
     this.refreshOrganizations()
     organization.key = newKey
 
-    this.setState({ showEditPage: true, currentOrganization: organization })
+    this.setState({
+      showEditPage: true,
+      currentOrganization: organization
+    })
   }
 
   renderEditPage = (organization, index) => {
-    this.setState({ showEditPage: true, currentOrganization: organization, currentOrganizationIndex: index})
+    this.setState({
+      showEditPage: true,
+      currentOrganization: organization,
+      currentOrganizationIndex: index
+    })
   }
 
   render() {
@@ -109,16 +161,20 @@ class Admin extends React.Component {
 
     return (
       <div>
-        <AdminTopBar
-          selectedCategories={selectedCategories}
-          onSearch={this.handleSearch}
-          onNewOrganization={this.handleNewOrganization}
-        />
         { loading ?
-          <Loading /> :
-          (showEditPage ?
-            <OrganizationEdit organization={currentOrganization} index={currentOrganizationIndex} handleUpdate={this.handleEditFormSubmit} handleDelete={this.handleDeleteOrganization} /> :
-            <OrganizationList organizations={matchingSearchOrganizations || organizations || []} editLink={this.renderEditPage} />) }
+            <Loading /> :
+            <IndexOrShow
+              showEditPage={showEditPage}
+              handleSearch={this.handleSearch}
+              handleNewOrganization={this.handleNewOrganization}
+              selectedCategories={selectedCategories}
+              currentOrganization={currentOrganization}
+              currentOrganizationIndex={currentOrganizationIndex}
+              handleEditFormSubmit={this.handleEditFormSubmit}
+              handleDeleteOrganization={this.handleDeleteOrganization}
+              matchingSearchOrganizations={matchingSearchOrganizations}
+              organizations={organizations}
+              renderEditPage={this.renderEditPage} /> }
       </div>
     )
   }
