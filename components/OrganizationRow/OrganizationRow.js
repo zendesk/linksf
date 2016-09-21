@@ -1,11 +1,15 @@
 import React, { PropTypes } from 'react'
-import s from './OrganizationRow.css'
+
 import icons from '../../icons/css/icons.css'
+import s from './OrganizationRow.css'
+
+import Link from '../Link'
+
 
 const OrganizationRow = (props) => (
   <li className={s.organization} key={`organization-${props.organization.id}`}>
-    <a
-      onClick={() => props.editLink(props.organization, props.index)}
+    <Link
+      to={`/admin/organizations/${props.organization.id}`}
       className={s.organizationLink}
       title={`Click to edit ${props.organization.name}`}>
         <div>
@@ -21,7 +25,7 @@ const OrganizationRow = (props) => (
             </div>
           </div>
         </div>
-    </a>
+    </Link>
   </li>
 )
 
