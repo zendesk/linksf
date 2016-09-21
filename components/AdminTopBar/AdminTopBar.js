@@ -1,10 +1,10 @@
-import React, { PropTypes } from 'react'
-import history from '../../core/history'
-import s from './AdminTopBar.css'
-import Category from '../Category'
-import { categories } from '../../lib/categories'
+import React, { Component, PropTypes } from 'react'
 
-class AdminTopBar extends React.Component {
+import s from './AdminTopBar.css'
+
+import Link from '../Link'
+
+class AdminTopBar extends Component {
 
   static propTypes = {
     onSearch: PropTypes.func,
@@ -12,20 +12,24 @@ class AdminTopBar extends React.Component {
   }
 
   render() {
+    const {
+      onSearch,
+      onNewOrganization,
+    } = this.props
+
     return (
       <div className={s.adminTopBar}>
         <div className={s.facilityFilterBar}>
           <input
             type="text"
             className={s.locationFilter}
-            onChange={this.props.onSearch}
+            onChange={onSearch}
             placeholder="Search for an organization" />
-          <button
-            className={s.newOrganization}
-            onClick={this.props.onNewOrganization}
-          >
-          New Organization
-          </button>
+          <Link to="/admin/organizations/new">
+            <button className={s.newOrganization}>
+              New Organization
+            </button>
+          </Link>
         </div>
       </div>
     )
