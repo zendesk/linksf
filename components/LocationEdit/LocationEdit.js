@@ -4,71 +4,110 @@ import icons from '../../icons/css/icons.css'
 
 import ServiceEdit from '../ServiceEdit'
 
-class LocationEdit extends React.Component{
-  constructor(props) {
-    super(props)
-    this.state = {
-      location: props.location,
-    }
+const LocationEdit = (props) => {
+  const blankService = {
+    applicationProcess: "",
+    description: "",
+    eligibility: {},
+    locationId: props.location.id,
+    name: "",
+    organization: props.location.organizationId,
+    schedules: [],
+    taxonomy: ""
   }
 
-  handleChange = (event) => {
-    this.setState({value: event.target.value});
+  function updateLocation(field, value) {
+    const { location } = props
+    const newLocation = location
+    newLocation[field] = value
+    props.handleChange(newLocation, props.index)
   }
 
-  handleSubmit = (event)  => {
-    // Do some stuff with firebase to login yee
+  function deleteLocation() {
+    props.handleDelete(props.index)
   }
 
-  render() {
-    return (
-      <div>
-      <div className={s.editBox}>
-        <div className={s.name}>
+  function handleLocationChange(field, event) {
+    updateLocation(field, event.target.value)
+  }
+
+  function handleAddress(field, event) {
+    const { physicalAddress } = props.location
+    const newPhysicalAddress = physicalAddress
+    newPhysicalAddress[field] = event.target.value
+    updateLocation('physicalAddress', newPhysicalAddress)
+  }
+
+  function handleServices(newService, index) {
+    const { services } = props.location
+    const newServices = services
+    newServices[index] = newService
+    updateLocation('services', newServices)
+  }
+
+  function newService() {
+    const { services } = props.location
+    const newServices = services || []
+    newServices.push(blankService)
+    updateLocation('services', newServices)
+  }
+
+  function deleteService(index) {
+    const { services } = props.location
+    const newServices = services
+    newServices.splice(index, 1)
+    updateLocation('services', newServices)
+  }
+
+  return (
+    <div className={s.locationEdit}>
+      <div className={s.locationFields}>
+        <h4 className={s.sectionLabel}>Location</h4>
+        <div className={s.group}>
           <span className={s.nameLabel}>Location Name </span>
           <input
+            className={s.input}
             type="text"
-            value={this.state.location.name}
-            onChange={this.handleChange}
+            value={props.location.name}
+            onChange={(e) => handleLocationChange('name', e)}
           />
         </div>
-        <div className={s.description}>
+        <div className={s.group}>
           <span className={s.descriptionLabel}>Location Description </span>
           <input
+            className={s.input}
             type="text"
-            value={this.state.location.description}
-            onChange={this.handleChange}
+            value={props.location.description}
+            onChange={(e) => handleLocationChange('description', e)}
           />
         </div>
-        <div className={s.physicalAddressBox}>
-          <div className={s.addressLineOne}>
-            <span className={s.addressLineOneLabel}>Address </span>
-            <input
-              type="text"
-              value={this.state.location.physicalAddress.address1}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className={s.addressCity}>
-            <span className={s.addressCityLabel}>City </span>
-            <input
-              type="text"
-              value={this.state.location.physicalAddress.city}
-              onChange={this.handleChange}
-            />
-          </div>
+        <div className={s.group}>
+          <span className={s.addressLineOneLabel}>Street Address </span>
+          <input
+            className={s.input}
+            type="text"
+            value={props.location.physicalAddress.address1}
+            onChange={(e) => handleAddress('address1', e)}
+          />
         </div>
-        <div className={s.servicesBox}>
-          <span className={s.servicesBoxLabel}>Services </span>
-          {(this.state.location.services || []).map((obj) => <ServiceEdit service={obj} changeState={this.handleChange} /> )}
-        </div>
-        <div className={s.loginSubmit}>
-          <button type="button" onClick={this.handleSubmit}>Login</button>
+        <div className={s.group}>
+          <span className={s.addressCityLabel}>City </span>
+          <input
+            className={s.input}
+            type="text"
+            value={props.location.physicalAddress.city}
+            onChange={(e) => handleAddress('city', e)}
+          />
         </div>
       </div>
+      <button onClick={deleteLocation}>Delete</button>
+      <div className={s.servicesBox}>
+        <h4 className={s.sectionLabel}>Services</h4>
+        {(props.location.services || []).map((service, index) => <ServiceEdit key={`service-${index}`}service={service} index={index} handleChange={handleServices} handleDelete={deleteService} /> )}
+        <button onClick={newService} title={`Click to add a new service`}>Add a Service</button>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 export default LocationEdit
