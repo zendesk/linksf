@@ -15,6 +15,7 @@ const extend = require('extend');
 const webpack = require('webpack');
 const AssetsPlugin = require('assets-webpack-plugin');
 const pkg = require('./package.json');
+const Dotenv = require('dotenv-webpack');
 
 const isDebug = global.DEBUG === false ? false : !process.argv.includes('--release');
 const isVerbose = process.argv.includes('--verbose') || process.argv.includes('-v');
@@ -75,6 +76,9 @@ const config = {
       filename: 'assets.json',
       prettyPrint: true,
     }),
+    new Dotenv({
+      path: isDebug ? '.env.dev' : '.env.prod',
+    })
   ],
 
   // Options affecting the normal modules
