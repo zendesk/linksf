@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { destroySession } from '../../lib/session'
+import { redirectTo } from '../../lib/navigation'
 import { firebaseClient } from '../../core/firebaseApi'
 
 import Layout from '../../components/Layout'
@@ -8,7 +9,7 @@ class LogoutPage extends Component {
   componentWillMount() {
     firebaseClient().auth().signOut()
     destroySession()
-    window.location.replace('/login')
+    redirectTo('/login')
   }
 
   componentDidMount() {
