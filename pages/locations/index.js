@@ -8,10 +8,10 @@ import Loading from '../../components/Loading'
 import FilterBar from '../../components/FilterBar'
 import LocationList from '../../components/LocationList'
 
-const compose = (fn, ...rest) =>
-  rest.length === 0 ?
-    fn :
-    (...args) => fn(compose(...rest)(...args))
+function getParameterByName(name) {
+  const match = RegExp(`[?&]${name}=([^&]*)`).exec(window.location.search)
+  return match && decodeURIComponent(match[1].replace(/\+/g, ' '))
+}
 
 function mergeLocationsAndDistances(locations, matrixResponses) {
   const zip = (e, index) => {
@@ -84,11 +84,16 @@ export default class LocationsPage extends Component {
   render() {
     const { locations } = this.state
     const loading = locations == null
+    const category = getParameterByName('categories');
+    console.log(category)
 
     const filteredLocations = (locations || []).filter(loc => (
       loc.services &&
-      loc.services.filter(service => service.taxonomy === 'housing'))
+      loc.services.some(service => service.taxonomy === category))
     )
+    if (!loading) {
+      console.log(filteredLocations[2])
+    }
 
     return (
       <Layout>
