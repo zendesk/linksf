@@ -8,3 +8,4 @@ build
 tmp
 
 public/dist
+public/index.html
