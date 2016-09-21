@@ -4,10 +4,6 @@
     "page": "./pages/home"
   },
   {
-    "path": "/tasks/:status(pending|completed)?",
-    "page": "./pages/home"
-  },
-  {
     "path": "/locations",
     "page": "./pages/locations"
   },
@@ -20,8 +16,8 @@
     "page": "./pages/admin"
   },
   {
-    "path": "/admin/locations/:id",
-    "page": "./pages/admin/location"
+    "path": "/admin/organizations/:id",
+    "page": "./pages/admin/organization"
   },
   {
     "path": "/login",
