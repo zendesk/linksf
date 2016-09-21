@@ -2,10 +2,17 @@ import React, { Component, PropTypes } from 'react'
 import s from './OrganizationEdit.css'
 import icons from '../../icons/css/icons.css'
 
+import { redirectTo } from '../../lib/navigation'
+import {
+  fetchLocations,
+  updateLocation,
+  deleteLocation,
+  updateOrganization,
+  deleteOrganization
+} from '../../core/firebaseRestAPI'
+
 import LocationEdit from '../LocationEdit'
 import PhoneEdit from '../PhoneEdit'
-
-import { fetchLocations } from '../../core/firebaseRestAPI'
 
 const blankPhone = {
   department: "",
@@ -52,10 +59,17 @@ class OrganizationEdit extends Component {
       })
   }
 
-  deleteOrganization = () => {
-    this.props.onDelete(this.props.organization.id)
+  handleDeleteOrganization = () => {
+    const { organization } = this.state
+    const answer = confirm(`Are you sure you want to delete ${organization.name}? You cannot undo this or recover the data.`)
+
+    if (answer) {
+      handleDeleteOrganization(organization.id)
+        .then(redirectTo('/admin'))
+    }
   }
 
+  // Updates our representation of the organization in the state
   handleChange = (property, event) => {
     const { organization } = this.state
     const newOrganization = organization
@@ -110,20 +124,32 @@ class OrganizationEdit extends Component {
     this.setState({ locations: newLocations })
   }
 
-  deleteLocation = (index) => {
+  handleDeleteLocation = (index) => {
     const { locations } = this.state
-    const newLocations = locations
+    const location = locations[index]
+    const answer = confirm(`Are you sure you want to delete the location: ${location.name}? You cannot undo this or recover the data.`)
 
-    newLocations.splice(index, 1)
+    if (!answer) {
+      return
+    }
 
-    this.setState({ locations: newLocations })
+    deleteLocation(location.id)
+      .then(_res => {
+        const newLocations = locations
+
+        newLocations.splice(index, 1)
+        this.setState({ locations: newLocations })
+      })
   }
 
   handleSubmit = ()  => {
     const { organization, locations } = this.state
 
-    this.props.onUpdate(organization, locations)
-    this.refreshLocations()
+    updateOrganization(organization)
+
+    locations.map(location => {
+      updateLocation(location)
+    })
   }
 
   render() {
@@ -131,7 +157,7 @@ class OrganizationEdit extends Component {
 
     return (
       <div className={s.organizationEditBox}>
-        <button onClick={this.deleteOrganization}>Delete Organization</button>
+        <button onClick={this.handleDeleteOrganization}>Delete Organization</button>
         <div className={s.name}>
           <span className={s.nameLabel}>Organization Name </span>
           <input
@@ -187,7 +213,7 @@ class OrganizationEdit extends Component {
               location={loc}
               index={index}
               handleChange={this.handleLocations}
-              handleDelete={this.deleteLocation} />
+              handleDelete={this.handleDeleteLocation} />
           ))}
         </div>
         <div className={s.formSubmit}>
