@@ -16,7 +16,6 @@ If you want to deploy the site publicly, S3 gives us free file hosting:
 
 The following accounts are optional:
 
-* [Mailgun](http://www.mailgun.com/): For capturing feedback entered in the feedback form as an email to your account.
 * [Google Analytics](http://www.google.com/analytics/): In addition to capturing useful things like user agent and traffic, we've added a couple custom events that help us keep track of how often a user connects to a service via external link (calling, visiting website, or getting directions).
 
 ### Command line tools
@@ -34,14 +33,9 @@ Download the source (via [git](git@github.com:zendesk/linksf.git) or [.zip file]
 In the project root, you'll find a `.env.example` file. Make copies of that file called `.env.dev` and `.env.prod` in the same directory. They will probably look something like this:
 
 ```
-GOOGLE_ANALYTICS_DEV_TOKEN=XXXXXX
-GOOGLE_ANALYTICS_DEV_HOST=XXXXXX
-MAILGUN_DOMAIN=XXXXXX
-MAILGUN_API_KEY=XXXXXX
+FEEDBACK_EMAIL_ADDRESS=xxxxxxx
 ...
 ```
-
-The Mailgun and Google Analytics tokens can be ignored for now, if you'd like.
 
 Keep your `.env.dev` and `.env.prod` files secret (out of source control, etc).
 
@@ -70,9 +64,10 @@ We use http://fontello.com to generate an icon bundle. [Here's a guide on how to
 
 ### Feedback form
 
+Link-SF uses [Formspree](https://formspree.io/) to send emails from the static site.
+
 If you'd like to use a feedback form:
 
-1. Setup a [Mailgun](http://www.mailgun.com/) account
-2. Add your Mailgun domain and API key to the `.env.xxx` files (see [example .env.xxx file](https://github.com/zendesk/linksf/blob/master/.env.example))
-3. Addany to/from email address you'd like to the `.env.xxx` files on the `MAILGUN_TO_EMAIL_ADDRESS` and `MAILGUN_FROM_EMAIL_ADDRESS` lines.
-4. Deploy your new changes, then check to see if your feedback form works as intended (you'll find the feedback link on the footer of the home and detail pages).
+1. Add the email address where you would like feedback form submissions to be sent to the `.env.xxx` files on the `FEEDBACK_EMAIL_ADDRESS` line (see [example .env.xxx file](https://github.com/zendesk/linksf/blob/master/.env.example))
+1. Deploy your new changes and navigate to the feedback page (you'll find the feedback link on the footer of the home and detail pages).
+1. On the feedback page, make sure to submit the form once. This will send an email asking you to confirm your email address. Confirm your email address and submit the form once more to make sure everything is working smoothly. You're all set!
