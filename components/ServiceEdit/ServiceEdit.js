@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React, { Component } from 'react'
 import s from './ServiceEdit.css'
 import icons from '../../icons/css/icons.css'
 import { gender } from '../../lib/eligibilities'
@@ -6,74 +6,84 @@ import { age } from '../../lib/eligibilities'
 import { categories } from '../../lib/categories'
 import TimeRangePicker from '../TimeRangePicker'
 
-const ServiceEdit = (props) => {
-  function updateService(field, value) {
-    const { service } = props
+class ServiceEdit extends Component {
+  updateService = (field, value) => {
+    const { service, index, handleChange } = this.props
     const newService = service
+
     newService[field] = value
-    props.handleChange(newService, props.index)
+    handleChange(newService, index)
   }
 
-  function deleteService() {
-    props.handleDelete(props.index)
+  deleteService = () => {
+    const { index, handleDelete } = this.props
+
+    handleDelete(index)
   }
 
-  function handleServiceChange(field, event) {
-    updateService(field, event.target.value)
+  handleServiceChange = (field, event) => {
+    this.updateService(field, event.target.value)
   }
 
-  function handleGender(value) {
-    const { eligibility } = props.service
+  handleGender = (value) => {
+    const { eligibility } = this.props.service
     const newEligibility = eligibility
-    newEligibility['gender'] = value.key
-    updateService('eligibility', newEligibility)
+
+    newEligibility.gender = value.key
+    this.updateService('eligibility', newEligibility)
   }
 
-  function handleAge(value) {
-    const { eligibility } = props.service
+  handleAge = (value) => {
+    const { eligibility } = this.props.service
     const newEligibility = eligibility
     let newAge = newEligibility.age || ''
+
     if (newAge.includes(value.key)) {
       newAge = newAge.replace(value.key, '')
     } else {
       newAge = newAge + value.key
     }
-    newEligibility['age'] = newAge
-    updateService('eligibility', newEligibility)
+
+    newEligibility.age = newAge
+    this.updateService('eligibility', newEligibility)
   }
 
-  function getAgeClass(value) {
+  getAgeClass = (value) => {
     let classes = [s.selectableButton]
-    const { eligibility } = props.service
-    let stateVal = eligibility['age'] || ''
+    const { eligibility } = this.props.service
+    let stateVal = eligibility ? (eligibility.age || '') : ''
+
     if (stateVal.includes(value.key))
       classes.push(s.selectableButtonActive)
 
     return classes.join(' ')
   }
 
-  function getGenderClass(value) {
+  getGenderClass = (value) => {
     let classes = [s.selectableButton]
-    const { eligibility } = props.service
-    let stateVal = eligibility['gender'] || ''
+    const { eligibility } = this.props.service
+    let stateVal = eligibility ? eligibility.gender : ''
+
     if (stateVal == value.key)
       classes.push(s.selectableButtonActive)
 
     return classes.join(' ')
   }
 
-  function getCategoryClass(value) {
+  getCategoryClass = (value) => {
     let classes = [s.selectableButton]
-    const { taxonomy } = props.service
+    const { taxonomy } = this.props.service
+
     if (taxonomy.toLowerCase() == value.taxonomy)
       classes.push(s.selectableButtonActive)
 
     return classes.join(' ')
   }
 
-  function handleTimeChange(event, start_or_end, metadata) {
-    const { schedules } = props.service
+  handleTimeChange = (event, start_or_end, metadata) => {
+    const { schedules } = this.props.service
     const newSchedules = schedules
+
     if (start_or_end == 'start') {
       newSchedules[metadata.scheduleNum][metadata.day]['opens_at'] = event.target.value.replace(':', '')
     } else {
@@ -83,64 +93,79 @@ const ServiceEdit = (props) => {
     updateService('schedules', newSchedules)
   }
 
-  return (
-    <div className={s.serviceEditBox}>
-      <div className={s.name}>
-        <span className={s.nameLabel}>Service Name </span>
-        <input
-          type="text"
-          value={props.service.name}
-          onChange={(e) => handleServiceChange('name', e)}
-        />
-      </div>
-      <div className={s.descriptionBox}>
-        <span className={s.descriptionLabel}>Service Description </span>
-        <input
-          type="text"
-          value={props.service.description}
-          onChange={(e) => handleServiceChange('description', e)}
-        />
-      </div>
-      <div className={s.applicationBox}>
-        <span className={s.applicationLabel}>Application Process </span>
-        <input
-          type="text"
-          value={props.service.application_process}
-          onChange={(e) => handleServiceChange('application_process', e)}
-        />
-      </div>
-      <div className={s.elegibilityBox}>
-        <span className={s.eligibilityLabel}>Elegibility Information </span>
-        <GenderBox gender={props.service.eligibility.gender} getGenderClass={getGenderClass} handleGender={handleGender}/>
-        <AgeBox gender={props.service.eligibility.age} getAgeClass={getAgeClass} handleAge={handleAge} />
-      </div>
-      <div className={s.schedulesBox}>
-        <span className={s.schedulesLabel}>Schedule </span>
-        {props.service.schedules.map((obj, index) => <ScheduleBox key={`schedule-${index}`} index={index} schedule={obj} handleTimeChange={handleTimeChange} /> )}
-      </div>
-      <div className={s.taxonomyBox}>
-        <span className={s.taxonomyLabel}>Category </span>
-        {categories.map((category, i) => (
+  render() {
+    const { service } = this.props
+
+    return (
+      <div className={s.serviceEditBox}>
+        <div className={s.name}>
+          <span className={s.nameLabel}>Service Name </span>
+          <input
+            type="text"
+            value={service.name}
+            onChange={(e) => this.handleServiceChange('name', e)}
+          />
+        </div>
+        <div className={s.descriptionBox}>
+          <span className={s.descriptionLabel}>Service Description </span>
+          <input
+            type="text"
+            value={service.description}
+            onChange={(e) => this.handleServiceChange('description', e)}
+          />
+        </div>
+        <div className={s.applicationBox}>
+          <span className={s.applicationLabel}>Application Process </span>
+          <input
+            type="text"
+            value={service.applicationProcess}
+            onChange={(e) => this.handleServiceChange('applicationProcess', e)}
+          />
+        </div>
+        <div className={s.elegibilityBox}>
+          <span className={s.eligibilityLabel}>Elegibility Information </span>
+          <GenderBox
+            gender={service.eligibility && service.eligibility.gender}
+            getGenderClass={this.getGenderClass}
+            handleGender={this.handleGender}/>
+          <AgeBox
+            getAgeClass={this.getAgeClass}
+            handleAge={this.handleAge} />
+        </div>
+        <div className={s.schedulesBox}>
+          <span className={s.schedulesLabel}>Schedule </span>
+          {(service.schedules || []).map((schedule, index) => (
+            <ScheduleBox
+              key={`schedule-${index}`}
+              index={index}
+              schedule={schedule}
+              handleTimeChange={this.handleTimeChange} />
+          ))}
+        </div>
+        <div className={s.taxonomyBox}>
+          <span className={s.taxonomyLabel}>Category </span>
+          {categories.map((category, i) => (
+            <button
+              key={`category-${i}`}
+              className={this.getCategoryClass(category)}
+              onClick={(e) => this.updateService('taxonomy', category.taxonomy.toLowerCase())}
+            >
+            <i className={`${s.categoryIcon} ${category.icon}`}></i>
+            {category.name}
+            </button>
+          ))}
+        </div>
+        <div className={s.deleteBox}>
           <button
-            key={`category-${i}`}
-            className={getCategoryClass(category)}
-            onClick={(e) => updateService('taxonomy', category.taxonomy.toLowerCase())}
+            className={s.deleteButton}
+            onClick={this.deleteService}
           >
-          <i className={`${s.categoryIcon} ${category.icon}`}></i>
-          {category.name}
+          Delete
           </button>
-        ))}
+        </div>
       </div>
-      <div className={s.deleteBox}>
-        <button
-          className={s.deleteButton}
-          onClick={deleteService}
-        >
-        Delete
-        </button>
-      </div>
-    </div>
-  )
+    )
+  }
 }
 
 const GenderBox = (props) => (
