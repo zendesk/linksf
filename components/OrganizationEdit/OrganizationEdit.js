@@ -3,6 +3,7 @@ import s from './OrganizationEdit.css'
 import icons from '../../icons/css/icons.css'
 
 import { redirectTo } from '../../lib/navigation'
+import { uuid } from '../../lib/uuid'
 import {
   fetchLocations,
   updateLocation,
@@ -20,6 +21,7 @@ const blankPhone = {
 }
 
 const blankLocation = (organization) => ({
+  id: uuid(),
   description: "",
   latitude: 0,
   longitude: 0,

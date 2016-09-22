@@ -18,7 +18,9 @@ export function fetchTaxonomies() {
     TAXONOMIES
   ].join(SLASH).concat(FORMAT)
 
-  return fetch(url).then(response => response.json())
+  return fetch(url)
+    .then(response => response.json())
+    .then(json => Object.keys(json))
 }
 
 export function fetchLocations() {
