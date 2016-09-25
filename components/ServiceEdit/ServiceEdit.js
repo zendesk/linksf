@@ -3,7 +3,6 @@ import s from './ServiceEdit.css'
 import icons from '../../icons/css/icons.css'
 import { gender } from '../../lib/eligibilities'
 import { age } from '../../lib/eligibilities'
-import { categories } from '../../lib/categories'
 import TimeRangePicker from '../TimeRangePicker'
 
 class ServiceEdit extends Component {
