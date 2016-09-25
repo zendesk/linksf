@@ -13,6 +13,11 @@ class OptionsPage extends Component {
     super(props)
     this.state = {
       taxonomies: [],
+      sortBy: 'name',
+      hours: 'all',
+      services: [],
+      demographics: [],
+      gender: '',
     }
   }
 
@@ -27,7 +32,7 @@ class OptionsPage extends Component {
   }
 
   render() {
-    const { taxonomies } = this.state
+    const { taxonomies, sortBy, hours, services, demographics, gender } = this.state
 
     return (
       <Layout>
@@ -37,8 +42,8 @@ class OptionsPage extends Component {
               Sort by
             </Title>
             <ButtonGroup>
-              <LeftButton disabled="true">Distance</LeftButton>
-              <RightButton active>Name</RightButton>
+              <LeftButton active={sortBy === 'distance'} disabled="true">Distance</LeftButton>
+              <RightButton active={sortBy === 'name'}>Name</RightButton>
             </ButtonGroup>
           </Group>
           <div className={s.alert}>
@@ -49,8 +54,8 @@ class OptionsPage extends Component {
               Hours
             </Title>
             <ButtonGroup>
-              <LeftButton>All</LeftButton>
-              <RightButton>Open Now</RightButton>
+              <LeftButton active={hours === 'all'}>All</LeftButton>
+              <RightButton active={hours === 'open'}>Open Now</RightButton>
             </ButtonGroup>
           </Group>
           <Group>
@@ -58,7 +63,9 @@ class OptionsPage extends Component {
               Service
             </Title>
             <ServiceGroup>
-              {taxonomies.map(category => <ServiceFilter category={category} />)}
+              {taxonomies.map(category => (
+                <ServiceFilter active={services.includes(category.name)} category={category} />
+              ))}
             </ServiceGroup>
           </Group>
           <Group>
@@ -66,10 +73,10 @@ class OptionsPage extends Component {
               Suitable for
             </Title>
             <ButtonGroup>
-              <LeftButton>Children</LeftButton>
-              <MiddleButton>Youth</MiddleButton>
-              <MiddleButton>Adults</MiddleButton>
-              <RightButton>Seniors</RightButton>
+              <LeftButton active={demographics.includes('C')}>Children</LeftButton>
+              <MiddleButton active={demographics.includes('Y')}>Youth</MiddleButton>
+              <MiddleButton active={demographics.includes('A')}>Adults</MiddleButton>
+              <RightButton active={demographics.includes('S')}>Seniors</RightButton>
             </ButtonGroup>
           </Group>
           <Group>
@@ -77,9 +84,9 @@ class OptionsPage extends Component {
               Welcome
             </Title>
             <ButtonGroup>
-              <LeftButton>All</LeftButton>
-              <MiddleButton>Men</MiddleButton>
-              <RightButton>Women</RightButton>
+              <LeftButton active={gender === ''}>All</LeftButton>
+              <MiddleButton active={gender === 'M'}>Men</MiddleButton>
+              <RightButton active={gender === 'F'}>Women</RightButton>
             </ButtonGroup>
           </Group>
           <div>
@@ -113,33 +120,36 @@ const ServiceGroup = (props) => (
   </div>
 )
 
+const filterOut = (props, thingsToExclude) => {
+  return Object.keys(props)
+    .filter(prop => !thingsToExclude.includes(prop))
+    .reduce((o, k) => {
+      o[k] = props[k]
+      return o
+    }, {})
+}
+
 const ServiceFilter = (props) => (
-  <button className={s.service}>
+  <button className={s.service} {...filterOut(props, ['active', 'category'])}>
     <i className={`${s.categoryIcon} ${props.category.icon}`}></i>
     {props.category.name}
   </button>
 )
 
-const removeActive = (props) => {
-  const newProps = Object.assign({}, props)
-  delete newProps.active
-  return newProps
-}
-
 const LeftButton = (props) => (
-  <button className={[s.button, s.leftButton, props.active ? s.active : ''].join(' ')} {...removeActive(props)}>
+  <button className={[s.button, s.leftButton, props.active ? s.active : ''].join(' ')} {...filterOut(props, ['active'])}>
     {props.children}
   </button>
 )
 
 const MiddleButton = (props) => (
-  <button className={[s.button, s.middleButton, props.active ? s.active : ''].join(' ')} {...removeActive(props)}>
+  <button className={[s.button, s.middleButton, props.active ? s.active : ''].join(' ')} {...filterOut(props, ['active'])}>
     {props.children}
   </button>
 )
 
 const RightButton = (props) => (
-  <button className={[s.button, s.rightButton, props.active ? s.active : '' ].join(' ')} {...removeActive(props)}>
+  <button className={[s.button, s.rightButton, props.active ? s.active : '' ].join(' ')} {...filterOut(props, ['active'])}>
     {props.children}
   </button>
 )
