@@ -15,7 +15,7 @@ export default class LocationPage extends Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const match = this.props.route.pattern.exec(window.location.pathname)
     const locationId = match[1]
 

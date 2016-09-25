@@ -63,6 +63,7 @@
   display: flex;
   flex-flow: row wrap;
   border: 2px solid blue;
+  justify-content: space-between;
 }
 
 .locationsBox {

@@ -27,8 +27,7 @@ const LocationRow = (props) => (
           <span className={s.locationName}>{props.name}</span>
           <div className={s.locationInfo}>
             <span className={s.locationStatus}>
-              {/*<ServiceStatus schedules={props.regularSchedules} />*/}
-              open
+              <ServiceStatus services={props.services || {}} />
             </span>
             <IconSpans taxonomies={relevantTaxonomies(props.services)} />
             {props.duration && <DistanceText text={props.duration.text} />}

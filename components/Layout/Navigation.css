@@ -1,12 +1,10 @@
 .logo {
-  display: block;
   margin: 0 auto;
-  width: 100px;
-
+  vertical-align: middle;
 }
 
 .logoImg {
-  width: 100%;
+  width: 100px;
 }
 
 .header {
@@ -16,9 +14,30 @@
   top: 0;
   left: 0;
   right: 0;
-  padding: 8px 0 4px;
+  padding: 8px 0;
   border-bottom: 1px solid #DDD;
-  z-index: 999;
+}
+
+.navContainer {
+  display: flex;
+  width: 100%;
+  height: 40px;
+  max-width: 650px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.backContainer {
+  flex-basis: 20%;
+}
+
+.spacer {
+  flex-basis: 20%;
+}
+
+.logoContainer {
+  flex-basis: 20%;
+  text-align: center;
 }
 
 .currentUser {
@@ -33,4 +52,15 @@
 
 .logout {
   float: right;
+}
+
+.back {
+  cursor: pointer;
+  text-decoration: none;
+  background-color: #F3F3F3;
+  border: 1px solid #DCDCDC;
+  border-radius: 25px;
+  color: #989898;
+  font-size: 15px;
+  padding: 8px 13px;
 }
