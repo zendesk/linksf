@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import { login } from '../../lib/session'
+import { redirectTo } from '../../lib/navigation'
 
 import Layout from '../../components/Layout'
 import Login from '../../components/Login'
@@ -20,7 +21,7 @@ class LoginPage extends Component {
   }
 
   loginSuccess = () => {
-    window.location.replace('/admin')
+    redirectTo('/admin')
   }
 
   render() {

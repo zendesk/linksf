@@ -18,7 +18,9 @@ export function fetchTaxonomies() {
     TAXONOMIES
   ].join(SLASH).concat(FORMAT)
 
-  return fetch(url).then(response => response.json())
+  return fetch(url)
+    .then(response => response.json())
+    .then(json => Object.keys(json))
 }
 
 export function fetchLocations() {
@@ -67,6 +69,16 @@ export function updateLocation(location) {
     .then(json => camelize(json))
 }
 
+export function deleteLocation(id) {
+  const url = [
+    config.firebaseDatabaseUrl,
+    LOCATIONS,
+    id
+  ].join(SLASH).concat(FORMAT)
+
+  return fetch(url, {method: 'DELETE'})
+}
+
 export function fetchOrganizations() {
   const url = [
     config.firebaseDatabaseUrl,
@@ -111,4 +123,14 @@ export function updateOrganization(organization) {
     })
     .then(response => response.json())
     .then(json => camelize(json))
+}
+
+export function deleteOrganization(id) {
+  const url = [
+    config.firebaseDatabaseUrl,
+    ORGANIZATIONS,
+    id
+  ].join(SLASH).concat(FORMAT)
+
+  return fetch(url, {method: 'DELETE'})
 }
