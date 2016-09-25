@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import s from './LocationRow.css'
 import icons from '../../icons/css/icons.css'
-import { relevantTaxonomies, getIcon } from '../../lib/categories'
+import { relevantTaxonomies, getIcon } from '../../lib/taxonomies'
 import ServiceStatus from '../ServiceStatus'
 
 const DistanceText = (props) => (
@@ -34,7 +34,7 @@ const LocationRow = (props) => (
           </div>
         </div>
         <div className="location-item-box-caret">
-          <i className={`${icons.iconRightOpen2} s.rightCaret`}></i>
+          <i className={`${icons.iconRightOpen2} s.rightCaret icon-caret`}></i>
         </div>
       </div>
     </a>
