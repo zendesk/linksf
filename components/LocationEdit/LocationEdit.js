@@ -59,8 +59,9 @@ class LocationEdit extends Component {
    newService = () => {
     const { location } = this.props
     const newServices = location.services || []
+    const newService = blankService(location)
 
-    newServices.push(blankService(location))
+    newServices[newService.id] = newService
 
     this.updateLocation('services', newServices)
   }
@@ -121,7 +122,7 @@ class LocationEdit extends Component {
         <button onClick={this.deleteLocation}>Delete</button>
         <div className={s.servicesBox}>
           <h4 className={s.sectionLabel}>Services</h4>
-          {(location.services || []).map((service, index) => (
+          {(Object.values(location.services) || []).map((service, index) => (
             <ServiceEdit
               key={`service-${index}`}
               service={service}
