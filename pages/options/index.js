@@ -16,17 +16,14 @@ class OptionsPage extends Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
+    document.title = 'Link-SF'
     fetchTaxonomies()
       .then(taxonomies => {
         this.setState({
           taxonomies: taxonomiesWithIcons(taxonomies)
         })
       })
-  }
-
-  componentDidMount() {
-    document.title = 'Link-SF'
   }
 
   render() {
