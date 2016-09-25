@@ -15,8 +15,19 @@ class OptionsPage extends Component {
       taxonomies: [],
       sortBy: 'name',
       hours: 'all',
-      services: [],
-      demographics: [],
+      services: {
+        food: false,
+        housing: false,
+        hygiene: false,
+        medical: false,
+        technology: false,
+      },
+      demographics: {
+        C: false,
+        Y: false,
+        A: false,
+        S: false,
+      },
       gender: '',
     }
   }
@@ -31,6 +42,32 @@ class OptionsPage extends Component {
       })
   }
 
+  setSortBy(sortBy) {
+    this.setState({ sortBy })
+  }
+
+  setHours(hours) {
+    this.setState({ hours })
+  }
+
+  setGender(gender) {
+    this.setState({ gender })
+  }
+
+  toggleService(service) {
+    const { services } = this.state
+    const newServices = Object.assign({}, services)
+    newServices[service] = !services[service]
+    this.setState({ services: newServices })
+  }
+
+  toggleDemographic(demographic) {
+    const { demographics } = this.state
+    const newDemographics = Object.assign({}, demographics)
+    newDemographics[demographic] = !demographics[demographic]
+    this.setState({ demographics: newDemographics })
+  }
+
   render() {
     const { taxonomies, sortBy, hours, services, demographics, gender } = this.state
 
@@ -42,8 +79,17 @@ class OptionsPage extends Component {
               Sort by
             </Title>
             <ButtonGroup>
-              <LeftButton active={sortBy === 'distance'} disabled="true">Distance</LeftButton>
-              <RightButton active={sortBy === 'name'}>Name</RightButton>
+              <LeftButton
+                onClick={() => this.setSortBy('distance')}
+                active={sortBy === 'distance'}
+                disabled="true"
+              >Distance
+              </LeftButton>
+              <RightButton
+                onClick={() => this.setSortBy('name')}
+                active={sortBy === 'name'}
+              >Name
+              </RightButton>
             </ButtonGroup>
           </Group>
           <div className={s.alert}>
@@ -54,8 +100,16 @@ class OptionsPage extends Component {
               Hours
             </Title>
             <ButtonGroup>
-              <LeftButton active={hours === 'all'}>All</LeftButton>
-              <RightButton active={hours === 'open'}>Open Now</RightButton>
+              <LeftButton
+                onClick={() => this.setHours('all')}
+                active={hours === 'all'}
+              >All
+              </LeftButton>
+              <RightButton
+                onClick={() => this.setHours('open')}
+                active={hours === 'open'}
+              >Open Now
+              </RightButton>
             </ButtonGroup>
           </Group>
           <Group>
@@ -64,7 +118,12 @@ class OptionsPage extends Component {
             </Title>
             <ServiceGroup>
               {taxonomies.map(category => (
-                <ServiceFilter active={services.includes(category.name)} category={category} />
+                <ServiceFilter
+                  key={`category-${category.name}`}
+                  onClick={() => this.toggleService(category.id)}
+                  active={services[category.id]}
+                  category={category}
+                />
               ))}
             </ServiceGroup>
           </Group>
@@ -73,10 +132,26 @@ class OptionsPage extends Component {
               Suitable for
             </Title>
             <ButtonGroup>
-              <LeftButton active={demographics.includes('C')}>Children</LeftButton>
-              <MiddleButton active={demographics.includes('Y')}>Youth</MiddleButton>
-              <MiddleButton active={demographics.includes('A')}>Adults</MiddleButton>
-              <RightButton active={demographics.includes('S')}>Seniors</RightButton>
+              <LeftButton
+                onClick={() => this.toggleDemographic('C')}
+                active={demographics.C}
+              >Children
+              </LeftButton>
+              <MiddleButton
+                onClick={() => this.toggleDemographic('Y')}
+                active={demographics.Y}
+              >Youth
+              </MiddleButton>
+              <MiddleButton
+                onClick={() => this.toggleDemographic('A')}
+                active={demographics.A}
+              >Adults
+              </MiddleButton>
+              <RightButton
+                onClick={() => this.toggleDemographic('S')}
+                active={demographics.S}
+              >Seniors
+              </RightButton>
             </ButtonGroup>
           </Group>
           <Group>
@@ -84,9 +159,21 @@ class OptionsPage extends Component {
               Welcome
             </Title>
             <ButtonGroup>
-              <LeftButton active={gender === ''}>All</LeftButton>
-              <MiddleButton active={gender === 'M'}>Men</MiddleButton>
-              <RightButton active={gender === 'F'}>Women</RightButton>
+              <LeftButton
+                onClick={() => this.setGender('')}
+                active={gender === ''}
+              >All
+              </LeftButton>
+              <MiddleButton
+                onClick={() => this.setGender('M')}
+                active={gender === 'M'}
+              >Men
+              </MiddleButton>
+              <RightButton
+                onClick={() => this.setGender('F')}
+                active={gender === 'F'}
+              >Women
+              </RightButton>
             </ButtonGroup>
           </Group>
           <div>
@@ -130,7 +217,7 @@ const filterOut = (props, thingsToExclude) => {
 }
 
 const ServiceFilter = (props) => (
-  <button className={s.service} {...filterOut(props, ['active', 'category'])}>
+  <button className={[s.service, props.active ? s.active : ''].join(' ')} {...filterOut(props, ['active', 'category'])}>
     <i className={`${s.categoryIcon} ${props.category.icon}`}></i>
     {props.category.name}
   </button>
