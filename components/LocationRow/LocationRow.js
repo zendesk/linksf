@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react'
 import s from './LocationRow.css'
 import icons from '../../icons/css/icons.css'
-import { relevantTaxonomies, getIcon } from '../../lib/categories'
+import { relevantTaxonomies, getIcon } from '../../lib/taxonomies'
 import ServiceStatus from '../ServiceStatus'
+import Link from '../Link'
 
 const DistanceText = (props) => (
   <span className={s.distanceText}>{props.time} minutes walking</span>
@@ -21,7 +22,11 @@ const IconSpans = (props) => (
 
 const LocationRow = (props) => (
   <li className={s.location} key={`location-${props.id}`}>
-    <a href={`/locations/${props.id}`} className={s.locationLink} title={`Click to see more details about ${props.name}`}>
+    <Link
+      to={`/locations/${props.id}`}
+      className={s.locationLink}
+      title={`Click to see more details about ${props.name}`}
+    >
       <div className={s.locationAndCaret}>
         <div className={s.locationBox}>
           <span className={s.locationName}>{props.name}</span>
@@ -34,10 +39,10 @@ const LocationRow = (props) => (
           </div>
         </div>
         <div className="location-item-box-caret">
-          <i className={`${icons.iconRightOpen2} s.rightCaret`}></i>
+          <i className={`${icons.iconRightOpen2} s.rightCaret icon-caret`}></i>
         </div>
       </div>
-    </a>
+    </Link>
   </li>
 )
 

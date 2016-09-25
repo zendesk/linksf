@@ -13,24 +13,3 @@
   max-width: 1000px;
   width: 100%;
 }
-
-/*Global Icon Colors*/
-[class*="icon-plus"]:before {
- color:#A97A60;
- }
-
- [class*="icon-food"]:before {
-  color: #9EA861;
-}
-
-[class*="icon-medical"]:before {
- color: #7E7485;
- }
-
- [class*="icon-technology"]:before {
-  color: #CBAA4B;
-}
-
-[class*="icon-housing"]:before {
- color: #62919C;
- }
