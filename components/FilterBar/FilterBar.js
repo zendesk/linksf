@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import Toggle from '../Toggle'
 import Button from '../Button'
 import s from './FilterBar.css'
+import Link from '../Link'
 
 const FilterBar = (props) => (
   <div className={s.row}>
@@ -27,7 +28,9 @@ const FilterBar = (props) => (
         onMouseUp={props.onToggleOpen}
       />
     </div>
-    <Button>OPTIONS</Button>
+    <Link to="/options">
+      <Button>OPTIONS</Button>
+    </Link>
   </div>
 )
 
