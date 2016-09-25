@@ -91,9 +91,9 @@ export default class LocationsPage extends Component {
       loc.services &&
       loc.services.some(service => service.taxonomy === category))
     )
-    if (!loading) {
-      console.log(filteredLocations[2])
-    }
+    // if (!loading) {
+    //   console.log(filteredLocations[2])
+    // }
 
     return (
       <Layout>

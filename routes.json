@@ -12,6 +12,10 @@
     "page": "./pages/location"
   },
   {
+    "path": "/options",
+    "page": "./pages/options"
+  },
+  {
     "path": "/admin",
     "page": "./pages/admin"
   },
