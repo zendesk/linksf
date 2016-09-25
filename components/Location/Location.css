@@ -43,6 +43,7 @@
   border-radius: 6px 6px 0 0;
   border: 1px solid #DDD;
   padding: 14px;
+  display: flex;
 }
 
 .insetWebsite {
@@ -71,16 +72,28 @@
 
 .contactLabel {
   font-weight: 700;
+  margin-right: 15px;
 }
 
 .callPhone {
   color: #777;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.phone {
+  text-decoration: none;
+  color: #555;
 }
 
 .websiteUrl {
   text-overflow: ellipsis;
   overflow: hidden;
-  color: #777;
+}
+
+.website {
+  text-decoration: none;
+  color: #555;
 }
 
 .servicesList {
