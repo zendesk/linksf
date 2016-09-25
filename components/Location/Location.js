@@ -1,9 +1,12 @@
 import React, { PropTypes } from 'react'
 import s from './Location.css'
 import icons from '../../icons/css/icons.css'
-import GoogleMap from '../GoogleMap'
+
 import { relevantTaxonomies, getIcon } from '../../lib/categories'
 import { capitalize } from '../../lib/stringHelpers'
+
+import Link from '../Link'
+import GoogleMap from '../GoogleMap'
 
 const getGender = (abbr) => {
   if (abbr === '' || abbr === 'MF' || abbr === 'FM') return 'Everyone'
@@ -57,6 +60,11 @@ const getEligibility = ({ gender, age = [] }) => {
   return `${getGenderAdj(gender)} ${ages}`
 }
 
+const getMapsUrl = (location) => {
+  const { latitude, longitude } = location
+  return `https://maps.google.com/maps?q=loc:${latitude},${longitude}`
+}
+
 const Location = (props) => {
   const { location, organization } = props
   const { services = [] } = location
@@ -91,7 +99,10 @@ const Location = (props) => {
         <div className={s.callPhone}>
           {organization.phones && organization.phones.map((phone, index) => (
             <div key={`phone-${index}`}>
-              <span>{phone.number}</span>
+              <a
+                className={s.phone}
+                href={'tel:' + phone.number.replace(/[^\d]/g, '')}
+              >{phone.number}</a>
               <span>{phone.department}</span>
             </div>
           ))}
@@ -100,12 +111,24 @@ const Location = (props) => {
       <div className={s.insetWebsite}>
         <label className={`${s.contactLabel} ${icons.iconLink}`}>Website </label>
         <span className={s.websiteUrl}>
-          {organization.url}
+          <a
+            className={s.website}
+            href={organization.url}
+            rel="nofollow"
+            target="_blank">
+            {organization.url}
+          </a>
         </span>
       </div>
-      <button className={s.insetDirections}>
-        <label className={`${s.directionsLabel} ${icons.iconCompass}`}>Directions</label>
-      </button>
+      <a
+        href={getMapsUrl(location)}
+        rel="nofollow"
+        target="_blank"
+      >
+        <button className={s.insetDirections}>
+          <label className={`${s.directionsLabel} ${icons.iconCompass}`}>Directions</label>
+        </button>
+      </a>
       <ul title="Services details" className={s.servicesList}>
         {services && Object.values(services).map((service, index) => (
           <li key={`service-${index}`} className={s.insetServices}>
