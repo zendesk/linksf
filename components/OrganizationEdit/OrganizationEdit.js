@@ -15,10 +15,10 @@ import {
 import LocationEdit from '../LocationEdit'
 import PhoneEdit from '../PhoneEdit'
 
-const blankPhone = {
+const blankPhone = () => ({
   department: "",
   number: ""
-}
+})
 
 const blankLocation = (organization) => ({
   id: uuid(),
@@ -66,7 +66,7 @@ class OrganizationEdit extends Component {
     const answer = confirm(`Are you sure you want to delete ${organization.name}? You cannot undo this or recover the data.`)
 
     if (answer) {
-      handleDeleteOrganization(organization.id)
+      deleteOrganization(organization.id)
         .then(redirectTo('/admin'))
     }
   }
@@ -82,30 +82,33 @@ class OrganizationEdit extends Component {
   }
 
   handlePhones = (newPhone, index) => {
-    const { phones } = this.state.organization
-    const newPhones = phones
+    const { organization } = this.state
+    const newPhones = organization.phones
 
     newPhones[index] = newPhone
+    organization.phones = newPhones
 
-    this.setState({ phones: newPhones })
+    this.setState({ organization })
   }
 
   newPhone = () => {
-    const { phones } = this.state.organization
-    const newPhones = phones || []
+    const { organization } = this.state
+    const newPhones = organization.phones || []
 
-    newPhones.push(blankPhone)
+    newPhones.push(blankPhone())
+    organization.phones = newPhones
 
-    this.setState({ phones: newPhones })
+    this.setState({ organization })
   }
 
   deletePhone = (index) => {
-    const { phones } = this.state.organization
-    const newPhones = phones
+    const { organization } = this.state
+    const newPhones = organization.phones
 
     newPhones.splice(index, 1)
+    organization.phones = newPhones
 
-    this.setState({ phones: newPhones })
+    this.setState({ organization })
   }
 
   handleLocations = (newLocation, index) => {
@@ -155,31 +158,55 @@ class OrganizationEdit extends Component {
   }
 
   render() {
-    const { organization } = this.state
+    const { organization, locations } = this.state
 
     return (
       <div className={s.organizationEditBox}>
-        <button onClick={this.handleDeleteOrganization}>Delete Organization</button>
-        <div className={s.name}>
-          <span className={s.nameLabel}>Organization Name </span>
-          <input
-            className={s.input}
-            type="text"
-            value={organization.name}
-            onChange={(e) => this.handleChange('name', e)}
-          />
+        <h2>{ organization.name || 'New Organization' }</h2>
+
+        <div className={s.baseOrganizationProperties}>
+          <div className={s.baseOrganizationItem}>
+            <div className={s.mainInputGroup}>
+              <span className={s.mainLabel}>Name </span>
+              <input
+                className={s.input}
+                type="text"
+                value={organization.name}
+                onChange={(e) => this.handleChange('name', e)}
+              />
+            </div>
+            <div className={s.mainInputGroup}>
+              <span className={s.mainLabel}>Website </span>
+              <input
+                className={s.input}
+                type="text"
+                value={organization.url}
+                onChange={(e) => this.handleChange('url', e)}
+              />
+            </div>
+          </div>
+          <div className={s.baseOrganizationItem}>
+            <div className={s.mainInputGroup}>
+              <span className={s.mainLabel}>Description </span>
+              <textarea
+                className={s.input + ' ' + s.description}
+                value={organization.longDescription}
+                onChange={(e) => this.handleChange('longDescription', e)}
+              />
+            </div>
+          </div>
         </div>
-        <div className={s.description}>
-          <span className={s.descriptionLabel}>Organization Description </span>
-          <input
-            className={s.input}
-            type="text"
-            value={organization.long_description}
-            onChange={(e) => this.handleChange('longDescription', e)}
-          />
+
+        <div className={s.subsectionLabel}>
+          Phone Numbers
+          <button
+            className={s.addToSubsection}
+            onClick={this.newPhone}
+            title={`Click to add a new phone`}>
+            + Add
+          </button>
         </div>
         <div className={s.phonesBox}>
-          <span className={s.phoneEditBoxLabel}>Phone Numbers </span>
           {(organization.phones || []).map((phone, index) => (
             <PhoneEdit
               key={`phone-${index}`}
@@ -188,38 +215,31 @@ class OrganizationEdit extends Component {
               handleChange={this.handlePhones}
               handleDelete={this.deletePhone} />
           ))}
+        </div>
+
+        <div className={s.subsectionLabel}>
+          Locations
           <button
-            onClick={this.newPhone}
-            title={`Click to add a new phone`}>
-            Add a Phone
+            className={s.addToSubsection}
+            onClick={this.newLocation}
+            title={`Click to add a new location`}>
+            + Add
           </button>
         </div>
-        <div className={s.urlBox}>
-          <span className={s.urlLabel}>Website </span>
-          <input
-            className={s.input}
-            type="text"
-            value={organization.url}
-            onChange={(e) => this.handleChange('url', e)}
-          />
-        </div>
-        <button
-          onClick={this.newLocation}
-          title={`Click to add a new location`}>
-          Add a Location
-        </button>
         <div className={s.locationsBox}>
-          {(this.state.locations || []).map((loc, index) => (
+          {locations.map((location, index) => (
             <LocationEdit
               key={`location-${index}`}
-              location={loc}
+              location={location}
               index={index}
               handleChange={this.handleLocations}
               handleDelete={this.handleDeleteLocation} />
           ))}
         </div>
+
         <div className={s.formSubmit}>
           <button type="button" onClick={this.handleSubmit}>Submit</button>
+          <button onClick={this.handleDeleteOrganization}>Delete Organization</button>
         </div>
       </div>
     )

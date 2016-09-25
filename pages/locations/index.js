@@ -89,7 +89,7 @@ export default class LocationsPage extends Component {
 
     const filteredLocations = (locations || []).filter(loc => (
       loc.services &&
-      loc.services.some(service => service.taxonomy === category))
+      Object.values(loc.services).some(service => service.taxonomy === category))
     )
     if (!loading) {
       console.log(filteredLocations[2])
