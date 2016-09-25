@@ -39,7 +39,7 @@ export default class LocationsPage extends Component {
 
   componentWillMount() {
     if (navigator) {
-      navigator.geolocation.getCurrentPosition(this.setCurrentLocation, this.setLocations)
+      navigator.geolocation.getCurrentPosition(this.setCurrentLocation)
     } else {
       this.setLocations()
     }
@@ -47,6 +47,11 @@ export default class LocationsPage extends Component {
 
   componentDidMount() {
     document.title = 'Link-SF'
+
+    fetchLocations()
+      .then(locations => {
+        this.setState({ locations })
+      })
   }
 
   setCurrentLocation = (currentLocation) => {
@@ -67,12 +72,12 @@ export default class LocationsPage extends Component {
           const matrixResponses = matrixResponse.rows[0].elements
           const locationsWithDistance = mergeLocationsAndDistances(locationsCache, matrixResponses)
 
-          this.setState({ loading: false, locations: locationsWithDistance })
+          this.setState({ locations: locationsWithDistance })
         })
     } else {
       fetchLocations()
         .then(locations => {
-          this.setState({ loading: false, locations })
+          this.setState({ locations })
         })
     }
   }
@@ -84,7 +89,7 @@ export default class LocationsPage extends Component {
   render() {
     const { locations } = this.state
     const loading = locations == null
-    const category = getParameterByName('categories');
+    const category = getParameterByName('categories')
 
     const filteredLocations = (locations || []).filter(loc => (
       loc.services &&
