@@ -33,7 +33,7 @@ const getAge = (abbr) => {
 }
 
 const getAllGendersAndAges = (services) => {
-  const allGendersAndAges = services
+  const allGendersAndAges = Object.values(services)
     .map(service => service.eligibility)
     .reduce((acc, eligibility) => {
       const { gender, age } = acc
@@ -62,11 +62,12 @@ const Location = (props) => {
   const { services = [] } = location
   return (
     <div className={s.location}>
+      <h2>{location.name}</h2>
       <h2 className={s.title}>Welcome</h2>
       <div className={s.inset}>
         {getEligibility(getAllGendersAndAges(services))}
       </div>
-      <h2 className={s.title}>Locations</h2>
+      <h2 className={s.title}>Services</h2>
       <div className={s.inset}>
         <div className={s.categoryIcons}>
           {relevantTaxonomies(services).map((taxonomy, index) => (
@@ -99,14 +100,14 @@ const Location = (props) => {
       <div className={s.insetWebsite}>
         <label className={`${s.contactLabel} ${icons.iconLink}`}>Website </label>
         <span className={s.websiteUrl}>
-          {/*{service.url}*/}
+          {organization.url}
         </span>
       </div>
       <button className={s.insetDirections}>
         <label className={`${s.directionsLabel} ${icons.iconCompass}`}>Directions</label>
       </button>
       <ul title="Services details" className={s.servicesList}>
-        {services && services.map((service, index) => (
+        {services && Object.values(services).map((service, index) => (
           <li key={`service-${index}`} className={s.insetServices}>
             <h3 className={s.serviceTitle}>{service.name}</h3>
             <p className={s.serviceDescription}>{service.description}</p>
