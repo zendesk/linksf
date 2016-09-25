@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import s from './Location.css'
 import icons from '../../icons/css/icons.css'
 
-import { relevantTaxonomies, getIcon } from '../../lib/categories'
+import { relevantTaxonomies, getIcon } from '../../lib/taxonomies'
 import { capitalize } from '../../lib/stringHelpers'
 
 import Link from '../Link'
@@ -95,7 +95,7 @@ const Location = (props) => {
         </p>
       </div>
       <div className={s.insetCall}>
-        <label className={`${s.contactLabel} ${icons.iconPhone}`}>Call </label>
+        <label className={`${s.contactLabel} ${icons.iconPhone} icon-phone`}>Call </label>
         <div className={s.callPhone}>
           {organization.phones && organization.phones.map((phone, index) => (
             <div key={`phone-${index}`}>
@@ -109,7 +109,7 @@ const Location = (props) => {
         </div>
       </div>
       <div className={s.insetWebsite}>
-        <label className={`${s.contactLabel} ${icons.iconLink}`}>Website </label>
+        <label className={`${s.contactLabel} ${icons.iconLink} icon-website`}>Website </label>
         <span className={s.websiteUrl}>
           <a
             className={s.website}
@@ -126,7 +126,7 @@ const Location = (props) => {
         target="_blank"
       >
         <button className={s.insetDirections}>
-          <label className={`${s.directionsLabel} ${icons.iconCompass}`}>Directions</label>
+          <label className={`${s.directionsLabel} ${icons.iconCompass} icon-compass`}>Directions</label>
         </button>
       </a>
       <ul title="Services details" className={s.servicesList}>

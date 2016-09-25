@@ -4,6 +4,24 @@
     <loc>https://link-sf.com/</loc>
   </url>
   <url>
+    <loc>https://link-sf.com/locations</loc>
+  </url>
+  <url>
+    <loc>https://link-sf.com/options</loc>
+  </url>
+  <url>
+    <loc>https://link-sf.com/admin</loc>
+  </url>
+  <url>
+    <loc>https://link-sf.com/login</loc>
+  </url>
+  <url>
+    <loc>https://link-sf.com/logout</loc>
+  </url>
+  <url>
+    <loc>https://link-sf.com/feedback</loc>
+  </url>
+  <url>
     <loc>https://link-sf.com/error</loc>
   </url>
   <url>
@@ -11,14 +29,5 @@
   </url>
   <url>
     <loc>https://link-sf.com/terms</loc>
-  </url>
-  <url>
-    <loc>https://link-sf.com/locations</loc>
-  </url>
-  <url>
-    <loc>https://link-sf.com/admin</loc>
-  </url>
-  <url>
-    <loc>https://link-sf.com/feedback</loc>
   </url>
 </urlset>
