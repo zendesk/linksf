@@ -85,15 +85,11 @@ export default class LocationsPage extends Component {
     const { locations } = this.state
     const loading = locations == null
     const category = getParameterByName('categories');
-    console.log(category)
 
     const filteredLocations = (locations || []).filter(loc => (
       loc.services &&
       Object.values(loc.services).some(service => service.taxonomy === category))
     )
-    // if (!loading) {
-    //   console.log(filteredLocations[2])
-    // }
 
     return (
       <Layout>
