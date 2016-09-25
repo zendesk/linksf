@@ -24,14 +24,14 @@
 }
 
 .distanceText {
-    display: inline-block;
-    padding: 2px 4px 0 0;
-    font-size: 15px;
-    line-height: 14px;
-    color: #ABA9A9;
-    white-space: nowrap;
-    vertical-align: baseline;
-    border-radius: 3px;
+  display: inline-block;
+  padding: 2px 4px 0 0;
+  font-size: 15px;
+  line-height: 14px;
+  color: #ABA9A9;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 3px;
 }
 
 .locationIcon {
@@ -40,7 +40,6 @@
 
 .locationInfo {
   display: flex;
-  justify-content: space-between;
 }
 
 .locationName {
@@ -51,7 +50,8 @@
 }
 
 .locationStatus {
-  font-size: 13px;
+  font-size: 15px;
+  margin-right: 5px;
 }
 
 .locationDistance {
