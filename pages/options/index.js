@@ -54,6 +54,28 @@ class OptionsPage extends Component {
     this.setState({ gender })
   }
 
+  search() {
+    const { sortBy, hours, services, demographics, gender } = this.state
+    const sortByString = sortBy === 'distance' ? '&sortBy=distance' : ''
+    const hoursString = hours === 'open' ? '&hours=open' : ''
+    const selectedServices = Object.keys(services)
+      .filter(k => services[k])
+    const servicesString = selectedServices.length > 0 ?
+      `&categories[]=${selectedServices.join(',')}` :
+      ''
+    const selectedDemographics = Object.keys(demographics)
+      .filter(k => demographics[k])
+    const demographicsString = selectedDemographics.length > 0 ?
+      `&demographics[]=${selectedDemographics.join(',')}` :
+      ''
+
+    const genderString = gender ? `&gender=${gender}` : ''
+
+    const queryString =
+      [sortByString, hoursString, servicesString, demographicsString, genderString].join('')
+    console.log(queryString)
+  }
+
   toggleService(service) {
     const { services } = this.state
     const newServices = Object.assign({}, services)
@@ -177,7 +199,9 @@ class OptionsPage extends Component {
             </ButtonGroup>
           </Group>
           <div>
-            <button className={s.searchButton}>Search</button>
+            <button
+              onClick={() => this.search()}
+              className={s.searchButton}>Search</button>
           </div>
         </div>
       </Layout>
