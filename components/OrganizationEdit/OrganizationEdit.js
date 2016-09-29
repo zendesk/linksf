@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import s from './OrganizationEdit.css'
 import icons from '../../icons/css/icons.css'
 
+import { taxonomiesWithIcons } from '../../lib/taxonomies'
 import { redirectTo } from '../../lib/navigation'
 import { uuid } from '../../lib/uuid'
 import {
@@ -9,7 +10,8 @@ import {
   updateLocation,
   deleteLocation,
   updateOrganization,
-  deleteOrganization
+  deleteOrganization,
+  fetchTaxonomies
 } from '../../core/firebaseRestAPI'
 
 import LocationEdit from '../LocationEdit'
@@ -42,8 +44,9 @@ class OrganizationEdit extends Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.refreshLocations()
+    this.refreshTaxonomies()
   }
 
   //TODO: only fetch locations for org rather than filter them down after
@@ -58,6 +61,15 @@ class OrganizationEdit extends Component {
       ))
       .then(locations => {
         this.setState({ locations })
+      })
+  }
+
+  refreshTaxonomies = () => {
+    fetchTaxonomies()
+      .then(taxonomies => {
+        this.setState({
+          taxonomies: taxonomiesWithIcons(taxonomies)
+        })
       })
   }
 
@@ -118,6 +130,7 @@ class OrganizationEdit extends Component {
     newLocations[index] = newLocation
 
     this.setState({ locations: newLocations })
+    console.log(this.state)
   }
 
   newLocation = () => {
@@ -158,7 +171,7 @@ class OrganizationEdit extends Component {
   }
 
   render() {
-    const { organization, locations } = this.state
+    const { organization, locations, taxonomies } = this.state
 
     return (
       <div className={s.organizationEditBox}>
@@ -233,7 +246,9 @@ class OrganizationEdit extends Component {
               location={location}
               index={index}
               handleChange={this.handleLocations}
-              handleDelete={this.handleDeleteLocation} />
+              handleDelete={this.handleDeleteLocation} 
+              taxonomies={taxonomies}
+            />
           ))}
         </div>
 
