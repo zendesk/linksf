@@ -5,6 +5,7 @@ import icons from '../../icons/css/icons.css'
 import { uuid } from '../../lib/uuid'
 
 import ServiceEdit from '../ServiceEdit'
+import Autocomplete from 'react-google-autocomplete'
 
 const blankService = (location) => ({
   id: uuid(),
@@ -38,13 +39,16 @@ class LocationEdit extends Component {
     this.updateLocation(field, event.target.value)
   }
 
-   handleAddress = (field, event) => {
+   handleAddress = (place) => {
     const { physicalAddress } = this.props.location
     const newPhysicalAddress = physicalAddress
 
-    newPhysicalAddress[field] = event.target.value
+    newPhysicalAddress['address1'] = place.name
+    newPhysicalAddress['city'] = place.vicinity
 
     this.updateLocation('physicalAddress', newPhysicalAddress)
+    this.updateLocation('latitude', place.geometry.location.lat())
+    this.updateLocation('longitude', place.geometry.location.lng())
   }
 
    handleServices = (newService, index) => {
@@ -76,7 +80,7 @@ class LocationEdit extends Component {
   }
 
   render() {
-    const { location } = this.props
+    const { location, taxonomies } = this.props
 
     return (
       <div className={s.locationEdit}>
@@ -102,11 +106,19 @@ class LocationEdit extends Component {
           </div>
           <div className={s.group}>
             <span className={s.addressLineOneLabel}>Street Address </span>
+            <Autocomplete
+              style={{width: '90%'}}
+              onPlaceSelected={this.handleAddress}
+              types={['geocode']}
+            />
+          </div>
+          <div className={s.group}>
+            <span className={s.addressLineOneLabel}>Street</span>
             <input
               className={s.input}
               type="text"
               value={location.physicalAddress.address1}
-              onChange={(e) => this.handleAddress('address1', e)}
+              disabled
             />
           </div>
           <div className={s.group}>
@@ -115,20 +127,22 @@ class LocationEdit extends Component {
               className={s.input}
               type="text"
               value={location.physicalAddress.city}
-              onChange={(e) => this.handleAddress('city', e)}
+              disabled
             />
           </div>
         </div>
         <button onClick={this.deleteLocation}>Delete</button>
         <div className={s.servicesBox}>
           <h4 className={s.sectionLabel}>Services</h4>
-          {(Object.values(location.services) || []).map((service, index) => (
+          {(Object.values(location.services || {})).map((service, index) => (
             <ServiceEdit
               key={`service-${index}`}
               service={service}
               index={index}
               handleChange={this.handleServices}
-              handleDelete={this.deleteService} />
+              handleDelete={this.deleteService} 
+              taxonomies={taxonomies}
+            />
           ))}
           <button
             onClick={this.newService}

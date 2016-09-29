@@ -46,6 +46,7 @@
     "history": "^3.0.0",
     "react": "^15.2.0",
     "react-dom": "^15.2.0",
+    "react-google-autocomplete": "^1.0.7",
     "react-google-maps": "^4.11.0",
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",

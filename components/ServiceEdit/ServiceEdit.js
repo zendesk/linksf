@@ -93,7 +93,7 @@ class ServiceEdit extends Component {
   }
 
   render() {
-    const { service } = this.props
+    const { service, taxonomies } = this.props
 
     return (
       <div className={s.serviceEditBox}>
@@ -143,7 +143,7 @@ class ServiceEdit extends Component {
         </div>
         <div className={s.taxonomyBox}>
           <span className={s.taxonomyLabel}>Category </span>
-          {categories.map((category, i) => (
+          {(taxonomies).map((category, i) => (
             <button
               key={`category-${i}`}
               className={this.getCategoryClass(category)}
