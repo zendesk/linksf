@@ -124,6 +124,13 @@ class TermsPage extends React.Component {
           Anthony will not collect any personally identifiable information about you unless you
           provide it voluntarily through Link-SF’s feedback form.</p>
 
+          <h2>Information Collected by Other Services.</h2><p>Link-SF uses Formspree
+          (https://formspree.io/) to send emails from Link-SF’s feedback form. Formspree and the
+          services it uses may collect information about you that you disclose through Link-SF’s
+          feedback form. Formspree and the services it uses will not collect any personally
+          identifiable information about you unless you provide it voluntarily through Link-SF’s
+          feedback form.</p>
+
           <h2>Cookies.</h2><p>Link-SF uses cookies. A cookie is a small file placed on your computer's hard
           drive to identify you as a user, and facilitate your ongoing access to the use of Link-SF.
           St. Anthony does not use cookies to collect any personal or identifying information about

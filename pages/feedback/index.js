@@ -20,6 +20,7 @@ class FeedbackPage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      submitUrl: "https://formspree.io/" + process.env.FEEDBACK_EMAIL_ADDRESS,
       name: '',
       email: '',
       subject: '',
@@ -34,16 +35,9 @@ class FeedbackPage extends React.Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault()
     if (!this.state.name || !this.state.email || !this.state.subject || !this.state.message) {
+      e.preventDefault()
       this.setState({ error: 'Please fill out all fields' })
-    } else {
-      // TODO: post data to FireBase
-      console.log({ name: this.state.name,
-                    email: this.state.email,
-                    subject: this.state.subject,
-                    message: this.state.message })
-      this.setState({ name: '', email: '', subject: '', message: '', error: '' })
     }
   }
 
@@ -52,9 +46,10 @@ class FeedbackPage extends React.Component {
       <Layout>
         {this.state.error ? <Error message={this.state.error} /> : ''}
         <h4>Give us feedback</h4>
-        <form onSubmit={this.handleSubmit}>
+        <form action={this.state.submitUrl} method="POST" onSubmit={this.handleSubmit}>
           <label>Name</label>
           <TextInput
+            name="name"
             placeholder="Your name"
             value={this.state.name}
             onChange={e => this.setState({ name: e.target.value })}
@@ -62,6 +57,7 @@ class FeedbackPage extends React.Component {
           />
           <label>Email</label>
           <TextInput
+            name="email-address"
             placeholder="Your email"
             value={this.state.email}
             onChange={e => this.setState({ email: e.target.value })}
@@ -69,6 +65,7 @@ class FeedbackPage extends React.Component {
           />
           <label>Subject</label>
           <TextInput
+            name="subject"
             placeholder="Subject"
             value={this.state.subject}
             onChange={e => this.setState({ subject: e.target.value })}
@@ -76,11 +73,13 @@ class FeedbackPage extends React.Component {
           />
           <label>Message</label>
           <TextArea
+            name="message"
             placeholder="Message"
             value={this.state.message}
             onChange={e => this.setState({ message: e.target.value })}
             required
           />
+          <input type="hidden" name="_next" value="/" />
           <Button type="submit" value="Post">Submit Feedback</Button>
         </form>
       </Layout>
