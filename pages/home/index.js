@@ -16,16 +16,13 @@ class HomePage extends Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     fetchTaxonomies()
       .then(taxonomies => {
         this.setState({
           taxonomies: taxonomiesWithIcons(taxonomies)
         })
       })
-  }
-
-  componentDidMount() {
     document.title = 'Link-SF'
   }
 
