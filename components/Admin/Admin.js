@@ -16,7 +16,7 @@ class Admin extends Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     fetchOrganizations()
       .then(organizations => {
         this.setState({ organizations })
