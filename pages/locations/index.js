@@ -37,15 +37,13 @@ export default class LocationsPage extends Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     if (navigator) {
       navigator.geolocation.getCurrentPosition(this.setCurrentLocation)
     } else {
       this.setLocations()
     }
-  }
 
-  componentDidMount() {
     document.title = 'Link-SF'
 
     fetchLocations()
