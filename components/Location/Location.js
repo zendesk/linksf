@@ -65,6 +65,87 @@ const getMapsUrl = (location) => {
   return `https://maps.google.com/maps?q=loc:${latitude},${longitude}`
 }
 
+const DAYS = {
+  0: "sunday",
+  1: "monday",
+  2: "tuesday",
+  3: "wednesday",
+  4: "thursday",
+  5: "friday",
+  6: "saturday"
+}
+
+const dayAbbreviations = {
+  sunday: "Sun",
+  monday: "Mon",
+  tuesday: "Tue",
+  wednesday: "Wed",
+  thursday: "Thu",
+  friday: "Fri",
+  saturday: "Sat"
+}
+
+const convertMilitaryTime = (time) => {
+  let hours = time / 100
+  let mins = time % 100
+  let output = ''
+  if (hours < 12) {
+     output += hours
+     if (mins > 0) {
+        output += `:${mins}`
+     }
+     output += 'am'
+  } else {
+     output += hours - 12
+     if (mins > 0) {
+        output += `:${mins}`
+     }
+     output += 'pm'
+  }
+  return output
+}
+
+const getSchedule = (schedules) => {
+  const daySchedules = {}
+  schedules.reduce((acc, schedule) => {
+    return acc.concat(schedule)
+  }, [])
+  .map(schedule => {
+    let day = schedule.weekday.toLowerCase()
+    let daySchedule = daySchedules[day]
+    if (!daySchedule) {
+      daySchedule = []
+      daySchedules[day] = daySchedule
+    }
+    daySchedule.push({
+      opensAt: schedule.opensAt,
+      closesAt: schedule.closesAt
+    })
+  })
+  return Object.keys(DAYS).sort().map(i => {
+    let day = DAYS[i]
+    let daySchedule = daySchedules[day]
+    if (day) {
+      return (
+        <tr key={`day-${i}`}>
+          <td className={s.labelHour}>
+            <b>{dayAbbreviations[day]}</b>
+          </td>
+          <td className={s.hour}>
+            {
+              daySchedule.sort((a, b) => {
+                a.opensAt < b.opensAt
+              }).map(hours => {
+                return `${convertMilitaryTime(hours.opensAt)} - ${convertMilitaryTime(hours.closesAt)}`
+              }).join(', ')
+            }
+          </td>
+        </tr>
+      )
+    }
+  })
+}
+
 const Location = (props) => {
   const { location, organization } = props
   const { services = [] } = location
@@ -136,14 +217,7 @@ const Location = (props) => {
             <p className={s.serviceDescription}>{service.description}</p>
             <table className={s.openHours}>
               <tbody>
-                <tr>
-                  <td className={s.labelHour}>
-                    <b>Every day:</b>
-                  </td>
-                  <td className={s.hour}>
-                    24 Hours
-                  </td>
-                </tr>
+                {getSchedule(service.schedules)}
               </tbody>
             </table>
             <div className={s.notes}>
