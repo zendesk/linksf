@@ -22,28 +22,27 @@ class Navigation extends Component {
   render() {
     return (
       <nav className={s.header} role="navigation">
-        <div>
-          <div className={s.navContainer}>
-            <div className={s.backContainer}>
-              {window.location.pathname === "/" ?
-                <span></span> :
-                <Link className={s.back} to="" onClick={history.goBack}>BACK</Link>
-              }
-            </div>
-            <div className={s.spacer} />
-            <div className={s.logoContainer}>
-              <Link className={s.logo} to="/">
-                <img
-                  onClick={Link.handleClick}
-                  className={s.logoImg}
-                  role="link"
-                  src="/link-sf.png"
-                  alt="San Francisco website that connects homeless and low-income residents with critical and life-saving resources"
-                />
-              </Link>
-            </div>
-            <CurrentUser { ...this.props } />
+        <div className={s.navTopSpace}></div>
+        <div className={s.navContent}>
+          <div className={s.backContainer}>
+            {window.location.pathname === "/" ?
+              <span></span> :
+              <Link className={s.back} to="" onClick={history.goBack}>BACK</Link>
+            }
           </div>
+          <div className={s.spacer} />
+          <div className={s.logoContainer}>
+            <Link to="/">
+              <img
+                onClick={Link.handleClick}
+                className={s.logoImg}
+                role="link"
+                src="/link-sf.png"
+                alt="San Francisco website that connects homeless and low-income residents with critical and life-saving resources"
+              />
+            </Link>
+          </div>
+          <CurrentUser { ...this.props } />
         </div>
       </nav>
     )

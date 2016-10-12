@@ -1,30 +1,25 @@
-.logo {
-  margin: 0 auto;
-  vertical-align: middle;
+.header {
+  height: 128px;
+  border-bottom: 2px solid rgb(204, 204, 204);
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+}
+
+.navTopSpace {
+  height: 40px;
+}
+
+.navContent {
+  flex-grow: 2;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
 }
 
 .logoImg {
-  width: 100px;
-}
-
-.header {
-  height: 40px;
-  background-color: #fff;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  padding: 8px 0;
-  border-bottom: 1px solid #DDD;
-}
-
-.navContainer {
-  display: flex;
-  width: 100%;
-  height: 40px;
-  max-width: 650px;
-  margin: 0 auto;
-  align-items: center;
+  width: 130px;
 }
 
 .backContainer {
