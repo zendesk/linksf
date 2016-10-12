@@ -11,11 +11,6 @@
   flex-direction: column;
 }
 
-.filterLabel {
-  color: #929292;
-  font-size: 15px;
-}
-
 .btn {
   cursor: pointer;
   padding: 10px 0;

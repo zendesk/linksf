@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import Toggle from '../Toggle'
+import ToggleButton from '../ToggleButton'
 import Button from '../Button'
 import s from './FilterBar.css'
 import Link from '../Link'
@@ -7,25 +7,24 @@ import Link from '../Link'
 const FilterBar = (props) => (
   <div className={s.row}>
     <div className={s.filterOption}>
-      <label className={s.filterLabel}>
-        Sort by
-      </label>
-      <Toggle
-        onLabel="NAME"
-        offLabel="NEAR"
-        disabled
+      <ToggleButton
+        label="Sort by name"
+        enabled={false}
         on
       />
     </div>
     <div className={s.filterOption}>
-      <label className={s.filterLabel}>
-        Open now
-      </label>
-      <Toggle
-        onLabel="YES"
-        offLabel="NO"
-        on={props.showOpen}
-        onMouseUp={props.onToggleOpen}
+      <ToggleButton
+        label="Sort by distance"
+        enabled={true}
+        on
+      />
+    </div>
+    <div className={s.filterOption}>
+      <ToggleButton
+        label="Open now"
+        enabled={props.showOpen}
+        onClick={props.onToggleOpen}
       />
     </div>
     <Link to="/options">
