@@ -1,14 +1,22 @@
-.btn {
+.category {
   background-color: white;
-  background-image: linear-gradient(white, #ebebeb);
-  border: 1px solid #bababa;
-  border-radius: 4px;
-  font-size: 20px;
-  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  font-size: 40px;
   text-align: left;
   cursor: pointer;
-  padding: 10px 0;
-  width: 100%;
+  height: 113px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.category:active,
+.category:hover,
+.category:focus,
+.category:visited {
+  color: inherit;
 }
 
 .categoryIcon {
