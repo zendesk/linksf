@@ -130,7 +130,6 @@ class OrganizationEdit extends Component {
     newLocations[index] = newLocation
 
     this.setState({ locations: newLocations })
-    console.log(this.state)
   }
 
   newLocation = () => {

@@ -51,11 +51,11 @@ class LocationEdit extends Component {
     this.updateLocation('longitude', place.geometry.location.lng())
   }
 
-   handleServices = (newService, index) => {
+   handleServices = (service) => {
     const { services } = this.props.location
     const newServices = services
 
-    newServices[index] = newService
+    newServices[service.id] = service
 
     this.updateLocation('services', newServices)
   }
@@ -70,11 +70,11 @@ class LocationEdit extends Component {
     this.updateLocation('services', newServices)
   }
 
-   deleteService = (index) => {
+   deleteService = (service) => {
     const { services } = this.props.location
     const newServices = services
 
-    newServices.splice(index, 1)
+    delete newServices[service.id]
 
     this.updateLocation('services', newServices)
   }
@@ -134,11 +134,10 @@ class LocationEdit extends Component {
         <button onClick={this.deleteLocation}>Delete</button>
         <div className={s.servicesBox}>
           <h4 className={s.sectionLabel}>Services</h4>
-          {(Object.values(location.services || {})).map((service, index) => (
+          {(Object.values(location.services || {})).map((service) => (
             <ServiceEdit
-              key={`service-${index}`}
+              key={`service-${service.id}`}
               service={service}
-              index={index}
               handleChange={this.handleServices}
               handleDelete={this.deleteService} 
               taxonomies={taxonomies}
