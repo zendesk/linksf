@@ -1,12 +1,34 @@
-.center {
-  margin: 53px 0 auto;
+html {
+  background-color: rgb(248, 248, 248);
+  margin: 0;
+  padding: 0;
+  color: rgb(51, 51, 51);
+}
+
+body {
+  margin: 0;
+}
+
+.body {
   display: flex;
+  flex-flow: column nowrap;
+}
+
+.center {
+  display: flex;
+  flex-flow: column nowrap;
   justify-content: center;
+  align-items: center;
+}
+
+.contentTopSpace {
+  height: 50px;
 }
 
 .content {
-  max-width: 650px;
   width: 100%;
+  max-width: calc(750px - (28*2)px); /* CSS SUCKS BUTT, I SHOULD NOT HAVE TO DO THIS */
+  padding: 0 28px;
 }
 
 .adminContent {

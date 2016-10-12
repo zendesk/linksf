@@ -8,10 +8,11 @@ import Footer from './Footer'
 
 function Layout({ admin, children }) {
   return (
-    <div>
+    <div className={s.body}>
       <Navigation currentUser={admin && currentUser()} />
       <div className={s.center}>
-        <div id="index" className={admin ? s.adminContent : s.content}>
+        <div className={s.contentTopSpace}></div>
+        <div className={admin ? s.adminContent : s.content}>
           {children}
         </div>
       </div>
