@@ -7,17 +7,17 @@ import TimeRangePicker from '../TimeRangePicker'
 
 class ServiceEdit extends Component {
   updateService = (field, value) => {
-    const { service, index, handleChange } = this.props
+    const { service, handleChange } = this.props
     const newService = service
 
     newService[field] = value
-    handleChange(newService, index)
+    handleChange(newService)
   }
 
   deleteService = () => {
-    const { index, handleDelete } = this.props
+    const { service, handleDelete } = this.props
 
-    handleDelete(index)
+    handleDelete(service)
   }
 
   handleServiceChange = (field, event) => {
@@ -73,7 +73,7 @@ class ServiceEdit extends Component {
     let classes = [s.selectableButton]
     const { taxonomy } = this.props.service
 
-    if (taxonomy.toLowerCase() == value.taxonomy)
+    if (taxonomy.toLowerCase() == value)
       classes.push(s.selectableButtonActive)
 
     return classes.join(' ')
@@ -146,8 +146,8 @@ class ServiceEdit extends Component {
           {(taxonomies).map((category, i) => (
             <button
               key={`category-${i}`}
-              className={this.getCategoryClass(category)}
-              onClick={(e) => this.updateService('taxonomy', category.taxonomy.toLowerCase())}
+              className={this.getCategoryClass(category.name.toLowerCase())}
+              onClick={(e) => this.updateService('taxonomy', category.name.toLowerCase())}
             >
             <i className={`${s.categoryIcon} ${category.icon}`}></i>
             {category.name}
