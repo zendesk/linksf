@@ -13,26 +13,49 @@
 .navContent {
   flex-grow: 2;
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: row nowrap;
   align-items: center;
-  justify-content: center;
-}
-
-.logoImg {
-  width: 130px;
+  justify-content: space-between;
+  padding: 0 18px;
 }
 
 .backContainer {
-  flex-basis: 20%;
-}
-
-.spacer {
-  flex-basis: 20%;
+  flex-basis: 33%;
+  display: flex;
+  align-items: center;
 }
 
 .logoContainer {
-  flex-basis: 20%;
+  flex-basis: 34%;
   text-align: center;
+}
+
+.filterContainer {
+  flex-basis: 33%;
+}
+
+.back {
+  cursor: pointer;
+  text-decoration: none;
+  color: rgb(0, 122, 255);
+  font-size: 34px;
+  display: flex;
+  align-items: center;
+}
+
+.backArrow {
+  width: 25px;
+  height: 43px;
+  stroke: rgb(0, 122, 255);
+  stroke-width: 5px;
+}
+
+.backText {
+  padding: 0 13.5px;
+}
+
+.logoImg {
+  height: 40px;
 }
 
 .currentUser {
@@ -47,15 +70,4 @@
 
 .logout {
   float: right;
-}
-
-.back {
-  cursor: pointer;
-  text-decoration: none;
-  background-color: #F3F3F3;
-  border: 1px solid #DCDCDC;
-  border-radius: 25px;
-  color: #989898;
-  font-size: 15px;
-  padding: 8px 13px;
 }

@@ -27,10 +27,14 @@ class Navigation extends Component {
           <div className={s.backContainer}>
             {window.location.pathname === "/" ?
               <span></span> :
-              <Link className={s.back} to="" onClick={history.goBack}>BACK</Link>
+              <Link className={s.back} to="" onClick={history.goBack}>
+                <svg xmlns="http://www.w3.org/2000/svg" className={s.backArrow}>
+                  <path d="M2.5 23 L22.5 2.5 M2.5 20 L22.5 41.5 Z"/>
+                </svg>
+                <span className={s.backText}>Back</span>
+              </Link>
             }
           </div>
-          <div className={s.spacer} />
           <div className={s.logoContainer}>
             <Link to="/">
               <img
@@ -42,7 +46,10 @@ class Navigation extends Component {
               />
             </Link>
           </div>
-          <CurrentUser { ...this.props } />
+          <div className={s.filterContainer}>
+
+          </div>
+          {/*<CurrentUser { ...this.props } />*/}
         </div>
       </nav>
     )
