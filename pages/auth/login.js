@@ -6,22 +6,29 @@ import { redirectTo } from '../../lib/navigation'
 import Layout from '../../components/Layout'
 import Login from '../../components/Login'
 import Loading from '../../components/Loading'
+import Error from '../../components/Error'
 
 class LoginPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      loggingIn: false
+      loggingIn: false,
+      error: null
     }
   }
 
   handleSubmit = (email, password) => {
     this.setState({loggingIn: true})
-    login(email, password, this.loginSuccess)
+    login(email, password, this.loginSuccess, this.loginFailure)
   }
 
   loginSuccess = () => {
     redirectTo('/admin')
+  }
+
+  loginFailure = (errorMessage) => {
+    const error = "Login error: " + errorMessage
+    this.setState({loggingIn: false, error: error})
   }
 
   render() {
@@ -32,7 +39,10 @@ class LoginPage extends Component {
         {
           loggingIn ?
             <Loading /> :
-            <Login handleSubmit={this.handleSubmit} />
+            <div>
+              {this.state.error ? <Error message={this.state.error} /> : null}
+              <Login handleSubmit={this.handleSubmit} error={this.error}/>
+            </div>
         }
       </Layout>
     )
