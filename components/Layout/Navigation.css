@@ -32,6 +32,9 @@
 
 .filterContainer {
   flex-basis: 33%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .back {
@@ -56,6 +59,15 @@
 
 .logoImg {
   height: 40px;
+}
+
+.filter {
+  cursor: pointer;
+  text-decoration: none;
+  color: rgb(0, 122, 255);
+  font-size: 34px;
+  display: flex;
+  align-items: center;
 }
 
 .currentUser {
