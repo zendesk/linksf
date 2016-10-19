@@ -7,6 +7,7 @@ html {
 
 body {
   margin: 0;
+  min-width: 425px;
 }
 
 .body {
@@ -17,8 +18,6 @@ body {
 .center {
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
 }
 
 .contentTopSpace {
@@ -26,12 +25,14 @@ body {
 }
 
 .content {
-  width: 100%;
-  max-width: calc(750px - (28*2)px); /* CSS SUCKS BUTT, I SHOULD NOT HAVE TO DO THIS */
+  max-width: 750px;
   padding: 0 28px;
+  display: flex;
+  flex-flow: column nowrap;
 }
 
 .adminContent {
+  min-width: 320px;
   max-width: 1000px;
   width: 100%;
 }
