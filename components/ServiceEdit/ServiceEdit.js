@@ -4,6 +4,7 @@ import icons from '../../icons/css/icons.css'
 import { gender } from '../../lib/eligibilities'
 import { age } from '../../lib/eligibilities'
 import TimeRangePicker from '../TimeRangePicker'
+import ToggleButton from '../ToggleButton'
 
 class ServiceEdit extends Component {
   updateService = (field, value) => {
@@ -52,10 +53,7 @@ class ServiceEdit extends Component {
     const { eligibility } = this.props.service
     let stateVal = eligibility ? (eligibility.age || '') : ''
 
-    if (stateVal.includes(value.key))
-      classes.push(s.selectableButtonActive)
-
-    return classes.join(' ')
+    return stateVal.includes(value.key)
   }
 
   getGenderClass = (value) => {
@@ -63,20 +61,14 @@ class ServiceEdit extends Component {
     const { eligibility } = this.props.service
     let stateVal = eligibility ? eligibility.gender : ''
 
-    if (stateVal == value.key)
-      classes.push(s.selectableButtonActive)
-
-    return classes.join(' ')
+    return stateVal == value.key
   }
 
   getCategoryClass = (value) => {
     let classes = [s.selectableButton]
     const { taxonomy } = this.props.service
 
-    if (taxonomy.toLowerCase() == value)
-      classes.push(s.selectableButtonActive)
-
-    return classes.join(' ')
+    return taxonomy.toLowerCase() == value
   }
 
   handleTimeChange = (event, start_or_end, metadata) => {
@@ -97,6 +89,7 @@ class ServiceEdit extends Component {
 
     return (
       <div className={s.serviceEditBox}>
+        <h4 className={s.sectionLabel}>Service</h4>
         <div className={s.name}>
           <span className={s.nameLabel}>Service Name </span>
           <input
@@ -144,14 +137,13 @@ class ServiceEdit extends Component {
         <div className={s.taxonomyBox}>
           <span className={s.taxonomyLabel}>Category </span>
           {(taxonomies).map((category, i) => (
-            <button
+            <ToggleButton
               key={`category-${i}`}
-              className={this.getCategoryClass(category.name.toLowerCase())}
+              enabled={this.getCategoryClass(category.name.toLowerCase())}
+              extraClasses={`${s.categoryIcon} ${category.icon}`}
               onClick={(e) => this.updateService('taxonomy', category.name.toLowerCase())}
-            >
-            <i className={`${s.categoryIcon} ${category.icon}`}></i>
-            {category.name}
-            </button>
+              label={category.name}
+            />
           ))}
         </div>
         <div className={s.deleteBox}>
@@ -171,14 +163,13 @@ const GenderBox = (props) => (
   <div className={s.genderEligibilityBox}>
     <span className={s.genderEligibilityLabel}>Gender Eligibility </span>
     {gender.map((gender, i) => (
-     <button
+     <ToggleButton
        key={`gender-${gender.name}`}
-       className={props.getGenderClass(gender)}
+       enabled={props.getGenderClass(gender)}
+       extraClasses={`${s.categoryIcon} ${gender.icon}`}
        onClick={(e) => props.handleGender(gender)}
-     >
-     <i className={`${s.categoryIcon} ${gender.icon}`}></i>
-     {gender.name}
-     </button>
+       label={gender.name}
+     />
     ))}
   </div>
 )
@@ -187,13 +178,12 @@ const AgeBox = (props) => (
   <div className={s.ageEligibilityBox}>
     <span className={s.ageEligibilityLabel}>Age Eligibility </span>
     {age.map((age, i) => (
-     <button
+     <ToggleButton
        key={`age-${age.name}`}
-       className={props.getAgeClass(age)}
+       enabled={props.getAgeClass(age)}
        onClick={(e) => props.handleAge(age)}
-     >
-     {age.name}
-     </button>
+       label={age.name}
+     />
     ))}
   </div>
 )

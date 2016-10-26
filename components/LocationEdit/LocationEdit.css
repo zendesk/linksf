@@ -1,10 +1,8 @@
-.locationEdit {
+.locationEditBox {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  height: calc(100vh - 20%);
-  border: 1px solid #777;
 }
 
 .addressBox {
@@ -13,9 +11,17 @@
   width: 350px;
 }
 
-.group {
-  padding: 20px;
+.inputBox {
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.inputGroup {
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
 }
@@ -48,10 +54,40 @@
   align-items: center;
 }
 
+.addToSubsection {
+  color: #666;
+  padding: 0;
+  font-size: 15px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  vertical-align: baseline;
+}
+
 .submit {
   padding: 20px;
   height: 40px;
   display: flex;
+}
+
+.selectButton {
+  border: solid 1px #777;
+  cursor: pointer;
+  font-family: Helvetica,Arial,sans-serif;
+  background: #f3f3f3;
+  border-radius: 3px;
+  border-color: #dbdbdb;
+  padding: 10px 22px;
+}
+
+.buttonStyle {
+  border: solid 1px #777;
+  cursor: pointer;
+  font-family: Helvetica,Arial,sans-serif;
+  background: #f3f3f3;
+  border-radius: 3px;
+  border-color: #dbdbdb;
+  padding: 10px 22px;
 }
 
 .submitBtn {
@@ -63,4 +99,23 @@
   border-radius: 2px;
   font-size: 14px;
   cursor: pointer;
+}
+
+.servicesEditBox {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+}
+
+.servicesList {
+  flex-basis: 15%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 8px;
+}
+
+.serviceEdit {
+  flex-basis: 85%;
+  padding: 8px;
 }
