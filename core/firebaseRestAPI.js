@@ -3,6 +3,8 @@ import camelize from 'camelize'
 
 import config from '../config'
 
+import R from 'ramda'
+
 const LOCATIONS     = 'locations'
 const ORGANIZATIONS = 'organizations'
 const TAXONOMIES    = 'taxonomies'
@@ -33,7 +35,7 @@ export function fetchLocations() {
     .then(response => response.json())
     .then(locations => {
       return Object.keys(locations).map(locationId => (
-        camelize(locations[locationId])
+        R.merge({ services: {}, duration: {} }, camelize(locations[locationId]))
       ))
     })
 }

@@ -1,12 +1,11 @@
 import firebase from 'firebase'
 import globalConfig from '../config'
 
-const LOCATIONS     = 'locations'
+const LOCATIONS = 'locations'
 const ORGANIZATIONS = 'organizations'
-const TAXONOMIES    = 'taxonomies'
-const PHONES        = 'phones'
-const ONCE_VALUE    = 'value'
-import R from 'ramda'
+const TAXONOMIES = 'taxonomies'
+const PHONES = 'phones'
+const ONCE_VALUE = 'value'
 
 export function firebaseClient() {
   if (firebase.apps.length === 1) {
@@ -68,6 +67,7 @@ export function putOrganization(organization) {
 }
 
 export function fetchLocations() {
+  console.log('feth')
   return firebaseClient()
     .database()
     .ref(LOCATIONS)
@@ -75,12 +75,11 @@ export function fetchLocations() {
     .once(ONCE_VALUE)
     .then(locationsResponse => {
       const data = locationsResponse.val()
+      console.log('what')
       return Object.keys(data).map(function(val) {
         var loc = data[val]
         loc.key = val
         console.log(loc)
-        // const withDefaults = R.merge({ services: {}, duration: {} }, loc)
-        // console.log(withDefaults)
         return loc
       })
     })
