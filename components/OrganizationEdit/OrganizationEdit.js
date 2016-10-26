@@ -40,7 +40,9 @@ class OrganizationEdit extends Component {
     super(props)
     this.state = {
       organization: props.organization,
-      locations: []
+      locations: [],
+      selectedLocation: null,
+      selectedService: null
     }
   }
 
@@ -123,6 +125,10 @@ class OrganizationEdit extends Component {
     this.setState({ organization })
   }
 
+  handleStateUpdate = (update) => {
+    this.setState(update)  
+  }
+
   handleLocations = (newLocation, index) => {
     const { locations } = this.state
     const newLocations = locations
@@ -136,9 +142,10 @@ class OrganizationEdit extends Component {
     const { organization, locations } = this.state
     const newLocations = locations || []
 
-    newLocations.push(blankLocation(organization))
+    const newLocation = blankLocation(organization)
+    newLocations.push(newLocation)
 
-    this.setState({ locations: newLocations })
+    this.setState({ locations: newLocations, selectedLocation: newLocation, selectedService: null})
   }
 
   handleDeleteLocation = (index) => {
@@ -169,8 +176,12 @@ class OrganizationEdit extends Component {
     })
   }
 
+  selectLocation = (location) => {
+    this.setState({ selectedLocation: location, selectedService: null })
+  }
+
   render() {
-    const { organization, locations, taxonomies } = this.state
+    const { organization, locations, selectedLocation, selectedService, taxonomies } = this.state
 
     return (
       <div className={s.organizationEditBox}>
@@ -229,31 +240,41 @@ class OrganizationEdit extends Component {
           ))}
         </div>
 
-        <div className={s.subsectionLabel}>
-          Locations
+        <div className={s.locationsEditBox}>
+          <h4 className={s.sectionLabel}>Locations</h4>
+          <div className={s.locationsList}>
+            {locations.map((location) => (
+              <button 
+                key={`location-${location.id}`}
+                className={s.buttonStyle}
+                onClick={(e) => this.selectLocation(location)}
+              >
+                {location.name || "New Location"}
+              </button>
+            ))}
+          </div>
           <button
             className={s.addToSubsection}
             onClick={this.newLocation}
             title={`Click to add a new location`}>
             + Add
           </button>
-        </div>
-        <div className={s.locationsBox}>
-          {locations.map((location, index) => (
-            <LocationEdit
-              key={`location-${index}`}
-              location={location}
-              index={index}
-              handleChange={this.handleLocations}
-              handleDelete={this.handleDeleteLocation} 
-              taxonomies={taxonomies}
-            />
-          ))}
+          <div className={s.locationEdit}>
+            {selectedLocation ? <LocationEdit
+                  location={selectedLocation}
+                  selectedService={selectedService}
+                  index={index}
+                  handleStateUpdate={this.handleStateUpdate}
+                  handleChange={this.handleLocations}
+                  handleDelete={this.handleDeleteLocation} 
+                  taxonomies={taxonomies}
+                /> : null}
+          </div>
         </div>
 
         <div className={s.formSubmit}>
-          <button type="button" onClick={this.handleSubmit}>Submit</button>
-          <button onClick={this.handleDeleteOrganization}>Delete Organization</button>
+          <button className={s.buttonStyle} type="button" onClick={this.handleSubmit}>Submit</button>
+          <button className={s.buttonStyle} onClick={this.handleDeleteOrganization}>Delete Organization</button>
         </div>
       </div>
     )

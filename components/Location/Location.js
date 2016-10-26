@@ -217,7 +217,7 @@ const Location = (props) => {
             <p className={s.serviceDescription}>{service.description}</p>
             <table className={s.openHours}>
               <tbody>
-                {getSchedule(service.schedules)}
+              {/* {getSchedule(service.schedules)} */}
               </tbody>
             </table>
             <div className={s.notes}>
