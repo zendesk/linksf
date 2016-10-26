@@ -1,6 +1,7 @@
 import 'whatwg-fetch'
 import camelize from 'camelize'
 
+import firebase from 'firebase'
 import config from '../config'
 
 import R from 'ramda'
@@ -135,4 +136,19 @@ export function deleteOrganization(id) {
   ].join(SLASH).concat(FORMAT)
 
   return fetch(url, {method: 'DELETE'})
+}
+
+export function firebaseClient() {
+  if (firebase.apps.length === 1) {
+    return firebase // Don't initialize more than one client
+  }
+
+  const fbConfig = {
+    apiKey: config.firebaseApiKey,
+    authDomain: config.firebaseAuthDomain,
+  }
+
+  firebase.initializeApp(fbConfig)
+
+  return firebase
 }
