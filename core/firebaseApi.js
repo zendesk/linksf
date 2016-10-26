@@ -6,10 +6,10 @@ const ORGANIZATIONS = 'organizations'
 const TAXONOMIES    = 'taxonomies'
 const PHONES        = 'phones'
 const ONCE_VALUE    = 'value'
-
+import R from 'ramda'
 
 export function firebaseClient() {
-  if (firebase.apps.length == 1) {
+  if (firebase.apps.length === 1) {
     return firebase // Don't initialize more than one client
   }
 
@@ -31,8 +31,8 @@ export function fetchOrganizations() {
     .once(ONCE_VALUE)
     .then(organizationsResponse => {
       const data = organizationsResponse.val()
-      return Object.keys(data).map(function(val) {
-        var org = data[val]
+      return Object.keys(data).map((val) => {
+        const org = data[val]
         org.key = val
         return org
       })
@@ -78,6 +78,9 @@ export function fetchLocations() {
       return Object.keys(data).map(function(val) {
         var loc = data[val]
         loc.key = val
+        console.log(loc)
+        // const withDefaults = R.merge({ services: {}, duration: {} }, loc)
+        // console.log(withDefaults)
         return loc
       })
     })

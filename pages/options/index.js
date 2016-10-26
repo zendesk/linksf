@@ -73,7 +73,6 @@ class OptionsPage extends Component {
 
     const queryString =
       [sortByString, hoursString, servicesString, demographicsString, genderString].join('')
-    console.log(queryString)
   }
 
   toggleService(service) {
@@ -201,7 +200,9 @@ class OptionsPage extends Component {
           <div>
             <button
               onClick={() => this.search()}
-              className={s.searchButton}>Search</button>
+              className={s.searchButton}
+            >Search
+            </button>
           </div>
         </div>
       </Layout>

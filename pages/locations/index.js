@@ -7,6 +7,8 @@ import Layout from '../../components/Layout'
 import Loading from '../../components/Loading'
 import FilterBar from '../../components/FilterBar'
 import LocationList from '../../components/LocationList'
+import { filterByOptionsString } from '../../lib/filterLocations'
+import R from 'ramda'
 
 function getParameterByName(name) {
   const match = RegExp(`[?&]${name}=([^&]*)`).exec(window.location.search)
@@ -20,7 +22,8 @@ function mergeLocationsAndDistances(locations, matrixResponses) {
 
   const merge = ([location, responseObj]) => {
     const locationAndDistance = location
-    locationAndDistance.duration = (responseObj || {}).duration // i hate this; it breaks the consistency of the whole app
+    const durationInfo = responseObj || {}
+    locationAndDistance.duration = durationInfo.duration // i hate this; it breaks the consistency of the whole app
     return locationAndDistance
   }
 
@@ -37,21 +40,14 @@ export default class LocationsPage extends Component {
     }
   }
 
-  componentWillMount() {
+
+  componentDidMount() {
+    document.title = 'Link-SF'
     if (navigator) {
       navigator.geolocation.getCurrentPosition(this.setCurrentLocation)
     } else {
       this.setLocations()
     }
-  }
-
-  componentDidMount() {
-    document.title = 'Link-SF'
-
-    fetchLocations()
-      .then(locations => {
-        this.setState({ locations })
-      })
   }
 
   setCurrentLocation = (currentLocation) => {
@@ -70,9 +66,7 @@ export default class LocationsPage extends Component {
         })
         .then(matrixResponse => {
           const matrixResponses = matrixResponse.rows[0].elements
-          const locationsWithDistance = mergeLocationsAndDistances(locationsCache, matrixResponses)
-
-          this.setState({ locations: locationsWithDistance })
+          this.setState({ locations: mergeLocationsAndDistances(locationsCache, matrixResponse) })
         })
     } else {
       fetchLocations()
@@ -91,10 +85,15 @@ export default class LocationsPage extends Component {
     const loading = locations == null
     const category = getParameterByName('categories')
 
-    const filteredLocations = (locations || []).filter(loc => (
-      loc.services &&
-      Object.values(loc.services).some(service => service.taxonomy === category))
-    )
+    const locationsList = Object.values(locations || {})
+    const filteredLocations = (locationsList).filter(loc => (
+      Object.values(loc.services || {}).some(service => {
+        return service.taxonomy === category
+      })
+    ))
+    // const queryString ='&categories[]=food,technology&demographics[]=C,Y&gender=M'
+    const queryString ='&categories[]=food'
+    // const filteredLocations = filterByOptionsString(queryString, locationsList)
 
     return (
       <Layout>
