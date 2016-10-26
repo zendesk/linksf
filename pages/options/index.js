@@ -29,6 +29,8 @@ class OptionsPage extends Component {
         S: false,
       },
       gender: '',
+      showHours: false,
+      sortByDistance: false
     }
   }
 
@@ -68,92 +70,54 @@ class OptionsPage extends Component {
     this.setState({ demographics: newDemographics })
   }
 
+  toggleHours = () => {
+    this.setState({ showHours: !this.state.showHours })
+    if(this.state.showHours) {
+      this.setHours('open')
+      this.setState({ hours: 'open' })
+    }
+    else {
+      this.setHours('all')
+      this.setState({ hours: 'all' })
+    }
+  }
+
+  toggleDistance = () => {
+    this.setState({ sortByDistance: !this.state.sortByDistance })
+    if(this.state.sortByDistance) {
+      this.setSortBy('distance')
+      this.setState({ sortBy: 'distance' })
+    }
+    else {
+      this.setSortBy('name')
+      this.setState({ sortBy: 'name' })
+    }
+  }
+
   render() {
-    const { taxonomies, sortBy, hours, services, demographics, gender } = this.state
+    const { taxonomies, sortBy, hours, services, demographics, gender, showHours, sortByDistance } = this.state
 
     return (
       <Layout>
         <div className={s.page}>
-          <Group>
-            <Title>
-              Sort by
-            </Title>
-            <ButtonGroup>
-              <LeftButton
-                onClick={() => this.setSortBy('distance')}
-                active={sortBy === 'distance'}
-                disabled="true"
-              >Distance
-              </LeftButton>
-              <RightButton
-                onClick={() => this.setSortBy('name')}
-                active={sortBy === 'name'}
-              >Name
-              </RightButton>
-            </ButtonGroup>
-          </Group>
-          <div className={s.alert}>
-            <strong>Distance disabled:</strong> current location unavailable
-          </div>
-          <Group>
-            <Title>
-              Hours
-            </Title>
-            <ButtonGroup>
-              <LeftButton
-                onClick={() => this.setHours('all')}
-                active={hours === 'all'}
-              >All
-              </LeftButton>
-              <RightButton
-                onClick={() => this.setHours('open')}
-                active={hours === 'open'}
-              >Open Now
-              </RightButton>
-            </ButtonGroup>
-          </Group>
-          <Group>
-            <Title>
-              Service
-            </Title>
-            <ServiceGroup>
-              {taxonomies.map(category => (
-                <ServiceFilter
-                  key={`category-${category.name}`}
-                  onClick={() => this.toggleService(category.id)}
-                  active={services[category.id]}
-                  category={category}
-                />
-              ))}
-            </ServiceGroup>
-          </Group>
-          <Group>
-            <Title>
-              Suitable for
-            </Title>
-            <ButtonGroup>
-              <LeftButton
-                onClick={() => this.toggleDemographic('C')}
-                active={demographics.C}
-              >Children
-              </LeftButton>
-              <MiddleButton
-                onClick={() => this.toggleDemographic('Y')}
-                active={demographics.Y}
-              >Youth
-              </MiddleButton>
-              <MiddleButton
-                onClick={() => this.toggleDemographic('A')}
-                active={demographics.A}
-              >Adults
-              </MiddleButton>
-              <RightButton
-                onClick={() => this.toggleDemographic('S')}
-                active={demographics.S}
-              >Seniors
-              </RightButton>
-            </ButtonGroup>
-          </Group>
+          <ButtonGroup>
+            <Group class={s.buttonContainer}>
+              <ToggleButton
+                label="Open now"
+                enabled={showHours}
+                onClick={() => this.toggleHours()}
+              />
+              <ToggleButton
+                label="Sort by distance"
+                enabled={sortByDistance}
+                onClick={() => this.toggleDistance()}
+                disableButton={'disabled'}
+              />
+            </Group>
+            <div className={s.alert}>
+              <strong>Distance disabled:</strong> current location unavailable
+            </div>
+          </ButtonGroup>
           <Group>
             <Title>
               Welcome
@@ -176,6 +140,48 @@ class OptionsPage extends Component {
               </RightButton>
             </ButtonGroup>
           </Group>
+          <Group>
+            <Title>
+              Service
+            </Title>
+            <ServiceGroup>
+              {taxonomies.map(category => (
+                <ServiceFilter
+                  key={`category-${category.name}`}
+                  onClick={() => this.toggleService(category.id)}
+                  active={services[category.id]}
+                  category={category}
+                />
+              ))}
+            </ServiceGroup>
+          </Group>
+          <Group>
+            <Title>
+              Suitable for
+            </Title>
+            <ServiceGroup>
+              <LeftButton
+                onClick={() => this.toggleDemographic('C')}
+                active={demographics.C}
+              >Children
+              </LeftButton>
+              <MiddleButton
+                onClick={() => this.toggleDemographic('Y')}
+                active={demographics.Y}
+              >Youth
+              </MiddleButton>
+              <MiddleButton
+                onClick={() => this.toggleDemographic('A')}
+                active={demographics.A}
+              >Adults
+              </MiddleButton>
+              <RightButton
+                onClick={() => this.toggleDemographic('S')}
+                active={demographics.S}
+              >Seniors
+              </RightButton>
+            </ServiceGroup>
+          </Group>
           <div>
             <button className={s.searchButton}>Search</button>
           </div>
@@ -185,8 +191,19 @@ class OptionsPage extends Component {
   }
 }
 
+const ToggleButton = (props) => (
+  <button
+    className={`${s.toggleButton} ${props.enabled ? s.enabled : ''}`}
+    onClick={props.onClick}
+    title={props.label}
+    // disabled={props.disableButton}
+  >
+  {props.label}
+  </button>
+)
+
 const Group = (props) => (
-  <div {...props} className={s.group}>
+  <div {...props} className={props.class}>
     {props.children}
   </div>
 )
