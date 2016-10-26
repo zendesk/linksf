@@ -33,11 +33,11 @@ export function fetchLocations() {
 
   return fetch(url)
     .then(response => response.json())
-    .then(locations => {
-      return Object.keys(locations).map(locationId => (
+    .then(locations => (
+      Object.keys(locations).map(locationId => (
         R.merge({ services: {}, duration: {} }, camelize(locations[locationId]))
       ))
-    })
+    ))
 }
 
 export function fetchLocation(id) {
