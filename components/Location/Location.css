@@ -92,6 +92,7 @@
 }
 
 .website {
+  word-wrap: break-word;
   text-decoration: none;
   color: #555;
 }
