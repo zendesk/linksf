@@ -3,7 +3,7 @@ import s from './ToggleButton.css'
 
 const ToggleButton = (props) => (
   <button
-    className={`${s.toggleButton} ${props.enabled ? s.enabled : ''}`}
+    className={`${s.toggleButton} ${props.enabled ? s.enabled : ''} ${props.extraClasses}`}
     onClick={props.onClick}
     title={props.label}
   >
