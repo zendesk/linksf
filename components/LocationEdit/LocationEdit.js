@@ -68,6 +68,7 @@ class LocationEdit extends Component {
     newServices[newService.id] = newService
 
     this.updateLocation('services', newServices)
+    this.selectService(newService)
   }
 
    deleteService = (service) => {
@@ -79,14 +80,18 @@ class LocationEdit extends Component {
     this.updateLocation('services', newServices)
   }
 
+  selectService = (service) => {
+    this.props.handleStateUpdate({ selectedService: service })
+  }
+
   render() {
-    const { location, taxonomies } = this.props
+    const { location, selectedService, taxonomies } = this.props
 
     return (
-      <div className={s.locationEdit}>
-        <div className={s.locationFields}>
-          <h4 className={s.sectionLabel}>Location</h4>
-          <div className={s.group}>
+      <div className={s.locationEditBox}>
+        <h4 className={s.sectionLabel}>Location</h4>
+        <div className={s.inputBox}>
+          <div className={s.inputGroup}>
             <span className={s.nameLabel}>Location Name </span>
             <input
               className={s.input}
@@ -95,7 +100,7 @@ class LocationEdit extends Component {
               onChange={(e) => this.handleLocationChange('name', e)}
             />
           </div>
-          <div className={s.group}>
+          <div className={s.inputGroup}>
             <span className={s.descriptionLabel}>Location Description </span>
             <input
               className={s.input}
@@ -104,7 +109,7 @@ class LocationEdit extends Component {
               onChange={(e) => this.handleLocationChange('description', e)}
             />
           </div>
-          <div className={s.group}>
+          <div className={s.inputGroup}>
             <span className={s.addressLineOneLabel}>Street Address </span>
             <Autocomplete
               style={{width: '90%'}}
@@ -112,7 +117,7 @@ class LocationEdit extends Component {
               types={['geocode']}
             />
           </div>
-          <div className={s.group}>
+          <div className={s.inputGroup}>
             <span className={s.addressLineOneLabel}>Street</span>
             <input
               className={s.input}
@@ -121,7 +126,7 @@ class LocationEdit extends Component {
               disabled
             />
           </div>
-          <div className={s.group}>
+          <div className={s.inputGroup}>
             <span className={s.addressCityLabel}>City </span>
             <input
               className={s.input}
@@ -131,23 +136,37 @@ class LocationEdit extends Component {
             />
           </div>
         </div>
-        <button onClick={this.deleteLocation}>Delete</button>
-        <div className={s.servicesBox}>
+        <button className={s.buttonStyle} onClick={this.deleteLocation}>Delete</button>
+        <div className={s.servicesEditBox}>
           <h4 className={s.sectionLabel}>Services</h4>
-          {(Object.values(location.services || {})).map((service) => (
-            <ServiceEdit
-              key={`service-${service.id}`}
-              service={service}
-              handleChange={this.handleServices}
-              handleDelete={this.deleteService} 
-              taxonomies={taxonomies}
-            />
-          ))}
-          <button
-            onClick={this.newService}
-            title={`Click to add a new service`}>
-            Add a Service
-          </button>
+          <div className={s.servicesList}>
+            {(Object.values(location.services || {})).map((service) => (
+              <button 
+                key={`service-${service.id}`}
+                className={s.buttonStyle} 
+                onClick={(e) => this.selectService(service)}
+              >
+                {service.name || "New Service"}
+              </button>
+            ))}
+            <button
+              className={s.addToSubsection}
+              onClick={this.newService}
+              title={`Click to add a new service`}>
+              + Add
+            </button>
+          </div>
+          <div className={s.serviceEdit}>
+            {selectedService && 
+              <ServiceEdit
+                key={`service-${selectedService.id}`}
+                service={selectedService}
+                handleChange={this.handleServices}
+                handleDelete={this.deleteService} 
+                taxonomies={taxonomies}
+              />
+            }
+          </div>
         </div>
       </div>
     )
