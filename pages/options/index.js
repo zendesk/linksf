@@ -30,7 +30,10 @@ class OptionsPage extends Component {
       },
       gender: '',
       showHours: false,
-      sortByDistance: false
+      sortByDistance: false,
+      showDropDown: false,
+      // TODO
+      genders: ['All', 'Men', 'Women']
     }
   }
 
@@ -70,6 +73,21 @@ class OptionsPage extends Component {
     this.setState({ demographics: newDemographics })
   }
 
+  toggleDropdown() {
+    this.setState({ showDropDown: !this.state.showDropDown })
+  }
+
+  setCurrentGender(g) {
+    if(g === 'Men')
+      this.setState({ gender: 'M' })
+    else if(g === 'Women')
+      this.setState({ gender: 'F' })
+    else
+      this.setState({ gender: '' })
+
+    this.setState({ showDropDown: false })
+  }
+
   toggleHours = () => {
     this.setState({ showHours: !this.state.showHours })
     if(this.state.showHours) {
@@ -95,7 +113,7 @@ class OptionsPage extends Component {
   }
 
   render() {
-    const { taxonomies, sortBy, hours, services, demographics, gender, showHours, sortByDistance } = this.state
+    const { taxonomies, sortBy, hours, services, demographics, gender, genders, showHours, sortByDistance, showDropDown } = this.state
 
     return (
       <Layout>
@@ -118,6 +136,22 @@ class OptionsPage extends Component {
               <strong>Distance disabled:</strong> current location unavailable
             </div>
           </ButtonGroup>
+
+          <ButtonGroup>
+            <ToggleButton
+              label="Welcomes: All"
+              onClick={() => this.toggleDropdown()}
+              class={s.genderButton}
+            />
+            <ul className={`${s.dropDown} ${showDropDown ? s.enabled : ''}`}>
+              {genders.map((label) => (
+                <li onClick={() => this.setCurrentGender(label)}>
+                  {label}
+                </li>
+              ))}
+            </ul>
+          </ButtonGroup>
+
           <Group>
             <Title>
               Welcome
@@ -193,10 +227,9 @@ class OptionsPage extends Component {
 
 const ToggleButton = (props) => (
   <button
-    className={`${s.toggleButton} ${props.enabled ? s.enabled : ''}`}
+    className={`${s.toggleButton} ${props.class} ${props.enabled ? s.enabled : ''}`}
     onClick={props.onClick}
     title={props.label}
-    // disabled={props.disableButton}
   >
   {props.label}
   </button>
