@@ -13,14 +13,36 @@
   margin: 0 10px;
 }
 
+.categoryTitle {
+  flex: 80%;
+  text-align: left;
+}
+
 .button {
   cursor: pointer;
-  font-size: 15px;
-  font-weight: 700;
-  padding: 10px;
-  background-color: #fff;
-  background-image: linear-gradient(white,#EBEBEB);
-  border: 1px solid #b8b8b8;
+  background: inherit;
+  border: none;
+  border-top: 1px solid #B8B8B8;
+  font-size: 30px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  padding: 10px 0 10px 10px;
+  color: #999999;
+  flex: 1 100%;
+}
+.button: last-child {
+  border-bottom: 1px solid #B8B8B8;
+}
+
+.demographicsButton {
+
+}
+
+.demographicsTitle {
+  flex: 90%;
+  text-align: left;
 }
 
 .leftButton {
@@ -39,8 +61,6 @@
   border-right: 1px solid #B8B8B8;
 }
 
-
-
 .serviceGroup {
   display: flex;
   flex-direction: column;
@@ -49,16 +69,21 @@
 }
 
 .service {
-  background-color: #fff;
-  background-image: linear-gradient(white,#EBEBEB);
-  border: 1px solid #B8B8B8;
-  border-radius: 4px;
-  font-size: 20px;
-  font-weight: 700;
+  background: inherit;
+  border: none;
+  border-top: 1px solid #B8B8B8;
+  font-size: 30px;
+  font-weight: 400;
   display: flex;
   align-items: center;
-  height: 45px;
+  height: 50px;
   padding: 10px 0;
+  color: #999999;
+  flex-flow: row wrap
+}
+
+.service: last-child {
+  border-bottom: 1px solid #B8B8B8;
 }
 
 .title {
@@ -94,9 +119,7 @@
 }
 
 .active {
-  background-color: #dadada;
-  background-image: linear-gradient(#dadada,#c5c5c5);
-  border-color: #a4a4a4;
+  color: #007AFF;
 }
 
 .toggleButton {
@@ -137,6 +160,10 @@ button.enabled {
   padding-left: 50px;
 }
 
+.genderLabel {
+  color: #999999
+}
+
 .dropDown {
   display: none;
   list-style: none;
@@ -154,6 +181,19 @@ button.enabled {
   position: relative;
   cursor: pointer;
 }
+
 ul.enabled {
   display: block;
+}
+
+.header {
+  font-size: 30px;
+  line-height: 40px;
+  margin: 50px 0 10px 0;
+  color: #666;
+  font-weight: 400;
+}
+
+.checkBox {
+  flex: 10%;
 }
