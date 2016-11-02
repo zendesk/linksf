@@ -15,6 +15,7 @@ import {
 } from '../../core/firebaseRestAPI'
 
 import LocationEdit from '../LocationEdit'
+import ToggleButton from '../ToggleButton'
 import PhoneEdit from '../PhoneEdit'
 
 const blankPhone = () => ({
@@ -180,6 +181,10 @@ class OrganizationEdit extends Component {
     this.setState({ selectedLocation: location, selectedService: null })
   }
 
+  locationSelected = (location) => {
+    return this.state.selectedLocation.id == location.id
+  }
+
   render() {
     const { organization, locations, selectedLocation, selectedService, taxonomies } = this.state
 
@@ -244,13 +249,12 @@ class OrganizationEdit extends Component {
           <h4 className={s.sectionLabel}>Locations</h4>
           <div className={s.locationsList}>
             {locations.map((location) => (
-              <button 
+              <ToggleButton 
                 key={`location-${location.id}`}
-                className={s.buttonStyle}
+                enabled={this.locationSelected(location)}
                 onClick={(e) => this.selectLocation(location)}
-              >
-                {location.name || "New Location"}
-              </button>
+                label={location.name || "New Location"}
+              />
             ))}
           </div>
           <button
@@ -263,7 +267,6 @@ class OrganizationEdit extends Component {
             {selectedLocation ? <LocationEdit
                   location={selectedLocation}
                   selectedService={selectedService}
-                  index={index}
                   handleStateUpdate={this.handleStateUpdate}
                   handleChange={this.handleLocations}
                   handleDelete={this.handleDeleteLocation} 
