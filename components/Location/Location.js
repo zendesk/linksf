@@ -65,6 +65,113 @@ const getMapsUrl = (location) => {
   return `https://maps.google.com/maps?q=loc:${latitude},${longitude}`
 }
 
+const DAYS = {
+  0: 'sunday',
+  1: 'monday',
+  2: 'tuesday',
+  3: 'wednesday',
+  4: 'thursday',
+  5: 'friday',
+  6: 'saturday',
+}
+
+const DAY = {
+  Sunday: 'sunday',
+  Monday: 'monday',
+  Tuesday: 'tuesday',
+  Wednesday: 'wednesday',
+  Thursday: 'thursday',
+  Friday: 'friday',
+  Saturday: 'saturday',
+}
+
+const dayAbbreviations = {
+  sunday: 'Sun',
+  monday: 'Mon',
+  tuesday: 'Tue',
+  wednesday: 'Wed',
+  thursday: 'Thu',
+  friday: 'Fri',
+  saturday: 'Sat',
+}
+
+const DAY_SCHEDULES = {
+  sunday: [],
+  monday: [],
+  tuesday: [],
+  wednesday: [],
+  thursday: [],
+  friday: [],
+  saturday: [],
+}
+
+const convertMilitaryTime = (time) => {
+  const hours = time / 100
+  const mins = time % 100
+  let output = ''
+  if (hours < 12) {
+    output += hours
+    if (mins > 0) {
+      output += `:${mins}`
+    }
+    output += 'am'
+  } else {
+    output += hours - 12
+    if (mins > 0) {
+      output += `:${mins}`
+    }
+    output += 'pm'
+  }
+  return output
+}
+
+const getDailySchedules = (schedules) => {
+  const daySchedules = DAY_SCHEDULES
+  schedules
+    .forEach(schedule => {
+      const day = schedule.weekday.toLowerCase()
+      const daySchedule = daySchedules[day]
+      daySchedule.push({
+        opensAt: schedule.opensAt,
+        closesAt: schedule.closesAt,
+      })
+    })
+  return daySchedules
+}
+
+const getTimeRange = hours => (
+  `${convertMilitaryTime(hours.opensAt)} - ${convertMilitaryTime(hours.closesAt)}`
+)
+
+const Schedule = (props) => {
+  const daySchedules = getDailySchedules(props.schedules)
+  const indexToDaySchedule = index => daySchedules[DAYS[index]]
+  const dayHasSchedules = daySchedule => indexToDaySchedule(daySchedule).length > 0
+  const scheduleRows = Object.keys(DAYS).sort()
+    .filter(dayHasSchedules)
+    .map(index => (
+      <tr key={`day-${index}`}>
+        <td className={s.labelHour}>
+          <b>{dayAbbreviations[DAYS[index]]}</b>
+        </td>
+        <td className={s.hour}>
+          {indexToDaySchedule(index)
+              .sort((a, b) => a.opensAt < b.opensAt)
+              .map(getTimeRange)
+              .join(', ')
+          }
+        </td>
+      </tr>
+    ))
+  return (
+    <table className={s.openHours}>
+      <tbody>
+        {scheduleRows}
+      </tbody>
+    </table>
+  )
+}
+
 const Location = (props) => {
   const { location, organization } = props
   const { services = [] } = location
@@ -134,18 +241,7 @@ const Location = (props) => {
           <li key={`service-${index}`} className={s.insetServices}>
             <h3 className={s.serviceTitle}>{service.name}</h3>
             <p className={s.serviceDescription}>{service.description}</p>
-            <table className={s.openHours}>
-              <tbody>
-                <tr>
-                  <td className={s.labelHour}>
-                    <b>Every day:</b>
-                  </td>
-                  <td className={s.hour}>
-                    24 Hours
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <Schedule schedules={service.schedules} />
             <div className={s.notes}>
               <label>Notes</label>
               <p>{service.applicationProcess}</p>
