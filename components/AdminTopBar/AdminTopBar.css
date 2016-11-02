@@ -1,23 +1,23 @@
 .adminTopBar {
-  margin: 10px 0;
+  margin: 5px 0;
 }
 
 .locationFilter {
-  font-size: 14px;
-  min-width: 200px;
+  font-size: 7px;
+  min-width: 100px;
   width: 50%;
-  border-radius: 6px;
+  border-radius: 3px;
   border: 1px solid #ddd;
-  padding: 10px;
+  padding: 5px;
 }
 
 .newOrganization {
   float: right;
-  font-size: 14px;
-  border-right: 6px;
-  border-radius: 6px;
+  font-size: 7px;
+  border-right: 3px;
+  border-radius: 3px;
   border: 1px solid #ddd;
-  padding: 10px;
+  padding: 5px;
   background-color: #f8f8f8;
   cursor: pointer;
 }

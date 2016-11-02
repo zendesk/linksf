@@ -30,7 +30,7 @@ class Navigation extends Component {
               null :
               <Link className={s.back} to="" onClick={history.goBack}>
                 <svg xmlns="http://www.w3.org/2000/svg" className={s.backArrow}>
-                  <path d="M2.5 23 L22.5 2.5 M2.5 20 L22.5 41.5 Z"/>
+                  <path d="M1.25 11.5 L11.25 1.25 M1.25 10 L11.25 20.75 Z"/>
                 </svg>
                 <span className={s.backText}>Back</span>
               </Link>}

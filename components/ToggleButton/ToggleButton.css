@@ -3,9 +3,9 @@
   cursor: pointer;
   font-family: Helvetica,Arial,sans-serif;
   background: #f3f3f3;
-  border-radius: 3px;
+  border-radius: 2px;
   border-color: #dbdbdb;
-  padding: 10px 22px;
+  padding: 5px 11px;
 }
 
 .enabled {
