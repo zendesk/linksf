@@ -3,7 +3,7 @@ body {
 }
 
 /*Global Icon Colors*/
-[class*="icon-plus"]:before {
+/*[class*="icon-plus"]:before {
   color:#A97A60;
 }
 
@@ -21,4 +21,4 @@ body {
 
 [class*="icon-housing"]:before {
   color: #62919C;
-}
+}*/
