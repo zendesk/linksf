@@ -1,8 +1,8 @@
 .inset {
   background-color: #fff;
-  border-radius: 6px;
+  border-radius: 3px;
   border: 1px solid #DDD;
-  padding: 14px;
+  padding: 7px;
   width: 100%;
   text-align: left;
   -webkit-box-sizing: border-box;
@@ -12,12 +12,12 @@
 }
 
 .logo {
-  margin: 30px 10px 10px 15px;
-  height: 50px;
+  margin: 15px 5px 5px 8px;
+  height: 25px;
 }
 
 .credits {
-    font-size: 12px;
+    font-size: 6px;
     color: #ACACAC;
     text-align: center;
 }

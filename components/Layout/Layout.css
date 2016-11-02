@@ -7,33 +7,37 @@ html {
 
 body {
   margin: 0;
-  min-width: 425px;
+  min-width: 160px;
 }
 
 .body {
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
+  flex-wrap: nowrap;
 }
 
 .center {
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-around;
   align-items: center;
 }
 
 .contentTopSpace {
-  height: 50px;
+  height: 25px;
 }
 
 .content {
-  max-width: 750px;
-  padding: 0 28px;
+  max-width: 375px;
+  padding: 0 14px;
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
+  flex-wrap: nowrap;
 }
 
 .adminContent {
-  min-width: 320px;
-  max-width: 1000px;
+  min-width: 160px;
+  max-width: 500px;
   width: 100%;
 }

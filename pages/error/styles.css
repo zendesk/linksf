@@ -25,7 +25,7 @@
 }
 
 .content {
-  padding-bottom: 80px;
+  padding-bottom: 40px;
 }
 
 .code {
@@ -54,7 +54,7 @@
   line-height: 1;
 }
 
-@media only screen and (max-width: 280px) {
+@media only screen and (max-width: 140px) {
 
   .container,
   .text {

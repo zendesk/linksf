@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid #DCDCDC;
-  font-size: 15px;
-  padding: 10px 4px;
+  font-size: 8px;
+  padding: 5px 2px;
 }
 
 .organizationBox {
@@ -18,7 +18,7 @@
 }
 
 .organizationText {
-  margin: 4px 4px 4px 0;
+  margin: 2px 2px 2px 0;
 }
 
 .organizationIcon {
@@ -30,20 +30,20 @@
 }
 
 .organizationName {
-  margin: 5px 0 3px 0;
+  margin: 3px 0 2px 0;
   text-decoration: none;
-  font-size: 15px;
+  font-size: 8px;
   font-weight: bold;
 }
 
 .organizationDistance {
   color: #c3c3c3;
-  margin: 4px 0;
+  margin: 2px 0;
   text-align: right;
 }
 
 .categoryIcons {
-  margin-bottom: 7px;
+  margin-bottom: 4px;
   display: inline-block;
 }
 
