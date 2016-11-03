@@ -1,6 +1,5 @@
 .page {
-  padding-top: 5px;
-  height: 400px;
+  padding-top: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -69,6 +68,7 @@
 }
 
 .service {
+  cursor: pointer;
   background: inherit;
   border: none;
   border-top: 1px solid #B8B8B8;
