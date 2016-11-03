@@ -32,18 +32,29 @@ class OptionsPage extends Component {
       showHours: false,
       sortByDistance: false,
       showDropDown: false,
-      // TODO
-      genders: ['All', 'Men', 'Women']
+      genders: ['All', 'Men', 'Women'],
+      showGeoAlert: true
     }
   }
 
   componentDidMount() {
     document.title = 'Link-SF'
+    this.getGeoPermission()
     fetchTaxonomies()
       .then(taxonomies => {
         this.setState({
           taxonomies: taxonomiesWithIcons(taxonomies)
         })
+      })
+  }
+
+  getGeoPermission() {
+    var geoPermission
+    navigator.permissions.query({'name': 'geolocation'})
+      .then( function(permission) {
+        console.log(permission.state)
+        if(permission.state == 'granted')
+          this.setState({ showGeoAlert: false })
       })
   }
 
@@ -113,13 +124,13 @@ class OptionsPage extends Component {
   }
 
   render() {
-    const { taxonomies, sortBy, hours, services, demographics, gender, genders, showHours, sortByDistance, showDropDown } = this.state
+    const { taxonomies, sortBy, hours, services, demographics, gender, genders, showHours, sortByDistance, showDropDown, showGeoAlert } = this.state
 
     return (
       <Layout>
         <div className={s.page}>
           <ButtonGroup>
-            <Group class={s.buttonContainer}>
+            <Group className={s.buttonContainer}>
               <ToggleButton
                 label="Open now"
                 enabled={showHours}
@@ -132,7 +143,7 @@ class OptionsPage extends Component {
                 disableButton={'disabled'}
               />
             </Group>
-            <div className={s.alert}>
+            <div className={`${s.alert} ${showGeoAlert ? s.hide : ''}`}>
               <strong>Distance disabled:</strong> current location unavailable
             </div>
           </ButtonGroup>
@@ -142,7 +153,7 @@ class OptionsPage extends Component {
               label="Welcomes: "
               gender={gender}
               onClick={() => this.toggleDropdown()}
-              class={s.genderButton}
+              className={s.genderButton}
               genderLabel={s.genderLabel}
             />
             <ul className={`${s.dropDown} ${showDropDown ? s.enabled : ''}`}>
@@ -196,9 +207,6 @@ class OptionsPage extends Component {
               </DemographicsButton>
             </ServiceGroup>
           </Group>
-          {/*<div>
-            <button className={s.searchButton}>Search</button>
-          </div>*/}
         </div>
       </Layout>
     )
@@ -207,7 +215,7 @@ class OptionsPage extends Component {
 
 const ToggleButton = (props) => (
   <button
-    className={`${s.toggleButton} ${props.class} ${props.enabled ? s.enabled : ''}`}
+    className={`${s.toggleButton} ${props.className} ${props.enabled ? s.enabled : ''}`}
     onClick={props.onClick}
     title={props.label}
   >
@@ -216,7 +224,7 @@ const ToggleButton = (props) => (
 )
 
 const Group = (props) => (
-  <div {...props} className={props.class}>
+  <div {...props} className={props.className}>
     {props.children}
   </div>
 )
