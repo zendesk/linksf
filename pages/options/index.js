@@ -32,7 +32,6 @@ class OptionsPage extends Component {
       showHours: false,
       sortByDistance: false,
       showDropDown: false,
-      genders: ['All', 'Men', 'Women'],
       showGeoAlert: true
     }
   }
@@ -89,13 +88,7 @@ class OptionsPage extends Component {
   }
 
   setCurrentGender(g) {
-    if(g === 'Men')
-      this.setState({ gender: 'Men' })
-    else if(g === 'Women')
-      this.setState({ gender: 'Women' })
-    else
-      this.setState({ gender: 'All' })
-
+    this.setState({ gender: g})
     this.setState({ showDropDown: false })
   }
 
@@ -157,11 +150,15 @@ class OptionsPage extends Component {
               genderLabel={s.genderLabel}
             />
             <ul className={`${s.dropDown} ${showDropDown ? s.enabled : ''}`}>
-              {genders.map((label) => (
-                <li onClick={() => this.setCurrentGender(label)}>
-                  {label}
-                </li>
-              ))}
+              <li onClick={() => this.setCurrentGender('All')}>
+                All
+              </li>
+              <li onClick={() => this.setCurrentGender('Men')}>
+                Men
+              </li>
+              <li onClick={() => this.setCurrentGender('Women')}>
+                Women
+              </li>
             </ul>
           </ButtonGroup>
 
@@ -219,7 +216,7 @@ const ToggleButton = (props) => (
     onClick={props.onClick}
     title={props.label}
   >
-  <span className={props.genderLabel}>{props.label}</span> {props.gender}
+    <span className={props.genderLabel}>{props.label}</span> {props.gender}
   </button>
 )
 

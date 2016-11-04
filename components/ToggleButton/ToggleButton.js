@@ -6,7 +6,6 @@ const ToggleButton = (props) => (
     className={`${s.toggleButton} ${props.enabled ? s.enabled : ''}`}
     onClick={props.onClick}
     title={props.label}
-    // disabled={props.disableButton}
   >
   {props.label}
   </button>
