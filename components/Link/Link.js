@@ -1,35 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 
 import history from '../../core/history'
-import { redirectTo } from '../../lib/navigation'
+import { redirectTo, convertToQueryString } from '../../lib/navigation'
 
-const EMPTY_QUERY = {
-  sortBy: '',
-  hours: 'all',
-  services: [],
-  demographics: [],
-  gender: ''
-}
-
-const convertToQueryString = (partsOfQuery) => {
-  console.log(partsOfQuery)
-  const query = Object.assign(EMPTY_QUERY, partsOfQuery)
-  console.log(query)
-  const { sortBy, hours, services, demographics, gender } = query
-  const sortByString = sortBy === 'distance' ? '&sortBy=distance' : ''
-  const hoursString = hours === 'open' ? '&hours=open' : ''
-  const servicesString = services.length > 0 ?
-    `&categories[]=${services.join(',')}` :
-    ''
-  const demographicsString = demographics.length > 0 ?
-    `&demographics[]=${demographics.join(',')}` :
-    ''
-
-  const genderString = gender ? `&gender=${gender}` : ''
-  const queryString = [sortByString, hoursString, servicesString, demographicsString, genderString].join('')
-
-  return `?${queryString.slice(1, queryString.length)}`
-}
 
 class Link extends Component {
 

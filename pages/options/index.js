@@ -6,7 +6,23 @@ import { taxonomiesWithIcons } from '../../lib/taxonomies'
 
 import s from './options.css'
 import Layout from '../../components/Layout'
+import Link from '../../components/Link'
 
+const objToFilteredList = (obj) => (
+  Object.keys(obj).filter(k => obj[k])
+)
+
+const convertToQueryObject = (state) => {
+  const { sortBy, hours, services, demographics, gender } = state
+  const query = {
+    sortBy,
+    hours,
+    services: objToFilteredList(services),
+    demographics: objToFilteredList(demographics),
+    gender,
+  }
+  return query
+}
 
 class OptionsPage extends Component {
   constructor(props) {
@@ -52,27 +68,6 @@ class OptionsPage extends Component {
 
   setGender(gender) {
     this.setState({ gender })
-  }
-
-  search() {
-    const { sortBy, hours, services, demographics, gender } = this.state
-    const sortByString = sortBy === 'distance' ? '&sortBy=distance' : ''
-    const hoursString = hours === 'open' ? '&hours=open' : ''
-    const selectedServices = Object.keys(services)
-      .filter(k => services[k])
-    const servicesString = selectedServices.length > 0 ?
-      `&categories[]=${selectedServices.join(',')}` :
-      ''
-    const selectedDemographics = Object.keys(demographics)
-      .filter(k => demographics[k])
-    const demographicsString = selectedDemographics.length > 0 ?
-      `&demographics[]=${selectedDemographics.join(',')}` :
-      ''
-
-    const genderString = gender ? `&gender=${gender}` : ''
-
-    const queryString =
-      [sortByString, hoursString, servicesString, demographicsString, genderString].join('')
   }
 
   toggleService(service) {
@@ -198,11 +193,13 @@ class OptionsPage extends Component {
             </ButtonGroup>
           </Group>
           <div>
-            <button
-              onClick={() => this.search()}
-              className={s.searchButton}
-            >Search
-            </button>
+            <Link to="/locations" query={convertToQueryObject(this.state)}>
+              <button
+                role="link"
+                className={s.searchButton}
+              >Search
+              </button>
+            </Link>
           </div>
         </div>
       </Layout>
