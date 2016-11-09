@@ -1,22 +1,24 @@
 .header {
-  height: 128px;
-  border-bottom: 2px solid rgb(204, 204, 204);
+  height: 64px;
+  border-bottom: 1px solid rgb(204, 204, 204);
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
+  flex-wrap: nowrap;
   align-items: stretch;
 }
 
 .navTopSpace {
-  height: 40px;
+  height: 20px;
 }
 
 .navContent {
   flex-grow: 2;
   display: flex;
-  flex-flow: row nowrap;
+  flex-direction: row;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
-  padding: 0 18px;
+  padding: 0 9px;
 }
 
 .backContainer {
@@ -41,38 +43,38 @@
   cursor: pointer;
   text-decoration: none;
   color: rgb(0, 122, 255);
-  font-size: 34px;
+  font-size: 17px;
   display: flex;
   align-items: center;
 }
 
 .backArrow {
-  width: 25px;
-  height: 43px;
+  width: 13px;
+  height: 22px;
   stroke: rgb(0, 122, 255);
-  stroke-width: 5px;
+  stroke-width: 3px;
 }
 
 .backText {
-  padding: 0 13.5px;
+  padding: 0 13.3px;
 }
 
 .logoImg {
-  height: 40px;
+  height: 20px;
 }
 
 .filter {
   cursor: pointer;
   text-decoration: none;
   color: rgb(0, 122, 255);
-  font-size: 34px;
+  font-size: 17px;
   display: flex;
   align-items: center;
 }
 
 .currentUser {
   width: 100%;
-  max-width: 1000px;
+  max-width: 500px;
   margin: 0 auto;
 }
 

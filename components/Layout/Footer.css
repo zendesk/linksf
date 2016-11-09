@@ -1,17 +1,17 @@
 .footer {
-  max-width: 650px;
+  max-width: 325px;
   margin: 0 auto;
   text-align: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding: 0 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 0 10px;
   color: #ACACAC;
-  font-size: 30px;
+  font-size: 15px;
 }
 
 .nav {
   display: inline-block;
-  margin: 0 10px;
+  margin: 0 5px;
   color: #ACACAC;
   text-decoration: none;
 }

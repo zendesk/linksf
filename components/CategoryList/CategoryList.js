@@ -6,14 +6,16 @@ import icons from '../../icons/css/icons.css'
 const CategoryList = (props) => (
   <div
     title="Services"
-    className={`${s.taxonomies}`}
-    style={ {height: 133*props.categories.length} }>
+    className={`${s.taxonomies}`}>
       {props.categories.map((category, i) => (
-        <Category
-          key={`category-${i}`}
-          id={category.id}
-          iconClass={category.icon}
-          name={category.name} />
+        <div>
+          <Category
+            key={`category-${i}`}
+            id={category.id}
+            iconClass={category.icon}
+            name={category.name} />
+          <div className={s.categorySpacer}></div>
+        </div>
       ))}
   </div>
 )

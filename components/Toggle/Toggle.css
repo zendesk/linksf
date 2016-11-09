@@ -5,13 +5,13 @@
   cursor: pointer;
   font-family: Helvetica,Arial,sans-serif;
   background: #f3f3f3;
-  border-radius: 18px;
+  border-radius: 9px;
   border-color: #dbdbdb;
 }
 
 .switch:focus {
   border-color: #8aade1;
-  box-shadow: 0 0 5px #8aade1; /* CSS3 browsers */
+  box-shadow: 0 0 3px #8aade1; /* CSS3 browsers */
   outline: none;
 }
 
@@ -27,16 +27,16 @@
 
 .handle {
   display: block;
-  height: 29px;
-  width: 30px;
+  height: 15px;
+  width: 15px;
   position: absolute;
-  top: -7px;
-  left: 45px;
-  background-size: 30px 30px;
-  border-radius: 15px;
+  top: -4px;
+  left: 23px;
+  background-size: 15px 15px;
+  border-radius: 8px;
   border: solid 1px #d2d2d2;
   background-color: #fff;
-  box-shadow: 0 3px 3px #929292;
+  box-shadow: 0 2px 2px #929292;
 }
 
 .disabled {
@@ -45,23 +45,23 @@
 }
 
 .switchMiddle {
-  height: 20px; width: 60px;
-  border: solid 7px rgb(243,243,243);
+  height: 10px; width: 30px;
+  border: solid 4px rgb(243,243,243);
   position: relative;
-  margin-top: -34px;
+  margin-top: -17px;
   z-index: 100;
-  border-radius: 17px;
-  width: 72px;
+  border-radius: 9px;
+  width: 36px;
 }
 
 .mask {
-  height: 30px;
-  padding: 2px 3px;
+  height: 15px;
+  padding: 1px 2px;
   overflow: hidden;
 }
 
 .container {
-  height: 24px;
+  height: 12px;
   position: relative;
   left: 0px;
 }
@@ -73,16 +73,16 @@
 }
 
 .containerOn {
-  left: -2px;
+  left: -1px;
 }
 
 .containerOff {
-  left: -50px;
+  left: -25px;
 }
 
 .switchUpper {
-  height: 20px; width: auto;
-  margin: 5px;
+  height: 10px; width: auto;
+  margin: 3px;
   position: absolute;
   z-index: 101;
 }
@@ -93,18 +93,18 @@
   position: absolute;
   top: 0;
   left: 0;
-  height: 29px; width: 30px;
+  height: 15px; width: 15px;
   background: white;
 
   filter: alpha(opacity=50); /* IE 5-7 */
   opacity: 0.5; /* Good browsers */
 
-  border-radius: 15px;
+  border-radius: 8px;
 }
 
 .switchLower {
-  height: 20px; width: 1000px;
-  margin: 5px;
+  height: 10px; width: 500px;
+  margin: 3px;
   position: absolute;
   z-index: 99;
 }
@@ -116,36 +116,36 @@
 .on, .off {
   display: block;
   float: left;
-  line-height: 18px;
-  font-size: 14px;
-  padding: 0 10px;
+  line-height: 9px;
+  font-size: 7px;
+  padding: 0 5px;
   text-align: center;
   text-decoration: none;
   background: rgb(243,243,243);
   color: rgb(50,50,50);
 
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .on {
   border-right: none;
   background: rgb(243,243,243);
-  padding-right: 20px;
+  padding-right: 10px;
 
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-  width: 29px;
+  width: 15px;
 }
 
 .off {
   border-left: none;
   border-color: #660000;
-  padding-left: 20px;
+  padding-left: 10px;
 
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   background: rgb(243,243,243);
-  width: 29px;
+  width: 15px;
 }
 
 .disabled .on,
