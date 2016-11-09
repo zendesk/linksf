@@ -1,6 +1,7 @@
 import 'whatwg-fetch'
 import camelize from 'camelize'
 
+import { currentUser } from '../lib/session'
 import config from '../config'
 
 const LOCATIONS     = 'locations'
@@ -11,6 +12,9 @@ const PHONES        = 'phones'
 const SLASH         = '/'
 const FORMAT        = '.json'
 
+function authToken() {
+  return '?auth=' + currentUser().token
+}
 
 export function fetchTaxonomies() {
   const url = [
@@ -55,7 +59,7 @@ export function updateLocation(location) {
     config.firebaseDatabaseUrl,
     LOCATIONS,
     location.id
-  ].join(SLASH).concat(FORMAT)
+  ].join(SLASH).concat(FORMAT).concat(authToken())
 
   return fetch(url, {
       method: 'PUT',
@@ -111,7 +115,7 @@ export function updateOrganization(organization) {
     config.firebaseDatabaseUrl,
     ORGANIZATIONS,
     organization.id
-  ].join(SLASH).concat(FORMAT)
+  ].join(SLASH).concat(FORMAT).concat(authToken())
 
   return fetch(url, {
       method: 'PUT',
