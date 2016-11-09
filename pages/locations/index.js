@@ -86,14 +86,8 @@ export default class LocationsPage extends Component {
     const category = getParameterByName('categories')
 
     const locationsList = Object.values(locations || {})
-    // const filteredLocations = (locationsList).filter(loc => (
-    //   Object.values(loc.services || {}).some(service => {
-    //     return service.taxonomy === category
-    //   })
-    // ))
-    const queryString ='&categories[]=food,technology&demographics[]=C,Y&gender=M&hours=open'
-    // const queryString ='&categories[]=food'
-    const filteredLocations = filterByOptionsString(queryString, locationsList)
+    const queryString = window.location.search
+    const filteredLocations = filterByOptionsString(queryString.slice(1, queryString.length), locationsList)
 
     return (
       <Layout>
