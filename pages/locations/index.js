@@ -91,7 +91,7 @@ export default class LocationsPage extends Component {
     //     return service.taxonomy === category
     //   })
     // ))
-    const queryString ='&categories[]=food,technology&demographics[]=C,Y&gender=M'
+    const queryString ='&categories[]=food,technology&demographics[]=C,Y&gender=M&hours=open'
     // const queryString ='&categories[]=food'
     const filteredLocations = filterByOptionsString(queryString, locationsList)
 
