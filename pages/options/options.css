@@ -17,6 +17,11 @@
   text-align: left;
 }
 
+.categoryTitle {
+  flex: 80%;
+  text-align: left;
+}
+
 .button {
   cursor: pointer;
   background: inherit;
@@ -119,6 +124,9 @@
 .hide {
   display: none
 }
+.hide {
+  display: none
+}
 
 .active {
   color: #007AFF;
@@ -165,6 +173,40 @@ button.enabled {
 
 .genderLabel {
   color: #999999
+}
+
+.dropDown {
+  display: none;
+  list-style: none;
+  padding-left: 50px;
+  text-align: left;
+  margin-top: 0;
+  background: #FFF;
+  font-size: 30px;
+  color: #555;
+  line-height: 40px;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  margin-top: -5px;
+  z-index: 999;
+  position: relative;
+  cursor: pointer;
+}
+
+ul.enabled {
+  display: block;
+}
+
+.header {
+  font-size: 30px;
+  line-height: 40px;
+  margin: 50px 0 10px 0;
+  color: #666;
+  font-weight: 400;
+}
+
+.checkBox {
+  flex: 10%;
 }
 
 .dropDown {
