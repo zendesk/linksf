@@ -3,18 +3,19 @@
 }
 
 .input {
-  padding: 5px;
-  border-radius: 4px;
+  padding: 3px;
+  border-radius: 2px;
   border: 1px solid #ccc;
   color: #333;
-  width: calc(100% - 20px);
-  font-size: 14px;
+  width: calc(100% - 10px);
+  font-size: 7px;
   resize: vertical;
 }
 
 .baseOrganizationProperties {
   display: flex;
-  flex-flow: row nowrap;
+  flex-direction: row;
+  flex-wrap: nowrap;
   justify-content: space-between;
 }
 
@@ -24,12 +25,12 @@
 
 .mainInputGroup {
   display: inline-block;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   width: 100%;
 }
 
 .description {
-  height: 74px;
+  height: 37px;
 }
 
 .mainLabel {
@@ -43,9 +44,9 @@
 }
 
 .subsectionLabel {
-  font-size: 18px;
+  font-size: 9px;
   font-weight: bold;
-  margin: 10px 0;
+  margin: 5px 0;
   border-bottom: 1px solid #555;
 }
 
@@ -62,8 +63,8 @@
 .addToSubsection {
   color: #666;
   padding: 0;
-  margin: 0 10px;
-  font-size: 15px;
+  margin: 0 5px;
+  font-size: 8px;
   border: none;
   background: none;
   cursor: pointer;
@@ -76,13 +77,15 @@
 
 .phonesBox {
   display: flex;
-  flex-flow: row wrap;
+  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
 }
 
 .locationsEditBox {
   display: flex;
   flex-direction: column;
+  flex-wrap: nowrap;
   justify-content: flex-start;
 }
 
