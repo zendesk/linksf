@@ -4,6 +4,10 @@ import Button from '../Button'
 import s from './FilterBar.css'
 import Link from '../Link'
 
+const getNewQueryString = (queryString, showOpen) => (
+  showOpen ? `${queryString}&hours=open` : queryString.replace('&hours=open', '')
+)
+
 const FilterBar = (props) => (
   <div className={s.row}>
     <div className={s.filterOption}>
@@ -21,12 +25,13 @@ const FilterBar = (props) => (
       <label className={s.filterLabel}>
         Open now
       </label>
-      <Toggle
-        onLabel="YES"
-        offLabel="NO"
-        on={props.showOpen}
-        onMouseUp={props.onToggleOpen}
-      />
+      <Link to="/locations" queryString={getNewQueryString(props.queryString, !props.showOpen)}>
+        <Toggle
+          onLabel="YES"
+          offLabel="NO"
+          on={props.showOpen}
+        />
+      </Link>
     </div>
     <Link to="/options">
       <Button>OPTIONS</Button>

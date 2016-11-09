@@ -15,8 +15,8 @@ const Toggle = (props) => (
         </div>
         <div className={s.switchLower}>
           <div className={s.labels}>
-            <a href="#" className={s.on} tabIndex="-1">{props.onLabel || 'YES'}</a>
-            <a href="#" className={s.off} tabIndex="-1">{props.offLabel || 'NO'}</a>
+            <span className={s.on} tabIndex="-1">{props.onLabel || 'YES'}</span>
+            <span className={s.off} tabIndex="-1">{props.offLabel || 'NO'}</span>
           </div>
         </div>
       </div>

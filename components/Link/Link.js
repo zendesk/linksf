@@ -30,25 +30,20 @@ class Link extends Component {
 
     event.preventDefault()
 
-    const queryString = convertToQueryString(this.props.query)
+    const queryString = this.props.queryString || convertToQueryString(this.props.query)
 
-    if (this.props.to && this.props.query) {
+    if (this.props.to && (this.props.query || this.props.queryString)) {
       redirectTo({
         pathname: this.props.to,
         search: queryString
       })
     } else if (this.props.to) {
       redirectTo(this.props.to)
-    } else {
-      redirectTo({
-        pathname: event.currentTarget.pathname,
-        search: event.currentTarget.search,
-      })
     }
   }
 
   render() {
-    const { to, query, ...props } = this.props; // eslint-disable-line no-use-before-define
+    const { to, query, queryString, ...props } = this.props; // eslint-disable-line no-use-before-define
     return <a href={history.createHref(to)} {...props} onClick={this.handleClick} />
   }
 

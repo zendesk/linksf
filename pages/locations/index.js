@@ -34,7 +34,6 @@ export default class LocationsPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      showOpen: false,
       locations: null,
       currentLocation: null,
     }
@@ -76,15 +75,12 @@ export default class LocationsPage extends Component {
     }
   }
 
-  handleToggleOpen = () => {
-    this.setState({ showOpen: !this.state.showOpen })
-  }
-
   render() {
     const { locations } = this.state
     const loading = locations == null
     const category = getParameterByName('categories')
 
+    const showOpen = window.location.search.includes('hours=open')
     const locationsList = Object.values(locations || {})
     const queryString = window.location.search
     const filteredLocations = filterByOptionsString(queryString.slice(1, queryString.length), locationsList)
@@ -95,8 +91,8 @@ export default class LocationsPage extends Component {
           <Loading /> :
           <div>
             <FilterBar
-              showOpen={this.state.showOpen}
-              onToggleOpen={(e) => this.handleToggleOpen(e)}
+              showOpen={showOpen}
+              queryString={queryString}
             />
             <LocationList locations={filteredLocations} />
           </div>
