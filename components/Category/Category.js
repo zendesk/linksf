@@ -4,11 +4,13 @@ import Link from '../Link'
 import icons from '../../icons/css/icons.css'
 
 const category = (props) => (
-  <Link to="/locations" query={{ services: [props.name.toLowerCase()] }}>
-    <button role="link" className={s.btn} aria-label="Look for ${props.name} services">
-      <i className={`${s.categoryIcon} ${props.iconClass}`}></i>{props.name}
-      <i className={`${s.rightCaret} ${icons.iconRightOpen2} icon-caret`}></i>
-    </button>
+  <Link
+    to="/locations"
+    query={{ services: [props.name.toLowerCase()] }}
+    className={s.category}
+    aria-label={`Look for ${props.name} services`}
+  >
+    <i className={`${s.categoryIcon} ${props.iconClass}`}></i>{props.name}
   </Link>
 )
 

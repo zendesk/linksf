@@ -25,7 +25,9 @@ class OrganizationAdminPage extends Component {
 
   componentWillMount() {
     authenticate()
+  }
 
+  componentDidMount() {
     const match = this.props.route.pattern.exec(window.location.pathname)
     const organizationId = match[1]
 

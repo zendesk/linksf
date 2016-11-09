@@ -1,48 +1,80 @@
-.logo {
-  margin: 0 auto;
-  vertical-align: middle;
-}
-
-.logoImg {
-  width: 100px;
-}
-
 .header {
-  height: 40px;
-  background-color: #fff;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  padding: 8px 0;
-  border-bottom: 1px solid #DDD;
+  height: 64px;
+  border-bottom: 1px solid rgb(204, 204, 204);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
 }
 
-.navContainer {
+.navTopSpace {
+  height: 20px;
+}
+
+.navContent {
+  flex-grow: 2;
   display: flex;
-  width: 100%;
-  height: 40px;
-  max-width: 650px;
-  margin: 0 auto;
+  flex-direction: row;
+  flex-wrap: nowrap;
   align-items: center;
+  justify-content: space-between;
+  padding: 0 9px;
 }
 
 .backContainer {
-  flex-basis: 20%;
-}
-
-.spacer {
-  flex-basis: 20%;
+  flex-basis: 33%;
+  display: flex;
+  align-items: center;
 }
 
 .logoContainer {
-  flex-basis: 20%;
+  flex-basis: 34%;
   text-align: center;
+}
+
+.filterContainer {
+  flex-basis: 33%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.back {
+  cursor: pointer;
+  text-decoration: none;
+  color: rgb(0, 122, 255);
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+}
+
+.backArrow {
+  width: 13px;
+  height: 22px;
+  stroke: rgb(0, 122, 255);
+  stroke-width: 3px;
+}
+
+.backText {
+  padding: 0 13.3px;
+}
+
+.logoImg {
+  height: 20px;
+}
+
+.filter {
+  cursor: pointer;
+  text-decoration: none;
+  color: rgb(0, 122, 255);
+  font-size: 17px;
+  display: flex;
+  align-items: center;
 }
 
 .currentUser {
   width: 100%;
-  max-width: 1000px;
+  max-width: 500px;
   margin: 0 auto;
 }
 
@@ -52,15 +84,4 @@
 
 .logout {
   float: right;
-}
-
-.back {
-  cursor: pointer;
-  text-decoration: none;
-  background-color: #F3F3F3;
-  border: 1px solid #DCDCDC;
-  border-radius: 25px;
-  color: #989898;
-  font-size: 15px;
-  padding: 8px 13px;
 }

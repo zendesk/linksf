@@ -4,13 +4,20 @@ import Category from '../Category'
 import icons from '../../icons/css/icons.css'
 
 const CategoryList = (props) => (
-  <ul title="Services" className={`${s.categories} btn-group`}>
-    {props.categories.map(category => (
-      <li key={`category-${category.id}`} className={s.categoryItem}>
-        <Category id={category.id} iconClass={category.icon} name={category.name} />
-      </li>
-    ))}
-  </ul>
+  <div
+    title="Services"
+    className={`${s.taxonomies}`}>
+      {props.categories.map((category, i) => (
+        <div>
+          <Category
+            key={`category-${i}`}
+            id={category.id}
+            iconClass={category.icon}
+            name={category.name} />
+          <div className={s.categorySpacer}></div>
+        </div>
+      ))}
+  </div>
 )
 
 CategoryList.propTypes = {

@@ -4,20 +4,21 @@ import icons from '../../icons/css/icons.css'
 import { gender } from '../../lib/eligibilities'
 import { age } from '../../lib/eligibilities'
 import TimeRangePicker from '../TimeRangePicker'
+import ToggleButton from '../ToggleButton'
 
 class ServiceEdit extends Component {
   updateService = (field, value) => {
-    const { service, index, handleChange } = this.props
+    const { service, handleChange } = this.props
     const newService = service
 
     newService[field] = value
-    handleChange(newService, index)
+    handleChange(newService)
   }
 
   deleteService = () => {
-    const { index, handleDelete } = this.props
+    const { service, handleDelete } = this.props
 
-    handleDelete(index)
+    handleDelete(service)
   }
 
   handleServiceChange = (field, event) => {
@@ -52,10 +53,7 @@ class ServiceEdit extends Component {
     const { eligibility } = this.props.service
     let stateVal = eligibility ? (eligibility.age || '') : ''
 
-    if (stateVal.includes(value.key))
-      classes.push(s.selectableButtonActive)
-
-    return classes.join(' ')
+    return stateVal.includes(value.key)
   }
 
   getGenderClass = (value) => {
@@ -63,20 +61,14 @@ class ServiceEdit extends Component {
     const { eligibility } = this.props.service
     let stateVal = eligibility ? eligibility.gender : ''
 
-    if (stateVal == value.key)
-      classes.push(s.selectableButtonActive)
-
-    return classes.join(' ')
+    return stateVal == value.key
   }
 
   getCategoryClass = (value) => {
     let classes = [s.selectableButton]
     const { taxonomy } = this.props.service
 
-    if (taxonomy.toLowerCase() == value.taxonomy)
-      classes.push(s.selectableButtonActive)
-
-    return classes.join(' ')
+    return taxonomy.toLowerCase() == value
   }
 
   handleTimeChange = (event, start_or_end, metadata) => {
@@ -93,70 +85,75 @@ class ServiceEdit extends Component {
   }
 
   render() {
-    const { service } = this.props
+    const { service, taxonomies } = this.props
 
     return (
       <div className={s.serviceEditBox}>
-        <div className={s.name}>
-          <span className={s.nameLabel}>Service Name </span>
-          <input
-            type="text"
-            value={service.name}
-            onChange={(e) => this.handleServiceChange('name', e)}
-          />
+        <h4 className={s.sectionLabel}>Service</h4>
+        <div className={s.inputBox}>
+          <div className={s.inputGroup}>
+            <span className={s.inputLabel}>Service Name</span>
+            <input
+              type="text"
+              value={service.name}
+              onChange={(e) => this.handleServiceChange('name', e)}
+            />
+          </div>
+          <div className={s.inputGroup}>
+            <span className={s.inputLabel}>Service Description</span>
+            <input
+              type="text"
+              value={service.description}
+              onChange={(e) => this.handleServiceChange('description', e)}
+            />
+          </div>
+          <div className={s.inputGroup}>
+            <span className={s.inputLabel}>Application Process</span>
+            <input
+              type="text"
+              value={service.applicationProcess}
+              onChange={(e) => this.handleServiceChange('applicationProcess', e)}
+            />
+          </div>
+          <div className={s.inputGroup}>
+            <GenderBox
+              gender={service.eligibility && service.eligibility.gender}
+              getGenderClass={this.getGenderClass}
+              handleGender={this.handleGender}/>
+          </div>
+          <div className={s.inputGroup}>
+            <AgeBox
+              getAgeClass={this.getAgeClass}
+              handleAge={this.handleAge} />
+          </div>
+          <div className={s.inputGroup}>
+            <span className={s.inputLabel}>Schedule </span>
+            {(service.schedules || []).map((schedule, index) => (
+              <ScheduleBox
+                key={`schedule-${index}`}
+                index={index}
+                schedule={schedule}
+                handleTimeChange={this.handleTimeChange} />
+            ))}
+          </div>
+          <div className={s.inputGroup}>
+            <span className={s.inputLabel}>Category </span>
+            {(taxonomies).map((category, i) => (
+              <span className={s.inputOption}>
+                <ToggleButton
+                  key={`category-${i}`}
+                  enabled={this.getCategoryClass(category.name.toLowerCase())}
+                  extraClasses={`${s.categoryIcon} ${category.icon}`}
+                  onClick={(e) => this.updateService('taxonomy', category.name.toLowerCase())}
+                  label={category.name}
+                />
+              </span>
+            ))}
+          </div>
         </div>
-        <div className={s.descriptionBox}>
-          <span className={s.descriptionLabel}>Service Description </span>
-          <input
-            type="text"
-            value={service.description}
-            onChange={(e) => this.handleServiceChange('description', e)}
-          />
-        </div>
-        <div className={s.applicationBox}>
-          <span className={s.applicationLabel}>Application Process </span>
-          <input
-            type="text"
-            value={service.applicationProcess}
-            onChange={(e) => this.handleServiceChange('applicationProcess', e)}
-          />
-        </div>
-        <div className={s.elegibilityBox}>
-          <span className={s.eligibilityLabel}>Elegibility Information </span>
-          <GenderBox
-            gender={service.eligibility && service.eligibility.gender}
-            getGenderClass={this.getGenderClass}
-            handleGender={this.handleGender}/>
-          <AgeBox
-            getAgeClass={this.getAgeClass}
-            handleAge={this.handleAge} />
-        </div>
-        <div className={s.schedulesBox}>
-          <span className={s.schedulesLabel}>Schedule </span>
-          {(service.schedules || []).map((schedule, index) => (
-            <ScheduleBox
-              key={`schedule-${index}`}
-              index={index}
-              schedule={schedule}
-              handleTimeChange={this.handleTimeChange} />
-          ))}
-        </div>
-        <div className={s.taxonomyBox}>
-          <span className={s.taxonomyLabel}>Category </span>
-          {categories.map((category, i) => (
-            <button
-              key={`category-${i}`}
-              className={this.getCategoryClass(category)}
-              onClick={(e) => this.updateService('taxonomy', category.taxonomy.toLowerCase())}
-            >
-            <i className={`${s.categoryIcon} ${category.icon}`}></i>
-            {category.name}
-            </button>
-          ))}
-        </div>
-        <div className={s.deleteBox}>
+        <div className={s.inputGroup}>
           <button
-            className={s.deleteButton}
+            className={s.buttonStyle}
             onClick={this.deleteService}
           >
           Delete
@@ -168,38 +165,40 @@ class ServiceEdit extends Component {
 }
 
 const GenderBox = (props) => (
-  <div className={s.genderEligibilityBox}>
-    <span className={s.genderEligibilityLabel}>Gender Eligibility </span>
+  <div className={s.inputGroup}>
+    <span className={s.inputLabel}>Gender Eligibility </span>
     {gender.map((gender, i) => (
-     <button
-       key={`gender-${gender.name}`}
-       className={props.getGenderClass(gender)}
-       onClick={(e) => props.handleGender(gender)}
-     >
-     <i className={`${s.categoryIcon} ${gender.icon}`}></i>
-     {gender.name}
-     </button>
+    <span className={s.inputOption}>
+       <ToggleButton
+         key={`gender-${gender.name}`}
+         enabled={props.getGenderClass(gender)}
+         extraClasses={`${s.categoryIcon} ${gender.icon}`}
+         onClick={(e) => props.handleGender(gender)}
+         label={gender.name}
+       />
+     </span>
     ))}
   </div>
 )
 
 const AgeBox = (props) => (
-  <div className={s.ageEligibilityBox}>
-    <span className={s.ageEligibilityLabel}>Age Eligibility </span>
+  <div className={s.inputGroup}>
+    <span className={s.inputLabel}>Age Eligibility </span>
     {age.map((age, i) => (
-     <button
-       key={`age-${age.name}`}
-       className={props.getAgeClass(age)}
-       onClick={(e) => props.handleAge(age)}
-     >
-     {age.name}
-     </button>
+      <span className={s.inputOption}>
+       <ToggleButton
+         key={`age-${age.name}`}
+         enabled={props.getAgeClass(age)}
+         onClick={(e) => props.handleAge(age)}
+         label={age.name}
+       />
+     </span>
     ))}
   </div>
 )
 
 const ScheduleBox = (props) => (
-  <div className={s.scheduleBox}>
+  <div className={s.inputGroup}>
     <TimeRangePicker
       key={`timePicker-${index}`}
       rangeLabel={props.schedule.weekday}

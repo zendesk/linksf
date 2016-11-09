@@ -4,16 +4,16 @@
 }
 
 .title {
-  margin: 12px 0 0 1px;
-  font-size: 18px;
+  margin: 6px 0 0 1px;
+  font-size: 9px;
   color: #666;
   font-weight: 400;
 }
 
 .inset {
-  border-radius: 6px;
+  border-radius: 3px;
   border: 1px solid #DDD;
-  padding: 14px;
+  padding: 7px;
 }
 
 .insetMap {
@@ -21,43 +21,43 @@
   border: 1px solid #DDD;
   box-sizing: border-box;
   margin-bottom: 1px;
-  border-radius: 6px;
-  margin: 20px 0 1px 0;
+  border-radius: 3px;
+  margin: 10px 0 1px 0;
   padding: 0;
   display: flex;
   flex-direction: column;
 }
 
 .map {
-  height: 182px;
+  height: 91px;
 }
 
 .address {
   margin: 0px;
-  padding: 8px 8px 8px 12px;
-  font-size: 14px;
+  padding: 4px 4px 4px 6px;
+  font-size: 7px;
 }
 
 .insetCall {
-  margin: 20px 0 0 0;
-  border-radius: 6px 6px 0 0;
+  margin: 10px 0 0 0;
+  border-radius: 3px 3px 0 0;
   border: 1px solid #DDD;
-  padding: 14px;
+  padding: 7px;
   display: flex;
 }
 
 .insetWebsite {
   margin: -1px 0 0 0;
   border: 1px solid #DDD;
-  padding: 14px;
+  padding: 7px;
 }
 
 .insetDirections {
   cursor: pointer;
   margin: -1px 0 1px 0;
-  border-radius: 0 0 6px 6px;
+  border-radius: 0 0 3px 3px;
   border: 1px solid #DDD;
-  padding: 14px;
+  padding: 7px;
   background-color: #fff;
   width: 100%;
   text-align: left;
@@ -67,18 +67,19 @@
 .directionsLabel {
   font-weight: 700;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 7px;
 }
 
 .contactLabel {
   font-weight: 700;
-  margin-right: 15px;
+  margin-right: 8px;
 }
 
 .callPhone {
   color: #777;
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
+  flex-wrap: nowrap;
 }
 
 .phone {
@@ -92,6 +93,7 @@
 }
 
 .website {
+  word-wrap: break-word;
   text-decoration: none;
   color: #555;
 }
@@ -103,38 +105,38 @@
 }
 
 .insetServices {
-  margin: 12px 0 1px 0;
-  padding: 14px;
+  margin: 6px 0 1px 0;
+  padding: 7px;
   border: 1px solid #DDD;
   text-align: left;
   box-sizing: border-box;
-  border-radius: 6px;
+  border-radius: 3px;
 }
 
 .serviceTitle {
   margin-top: 0;
   color: #666;
-  font-size: 18px;
+  font-size: 9px;
   font-weight: 400;
 }
 
 .serviceDescription {
-  margin: 0 0 10px 0;
+  margin: 0 0 5px 0;
   line-height: 1.5;
 }
 
 .openHours {
-  margin-bottom: 10px;
-  padding: 5px;
-  font-size: 14px;
+  margin-bottom: 5px;
+  padding: 3px;
+  font-size: 7px;
 }
 
 .labelHour {
-  padding: 0 10px 0 0;
+  padding: 0 5px 0 0;
 }
 
 .hour {
-  font-size: 14px;
+  font-size: 7px;
 }
 
 .categoryIcons {
@@ -143,6 +145,6 @@
 
 .notes {
   background: #f3f3f3;
-  padding: 8px;
-  border-radius: 6px;
+  padding: 4px;
+  border-radius: 3px;
 }

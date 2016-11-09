@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
-import Toggle from '../Toggle'
-import Button from '../Button'
+import ToggleButton from '../ToggleButton'
+
 import s from './FilterBar.css'
 import Link from '../Link'
 
@@ -11,31 +11,20 @@ const getNewQueryString = (queryString, showOpen) => (
 const FilterBar = (props) => (
   <div className={s.row}>
     <div className={s.filterOption}>
-      <label className={s.filterLabel}>
-        Sort by
-      </label>
-      <Toggle
-        onLabel="NAME"
-        offLabel="NEAR"
-        disabled
+      <ToggleButton
+        label="Sort by distance"
+        enabled
         on
       />
     </div>
     <div className={s.filterOption}>
-      <label className={s.filterLabel}>
-        Open now
-      </label>
       <Link to="/locations" queryString={getNewQueryString(props.queryString, !props.showOpen)}>
-        <Toggle
-          onLabel="YES"
-          offLabel="NO"
-          on={props.showOpen}
+        <ToggleButton
+          label="Open now"
+          enabled={props.showOpen}
         />
       </Link>
     </div>
-    <Link to="/options">
-      <Button>OPTIONS</Button>
-    </Link>
   </div>
 )
 

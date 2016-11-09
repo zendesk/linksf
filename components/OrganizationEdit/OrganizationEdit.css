@@ -3,20 +3,20 @@
 }
 
 .input {
-  padding: 5px;
-  border-radius: 4px;
+  padding: 3px;
+  border-radius: 2px;
   border: 1px solid #ccc;
   color: #333;
-  width: calc(100% - 20px);
-  font-size: 14px;
+  width: calc(100% - 10px);
+  font-size: 7px;
   resize: vertical;
 }
 
 .baseOrganizationProperties {
   display: flex;
-  flex-flow: row nowrap;
+  flex-direction: row;
+  flex-wrap: nowrap;
   justify-content: space-between;
-  border: 2px solid red;
 }
 
 .baseOrganizationItem {
@@ -25,30 +25,46 @@
 
 .mainInputGroup {
   display: inline-block;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   width: 100%;
 }
 
 .description {
-  height: 74px;
+  height: 37px;
 }
 
 .mainLabel {
   display: block;
 }
 
+.sectionLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .subsectionLabel {
-  font-size: 18px;
+  font-size: 9px;
   font-weight: bold;
-  margin: 10px 0;
+  margin: 5px 0;
   border-bottom: 1px solid #555;
+}
+
+.buttonStyle {
+  border: solid 1px #777;
+  cursor: pointer;
+  font-family: Helvetica,Arial,sans-serif;
+  background: #f3f3f3;
+  border-radius: 3px;
+  border-color: #dbdbdb;
+  padding: 10px 22px;
 }
 
 .addToSubsection {
   color: #666;
   padding: 0;
-  margin: 0 10px;
-  font-size: 15px;
+  margin: 0 5px;
+  font-size: 8px;
   border: none;
   background: none;
   cursor: pointer;
@@ -61,13 +77,27 @@
 
 .phonesBox {
   display: flex;
-  flex-flow: row wrap;
-  border: 2px solid blue;
+  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
 }
 
-.locationsBox {
+.locationsEditBox {
   display: flex;
-  flex-flow: column nowrap;
-  border: 2px solid green;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.locationsList {
+  flex-basis: 15%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 8px;
+}
+
+.locationEdit {
+  flex-basis: 85%;
+  padding: 8px;
 }

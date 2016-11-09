@@ -1,3 +1,29 @@
+.serviceEditBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.inputBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: baseline;
+}
+
+.inputGroup {
+  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.inputOption {
+  padding: 5px 0;
+}
+
 .selectableButton:active {
   border: 1px solid #ccc;
   background-color: #e5e5e5;
@@ -8,3 +34,18 @@
   color: white;
 }
 
+.sectionLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.buttonStyle {
+  border: solid 1px #777;
+  cursor: pointer;
+  font-family: Helvetica,Arial,sans-serif;
+  background: #f3f3f3;
+  border-radius: 3px;
+  border-color: #dbdbdb;
+  padding: 10px 22px;
+}

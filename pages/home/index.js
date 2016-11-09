@@ -6,6 +6,7 @@ import { taxonomiesWithIcons } from '../../lib/taxonomies'
 
 import Home from '../../components/Home'
 import Layout from '../../components/Layout'
+import Loading from '../../components/Loading'
 
 
 class HomePage extends Component {
@@ -16,16 +17,13 @@ class HomePage extends Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     fetchTaxonomies()
       .then(taxonomies => {
         this.setState({
           taxonomies: taxonomiesWithIcons(taxonomies)
         })
       })
-  }
-
-  componentDidMount() {
     document.title = 'Link-SF'
   }
 
@@ -34,7 +32,7 @@ class HomePage extends Component {
 
     return (
       <Layout>
-        <Home categories={taxonomies} />
+        { taxonomies.length ? <Home categories={taxonomies} /> : <Loading /> }
       </Layout>
     )
   }

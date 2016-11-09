@@ -1,7 +1,6 @@
 import React from 'react'
 import s from './Toggle.css'
 
-
 const Toggle = (props) => (
   <div
     className={`${s.switch} ${props.disabled ? s.disabled : ''}`}

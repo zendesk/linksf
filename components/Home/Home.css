@@ -1,6 +1,14 @@
+.taxonomyList {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
 .title {
-  margin: 12px 0 10px 1px;
-  font-size: 18px;
-  color: #666;
-  font-weight: bold;
+  text-align: center;
+  font-size: 15px;
+  letter-spacing: 0.6pt;
+  color: rgb(51, 51, 51);
+  margin: 0;
+  margin-bottom: 20pt; /* FIXME: shouldn't need a margin here */
 }

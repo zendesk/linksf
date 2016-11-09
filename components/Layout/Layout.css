@@ -1,15 +1,43 @@
-.center {
-  margin: 53px 0 auto;
+html {
+  background-color: rgb(248, 248, 248);
+  margin: 0;
+  padding: 0;
+  color: rgb(51, 51, 51);
+}
+
+body {
+  margin: 0;
+  min-width: 160px;
+}
+
+.body {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.contentTopSpace {
+  height: 25px;
 }
 
 .content {
-  max-width: 650px;
-  width: 100%;
+  max-width: 375px;
+  padding: 0 14px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
 }
 
 .adminContent {
-  max-width: 1000px;
+  min-width: 160px;
+  max-width: 500px;
   width: 100%;
 }

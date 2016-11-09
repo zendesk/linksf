@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import s from './OrganizationEdit.css'
 import icons from '../../icons/css/icons.css'
 
+import { taxonomiesWithIcons } from '../../lib/taxonomies'
 import { redirectTo } from '../../lib/navigation'
 import { uuid } from '../../lib/uuid'
 import {
@@ -9,10 +10,12 @@ import {
   updateLocation,
   deleteLocation,
   updateOrganization,
-  deleteOrganization
+  deleteOrganization,
+  fetchTaxonomies
 } from '../../core/firebaseRestAPI'
 
 import LocationEdit from '../LocationEdit'
+import ToggleButton from '../ToggleButton'
 import PhoneEdit from '../PhoneEdit'
 
 const blankPhone = () => ({
@@ -38,12 +41,15 @@ class OrganizationEdit extends Component {
     super(props)
     this.state = {
       organization: props.organization,
-      locations: []
+      locations: [],
+      selectedLocation: null,
+      selectedService: null
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.refreshLocations()
+    this.refreshTaxonomies()
   }
 
   //TODO: only fetch locations for org rather than filter them down after
@@ -58,6 +64,15 @@ class OrganizationEdit extends Component {
       ))
       .then(locations => {
         this.setState({ locations })
+      })
+  }
+
+  refreshTaxonomies = () => {
+    fetchTaxonomies()
+      .then(taxonomies => {
+        this.setState({
+          taxonomies: taxonomiesWithIcons(taxonomies)
+        })
       })
   }
 
@@ -111,6 +126,10 @@ class OrganizationEdit extends Component {
     this.setState({ organization })
   }
 
+  handleStateUpdate = (update) => {
+    this.setState(update)  
+  }
+
   handleLocations = (newLocation, index) => {
     const { locations } = this.state
     const newLocations = locations
@@ -124,9 +143,10 @@ class OrganizationEdit extends Component {
     const { organization, locations } = this.state
     const newLocations = locations || []
 
-    newLocations.push(blankLocation(organization))
+    const newLocation = blankLocation(organization)
+    newLocations.push(newLocation)
 
-    this.setState({ locations: newLocations })
+    this.setState({ locations: newLocations, selectedLocation: newLocation, selectedService: null})
   }
 
   handleDeleteLocation = (index) => {
@@ -157,8 +177,16 @@ class OrganizationEdit extends Component {
     })
   }
 
+  selectLocation = (location) => {
+    this.setState({ selectedLocation: location, selectedService: null })
+  }
+
+  locationSelected = (location) => {
+    return this.state.selectedLocation.id == location.id
+  }
+
   render() {
-    const { organization, locations } = this.state
+    const { organization, locations, selectedLocation, selectedService, taxonomies } = this.state
 
     return (
       <div className={s.organizationEditBox}>
@@ -217,29 +245,39 @@ class OrganizationEdit extends Component {
           ))}
         </div>
 
-        <div className={s.subsectionLabel}>
-          Locations
+        <div className={s.locationsEditBox}>
+          <h4 className={s.sectionLabel}>Locations</h4>
+          <div className={s.locationsList}>
+            {locations.map((location) => (
+              <ToggleButton 
+                key={`location-${location.id}`}
+                enabled={this.locationSelected(location)}
+                onClick={(e) => this.selectLocation(location)}
+                label={location.name || "New Location"}
+              />
+            ))}
+          </div>
           <button
             className={s.addToSubsection}
             onClick={this.newLocation}
             title={`Click to add a new location`}>
             + Add
           </button>
-        </div>
-        <div className={s.locationsBox}>
-          {locations.map((location, index) => (
-            <LocationEdit
-              key={`location-${index}`}
-              location={location}
-              index={index}
-              handleChange={this.handleLocations}
-              handleDelete={this.handleDeleteLocation} />
-          ))}
+          <div className={s.locationEdit}>
+            {selectedLocation ? <LocationEdit
+                  location={selectedLocation}
+                  selectedService={selectedService}
+                  handleStateUpdate={this.handleStateUpdate}
+                  handleChange={this.handleLocations}
+                  handleDelete={this.handleDeleteLocation} 
+                  taxonomies={taxonomies}
+                /> : null}
+          </div>
         </div>
 
         <div className={s.formSubmit}>
-          <button type="button" onClick={this.handleSubmit}>Submit</button>
-          <button onClick={this.handleDeleteOrganization}>Delete Organization</button>
+          <button className={s.buttonStyle} type="button" onClick={this.handleSubmit}>Submit</button>
+          <button className={s.buttonStyle} onClick={this.handleDeleteOrganization}>Delete Organization</button>
         </div>
       </div>
     )
