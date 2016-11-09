@@ -5,6 +5,7 @@ import icons from '../../icons/css/icons.css'
 import { uuid } from '../../lib/uuid'
 
 import ServiceEdit from '../ServiceEdit'
+import ToggleButton from '../ToggleButton'
 import Autocomplete from 'react-google-autocomplete'
 
 const blankService = (location) => ({
@@ -84,6 +85,10 @@ class LocationEdit extends Component {
     this.props.handleStateUpdate({ selectedService: service })
   }
 
+  serviceSelected = (service) => {
+    return this.props.selectedService.id == service.id
+  }
+
   render() {
     const { location, selectedService, taxonomies } = this.props
 
@@ -92,7 +97,7 @@ class LocationEdit extends Component {
         <h4 className={s.sectionLabel}>Location</h4>
         <div className={s.inputBox}>
           <div className={s.inputGroup}>
-            <span className={s.nameLabel}>Location Name </span>
+            <span className={s.inputLabel}>Location Name </span>
             <input
               className={s.input}
               type="text"
@@ -101,7 +106,7 @@ class LocationEdit extends Component {
             />
           </div>
           <div className={s.inputGroup}>
-            <span className={s.descriptionLabel}>Location Description </span>
+            <span className={s.inputLabel}>Location Description</span>
             <input
               className={s.input}
               type="text"
@@ -110,7 +115,7 @@ class LocationEdit extends Component {
             />
           </div>
           <div className={s.inputGroup}>
-            <span className={s.addressLineOneLabel}>Street Address </span>
+            <span className={s.inputLabel}>Street Address</span>
             <Autocomplete
               style={{width: '90%'}}
               onPlaceSelected={this.handleAddress}
@@ -118,7 +123,7 @@ class LocationEdit extends Component {
             />
           </div>
           <div className={s.inputGroup}>
-            <span className={s.addressLineOneLabel}>Street</span>
+            <span className={s.inputLabel}>Street</span>
             <input
               className={s.input}
               type="text"
@@ -127,7 +132,7 @@ class LocationEdit extends Component {
             />
           </div>
           <div className={s.inputGroup}>
-            <span className={s.addressCityLabel}>City </span>
+            <span className={s.inputLabel}>City </span>
             <input
               className={s.input}
               type="text"
@@ -141,21 +146,20 @@ class LocationEdit extends Component {
           <h4 className={s.sectionLabel}>Services</h4>
           <div className={s.servicesList}>
             {(Object.values(location.services || {})).map((service) => (
-              <button 
+              <ToggleButton 
                 key={`service-${service.id}`}
-                className={s.buttonStyle} 
+                enabled={this.serviceSelected(service)}
                 onClick={(e) => this.selectService(service)}
-              >
-                {service.name || "New Service"}
-              </button>
+                label={service.name || "New Service"}
+              />
             ))}
-            <button
-              className={s.addToSubsection}
-              onClick={this.newService}
-              title={`Click to add a new service`}>
-              + Add
-            </button>
           </div>
+          <button
+            className={s.addToSubsection}
+            onClick={this.newService}
+            title={`Click to add a new service`}>
+            + Add
+          </button>
           <div className={s.serviceEdit}>
             {selectedService && 
               <ServiceEdit
