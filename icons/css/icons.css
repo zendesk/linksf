@@ -55,24 +55,24 @@
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
 
-.icon-down-open:before { content: '\e800'; } /* '' */
-.icon-left-open:before { content: '\e801'; } /* '' */
-.icon-right-open:before { content: '\e802'; } /* '' */
-.icon-angle-double-right:before { content: '\e803'; } /* '' */
-.icon-technology:before { content: '\e804'; } /* '' */
-.icon-food:before { content: '\e806'; } /* '' */
-.icon-housing:before { content: '\e807'; } /* '' */
-.icon-compass:before { content: '\e808'; } /* '' */
-.icon-phone:before { content: '\e809'; } /* '' */
-.icon-right-open-1:before { content: '\e80a'; } /* '' */
-.icon-hygiene:before { content: '\e80b'; } /* '' */
-.icon-right-open-outline:before { content: '\e80c'; } /* '' */
-.icon-medical:before { content: '\e80d'; } /* '' */
-.icon-right-open-2:before { content: '\e80e'; } /* '' */
-.icon-link:before { content: '\e80f'; } /* '' */
-.icon-user:before { content: '\e811'; } /* '' */
-.icon-user-woman:before { content: '\e812'; } /* '' */
-.icon-user-pair:before { content: '\e813'; } /* '' */
+.icon-down-open:before { content: '\e802'; } /* '' */
+.icon-left-open:before { content: '\e803'; } /* '' */
+.icon-right-open:before { content: '\e804'; } /* '' */
+.icon-angle-double-right:before { content: '\e805'; } /* '' */
+.icon-technology:before { content: '\e806'; } /* '' */
+.icon-food:before { content: '\e808'; } /* '' */
+.icon-housing:before { content: '\e800'; } /* '' */
+.icon-compass:before { content: '\e80a'; } /* '' */
+.icon-phone:before { content: '\e80b'; } /* '' */
+.icon-right-open-1:before { content: '\e80c'; } /* '' */
+.icon-hygiene:before { content: '\e801'; } /* '' */
+.icon-right-open-outline:before { content: '\e80e'; } /* '' */
+.icon-medical:before { content: '\f0fa'; } /* '' */
+.icon-right-open-2:before { content: '\e810'; } /* '' */
+.icon-link:before { content: '\e811'; } /* '' */
+.icon-user:before { content: '\e812'; } /* '' */
+.icon-user-woman:before { content: '\e813'; } /* '' */
+.icon-user-pair:before { content: '\e814'; } /* '' */
 .icon-ok:before { content: '\e817'; } /* '' */
 .icon-check-empty:before { content: '\f096'; } /* '' */
-.icon-check:before { content: '\e805'; } /* '' */
+.icon-check:before { content: '\e807'; } /* '' */
