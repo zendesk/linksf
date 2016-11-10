@@ -127,7 +127,7 @@ class OrganizationEdit extends Component {
   }
 
   handleStateUpdate = (update) => {
-    this.setState(update)  
+    this.setState(update)
   }
 
   handleLocations = (newLocation, index) => {
@@ -244,32 +244,34 @@ class OrganizationEdit extends Component {
               handleDelete={this.deletePhone} />
           ))}
         </div>
-
         <div className={s.locationsEditBox}>
-          <h4 className={s.sectionLabel}>Locations</h4>
+          <div className={s.subsectionLabel}>
+            Locations
+            <button
+              className={s.addToSubsection}
+              onClick={this.newLocation}
+              title={`Click to add a new location`}>
+              + Add
+            </button>
+          </div>
           <div className={s.locationsList}>
             {locations.map((location) => (
-              <ToggleButton 
+              <ToggleButton
                 key={`location-${location.id}`}
                 enabled={this.locationSelected(location)}
                 onClick={(e) => this.selectLocation(location)}
-                label={location.name || "New Location"}
+                label={location.name || "Location"}
               />
             ))}
           </div>
-          <button
-            className={s.addToSubsection}
-            onClick={this.newLocation}
-            title={`Click to add a new location`}>
-            + Add
-          </button>
+
           <div className={s.locationEdit}>
             {selectedLocation ? <LocationEdit
                   location={selectedLocation}
                   selectedService={selectedService}
                   handleStateUpdate={this.handleStateUpdate}
                   handleChange={this.handleLocations}
-                  handleDelete={this.handleDeleteLocation} 
+                  handleDelete={this.handleDeleteLocation}
                   taxonomies={taxonomies}
                 /> : null}
           </div>
@@ -277,7 +279,7 @@ class OrganizationEdit extends Component {
 
         <div className={s.formSubmit}>
           <button className={s.buttonStyle} type="button" onClick={this.handleSubmit}>Submit</button>
-          <button className={s.buttonStyle} onClick={this.handleDeleteOrganization}>Delete Organization</button>
+          <button className={s.buttonStyle} onClick={this.handleDeleteOrganization}>Delete this Organization</button>
         </div>
       </div>
     )

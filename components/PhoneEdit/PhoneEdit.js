@@ -36,8 +36,11 @@ class PhoneEdit extends Component {
           value={phone.department}
           onChange={(e) => this.updatePhone('department', e)}
         />
-
-        <button onClick={this.deletePhone}>Delete</button>
+        <div className={s.inputGroup}>
+          <button
+            className={s.buttonStyle}
+            onClick={this.deletePhone}>Delete this Phone</button>
+        </div>
       </div>
     )
   }
