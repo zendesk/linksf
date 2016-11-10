@@ -89,11 +89,11 @@ class ServiceEdit extends Component {
 
     return (
       <div className={s.serviceEditBox}>
-        <h4 className={s.sectionLabel}>Service</h4>
         <div className={s.inputBox}>
           <div className={s.inputGroup}>
             <span className={s.inputLabel}>Service Name</span>
             <input
+              className={s.input}
               type="text"
               value={service.name}
               onChange={(e) => this.handleServiceChange('name', e)}
@@ -102,32 +102,38 @@ class ServiceEdit extends Component {
           <div className={s.inputGroup}>
             <span className={s.inputLabel}>Service Description</span>
             <input
+              className={s.input}
               type="text"
               value={service.description}
               onChange={(e) => this.handleServiceChange('description', e)}
             />
           </div>
+        </div>
+        <div className={s.inputBox}>
           <div className={s.inputGroup}>
             <span className={s.inputLabel}>Application Process</span>
-            <input
+            <textarea
+              className={s.input}
               type="text"
               value={service.applicationProcess}
               onChange={(e) => this.handleServiceChange('applicationProcess', e)}
             />
           </div>
-          <div className={s.inputGroup}>
-            <GenderBox
-              gender={service.eligibility && service.eligibility.gender}
-              getGenderClass={this.getGenderClass}
-              handleGender={this.handleGender}/>
-          </div>
-          <div className={s.inputGroup}>
-            <AgeBox
-              getAgeClass={this.getAgeClass}
-              handleAge={this.handleAge} />
-          </div>
-          <div className={s.inputGroup}>
-            <span className={s.inputLabel}>Schedule </span>
+        </div>
+        <div className={s.inputBox}>
+          <GenderBox
+            gender={service.eligibility && service.eligibility.gender}
+            getGenderClass={this.getGenderClass}
+            handleGender={this.handleGender}/>
+        </div>
+        <div className={s.inputBox}>
+          <AgeBox
+            getAgeClass={this.getAgeClass}
+            handleAge={this.handleAge} />
+        </div>
+        <div className={s.inputBox}>
+          <div className={s.inputGroup, s.row}>
+            <span className={s.inputLabel}>Schedule: </span>
             {(service.schedules || []).map((schedule, index) => (
               <ScheduleBox
                 key={`schedule-${index}`}
@@ -136,8 +142,10 @@ class ServiceEdit extends Component {
                 handleTimeChange={this.handleTimeChange} />
             ))}
           </div>
-          <div className={s.inputGroup}>
-            <span className={s.inputLabel}>Category </span>
+        </div>
+        <div className={s.inputBox}>
+          <div className={s.inputGroup, s.row}>
+            <span className={s.inputLabel}>Category: </span>
             {(taxonomies).map((category, i) => (
               <span className={s.inputOption}>
                 <ToggleButton
@@ -151,13 +159,15 @@ class ServiceEdit extends Component {
             ))}
           </div>
         </div>
-        <div className={s.inputGroup}>
-          <button
-            className={s.buttonStyle}
-            onClick={this.deleteService}
-          >
-          Delete
-          </button>
+        <div className={s.inputBox}>
+          <div className={s.inputGroup}>
+            <button
+              className={s.buttonStyle}
+              onClick={this.deleteService}
+            >
+            Delete this Service
+            </button>
+          </div>
         </div>
       </div>
     )
@@ -165,8 +175,8 @@ class ServiceEdit extends Component {
 }
 
 const GenderBox = (props) => (
-  <div className={s.inputGroup}>
-    <span className={s.inputLabel}>Gender Eligibility </span>
+  <div className={s.inputGroup, s.row}>
+    <span className={s.inputLabel}>Gender Eligibility: </span>
     {gender.map((gender, i) => (
     <span className={s.inputOption}>
        <ToggleButton
@@ -182,8 +192,8 @@ const GenderBox = (props) => (
 )
 
 const AgeBox = (props) => (
-  <div className={s.inputGroup}>
-    <span className={s.inputLabel}>Age Eligibility </span>
+  <div className={s.inputGroup, s.row}>
+    <span className={s.inputLabel}>Age Eligibility: </span>
     {age.map((age, i) => (
       <span className={s.inputOption}>
        <ToggleButton
@@ -198,7 +208,7 @@ const AgeBox = (props) => (
 )
 
 const ScheduleBox = (props) => (
-  <div className={s.inputGroup}>
+  <div className={s.inputGroup, s.row}>
     <TimeRangePicker
       key={`timePicker-${index}`}
       rangeLabel={props.schedule.weekday}

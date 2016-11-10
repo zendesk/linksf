@@ -94,7 +94,6 @@ class LocationEdit extends Component {
 
     return (
       <div className={s.locationEditBox}>
-        <h4 className={s.sectionLabel}>Location</h4>
         <div className={s.inputBox}>
           <div className={s.inputGroup}>
             <span className={s.inputLabel}>Location Name </span>
@@ -105,19 +104,23 @@ class LocationEdit extends Component {
               onChange={(e) => this.handleLocationChange('name', e)}
             />
           </div>
+        </div>
+        <div className={s.inputBox}>
           <div className={s.inputGroup}>
             <span className={s.inputLabel}>Location Description</span>
-            <input
+            <textarea
               className={s.input}
               type="text"
               value={location.description}
               onChange={(e) => this.handleLocationChange('description', e)}
             />
           </div>
+        </div>
+        <div className={s.inputBox}>
           <div className={s.inputGroup}>
             <span className={s.inputLabel}>Street Address</span>
             <Autocomplete
-              style={{width: '90%'}}
+              className={s.input}
               onPlaceSelected={this.handleAddress}
               types={['geocode']}
             />
@@ -141,32 +144,37 @@ class LocationEdit extends Component {
             />
           </div>
         </div>
-        <button className={s.buttonStyle} onClick={this.deleteLocation}>Delete</button>
+        <div className={s.inputGroup}>
+          <button className={s.buttonStyle} onClick={this.deleteLocation}>Delete this Location</button>
+        </div>
         <div className={s.servicesEditBox}>
-          <h4 className={s.sectionLabel}>Services</h4>
+          <div className={s.subsectionLabel}>
+            Services
+            <button
+              className={s.addToSubsection}
+              onClick={this.newService}
+              title={`Click to add a new service`}>
+              + Add
+            </button>
+          </div>
           <div className={s.servicesList}>
             {(Object.values(location.services || {})).map((service) => (
-              <ToggleButton 
+              <ToggleButton
                 key={`service-${service.id}`}
                 enabled={this.serviceSelected(service)}
                 onClick={(e) => this.selectService(service)}
-                label={service.name || "New Service"}
+                label={service.name || "Service"}
               />
             ))}
           </div>
-          <button
-            className={s.addToSubsection}
-            onClick={this.newService}
-            title={`Click to add a new service`}>
-            + Add
-          </button>
+
           <div className={s.serviceEdit}>
-            {selectedService && 
+            {selectedService &&
               <ServiceEdit
                 key={`service-${selectedService.id}`}
                 service={selectedService}
                 handleChange={this.handleServices}
-                handleDelete={this.deleteService} 
+                handleDelete={this.deleteService}
                 taxonomies={taxonomies}
               />
             }

@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
 }
 
 .addressBox {
@@ -14,16 +13,16 @@
 .inputBox {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 }
 
 .inputGroup {
-  padding: 0 20px;
+  padding: 10px 10px 10px 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: left;
 }
 
 .input {
@@ -59,6 +58,7 @@
   border-radius: 3px;
   border-color: #dbdbdb;
   padding: 10px 22px;
+  width: 200px;
 }
 
 .servicesEditBox {
@@ -78,4 +78,11 @@
 .serviceEdit {
   flex-basis: 85%;
   padding: 8px;
+}
+
+.subsectionLabel {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0;
+  border-bottom: 1px solid #555;
 }
