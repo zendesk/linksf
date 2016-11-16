@@ -7,6 +7,8 @@ import Layout from '../../components/Layout'
 import Loading from '../../components/Loading'
 import FilterBar from '../../components/FilterBar'
 import LocationList from '../../components/LocationList'
+import { filterByOptionsString } from '../../lib/filterLocations'
+import R from 'ramda'
 
 function getParameterByName(name) {
   const match = RegExp(`[?&]${name}=([^&]*)`).exec(window.location.search)
@@ -20,7 +22,8 @@ function mergeLocationsAndDistances(locations, matrixResponses) {
 
   const merge = ([location, responseObj]) => {
     const locationAndDistance = location
-    locationAndDistance.duration = (responseObj || {}).duration // i hate this; it breaks the consistency of the whole app
+    const durationInfo = responseObj || {}
+    locationAndDistance.duration = durationInfo.duration // i hate this; it breaks the consistency of the whole app
     return locationAndDistance
   }
 
@@ -31,7 +34,6 @@ export default class LocationsPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      showOpen: false,
       locations: null,
       currentLocation: null,
     }
@@ -68,9 +70,7 @@ export default class LocationsPage extends Component {
         })
         .then(matrixResponse => {
           const matrixResponses = matrixResponse.rows[0].elements
-          const locationsWithDistance = mergeLocationsAndDistances(locationsCache, matrixResponses)
-
-          this.setState({ locations: locationsWithDistance })
+          this.setState({ locations: mergeLocationsAndDistances(locationsCache, matrixResponse) })
         })
     } else {
       fetchLocations()
@@ -80,19 +80,15 @@ export default class LocationsPage extends Component {
     }
   }
 
-  handleToggleOpen = () => {
-    this.setState({ showOpen: !this.state.showOpen })
-  }
-
   render() {
     const { locations } = this.state
     const loading = locations == null
     const category = getParameterByName('categories')
 
-    const filteredLocations = (locations || []).filter(loc => (
-      loc.services &&
-      Object.values(loc.services).some(service => service.taxonomy === category))
-    )
+    const showOpen = window.location.search.includes('hours=open')
+    const locationsList = Object.values(locations || {})
+    const queryString = window.location.search
+    const filteredLocations = filterByOptionsString(queryString.slice(1, queryString.length), locationsList)
 
     return (
       <Layout>
@@ -100,8 +96,8 @@ export default class LocationsPage extends Component {
           <Loading /> :
           <div>
             <FilterBar
-              showOpen={this.state.showOpen}
-              onToggleOpen={(e) => this.handleToggleOpen(e)}
+              showOpen={showOpen}
+              queryString={queryString}
             />
             <LocationList locations={filteredLocations} />
           </div>
