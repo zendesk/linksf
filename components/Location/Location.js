@@ -201,20 +201,22 @@ const Location = (props) => {
           {location.physicalAddress.address1}
         </p>
       </div>
-      <div className={s.insetCall}>
-        <label className={`${s.contactLabel} ${icons.iconPhone} icon-phone`}>Call </label>
-        <div className={s.callPhone}>
-          {organization.phones && organization.phones.map((phone, index) => (
-            <div key={`phone-${index}`}>
-              <a
-                className={s.phone}
-                href={'tel:' + phone.number.replace(/[^\d]/g, '')}
-              >{phone.number}</a>
-              <span>{phone.department}</span>
+      {organization.phones &&
+        <div className={s.insetCall}>
+          <label className={`${s.contactLabel} ${icons.iconPhone} icon-phone`}>Call </label>
+            <div className={s.callPhone}>
+               {organization.phones.map((phone, index) => (
+                <div key={`phone-${index}`}>
+                  <a
+                    className={s.phone}
+                    href={'tel:' + phone.number.replace(/[^\d]/g, '')}
+                  >{phone.number}</a>
+                  <span>{phone.department}</span>
+                </div>
+              ))}
             </div>
-          ))}
         </div>
-      </div>
+      }
       <div className={s.insetWebsite}>
         <label className={`${s.contactLabel} ${icons.iconLink} icon-website`}>Website </label>
         <span className={s.websiteUrl}>
