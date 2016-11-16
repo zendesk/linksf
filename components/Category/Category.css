@@ -10,6 +10,8 @@
   display: flex;
   align-items: center;
   text-decoration: none;
+  padding-left: 10px;
+  color: #333333;
 }
 
 .category:active,
