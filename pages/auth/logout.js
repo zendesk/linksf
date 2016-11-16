@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { destroySession } from '../../lib/session'
 import { redirectTo } from '../../lib/navigation'
-import { firebaseClient } from '../../core/firebaseApi'
+import { firebaseClient } from '../../core/firebaseRestAPI'
 
 import Layout from '../../components/Layout'
 

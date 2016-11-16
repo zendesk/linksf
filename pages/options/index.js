@@ -6,7 +6,23 @@ import { taxonomiesWithIcons } from '../../lib/taxonomies'
 
 import s from './options.css'
 import Layout from '../../components/Layout'
+import Link from '../../components/Link'
 
+const objToFilteredList = (obj) => (
+  Object.keys(obj).filter(k => obj[k])
+)
+
+const convertToQueryObject = (state) => {
+  const { sortBy, hours, services, demographics, gender } = state
+  const query = {
+    sortBy,
+    hours,
+    services: objToFilteredList(services),
+    demographics: objToFilteredList(demographics),
+    gender,
+  }
+  return query
+}
 
 class OptionsPage extends Component {
   constructor(props) {
@@ -32,7 +48,7 @@ class OptionsPage extends Component {
       showHours: false,
       sortByDistance: false,
       showDropDown: false,
-      showGeoAlert: true
+      showGeoAlert: true,
     }
   }
 
@@ -48,12 +64,12 @@ class OptionsPage extends Component {
   }
 
   getGeoPermission() {
-    var geoPermission
-    navigator.permissions.query({'name': 'geolocation'})
-      .then( function(permission) {
-        console.log(permission.state)
-        if(permission.state == 'granted')
-          this.setState({ showGeoAlert: false })
+    const self = this
+    navigator.permissions.query({ name: 'geolocation' })
+      .then(function(permission) {
+        if (permission.state === 'granted') {
+          self.setState({ showGeoAlert: false })
+        }
       })
   }
 
@@ -88,17 +104,16 @@ class OptionsPage extends Component {
   }
 
   setCurrentGender(g) {
-    this.setState({ gender: g})
+    this.setState({ gender: g })
     this.setState({ showDropDown: false })
   }
 
   toggleHours() {
     this.setState({ showHours: !this.state.showHours })
-    if(this.state.showHours) {
+    if (this.state.showHours) {
       this.setHours('open')
       this.setState({ hours: 'open' })
-    }
-    else {
+    } else {
       this.setHours('all')
       this.setState({ hours: 'all' })
     }
@@ -106,18 +121,18 @@ class OptionsPage extends Component {
 
   toggleDistance() {
     this.setState({ sortByDistance: !this.state.sortByDistance })
-    if(this.state.sortByDistance) {
+    if (this.state.sortByDistance) {
       this.setSortBy('distance')
       this.setState({ sortBy: 'distance' })
-    }
-    else {
+    } else {
       this.setSortBy('name')
       this.setState({ sortBy: 'name' })
     }
   }
 
   render() {
-    const { taxonomies, sortBy, hours, services, demographics, gender, genders, showHours, sortByDistance, showDropDown, showGeoAlert } = this.state
+    const { taxonomies, services, demographics, gender,
+            showHours, sortByDistance, showDropDown, showGeoAlert } = this.state
 
     return (
       <Layout>
@@ -204,6 +219,15 @@ class OptionsPage extends Component {
               </DemographicsButton>
             </ServiceGroup>
           </Group>
+          <div>
+            <Link to="/locations" query={convertToQueryObject(this.state)}>
+              <button
+                role="link"
+                className={s.searchButton}
+              >Search
+              </button>
+            </Link>
+          </div>
         </div>
       </Layout>
     )

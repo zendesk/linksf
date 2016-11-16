@@ -1,8 +1,11 @@
 import 'whatwg-fetch'
 import camelize from 'camelize'
 
+import firebase from 'firebase'
 import { currentUser } from '../lib/session'
 import config from '../config'
+
+import R from 'ramda'
 
 const LOCATIONS     = 'locations'
 const ORGANIZATIONS = 'organizations'
@@ -35,11 +38,11 @@ export function fetchLocations() {
 
   return fetch(url)
     .then(response => response.json())
-    .then(locations => {
-      return Object.keys(locations).map(locationId => (
-        camelize(locations[locationId])
+    .then(locations => (
+      Object.keys(locations).map(locationId => (
+        R.merge({ services: {}, duration: {} }, camelize(locations[locationId]))
       ))
-    })
+    ))
 }
 
 export function fetchLocation(id) {
@@ -137,4 +140,19 @@ export function deleteOrganization(id) {
   ].join(SLASH).concat(FORMAT)
 
   return fetch(url, {method: 'DELETE'})
+}
+
+export function firebaseClient() {
+  if (firebase.apps.length === 1) {
+    return firebase // Don't initialize more than one client
+  }
+
+  const fbConfig = {
+    apiKey: config.firebaseApiKey,
+    authDomain: config.firebaseAuthDomain,
+  }
+
+  firebase.initializeApp(fbConfig)
+
+  return firebase
 }
