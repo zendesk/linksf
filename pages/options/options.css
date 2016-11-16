@@ -200,7 +200,6 @@ ul.enabled {
   border-radius: 3px;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
   margin-top: -2.5px;
-  z-index: 999;
   position: relative;
   cursor: pointer;
 }
