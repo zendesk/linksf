@@ -6,7 +6,7 @@ import ServiceStatus from '../ServiceStatus'
 import Link from '../Link'
 
 const DistanceText = (props) => (
-  <span className={s.distanceText}>{props.time} minutes walking</span>
+  <div className={s.distanceText}>{props.text}</div>
 )
 
 
@@ -29,17 +29,23 @@ const LocationRow = (props) => (
     >
       <div className={s.locationAndCaret}>
         <div className={s.locationBox}>
-          <span className={s.locationName}>{props.name}</span>
+          <div className={s.locationContainer}>
+            <div className={s.locationName}>{props.name}</div>
+          </div>
           <div className={s.locationInfo}>
-            <span className={s.locationStatus}>
-              <ServiceStatus services={props.services || {}} />
-            </span>
             <IconSpans taxonomies={relevantTaxonomies(props.services)} />
-            {props.duration && <DistanceText text={props.duration.text} />}
           </div>
         </div>
-        <div className="location-item-box-caret">
-          <i className={`${icons.iconRightOpen2} s.rightCaret icon-caret`}></i>
+        <div className={s.locationStatusBox}>
+          <div className={s.locationStatusContainer}>
+            <div className={s.locationStatus}>
+              <ServiceStatus services={props.services || {}} />
+            </div>
+            {props.duration && <DistanceText text={props.duration.text} />}
+          </div>
+          <div className={s.locationItemBoxCaret}>
+            <i className={`${icons.iconRightOpen2} ${s.rightCaret} icon-caret`}></i>
+          </div>
         </div>
       </div>
     </Link>

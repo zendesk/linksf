@@ -12,18 +12,18 @@ const FilterBar = (props) => (
   <div className={s.row}>
     <div className={s.filterOption}>
       <ToggleButton
-        label="Sort by distance"
-        enabled
-        on
+        label="Open now"
+        enabled={props.showOpen}
+        onClick={props.onToggleOpen}
       />
     </div>
+
     <div className={s.filterOption}>
-      <Link to="/locations" queryString={getNewQueryString(props.queryString, !props.showOpen)}>
-        <ToggleButton
-          label="Open now"
-          enabled={props.showOpen}
-        />
-      </Link>
+      <ToggleButton
+        label="Sort by distance"
+        enabled={true}
+        on
+      />
     </div>
   </div>
 )
