@@ -11,17 +11,17 @@ const getNewQueryString = (queryString, showOpen) => (
 const FilterBar = (props) => (
   <div className={s.row}>
     <div className={s.filterOption}>
-      <ToggleButton
-        label="Open now"
-        enabled={props.showOpen}
-        onClick={props.onToggleOpen}
-      />
+      <Link to="/locations" queryString={getNewQueryString(props.queryString, !props.showOpen)}>
+        <ToggleButton
+          label="Open now"
+          enabled={props.showOpen}
+        />
+      </Link>
     </div>
-
     <div className={s.filterOption}>
       <ToggleButton
         label="Sort by distance"
-        enabled={true}
+        enabled
         on
       />
     </div>
