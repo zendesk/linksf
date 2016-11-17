@@ -84,10 +84,11 @@ export default class LocationsPage extends Component {
     const { locations } = this.state
     const loading = locations == null
     const category = getParameterByName('categories')
-
     const showOpen = window.location.search.includes('hours=open')
     const locationsList = Object.values(locations || {})
     const queryString = window.location.search
+
+    console.log(locations)
     const filteredLocations = filterByOptionsString(queryString.slice(1, queryString.length), locationsList)
 
     return (
