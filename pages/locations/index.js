@@ -88,7 +88,6 @@ export default class LocationsPage extends Component {
     const locationsList = Object.values(locations || {})
     const queryString = window.location.search
 
-    console.log(locations)
     const filteredLocations = filterByOptionsString(queryString.slice(1, queryString.length), locationsList)
 
     return (
