@@ -1,0 +1,55 @@
+#!/bin/bash
+
+heading() {
+  echo "$1...";
+}
+
+pass() {
+  echo "DONE"
+}
+
+fail() {
+  echo "FAIL"
+}
+
+fail_and_exit() {
+  fail
+  exit -1
+}
+
+try() {
+  heading "$1"
+  if eval "$2"
+  then
+    pass
+  else
+    fail_and_exit
+  fi
+}
+
+# Check for node and npm
+nvm --version &> /dev/null
+if [ $? -ne 0 ]; then
+  echo "Installing \`nvm\`"
+  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash
+
+  # Set up NVM_DIR and run the init script
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+fi
+
+which node > /dev/null && which npm > /dev/null
+if [ $? -ne 0 ]; then
+  echo "Installing the current node version"
+  nvm install
+fi
+
+try "Running \`npm install\`" "npm install &> /dev/null"
+
+try "Building \`node run build --production\`" "node run build --production"
+
+try "Installing Firebase Tools" "npm install -g firebase-tools"
+
+try "Logging you into Firebase" "firebase login"
+
+try "Choose your Firebase project" "firebase use --add"
