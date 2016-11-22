@@ -174,6 +174,7 @@ const Schedule = (props) => {
 
 const Location = (props) => {
   const { location, organization } = props
+  console.log(location)
   const { services = [] } = location
   return (
     <div className={s.location}>
@@ -193,14 +194,16 @@ const Location = (props) => {
           ))}
         </div>
       </div>
-      <div className={s.insetMap}>
-        <div className={s.map}>
-          <GoogleMap />
+      {location.physicalAddress &&
+        <div className={s.insetMap}>
+          <div className={s.map}>
+            <GoogleMap />
+          </div>
+          <p className={s.address}>
+            {location.physicalAddress.address1}
+          </p>
         </div>
-        <p className={s.address}>
-          {location.physicalAddress.address1}
-        </p>
-      </div>
+      }
       {organization.phones &&
         <div className={s.insetCall}>
           <label className={`${s.contactLabel} ${icons.iconPhone} icon-phone`}>Call </label>
@@ -217,18 +220,20 @@ const Location = (props) => {
             </div>
         </div>
       }
-      <div className={s.insetWebsite}>
-        <label className={`${s.contactLabel} ${icons.iconLink} icon-website`}>Website </label>
-        <span className={s.websiteUrl}>
-          <a
-            className={s.website}
-            href={organization.url}
-            rel="nofollow"
-            target="_blank">
-            {organization.url}
-          </a>
-        </span>
-      </div>
+      {organization.url &&
+        <div className={s.insetWebsite}>
+          <label className={`${s.contactLabel} ${icons.iconLink} icon-website`}>Website </label>
+          <span className={s.websiteUrl}>
+            <a
+              className={s.website}
+              href={organization.url}
+              rel="nofollow"
+              target="_blank">
+              {organization.url}
+            </a>
+          </span>
+        </div>
+      }
       <a
         href={getMapsUrl(location)}
         rel="nofollow"
