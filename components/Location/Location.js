@@ -174,7 +174,6 @@ const Schedule = (props) => {
 
 const Location = (props) => {
   const { location, organization } = props
-  console.log(location)
   const { services = [] } = location
   return (
     <div className={s.location}>
