@@ -3,47 +3,65 @@
   flex-direction: column;
 }
 
-.title {
-  margin: 6px 0 0 1px;
-  font-size: 9px;
-  color: #666;
-  font-weight: 400;
+.name {
+  margin-bottom: 35px;
 }
 
-.inset {
-  border-radius: 3px;
-  border: 1px solid #DDD;
-  padding: 7px;
+.title {
+  margin: 20px 0 0 20px;
+  color: #999;
 }
+
+.label {
+  color: #999;
+  font-weight: normal;
+}
+
+.section {
+  width: 100%;
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
 
 .insetMap {
   text-align: left;
-  border: 1px solid #DDD;
   box-sizing: border-box;
   margin-bottom: 1px;
   border-radius: 3px;
-  margin: 10px 0 1px 0;
+  margin: 15px 0 1px 0;
   padding: 0;
   display: flex;
   flex-direction: column;
 }
 
 .map {
-  height: 91px;
+  height: 230px;
 }
 
 .address {
   margin: 0px;
-  padding: 4px 4px 4px 6px;
-  font-size: 7px;
+  padding: 15px 4px 15px 6px;
+  background: #fff;
+  border: 1px solid #ccc;
 }
 
-.insetCall {
-  margin: 10px 0 0 0;
-  border-radius: 3px 3px 0 0;
-  border: 1px solid #DDD;
-  padding: 7px;
+.inset {
+  margin: 15px 0 0 0;
+  width: 100%;
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
   display: flex;
+  font-weight: lighter;
+  box-sizing: border-box;
+}
+
+.insetInGroup:not(:first-of-type) {
+  border-top: none;
+  margin-top: 0px;
 }
 
 .insetWebsite {
@@ -52,22 +70,10 @@
   padding: 7px;
 }
 
-.insetDirections {
-  cursor: pointer;
-  margin: -1px 0 1px 0;
-  border-radius: 0 0 3px 3px;
-  border: 1px solid #DDD;
-  padding: 7px;
-  background-color: #fff;
-  width: 100%;
-  text-align: left;
-  box-sizing: border-box;
-}
-
 .directionsLabel {
   font-weight: 700;
   cursor: pointer;
-  font-size: 7px;
+  font-size: 16px;
 }
 
 .contactLabel {
@@ -105,7 +111,7 @@
 }
 
 .insetServices {
-  margin: 6px 0 1px 0;
+  margin: 30px 0 1px 0;
   padding: 7px;
   border: 1px solid #DDD;
   text-align: left;
@@ -115,9 +121,6 @@
 
 .serviceTitle {
   margin-top: 0;
-  color: #666;
-  font-size: 9px;
-  font-weight: 400;
 }
 
 .serviceDescription {
@@ -128,7 +131,6 @@
 .openHours {
   margin-bottom: 5px;
   padding: 3px;
-  font-size: 7px;
 }
 
 .labelHour {
@@ -136,7 +138,6 @@
 }
 
 .hour {
-  font-size: 7px;
 }
 
 .categoryIcons {
