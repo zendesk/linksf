@@ -22,7 +22,7 @@ const LOCATION_SCHEMA = {
   longitude: 0,
   name: '',
   organizationId: '',
-  services: null,
+  services: [],
   physicalAddress: null,
   duration: null,
 }
