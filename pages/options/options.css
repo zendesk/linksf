@@ -10,7 +10,7 @@
   text-align: center;
   min-width: 10px;
   margin: 0 5px;
-  flex: 5%
+  flex: 5%;
 }
 
 .categoryTitle {
@@ -33,12 +33,9 @@
   color: #999999;
   flex: 1 100%;
 }
-.button: last-child {
+
+.button:last-child {
   border-bottom: 1px solid #B8B8B8;
-}
-
-.demographicsButton {
-
 }
 
 .demographicsTitle {
@@ -81,10 +78,11 @@
   min-height: 25px;
   padding: 10px 0;
   color: #999999;
-  flex-flow: row wrap
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
-.service: last-child {
+.service:last-child {
   border-bottom: 1px solid #B8B8B8;
 }
 
@@ -119,7 +117,7 @@
   border-radius: 2px;
 }
 .hide {
-  display: none
+  display: none;
 }
 
 .active {
@@ -139,7 +137,7 @@
   /*flex: 1 100%;*/
   line-height: 20px;
   border-radius: 3px;
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2)
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
 }
 
 button:focus {
@@ -147,7 +145,7 @@ button:focus {
 }
 
 .toggleButton:first-child {
-  margin-right: 20px
+  margin-right: 20px;
 }
 
 button.enabled {
@@ -157,18 +155,18 @@ button.enabled {
 
 .buttonContainer {
   display: flex;
-  margin-bottom: 5px
+  margin-bottom: 5px;
 }
 
 .genderButton {
   width: 100%;
   text-align: left;
   padding-left: 20px;
-  margin-top: 10px
+  margin-top: 10px;
 }
 
 .genderLabel {
-  color: #999999
+  color: #999999;
 }
 
 ul.enabled {
