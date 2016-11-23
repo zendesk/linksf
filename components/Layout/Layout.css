@@ -3,17 +3,33 @@ html {
   margin: 0;
   padding: 0;
   color: rgb(51, 51, 51);
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
   min-width: 160px;
+  font-size: 16px;
+}
+
+.container {
+  background: #F8F8F8;
 }
 
 .body {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
+}
+
+a {
+  text-decoration: none;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: normal;
+  margin-top: 0px;
 }
 
 .center {
@@ -25,12 +41,11 @@ body {
 }
 
 .contentTopSpace {
-  height: 25px;
+  height: 12px;
 }
 
 .content {
-  max-width: 375px;
-  padding: 0 14px;
+  max-width: 700px;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
