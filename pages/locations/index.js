@@ -75,7 +75,7 @@ export default class LocationsPage extends Component {
         })
         .then(matrixResponse => {
           const matrixResponses = matrixResponse.rows[0].elements
-          this.setState({ locations: mergeLocationsAndDistances(locationsCache, matrixResponse) })
+          this.setState({ locations: mergeLocationsAndDistances(locationsCache, matrixResponses) })
         })
     } else {
       fetchLocations(20)
@@ -100,9 +100,18 @@ export default class LocationsPage extends Component {
     const loading = locations == null
     const category = getParameterByName('categories')
     const showOpen = window.location.search.includes('hours=open')
+    const sortDist = window.location.search.includes('sort=dist')
     const locationsList = Object.values(locations || {})
     const queryString = window.location.search
     const filteredLocations = filterByOptionsString(queryString.slice(1, queryString.length), locationsList)
+
+    filteredLocations.sort(function(a,b) {
+      if (a.duration === undefined) {
+        return 0;
+      } else {
+        return a.duration.value - b.duration.value;
+      }
+    });
 
     return (
       <Layout>
@@ -111,6 +120,7 @@ export default class LocationsPage extends Component {
           <div>
             <FilterBar
               showOpen={showOpen}
+              sortDist={sortDist}
               queryString={queryString}
             />
             <LocationList locations={filteredLocations} />
