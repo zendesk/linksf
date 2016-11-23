@@ -15,6 +15,32 @@ const PHONES        = 'phones'
 const SLASH         = '/'
 const FORMAT        = '.json'
 
+const LOCATION_SCHEMA = {
+  id: '',
+  description: '',
+  latitude: 0,
+  longitude: 0,
+  name: '',
+  organizationId: '',
+  services: [],
+  physicalAddress: null,
+  duration: null,
+}
+
+const SERVICE_SCHEMA =
+  {
+    id: '',
+    locationId: '',
+    name: '',
+    applicationProcess: '',
+    description: '',
+    eligibility: null,
+    organization: '',
+    schedules: [],
+    physicalAddress: null,
+    taxonomy: '',
+  }
+
 function authToken() {
   return '?auth=' + currentUser().token
 }
@@ -30,19 +56,48 @@ export function fetchTaxonomies() {
     .then(json => Object.keys(json))
 }
 
-export function fetchLocations() {
+function ensureDefaultsForService(service) {
+  return R.merge(SERVICE_SCHEMA, service)
+}
+
+function ensureDefaultsForLocation(location) {
+  const defaultLocation =
+    R.merge(LOCATION_SCHEMA, camelize(location))
+  const defaultServices = defaultLocation.services
+  if (defaultServices) {
+    Object.keys(defaultServices).forEach(serviceId => {
+      defaultServices[serviceId] = ensureDefaultsForService(defaultServices[serviceId])
+    })
+  }
+  return R.merge(defaultLocation, { services: defaultServices })
+}
+
+function ensureDefaultsForLocations(locations) {
+  return Object.keys(locations).map(locationId => (
+    ensureDefaultsForLocation(locations[locationId])
+  ))
+}
+
+function getQueryString(pageSize, startAt) {
+  if (startAt) {
+    return `?limitToFirst=${pageSize}&startAt="${startAt}"&orderBy="$key"`
+  } else if (pageSize) {
+    return `?limitToFirst=${pageSize}&orderBy="$key"`
+  }
+  return ''
+}
+
+export function fetchLocations(pageSize, startAt) {
+  const queryString = getQueryString(pageSize, startAt)
+
   const url = [
     config.firebaseDatabaseUrl,
-    LOCATIONS
-  ].join(SLASH).concat(FORMAT)
+    LOCATIONS,
+  ].join(SLASH).concat(FORMAT).concat(queryString)
 
   return fetch(url)
     .then(response => response.json())
-    .then(locations => (
-      Object.keys(locations).map(locationId => (
-        R.merge({ services: {}, duration: {} }, camelize(locations[locationId]))
-      ))
-    ))
+    .then(locations => ensureDefaultsForLocations(camelize(locations)))
 }
 
 export function fetchLocation(id) {
@@ -54,7 +109,7 @@ export function fetchLocation(id) {
 
   return fetch(url)
     .then(response => response.json())
-    .then(json => camelize(json))
+    .then(location => ensureDefaultsForLocation(camelize(location)))
 }
 
 export function updateLocation(location) {
