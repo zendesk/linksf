@@ -2,19 +2,22 @@
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid #DCDCDC;
-  font-size: 8px;
+  font-size: 12px;
   padding: 5px 0 8px 4px;
 }
 
 .locationBox {
   display: flex;
   flex-direction: column;
+  max-width: 350px;
+  padding-right: 10px
 }
 
 .locationAndCaret {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
+  line-height: 25px
 }
 
 .locationLink {
@@ -26,7 +29,6 @@
 .distanceText {
   display: inline-block;
   padding: 1px 2px 0 0;
-  font-size: 8px;
   line-height: 7px;
   color: #ABA9A9;
   white-space: nowrap;
@@ -43,27 +45,60 @@
 }
 
 .locationName {
-  padding: 3px 0 2px 0;
+  padding: 3px 10px 2px 0;
   text-decoration: none;
-  font-size: 8px;
+  font-size: 15px;
   font-weight: bold;
+  max-width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
 }
 
 .locationStatus {
-  font-size: 8px;
+  font-size: 15px;
   margin-right: 3px;
+  padding-top: 3px;
+  width: 100%;
+  display: inline-block;
 }
 
 .locationDistance {
   color: #c3c3c3;
   padding: 2px 0;
   text-align: right;
+  font-size: 12px
 }
 
 .categoryIcons {
   display: flex;
+  color: #999999;
+  font-size: 15px
 }
 
 .rightCaret {
-  float: right;
+  color: #CCCCCC;
+}
+
+.locationContainer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.locationStatusBox {
+  text-align: end;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.locationStatusContainer {
+  flex:4;
+}
+
+.locationItemBoxCaret {
+  flex:1;
+  vertical-align: top;
+  margin-top: 3px;
 }

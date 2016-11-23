@@ -11,19 +11,19 @@ const getNewQueryString = (queryString, showOpen) => (
 const FilterBar = (props) => (
   <div className={s.row}>
     <div className={s.filterOption}>
-      <ToggleButton
-        label="Sort by distance"
-        enabled
-        on
-      />
-    </div>
-    <div className={s.filterOption}>
       <Link to="/locations" queryString={getNewQueryString(props.queryString, !props.showOpen)}>
         <ToggleButton
           label="Open now"
           enabled={props.showOpen}
         />
       </Link>
+    </div>
+    <div className={s.filterOption}>
+      <ToggleButton
+        label="Sort by distance"
+        enabled
+        on
+      />
     </div>
   </div>
 )
