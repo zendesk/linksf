@@ -1,6 +1,7 @@
 .taxonomyList {
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
+  flex-wrap: nowrap;
 }
 
 .title {

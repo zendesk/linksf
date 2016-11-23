@@ -1,6 +1,5 @@
 .page {
   padding-top: 10px;
-  height: 800px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -17,8 +16,6 @@
 .categoryTitle {
   flex: 70%;
   text-align: left;
-  min-width: 35px;
-  margin: 0 10px;
 }
 
 .button {
@@ -44,12 +41,6 @@
 .demographicsTitle {
   flex: 80%;
   text-align: left;
-  font-size: 15px;
-  font-weight: 700;
-  padding: 10px;
-  background-color: #fff;
-  background-image: linear-gradient(white,#EBEBEB);
-  border: 1px solid #b8b8b8;
 }
 
 .leftButton {
@@ -93,20 +84,6 @@
 
 .service:last-child {
   border-bottom: 1px solid #B8B8B8;
-  height: 300px;
-}
-
-.service {
-  background-color: #fff;
-  background-image: linear-gradient(white,#EBEBEB);
-  border: 1px solid #B8B8B8;
-  border-radius: 4px;
-  font-size: 20px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  height: 45px;
-  padding: 10px 0;
 }
 
 .title {

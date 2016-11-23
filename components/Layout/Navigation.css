@@ -2,7 +2,8 @@
   height: 128px;
   border-bottom: 2px solid rgb(204, 204, 204);
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
+  flex-wrap: nowrap;
   align-items: stretch;
 }
 
@@ -13,7 +14,8 @@
 .navContent {
   flex-grow: 2;
   display: flex;
-  flex-flow: row nowrap;
+  flex-direction: row;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
   padding: 0 18px;

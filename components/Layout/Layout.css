@@ -12,12 +12,15 @@ body {
 
 .body {
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
+  flex-wrap: nowrap;
 }
 
 .center {
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -29,7 +32,8 @@ body {
   max-width: 750px;
   padding: 0 28px;
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
+  flex-wrap: nowrap;
 }
 
 .adminContent {

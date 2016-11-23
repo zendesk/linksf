@@ -14,7 +14,8 @@
 
 .baseOrganizationProperties {
   display: flex;
-  flex-flow: row nowrap;
+  flex-direction: row;
+  flex-wrap: nowrap;
   justify-content: space-between;
 }
 
@@ -77,13 +78,15 @@
 
 .phonesBox {
   display: flex;
-  flex-flow: row wrap;
+  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
 }
 
 .locationsEditBox {
   display: flex;
   flex-direction: column;
+  flex-wrap: nowrap;
   justify-content: flex-start;
 }
 

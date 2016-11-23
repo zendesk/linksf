@@ -1,0 +1,21 @@
+{
+  "rules": {
+    ".read": true,
+    ".write": "auth != null",
+    "organizations": {
+      ".indexOn": [
+        "id"
+      ]
+    },
+    "services": {
+      ".indexOn": [
+        "organization"
+      ]
+    },
+    "regular_schedules": {
+      ".indexOn": [
+        "organization_id"
+      ]
+    }
+  }
+}
