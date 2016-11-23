@@ -48,7 +48,7 @@ export default class LocationsPage extends Component {
 
     document.title = 'Link-SF'
 
-    fetchLocations()
+    fetchLocations(20)
       .then(locations => {
         this.setState({ locations })
       })
@@ -61,9 +61,14 @@ export default class LocationsPage extends Component {
   setLocations = () => {
     const { currentLocation } = this.state
 
-    if (currentLocation) {
-      let locationsCache
-      fetchLocations()
+    if (currentLocation && this.state.locations.length > 0) {
+      calculateAllDistances(this.state.locations, currentLocation)
+        .then(matrixResponse => {
+          const matrixResponses = matrixResponse.rows[0].elements
+          this.setState({ locations: mergeLocationsAndDistances(this.state.locations, matrixResponse) })
+        })
+    } else if (currentLocation) {
+      fetchLocations(20)
         .then(locations => {
           locationsCache = locations
           return calculateAllDistances(locations, currentLocation)
@@ -73,11 +78,21 @@ export default class LocationsPage extends Component {
           this.setState({ locations: mergeLocationsAndDistances(locationsCache, matrixResponse) })
         })
     } else {
-      fetchLocations()
+      fetchLocations(20)
         .then(locations => {
           this.setState({ locations })
         })
     }
+  }
+
+  loadMore = () => {
+    const { locations } = this.state
+
+    const lastItemId = locations[locations.length - 1].id
+    fetchLocations(20, lastItemId)
+      .then(locations => {
+        this.setState({ locations: [...this.state.locations, ...locations] })
+      })
   }
 
   render() {
@@ -99,6 +114,7 @@ export default class LocationsPage extends Component {
               queryString={queryString}
             />
             <LocationList locations={filteredLocations} />
+            <button onClick={this.loadMore}>Load More</button>
           </div>
         }
         </Layout>
