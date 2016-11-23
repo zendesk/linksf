@@ -7,7 +7,7 @@ html {
 
 body {
   margin: 0;
-  min-width: 160px;
+  min-width: 425px;
 }
 
 .body {
@@ -29,15 +29,15 @@ body {
 }
 
 .content {
-  max-width: 375px;
-  padding: 0 14px;
+  max-width: 750px;
+  padding: 0 28px;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
 }
 
 .adminContent {
-  min-width: 160px;
-  max-width: 500px;
+  min-width: 320px;
+  max-width: 1000px;
   width: 100%;
 }

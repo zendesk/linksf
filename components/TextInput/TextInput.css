@@ -1,9 +1,9 @@
 .input {
   display: block;
-  margin: 3px 0;
-  max-width: 150px;
-  height: 10px;
+  margin: 5px 0;
+  max-width: 300px;
+  height: 20px;
   width: 100%;
   border: 1px solid #ccc;
-  padding: 2px;
+  padding: 3px;
 }

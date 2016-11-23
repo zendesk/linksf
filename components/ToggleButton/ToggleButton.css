@@ -4,9 +4,9 @@
   font-family: Helvetica,Arial,sans-serif;
   font-size: 15px;
   background: #f3f3f3;
-  border-radius: 2px;
+  border-radius: 3px;
   border-color: #dbdbdb;
-  padding: 5px 11px;
+  padding: 10px 22px;
 }
 
 .toggleButton:first-child {
