@@ -27,4 +27,6 @@ try() {
   fi
 }
 
+try "Buliding your LinkSF" "node run build --release"
+
 try "Deploying your LinkSF instance" "firebase deploy"
