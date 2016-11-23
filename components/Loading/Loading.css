@@ -1,21 +1,21 @@
 .loading {
   text-align: center;
-  padding: 50px;
+  padding: 100px;
 }
 
 .loading-spinner {
   content: "";
   display: inline-block;
   position: absolute;
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
   top: 50%;
-  margin-top: -50px;
+  margin-top: -100px;
   left: 50%;
-  margin-left: -50px;
+  margin-left: -100px;
   z-index: 1;
   border-radius: 50%;
-  border: 2px solid #00BCD4;
+  border: 3px solid #00BCD4;
   border-left-color: transparent;
   background: transparent;
   animation: rotate 1s infinite linear;

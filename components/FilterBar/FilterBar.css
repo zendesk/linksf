@@ -12,10 +12,10 @@
 
 .btn {
   cursor: pointer;
-  padding: 5px 0;
+  padding: 10px 0;
   width: 100%;
 }
 
 i.category-icon {
-  margin: 3px 5px;
+  margin: 5px 10px;
 }

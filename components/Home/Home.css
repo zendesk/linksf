@@ -1,12 +1,11 @@
 .taxonomyList {
   display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
+  flex-flow: column nowrap;
 }
 
 .title {
   text-align: center;
-  font-size: 15px;
+  font-size: 30px;
   letter-spacing: 0.6pt;
   color: rgb(51, 51, 51);
   margin: 0;

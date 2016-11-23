@@ -1,9 +1,5 @@
 .taxonomies {
   display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-}
-
-.categorySpacer {
-  height: 10px;
+  flex-flow: column nowrap;
+  justify-content: space-between;
 }
