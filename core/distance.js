@@ -1,11 +1,9 @@
-const DESTINATION_RESPONSES = 10
-
 function fetchDistanceAndDuration(origins, destinations) {
   const googleService = new google.maps.DistanceMatrixService()
   // const promiseGoogleService = Promise.promisifyAll(, { promisifier: noErrPromisifier })
   const matrixParams = {
     origins,
-    destinations: destinations.slice(0, DESTINATION_RESPONSES),
+    destinations: destinations,
     travelMode: google.maps.TravelMode.WALKING,
     durationInTraffic: true,
     avoidHighways: true,
