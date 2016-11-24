@@ -2,103 +2,66 @@
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid #DCDCDC;
-  font-size: 12px;
-  padding: 5px 0 8px 4px;
+  font-size: 15px;
 }
 
-.locationBox {
-  display: flex;
-  flex-direction: column;
-  max-width: 350px;
-  padding-right: 10px
-}
-
-.locationAndCaret {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  line-height: 25px
+.spacer {
+  height: 8px;
 }
 
 .locationLink {
   text-decoration: none;
   color: #000;
-  display: block;
+  padding: 14px;
 }
 
-.distanceText {
-  display: inline-block;
-  padding: 1px 2px 0 0;
-  line-height: 7px;
-  color: #ABA9A9;
-  white-space: nowrap;
-  vertical-align: baseline;
-  border-radius: 2px;
-}
-
-.locationIcon {
-  color: #909090;
-}
-
-.locationInfo {
-  display: flex;
-}
-
-.locationName {
-  padding: 3px 10px 2px 0;
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: bold;
-  max-width: 250px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: inline-block;
-}
-
-.locationStatus {
-  font-size: 15px;
-  margin-right: 3px;
-  padding-top: 3px;
+.content {
   width: 100%;
-  display: inline-block;
-}
-
-.locationDistance {
-  color: #c3c3c3;
-  padding: 2px 0;
-  text-align: right;
-  font-size: 12px
-}
-
-.categoryIcons {
   display: flex;
-  color: #999999;
-  font-size: 15px
-}
-
-.rightCaret {
-  color: #CCCCCC;
-}
-
-.locationContainer {
-  display: flex;
-  align-items: flex-start;
+  flex-direction: row;
+  flex-wrap: nowrap;
   justify-content: space-between;
 }
 
-.locationStatusBox {
-  text-align: end;
+.details {
+  width: calc(100% - 20px);
   display: flex;
-  flex-flow: row nowrap;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
 }
 
-.locationStatusContainer {
-  flex:4;
+.nameAndStatus {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
-.locationItemBoxCaret {
-  flex:1;
-  vertical-align: top;
-  margin-top: 3px;
+.name {
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-basis: 83%;
 }
+
+.status {
+  flex-basis: 15%;
+}
+
+.iconsAndDistance {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+}
+
+.sidebar {
+  font-weight: lighter;
+  color: rgb(204, 204, 204);
+  width: 15px;
+  text-align: right;
+}
+

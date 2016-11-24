@@ -2,7 +2,8 @@
   display: flex;
   align-items:flex-end;
   border-bottom: 1px solid #DCDCDC;
-  padding: 5px 0 10px 0;
+  padding: 10px;
+  background-color: rgb(238, 238, 238);
 }
 
 .filterOption {
