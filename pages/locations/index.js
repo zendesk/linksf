@@ -48,7 +48,7 @@ export default class LocationsPage extends Component {
 
     document.title = 'Link-SF'
 
-    fetchLocations()
+    fetchLocations(20)
       .then(locations => {
         this.setState({ locations })
       })
@@ -61,34 +61,57 @@ export default class LocationsPage extends Component {
   setLocations = () => {
     const { currentLocation } = this.state
 
-    if (currentLocation) {
-      let locationsCache
-      fetchLocations()
+    if (currentLocation && this.state.locations.length > 0) {
+      calculateAllDistances(this.state.locations, currentLocation)
+        .then(matrixResponse => {
+          const matrixResponses = matrixResponse.rows[0].elements
+          this.setState({ locations: mergeLocationsAndDistances(this.state.locations, matrixResponse) })
+        })
+    } else if (currentLocation) {
+      fetchLocations(20)
         .then(locations => {
           locationsCache = locations
           return calculateAllDistances(locations, currentLocation)
         })
         .then(matrixResponse => {
           const matrixResponses = matrixResponse.rows[0].elements
-          this.setState({ locations: mergeLocationsAndDistances(locationsCache, matrixResponse) })
+          this.setState({ locations: mergeLocationsAndDistances(locationsCache, matrixResponses) })
         })
     } else {
-      fetchLocations()
+      fetchLocations(20)
         .then(locations => {
           this.setState({ locations })
         })
     }
   }
 
+  loadMore = () => {
+    const { locations } = this.state
+
+    const lastItemId = locations[locations.length - 1].id
+    fetchLocations(20, lastItemId)
+      .then(locations => {
+        this.setState({ locations: [...this.state.locations, ...locations] })
+      })
+  }
+
   render() {
     const { locations } = this.state
     const loading = locations == null
     const category = getParameterByName('categories')
-
     const showOpen = window.location.search.includes('hours=open')
+    const sortDist = window.location.search.includes('sort=dist')
     const locationsList = Object.values(locations || {})
     const queryString = window.location.search
     const filteredLocations = filterByOptionsString(queryString.slice(1, queryString.length), locationsList)
+
+    filteredLocations.sort(function(a,b) {
+      if (a.duration === undefined) {
+        return 0;
+      } else {
+        return a.duration.value - b.duration.value;
+      }
+    });
 
     return (
       <Layout>
@@ -97,9 +120,11 @@ export default class LocationsPage extends Component {
           <div>
             <FilterBar
               showOpen={showOpen}
+              sortDist={sortDist}
               queryString={queryString}
             />
             <LocationList locations={filteredLocations} />
+            <button onClick={this.loadMore}>Load More</button>
           </div>
         }
         </Layout>
