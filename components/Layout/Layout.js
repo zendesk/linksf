@@ -11,7 +11,6 @@ function Layout({ admin, children }) {
     <div className={s.body}>
       <Navigation currentUser={admin && currentUser()} />
       <div className={s.center}>
-        <div className={s.contentTopSpace}></div>
         <div className={admin ? s.adminContent : s.content}>
           {children}
         </div>
