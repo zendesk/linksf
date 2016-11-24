@@ -25,13 +25,17 @@
   box-sizing: border-box;
 }
 
+button {
+  border: none;
+  background: none;
+}
 
 .insetMap {
   text-align: left;
   box-sizing: border-box;
   margin-bottom: 1px;
   border-radius: 3px;
-  margin: 15px 0 1px 0;
+  margin: 15px 0;
   padding: 0;
   display: flex;
   flex-direction: column;
@@ -74,11 +78,13 @@
   font-weight: 700;
   cursor: pointer;
   font-size: 16px;
+  color: #999999;
 }
 
 .contactLabel {
   font-weight: 700;
   margin-right: 8px;
+  color: #999999;
 }
 
 .callPhone {
@@ -96,6 +102,7 @@
 .websiteUrl {
   text-overflow: ellipsis;
   overflow: hidden;
+  width: 50%;
 }
 
 .website {
@@ -112,7 +119,6 @@
 
 .insetServices {
   margin: 30px 0 1px 0;
-  padding: 7px;
   border: 1px solid #DDD;
   text-align: left;
   box-sizing: border-box;
@@ -144,8 +150,13 @@
   display: flex;
 }
 
+.noteWrapper {
+  padding: 20px;
+  background: #fff;
+}
+
 .notes {
-  background: #f3f3f3;
-  padding: 4px;
+  background: #EAEAEA;
+  padding: 20px;
   border-radius: 3px;
 }

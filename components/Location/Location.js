@@ -247,9 +247,11 @@ const Location = (props) => {
       <ul title="Services details" className={s.servicesList}>
         {services && Object.values(services).map((service, index) => (
           <li key={`service-${index}`} className={s.insetServices}>
-            <h3 className={s.serviceTitle}>{service.name}</h3>
-            <p className={s.serviceDescription}>{service.description}</p>
-            <Schedule schedules={service.schedules} />
+            <div className={s.noteWrapper}>
+              <h3 className={s.serviceTitle}>{service.name}</h3>
+              <p className={s.serviceDescription}>{service.description}</p>
+              <Schedule schedules={service.schedules} />
+            </div>
             <div className={s.notes}>
               <label>Notes</label>
               <p>{service.applicationProcess}</p>
