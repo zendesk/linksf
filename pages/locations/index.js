@@ -40,13 +40,13 @@ export default class LocationsPage extends Component {
   }
 
   componentDidMount() {
+    document.title = 'Link-SF'
+
     if (navigator) {
       navigator.geolocation.getCurrentPosition(this.setCurrentLocation)
     } else {
       this.setLocations()
     }
-
-    document.title = 'Link-SF'
 
     fetchLocations(20)
       .then(locations => {

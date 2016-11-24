@@ -8,9 +8,8 @@ const CategoryList = (props) => (
     title="Services"
     className={`${s.taxonomies}`}>
       {props.categories.map((category, i) => (
-        <div>
+        <div key={`category-${i}`}>
           <Category
-            key={`category-${i}`}
             id={category.id}
             iconClass={category.icon}
             name={category.name} />
