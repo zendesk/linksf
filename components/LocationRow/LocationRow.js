@@ -27,25 +27,20 @@ const LocationRow = (props) => (
       className={s.locationLink}
       title={`Click to see more details about ${props.name}`}
     >
-      <div className={s.locationAndCaret}>
-        <div className={s.locationBox}>
-          <div className={s.locationContainer}>
-            <div className={s.locationName}>{props.name}</div>
+      <div className={s.content}>
+        <div className={s.details}>
+          <div className={s.nameAndStatus}>
+            <span className={s.name}>{props.name}</span>
+            <ServiceStatus className={s.status} services={props.services} />
           </div>
-          <div className={s.locationInfo}>
+          <div className={s.spacer}></div>
+          <div className={s.iconsAndDistance}>
             <IconSpans taxonomies={relevantTaxonomies(props.services)} />
-          </div>
-        </div>
-        <div className={s.locationStatusBox}>
-          <div className={s.locationStatusContainer}>
-            <div className={s.locationStatus}>
-              <ServiceStatus services={props.services || {}} />
-            </div>
             {props.duration && <DistanceText text={props.duration.text} />}
           </div>
-          <div className={s.locationItemBoxCaret}>
-            <i className={`${icons.iconRightOpen2} ${s.rightCaret} icon-caret`}></i>
-          </div>
+        </div>
+        <div className={s.sidebar}>
+          <i className={`${icons.iconRightOpen2} ${s.rightCaret} icon-caret`}></i>
         </div>
       </div>
     </Link>
