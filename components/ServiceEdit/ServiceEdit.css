@@ -63,3 +63,25 @@
   border-color: #dbdbdb;
   padding: 10px 22px;
 }
+
+.subsectionLabel {
+  font-size: 9px;
+  font-weight: bold;
+  margin: 5px 0;
+  border-bottom: 1px solid #555;
+}
+
+.addToSubsection {
+  color: #666;
+  padding: 0;
+  margin: 0 5px;
+  font-size: 8px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  vertical-align: baseline;
+}
+
+.addToSubsection:hover {
+  font-weight: bold;
+}
