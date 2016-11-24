@@ -106,7 +106,7 @@ const DAY_SCHEDULES = {
 }
 
 const convertMilitaryTime = (time) => {
-  const hours = time / 100
+  const hours = Math.floor(time / 100)
   const mins = time % 100
   let output = ''
   if (hours < 12) {
