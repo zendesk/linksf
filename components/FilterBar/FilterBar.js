@@ -30,13 +30,6 @@ const FilterBar = (props) => (
         />
       </Link>
     </div>
-    <div className={s.filterOption}>
-      <ToggleButton
-        label="Sort by distance"
-        enabled
-        on
-      />
-    </div>
   </div>
 )
 
