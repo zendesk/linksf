@@ -106,7 +106,7 @@ export default class LocationsPage extends Component {
     const filteredLocations = filterByOptionsString(queryString.slice(1, queryString.length), locationsList)
 
     filteredLocations.sort(function(a,b) {
-      if (a.duration === undefined) {
+      if (!a.duration) {
         return 0;
       } else {
         return a.duration.value - b.duration.value;
