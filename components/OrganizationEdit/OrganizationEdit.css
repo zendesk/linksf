@@ -1,5 +1,5 @@
 .organizationEditBox {
-
+  padding-top: 20px;
 }
 
 .input {
@@ -8,7 +8,6 @@
   border: 1px solid #ccc;
   color: #333;
   width: calc(100% - 10px);
-  font-size: 7px;
   resize: vertical;
 }
 
@@ -25,12 +24,12 @@
 
 .mainInputGroup {
   display: inline-block;
-  margin-bottom: 5px;
+  margin-bottom: 20px;
   width: 100%;
 }
 
 .description {
-  height: 37px;
+  height: 72px;
 }
 
 .mainLabel {
@@ -44,9 +43,8 @@
 }
 
 .subsectionLabel {
-  font-size: 9px;
   font-weight: bold;
-  margin: 5px 0;
+  margin: 25px 0 10px;
   border-bottom: 1px solid #555;
 }
 
@@ -59,13 +57,13 @@
   border-color: #dbdbdb;
   padding: 10px 22px;
   width: 200px;
+  margin-right: 10px;
 }
 
 .addToSubsection {
   color: #666;
   padding: 0;
   margin: 0 5px;
-  font-size: 8px;
   border: none;
   background: none;
   cursor: pointer;

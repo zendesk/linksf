@@ -3,7 +3,6 @@
 }
 
 .locationFilter {
-  font-size: 7px;
   min-width: 100px;
   width: 50%;
   border-radius: 3px;
@@ -13,7 +12,6 @@
 
 .newOrganization {
   float: right;
-  font-size: 7px;
   border-right: 3px;
   border-radius: 3px;
   border: 1px solid #ddd;
