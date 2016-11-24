@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid #DCDCDC;
-  font-size: 8px;
   padding: 5px 2px;
 }
 
@@ -32,7 +31,6 @@
 .organizationName {
   margin: 3px 0 2px 0;
   text-decoration: none;
-  font-size: 8px;
   font-weight: bold;
 }
 
