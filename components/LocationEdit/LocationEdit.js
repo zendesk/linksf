@@ -79,6 +79,7 @@ class LocationEdit extends Component {
     delete newServices[service.id]
 
     this.updateLocation('services', newServices)
+    this.selectService(null)
   }
 
   selectService = (service) => {
@@ -86,7 +87,7 @@ class LocationEdit extends Component {
   }
 
   serviceSelected = (service) => {
-    return this.props.selectedService.id == service.id
+    return this.props.selectedService && this.props.selectedService.id == service.id
   }
 
   render() {
