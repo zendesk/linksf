@@ -1,11 +1,14 @@
 import 'whatwg-fetch'
 import camelize from 'camelize'
+import decamelizeKeysDeep from 'decamelize-keys-deep'
 
 import firebase from 'firebase'
 import { currentUser } from '../lib/session'
 import config from '../config'
 
 import R from 'ramda'
+
+const decamelize = decamelizeKeysDeep
 
 const LOCATIONS     = 'locations'
 const ORGANIZATIONS = 'organizations'
@@ -125,7 +128,7 @@ export function updateLocation(location) {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(location)
+      body: JSON.stringify(decamelize(location))
     })
     .then(response => response.json())
     .then(json => camelize(json))
@@ -181,7 +184,7 @@ export function updateOrganization(organization) {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(organization)
+      body: JSON.stringify(decamelize(organization))
     })
     .then(response => response.json())
     .then(json => camelize(json))
