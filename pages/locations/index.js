@@ -35,6 +35,7 @@ export default class LocationsPage extends Component {
     super(props)
     this.state = {
       locations: null,
+      locationsWithDistance: [],
       currentLocation: null,
     }
   }
@@ -42,56 +43,63 @@ export default class LocationsPage extends Component {
   componentDidMount() {
     document.title = 'Link-SF'
 
-    if (navigator) {
-      navigator.geolocation.getCurrentPosition(this.setCurrentLocation)
-    } else {
-      this.setLocations()
-    }
-
     fetchLocations(20)
       .then(locations => {
-        this.setState({ locations })
+        this.setState({ locations }, this.loadRemaining)
       })
   }
 
-  setCurrentLocation = (currentLocation) => {
-    this.setState({ currentLocation }, this.setLocations)
-  }
-
-  setLocations = () => {
-    const { currentLocation } = this.state
-
-    if (currentLocation && this.state.locations.length > 0) {
-      calculateAllDistances(this.state.locations, currentLocation)
-        .then(matrixResponse => {
-          const matrixResponses = matrixResponse.rows[0].elements
-          this.setState({ locations: mergeLocationsAndDistances(this.state.locations, matrixResponse) })
-        })
-    } else if (currentLocation) {
-      fetchLocations(20)
-        .then(locations => {
-          locationsCache = locations
-          return calculateAllDistances(locations, currentLocation)
-        })
-        .then(matrixResponse => {
-          const matrixResponses = matrixResponse.rows[0].elements
-          this.setState({ locations: mergeLocationsAndDistances(locationsCache, matrixResponses) })
-        })
-    } else {
-      fetchLocations(20)
-        .then(locations => {
-          this.setState({ locations })
-        })
+  setCurrentLocation = () => {
+    if (navigator) {
+      navigator.geolocation.getCurrentPosition(currentLocation => {
+        this.setState({ currentLocation }, this.addDistances)
+      })
     }
   }
 
-  loadMore = () => {
-    const { locations } = this.state
+  addDistances = () => {
+    const { currentLocation, locations, locationsWithDistance } = this.state
+    const locationSlices = R.splitEvery(25, locations)
 
+    if (!currentLocation) return
+
+    this.calculateDistances(locationSlices, currentLocation)
+  }
+
+  calculateDistances = (locationSlices, currentLocation) => {
+    const { locationsWithDistance } = this.state
+    const a = R.splitAt(1, locationSlices)
+    const locations = a[0][0] // this will always only have one element, the array of our working locations
+    const remaining = a[1]
+
+    if (locations) {
+      // we can only call the distance matrix API with 25 elements at a time,
+      // and 100 elements per second, so lets call with 25 elements every 250ms
+      setTimeout(_ => {
+        calculateAllDistances(locations, currentLocation)
+          .then(matrixResponse => {
+            const matrixResponses = matrixResponse.rows[0].elements
+            const updatedLocations = mergeLocationsAndDistances(locations, matrixResponses)
+
+            this.setState({ locationsWithDistance: [...locationsWithDistance, ...updatedLocations] }, _ => {
+              this.calculateDistances(remaining, currentLocation)
+            })
+          })
+      }, 250)
+    } else {
+      // we should have to do this, but mergeLocationsAndDistances modifies the
+      // the location, so as a side effect the state gets updated anyway
+      // this.setState({ locations: locationsWithDistance }) // if the above comment is implemented,
+    }
+  }
+
+  loadRemaining = () => {
+    const { locations } = this.state
     const lastItemId = locations[locations.length - 1].id
-    fetchLocations(20, lastItemId)
-      .then(locations => {
-        this.setState({ locations: [...this.state.locations, ...locations] })
+
+    fetchLocations(0, lastItemId)
+      .then(newLocations => {
+        this.setState({ locations: [...locations, ...newLocations] }, this.setCurrentLocation)
       })
   }
 
@@ -106,10 +114,10 @@ export default class LocationsPage extends Component {
     const filteredLocations = filterByOptionsString(queryString.slice(1, queryString.length), locationsList)
 
     filteredLocations.sort(function(a,b) {
-      if (!a.duration) {
-        return 0;
+      if (a.duration && b.duration) {
+        return a.duration.value - b.duration.value
       } else {
-        return a.duration.value - b.duration.value;
+        return 0
       }
     });
 
@@ -124,7 +132,6 @@ export default class LocationsPage extends Component {
               queryString={queryString}
             />
             <LocationList locations={filteredLocations} />
-            <button onClick={this.loadMore}>Load More</button>
           </div>
         }
         </Layout>
