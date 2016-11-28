@@ -106,20 +106,21 @@ export default class LocationsPage extends Component {
   render() {
     const { locations } = this.state
     const loading = locations == null
-    const category = getParameterByName('categories')
     const showOpen = window.location.search.includes('hours=open')
     const sortDist = window.location.search.includes('sort=dist')
     const locationsList = Object.values(locations || {})
     const queryString = window.location.search
     const filteredLocations = filterByOptionsString(queryString.slice(1, queryString.length), locationsList)
 
-    filteredLocations.sort(function(a,b) {
-      if (a.duration && b.duration) {
-        return a.duration.value - b.duration.value
-      } else {
-        return 0
-      }
-    });
+    if (sortDist) {
+      filteredLocations.sort((a, b) => {
+        if (a.duration && b.duration) {
+          return a.duration.value - b.duration.value
+        } else {
+          return 0
+        }
+      })
+    }
 
     return (
       <Layout>
