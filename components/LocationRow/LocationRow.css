@@ -57,6 +57,7 @@
   flex-wrap: nowrap;
   align-items: flex-end;
   justify-content: space-between;
+  color: rgb(153, 153, 153);
 }
 
 .sidebar {
@@ -64,8 +65,4 @@
   color: rgb(204, 204, 204);
   width: 15px;
   text-align: right;
-}
-
-.distanceText {
-  color: rgb(153, 153, 153);
 }

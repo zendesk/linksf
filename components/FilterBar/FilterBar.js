@@ -15,18 +15,18 @@ const getNewSortQueryString = (queryString, sortDist) => (
 const FilterBar = (props) => (
   <div className={s.row}>
     <div className={s.filterOption}>
-      <Link to="/locations" queryString={getNewSortQueryString(props.queryString, !props.sortDist)}>
-        <ToggleButton
-          label="Sort by distance"
-          enabled={props.sortDist}
-        />
-      </Link>
-    </div>
-    <div className={s.filterOption}>
       <Link to="/locations" queryString={getNewFilterQueryString(props.queryString, !props.showOpen)}>
         <ToggleButton
           label="Open now"
           enabled={props.showOpen}
+        />
+      </Link>
+    </div>
+    <div className={s.filterOption}>
+      <Link to="/locations" queryString={getNewSortQueryString(props.queryString, !props.sortDist)}>
+        <ToggleButton
+          label="Sort by distance"
+          enabled={props.sortDist}
         />
       </Link>
     </div>
