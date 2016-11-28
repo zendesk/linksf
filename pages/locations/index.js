@@ -87,9 +87,11 @@ export default class LocationsPage extends Component {
           })
       }, 250)
     } else {
-      // we should have to do this, but mergeLocationsAndDistances modifies the
-      // the location, so as a side effect the state gets updated anyway
-      // this.setState({ locations: locationsWithDistance }) // if the above comment is implemented,
+      // technically the `setState` call is necessary, but
+      // mergeLocationsAndDistances modifies the location, so as a side effect
+      // the state gets updated anyway
+
+      // this.setState({ locations: locationsWithDistance })
     }
   }
 
