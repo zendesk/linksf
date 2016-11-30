@@ -1,0 +1,162 @@
+.location {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  margin-bottom: 35px;
+}
+
+.title {
+  margin: 20px 0 0 20px;
+  color: #999;
+}
+
+.label {
+  color: #999;
+  font-weight: normal;
+}
+
+.section {
+  width: 100%;
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  border: none;
+  background: none;
+}
+
+.insetMap {
+  text-align: left;
+  box-sizing: border-box;
+  margin-bottom: 1px;
+  border-radius: 3px;
+  margin: 15px 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.map {
+  height: 230px;
+}
+
+.address {
+  margin: 0px;
+  padding: 15px 4px 15px 6px;
+  background: #fff;
+  border: 1px solid #ccc;
+}
+
+.inset {
+  margin: 15px 0 0 0;
+  width: 100%;
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  display: flex;
+  font-weight: lighter;
+  box-sizing: border-box;
+}
+
+.insetInGroup:not(:first-of-type) {
+  border-top: none;
+  margin-top: 0px;
+}
+
+.insetWebsite {
+  margin: -1px 0 0 0;
+  border: 1px solid #DDD;
+  padding: 7px;
+}
+
+.directionsLabel {
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 16px;
+  color: #999999;
+}
+
+.contactLabel {
+  font-weight: 700;
+  margin-right: 8px;
+  color: #999999;
+}
+
+.callPhone {
+  color: #777;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.phone {
+  text-decoration: none;
+  color: #555;
+}
+
+.websiteUrl {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 50%;
+}
+
+.website {
+  word-wrap: break-word;
+  text-decoration: none;
+  color: #555;
+}
+
+.servicesList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.insetServices {
+  margin: 30px 0 1px 0;
+  border: 1px solid #DDD;
+  text-align: left;
+  box-sizing: border-box;
+  border-radius: 3px;
+}
+
+.serviceTitle {
+  margin-top: 0;
+}
+
+.serviceDescription {
+  margin: 0 0 5px 0;
+  line-height: 1.5;
+}
+
+.openHours {
+  margin-bottom: 5px;
+  padding: 3px;
+}
+
+.labelHour {
+  padding: 0 5px 0 0;
+}
+
+.hour {
+}
+
+.categoryIcons {
+  display: flex;
+}
+
+.noteWrapper {
+  padding: 20px;
+  background: #fff;
+}
+
+.notes {
+  background: #EAEAEA;
+  padding: 20px;
+  border-radius: 3px;
+}

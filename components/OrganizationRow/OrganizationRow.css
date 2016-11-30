@@ -1,0 +1,50 @@
+.organization {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #DCDCDC;
+  padding: 5px 2px;
+}
+
+.organizationBox {
+  display: flex;
+  justify-content: space-between;
+}
+
+.organizationLink {
+  text-decoration: none;
+  color: #000;
+  display: block;
+}
+
+.organizationText {
+  margin: 2px 2px 2px 0;
+}
+
+.organizationIcon {
+  color: #909090;
+}
+
+.organizationInfo {
+  flex-direction: column;
+}
+
+.organizationName {
+  margin: 3px 0 2px 0;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.organizationDistance {
+  color: #c3c3c3;
+  margin: 2px 0;
+  text-align: right;
+}
+
+.categoryIcons {
+  margin-bottom: 4px;
+  display: inline-block;
+}
+
+.rightCaret {
+  float: right;
+}

@@ -1,0 +1,31 @@
+.pickerBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.pickerLabel {
+  padding: 8px 5px 0;
+}
+
+select {
+  margin-top: 8px;
+}
+
+.pickerInput {
+  padding: 3px;
+  border-radius: 2px;
+  border: 1px solid #ccc;
+  vertical-align: middle;
+  box-shadow: inset 0 1px 2px #ddd;
+  color: #777;
+}
+
+.buttonStyle {
+  border: solid 1px #777;
+  cursor: pointer;
+  background: #f3f3f3;
+  border-radius: 3px;
+  border-color: #dbdbdb;
+  padding: 10px 22px;
+}

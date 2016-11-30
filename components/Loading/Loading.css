@@ -1,0 +1,44 @@
+.loading {
+  text-align: center;
+  padding: 50px;
+}
+
+.loading-spinner {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 50%;
+  margin-top: -50px;
+  left: 50%;
+  margin-left: -50px;
+  z-index: 1;
+  border-radius: 50%;
+  border: 2px solid #00BCD4;
+  border-left-color: transparent;
+  background: transparent;
+  animation: rotate 1s infinite linear;
+}
+
+@-webkit-keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,32 @@
+#!/bin/bash
+
+heading() {
+  echo "$1...";
+}
+
+pass() {
+  echo "DONE"
+}
+
+fail() {
+  echo "FAIL"
+}
+
+fail_and_exit() {
+  fail
+  exit -1
+}
+
+try() {
+  heading "$1"
+  if eval "$2"
+  then
+    pass
+  else
+    fail_and_exit
+  fi
+}
+
+try "Buliding your LinkSF" "node run build --release"
+
+try "Deploying your LinkSF instance" "firebase deploy"

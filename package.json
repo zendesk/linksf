@@ -1,6 +1,6 @@
 {
   "name": "Link-SF",
-  "version": "v0.0.1",
+  "version": "v1.0.0",
   "engines": {},
   "repository": {
     "type": "git",
@@ -8,38 +8,139 @@
   },
   "license": "Apache-2.0",
   "contributors": [
-    { "name": "Benjamin Osheroff" },
-    { "name": "Igor Justino de Souza" },
-    { "name": "Rose Trujillo" },
-    { "name": "Shajith Chacko" },
-    { "name": "Kenshiro Nakagawa" }
+    {
+      "name": "Benjamin Osheroff"
+    },
+    {
+      "name": "Igor Justino de Souza"
+    },
+    {
+      "name": "Rose Trujillo"
+    },
+    {
+      "name": "Shajith Chacko"
+    },
+    {
+      "name": "Kenshiro Nakagawa"
+    },
+    {
+      "name": "Greg Ziegan"
+    },
+    {
+      "name": "Craig Day"
+    },
+    {
+      "name": "Adam Hart"
+    },
+    {
+      "name": "Michael Huston"
+    }
   ],
+  "dependencies": {
+    "babel-polyfill": "^6.9.1",
+    "camelize": "^1.0.0",
+    "decamelize-keys-deep": "^0.1.0",
+    "es6-promisify": "^4.1.0",
+    "fastclick": "^1.0.6",
+    "firebase": "^3.3.1",
+    "google-maps": "^3.2.1",
+    "history": "^3.0.0",
+    "ramda": "^0.22.1",
+    "react": "^15.2.0",
+    "react-dom": "^15.2.0",
+    "react-google-autocomplete": "^1.0.7",
+    "react-google-maps": "^4.11.0",
+    "react-redux": "^4.4.5",
+    "redux": "^3.5.2",
+    "whatwg-fetch": "^1.0.0"
+  },
   "devDependencies": {
-    "grunt-autoprefixer": "^2.1.0",
-    "grunt-aws-s3": "^0.10.0",
-    "grunt-browserify": "~3.2.1",
-    "grunt-cachebuster": "~0.1.5",
-    "grunt-cli": "^0.1.13",
-    "grunt-contrib-clean": "~0.6.0",
-    "grunt-contrib-concat": "~0.5.0",
-    "grunt-contrib-cssmin": "~0.11.0",
-    "grunt-contrib-jshint": "~0.10.0",
-    "grunt-contrib-qunit": "~0.5.2",
-    "grunt-contrib-uglify": "~0.7.0",
-    "grunt-contrib-watch": "~0.6.1",
-    "grunt-env": "0.4.2",
-    "grunt-preprocess": "^4.1.0",
-    "grunt-sass": "^0.18.1",
-    "grunt-shell": "^1.1.1",
-    "grunt-simple-mocha": "~0.4.0",
-    "handlebars": "~2.0.0",
-    "hbsfy": "~2.2.1",
-    "localStorage": "~1.0.3",
-    "should": "~4.4.2",
-    "underscore": "~1.7.0",
-    "xmlhttprequest": "~1.6.0"
+    "assets-webpack-plugin": "^3.4.0",
+    "autoprefixer": "^6.3.7",
+    "babel-core": "^6.10.4",
+    "babel-eslint": "^6.1.0",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-transform-runtime": "^6.9.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-1": "^6.5.0",
+    "babel-register": "^6.9.0",
+    "babel-runtime": "^6.9.2",
+    "browser-sync": "^2.13.0",
+    "chai": "^3.5.0",
+    "css-loader": "^0.23.1",
+    "del": "^2.2.1",
+    "dotenv-webpack": "^1.3.1",
+    "ejs": "^2.4.2",
+    "eslint": "^3.0.0",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-import": "^1.10.2",
+    "eslint-plugin-jsx-a11y": "^1.5.3",
+    "eslint-plugin-react": "^5.2.2",
+    "extend": "^3.0.0",
+    "file-loader": "^0.9.0",
+    "firebase-tools": "^3.0.4",
+    "front-matter": "^2.1.0",
+    "highlight.js": "^9.5.0",
+    "json-loader": "^0.5.4",
+    "markdown-it": "^7.0.0",
+    "mocha": "^2.5.3",
+    "path-to-regexp": "^1.5.3",
+    "pixrem": "^3.0.1",
+    "pleeease-filters": "^3.0.0",
+    "postcss": "^5.0.21",
+    "postcss-calc": "^5.2.1",
+    "postcss-color-function": "^2.0.1",
+    "postcss-custom-media": "^5.0.1",
+    "postcss-custom-properties": "^5.0.1",
+    "postcss-custom-selectors": "^3.0.0",
+    "postcss-import": "^8.1.2",
+    "postcss-loader": "^0.9.1",
+    "postcss-media-minmax": "^2.1.2",
+    "postcss-nesting": "^2.3.1",
+    "postcss-selector-matches": "^2.0.1",
+    "postcss-selector-not": "^2.0.0",
+    "react-hot-loader": "^3.0.0-beta.2",
+    "s3": "^4.4.0",
+    "style-loader": "^0.13.1",
+    "stylelint": "^6.8.0",
+    "stylelint-config-standard": "^10.0.0",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.1",
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-hot-middleware": "^2.12.0"
+  },
+  "babel": {
+    "presets": [
+      "react",
+      "es2015",
+      "stage-1"
+    ],
+    "plugins": [
+      "transform-runtime"
+    ]
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "extends": "airbnb"
+  },
+  "stylelint": {
+    "extends": "stylelint-config-standard",
+    "rules": {
+      "string-quotes": "single"
+    }
   },
   "scripts": {
-    "test": "grunt"
+    "eslint": "eslint components core pages test utils main.js run.js webpack.config.js",
+    "stylelint": "stylelint \"components/**/*.css\" \"pages/**/*.css\"",
+    "lint": "npm run eslint && npm run stylelint",
+    "test": "echo tests planned",
+    "test:watch": "mocha --compilers js:babel-register --reporter min --watch",
+    "clean": "node run clean",
+    "build": "node run build",
+    "build:debug": "node run build --debug",
+    "publish": "node run publish",
+    "publish:debug": "node run publish --debug",
+    "start": "node run"
   }
 }
