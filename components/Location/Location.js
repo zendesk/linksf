@@ -85,7 +85,7 @@ const DAY = {
   Saturday: 'saturday',
 }
 
-const dayAbbreviations = {
+const DAY_ABBREVIATIONS = {
   sunday: 'Sun',
   monday: 'Mon',
   tuesday: 'Tue',
@@ -93,16 +93,6 @@ const dayAbbreviations = {
   thursday: 'Thu',
   friday: 'Fri',
   saturday: 'Sat',
-}
-
-const DAY_SCHEDULES = {
-  sunday: [],
-  monday: [],
-  tuesday: [],
-  wednesday: [],
-  thursday: [],
-  friday: [],
-  saturday: [],
 }
 
 const convertMilitaryTime = (time) => {
@@ -134,7 +124,10 @@ const convertMilitaryTime = (time) => {
 }
 
 const getDailySchedules = (schedules) => {
-  const daySchedules = DAY_SCHEDULES
+  const daySchedules = Object.assign({}, DAY_ABBREVIATIONS)
+  Object.keys(daySchedules).forEach(day => {
+    daySchedules[day] = []
+  })
   schedules
     .forEach(schedule => {
       const day = schedule.weekday.toLowerCase()
@@ -160,7 +153,7 @@ const Schedule = (props) => {
     .map(index => (
       <tr key={`day-${index}`}>
         <td className={s.labelHour}>
-          <b>{dayAbbreviations[DAYS[index]]}</b>
+          <b>{DAY_ABBREVIATIONS[DAYS[index]]}</b>
         </td>
         <td className={s.hour}>
           {indexToDaySchedule(index)
