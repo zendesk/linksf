@@ -102,9 +102,9 @@ class ServiceEdit extends Component {
     const newSchedules = schedules
 
     if (value_changed == 'start') {
-      newSchedules[metadata.scheduleNum]['opens_at'] = event.target.value.replace(':', '')
+      newSchedules[metadata.scheduleNum]['opensAt'] = event.target.value.replace(':', '')
     } else if (value_changed == 'end') {
-      newSchedules[metadata.scheduleNum]['closes_at'] = event.target.value.replace(':', '')
+      newSchedules[metadata.scheduleNum]['closesAt'] = event.target.value.replace(':', '')
     } else {
       if (event.target.value == '-'){
         window.alert("You must choose a weekday for a schedule")
@@ -215,7 +215,7 @@ class ServiceEdit extends Component {
         <div className={s.inputBox}>
           <div className={s.inputGroup, s.row}>
             <span className={s.inputLabel}>Schedule: </span>
-            {(this.sortSchedules(service.schedules || [])).map((schedule, index) => (
+            {(this.sortSchedules(service.schedules)).map((schedule, index) => (
               <ScheduleBox
                 key={`schedule-${index}`}
                 index={index}
