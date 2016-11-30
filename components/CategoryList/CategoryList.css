@@ -1,7 +1,6 @@
-.taxonomies {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
+.categoryContainer {
+  width: 100%;
+  display: table;
 }
 
 .categorySpacer {

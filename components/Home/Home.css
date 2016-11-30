@@ -3,9 +3,6 @@
 }
 
 .taxonomyList {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
   padding: 0 14px;
 }
 
