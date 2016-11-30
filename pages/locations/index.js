@@ -63,11 +63,10 @@ export default class LocationsPage extends Component {
 
     if (!currentLocation) return
 
-    this.calculateDistances(locationSlices, currentLocation)
+    this.calculateDistances(locationsWithDistance, locationSlices, currentLocation)
   }
 
-  calculateDistances = (locationSlices, currentLocation) => {
-    const { locationsWithDistance } = this.state
+  calculateDistances = (locationsWithDistance, locationSlices, currentLocation) => {
     const a = R.splitAt(1, locationSlices)
     const locations = a[0][0] // this will always only have one element, the array of our working locations
     const remaining = a[1]
@@ -81,17 +80,11 @@ export default class LocationsPage extends Component {
             const matrixResponses = matrixResponse.rows[0].elements
             const updatedLocations = mergeLocationsAndDistances(locations, matrixResponses)
 
-            this.setState({ locationsWithDistance: [...locationsWithDistance, ...updatedLocations] }, _ => {
-              this.calculateDistances(remaining, currentLocation)
-            })
+            this.calculateDistances([...locationsWithDistance, ...updatedLocations], remaining, currentLocation)
           })
       }, 250)
     } else {
-      // technically the `setState` call is necessary, but
-      // mergeLocationsAndDistances modifies the location, so as a side effect
-      // the state gets updated anyway
-
-      // this.setState({ locations: locationsWithDistance })
+      this.setState({ locations: locationsWithDistance })
     }
   }
 
