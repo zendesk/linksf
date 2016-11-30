@@ -221,7 +221,7 @@ const Location = (props) => {
                     className={s.phone}
                     href={'tel:' + phone.number.replace(/[^\d]/g, '')}
                   >{phone.number}</a>
-                  <span>{phone.department}</span>
+                  <span className={s.phoneDepartment}>{phone.department}</span>
                 </div>
               ))}
             </div>
