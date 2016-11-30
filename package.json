@@ -134,7 +134,7 @@
     "eslint": "eslint components core pages test utils main.js run.js webpack.config.js",
     "stylelint": "stylelint \"components/**/*.css\" \"pages/**/*.css\"",
     "lint": "npm run eslint && npm run stylelint",
-    "test": "mocha --compilers js:babel-register",
+    "test": "echo tests planned",
     "test:watch": "mocha --compilers js:babel-register --reporter min --watch",
     "clean": "node run clean",
     "build": "node run build",
