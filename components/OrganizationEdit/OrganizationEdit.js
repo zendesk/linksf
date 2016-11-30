@@ -182,7 +182,7 @@ class OrganizationEdit extends Component {
   }
 
   locationSelected = (location) => {
-    return this.state.selectedLocation.id == location.id
+    return this.state.selectedLocation && this.state.selectedLocation.id == location.id
   }
 
   render() {

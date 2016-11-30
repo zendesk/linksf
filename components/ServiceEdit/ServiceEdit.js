@@ -3,10 +3,37 @@ import s from './ServiceEdit.css'
 import icons from '../../icons/css/icons.css'
 import { gender } from '../../lib/eligibilities'
 import { age } from '../../lib/eligibilities'
+import { uuid } from '../../lib/uuid'
 import TimeRangePicker from '../TimeRangePicker'
 import ToggleButton from '../ToggleButton'
 
+/* The existing times range 0-2359. This was the easiest way I could think of to make sure that the previous day always weighted less than the next day. */
+const scheduleSorter = {
+  "-":        -1,
+  "Sunday":    0,
+  "Monday":    10000,
+  "Tuesday":   20000,
+  "Wednesday": 30000,
+  "Thursday":  40000,
+  "Friday":    50000,
+  "Saturday":  60000
+}
+
 class ServiceEdit extends Component {
+
+  blankSchedule = () => {
+    const { service } = this.props
+    return {
+      opensAt: "0000",
+      closesAt: "0000",
+      id: uuid(),
+      locationId: service.locationId,
+      organizationId: service.organization,
+      serviceId: service.id,
+      weekday: "-"
+    }
+  }
+
   updateService = (field, value) => {
     const { service, handleChange } = this.props
     const newService = service
@@ -71,17 +98,47 @@ class ServiceEdit extends Component {
     return taxonomy.toLowerCase() == value
   }
 
-  handleTimeChange = (event, start_or_end, metadata) => {
+  handleTimeChange = (event, value_changed, metadata) => {
     const { schedules } = this.props.service
     const newSchedules = schedules
 
-    if (start_or_end == 'start') {
-      newSchedules[metadata.scheduleNum][metadata.day]['opens_at'] = event.target.value.replace(':', '')
+    if (value_changed == 'start') {
+      newSchedules[metadata.scheduleNum]['opensAt'] = event.target.value.replace(':', '')
+    } else if (value_changed == 'end') {
+      newSchedules[metadata.scheduleNum]['closesAt'] = event.target.value.replace(':', '')
     } else {
-      newSchedules[metadata.scheduleNum][metadata.day]['closes_at'] = event.target.value.replace(':', '')
+      if (event.target.value == '-'){
+        window.alert("You must choose a weekday for a schedule")
+        return
+      }
+      newSchedules[metadata.scheduleNum]['weekday'] = event.target.value
     }
 
-    updateService('schedules', newSchedules)
+    this.updateService('schedules', newSchedules)
+  }
+
+  handleTimeDelete = (index) => {
+    const { schedules } = this.props.service
+    const newSchedules = schedules
+
+    newSchedules.splice(index, 1)
+
+    this.updateService('schedules', newSchedules)
+  }
+
+  sortSchedules = (schedules) => {
+    return schedules.sort(function(a, b) {
+      return (scheduleSorter[a.weekday] + parseInt(a.opensAt)) - (scheduleSorter[b.weekday] + parseInt(b.opensAt))
+    })
+  }
+
+  newSchedule = () => {
+    const { schedules } = this.props.service
+    const newSchedules = schedules
+
+    newSchedules.push(this.blankSchedule())
+
+    this.updateService('schedules', newSchedules)
   }
 
   render() {
@@ -133,18 +190,6 @@ class ServiceEdit extends Component {
         </div>
         <div className={s.inputBox}>
           <div className={s.inputGroup, s.row}>
-            <span className={s.inputLabel}>Schedule: </span>
-            {(service.schedules || []).map((schedule, index) => (
-              <ScheduleBox
-                key={`schedule-${index}`}
-                index={index}
-                schedule={schedule}
-                handleTimeChange={this.handleTimeChange} />
-            ))}
-          </div>
-        </div>
-        <div className={s.inputBox}>
-          <div className={s.inputGroup, s.row}>
             <span className={s.inputLabel}>Category: </span>
             {(taxonomies).map((category, i) => (
               <span className={s.inputOption}>
@@ -156,6 +201,28 @@ class ServiceEdit extends Component {
                   label={category.name}
                 />
               </span>
+            ))}
+          </div>
+        </div>
+        <div className={s.subsectionLabel}>
+          Schedules
+          <button
+            className={s.addToSubsection}
+            onClick={this.newSchedule}
+            title={`Click to add a new schedule`}>
+            + Add
+          </button>
+        </div>
+        <div className={s.inputBox}>
+          <div className={s.inputGroup, s.row}>
+            <span className={s.inputLabel}>Schedule: </span>
+            {(this.sortSchedules(service.schedules)).map((schedule, index) => (
+              <ScheduleBox
+                key={`schedule-${index}`}
+                index={index}
+                schedule={schedule}
+                handleTimeChange={this.handleTimeChange}
+                handleTimeDelete={this.handleTimeDelete} />
             ))}
           </div>
         </div>
@@ -210,12 +277,13 @@ const AgeBox = (props) => (
 const ScheduleBox = (props) => (
   <div className={s.inputGroup, s.row}>
     <TimeRangePicker
-      key={`timePicker-${index}`}
-      rangeLabel={props.schedule.weekday}
+      key={`timePicker-${props.index}`}
+      weekday={props.schedule.weekday}
       startTime={props.schedule.opensAt}
       endTime={props.schedule.closesAt}
       handleUpdate={props.handleTimeChange}
-      metadata={{ scheduleNum: props.index, day: index}}/>
+      handleDelete={props.handleTimeDelete}
+      metadata={{ scheduleNum: props.index, day: props.index}}/>
   </div>
 )
 

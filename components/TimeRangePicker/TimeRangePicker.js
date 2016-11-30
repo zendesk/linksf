@@ -2,9 +2,16 @@ import React, { PropTypes } from 'react'
 import s from './TimeRangePicker.css'
 
 const TimeRangePicker = (props) => {
-  function rangeLabel() {
-    return props.rangeLabel || 'Time Range Picker'
-  }
+  const weekdays = [
+    "-",
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ]
 
   function startLabel() {
     return props.startLabel || 'Opens at:'
@@ -17,6 +24,9 @@ const TimeRangePicker = (props) => {
   function startTime() {
     if (props.startTime) {
       let startTime = props.startTime.toString()
+      if (startTime.length != 4) {
+        startTime = "0" + startTime
+      }
       return startTime.slice(0, 2) + ":" + startTime.slice(2, 4)
     } else {
       return "00:00"
@@ -26,6 +36,9 @@ const TimeRangePicker = (props) => {
   function endTime() {
     if (props.endTime) {
       let endTime = props.endTime.toString()
+      if (endTime.length != 4) {
+        endTime = "0" + endTime
+      }
       return endTime.slice(0, 2) + ":" + endTime.slice(2, 4)
     } else {
       return "00:00"
@@ -35,7 +48,14 @@ const TimeRangePicker = (props) => {
 
   return (
     <div className={s.pickerBox}>
-      <span className={s.pickerLabel}>{rangeLabel()}</span>
+      <select 
+        value={props.weekday}
+        onChange={(e) => props.handleUpdate(e, 'weekday', props.metadata)}
+      >
+        {weekdays.map((day) => (
+          <option value={day}>{day}</option>
+        ))}
+      </select>
       <span className={s.pickerLabel}>{startLabel()}</span>
       <input
         type="time"
@@ -50,6 +70,12 @@ const TimeRangePicker = (props) => {
         value={endTime()}
         onChange={(e) => props.handleUpdate(e, 'end', props.metadata)}
       />
+      <button
+        className={s.buttonStyle}
+        onClick={(e) => props.handleDelete(props.metadata.scheduleNum)}
+      >
+      Delete
+      </button>
     </div>
   )
 }
