@@ -178,17 +178,6 @@ class ServiceEdit extends Component {
           </div>
         </div>
         <div className={s.inputBox}>
-          <GenderBox
-            gender={service.eligibility && service.eligibility.gender}
-            getGenderClass={this.getGenderClass}
-            handleGender={this.handleGender}/>
-        </div>
-        <div className={s.inputBox}>
-          <AgeBox
-            getAgeClass={this.getAgeClass}
-            handleAge={this.handleAge} />
-        </div>
-        <div className={s.inputBox}>
           <div className={s.inputGroup, s.row}>
             <span className={s.inputLabel}>Category: </span>
             {(taxonomies).map((category, i) => (
@@ -203,6 +192,18 @@ class ServiceEdit extends Component {
               </span>
             ))}
           </div>
+        </div>
+        <h4>Select all that apply:</h4>
+        <div className={s.inputBox}>
+          <GenderBox
+            gender={service.eligibility && service.eligibility.gender}
+            getGenderClass={this.getGenderClass}
+            handleGender={this.handleGender}/>
+        </div>
+        <div className={s.inputBox}>
+          <AgeBox
+            getAgeClass={this.getAgeClass}
+            handleAge={this.handleAge} />
         </div>
         <div className={s.subsectionLabel}>
           Schedules
