@@ -110,13 +110,21 @@ const convertMilitaryTime = (time) => {
   const mins = time % 100
   let output = ''
   if (hours < 12) {
-    output += hours
+    if (hours == 0) {
+      output += 12
+    } else {
+      output += hours
+    }
     if (mins > 0) {
       output += `:${mins}`
     }
     output += 'am'
   } else {
-    output += hours - 12
+    if (hours == 12) {
+      output += hours
+    } else {
+      output += hours - 12
+    }
     if (mins > 0) {
       output += `:${mins}`
     }
