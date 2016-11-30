@@ -56,6 +56,8 @@
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: flex-end;
+  justify-content: space-between;
+  color: rgb(153, 153, 153);
 }
 
 .sidebar {
@@ -64,4 +66,3 @@
   width: 15px;
   text-align: right;
 }
-
