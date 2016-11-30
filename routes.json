@@ -1,0 +1,50 @@
+[
+  {
+    "path": "/",
+    "page": "./pages/home"
+  },
+  {
+    "path": "/locations",
+    "page": "./pages/locations"
+  },
+  {
+    "path": "/locations/:id",
+    "page": "./pages/location"
+  },
+  {
+    "path": "/options",
+    "page": "./pages/options"
+  },
+  {
+    "path": "/admin",
+    "page": "./pages/admin"
+  },
+  {
+    "path": "/admin/organizations/:id",
+    "page": "./pages/admin/organization"
+  },
+  {
+    "path": "/login",
+    "page": "./pages/auth/login"
+  },
+  {
+    "path": "/logout",
+    "page": "./pages/auth/logout"
+  },
+  {
+    "path": "/feedback",
+    "page": "./pages/feedback"
+  },
+  {
+    "path": "/error",
+    "page": "./pages/error"
+  },
+  {
+    "path": "/about",
+    "page": "./pages/about"
+  },
+  {
+    "path": "/terms",
+    "page": "./pages/terms"
+  }
+]

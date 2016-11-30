@@ -1,0 +1,34 @@
+.adminTopBar {
+  margin: 5px 0;
+}
+
+.locationFilter {
+  min-width: 100px;
+  width: 50%;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  padding: 5px;
+}
+
+.newOrganization {
+  float: right;
+  border-right: 3px;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  padding: 5px;
+  background-color: #f8f8f8;
+  cursor: pointer;
+}
+
+.newOrganization:active {
+  border: 1px solid #ccc;
+  background-color: #e5e5e5;
+}
+
+.helpText {
+  order: 0;
+  flex-basis: 100%;
+  margin: 0;
+  text-align: center;
+  font-weight: bold;
+}

@@ -1,0 +1,101 @@
+.organizationEditBox {
+  padding-top: 20px;
+}
+
+.input {
+  padding: 3px;
+  border-radius: 2px;
+  border: 1px solid #ccc;
+  color: #333;
+  width: calc(100% - 10px);
+  resize: vertical;
+}
+
+.baseOrganizationProperties {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.baseOrganizationItem {
+  flex-basis: 50%;
+}
+
+.mainInputGroup {
+  display: inline-block;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.description {
+  height: 72px;
+}
+
+.mainLabel {
+  display: block;
+}
+
+.sectionLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.subsectionLabel {
+  font-weight: bold;
+  margin: 25px 0 10px;
+  border-bottom: 1px solid #555;
+}
+
+.buttonStyle {
+  border: solid 1px #777;
+  cursor: pointer;
+  background: #f3f3f3;
+  border-radius: 3px;
+  border-color: #dbdbdb;
+  padding: 10px 22px;
+  width: 200px;
+  margin-right: 10px;
+}
+
+.addToSubsection {
+  color: #666;
+  padding: 0;
+  margin: 0 5px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  vertical-align: baseline;
+}
+
+.addToSubsection:hover {
+  font-weight: bold;
+}
+
+.phonesBox {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.locationsEditBox {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.locationsList {
+  flex-basis: 15%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 8px;
+}
+
+.locationEdit {
+  flex-basis: 85%;
+  padding: 8px;
+}

@@ -1,0 +1,6 @@
+{
+  "name": "AdminTopBar",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./AdminTopBar.js"
+}

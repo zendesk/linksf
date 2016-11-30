@@ -1,0 +1,22 @@
+.row {
+  display: flex;
+  align-items:flex-end;
+  border-bottom: 1px solid #DCDCDC;
+  padding: 10px;
+  background-color: rgb(238, 238, 238);
+}
+
+.filterOption {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn {
+  cursor: pointer;
+  padding: 5px 0;
+  width: 100%;
+}
+
+i.category-icon {
+  margin: 3px 5px;
+}

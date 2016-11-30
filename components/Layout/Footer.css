@@ -1,0 +1,21 @@
+.footer {
+  max-width: 325px;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 0 10px;
+  color: #ACACAC;
+  font-size: 15px;
+}
+
+.nav {
+  display: inline-block;
+  margin: 0 5px;
+  color: #ACACAC;
+  text-decoration: none;
+}
+
+.nav:last-of-type {
+  margin-right: 0;
+}

@@ -1,0 +1,19 @@
+.spacer {
+  height: 10px;
+}
+
+.taxonomyList {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  padding: 0 14px;
+}
+
+.title {
+  text-align: center;
+  font-size: 15px;
+  letter-spacing: 0.6pt;
+  color: rgb(51, 51, 51);
+  margin: 0;
+  margin-bottom: 20pt; /* FIXME: shouldn't need a margin here */
+}

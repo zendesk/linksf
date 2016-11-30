@@ -1,0 +1,85 @@
+.serviceEditBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.input {
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  vertical-align: middle;
+  box-shadow: inset 0 1px 3px #ddd;
+  color: #777;
+}
+
+.inputBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.inputGroup {
+  padding: 10px 10px 10px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: left;
+}
+
+.row {
+  flex-direction: row;
+}
+
+.inputOption {
+  padding: 5px 0;
+}
+
+.selectableButton:active {
+  border: 1px solid #ccc;
+  background-color: #e5e5e5;
+}
+
+.selectableButtonActive{
+  background-color: #999;
+  color: white;
+}
+
+.sectionLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.buttonStyle {
+  border: solid 1px #777;
+  cursor: pointer;
+  background: #f3f3f3;
+  border-radius: 3px;
+  border-color: #dbdbdb;
+  padding: 10px 22px;
+}
+
+.subsectionLabel {
+  font-weight: bold;
+  margin: 35px 0 10px;
+  border-bottom: 1px solid #555;
+  width: 100%;
+}
+
+.addToSubsection {
+  color: #666;
+  padding: 0;
+  margin: 0 5px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  vertical-align: baseline;
+}
+
+.addToSubsection:hover {
+  font-weight: bold;
+}

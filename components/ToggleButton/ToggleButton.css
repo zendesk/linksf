@@ -1,0 +1,20 @@
+.toggleButton {
+  color: rgb(153, 153, 153);
+  border: solid 1px #777;
+  cursor: pointer;
+  font-size: 15px;
+  background: #f3f3f3;
+  border-radius: 4px;
+  border-color: rgb(153, 153, 153);
+  padding: 5px 11px;
+}
+
+.toggleButton:first-child {
+  margin-right: 10px
+}
+
+.enabled {
+  background: #007aff;
+  color: #FFF;
+  border-color: #007aff;
+}

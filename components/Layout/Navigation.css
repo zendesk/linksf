@@ -1,0 +1,87 @@
+.header {
+  height: 64px;
+  border-bottom: 1px solid rgb(204, 204, 204);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
+}
+
+.navTopSpace {
+  height: 20px;
+}
+
+.navContent {
+  flex-grow: 2;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 9px;
+}
+
+.backContainer {
+  flex-basis: 33%;
+  display: flex;
+  align-items: center;
+}
+
+.logoContainer {
+  flex-basis: 34%;
+  text-align: center;
+}
+
+.filterContainer {
+  flex-basis: 33%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.back {
+  cursor: pointer;
+  text-decoration: none;
+  color: rgb(0, 122, 255);
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+}
+
+.backArrow {
+  width: 13px;
+  height: 22px;
+  stroke: rgb(0, 122, 255);
+  stroke-width: 3px;
+}
+
+.backText {
+  padding: 0 13.3px;
+}
+
+.logoImg {
+  height: 20px;
+}
+
+.filter {
+  cursor: pointer;
+  text-decoration: none;
+  color: rgb(0, 122, 255);
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+}
+
+.currentUser {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.currentUserDetails {
+  float: left;
+}
+
+.logout {
+  float: right;
+}
