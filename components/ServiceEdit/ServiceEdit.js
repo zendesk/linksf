@@ -7,6 +7,7 @@ import { uuid } from '../../lib/uuid'
 import TimeRangePicker from '../TimeRangePicker'
 import ToggleButton from '../ToggleButton'
 
+/* The existing times range 0-2359. This was the easiest way I could think of to make sure that the previous day always weighted less than the next day. */
 const scheduleSorter = {
   "-":        -1,
   "Sunday":    0,
