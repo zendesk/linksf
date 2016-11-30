@@ -5,7 +5,11 @@
 }
 
 .pickerLabel {
-  padding: 0px 5px;
+  padding: 8px 5px 0;
+}
+
+select {
+  margin-top: 8px;
 }
 
 .pickerInput {

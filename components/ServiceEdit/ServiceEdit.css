@@ -64,17 +64,16 @@
 }
 
 .subsectionLabel {
-  font-size: 9px;
   font-weight: bold;
-  margin: 5px 0;
+  margin: 35px 0 10px;
   border-bottom: 1px solid #555;
+  width: 100%;
 }
 
 .addToSubsection {
   color: #666;
   padding: 0;
   margin: 0 5px;
-  font-size: 8px;
   border: none;
   background: none;
   cursor: pointer;
