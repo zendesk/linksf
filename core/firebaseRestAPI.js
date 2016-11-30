@@ -82,12 +82,21 @@ function ensureDefaultsForLocations(locations) {
 }
 
 function getQueryString(pageSize, startAt) {
-  if (startAt) {
-    return `?limitToFirst=${pageSize}&startAt="${startAt}"&orderBy="$key"`
-  } else if (pageSize) {
-    return `?limitToFirst=${pageSize}&orderBy="$key"`
+  if (!pageSize && !startAt) {
+    return ''
   }
-  return ''
+
+  const queryString = ['orderBy="$key"']
+
+  if (pageSize > 0) {
+    queryString.push(`limitToFirst=${pageSize}`)
+  }
+
+  if (startAt) {
+    queryString.push(`startAt="${startAt}"`)
+  }
+
+  return `?${queryString.join('&')}`
 }
 
 export function fetchLocations(pageSize, startAt) {
