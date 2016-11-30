@@ -212,8 +212,6 @@ class OrganizationEdit extends Component {
                 onChange={(e) => this.handleChange('url', e)}
               />
             </div>
-          </div>
-          <div className={s.baseOrganizationItem}>
             <div className={s.mainInputGroup}>
               <span className={s.mainLabel}>Description </span>
               <textarea
