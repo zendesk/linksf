@@ -20,10 +20,9 @@ const CurrentUser = (props) => {
 }
 
 const getFilter = () => {
-  if(window.location.pathname ==='/')
-    return null;
-  else if(window.location.pathname === '/options')
-    return <Link className={s.filter} to="/options">Search</Link>
+  const pathname = window.location.pathname
+  if((pathname === '/') || (pathname === '/options'))
+    return null
   else
     return <Link className={s.filter} to="/options">Filter</Link>
 }
