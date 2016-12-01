@@ -15,6 +15,7 @@ function getParameterByName(name) {
   return match && decodeURIComponent(match[1].replace(/\+/g, ' '))
 }
 
+// End result for locations is the same except with a duration attribute with a number in minutes
 function mergeLocationsAndDistances(locations, matrixResponses) {
   const zip = (e, index) => {
     return [locations[index], matrixResponses[index]]
@@ -28,6 +29,23 @@ function mergeLocationsAndDistances(locations, matrixResponses) {
   }
 
   return locations.map((e, i) => merge(zip(e, i)))
+}
+
+function calculateWalkingTime(locationA, currentLocation) {
+  // Approxmiate miles per degree at 38 degrees North
+  const degreeLatDistance = 69
+  const degreeLongDistance = 54.6
+
+  const deltaLat = ( (locationA.latitude * currentLocation.coords.latitude) < 0 ) ? 
+    Math.abs(Math.abs(locationA.latitude) + Math.abs(currentLocation.coords.latitude)) :
+    Math.abs(Math.abs(locationA.latitude) - Math.abs(currentLocation.coords.latitude))
+
+  const deltaLong = ( (locationA.longitude * currentLocation.coords.longitude) < 0 ) ? 
+    Math.abs(Math.abs(locationA.longitude) + Math.abs(currentLocation.coords.longitude)) :
+    Math.abs(Math.abs(locationA.longitude) - Math.abs(currentLocation.coords.longitude))
+  
+  // 20 is 60 (minutes in an hour) / 3 mph (average walking pace) to convert distance to walk time in minutes
+  return Math.round((deltaLat * degreeLatDistance + deltaLong * degreeLongDistance) * 20)
 }
 
 export default class LocationsPage extends Component {
@@ -81,11 +99,28 @@ export default class LocationsPage extends Component {
             const updatedLocations = mergeLocationsAndDistances(locations, matrixResponses)
 
             this.calculateDistances([...locationsWithDistance, ...updatedLocations], remaining, currentLocation)
-          })
+          }).catch(this.calculateDistancesFallback)
       }, 250)
     } else {
       this.setState({ locations: locationsWithDistance })
     }
+  }
+
+  calculateDistancesFallback = () => {
+    const { currentLocation, locations } = this.state
+    const locationsWithDuration = locations
+
+    const addDuration = (location) => {
+      const locationWithDuration = location
+      const walkingTime = calculateWalkingTime(location, currentLocation)
+      locationWithDuration.duration = { 
+        value: walkingTime,
+        text: `${walkingTime} mins`
+      }
+      return locationWithDuration
+    }
+
+    this.setState({ locations: locationsWithDuration.map(addDuration) })
   }
 
   loadRemaining = () => {
