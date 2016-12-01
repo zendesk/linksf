@@ -36,11 +36,16 @@ function calculateWalkingTime(locationA, currentLocation) {
   const degreeLatDistance = 69
   const degreeLongDistance = 54.6
 
-  const deltaLat = Math.abs(Math.abs(locationA.latitude) - Math.abs(currentLocation.coords.latitude))
-  const deltaLong = Math.abs(Math.abs(locationA.longitude) - Math.abs(currentLocation.coords.longitude))
+  const deltaLat = ( (locationA.latitude * currentLocation.coords.latitude) < 0 ) ? 
+    Math.abs(Math.abs(locationA.latitude) + Math.abs(currentLocation.coords.latitude)) :
+    Math.abs(Math.abs(locationA.latitude) - Math.abs(currentLocation.coords.latitude))
+
+  const deltaLong = ( (locationA.longitude * currentLocation.coords.longitude) < 0 ) ? 
+    Math.abs(Math.abs(locationA.longitude) + Math.abs(currentLocation.coords.longitude)) :
+    Math.abs(Math.abs(locationA.longitude) - Math.abs(currentLocation.coords.longitude))
   
   // 20 is 60 (minutes in an hour) / 3 mph (average walking pace) to convert distance to walk time in minutes
-  return Math.round((deltaLat*degreeLatDistance + deltaLong*degreeLongDistance)*20)
+  return Math.round((deltaLat * degreeLatDistance + deltaLong * degreeLongDistance) * 20)
 }
 
 export default class LocationsPage extends Component {
