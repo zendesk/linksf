@@ -99,6 +99,10 @@ button {
   color: #555;
 }
 
+.phoneDepartment {
+  margin-left: 5px;
+}
+
 .websiteUrl {
   text-overflow: ellipsis;
   overflow: hidden;
