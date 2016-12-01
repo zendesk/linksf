@@ -1,10 +1,6 @@
 .header {
   height: 64px;
   border-bottom: 1px solid rgb(204, 204, 204);
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  align-items: stretch;
 }
 
 .navTopSpace {
@@ -12,31 +8,30 @@
 }
 
 .navContent {
-  flex-grow: 2;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
-  justify-content: space-between;
   padding: 0 9px;
+  height: calc(100% - 20px); /* -20 from 20px navTopSpace */
+  overflow: hidden;
+  width: calc(100% - 18px); /* -18 for 2x padding 9px */
 }
 
 .backContainer {
-  flex-basis: 33%;
-  display: flex;
-  align-items: center;
+  display: inline-block;
+  vertical-align: bottom;
+  width: 33%;
 }
 
 .logoContainer {
-  flex-basis: 34%;
   text-align: center;
+  display: inline-block;
+  vertical-align: bottom;
+  width: 33%;
 }
 
 .filterContainer {
-  flex-basis: 33%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  display: inline-block;
+  text-align: right;
+  vertical-align: bottom;
+  width: 33%;
 }
 
 .back {
@@ -44,8 +39,8 @@
   text-decoration: none;
   color: rgb(0, 122, 255);
   font-size: 17px;
-  display: flex;
-  align-items: center;
+  vertical-align: middle;
+  display: inline-block;
 }
 
 .backArrow {
@@ -53,10 +48,12 @@
   height: 22px;
   stroke: rgb(0, 122, 255);
   stroke-width: 3px;
+  vertical-align: middle;
 }
 
 .backText {
   padding: 0 13.3px;
+  vertical-align: middle;
 }
 
 .logoImg {
@@ -68,8 +65,6 @@
   text-decoration: none;
   color: rgb(0, 122, 255);
   font-size: 17px;
-  display: flex;
-  align-items: center;
 }
 
 .currentUser {
