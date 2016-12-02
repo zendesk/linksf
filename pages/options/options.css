@@ -94,18 +94,17 @@
 }
 
 .searchButton {
-  background-color: #F3F3F3;
-  background-image: linear-gradient(white,#EBEBEB);
+  background-color: #FFFFFF;
   border: 1px solid #DCDCDC;
-  border-radius: 13px;
-  color: #989898;
-  font-size: 8px;
+  border-radius: 4px;
+  color: #666;
   padding: 4px 7px;
   width: 100%;
   text-align: center;
   text-shadow: none;
-  height: 25px;
-  font-size: 10px;
+  height: 36px;
+  font-size: 20px;
+  margin-top: 8px;
 }
 
 .alert {
