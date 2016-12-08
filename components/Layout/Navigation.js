@@ -21,10 +21,10 @@ const CurrentUser = (props) => {
 
 const getFilter = () => {
   const pathname = window.location.pathname
-  if((pathname === '/') || (pathname === '/options'))
+  if ((pathname === '/') || (pathname === '/options') || (pathname.startsWith('/admin'))) {
     return null
-  else
-    return <Link className={s.filter} to="/options">Filter</Link>
+  }
+  return <Link className={s.filter} to="/options">Filter</Link>
 }
 
 class Navigation extends Component {
@@ -57,7 +57,7 @@ class Navigation extends Component {
           <div className={s.filterContainer}>
             {getFilter()}
           </div>
-          {/*<CurrentUser { ...this.props } />*/}
+          <CurrentUser {...this.props} />
         </div>
       </nav>
     )
