@@ -38,6 +38,7 @@ class Login extends React.Component {
           <span className={s.passwordLabel}>Password </span>
           <input
             type="password"
+            onKeyPress={target => target.charCode === 13 && this.handleSubmit()}
             value={this.state.password}
             onChange={(e) => this.handleChange('password', e)} />
         </div>
