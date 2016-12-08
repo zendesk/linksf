@@ -9,8 +9,9 @@
  */
 
 import createBrowserHistory from 'history/lib/createBrowserHistory'
+import useBeforeUnload from 'history/lib/useBeforeUnload'
 import useQueries from 'history/lib/useQueries'
 
-const history = useQueries(createBrowserHistory)()
+const history = useQueries(useBeforeUnload(createBrowserHistory))()
 
 export default history
