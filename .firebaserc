@@ -1,8 +1,8 @@
 {
   "projects": {
-    "linksf-dev": "vivid-inferno-4672",
-    "staging": "vivid-inferno-4672",
-    "default": "vivid-inferno-4672",
-    "production": "vivid-inferno-4672"
+    "linksf-dev": "[PROJECT_ID]",
+    "staging": "[PROJECT_ID]",
+    "default": "[PROJECT_ID]",
+    "production": "[PROJECT_ID]"
   }
 }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import globalConfig from '../../config'
+
 import icons from '../../icons/css/icons.css'
 import { fetchTaxonomies } from '../../core/firebaseRestAPI'
 import { taxonomiesWithIcons } from '../../lib/taxonomies'
@@ -53,7 +55,7 @@ class OptionsPage extends Component {
   }
 
   componentDidMount() {
-    document.title = 'Link-SF'
+    document.title = globalConfig.title
     this.getGeoPermission()
     fetchTaxonomies()
       .then(taxonomies => {

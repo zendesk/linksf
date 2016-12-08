@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+
+import globalConfig from '../../config'
+
 import { destroySession } from '../../lib/session'
 import { redirectTo } from '../../lib/navigation'
 import { firebaseClient } from '../../core/firebaseRestAPI'
@@ -13,7 +16,7 @@ class LogoutPage extends Component {
   }
 
   componentDidMount() {
-    document.title = 'Link-SF Admin'
+    document.title = `${globalConfig.title} Admin`
   }
 
   render() {

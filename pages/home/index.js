@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import globalConfig from '../../config'
+
 import icons from '../../icons/css/icons.css'
 import { fetchTaxonomies } from '../../core/firebaseRestAPI'
 import { taxonomiesWithIcons } from '../../lib/taxonomies'
@@ -24,7 +26,7 @@ class HomePage extends Component {
           taxonomies: taxonomiesWithIcons(taxonomies)
         })
       })
-    document.title = 'Link-SF'
+    document.title = globalConfig.title
   }
 
   render() {
