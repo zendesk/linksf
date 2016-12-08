@@ -7,11 +7,6 @@ class PhoneEdit extends Component {
   updatePhone = (property, value) => {
     const { index, handleChange } = this.props
 
-    // const tempPhone = {}
-    // tempPhone[value] = event.target.value
-
-    // const newPhone = R.merge(phone, tempPhone)
-
     handleChange(property, value, index)
   }
 
