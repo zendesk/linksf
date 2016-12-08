@@ -1,11 +1,12 @@
 import React, { Component, PropTypes } from 'react'
 
-import { fetchOrganizations } from '../../core/firebaseRestAPI'
+import { fetchOrganizations, fetchTaxonomies, fetchLocations } from '../../core/firebaseRestAPI'
 
 import Loading from '../Loading'
 import AdminTopBar from '../AdminTopBar'
 import OrganizationList from '../OrganizationList'
-
+import { taxonomiesWithIcons } from '../../lib/taxonomies'
+import { categoriesFilter } from '../../lib/filterLocations'
 
 class Admin extends Component {
   constructor(props) {
@@ -13,6 +14,9 @@ class Admin extends Component {
     this.state = {
       organizations: null,
       matchingSearchOrganizations: null,
+      taxonomies: [],
+      filterTaxonomies: [],
+      locations : [],
     }
   }
 
@@ -20,6 +24,24 @@ class Admin extends Component {
     fetchOrganizations()
       .then(organizations => {
         this.setState({ organizations })
+      })
+    this.refreshLocations()
+    this.refreshTaxonomies()
+  }
+
+  refreshLocations = () => {
+    fetchLocations()
+      .then(locations => {
+        this.setState({ locations })
+      })
+  }
+
+  refreshTaxonomies = () => {
+    fetchTaxonomies()
+      .then(taxonomies => {
+        this.setState({
+          taxonomies: taxonomiesWithIcons(taxonomies)
+        })
       })
   }
 
@@ -41,21 +63,50 @@ class Admin extends Component {
     })
   }
 
+  filterOrgs = (taxonomies) => {
+    this.setState({ filterTaxonomies: taxonomies })
+  }
+
   render() {
     const {
       organizations,
       matchingSearchOrganizations,
+      taxonomies,
+      filterTaxonomies,
+      locations,
     } = this.state
 
     const loading = organizations == null
     const orgs = matchingSearchOrganizations || organizations || []
+    const filterOptions = {
+      categories: filterTaxonomies,
+      demographics: [],
+      gender: '',
+      hours: 'all',
+    }
+    const locationFilterOptions = (location) => ({
+      location,
+      options: filterOptions,
+      isValid: true,
+    })
+    const filteredOrgIds = locations.reduce((orgIds, loc) => {
+      if (categoriesFilter(locationFilterOptions(loc)).isValid) {
+        return [...orgIds, loc.organizationId]
+      }
+      return orgIds
+    }, [])
+    const filteredOrgs = (filteredOrgIds.length > 0) ? orgs.filter(org => filteredOrgIds.includes(org.id)) : orgs
 
     return (
       <div>
-        <AdminTopBar onSearch={this.handleSearch} />
+        <AdminTopBar
+          onSearch={this.handleSearch}
+          taxonomies={taxonomies}
+          onFilterTaxonomiesChange={this.filterOrgs}
+        />
         { loading ?
             <Loading /> :
-            <OrganizationList organizations={orgs} /> }
+            <OrganizationList organizations={filteredOrgs} /> }
       </div>
     )
   }
