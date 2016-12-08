@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import globalConfig from '../../config'
+
 import { fetchLocations } from '../../core/firebaseRestAPI'
 import { calculateAllDistances } from '../../core/distance'
 
@@ -59,7 +61,7 @@ export default class LocationsPage extends Component {
   }
 
   componentDidMount() {
-    document.title = 'Link-SF'
+    document.title = globalConfig.title
 
     fetchLocations(20)
       .then(locations => {
