@@ -2,6 +2,46 @@
   margin: 5px 0;
 }
 
+.categoryIcon {
+  display: inline-block;
+  text-align: center;
+  min-width: 10px;
+  margin: 0 5px;
+  flex: 5%;
+}
+
+.taxonomyListItem {
+  display: flex;
+}
+
+.taxonomySpacer {
+  width: 10px;
+}
+
+.taxonomyFilterBar {
+  display: flex;
+  padding: 5px 0;
+}
+
+.isInactiveTaxonomy {
+  background-color: white;
+}
+
+.isActiveTaxonomy {
+  background-color: #007aff;
+}
+
+.taxonomyFilter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  padding: 8px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
 .locationFilter {
   min-width: 100px;
   width: 50%;
