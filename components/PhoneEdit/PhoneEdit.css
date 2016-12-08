@@ -23,8 +23,9 @@
   background: #f3f3f3;
   border-radius: 3px;
   border-color: #dbdbdb;
-  padding: 10px 22px;
+  padding: 8px 20px;
   width: 200px;
+  font-size: 16px;
 }
 .inputGroup {
   padding: 10px 0;
