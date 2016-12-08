@@ -1,66 +1,110 @@
 # Setup
 
-This guide explains how to install and setup Link-SF.
+This guide explains how to install and setup your Link-SF.
 
 ## Prerequisites
 
 ### Accounts
 
-Link-SF is designed to be free to setup and free to run in perpetuity. Since hosting files is cheap, we've decided to go with building a [static site](https://en.wikipedia.org/wiki/Static_web_page). There's only one hard dependency as far as accounts go. Firebase gives us data persistence and authentication.
+Link-SF is designed to be free to setup and free to run. Since hosting files is cheap, we've decided to build a [static site](https://en.wikipedia.org/wiki/Static_web_page).
 
-* [Firebase](https://firebase.google.com/console)
+* [Firebase](https://firebase.google.com/console):  Firebase is the only required account, and it's completely free.  It will provide everything we need to get up and running, including database storage, authentication, and hosting.
 
-If you want to deploy the site publicly, S3 gives us free file hosting:
-
-* [Amazon Web Services](http://aws.amazon.com/s3/?nc1=h_l2_sc)
+  **Note**  Every administrator on your account will need to be created under the Authentication panel in your new Firebase Console.  You won't be able to adjust your production data from the app without it!
 
 The following accounts are optional:
 
-* [Google Analytics](http://www.google.com/analytics/): In addition to capturing useful things like user agent and traffic, we've added a couple custom events that help us keep track of how often a user connects to a service via external link (calling, visiting website, or getting directions).
+* [Google Analytics](http://www.google.com/analytics/):  Google Analytics captures useful events like user agent information and traffic data.
 
-### Command line tools
-
-To build the site (turn a file tree into a monolithic html, js, and css file), you'll need some command line tools installed from the sites below:
-
-* [node](http://nodejs.org/)
-
-## Development
+### Get the code
 
 Download the source (via [git](git@github.com:zendesk/linksf.git) or [.zip file](https://github.com/zendesk/linksf/archive/master.zip)).
 
-### Secrets
+## Setup
 
-In the project root, you'll find a `.env.example` file. Make copies of that file called `.env.dev` and `.env.prod` in the same directory. They will probably look something like this:
+### Database Population
+
+If you have an existing project hosted with Parse, you can use our migration tool to copy all of your data into  Firebase.
+
+ * [Link Migrator](http://linkmigrator.herokuapp.com/)
+
+To see more about how your data is structured and what it means, read our [Management documentation](https://github.com/zendesk/linksf/blob/master/docs/MANAGE.md)
+
+### Configuration
+
+In the project root, you will find three configuration files:
+
+1. `.firebaserc`
+2. `config.js`
+3. `.env.example`
+
+In `.firebaserc` and `config.js`, you will need to replace all instances of `[PROJECT_ID]` with your own Project ID, which can be found in your [Firebase Console](https://firebase.google.com/console) general settings.
+
+Make copies of `.env.exmaple` and call them `.env.dev` and `.env.prod` in the same directory. They will probably look something like this:
 
 ```
 FEEDBACK_EMAIL_ADDRESS=xxxxxxx
-...
 ```
 
 Keep your `.env.dev` and `.env.prod` files secret (out of source control, etc).
 
-### Building the site
+### Install tools
+
+If you are working from a Unix system with Bash, you can use the pre-written boostrap script, which will complete all remaining steps in this doc.
+
+`./script/bootstrap`
+
+Otherwise follow the steps below for your system.
+
+1. Install the current node version
+
+  If you are using a version manager such as nvm, run `nvm install`, otherwise download and install the current version from `.nvmrc` from [the node website](http://nodejs.org/).
+
+2. Install our package manager (npm)
+
+  Follow the installation instructions from [the npm repository](https://github.com/npm/npm).
+
+3. Install Firebase Tools
+
+  Follow the installation instructions from the [Firebase Tools repository](https://github.com/firebase/firebase-tools).
+
+### Install dependencies
+
+Using npm, we can install all dependencies with one command.
+
+`npm install`
+
+### Setting up your Firebase project
+
+The following steps will use Firebase Tools to authenticate and set up your local Link-SF copy in preparation to deploy.
+
+1. Login
+
+  Just use your Google credentials and go with the flow.
+
+  `firebase login`
+
+2. Add your Firebase project
+
+  This will configure which project we deploy to. Choose the correct one at the prompt and give it a nickname.
+
+  `firebase use --add`
+
+## Running the site locally
 
 From the project root (and with the command line tools outlined above installed):
 
-1. `npm install`
-2. `npm start`
+`npm start`
 
-If everything worked, you should have Link-SF open and running in your browser. You won't see any facilities listed in search, so you'll want to add one in the admin interface. First, create a new user in the Firebase interface.
-
-**TODO** Explain what to do in Firebase
+If everything worked, you should have Link-SF open and running in your browser. If you migrated data from Parse, you should see everything show up here.  If not, you will need to add data using the administrator interface by visiting `/admin`.
 
 ### Making changes to the site
 
 Making changes to the site is pretty simple. `webpack` will build the site and watch for changes. Most the time you should not even have to refresh your browser to see a change! (That's called "hot reloading").
 
-#### Updating fonts
+#### Updating icons
 
 We use http://fontello.com to generate an icon bundle. [Here's a guide on how to add or change icons](https://github.com/zendesk/linksf/blob/master/docs/ICONS.md).
-
-### Testing
-
-**TODO** Fill out when we have tests
 
 ### Feedback form
 
@@ -68,6 +112,6 @@ Link-SF uses [Formspree](https://formspree.io/) to send emails from the static s
 
 If you'd like to use a feedback form:
 
-1. Add the email address where you would like feedback form submissions to be sent to the `.env.xxx` files on the `FEEDBACK_EMAIL_ADDRESS` line (see [example .env.xxx file](https://github.com/zendesk/linksf/blob/master/.env.example))
-1. Deploy your new changes and navigate to the feedback page (you'll find the feedback link on the footer of the home and detail pages).
-1. On the feedback page, make sure to submit the form once. This will send an email asking you to confirm your email address. Confirm your email address and submit the form once more to make sure everything is working smoothly. You're all set!
+1. Add the email address where you would like feedback form submissions to be sent to the `.env.xxx` files on the `FEEDBACK_EMAIL_ADDRESS` line (see [example .env.xxx file](https://github.com/zendesk/linksf/blob/master/.env.example)).
+2. Deploy your new changes and navigate to the feedback page (you'll find the feedback link on the footer of the home and detail pages).
+3. On the feedback page, make sure to submit the form once. This will send an email asking you to confirm your email address. Confirm your email address and submit the form once more to make sure everything is working smoothly. You're all set!
