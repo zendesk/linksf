@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react'
+import R from 'ramda'
 import s from './OrganizationEdit.css'
 import icons from '../../icons/css/icons.css'
+import history from '../../core/history'
 
 import { taxonomiesWithIcons } from '../../lib/taxonomies'
 import { redirectTo } from '../../lib/navigation'
@@ -17,6 +19,8 @@ import {
 import LocationEdit from '../LocationEdit'
 import ToggleButton from '../ToggleButton'
 import PhoneEdit from '../PhoneEdit'
+
+const changesMessage = "There are unsaved changes. Are you sure you want to discard them?"
 
 const blankPhone = () => ({
   department: "",
@@ -38,9 +42,12 @@ const blankLocation = (organization) => ({
 
 class OrganizationEdit extends Component {
   constructor(props) {
+    const tempProps = Object.assign({}, props)
+
     super(props)
     this.state = {
-      organization: props.organization,
+      changesExist: false,
+      organization: tempProps.organization,
       locations: [],
       selectedLocation: null,
       selectedService: null
@@ -50,6 +57,26 @@ class OrganizationEdit extends Component {
   componentDidMount() {
     this.refreshLocations()
     this.refreshTaxonomies()
+    const currentLocation = window.location.pathname
+
+    history.listenBeforeUnload(_ => (this.state.changesExist ? changesMessage : null))
+
+    // If there are changes and the user tries to click the back button, so we
+    // prompt them if it is okay. The caveat is that regardless of the users
+    // answer, the history stack and URL have already been modified. So if we
+    // are executing the back action (action == POP), then push the current page
+    // back onto the stack, otherwise proceed as normal.
+    history.listenBefore((location, callback) => {
+      if (location.action === "POP" && this.state.changesExist) {
+        if (confirm(changesMessage)) {
+          callback()
+        } else {
+          history.push(currentLocation)
+        }
+      } else {
+        callback()
+      }
+    })
   }
 
   //TODO: only fetch locations for org rather than filter them down after
@@ -89,41 +116,65 @@ class OrganizationEdit extends Component {
   // Updates our representation of the organization in the state
   handleChange = (property, event) => {
     const { organization } = this.state
-    const newOrganization = organization
+    const newOrganization = {}
 
     newOrganization[property] = event.target.value
 
-    this.setState({ organization: newOrganization })
+    const updatedOrganization = R.merge(organization, newOrganization)
+
+    this.setState({
+      organization: updatedOrganization,
+      changesExist: true,
+    })
   }
 
-  handlePhones = (newPhone, index) => {
+  handlePhones = (property, newValue, index) => {
     const { organization } = this.state
-    const newPhones = organization.phones
 
-    newPhones[index] = newPhone
-    organization.phones = newPhones
+    const newPhone = {}
+    newPhone[property] = newValue
 
-    this.setState({ organization })
+    const newPhones = [...organization.phones]
+    newPhones[index] = R.merge(newPhones[index], newPhone)
+
+    const newOrganization = {}
+    newOrganization.phones = newPhones
+
+    const updatedOrganization = R.merge(organization, newOrganization)
+
+    this.setState({
+      organization: updatedOrganization,
+      changesExist: true,
+    })
   }
 
   newPhone = () => {
     const { organization } = this.state
-    const newPhones = organization.phones || []
+    const newPhones = [...organization.phones]
+    const newOrganization = {}
 
     newPhones.push(blankPhone())
-    organization.phones = newPhones
+    newOrganization.phones = newPhones
 
-    this.setState({ organization })
+    const updatedOrganization = R.merge(organization, newOrganization)
+
+    this.setState({ organization: updatedOrganization })
   }
 
   deletePhone = (index) => {
     const { organization } = this.state
-    const newPhones = organization.phones
+    const newPhones = [...organization.phones]
+    const newOrganization = {}
 
     newPhones.splice(index, 1)
-    organization.phones = newPhones
+    newOrganization.phones = newPhones
 
-    this.setState({ organization })
+    const updatedOrganization = R.merge(organization, newOrganization)
+
+    this.setState({
+      organization: newOrganization,
+      changesExist: true,
+    })
   }
 
   handleStateUpdate = (update) => {
@@ -132,21 +183,28 @@ class OrganizationEdit extends Component {
 
   handleLocations = (newLocation, index) => {
     const { locations } = this.state
-    const newLocations = locations
+    const newLocations = [...locations]
 
     newLocations[index] = newLocation
 
-    this.setState({ locations: newLocations })
+    this.setState({
+      locations: newLocations,
+      changesExist: true,
+    })
   }
 
   newLocation = () => {
     const { organization, locations } = this.state
-    const newLocations = locations || []
+    const newLocations = [...locations]
 
     const newLocation = blankLocation(organization)
     newLocations.push(newLocation)
 
-    this.setState({ locations: newLocations, selectedLocation: newLocation, selectedService: null})
+    this.setState({
+      locations: newLocations,
+      selectedLocation: newLocation,
+      selectedService: null,
+    })
   }
 
   handleDeleteLocation = (index) => {
@@ -160,10 +218,13 @@ class OrganizationEdit extends Component {
 
     deleteLocation(location.id)
       .then(_res => {
-        const newLocations = locations
+        const newLocations = [...locations]
 
         newLocations.splice(index, 1)
-        this.setState({ locations: newLocations })
+        this.setState({
+          locations: newLocations,
+          changesExist: true,
+        })
       })
   }
 
@@ -177,8 +238,26 @@ class OrganizationEdit extends Component {
     })
   }
 
+  handleReset = () => {
+    const { organization } = this.props
+
+    this.setState({
+      organization,
+      locations: [],
+      selectedLocation: null,
+      selectedService: null,
+      changesExist: false,
+    }, _ => {
+      this.refreshLocations()
+      this.refreshTaxonomies()
+    })
+  }
+
   selectLocation = (location) => {
-    this.setState({ selectedLocation: location, selectedService: null })
+    this.setState({
+      selectedLocation: location,
+      selectedService: null,
+    })
   }
 
   locationSelected = (location) => {
@@ -186,7 +265,13 @@ class OrganizationEdit extends Component {
   }
 
   render() {
-    const { organization, locations, selectedLocation, selectedService, taxonomies } = this.state
+    const {
+      organization,
+      locations,
+      selectedLocation,
+      selectedService,
+      taxonomies
+    } = this.state
 
     return (
       <div className={s.organizationEditBox}>
@@ -233,7 +318,7 @@ class OrganizationEdit extends Component {
           </button>
         </div>
         <div className={s.phonesBox}>
-          {(organization.phones || []).map((phone, index) => (
+          {organization.phones.map((phone, index) => (
             <PhoneEdit
               key={`phone-${index}`}
               phone={phone}
@@ -276,8 +361,9 @@ class OrganizationEdit extends Component {
         </div>
 
         <div className={s.formSubmit}>
-          <button className={s.buttonStyle} type="button" onClick={this.handleSubmit}>Submit</button>
-          <button className={s.buttonStyle} onClick={this.handleDeleteOrganization}>Delete this Organization</button>
+          <button className={`${s.buttonStyle} ${s.submitButton}`} onClick={this.handleSubmit}>Submit</button>
+          <button className={s.buttonStyle} onClick={this.handleReset}>Reset</button>
+          <button className={`${s.buttonStyle} ${s.deleteButton}`} onClick={this.handleDeleteOrganization}>Delete this Organization</button>
         </div>
       </div>
     )

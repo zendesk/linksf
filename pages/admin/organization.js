@@ -51,28 +51,14 @@ class OrganizationAdminPage extends Component {
     }
   }
 
-  handleEditFormSubmit = (organization, locations) => {
-    var orgKey = putOrganization(organization)
-    locations.map((loc) => putLocation(loc))
-
-    this.refreshOrganizations()
-    organization.key = newKey
-
-    this.setState({
-      showEditPage: true,
-      currentOrganization: organization
-    })
-  }
-
   render() {
     const { organization } = this.state
-    const loading = organization == null
 
     return (
       <Layout admin>
-        { loading ?
-            <Loading /> :
-            <OrganizationEdit organization={organization} />
+        { organization ?
+            <OrganizationEdit organization={organization} /> :
+            <Loading />
         }
       </Layout>
     )

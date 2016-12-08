@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
+import R from 'ramda'
 
 import s from './PhoneEdit.css'
 
 class PhoneEdit extends Component {
-   updatePhone = (value, event) => {
-    const { phone, index, handleChange } = this.props
-    const newPhone = phone
+  updatePhone = (property, value) => {
+    const { index, handleChange } = this.props
 
-    newPhone[value] = event.target.value
-    handleChange(newPhone, index)
+    handleChange(property, value, index)
   }
 
    deletePhone = () => {
@@ -27,14 +26,14 @@ class PhoneEdit extends Component {
           className={s.input}
           type="tel"
           value={phone.number}
-          onChange={(e) => this.updatePhone('number', e)}
+          onChange={(e) => this.updatePhone('number', e.target.value)}
         />
         <span className={s.label}>Department </span>
         <input
           className={s.input}
           type="text"
           value={phone.department}
-          onChange={(e) => this.updatePhone('department', e)}
+          onChange={(e) => this.updatePhone('department', e.target.value)}
         />
         <div className={s.inputGroup}>
           <button
