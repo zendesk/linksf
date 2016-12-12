@@ -1,8 +1,7 @@
 {
   "projects": {
-    "linksf-dev": "[PROJECT_ID]",
-    "staging": "[PROJECT_ID]",
     "default": "[PROJECT_ID]",
+    "staging": "[PROJECT_ID]",
     "production": "[PROJECT_ID]"
   }
 }

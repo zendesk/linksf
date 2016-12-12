@@ -36,7 +36,7 @@ In the project root, you will find three configuration files:
 
 1. `.firebaserc`
 
-  In `.firebaserc`, you will need to replace all instances of `[PROJECT_ID]` with your own Project ID, which can be found in your [Firebase Console](https://firebase.google.com/console) general settings.
+  In `.firebaserc`, you will need to replace all instances of `[PROJECT_ID]` with your own Project ID, which can be found in your [Firebase Console](https://firebase.google.com/console) general settings.  This file contains aliases for various deploy destinations.  For example, if you wanted to have a testing environment and a production environment, you could set the two different Firebase Project IDs here.
 
 2. `config.js`
 
