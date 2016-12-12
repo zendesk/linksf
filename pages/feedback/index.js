@@ -15,12 +15,14 @@ import TextArea from '../../components/TextArea'
 import Button from '../../components/Button'
 import Error from '../../components/Error'
 
+import globalConfig from '../../config'
+
 class FeedbackPage extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      submitUrl: "https://formspree.io/" + process.env.FEEDBACK_EMAIL_ADDRESS,
+      submitUrl: "https://formspree.io/" + globalConfig.feedbackEmailAddress,
       name: '',
       email: '',
       subject: '',

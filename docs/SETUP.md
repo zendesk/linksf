@@ -35,18 +35,32 @@ To see more about how your data is structured and what it means, read our [Manag
 In the project root, you will find three configuration files:
 
 1. `.firebaserc`
+
+  In `.firebaserc`, you will need to replace all instances of `[PROJECT_ID]` with your own Project ID, which can be found in your [Firebase Console](https://firebase.google.com/console) general settings.  This file contains aliases for various deploy destinations.  For example, if you wanted to have a testing environment and a production environment, you could set the two different Firebase Project IDs here.
+
 2. `config.js`
-3. `.env.example`
 
-In `.firebaserc` and `config.js`, you will need to replace all instances of `[PROJECT_ID]` with your own Project ID, which can be found in your [Firebase Console](https://firebase.google.com/console) general settings.
+  `config.js` contains a variety of details and keys.  Here's what you need to do:
+  * Customize your project's title and description.
+  * Like in `.firebaserc`, replace all locations of `[PROJECT_ID]` with your own Project ID.
+  * Fill in your Firebase API Key in the `[FIREBASE_API_KEY]` slot, which can be found on the same page as your Project ID.
+  * Enter the email address you'd like to receive feedback at (for more information see the Feedback form section below).
 
-Make copies of `.env.exmaple` and call them `.env.dev` and `.env.prod` in the same directory. They will probably look something like this:
+3. `run.js`
 
-```
-FEEDBACK_EMAIL_ADDRESS=xxxxxxx
-```
+  Near the top, there will be a configuration section that looks like this:
 
-Keep your `.env.dev` and `.env.prod` files secret (out of source control, etc).
+  ```
+  const config = {
+    title: 'Link-SF',           // Your website title
+    url: 'https://link-sf.com', // Your website URL
+    project: 'link-sf',         // Firebase project. See README.md -> How to Deploy
+    trackingID: 'UA-XXXXX-Y',   // Google Analytics Site's ID
+  };
+  ```
+
+  Just fill in the information, it should be pretty self-explanatory!  Please note if you are using Google Analytics (optional), this is where you will insert your tracking ID.
+
 
 ### Install tools
 
@@ -112,6 +126,6 @@ Link-SF uses [Formspree](https://formspree.io/) to send emails from the static s
 
 If you'd like to use a feedback form:
 
-1. Add the email address where you would like feedback form submissions to be sent to the `.env.xxx` files on the `FEEDBACK_EMAIL_ADDRESS` line (see [example .env.xxx file](https://github.com/zendesk/linksf/blob/master/.env.example)).
+1. Add the email address where you would like feedback form submissions to be sent to in `config.js` under `[FEEDBACK_EMAIL_ADDRESS]`.
 2. Deploy your new changes and navigate to the feedback page (you'll find the feedback link on the footer of the home and detail pages).
 3. On the feedback page, make sure to submit the form once. This will send an email asking you to confirm your email address. Confirm your email address and submit the form once more to make sure everything is working smoothly. You're all set!

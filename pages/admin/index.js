@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import globalConfig from '../../config'
+
 import Loading from '../../components/Loading'
 import Layout from '../../components/Layout'
 import Admin from '../../components/Admin'
@@ -12,7 +14,7 @@ class AdminPage extends Component {
   }
 
   componentDidMount() {
-    document.title = 'Link-SF Admin'
+    document.title = `${globalConfig.title} Admin`
   }
 
   render() {

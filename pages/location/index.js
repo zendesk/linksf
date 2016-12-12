@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import globalConfig from '../../config'
+
 import { fetchLocation, fetchOrganization } from '../../core/firebaseRestAPI'
 
 import Layout from '../../components/Layout'
@@ -30,7 +32,7 @@ export default class LocationPage extends Component {
 
   componentDidUpdate() {
     const { location } = this.state
-    document.title = location ? location.name : 'Link-SF'
+    document.title = location ? location.name : globalConfig.title
   }
 
   render() {
