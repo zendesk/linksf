@@ -20,6 +20,14 @@ const blankService = (location) => ({
   taxonomy: ""
 })
 
+const placeholderAddressText = (physicalAddress) => {
+  if (physicalAddress.address1) {
+    return physicalAddress.address1 + ", " + physicalAddress.city;
+  } else {
+    return "Search for location"
+  }
+}
+
 class LocationEdit extends Component {
    updateLocation = (field, value) => {
     const { index, location, handleChange } = this.props
@@ -119,8 +127,9 @@ class LocationEdit extends Component {
         </div>
         <div className={s.inputBox}>
           <div className={s.inputGroup}>
-            <span className={s.inputLabel}>Street Address</span>
+            <span className={s.inputLabel}>Location Address</span>
             <Autocomplete
+              placeholder={placeholderAddressText(location.physicalAddress)}
               className={s.input}
               onPlaceSelected={this.handleAddress}
               types={['geocode']}
@@ -136,7 +145,7 @@ class LocationEdit extends Component {
             />
           </div>
           <div className={s.inputGroup}>
-            <span className={s.inputLabel}>City </span>
+            <span className={s.inputLabel}>City</span>
             <input
               className={s.input}
               type="text"
