@@ -2,15 +2,6 @@ import React, { PropTypes } from 'react'
 
 import { GoogleMapLoader, GoogleMap, Marker } from 'react-google-maps'
 
-const markers = [{
-  position: {
-    lat: 37.774,
-    lng: -122.4194,
-  },
-  key: 'Taiwan',
-  defaultAnimation: 2,
-}]
-
 const MyGoogleMap = (props) => {
   return (
     <GoogleMapLoader
@@ -23,7 +14,7 @@ const MyGoogleMap = (props) => {
       }
       googleMapElement={
         <GoogleMap
-          defaultCenter={{ lat: 37.774, lng: -122.4194 }}
+          defaultCenter={{ lat: props.lat, lng: props.long }}
           options={{
             zoom:              15,
             mapTypeControl:    false,
@@ -34,13 +25,10 @@ const MyGoogleMap = (props) => {
             zoomControl:       false
           }}
         >
-          {markers.map((marker, index) => {
-            return (
-              <Marker
-                {...marker}
-                onRightclick={() => props.onMarkerRightclick(index)} />
-            )
-          })}
+        <Marker
+          position={{ lat: props.lat, lng: props.long }}
+          defaultAnimation={2}
+         />
         </GoogleMap>
       }
     />
