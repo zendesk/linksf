@@ -40,7 +40,7 @@ class AboutPage extends React.Component {
           </p>
         </div>
 
-        <img className={s.logo} src="/zendesk.png"/>
+        <img className={s.logo} src="/zendesk.svg"/>
         <div className={s.inset}>
           <p>Zendesk is a cloud-based customer service platform. It is designed to be easy to use, easy to customize, and easy to scale. Frustrated with the state of enterprise customer service software in 2007, three Danish entrepreneurs sought out to create beautifully simple software that could change how any company interacted with its customers. Today more than 30,000 companies use Zendesk to provide service to more than 200 million people worldwide.
           Zendesk has offices in eight countries, with headquarters in San Francisco. Funding from Charles River Ventures, Benchmark Capital, Goldman Sachs, GGV Capital, Index Ventures, Matrix Partners, and Redpoint Ventures. Learn more at www.zendesk.com.</p>
