@@ -197,7 +197,7 @@ const Location = (props) => {
       {location.physicalAddress &&
         <div className={s.insetMap}>
           <div className={s.map}>
-            <GoogleMap />
+            <GoogleMap lat={location.latitude} long={location.longitude} />
           </div>
           <p className={s.address}>
             {location.physicalAddress.address1}
