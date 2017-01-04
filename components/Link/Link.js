@@ -16,7 +16,8 @@ class Link extends Component {
       this.props.onClick(event)
     }
 
-    if (event.button !== 0 /* left click */) {
+    // Return early if this is *not* a left-click.
+    if (event.button !== 0) {
       return
     }
 
