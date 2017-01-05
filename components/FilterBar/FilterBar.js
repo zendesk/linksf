@@ -15,7 +15,7 @@ const getNewSortQueryString = (queryString, sortDist) => (
 const FilterBar = (props) => (
   <div className={s.row}>
     <div className={s.filterOption}>
-      <Link to="/locations" queryString={getNewFilterQueryString(props.queryString, !props.showOpen)}>
+      <Link to="/locations" replaceState={true} queryString={getNewFilterQueryString(props.queryString, !props.showOpen)}>
         <ToggleButton
           visualOnly={true} // <span> instead of <button> as we're in a <Link>
           label="Open now"
@@ -24,7 +24,7 @@ const FilterBar = (props) => (
       </Link>
     </div>
     <div className={s.filterOption}>
-      <Link to="/locations" queryString={getNewSortQueryString(props.queryString, !props.sortDist)}>
+      <Link to="/locations" replaceState={true} queryString={getNewSortQueryString(props.queryString, !props.sortDist)}>
         <ToggleButton
           visualOnly={true}
           label="Sort by distance"
