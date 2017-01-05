@@ -32,7 +32,7 @@ class Link extends Component {
     event.preventDefault()
 
     const queryString = this.props.queryString || convertToQueryString(this.props.query)
-    const go = this.props.replaceState ? redirectToViaReplace : redirectTo;
+    const go = (this.props.replaceState ? redirectToViaReplace : redirectTo)
 
     if (this.props.to && (this.props.query || this.props.queryString)) {
       go({
@@ -45,7 +45,7 @@ class Link extends Component {
   }
 
   render() {
-    const propsForChild = R.omit(['replaceState'], this.props);
+    const propsForChild = R.omit(['replaceState'], this.props)
     const { to, query, queryString, ...props } = propsForChild // eslint-disable-line no-use-before-define
     return <a href={history.createHref(to)} {...props} onClick={this.handleClick} />
   }
