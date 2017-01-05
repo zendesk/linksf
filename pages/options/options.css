@@ -7,14 +7,14 @@
 
 .categoryIcon {
   display: inline-block;
-  text-align: center;
+  text-align: left;
   min-width: 10px;
   margin: 0 5px;
-  flex: 5%;
+  flex: 2%;
 }
 
 .categoryTitle {
-  flex: 70%;
+  flex: 73%;
   text-align: left;
 }
 
