@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react'
+import R from 'ramda'
 
 import history from '../../core/history'
-import { redirectTo, convertToQueryString } from '../../lib/navigation'
+import { redirectTo, redirectToViaReplace, convertToQueryString } from '../../lib/navigation'
 
 
 class Link extends Component {
@@ -32,19 +33,21 @@ class Link extends Component {
     event.preventDefault()
 
     const queryString = this.props.queryString || convertToQueryString(this.props.query)
+    const go = (this.props.replaceState ? redirectToViaReplace : redirectTo)
 
     if (this.props.to && (this.props.query || this.props.queryString)) {
-      redirectTo({
+      go({
         pathname: this.props.to,
         search: queryString
       })
     } else if (this.props.to) {
-      redirectTo(this.props.to)
+      go(this.props.to)
     }
   }
 
   render() {
-    const { to, query, queryString, ...props } = this.props; // eslint-disable-line no-use-before-define
+    const propsForChild = R.omit(['replaceState'], this.props)
+    const { to, query, queryString, ...props } = propsForChild // eslint-disable-line no-use-before-define
     return <a href={history.createHref(to)} {...props} onClick={this.handleClick} />
   }
 
