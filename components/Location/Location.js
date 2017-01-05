@@ -130,12 +130,14 @@ const getDailySchedules = (schedules) => {
   })
   schedules
     .forEach(schedule => {
-      const day = schedule.weekday.toLowerCase()
-      const daySchedule = daySchedules[day]
-      daySchedule.push({
-        opensAt: schedule.opensAt,
-        closesAt: schedule.closesAt,
-      })
+      if(schedule.opensAt != schedule.closesAt) { // Check if location is open
+        const day = schedule.weekday.toLowerCase()
+        const daySchedule = daySchedules[day]
+        daySchedule.push({
+          opensAt: schedule.opensAt,
+          closesAt: schedule.closesAt,
+        })
+      }
     })
   return daySchedules
 }
