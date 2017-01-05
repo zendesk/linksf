@@ -2,6 +2,7 @@
 .env*
 config.js
 npm-debug.log
+.firebaserc
 
 node_modules
 build
