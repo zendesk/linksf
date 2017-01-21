@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import s from './LocationRow.css'
-import icons from '../../icons/css/icons.css'
+import icons from '../../icons/css/fontello.css'
 import { relevantTaxonomies, getIcon } from '../../lib/taxonomies'
 import ServiceStatus from '../ServiceStatus'
 import Link from '../Link'

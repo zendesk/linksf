@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import globalConfig from '../../config'
 
-import icons from '../../icons/css/icons.css'
+import icons from '../../icons/css/fontello.css'
 import { fetchTaxonomies } from '../../core/firebaseRestAPI'
 import { taxonomiesWithIcons } from '../../lib/taxonomies'
 
