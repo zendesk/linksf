@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 
-import icons from '../../icons/css/icons.css'
+import icons from '../../icons/css/fontello.css'
 import s from './OrganizationRow.css'
 
 import Link from '../Link'
