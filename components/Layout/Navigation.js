@@ -49,8 +49,8 @@ class Navigation extends Component {
                 onClick={Link.handleClick}
                 className={s.logoImg}
                 role="link"
-                src="/link-sf.png"
-                alt="San Francisco website that connects homeless and low-income residents with critical and life-saving resources"
+                src="/link-dane.png"
+                alt="Dane County website that connects homeless and low-income residents with critical and life-saving resources"
               />
             </Link>
           </div>
