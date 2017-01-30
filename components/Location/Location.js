@@ -259,6 +259,12 @@ const Location = (props) => {
               <label>Notes</label>
               <p>{service.applicationProcess}</p>
             </div>
+            {service.eligibility.notes &&
+              <div className={s.eligibility}>
+                <label>Eligibility Notes</label>
+                <p>{service.eligibility.notes}</p>
+              </div>
+            }
           </li>
         ))}
       </ul>

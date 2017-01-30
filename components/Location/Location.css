@@ -164,3 +164,17 @@ button {
   padding: 20px;
   border-radius: 3px;
 }
+
+.eligibility {
+  background: #fff;
+  padding: 20px;
+  border-radius: 3px;
+}
+
+.notes > label {
+  font-weight: bold;
+}
+
+.eligibility > label {
+  font-weight: bold;
+}
