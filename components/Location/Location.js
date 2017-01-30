@@ -142,9 +142,13 @@ const getDailySchedules = (schedules) => {
   return daySchedules
 }
 
-const getTimeRange = hours => (
-  `${convertMilitaryTime(hours.opensAt)} - ${convertMilitaryTime(hours.closesAt)}`
-)
+const getTimeRange = hours => {
+  if (hours.opensAt == 0 && hours.closesAt == 2359 ) {
+    return `24 hours`
+  } else {
+    return `${convertMilitaryTime(hours.opensAt)} - ${convertMilitaryTime(hours.closesAt)}`
+  }
+}
 
 const Schedule = (props) => {
   const daySchedules = getDailySchedules(props.schedules)
