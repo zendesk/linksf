@@ -50,6 +50,7 @@
     "react-dom": "^15.2.0",
     "react-google-autocomplete": "^1.0.7",
     "react-google-maps": "^4.11.0",
+    "react-nl2br": "^0.2.0",
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
     "whatwg-fetch": "^1.0.0"
