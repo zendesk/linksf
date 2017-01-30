@@ -21,22 +21,16 @@ class AboutPage extends React.Component {
   render() {
     return (
       <Layout>
-        <img className={s.logo} src="/link-sf.png"/>
+        <img className={s.logo} alt="Link-Dane logo" src="/header-logo.jpg"/>
         <div className={s.inset}>
           <p>
-            Link-SF is San Francisco’s first mobile-optimized website that connects homeless and low-income residents with critical and life-saving resources nearby.  Focusing on basic services such as food, shelter, medical care, hygiene services, and technology access, Link-SF utilizes cutting-edge technology to stream the most up-to-date information to the people who need it most.  Link-SF was designed with three user groups in mind:  1) A growing population of low-income San Franciscans who rely on mobile technology to meet their basic needs, 2) Service providers who can use the most real-time data to direct clients in need, and 3) Everyday people who can use this information as a way to help refer San Francisco’s homeless population to a social service agency nearby.
+            Link-Dane is Dane County’s first mobile-optimized website that connects homeless and low-income residents with critical and life-saving resources nearby. Focusing on basic services such as food, shelter, medical care, hygiene services, and access to technology, Link-Dane utilizes United Way 2-1-1’s vast database of resources to stream the most up-to-date information to the people who need it most.
           </p>
           <p>
-            <a href="http://www.stanthonysf.org/">St. Anthony Foundation</a> and Zendesk designed and implemented Link-SF.  This collaboration emerged as a result of the Community Benefits Agreement within the Mid-Market revitalization project in the city of San Francisco.  St. Anthony’s Tenderloin Technology Lab reached out to the tech community after observing an increase in the use of smart phones by low-income residents. Link-SF is a result of this process and is an attempt to use mobile technology to assist those most in need.
+            Zendesk and United Way 2-1-1 began collaborating on the Link-Dane project after being introduced by a colleague at 100 State.  After realizing the potential of the project, the two organizations began brainstorming ways to use 2-1-1 resources to create a product similar to Link-SF. After many design meetings, diving into the data and finalizing the layout, Link-Dane was launched publicly on February 22, 2016.
           </p>
           <p>
-            The <a href="http://www.tenderlointechnologylab.org/">Tenderloin Technology Lab</a> (TTL), one of six programs offered by St. Anthony Foundation, works to bridge the digital divide by offering free computer training and access. The TTL is a neighborhood resource center for 100-150 people a day who are living in poverty.
-          </p>
-          <p>
-            Data for Link-SF was primarily compiled using the information from the Homeless Advocacy Project Resource Manual as released from the <a href="http://www.sfbar.org/jdc/index.aspx">Justice &amp; Diversity Center with the Bar Association of San Francisco</a>.
-          </p>
-          <p>
-            To bring Link-SF to the public realm, we have partnered with <a href="http://grayarea.org/about/mission/">Gray Area Art &amp; Technology</a> to produce an upcoming series of exhibits that will visualize the data from Link-SF. Gray Area applies art and technology to create positive social impact. Through education, research and public programs, Gray Area tests and scales projects with high impact potential, teaches digital tools to support artists and technologists and inspires the community by promoting meaningful new work.
+            Link-Dane is based on <a href="http://www.link-sf.org/">Link-SF</a>, a project designed and implemented by <a href="http://www.stanthonysf.org/">St. Anthony Foundation</a>, Zendesk, and user testing expert <a href="http://kimberlymccollister.com/design/">Kimberly McCollister</a>. This collaboration emerged as a result of a Community Benefits Agreement in the city of San Francisco. St. Anthony’s Tenderloin Technology Lab reached out to the tech community after observing an increase in the use of smart phones by low-income residents. Link-SF is a result of this process and is an attempt to use mobile technology to assist those most in need.
           </p>
         </div>
 
@@ -45,9 +39,19 @@ class AboutPage extends React.Component {
           <p>Zendesk is a cloud-based customer service platform. It is designed to be easy to use, easy to customize, and easy to scale. Frustrated with the state of enterprise customer service software in 2007, three Danish entrepreneurs sought out to create beautifully simple software that could change how any company interacted with its customers. Today more than 30,000 companies use Zendesk to provide service to more than 200 million people worldwide.
           Zendesk has offices in eight countries, with headquarters in San Francisco. Funding from Charles River Ventures, Benchmark Capital, Goldman Sachs, GGV Capital, Index Ventures, Matrix Partners, and Redpoint Ventures. Learn more at www.zendesk.com.</p>
         </div>
+
+        <img className={s.logo} src="/unitedway-dane.jpg"/>
+        <div className={s.inset}>
+          <p>
+            United Way of Dane County engages the community, mobilizes volunteers and strengthens local nonprofits to ensure Dane County is a place where everyone can succeed in school, work and life. Their efforts are focused on specific goals in the three priority areas of our community’s Agenda for Change: Education, Income and Health.
+          </p>
+          <p>
+            United Way 2-1-1 is a department within United Way of Dane County and is part of the 2-1-1 Wisconsin network that ensures 100% 2-1-1 coverage for Wisconsin. 2-1-1 is an information and referral service that connects people to a variety of resources such as: help paying bills, housing search assistance, support groups, food pantries, community clinics, and many other services! Dial 2-1-1 for 24-hour free assistance in almost every language. Learn more at <a href="https://www.unitedwaydanecounty.org">www.unitedwaydanecounty.org</a>.
+          </p>
+        </div>
         <br/>
         <div className={s.inset}>
-          Link-SF is free software. Get it <a href="http://github.com/zendesk/linksf" about="_blank">here</a>
+          Link-Dane is based on Link-SF which is free software. Get it <a href="http://github.com/zendesk/linksf" about="_blank">here</a>
         </div>
         <br/>
         <p className={s.credits}>
