@@ -10,7 +10,10 @@ const category = (props) => (
     className={s.category}
     aria-label={`Look for ${props.name} services`}
   >
-    <i className={`${s.categoryIcon} ${props.iconClass}`}></i>{props.name}
+    <span className={s.iconAndName}>
+      <i className={`${s.categoryIcon} ${props.iconClass}`}></i>
+      {props.name}
+    </span>
   </Link>
 )
 
