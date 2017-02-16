@@ -7,11 +7,12 @@
   cursor: pointer;
   height: 57px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  display: flex;
-  align-items: center;
   text-decoration: none;
   padding-left: 10px;
   color: #333333;
+  display: table-cell;
+  width: calc(100% - 10px); /* -10px for the padding-left */
+  vertical-align: middle;
 }
 
 .category:active,
@@ -19,6 +20,12 @@
 .category:focus,
 .category:visited {
   color: inherit;
+}
+
+.iconAndName {
+  display: inline-block;
+  margin: auto 0;
+  height: 23px;
 }
 
 .categoryIcon {
