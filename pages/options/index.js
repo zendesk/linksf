@@ -67,12 +67,9 @@ class OptionsPage extends Component {
 
   getGeoPermission() {
     const self = this
-    navigator.permissions.query({ name: 'geolocation' })
-      .then(function(permission) {
-        if (permission.state === 'granted') {
-          self.setState({ showGeoAlert: false })
-        }
-      })
+    navigator.geolocation.getCurrentPosition(function() {
+      self.setState({ showGeoAlert: false })
+    })
   }
 
   setSortBy(sortBy) {
@@ -153,7 +150,7 @@ class OptionsPage extends Component {
                 disableButton={'disabled'}
               />
             </Group>
-            <div className={`${s.alert} ${showGeoAlert ? s.hide : ''}`}>
+            <div className={`${s.alert} ${showGeoAlert ? '' : s.hide}`}>
               <strong>Distance disabled:</strong> current location unavailable
             </div>
           </ButtonGroup>
