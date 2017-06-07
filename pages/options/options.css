@@ -31,7 +31,7 @@
   min-height: 25px;
   padding: 10px 0 10px 5px;
   color: #999999;
-  flex: 1 100%;
+  flex: 1;
 }
 
 .button:last-child {
