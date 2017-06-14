@@ -8,14 +8,14 @@
 .categoryIcon {
   display: inline-block;
   text-align: left;
-  min-width: 10px;
-  margin: 0 5px;
-  flex: 2%;
+  /*min-width: 25px;*/
+  width: 10%;
 }
 
 .categoryTitle {
-  flex: 73%;
+  width: 83%;
   text-align: left;
+  display: inline-block;
 }
 
 .button {
@@ -39,7 +39,8 @@
 }
 
 .demographicsTitle {
-  flex: 80%;
+  width: 93%;
+  display: inline-block;
   text-align: left;
 }
 
@@ -60,9 +61,9 @@
 }
 
 .serviceGroup {
-  display: flex;
+  /*display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-between;*/
 }
 
 .service {
@@ -73,13 +74,11 @@
   font-size: 20px;
   line-height: 25px;
   font-weight: 400;
-  display: flex;
-  align-items: center;
   min-height: 25px;
   padding: 10px 0;
   color: #999999;
-  flex-direction: row;
-  flex-wrap: wrap;
+  width: 100%;
+  text-align: left;
 }
 
 .service:last-child {
@@ -180,10 +179,6 @@ ul.enabled {
   font-weight: 400;
 }
 
-.checkBox {
-  flex: 10%;
-}
-
 .dropDown {
   display: none;
   list-style: none;
@@ -205,6 +200,14 @@ ul.enabled {
   display: block;
 }
 
+.demographicsButton {
+  width: 100%;
+  display: block;
+  text-align: left;
+}
+
 .checkBox {
-  flex: 10%;
+  width: 5%;
+  text-align: left;
+  display: inline-block;
 }
