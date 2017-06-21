@@ -1,5 +1,5 @@
 .page {
-  padding-top: 5px;
+  padding: 5px 15px 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
