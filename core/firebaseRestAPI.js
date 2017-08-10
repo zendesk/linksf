@@ -113,14 +113,11 @@ export function fetchLocations(pageSize, startAt) {
 }
 
 export function fetchLocation(id) {
-  const url = [
-    config.firebaseDatabaseUrl,
-    LOCATIONS,
-    id
-  ].join(SLASH).concat(FORMAT)
+  const url = 'https://raw.githubusercontent.com/openreferral/optimizely-hack-2017/master/complete-converted.json'
 
   return fetch(url)
     .then(response => response.json())
+    .then(json => json.filter(loc => loc.id === id)[0])
     .then(location => ensureDefaultsForLocation(camelize(location)))
 }
 
