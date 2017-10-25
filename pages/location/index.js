@@ -24,10 +24,10 @@ export default class LocationPage extends Component {
     fetchLocation(locationId)
       .then(location => {
         this.setState({ location })
-      })
-    fetchOrganization(location.organizationId)
-      .then(organization => {
-        this.setState({ organization })
+        fetchOrganization(location.organizationId)
+          .then(organization => {
+            this.setState({ organization })
+          })
       })
   }
 
