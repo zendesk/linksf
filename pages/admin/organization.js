@@ -12,7 +12,8 @@ const blankOrganization = () => ({
   id: uuid(),
   longDescription: "",
   name: "",
-  url: ""
+  url: "",
+  phones: []
 })
 
 class OrganizationAdminPage extends Component {
