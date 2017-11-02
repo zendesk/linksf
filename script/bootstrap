@@ -53,3 +53,5 @@ try "Installing Firebase Tools" "npm install -g firebase-tools"
 try "Logging you into Firebase" "firebase login"
 
 try "Choose your Firebase project" "firebase use --add"
+
+try "Initializing your Firebase database configuration" "firebase deploy --only database"

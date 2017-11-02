@@ -10,7 +10,7 @@ Link-SF is designed to be free to setup and free to run. Since hosting files is 
 
 * [Firebase](https://firebase.google.com/console):  Firebase is the only required account, and it's completely free.  It will provide everything we need to get up and running, including database storage, authentication, and hosting.
 
-  **Note**  Every administrator on your account will need to be created under the Authentication panel in your new Firebase Console.  You won't be able to adjust your production data from the app without it!
+  **Note**  Every administrator on your account will need to be created under the Authentication panel in your new Firebase Console.  You won't be able to adjust your production data from the app without it!  For information on how to set up users, see the [Management documentation](https://github.com/zendesk/linksf/blob/master/docs/MANAGE.md) under *Set up a Firebase user*.
 
 The following accounts are optional:
 
@@ -21,14 +21,6 @@ The following accounts are optional:
 Download the source (via [git](git@github.com:zendesk/linksf.git) or [.zip file](https://github.com/zendesk/linksf/archive/master.zip)).
 
 ## Setup
-
-### Database Population
-
-If you have an existing project hosted with Parse, you can use our migration tool to copy all of your data into  Firebase.
-
- * [Link Migrator](http://linkmigrator.herokuapp.com/)
-
-To see more about how your data is structured and what it means, read our [Management documentation](https://github.com/zendesk/linksf/blob/master/docs/MANAGE.md)
 
 ### Configuration
 
@@ -64,7 +56,7 @@ In the project root, you will find three configuration files:
 
 ### Install tools
 
-If you are working from a Unix system with Bash, you can use the pre-written boostrap script, which will complete all remaining steps in this doc.
+If you are working from a Unix system with Bash, you can use the pre-written boostrap script.  If you do, you can skip to [Database Population](#database-population).
 
 `./script/bootstrap`
 
@@ -103,6 +95,38 @@ The following steps will use Firebase Tools to authenticate and set up your loca
   This will configure which project we deploy to. Choose the correct one at the prompt and give it a nickname.
 
   `firebase use --add`
+
+### Initializing your Firebase database
+
+The following steps can be done automattically by running `./script/seed`, but if you prefer to run them manually here they are!
+
+1. Set your database permissions
+
+  To configure the proper database permissions and indexes, we've provided a JSON file named `database.rules.json`.  You can copy the config by running this:
+
+  `firebase deploy --only database`
+
+2. Seed your database
+
+  **NOTE** Running this command will overwrite all existing data in your Firebase!
+
+  To get you started with a few pre-made service categories, you can seed your database using `database.seed.json`.  
+
+  `firebase database:set / database.seed.json`
+
+### Database Population
+
+#### Migrating from Parse
+
+If you have an existing project hosted with Parse, you can use our migration tool to copy all of your data into  Firebase.
+
+ * [Link Migrator](http://linkmigrator.herokuapp.com/)
+
+#### Starting from scratch
+
+If you're starting from scratch, run `./script/seed`.  This will set the proper database configuration and seed your service categories.
+
+To see more about how your data is structured and what it means, read our [Management documentation](https://github.com/zendesk/linksf/blob/master/docs/MANAGE.md).
 
 ## Running the site locally
 
