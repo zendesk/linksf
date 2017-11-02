@@ -10,7 +10,7 @@ Link-SF is designed to be free to setup and free to run. Since hosting files is 
 
 * [Firebase](https://firebase.google.com/console):  Firebase is the only required account, and it's completely free.  It will provide everything we need to get up and running, including database storage, authentication, and hosting.
 
-  **Note**  Every administrator on your account will need to be created under the Authentication panel in your new Firebase Console.  You won't be able to adjust your production data from the app without it!  For information on how to set up users, see the [Management documentation](https://github.com/zendesk/linksf/blob/master/docs/MANAGE.md) under *Set up a Firebase user*.
+  **Note**  Every administrator on your account will need to be created under the Authentication panel in your new Firebase Console.  You won't be able to adjust your production data from the app without it!  For information on how to set up users, see the [Management documentation](linksf/blob/master/docs/MANAGE.md) under *Set up a Firebase user*.
 
 The following accounts are optional:
 
@@ -30,7 +30,7 @@ In the project root, you will find three configuration files:
 
   In `.firebaserc`, you will need to replace all instances of `[PROJECT_ID]` with your own Project ID, which can be found in your [Firebase Console](https://firebase.google.com/console) general settings.  This file contains aliases for various deploy destinations.  For example, if you wanted to have a testing environment and a production environment, you could set the two different Firebase Project IDs here.
 
-2. `config.js`
+1. `config.js`
 
   `config.js` contains a variety of details and keys.  Here's what you need to do:
   * Customize your project's title and description.
@@ -38,7 +38,7 @@ In the project root, you will find three configuration files:
   * Fill in your Firebase API Key in the `[FIREBASE_API_KEY]` slot, which can be found on the same page as your Project ID.
   * Enter the email address you'd like to receive feedback at (for more information see the Feedback form section below).
 
-3. `run.js`
+1. `run.js`
 
   Near the top, there will be a configuration section that looks like this:
 
@@ -56,7 +56,7 @@ In the project root, you will find three configuration files:
 
 ### Install tools
 
-If you are working from a Unix system with Bash, you can use the pre-written boostrap script.  If you do, you can skip to [Database Population](#database-population).
+If you are working from a Unix system with Bash, you can use the pre-written boostrap script and skip directly to [Database Population](#database-population).
 
 `./script/bootstrap`
 
@@ -66,11 +66,11 @@ Otherwise follow the steps below for your system.
 
   If you are using a version manager such as nvm, run `nvm install`, otherwise download and install the current version from `.nvmrc` from [the node website](http://nodejs.org/).
 
-2. Install our package manager (npm)
+1. Install our package manager (npm)
 
   Follow the installation instructions from [the npm repository](https://github.com/npm/npm).
 
-3. Install Firebase Tools
+1. Install Firebase Tools
 
   Follow the installation instructions from the [Firebase Tools repository](https://github.com/firebase/firebase-tools).
 
@@ -90,7 +90,7 @@ The following steps will use Firebase Tools to authenticate and set up your loca
 
   `firebase login`
 
-2. Add your Firebase project
+1. Add your Firebase project
 
   This will configure which project we deploy to. Choose the correct one at the prompt and give it a nickname.
 
@@ -106,7 +106,7 @@ The following steps can be done automattically by running `./script/seed`, but i
 
   `firebase deploy --only database`
 
-2. Seed your database
+1. Seed your database
 
   **NOTE** Running this command will overwrite all existing data in your Firebase!
 
@@ -151,5 +151,5 @@ Link-SF uses [Formspree](https://formspree.io/) to send emails from the static s
 If you'd like to use a feedback form:
 
 1. Add the email address where you would like feedback form submissions to be sent to in `config.js` under `[FEEDBACK_EMAIL_ADDRESS]`.
-2. Deploy your new changes and navigate to the feedback page (you'll find the feedback link on the footer of the home and detail pages).
-3. On the feedback page, make sure to submit the form once. This will send an email asking you to confirm your email address. Confirm your email address and submit the form once more to make sure everything is working smoothly. You're all set!
+1. Deploy your new changes and navigate to the feedback page (you'll find the feedback link on the footer of the home and detail pages).
+1. On the feedback page, make sure to submit the form once. This will send an email asking you to confirm your email address. Confirm your email address and submit the form once more to make sure everything is working smoothly. You're all set!
