@@ -42,9 +42,9 @@ Services contain basic information such as a name, description, and category, as
 #### Set up a Firebase user
 
 1. Navigate to the Authentication page of your [Firebase Console](https://firebase.google.com/console).
-2. Make sure you have Email/Password authentication enabled.  It should prompt you to enable it if you hover over *ADD USER*, otherwise you can find the setting under the *SIGN-IN METHOD* tab near the top of the page.
-3. Click *ADD USER* and set your email and password.
-4. That's it!  You should now be able to log in as your administrator user by visiting `/admin` either locally or on your production site.
+1. Make sure you have Email/Password authentication enabled.  It should prompt you to enable it if you hover over *ADD USER*, otherwise you can find the setting under the *SIGN-IN METHOD* tab near the top of the page.
+1. Click *ADD USER* and set your email and password.
+1. That's it!  You should now be able to log in as your administrator user by visiting `/admin` either locally or on your production site.
 
 #### Adding new data
 
