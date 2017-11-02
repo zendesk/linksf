@@ -1,0 +1,9 @@
+{
+  "taxonomies" : {
+    "food" : "1",
+    "housing" : "1",
+    "hygiene" : "1",
+    "medical" : "1",
+    "technology" : "1"
+  }
+}
