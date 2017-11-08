@@ -44,6 +44,15 @@ const SERVICE_SCHEMA =
     taxonomy: '',
   }
 
+const ORGANIZATION_SCHEMA =
+  {
+    id: '',
+    longDescription: '',
+    name: '',
+    phones: [],
+    url: '',
+  }
+
 function authToken() {
   return '?auth=' + currentUser().token
 }
@@ -57,6 +66,16 @@ export function fetchTaxonomies() {
   return fetch(url)
     .then(response => response.json())
     .then(json => Object.keys(json))
+}
+
+function ensureDefaultsForOrganization(organization) {
+  return R.merge(ORGANIZATION_SCHEMA, camelize(organization))
+}
+
+function ensureDefaultsForOrganizations(organizations) {
+  return Object.keys(organizations).map(orgId => {
+    return ensureDefaultsForOrganization(organizations[orgId])
+  })
 }
 
 function ensureDefaultsForService(service) {
@@ -161,11 +180,7 @@ export function fetchOrganizations() {
 
   return fetch(url)
     .then(response => response.json())
-    .then(organizations => {
-      return Object.keys(organizations).map(orgId => (
-        camelize(organizations[orgId])
-      ))
-    })
+    .then(organizations => ensureDefaultsForOrganizations(organizations))
 }
 
 export function fetchOrganization(id) {
@@ -177,7 +192,7 @@ export function fetchOrganization(id) {
 
   return fetch(url)
     .then(response => response.json())
-    .then(json => camelize(json))
+    .then(json => ensureDefaultsForOrganization(json))
 }
 
 export function updateOrganization(organization) {
