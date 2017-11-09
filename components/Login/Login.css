@@ -1,1 +1,30 @@
+.loginBox {
+  display: flex;
+  align-items: center;
+  flex-flow: column nowrap;
+}
 
+.fieldContainer {
+  width: 200px;
+  padding-top: 20px;
+}
+
+.loginField {
+  width: 200px;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #ddd;
+}
+
+.loginSubmit {
+  padding-top: 20px;
+}
+
+.btn {
+  width: 200px;
+  height: 30px;
+  border: 1px solid #d5d5d5;
+  background: none;
+  background-color: #e5e5e5;
+  font-size: 12pt;
+}
