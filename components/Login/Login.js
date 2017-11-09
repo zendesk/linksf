@@ -18,7 +18,7 @@ class Login extends React.Component {
     this.setState(fields)
   }
 
-  handleSubmit = (event) => {
+  handleSubmit = event => {
     const { email, password } = this.state
 
     this.props.handleSubmit(email, password)
@@ -27,23 +27,31 @@ class Login extends React.Component {
   render() {
     return (
       <div className={s.loginBox}>
-        <div className={s.email}>
-          <span className={s.emailLabel}>email </span>
+        <div className={s.fieldContainer}>
+          <label className={s.emailLabel} for="email">Email</label>
+          <br />
           <input
+            id="email"
+            className={s.loginField}
             type="text"
             value={this.state.email}
-            onChange={(e) => this.handleChange('email', e)} />
+            onChange={e => this.handleChange('email', e)}
+          />
         </div>
-        <div className={s.password}>
-          <span className={s.passwordLabel}>Password </span>
+        <div className={s.fieldContainer}>
+          <label className={s.passwordLabel} for="password">Password</label>
+          <br />
           <input
+            id="password"
+            className={s.loginField}
             type="password"
             onKeyPress={target => target.charCode === 13 && this.handleSubmit()}
             value={this.state.password}
-            onChange={(e) => this.handleChange('password', e)} />
+            onChange={e => this.handleChange('password', e)}
+          />
         </div>
         <div className={s.loginSubmit}>
-          <button type="button" onClick={this.handleSubmit}>Login</button>
+          <button type="button" className={s.btn} onClick={this.handleSubmit}>Login</button>
         </div>
       </div>
     )
