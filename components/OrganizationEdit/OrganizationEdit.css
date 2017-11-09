@@ -2,6 +2,10 @@
   padding-top: 20px;
 }
 
+.submitBanner {
+  padding-bottom: 20px;
+}
+
 .input {
   padding: 3px;
   border-radius: 2px;
