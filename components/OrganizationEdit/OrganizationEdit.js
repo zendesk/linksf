@@ -16,6 +16,7 @@ import {
   fetchTaxonomies
 } from '../../core/firebaseRestAPI'
 
+import Banner from '../Banner'
 import LocationEdit from '../LocationEdit'
 import ToggleButton from '../ToggleButton'
 import PhoneEdit from '../PhoneEdit'
@@ -47,6 +48,8 @@ class OrganizationEdit extends Component {
     super(props)
     this.state = {
       changesExist: false,
+      hasSubmit: false,
+      submitResult: true,
       organization: tempProps.organization,
       locations: [],
       selectedLocation: null,
@@ -231,10 +234,25 @@ class OrganizationEdit extends Component {
   handleSubmit = ()  => {
     const { organization, locations } = this.state
 
-    updateOrganization(organization)
+    // Clear the banner if you click submit
+    this.setState({
+      hasSubmit: false
+    })
+
+    updateOrganization(organization).then(response => {
+      this.setState({
+        hasSubmit: true,
+        submitResult: !response.hasOwnProperty('error')
+      })
+    })
 
     locations.map(location => {
-      updateLocation(location)
+      updateLocation(location).then(response => {
+        this.setState({
+          hasSubmit: true,
+          submitResult: !response.hasOwnProperty('error')
+        })
+      })
     })
   }
 
@@ -266,6 +284,8 @@ class OrganizationEdit extends Component {
 
   render() {
     const {
+      hasSubmit,
+      submitResult,
       organization,
       locations,
       selectedLocation,
@@ -275,6 +295,9 @@ class OrganizationEdit extends Component {
 
     return (
       <div className={s.organizationEditBox}>
+        <div className={s.submitBanner}>
+          <Banner show={hasSubmit} isGood={submitResult} />
+        </div>
         <h2>{ organization.name || 'New Organization' }</h2>
 
         <div className={s.baseOrganizationProperties}>

@@ -1,0 +1,21 @@
+.banner {
+  border: 1px solid #DCDCDC;
+  background: #f3f3f3;
+  border-radius: 3px;
+  border-color: #dbdbdb;
+  padding: 8px 8px;
+  min-width: 200px;
+  font-size: 16px;
+}
+
+.bannerHide {
+  display: none;
+}
+
+.bannerGood {
+  background-color: #C9F8FF;
+}
+
+.bannerBad {
+  background-color: #FFB2B6;
+}
