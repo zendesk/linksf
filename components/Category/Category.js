@@ -6,7 +6,7 @@ import icons from '../../icons/css/icons.css'
 const category = (props) => (
   <Link
     to="/locations"
-    query={{ services: [props.name.toLowerCase()] }}
+    query={{ services: [props.id] }}
     className={s.category}
     aria-label={`Look for ${props.name} services`}
   >
