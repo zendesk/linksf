@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import R from 'ramda'
 import s from './OrganizationEdit.css'
-import icons from '../../icons/css/icons.css'
+import icons from '../../icons/css/fontello.css'
 import history from '../../core/history'
 
 import { taxonomiesWithIcons } from '../../lib/taxonomies'

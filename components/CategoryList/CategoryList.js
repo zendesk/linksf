@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import s from './CategoryList.css'
 import Category from '../Category'
-import icons from '../../icons/css/icons.css'
+import icons from '../../icons/css/fontello.css'
 
 const CategoryList = (props) => (
   <div

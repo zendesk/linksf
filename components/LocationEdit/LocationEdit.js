@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import s from './LocationEdit.css'
-import icons from '../../icons/css/icons.css'
+import icons from '../../icons/css/fontello.css'
 
 import { uuid } from '../../lib/uuid'
 

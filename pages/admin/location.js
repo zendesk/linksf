@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { fetchLocation } from '../../core/firebaseRestAPI'
 
-import icons from '../../icons/css/icons.css'
+import icons from '../../icons/css/fontello.css'
 
 import Layout from '../../components/Layout'
 import Loading from '../../components/Loading'
