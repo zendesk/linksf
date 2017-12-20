@@ -215,11 +215,13 @@ export function updateOrganization(organization) {
 }
 
 export function deleteOrganization(id) {
+  if (!id) { return }
+
   const url = [
     config.firebaseDatabaseUrl,
     ORGANIZATIONS,
     id
-  ].join(SLASH).concat(FORMAT)
+  ].join(SLASH).concat(FORMAT).concat(authToken())
 
   return fetch(url, {method: 'DELETE'})
 }
