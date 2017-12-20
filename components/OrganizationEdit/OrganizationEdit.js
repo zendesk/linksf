@@ -112,7 +112,7 @@ class OrganizationEdit extends Component {
 
     if (answer) {
       deleteOrganization(organization.id)
-        .then(redirectTo('/admin'))
+        .then(() => redirectTo('/admin'))
     }
   }
 
