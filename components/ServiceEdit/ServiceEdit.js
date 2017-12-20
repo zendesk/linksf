@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import s from './ServiceEdit.css'
-import icons from '../../icons/css/icons.css'
+import icons from '../../icons/css/fontello.css'
 import { gender } from '../../lib/eligibilities'
 import { age } from '../../lib/eligibilities'
 import { uuid } from '../../lib/uuid'

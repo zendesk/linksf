@@ -3,6 +3,7 @@
 config.js
 npm-debug.log
 .firebaserc
+icons/zipfiles/*/*
 
 node_modules
 build
