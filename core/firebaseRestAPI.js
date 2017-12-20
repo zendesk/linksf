@@ -144,6 +144,8 @@ export function fetchLocation(id) {
 }
 
 export function updateLocation(location) {
+  if (!location.id) { return }
+
   const url = [
     config.firebaseDatabaseUrl,
     LOCATIONS,
@@ -163,6 +165,8 @@ export function updateLocation(location) {
 }
 
 export function deleteLocation(id) {
+  if (!id) { return }
+
   const url = [
     config.firebaseDatabaseUrl,
     LOCATIONS,
@@ -196,6 +200,8 @@ export function fetchOrganization(id) {
 }
 
 export function updateOrganization(organization) {
+  if (!organization.id) { return }
+
   const url = [
     config.firebaseDatabaseUrl,
     ORGANIZATIONS,
