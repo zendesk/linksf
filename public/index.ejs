@@ -12,6 +12,8 @@
   </head>
   <body>
     <div id="container"></div>
+    <script src="https://cdn.ravenjs.com/3.21.0/raven.min.js" crossorigin="anonymous"></script>
+    <script>Raven.config('https://67fab86a4ee141c9bb047a5f9561840a@sentry.io/262361').install();</script>
     <script src="<%= bundle %>"></script>
     <%_ if (!debug && config.trackingID) { _%>
     <script>
