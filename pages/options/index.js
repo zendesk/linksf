@@ -256,14 +256,14 @@ const ServiceFilter = (props) => (
   <button className={[s.service, props.active ? s.active : ''].join(' ')} {...filterOut(props, ['active', 'category'])}>
     <i className={`${s.categoryIcon} ${props.category.icon}`}></i>
     <span className={s.categoryTitle}>{props.category.name}</span>
-    <i className={`${props.active ? icons.iconCheck:icons.iconCheckEmpty} ${s.checkBox}`}></i>
+    <i className={`${props.active ? icons.iconCheck:icons.iconCheckEmpty} ${props.active ? 'icon-check' : 'icon-check-empty'} ${s.checkBox}`}></i>
   </button>
 )
 
 const DemographicsButton = (props) => (
   <button className={[s.button, s.demographicsButton, props.active ? s.active : ''].join(' ')} {...filterOut(props, ['active'])}>
     <span className={s.demographicsTitle}>{props.children}</span>
-    <i className={`${props.active ? icons.iconCheck:icons.iconCheckEmpty} ${s.checkBox}`}></i>
+    <i className={`${props.active ? icons.iconCheck:icons.iconCheckEmpty} ${props.active ? 'icon-check' : 'icon-check-empty'} ${s.checkBox}`}></i>
   </button>
 )
 
