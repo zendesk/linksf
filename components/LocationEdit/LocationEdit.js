@@ -71,7 +71,7 @@ class LocationEdit extends Component {
 
    newService = () => {
     const { location } = this.props
-    const newServices = location.services || []
+    const newServices = location.services || {}
     const newService = blankService(location)
 
     newServices[newService.id] = newService
