@@ -240,17 +240,21 @@ class OrganizationEdit extends Component {
     })
 
     updateOrganization(organization).then(response => {
+      let success = !response.hasOwnProperty('error')
       this.setState({
         hasSubmit: true,
-        submitResult: !response.hasOwnProperty('error')
+        submitResult: success,
+        changesExist: !success
       })
     })
 
     locations.map(location => {
       updateLocation(location).then(response => {
+        let success = !response.hasOwnProperty('error')
         this.setState({
           hasSubmit: true,
-          submitResult: !response.hasOwnProperty('error')
+          submitResult: success,
+          changesExist: !success
         })
       })
     })
