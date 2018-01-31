@@ -112,7 +112,9 @@ class OrganizationEdit extends Component {
 
     if (answer) {
       deleteOrganization(organization.id)
-        .then(() => redirectTo('/admin'))
+      locations.map(location => {
+        deleteLocation(location.id)
+      }).then(() => redirectTo('/admin'))
     }
   }
 
@@ -184,15 +186,26 @@ class OrganizationEdit extends Component {
     this.setState(update)
   }
 
-  handleLocations = (newLocation, index) => {
+  handleLocations = (newLocation, index, save) => {
     const { locations } = this.state
     const newLocations = [...locations]
 
     newLocations[index] = newLocation
+    
+    if (save) {
+      updateLocation(newLocation).then(response => {
+        let success = !response.hasOwnProperty('error')
+        this.setState({
+          hasSubmit: true,
+          submitResult: success,
+          changesExist: !success
+        })
+      })
+    }
 
     this.setState({
       locations: newLocations,
-      changesExist: true,
+      changesExist: !save,
     })
   }
 
@@ -215,20 +228,25 @@ class OrganizationEdit extends Component {
     const location = locations[index]
     const answer = confirm(`Are you sure you want to delete the location: ${location.name}? You cannot undo this or recover the data.`)
 
-    if (!answer) {
-      return
-    }
+    if (answer) {
+      deleteLocation(location.id)
+        .then(response => {
+          let success = !response.hasOwnProperty('error')
+          const newLocations = [...locations]
 
-    deleteLocation(location.id)
-      .then(_res => {
-        const newLocations = [...locations]
+          if (success) {
+            newLocations.splice(index, 1)
+            this.setState({
+              locations: newLocations,
+              selectedLocation: null,
+              selectedLocationIndex: null,
+              submitResult: success,
+              changesExist: false 
+            })
+          }
 
-        newLocations.splice(index, 1)
-        this.setState({
-          locations: newLocations,
-          changesExist: true,
         })
-      })
+    }
   }
 
   handleSubmit = ()  => {
@@ -258,6 +276,8 @@ class OrganizationEdit extends Component {
         })
       })
     })
+
+    redirectTo('/admin')
   }
 
   handleReset = () => {
@@ -275,9 +295,10 @@ class OrganizationEdit extends Component {
     })
   }
 
-  selectLocation = (location) => {
+  selectLocation = (location, index) => {
     this.setState({
       selectedLocation: location,
+      selectedLocationIndex: index,
       selectedService: null,
     })
   }
@@ -293,6 +314,7 @@ class OrganizationEdit extends Component {
       organization,
       locations,
       selectedLocation,
+      selectedLocationIndex,
       selectedService,
       taxonomies
     } = this.state
@@ -365,11 +387,11 @@ class OrganizationEdit extends Component {
             </button>
           </div>
           <div className={s.locationsList}>
-            {locations.map((location) => (
+            {locations.map((location, index) => (
               <ToggleButton
                 key={`location-${location.id}`}
                 enabled={this.locationSelected(location)}
-                onClick={(e) => this.selectLocation(location)}
+                onClick={(e) => this.selectLocation(location, index)}
                 label={location.name || "Location"}
               />
             ))}
@@ -378,6 +400,7 @@ class OrganizationEdit extends Component {
           <div className={s.locationEdit}>
             {selectedLocation ? <LocationEdit
                   location={selectedLocation}
+                  index={selectedLocationIndex}
                   selectedService={selectedService}
                   handleStateUpdate={this.handleStateUpdate}
                   handleChange={this.handleLocations}
