@@ -171,7 +171,7 @@ export function deleteLocation(id) {
     config.firebaseDatabaseUrl,
     LOCATIONS,
     id
-  ].join(SLASH).concat(FORMAT)
+  ].join(SLASH).concat(FORMAT).concat(authToken())
 
   return fetch(url, {method: 'DELETE'})
 }
