@@ -107,14 +107,15 @@ class OrganizationEdit extends Component {
   }
 
   handleDeleteOrganization = () => {
-    const { organization } = this.state
+    const { organization, locations } = this.state
     const answer = confirm(`Are you sure you want to delete ${organization.name}? You cannot undo this or recover the data.`)
 
     if (answer) {
       deleteOrganization(organization.id)
       locations.map(location => {
         deleteLocation(location.id)
-      }).then(() => redirectTo('/admin'))
+      })
+      redirectTo('/admin')
     }
   }
 
