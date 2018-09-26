@@ -16,11 +16,15 @@
     <script>Raven.config('https://67fab86a4ee141c9bb047a5f9561840a@sentry.io/262361').install();</script>
     <script src="<%= bundle %>"></script>
     <%_ if (!debug && config.trackingID) { _%>
+    <script async src="https://www.googletagmanager.com/gtag/js?<%= config.trackingID %>"></script>
     <script>
-      window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
-      ga('create','<%= config.trackingID %>','auto');ga('send','pageview')
+      (function() {
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', '<%= config.trackingID %>');
+      })()
     </script>
-    <script src="https://www.google-analytics.com/analytics.js" async defer></script>
     <%_ } _%>
   </body>
 </html>
