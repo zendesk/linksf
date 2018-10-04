@@ -73,7 +73,7 @@ function ensureDefaultsForOrganization(organization) {
 }
 
 function ensureDefaultsForOrganizations(organizations) {
-  return Object.keys(organizations).map(orgId => {
+  return Object.keys(organizations || []).map(orgId => {
     return ensureDefaultsForOrganization(organizations[orgId])
   })
 }
@@ -95,7 +95,7 @@ function ensureDefaultsForLocation(location) {
 }
 
 function ensureDefaultsForLocations(locations) {
-  return Object.keys(locations).map(locationId => (
+  return Object.keys(locations || []).map(locationId => (
     ensureDefaultsForLocation(locations[locationId])
   ))
 }
