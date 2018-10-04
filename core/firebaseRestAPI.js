@@ -184,7 +184,7 @@ export function fetchOrganizations() {
 
   return fetch(url)
     .then(response => response.json())
-    .then((organizations) => ensureDefaultsForOrganizations(organizations))
+    .then(organizations => ensureDefaultsForOrganizations(organizations))
 }
 
 export function fetchOrganization(id) {
