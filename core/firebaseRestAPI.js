@@ -72,8 +72,8 @@ function ensureDefaultsForOrganization(organization) {
   return R.merge(ORGANIZATION_SCHEMA, camelize(organization))
 }
 
-function ensureDefaultsForOrganizations(organizations = []) {
-  return Object.keys(organizations).map(orgId => {
+function ensureDefaultsForOrganizations(organizations) {
+  return Object.keys(organizations || []).map(orgId => {
     return ensureDefaultsForOrganization(organizations[orgId])
   })
 }
@@ -94,8 +94,8 @@ function ensureDefaultsForLocation(location) {
   return R.merge(defaultLocation, { services: defaultServices })
 }
 
-function ensureDefaultsForLocations(locations = []) {
-  return Object.keys(locations).map(locationId => (
+function ensureDefaultsForLocations(locations) {
+  return Object.keys(locations || []).map(locationId => (
     ensureDefaultsForLocation(locations[locationId])
   ))
 }
