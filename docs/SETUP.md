@@ -47,7 +47,8 @@ In the project root, you will find three configuration files:
     title: 'Link-SF',           // Your website title
     url: 'https://link-sf.com', // Your website URL
     project: 'link-sf',         // Firebase project. See README.md -> How to Deploy
-    trackingID: 'UA-XXXXX-Y',   // Google Analytics Site's ID
+    trackingID: '[GOOGLE_ANALYTICS_KEY]',   // Google Analytics Site's ID
+    firebaseApiKey: "[FIREBASE_API_KEY]",  // Firebase API Key
   };
   ```
 
