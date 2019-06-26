@@ -24,7 +24,8 @@ const config = {
   title: 'Link-SF',           // Your website title
   url: 'https://link-sf.com', // Your website URL
   project: 'link-sf',         // Firebase project. See README.md -> How to Deploy
-  trackingID: 'UA-46981709-1',   // Google Analytics Site's ID
+  trackingID: '[GOOGLE_ANALYTICS_KEY]',   // Google Analytics Site's ID
+  firebaseApiKey: "[FIREBASE_API_KEY]",  // Firebase API Key
 };
 
 const tasks = new Map(); // The collection of automation tasks ('clean', 'build', 'publish', etc.)
