@@ -64,7 +64,7 @@ const getEligibility = ({ gender, age = [] }) => {
 
 const getMapsUrl = (location) => {
   const { latitude, longitude } = location
-  return `https://maps.google.com/maps?q=loc:${latitude},${longitude}`
+  return `https://maps.google.com/maps/dir/?api=1&destination=${latitude},${longitude}&travelmode=walking`
 }
 
 const DAYS = {
@@ -205,7 +205,7 @@ const Location = (props) => {
       {location.physicalAddress &&
         <div className={s.insetMap}>
           <div className={s.map}>
-            <GoogleMap lat={location.latitude} long={location.longitude} />
+            <GoogleMap lat={location.latitude} long={location.longitude} link={getMapsUrl(location)} />
           </div>
           <p className={s.address}>
             {location.physicalAddress.address1}
@@ -214,32 +214,35 @@ const Location = (props) => {
       }
       {organization.phones &&
         <div className={s.inset + ' ' + s.insetInGroup}>
+          
           <label className={`${s.contactLabel} ${icons.iconPhone} icon-phone`}>Call </label>
+          {organization.phones.map((phone, index) => (
+            <a
+            className={s.phone}
+            href={'tel:' + phone.number.replace(/[^\d]/g, '')}
+          >
             <div className={s.callPhone}>
-               {organization.phones.map((phone, index) => (
                 <div key={`phone-${index}`}>
-                  <a
-                    className={s.phone}
-                    href={'tel:' + phone.number.replace(/[^\d]/g, '')}
-                  >{phone.number}</a>
+                  {phone.number}
                   <span className={s.phoneDepartment}>{phone.department}</span>
                 </div>
-              ))}
             </div>
+            </a>
+            ))}
         </div>
       }
       {organization.url &&
         <div className={s.inset + ' ' + s.insetInGroup}>
-          <label className={`${s.contactLabel} ${icons.iconLink} icon-website`}>Website </label>
-          <span className={s.websiteUrl}>
-            <a
+          <a
               className={s.website}
               href={organization.url}
               rel="nofollow"
               target="_blank">
-              {organization.url}
-            </a>
+          <label className={`${s.contactLabel} ${icons.iconLink} icon-website`}>Website</label>
+          <span className={s.websiteUrl}>
+            {organization.url}
           </span>
+          </a>
         </div>
       }
       <div className={s.inset + ' ' + s.insetInGroup}>
@@ -248,9 +251,7 @@ const Location = (props) => {
           rel="nofollow"
           target="_blank"
         >
-          <button>
-            <label className={`${s.directionsLabel} ${icons.iconCompass} icon-compass`}>Directions</label>
-          </button>
+          <label className={`${s.directionsLabel} ${icons.iconCompass} icon-compass`}>Directions</label>
         </a>
       </div>
       <ul title="Services details" className={s.servicesList}>
