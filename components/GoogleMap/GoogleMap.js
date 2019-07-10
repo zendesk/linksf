@@ -4,6 +4,7 @@ import { GoogleMapLoader, GoogleMap, Marker } from 'react-google-maps'
 
 const MyGoogleMap = (props) => {
   return (
+    <a href={props.link} target="_blank">
     <GoogleMapLoader
       containerElement={
         <div
@@ -32,6 +33,7 @@ const MyGoogleMap = (props) => {
         </GoogleMap>
       }
     />
+    </a>
   )
 }
 
