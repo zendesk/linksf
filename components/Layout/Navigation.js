@@ -2,9 +2,12 @@ import React, { Component } from 'react'
 
 import history from '../../core/history'
 
-import Link from '../Link'
+import Banner from '../Banner'
 import Button from '../Button'
+import Link from '../Link'
 import s from './Navigation.css'
+
+const covidWarning = "Please be aware that some services may be impacted due to ongoing COVID-19 (Coronavirus) pandemic response."
 
 const CurrentUser = (props) => {
   if (props.currentUser) {
@@ -58,6 +61,9 @@ class Navigation extends Component {
             {getFilter()}
           </div>
           <CurrentUser {...this.props} />
+        </div>
+        <div>
+          <Banner text={covidWarning} show={true} isGood={false} />
         </div>
       </nav>
     )
