@@ -5,6 +5,7 @@
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: stretch;
+  margin-bottom: 30px;
 }
 
 .navTopSpace {
