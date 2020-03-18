@@ -26,7 +26,10 @@ const LOCATION_SCHEMA = {
   name: '',
   organizationId: '',
   services: {},
-  physicalAddress: null,
+  physicalAddress: {
+    address1: '',
+    city: ''
+  },
   duration: null,
 }
 
@@ -37,10 +40,12 @@ const SERVICE_SCHEMA =
     name: '',
     applicationProcess: '',
     description: '',
-    eligibility: null,
+    eligibility: {
+      age: 'CYAS',
+      gender: ''
+    },
     organization: '',
     schedules: [],
-    physicalAddress: null,
     taxonomy: '',
   }
 
@@ -158,7 +163,7 @@ export function updateLocation(location) {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(decamelize(location))
+      body: JSON.stringify( ensureDefaultsForLocation(decamelize(location)) )
     })
     .then(response => response.json())
     .then(json => camelize(json))
@@ -214,7 +219,7 @@ export function updateOrganization(organization) {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(decamelize(organization))
+      body: JSON.stringify( ensureDefaultsForOrganization(decamelize(organization)) )
     })
     .then(response => response.json())
     .then(json => camelize(json))
