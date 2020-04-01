@@ -6,7 +6,7 @@ import icons from '../../icons/css/fontello.css'
 const category = (props) => (
   <Link
     to="/locations"
-    query={{ services: [props.name.toLowerCase()] }}
+    query={{ services: [props.name.toLowerCase().replace(' ', '-')] }}
     className={s.category}
     aria-label={`Look for ${props.name} services`}
   >

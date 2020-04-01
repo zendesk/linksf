@@ -95,7 +95,7 @@ class ServiceEdit extends Component {
     let classes = [s.selectableButton]
     const { taxonomy } = this.props.service
 
-    return taxonomy.toLowerCase() == value
+    return taxonomy.toLowerCase().replace(' ', '-')  == value
   }
 
   handleTimeChange = (event, value_changed, metadata) => {
@@ -184,9 +184,9 @@ class ServiceEdit extends Component {
               <span className={s.inputOption}>
                 <ToggleButton
                   key={`category-${i}`}
-                  enabled={this.getCategoryClass(category.name.toLowerCase())}
+                  enabled={this.getCategoryClass(category.name.toLowerCase().replace(' ', '-'))}
                   extraClasses={`${s.categoryIcon} ${category.icon}`}
-                  onClick={(e) => this.updateService('taxonomy', category.name.toLowerCase())}
+                  onClick={(e) => this.updateService('taxonomy', category.name.toLowerCase().replace(' ', '-'))}
                   label={category.name}
                 />
               </span>
