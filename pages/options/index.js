@@ -35,7 +35,7 @@ class OptionsPage extends Component {
       hours: 'all',
       services: {
         food: false,
-        housing: false,
+        shelter: false,
         hygiene: false,
         medical: false,
         technology: false,

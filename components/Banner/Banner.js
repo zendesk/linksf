@@ -15,7 +15,9 @@ const formatBanner = (props) => {
 }
 
 const bannerTitle = (props) => {
-  if (props.isGood) {
+  if (props.text) {
+    return props.text
+  } else if (props.isGood) {
     return goodTitle
   } else {
     return badTitle

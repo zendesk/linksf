@@ -25,6 +25,16 @@
   box-sizing: border-box;
 }
 
+.warningSection {
+  width: 100%;
+  background: #fff;
+  padding: 20px;
+  margin: 20px 0;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  background-color: #ffb2b6;
+}
+
 button {
   border: none;
   background: none;
@@ -70,7 +80,7 @@ button {
 
 .insetWebsite {
   margin: -1px 0 0 0;
-  border: 1px solid #DDD;
+  border: 1px solid #ddd;
   padding: 7px;
 }
 
@@ -123,7 +133,7 @@ button {
 
 .insetServices {
   margin: 30px 0 1px 0;
-  border: 1px solid #DDD;
+  border: 1px solid #ddd;
   text-align: left;
   box-sizing: border-box;
   border-radius: 3px;
@@ -160,7 +170,7 @@ button {
 }
 
 .notes {
-  background: #EAEAEA;
+  background: #eaeaea;
   padding: 20px;
   border-radius: 3px;
 }
