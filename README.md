@@ -1,3 +1,5 @@
+# ⚠️ Link-SF is no longer maintained here. The project is now managed by ShelterTech as the [SF Service Guide](https://linksf.sfserviceguide.org/).
+
 ## Link-SF [![Build Status](https://travis-ci.org/zendesk/linksf.svg?branch=master)](https://travis-ci.org/zendesk/linksf) [![Code Climate](https://codeclimate.com/github/zendesk/linksf.png)](https://codeclimate.com/github/zendesk/linksf)
 
 ### Open Referral Transition
